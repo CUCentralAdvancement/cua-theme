@@ -1,18 +1,18 @@
 
-#block-cu-giving-primary-local-tasks ul {
+#block-cu-theme-primary-local-tasks ul {
     display: flex;
     padding: 0;
 }
 
-#block-cu-giving-primary-local-tasks li {
+#block-cu-theme-primary-local-tasks li {
     list-style: none;
 }
 
-#block-cu-giving-primary-local-tasks button {
+#block-cu-theme-primary-local-tasks button {
     display: inline-block;
 }
 
-#block-cu-giving-primary-local-tasks .btn.btn-primary {
+#block-cu-theme-primary-local-tasks .btn.btn-primary {
     margin: 0 .25rem 0;
 }
 
