@@ -1,0 +1,18 @@
+# Main theme library.
+# Notes for later: https://www.drupal.org/node/2274843.
+global:
+  js:
+    js/bootstrap.bundle.min.js: {}
+  css:
+    base:
+      css/base/bootstrap.min.css: {}
+      css/base/elements.css: {}
+      css/base/variables-spacing.css: {}
+      css/base/variables-typography.css: {}
+    layout:
+      css/layouts/layout.css: {}
+    theme:
+      css/regions/header.css: { }
+      css/regions/footer.css: { }
+      css/regions/main.css: { }
+      css/theme/print.css: { media: print }

@@ -1,0 +1,23 @@
+
+#block-cu-giving-primary-local-tasks ul {
+    display: flex;
+    padding: 0;
+}
+
+#block-cu-giving-primary-local-tasks li {
+    list-style: none;
+}
+
+#block-cu-giving-primary-local-tasks button {
+    display: inline-block;
+}
+
+#block-cu-giving-primary-local-tasks .btn.btn-primary {
+    margin: 0 .25rem 0;
+}
+
+.placeholder {
+    background-color: transparent;
+    opacity: 1;
+    font-weight: bold;
+}

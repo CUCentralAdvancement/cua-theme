@@ -1,0 +1,38 @@
+name: CU Theme
+type: theme
+base theme: stable9
+description: A flexible theme with a responsive, mobile-first layout.
+package: CU
+core_version_requirement: ^8 || ^9 || ^10
+libraries:
+  - cu_theme/global
+
+regions:
+  alert: 'Alert'
+  header: 'Header'
+  navigation: 'Navigation'
+  utility_navigation: 'Utility navigation'
+  search: 'Search'
+  banner: 'Banner'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  breadcrumbs: 'Page title / breadcrumbs'
+  before_content: 'Before content'
+  full_width_before_content: 'Full width before content'
+  content: 'Content'
+  full_width_after_content: 'Full width after content'
+  after_content: 'After content'
+  full_width_content: 'After full width content / with border'
+  full_width_content_two: 'After full width content / without border'
+  sidebar_first: 'Sidebar left'
+  sidebar_second: 'Sidebar right'
+  before_footer: 'Footer top / Must be utilized with the superfooter option'
+  footer_01: 'Footer first'
+  footer_02: 'Footer second'
+  footer_03: 'Footer third'
+  footer_04: 'Footer fourth'
+  footer_05: 'Footer fifth'
+  footer_06: 'Footer sixth'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  other: 'Other / Placeholder region'
