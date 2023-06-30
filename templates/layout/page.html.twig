@@ -266,42 +266,40 @@
         </div>
     {% endif %}
     {# Bottom Footer Section #}
-    <div id="cu-footer-bottom" class="container-fluid bg-black pb-3">
-        <div class="container pt-3">
-            <div class="row footer-content">
-                <div id="cu-copyright" class="col-md-6 col-sm-12" aria-label="colorado address">
-                    {# Left Column #}
-                    {# title #}
-                    <h3>{{ 'University of Colorado'|t }}</h3>
-                    <h5>{{ 'CU Advancement | CU Foundation'|t }}</h5>
-                    {# Address #}
-                    <p>{{ '1800 Grant Street, Suite 800'|t }}<br/>{{ 'Denver, CO 80203'|t }}</p>
-                    {# Telephone #}
-                    <span itemprop="telephone">
+    <div id="cu-footer-bottom" class="container-fluid bg-black px-5 py-3">
+        <div class="row footer-content">
+            <div id="cu-copyright" class="col-md-6 col-sm-12" aria-label="colorado address">
+                {# Left Column #}
+                {# title #}
+                <h3>{{ 'University of Colorado'|t }}</h3>
+                <h5>{{ 'CU Advancement | CU Foundation'|t }}</h5>
+                {# Address #}
+                <p>{{ '1800 Grant Street, Suite 800'|t }}<br/>{{ 'Denver, CO 80203'|t }}</p>
+                {# Telephone #}
+                <span itemprop="telephone">
         <a class="cu-phone" href="tel: +13035411290"
            aria-label="{{ 'telephone'|t }}">{{ '+1 303.541.1290'|t }} {{ '|'|t }} <a
                     href="mailto:giving@cu.edu">{{ 'giving@cu.edu'|t }}</a></a>
       </span>
-                    <div>
-                        <a class="cu-campus-map mt-3" href="https://goo.gl/maps/6tZnMFZ7Ypi4bzNq7"
-                           aria-label="{{ 'Campus Map'|t }}">{{ 'Campus Map'|t }}</a>
-                    </div>
+                <div>
+                    <a class="cu-campus-map mt-3" href="https://goo.gl/maps/6tZnMFZ7Ypi4bzNq7"
+                       aria-label="{{ 'Campus Map'|t }}">{{ 'Campus Map'|t }}</a>
                 </div>
-                {#  Right Column #}
-                <div id="cu-copyright" class="col-md-6 col-sm-12 mt-3" aria-label="colorado logo and copyright">
-                    <div class="cu-footer-logo float-md-right float-end" id="cu-logo">
-                        <a href="https://cu.edu/" title="Colorado University CU Advancement | CU Foundation" rel="home"
-                           class="site-branding-logo">
-                            <img class="cu-logo" src="/themes/contrib/cu_theme/logo-white.svg" alt="Colorado University"
-                                 width="400px" height="90px">
-                        </a>
-                    </div>
-                    <div class="cu-footer-copy d-none d-sm-block float-end">
-                        <p class="small float-end p-1 mt-3">
-                            © {{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
-                    </div>
+            </div>
+            {#  Right Column #}
+            <div id="cu-copyright" class="col-md-6 col-sm-12 mt-3" aria-label="colorado logo and copyright">
+                <div class="cu-footer-logo float-md-right float-end" id="cu-logo">
+                    <a href="https://cu.edu/" title="Colorado University CU Advancement | CU Foundation" rel="home"
+                       class="site-branding-logo">
+                        <img src="{{ base_path }}{{ active_theme_path() }}/logo-white.svg" alt="Colorado University"
+                             width="400px" height="90px">
+                    </a>
                 </div>
-            </div> {# end row #}
-        </div> {# end container #}
-    </div> {# end container-fluid #}
+                <div class="cu-footer-copy d-none d-sm-block float-end">
+                    <p class="small float-end p-1 mt-3">
+                        © {{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
+                </div>
+            </div>
+        </div> {# end row #}
+    </div> {# end container fluid #}
 </footer> {# End Footer #}

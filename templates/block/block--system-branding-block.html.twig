@@ -1,3 +1,4 @@
+
 {#
 /**
  * @file
@@ -13,34 +14,13 @@
  */
 #}
 {# Header/Logo #}
-<div class="container-fluid bg-black px-0">
-    <div class="container" id="cu-top-links">
-        <div class="row">
-            <ul class="menu list-unstyled justify-content-end mt-3">
-                <li><a href="https://giving.cu.edu/" title="" class="text-white text-decoration-none me-3">{{ 'Support CU'|t }}</a></li>
-                <li><a href="https://www.cu.edu/cu-careers" title="" class="text-white text-decoration-none me-3">{{ 'CU Careers'|t }}</a></li>
-                <li><a href="https://my.cu.edu/" title="" class="text-white text-decoration-none me-3">{{ 'Employee and Student Portals'|t }}</a></li>
-                <li><a href="https://cu.edu/about-cu-system" title="" class="text-white text-decoration-none me-3">{{ 'Campuses'|t }}</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container-fluid px-0">
-    <div class="container">
+<div class="container-fluid px-1">
         <div class="row">
             <div class="col my-3" id="cu-logo">
                 <a href="https://giving.cu.edu/" title="{{ 'Colorado University CU Advancement | CU Foundation'|t }}" rel="home"
                    class="site-branding-logo">
-                    {% if setting_logo %}
-                        <img class="cu-logo" width="400px" height="90px" src="{{ site_logo|replace({'.svg': '.png'}) }}"
-                             alt="{{ 'Colorado University'|t }}"/>
-                        <img class="cu-logo hidden" width="400px" height="90px"
-                             src="{{ site_logo|replace({'logo.svg': 'logo.png'}) }}"
-                             alt="{{ 'Colorado University CU Advancement | CU Foundation'|t }}"/>
-                    {% else %}
                         <img class="cu-logo" src="{{ site_logo }}" width="400px" height="90px"
                              alt="{{ 'Colorado University CU Advancement | CU Foundation'|t }}"/>
-                    {% endif %}
                 </a>
             </div>
             <div id="mobile-botton" class="col d-lg-none">
@@ -52,7 +32,6 @@
                 </button>
             </div>
         </div>
-    </div>
 </div>
 {# Site Title/s #}
 <div class="container">
