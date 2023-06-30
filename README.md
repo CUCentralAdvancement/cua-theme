@@ -1,2 +1,2 @@
 # cu-theme
-Mzster CU Central Theme
+Master CU Central Advancement Theme
