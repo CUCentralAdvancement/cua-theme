@@ -30,7 +30,6 @@ regions:
   footer_01: 'Footer first'
   footer_02: 'Footer second'
   footer_03: 'Footer third'
-  footer_04: 'Footer fourth'
   page_top: 'Page top'
   page_bottom: 'Page bottom'
   other: 'Other / Placeholder region'
