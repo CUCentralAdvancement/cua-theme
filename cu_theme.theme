@@ -117,17 +117,6 @@ function cu_theme_preprocess_views_view_grid(&$variables)
 
 function cu_theme_preprocess_block(&$variables)
 {
-  $content = $variables['elements']['content'] ?? NULL;
-  if (isset($content['#block_content']) && $content['#block_content'] instanceof BlockContent) {
-    $type = $content['#block_content']->bundle();
-    if ($type === 'banner' or $type === 'call_to_action' or $type === 'image_with_copy') {
-      $term = Term::load($content['#block_content']->get('field_style')->getString());
-      $variables['color_background'] = str_replace(' ', '-', strtolower(Term::load($term->get('field_background_color')->getString())->getName()));
-      $variables['color_text'] = str_replace(' ', '-', strtolower(Term::load($term->get('field_text_color')->getString())->getName()));
-      $variables['color_text_background'] = str_replace(' ', '-', strtolower(Term::load($term->get('field_text_background_color')->getString())->getName()));
-      $variables['color_button'] = str_replace(' ', '-', strtolower(Term::load($term->get('field_button_color')->getString())->getName()));
-    }
-  }
   $variables['hide_breadcrumb'] = theme_get_setting('hide_breadcrumb');
   $variables['title_one_url'] = theme_get_setting('title_one_url');
   $variables['title_two_url'] = theme_get_setting('title_two_url');
