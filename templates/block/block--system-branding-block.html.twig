@@ -1,4 +1,3 @@
-
 {#
 /**
  * @file
@@ -14,94 +13,31 @@
  */
 #}
 {# Header/Logo #}
-<div class="container-fluid px-1">
-        <div class="row">
-            <div class="col my-3" id="cu-logo">
-                <a href="https://giving.cu.edu/" title="{{ 'Colorado University CU Advancement | CU Foundation'|t }}" rel="home"
-                   class="site-branding-logo">
-                        <img class="cu-logo" src="{{ site_logo }}" width="400px" height="90px"
-                             alt="{{ 'Colorado University CU Advancement | CU Foundation'|t }}"/>
-                </a>
-            </div>
-            <div id="mobile-botton" class="col d-lg-none">
-                <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarCUContent" aria-controls="navbarCUContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon w-100"></span>
-                    <span class="navbar-toggler-text w-100">{{ 'MENU'|t }}</span>
-                </button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-sm-12 my-3" id="cu-logo">
+            <a href="https://giving.cu.edu/" title="{{ 'Colorado University • CU Advancement | CU Foundation'|t }}"
+               rel="home"
+               class="site-branding-logo">
+                <img class="cu-logo" src="{{ site_logo }}" width="400px" height="90px"
+                     alt="{{ 'Colorado University CU Advancement | CU Foundation'|t }}"/>
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-12  my-3" id="cu-site-title">
+            <div class="site-title-single mt-4">
+                <h2 class="site-name" title="{{ site_name }}" aria-label="{{ site_name }}">{{ site_name }}</h2>
             </div>
         </div>
-</div>
-{# Site Title/s #}
-<div class="container">
-    <div class="row">
-        <div class="col d-none" id="site-name-slogan-wrapper">
-            {# Both titles and links are active #}
-            {% if title_one_url and site_name and title_two_url and site_slogan %}
-                <div class="site-title-multiple">
-                    <h2 class="site-name">
-                        <a href="{{ title_one_url }}" title="{{ site_name }}" aria-label="{{ site_name }}">
-                            {{ site_name }}
-                        </a>
-                    </h2>
-                    <h3 class="site-slogan"><a href="{{ title_two_url }}" title="{{ site_slogan }}"
-                                               aria-label="{{ site_slogan }}">
-                            {{ site_slogan }}</a>
-                    </h3>
-                </div>
-                {# Both titles and only site title active #}
-            {% elseif title_one_url and site_name and site_slogan %}
-                <div class="site-title-multiple">
-                    <h2 class="site-name">
-                        <a href="{{ title_one_url }}" title="{{ site_name }}"
-                           aria-label="{{ site_name }}">{{ site_name }}</a>
-                    </h2>
-                    <h3 class="site-slogan">{{ site_slogan }}</h3>
-                </div>
-                {# Both titles and active and site slogan is active #}
-            {% elseif title_two_url and site_name and site_slogan %}
-                <div class="site-title-multiple">
-                    <h2 class="site-name">{{ site_name }}</h2>
-                    <h3 class="site-slogan">
-                        <a href="{{ title_two_url }}" title="{{ site_slogan }}"
-                           aria-label="{{ site_slogan }}">{{ site_slogan }}</a>
-                    </h3>
-                </div>
-                {# Site title and slogan active but both links null #}
-            {% elseif site_name and site_slogan %}
-                <div class="site-title-multiple">
-                    <h2 class="site-name" title="{{ site_name }}" aria-label="{{ site_name }}">{{ site_name }}</h2>
-                    <h3 class="site-slogan" title="{{ site_slogan }}"
-                        aria-label="{{ site_slogan }}">{{ site_slogan }}</h3>
-                </div>
-                {# Site title and slogan active with only site slogan link active #}
-            {% elseif site_name is not empty and site_slogan is not empty and title_two_url is not empty %}
-                <div class="site-title-multiple">
-                    <h2 class="site-name" title="{{ site_name }}" aria-label="{{ site_name }}">{{ site_name }}</h2>
-                    <h3 class="site-slogan">
-                        <a href="{{ title_two_url }}" title="{{ site_slogan }}"
-                           aria-label="{{ site_slogan }}">{{ site_slogan }}</a>
-                    </h3>
-                </div>
-                {# Site name and link active and site slogan and link null #}
-            {% elseif title_one_url %}
-                <div class="site-title-single">
-                    <h2 class="site-name">
-                        <a href="{{ title_one_url }}" title="{{ site_name }}" aria-label="">{{ site_name }}</a>
-                    </h2>
-                </div>
-                {# Site title active but link null and slogan text null but slogan link active #}
-            {% elseif site_name is not empty and title_one_url is empty and site_slogan is empty and title_two_url is not empty %}
-                <div class="site-title-single">
-                    <h2 class="site-name" title="{{ site_name }}" aria-label="{{ site_name }}">{{ site_name }}</h2>
-                </div>
-                {# Site slogan null and links null #}
-            {% else %}
-                <div class="site-title-single">
-                    <h2 class="site-name" title="{{ site_name }}" aria-label="{{ site_name }}">{{ site_name }}</h2>
-                </div>
-            {% endif %}
+        <div id="mobile-botton" class="col d-lg-none">
+            <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCUContent" aria-controls="navbarCUContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon w-100"></span>
+                <span class="navbar-toggler-text w-100">{{ 'MENU'|t }}</span>
+            </button>
         </div>
     </div>
 </div>
+
+
+

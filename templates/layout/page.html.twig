@@ -151,8 +151,9 @@
             </div>
         {% endblock %}
     {% endif %}
-    <div class="cu-container container ">
+    <div class="container cu-main-container">
         <div class="row">
+
             {# Sidebar First #}
             {% if page.sidebar_first %}
                 {% block sidebar_first %}
@@ -161,6 +162,7 @@
                     </aside>
                 {% endblock %}
             {% endif %}
+
             {# Content #}
             {% set content_classes = [
                 page.sidebar_first and page.sidebar_second ? 'col-sm-6',
@@ -169,12 +171,14 @@
                 page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
             ] %}
             <section{{ content_attributes.addClass(content_classes) }}>
+
                 {# Highlighted #}
                 {% if page.highlighted %}
                     {% block highlighted %}
                         <div class="highlighted">{{ page.highlighted }}</div>
                     {% endblock %}
                 {% endif %}
+
                 {# Content #}
                 {% block content %}
                     <a id="main-content"></a>
@@ -183,6 +187,7 @@
                     </div>
                 {% endblock %}
             </section>
+
             {# Sidebar Second #}
             {% if page.sidebar_second %}
                 {% block sidebar_second %}
@@ -193,6 +198,7 @@
             {% endif %}
         </div>
     </div>
+
     {# Full Width After Content #}
     {% if page.full_width_after_content %}
         {% block full_width_after_content %}
@@ -201,6 +207,7 @@
             </div>
         {% endblock %}
     {% endif %}
+
     {# After Content #}
     {% if page.after_content %}
         {% block after_content %}
@@ -211,6 +218,7 @@
             </div>
         {% endblock %}
     {% endif %}
+
     {# After Full Width Content with Margin #}
     {% if page.full_width_content %}
         {% block full_width_content %}
@@ -219,6 +227,7 @@
             </div>
         {% endblock %}
     {% endif %}
+
     {# After Full Width Content without Margin #}
     {% if page.full_width_content_two %}
         {% block full_width_content_two %}
@@ -228,8 +237,11 @@
         {% endblock %}
     {% endif %}
 </div>
+
 {# Footer #}
 <footer id="cu-footer" class="mt-5">
+
+    {# Super-footer #}
     {% if super_footer %}
         <div id="cu-super-footer" class="container-fluid">
             {# Before Footer #}
@@ -240,7 +252,6 @@
                     </div>
                 {% endblock %}
             {% endif %}
-            {# Super-footer #}
             <div class="container pt-4 pb-4">
                 <div class="row center-block">
                     {% if page.footer_01 %}
@@ -263,31 +274,43 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
+        </div> {# end Super-Footer #}
     {% endif %}
-    {# Bottom Footer Section #}
+
+    {# Bottom Footer #}
     <div id="cu-footer-bottom" class="container-fluid bg-black px-5 py-3">
-        <div class="row footer-content">
-            <div id="cu-copyright" class="col-md-6 col-sm-12" aria-label="colorado address">
-                {# Left Column #}
+        <div class="row">
+
+            {# Left Column #}
+            <div id="cu-address" class="col-md-6 col-sm-12" aria-label="colorado address and contact information">
+
                 {# title #}
                 <h3>{{ 'University of Colorado'|t }}</h3>
                 <h5>{{ 'CU Advancement | CU Foundation'|t }}</h5>
+
                 {# Address #}
                 <p>{{ '1800 Grant Street, Suite 800'|t }}<br/>{{ 'Denver, CO 80203'|t }}</p>
+
                 {# Telephone #}
                 <span itemprop="telephone">
-        <a class="cu-phone" href="tel: +13035411290"
-           aria-label="{{ 'telephone'|t }}">{{ '+1 303.541.1290'|t }} {{ '|'|t }} <a
-                    href="mailto:giving@cu.edu">{{ 'giving@cu.edu'|t }}</a></a>
-      </span>
+                   <a class="cu-phone" href="tel: +13035411290"
+                      aria-label="{{ 'telephone'|t }}">{{ '+1 303.541.1290'|t }} {{ '|'|t }} </a>
+                </span>
+
+                {# Email #}
+                <a href="mailto:giving@cu.edu">{{ 'giving@cu.edu'|t }}</a>
+
+                {# Map #}
                 <div>
                     <a class="cu-campus-map mt-3" href="https://goo.gl/maps/6tZnMFZ7Ypi4bzNq7"
                        aria-label="{{ 'Campus Map'|t }}">{{ 'Campus Map'|t }}</a>
                 </div>
-            </div>
+            </div>{# End Left Column #}
+
             {#  Right Column #}
             <div id="cu-copyright" class="col-md-6 col-sm-12 mt-3" aria-label="colorado logo and copyright">
+
+                {#  Logo #}
                 <div class="cu-footer-logo float-md-right float-end" id="cu-logo">
                     <a href="https://cu.edu/" title="Colorado University CU Advancement | CU Foundation" rel="home"
                        class="site-branding-logo">
@@ -295,11 +318,15 @@
                              width="400px" height="90px">
                     </a>
                 </div>
+
+                {#  Copyright #}
                 <div class="cu-footer-copy d-none d-sm-block float-end">
                     <p class="small float-end p-1 mt-3">
                         © {{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
                 </div>
-            </div>
-        </div> {# end row #}
-    </div> {# end container fluid #}
+            </div>{# End Right Footer #}
+
+        </div> {# End Row #}
+    </div> {# End Bottom Footer #}
+
 </footer> {# End Footer #}
