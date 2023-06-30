@@ -7,11 +7,11 @@
   /* Typography */
   --font-size-base: 16px;
   --font-size-l: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 22px;
   --font-size-s: 14px;
   --font-size-xs: 13px;
   --font-size-xxs: 12px;
-  --line-height-base: 27px;
-  --line-height-s: 18px;
   
   --bs-gold: #cfb87c;
   --bs-blue: #0d6efd;

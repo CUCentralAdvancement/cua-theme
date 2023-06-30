@@ -5,7 +5,7 @@ global:
     js/bootstrap.bundle.js: {}
   css:
     base:
-      css/base/bootstrap.min.css: {}
+      css/base/bootstrap.css: {}
       css/base/elements.css: {}
       css/base/root-variables.css: {}
     layout:
