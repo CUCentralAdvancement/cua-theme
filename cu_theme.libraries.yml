@@ -2,13 +2,12 @@
 # Notes for later: https://www.drupal.org/node/2274843.
 global:
   js:
-    js/bootstrap.bundle.min.js: {}
+    js/bootstrap.bundle.js: {}
   css:
     base:
       css/base/bootstrap.min.css: {}
       css/base/elements.css: {}
-      css/base/variables-spacing.css: {}
-      css/base/variables-typography.css: {}
+      css/base/root-variables.css: {}
     layout:
       css/layouts/layout.css: {}
     theme:

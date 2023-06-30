@@ -1,4 +1,13 @@
+@charset "UTF-8";
+/* Layout */
 
+.placeholder {
+    background-color: transparent;
+    opacity: 1;
+    font-weight: bold;
+}
+
+/* Tabs */
 #block-cu-theme-primary-local-tasks ul {
     display: flex;
     padding: 0;
@@ -16,8 +25,3 @@
     margin: 0 .25rem 0;
 }
 
-.placeholder {
-    background-color: transparent;
-    opacity: 1;
-    font-weight: bold;
-}
