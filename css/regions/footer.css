@@ -1,6 +1,6 @@
 /* Footer Styling */
 #cu-footer a {
-    color: var(--bs-gold) !important;
+    color: var(--cu-gold) !important;
     text-decoration: none;
   }
   
@@ -20,7 +20,7 @@
   }
   
   #cu-super-footer a:hover {
-    color: var(--bs-gold) !important;
+    color: var(--cu-gold) !important;
   }
   
   #cu-super-footer {
@@ -39,7 +39,7 @@
   }
   
   #cu-super-footer h2 {
-    color: var(--bs-gold);
+    color: var(--cu-gold);
   }
   
   #cu-super-footer ul {

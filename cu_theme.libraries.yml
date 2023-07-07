@@ -1,12 +1,11 @@
 # Main theme library.
-# Notes for later: https://www.drupal.org/node/2274843.
 global:
   js:
-    js/bootstrap.bundle.js: {}
+    //cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js: { type: external, minified: true }
   css:
+    component:
+      //cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css: { type: external, minified: true }
     base:
-      css/base/bootstrap.css: {}
-      css/base/elements.css: {}
       css/base/root-variables.css: {}
     layout:
       css/layouts/layout.css: {}
