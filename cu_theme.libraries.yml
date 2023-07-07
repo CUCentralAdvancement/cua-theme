@@ -12,5 +12,4 @@ global:
     theme:
       css/regions/header.css: { }
       css/regions/footer.css: { }
-      css/regions/main.css: { }
       css/theme/print.css: { media: print }
