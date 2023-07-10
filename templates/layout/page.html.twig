@@ -308,21 +308,22 @@
             </div>{# End Left Column #}
 
             {#  Right Column #}
-            <div id="cu-copyright" class="col-md-6 col-sm-12 mt-3" aria-label="colorado logo and copyright">
+            <div class="col-md-6 col-sm-12 mt-3" aria-label="colorado logo and copyright">
+                <div class="row">
+                    {#  Logo #}
+                    <div class="col-sm-12" id="cu-logo">
+                        <a href="https://cu.edu/" title="Colorado University CU Advancement | CU Foundation" rel="home"
+                           class="site-branding-logo float-end">
+                            <img src="{{ base_path }}{{ active_theme_path() }}/logo-white.svg" alt="Colorado University"
+                                 width="400px" height="90px">
+                        </a>
+                    </div>
 
-                {#  Logo #}
-                <div class="cu-footer-logo float-md-right float-end" id="cu-logo">
-                    <a href="https://cu.edu/" title="Colorado University CU Advancement | CU Foundation" rel="home"
-                       class="site-branding-logo">
-                        <img src="{{ base_path }}{{ active_theme_path() }}/logo-white.svg" alt="Colorado University"
-                             width="400px" height="90px">
-                    </a>
-                </div>
-
-                {#  Copyright #}
-                <div class="cu-footer-copy d-none d-sm-block float-end">
-                    <p class="small float-end p-1 mt-3">
-                        © {{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
+                    {#  Copyright #}
+                    <div class="col-sm-12 float-end">
+                        <p class="small float-end p-1 mt-3">
+                             {{ '©'|t }}{{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
+                    </div>
                 </div>
             </div>{# End Right Footer #}
 
