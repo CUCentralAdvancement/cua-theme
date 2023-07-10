@@ -13,6 +13,15 @@
   --font-size-xs: 13px;
   --font-size-xxs: 12px;
 
+  /* Colors */
   --bs-gold: #cfb87c; /* Back up for GOLD */
-  --cu-gold: #cfb87c; 
+  --cu-gold: #cfb87c;
+
+  /* Link  Colors */
+
+  --bs-link-color: #806c37 !important;
+
+  /* Dropdown Colors */
+  --bs-dropdown-link-hover-color: #000 !important;
 }
+

@@ -10,6 +10,7 @@ global:
     layout:
       css/layouts/layout.css: {}
     theme:
-      css/regions/header.css: { }
-      css/regions/footer.css: { }
+      css/regions/header.css: {}
+      css/regions/footer.css: {}
+      css/regions/menu.css: {}
       css/theme/print.css: { media: print }
