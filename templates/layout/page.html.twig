@@ -324,6 +324,15 @@
                         <p class="small float-end p-1 mt-3">
                              {{ '©'|t }}{{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
                     </div>
+                    {#  CU Login #}
+                    <div class="col-sm-12">
+                      <form class="antibot selectize-processed float-end" action="/user" method="post" id="user-login" accept-charset="UTF-8">
+                            <input type="hidden" name="form_build_id" value="form-DejIZEbGN_a5HRbS3ZSpWEwktZDwIWXN5H0c40tUfZI" class="iCheck-processed">
+                            <input type="hidden" name="form_id" value="user_login" class="iCheck-processed">
+                            <input type="hidden" name="antibot_key" value="13ac4273dc853636a2413f2d70b438ff" class="iCheck-processed">
+                            <a href="/saml_login?destination=user">CU Staff Login</a>
+                      </form>
+                    </div>
                 </div>
             </div>{# End Right Footer #}
 
