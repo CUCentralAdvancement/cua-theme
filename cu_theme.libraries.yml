@@ -1,12 +1,11 @@
 # Main theme library.
 global:
   js:
-    //cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js: { type: external, minified: true }
+     js/bootstrap/bootstrap.bundle.min.js: {}
   css:
-    component:
-      //cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css: { type: external, minified: true }
     base:
       css/base/root-variables.css: {}
+      css/base/bootstrap.min.css: {}
     layout:
       css/layouts/layout.css: {}
     theme:
