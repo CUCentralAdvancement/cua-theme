@@ -53,6 +53,7 @@
 #}
 {# Header #}
 <header id="cu-header" role="banner">
+
     {# Logo and site title/s #}
     {% if page.header %}
         {% block header %}
@@ -64,6 +65,7 @@
     <div class="container my-2">
         <nav class="navbar navbar-expand-lg">
             <div class="page-navigation main-nav collapse navbar-collapse" id="navbarCUContent">
+
                 {# Main navigation #}
                 {% if page.navigation %}
                     {% block navigation %}
@@ -71,6 +73,7 @@
                         {{ page.navigation }}
                     {% endblock %}
                 {% endif %}
+
                 {# Utility navigation #}
                 {% if page.utility_navigation %}
                     {% block utility_navigation %}
@@ -79,6 +82,7 @@
                         </div>
                     {% endblock %}
                 {% endif %}
+
                 {# Search #}
                 {% if page.search %}
                     {% block search %}
@@ -100,6 +104,7 @@
 
 {# Main #}
 <div role="main" class="main-container cu-body-page js-quickedit-main-content ">
+
     {# Banner #}
     {% if page.banner %}
         {% block banner %}
@@ -108,8 +113,10 @@
             </div>
         {% endblock %}
     {% endif %}
+
     {# Content #}
     <div class="container">
+
         {# Help #}
         {% if page.help %}
             {% block help %}
@@ -118,6 +125,7 @@
                 </div>
             {% endblock %}
         {% endif %}
+
         {# Tabs #}
         {% if page.tabs %}
             {% block tabs %}
@@ -126,6 +134,7 @@
                 </div>
             {% endblock %}
         {% endif %}
+
         {# Page Title / Breadcrumbs #}
         {% if page.breadcrumbs %}
             {% block breadcrumbs %}
@@ -134,6 +143,7 @@
                 </div>
             {% endblock %}
         {% endif %}
+
         {# Before Content #}
         {% if page.before_content %}
             {% block before_content %}
@@ -143,6 +153,7 @@
             {% endblock %}
         {% endif %}
     </div>
+
     {# Full Width Before Content #}
     {% if page.full_width_before_content %}
         {% block full_width_before_content %}
@@ -244,6 +255,7 @@
     {# Super-footer #}
     {% if super_footer %}
         <div id="cu-super-footer" class="container-fluid">
+
             {# Before Footer #}
             {% if page.before_footer %}
                 {% block before_footer %}
@@ -252,30 +264,36 @@
                     </div>
                 {% endblock %}
             {% endif %}
+
             <div class="container pt-4 pb-4">
                 <div class="row center-block">
+
+                    {# Footer One #}
                     {% if page.footer_01 %}
-                        <div
-                                class="footer-first col-md-4 col-sm-12">
+                        <div class="footer-first col-md-4 col-sm-12">
                             {{ page.footer_01 }}
                         </div>
                     {% endif %}
+
+                    {# Footer Two #}
                     {% if page.footer_02 %}
-                        <div
-                                class="footer-second col-md-4 col-sm-12">
+                        <div class="footer-second col-md-4 col-sm-12">
                             {{ page.footer_02 }}
                         </div>
                     {% endif %}
+
+                    {# Footer Three #}
                     {% if page.footer_03 %}
-                        <div
-                                class="footer-third col-md-4 col-sm-12">
+                        <div class="footer-third col-md-4 col-sm-12">
                             {{ page.footer_03 }}
                         </div>
                     {% endif %}
+
                 </div>
             </div>
-        </div> {# end Super-Footer #}
+        </div>
     {% endif %}
+    {# /Super-Footer #}
 
     {# Bottom Footer #}
     <div id="cu-footer-bottom" class="container-fluid bg-black px-5 py-3">
@@ -298,21 +316,25 @@
                 </span>
 
                 {# Email #}
-                <a href="mailto:giving@cu.edu">{{ 'giving@cu.edu'|t }}</a>
+                {% set email = 'giving@cu.edu' %}
+                {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
+                <a href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
 
                 {# Map #}
                 <div>
                     <a class="cu-campus-map mt-3" href="https://goo.gl/maps/6tZnMFZ7Ypi4bzNq7"
                        aria-label="{{ 'Campus Map'|t }}">{{ 'Campus Map'|t }}</a>
                 </div>
-            </div>{# End Left Column #}
+
+            </div>{# /Left Column #}
 
             {#  Right Column #}
             <div class="col-md-6 col-sm-12 mt-3" aria-label="colorado logo and copyright">
                 <div class="row">
+
                     {#  Logo #}
                     <div class="col-sm-12" id="cu-logo">
-                        <a href="https://cu.edu/" title="Colorado University CU Advancement | CU Foundation" rel="home"
+                        <a href="https://cu.edu/" title="Colorado University" rel="home"
                            class="site-branding-logo float-end">
                             <img src="{{ base_path }}{{ active_theme_path() }}/logo-white.svg" alt="Colorado University"
                                  width="400px" height="90px">
@@ -322,21 +344,17 @@
                     {#  Copyright #}
                     <div class="col-sm-12 float-end">
                         <p class="small float-end p-1 mt-3">
-                             {{ '©'|t }}{{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
+                            {{ '©'|t }}{{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
                     </div>
+
                     {#  CU Staff Login #}
                     <div class="col-sm-12">
-                      <form class="antibot selectize-processed float-end" action="/user" method="post" id="user-login" accept-charset="UTF-8">
-                            <input type="hidden" name="form_build_id" value="form-DejIZEbGN_a5HRbS3ZSpWEwktZDwIWXN5H0c40tUfZI" class="iCheck-processed">
-                            <input type="hidden" name="form_id" value="user_login" class="iCheck-processed">
-                            <input type="hidden" name="antibot_key" value="13ac4273dc853636a2413f2d70b438ff" class="iCheck-processed">
-                            <a href="/saml_login?destination=user">CU Staff Login</a>
-                      </form>
+                            <a href="/user">{{ 'CU Staff Login'|t }}</a>
                     </div>
                 </div>
-            </div>{# End Right Footer #}
+            </div>{# /Right Footer #}
 
-        </div> {# End Row #}
-    </div> {# End Bottom Footer #}
+        </div> {# /Row #}
+    </div> {# /Bottom Footer #}
 
-</footer> {# End Footer #}
+</footer> {# /Footer #}
