@@ -21,7 +21,7 @@
  *   - class: HTML classes.
  */
 #}
-{{ attach_library('gt/status-messages') }}
+{{ attach_library('cu-theme/status-messages') }}
 {% for type, messages in message_list %}
 <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label') }}>
     {% if type == 'error' %}
@@ -31,7 +31,7 @@
             {% elseif type == 'warning' %}
             <div role="alert" class="status-message status-message--warning">
                 {% elseif type %}
-                <div role="info" class="status-message">
+                <div class="status-message">
                     {% endif %}
                     {% if status_headings[type] %}
                         <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
