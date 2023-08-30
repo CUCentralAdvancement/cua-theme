@@ -13,3 +13,9 @@ global:
       css/regions/footer.css: {}
       css/regions/menu.css: {}
       css/theme/print.css: { media: print }
+
+# Status Messages.
+status-messages:
+  css:
+    base:
+      templates/status_messages/css/status-messages.css: { }

@@ -1,29 +1,30 @@
 /* Footer Styling */
-#cu-footer a {
+#cua-footer a {
     color: var(--cu-gold) !important;
     text-decoration: none;
   }
   
-  #cu-footer a:hover {
+  #cua-footer a:hover {
     color: white !important;
   }
   
-  #cu-footer {
+  #cua-footer {
     color: white;
     font-size: .85rem;
     line-height: 1.7 !important;
   }
+
 /* Super-footer */
-  #cu-super-footer a {
+  #cua-super-footer a {
     color: white !important;
     text-decoration: none;
   }
   
-  #cu-super-footer a:hover {
+  #cua-super-footer a:hover {
     color: var(--cu-gold) !important;
   }
   
-  #cu-super-footer {
+  #cua-super-footer {
     color: white;
     font-size: .85rem;
     line-height: 1.7 !important;
@@ -38,22 +39,22 @@
     min-height: 217px;
   }
   
-  #cu-super-footer h2 {
+  #cua-super-footer h2 {
     color: var(--cu-gold);
   }
   
-  #cu-super-footer ul {
+  #cua-super-footer ul {
     list-style: none;
     padding-left: 0.2rem;
     display: grid;
     font-size: 1rem;
   }
   
-  #cu-super-footer li {
+  #cua-super-footer li {
     display: inline-block;
   }
   
-  #cu-super-footer a {
+  #cua-super-footer a {
     color: white;
     text-decoration: none;
   }
