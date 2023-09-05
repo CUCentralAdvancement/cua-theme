@@ -1,11 +1,11 @@
-name: CU Theme
+name: CUA Theme
 type: theme
 base theme: stable9
 description: A flexible theme with a responsive, mobile-first layout.
 package: CU
 core_version_requirement: ^8 || ^9 || ^10
 libraries:
-  - cu_theme/global
+  - cua_theme/global
 
 regions:
   alert: 'Alert'
