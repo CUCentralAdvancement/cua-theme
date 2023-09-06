@@ -13,9 +13,8 @@ use Drupal\taxonomy\Entity\Term;
  * Place your custom PHP code in this file.
  */
 
-function cu_theme_preprocess_page(&$variables)
+function cua_theme_preprocess_page(&$variables)
 {
-  $variables['cas_login'] = theme_get_setting('cas_login');
   $variables['super_footer'] = theme_get_setting('super_footer');
   $variables['footer_01_size'] = (!theme_get_setting('footer_01_size') || theme_get_setting('footer_01_size') == 0) ? 3 : theme_get_setting('footer_01_size');
   $variables['footer_02_size'] = (!theme_get_setting('footer_02_size') || theme_get_setting('footer_02_size') == 0) ? 3 : theme_get_setting('footer_02_size');
@@ -28,7 +27,7 @@ function cu_theme_preprocess_page(&$variables)
  *
  *
  */
-function cu_theme_suggestions_form_alter(array &$suggestions, array $variables)
+function cua_theme_suggestions_form_alter(array &$suggestions, array $variables)
 {
   if ($variables['element']['#form_id'] == 'search_block_form') {
     $suggestions[] = 'form__search_block_form';
@@ -40,7 +39,7 @@ function cu_theme_suggestions_form_alter(array &$suggestions, array $variables)
  *
  *
  */
-function cu_theme_preprocess_menu_local_task(&$variables)
+function cua_theme_preprocess_menu_local_task(&$variables)
 {
   $variables['link']['#options']['attributes']['class'][] = 'btn btn-primary';
 }
@@ -50,7 +49,7 @@ function cu_theme_preprocess_menu_local_task(&$variables)
  *
  * Allow CSS/Footer Customization and add path alias to body class.
  */
-function cu_theme_preprocess_html(&$variables) {
+function cua_theme_preprocess_html(&$variables) {
   $variables['attributes']['class'][] = theme_get_setting('hide-breadcrumb');
   /* Add body class to nodes */
   $current_path = \Drupal::service('path.current')->getPath();
@@ -81,7 +80,7 @@ function cu_theme_preprocess_html(&$variables) {
  * @param array $suggestions
  * @param array $variables
  */
-function cu_theme_theme_suggestions_block_alter(array &$suggestions, array $variables)
+function cua_theme_theme_suggestions_block_alter(array &$suggestions, array $variables)
 {
   // Block suggestions for custom block bundles.
   if (isset($variables['elements']['content']['#block_content'])) {
@@ -95,7 +94,7 @@ function cu_theme_theme_suggestions_block_alter(array &$suggestions, array $vari
  * @param $definitions
  * @param array $extra
  */
-function cu_theme_plugin_filter_block__layout_builder_alter(&$definitions, array $extra)
+function cua_theme_plugin_filter_block__layout_builder_alter(&$definitions, array $extra)
 {
   # Load in all Custom Block Types.
   $block_types = BlockContentType::loadMultiple();
@@ -106,13 +105,13 @@ function cu_theme_plugin_filter_block__layout_builder_alter(&$definitions, array
     return SortArray::sortByKeyString($a, $b, 'label');
   });
 
-  # 'Add CU Blocks'
+  # 'Add CUA Blocks'
   foreach ($block_types as $block_type => $block) {
     # Append prefix.
     $definition = &$definitions["$block_prefix:$block_type"];
 
     # Add 'Add GT Blocks'
-    $definition['category'] = t('Add CU Blocks');
+    $definition['category'] = t('Add CUA Blocks');
     # And sync block->label with definition.
     $definition['admin_label'] = $block->label();
   }
