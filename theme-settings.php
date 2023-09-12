@@ -37,19 +37,17 @@ function cua_theme_form_system_theme_settings_alter(&$form, &$form_state)
         ),
     );
 
-  /*--------- cu_theme Intro ------------ */
+  /*--------- CUA theme Intro ------------ */
 
-  $form['options']['cu_theme'] = array(
+  $form['options']['cua_theme'] = array(
     '#type' => 'details',
     '#attributes' => array(),
-    '#title' => t('CU Giving theme package'),
+    '#title' => t('CUA Giving theme package'),
     '#description' => t('<p>CU Giving Communications-approved basic branding.</p>'),
     '#weight' => -1000,
     '#group' => 'options',
     '#open' => TRUE,
   );
-
-
 
     /*--------- Setting Header ------------ */
     $form['general'] = array(
