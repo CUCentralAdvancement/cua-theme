@@ -62,12 +62,6 @@ function cua_theme_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'page-node-' . $node->id();
   }
 
-  if (theme_get_setting('customize_css')) {
-    $custom_style = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', theme_get_setting('customize_css'));
-    $custom_style = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '   ', '    '), '', $custom_style);
-    $variables['customize_css'] = $custom_style;
-  }
-
   $account = \Drupal::currentUser();
   $roles = $account->getRoles();
   foreach ($roles as $role) {

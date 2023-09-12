@@ -157,27 +157,6 @@ function cua_theme_form_system_theme_settings_alter(&$form, &$form_state)
         '#description' => 'Set the width of the SuperFooter column width. Default value is 3. Uses grid bootstrap / 12.'
     );
 
-    /*--------- Setting Custom CSS ------------ */
-
-    $form['options']['css_customize'] = array(
-        '#type' => 'details',
-        '#attributes' => array(),
-        '#title' => t('Custom CSS'),
-        '#weight' => -992,
-        '#group' => 'options',
-        '#open' => TRUE,
-    );
-
-    // Set up textarea for custom css
-    $form['customize']['customize_css'] = array(
-        '#type' => 'textarea',
-        '#title' => t('Custom CSS'),
-        '#group' => 'css_customize',
-        '#attributes' => array('class' => array('code_css')),
-				'#default_value' => theme_get_setting('customize_css'),
-				'#description' => 'Add site-specific custom CSS.'
-    );
-
     // Save on submit
     $form['actions']['submit']['#value'] = t('Save');
 
