@@ -1,3 +1,4 @@
+
 /* main menu */
 .main-nav .dropdown-menu a {
     color: var(--bs-link-color);
@@ -14,3 +15,30 @@
     background-color: white;
 }
 
+#block-cua-theme-cufoundation ul,
+#block-cua-theme-centralcuadvancement ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:var(--bs-gold);
+}
+
+#block-cua-theme-cufoundation li,
+#block-cua-theme-centralcuadvancement li {
+    float: left;
+}
+
+#block-cua-theme-cufoundation li a,
+#block-cua-theme-centralcuadvancement li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+#block-cua-theme-cufoundation li a:hover,
+#block-cua-theme-centralcuadvancement li a:hover {
+    color: #111111;
+}
