@@ -1,8 +1,7 @@
 # Main theme library.
 global:
   js:
-     js/bootstrap.bundle.min.js: {}
-     js/popper.js: {}
+     js/bundle.min.js: {}
   css:
     base:
       css/base/root-variables.css: {}
