@@ -6,6 +6,7 @@ global:
     base:
       css/base/root-variables.css: {}
       css/base/bootstrap.min.css: {}
+      css/base/elements.css: { }
     layout:
       css/layouts/layout.css: {}
     theme:

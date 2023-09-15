@@ -1,0 +1,14 @@
+ul.tabs.primary.nav li {
+    margin: 0 .25rem 0;
+}
+ul.tabs .btn-primary {
+    --bs-btn-color: black;
+    --bs-btn-bg: #cfb87b;
+    --bs-btn-border-color: black;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: black;
+    --bs-btn-hover-border-color: black;
+    --bs-btn-active-color: white;
+    --bs-btn-active-bg: black;
+    --bs-btn-active-border-color: black;
+}

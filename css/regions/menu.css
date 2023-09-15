@@ -25,21 +25,19 @@
 }
 
 /* Secondary Menus */
-#block-cua-theme-cufoundation ul,
-#block-cua-theme-centralcuadvancement ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+#cua_secondary_navigation ul li:first-child a:link {
+    color: var(--bs-gold);
+    font-size: 115%;
+    font-weight: 400;
+    margin: 1px 10px 0 0;
 }
 
-#block-cua-theme-cufoundation li,
-#block-cua-theme-centralcuadvancement li {
-    float: left;
+#cua_secondary_navigation ul li:first-child a:hover {
+    text-decoration: none;
+    color: white;
 }
 
-#block-cua-theme-cufoundation li a,
-#block-cua-theme-centralcuadvancement li a {
+#cua_secondary_navigation li a {
     color: white;
     display: block;
     text-align: left;
@@ -47,8 +45,30 @@
     margin: .25rem 1rem;
 }
 
-#block-cua-theme-cufoundation li a:hover,
-#block-cua-theme-centralcuadvancement li a:hover {
+#cua_secondary_navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#cua_secondary_navigation li {
+    float: left;
+}
+
+#cua_secondary_navigation li a {
+    color: white;
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    margin: .25rem 1rem;
+}
+
+#cua_secondary_navigation li a:hover {
     text-decoration: none;
     color: var(--bs-gold);
+}
+
+#cua_secondary_navigation .is-active {
+    color: var(--bs-gold) !important;
 }

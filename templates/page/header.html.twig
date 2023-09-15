@@ -2,26 +2,34 @@
 <header id="cua-header" role="banner">
     <div class="container my-3 pb-2">
         <div class="row">
+            {# Logo #}
             <div class="col">
                 {{ page.header }}
             </div>
-            <div class="col-md-auto mt-4">
+            {# Main navigation #}
+            <div id="cua_main_navigation" class="col-md-auto mt-4">
                 <a id="main-navigation"></a>
                 {{ page.navigation }}
             </div>
-            <div class="col col-lg-2 mt-4">
+            {# Search #}
+            <div id="cua_search" class="col col-lg-2 mt-4">
                 {{ page.search }}
             </div>
         </div>
     </div>
-    <div class="container-fluid bg-black">
-        <div class="container mb-3">
-            <div class="row">
-                <div class="col-md-auto align-items-start">
-                    {{ page.navigation_secondary }}
+    {# Secondary navigation #}
+    {% if page.navigation_secondary %}
+        {% block navigation_secondary %}
+            <div id="cua_secondary_navigation" class="container-fluid bg-black">
+                <div class="container mb-3">
+                    <div class="row">
+                        <div class="col-md-auto align-items-start">
+                            {{ page.navigation_secondary }}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        {% endblock %}
+    {% endif %}
 </header>
 
