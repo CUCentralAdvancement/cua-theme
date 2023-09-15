@@ -1,0 +1,10 @@
+[type="search"] {
+    border: 1px solid #aaa7a7;
+    padding: .2rem;
+}
+
+input#edit-submit {
+    border: none !important;
+    background: transparent !important;
+    padding: 3px 10px !important;
+}

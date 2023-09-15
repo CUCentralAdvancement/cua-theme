@@ -1,18 +1,20 @@
 # Main theme library.
 global:
   js:
-     js/bootstrap.bundle.min.js: {}
+    js/bootstrap.bundle.min.js: {}
   css:
     base:
       css/base/root-variables.css: {}
       css/base/bootstrap.min.css: {}
-      css/base/elements.css: { }
+      css/base/elements.css: {}
+      css/base/font-awesome.css: {}
     layout:
       css/layouts/layout.css: {}
     theme:
       css/regions/header.css: {}
       css/regions/footer.css: {}
       css/regions/menu.css: {}
+      css/theme/search.css: {}
       css/theme/print.css: { media: print }
 
 # Status Messages.
