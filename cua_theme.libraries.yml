@@ -14,7 +14,7 @@ global:
       css/regions/header.css: {}
       css/regions/footer.css: {}
       css/regions/menu.css: {}
-      css/theme/search.css: {}
+      css/regions/search.css: {}
       css/theme/print.css: { media: print }
 
 # Status Messages.
