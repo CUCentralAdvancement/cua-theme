@@ -2,17 +2,8 @@
 <footer id="cua-footer" class="mt-5">
 
     {# Super-footer #}
-    {% if super_footer %}
+    {% if page.footer_01 is not empty or page.footer_02 is not empty or page.footer_03 is not empty %}
         <div id="cua-super-footer" class="container-fluid">
-
-            {# Before Footer #}
-            {% if page.before_footer %}
-                {% block before_footer %}
-                    <div id="cua-before-footer" class="container pt-3">
-                        {{ page.before_footer }}
-                    </div>
-                {% endblock %}
-            {% endif %}
 
             <div class="container pt-4 pb-4">
                 <div class="row center-block">
