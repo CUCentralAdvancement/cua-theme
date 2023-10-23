@@ -1,24 +1,43 @@
-# Main theme library.
-global:
+global-styling:
   js:
-    js/bootstrap.bundle.min.js: {}
+    //kit.fontawesome.com/a54ae50b5a.js: { type: external, minified: true }
   css:
-    base:
-      css/base/root-variables.css: {}
-      css/base/bootstrap.min.css: {}
-      css/base/elements.css: {}
-      css/base/font-awesome.css: {}
-    layout:
-      css/layouts/layout.css: {}
-    theme:
-      css/regions/header.css: {}
-      css/regions/footer.css: {}
-      css/regions/menu.css: {}
-      css/regions/search.css: {}
-      css/theme/print.css: { media: print }
+    component:
+      css/style.css: {}
+bootstrap_cdn:
+  js:
+    //cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js: {}
+  css:
+    component:
+      //cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css: {}
+  dependencies:
+    - core/popperjs
 
-# Status Messages.
-status-messages:
+# CU Official Fonts
+cua_fonts:
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,700&display=swap: { type: external }
+      //fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap: { type: external}
+
+
+# Banner.
+banner:
+  version: "1.0.x"
   css:
     base:
-      templates/status_messages/css/status-messages.css: { }
+      templates/block/banner/css/banner.css: {}
+
+# Call to Action.
+call_to_action:
+  version: "1.0.x"
+  css:
+    base:
+      templates/block/call_to_action/css/call-to-action.css: {}
+
+# Half and Half.
+half_and_half:
+  version: "1.0.x"
+  css:
+    base:
+      templates/block/half_and_half/css/half-and-half.css: {}

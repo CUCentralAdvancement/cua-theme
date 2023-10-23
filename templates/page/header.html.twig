@@ -1,35 +1,75 @@
-{# Header #}
-<header id="cua-header" role="banner">
-    <div class="container my-3 pb-2">
-        <div class="row">
-            {# Logo #}
-            <div class="col">
-                {{ page.header }}
+<header id="header" class="header" role="banner"
+        aria-label="{{ 'Site header'|t }}">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-8 g-0">
+                <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white"
+                     id="navbar-top">
+                    <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
+                        <div class="container d-flex align-items-baseline">
+                            <div class="flex-shrink-1">
+                                {{ site_logo }}
+                                <a href="{{ path('<front>') }}"
+                                   rel="University of Colorado home"
+                                   class="site-branding__logo d-none d-lg-block">
+                                    <img src="/{{ directory ~ '/logo.png' }}"
+                                         alt="{{ 'cu.edu'|t }}"/>
+                                </a>
+                                <a href="{{ path('<front>') }}" title="University of Colorado home"
+                                   rel="University of Colorado home"
+                                   class="d-lg-none">
+                                    <img src="/{{ directory ~ '/cu-mobile-logo.svg' }}"
+                                         alt="University of Colorado home">
+                                </a>
+                            </div>
+                            <div class="w-100">
+                                <a href="{{ path('<front>') }}"
+                                   title="CU Advancement | CU Foundation Home"
+                                   rel="home"
+                                   class="site-branding__name site-name">
+                                    {{ site_name }}
+                                </a>
+                            </div>
+                            <button class="navbar-toggler collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#mainNavbrSupportedContent"
+                                    aria-controls="CollapsingNavbar"
+                                    aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            {# Main navigation #}
-            <div id="cua_main_navigation" class="col-md-auto mt-4">
-                <a id="main-navigation"></a>
-                {{ page.navigation }}
-            </div>
-            {# Search #}
-            <div id="cua_search" class="col col-lg-2 mt-4">
-                {{ page.search }}
+            <div class="col-md-4 d-flex justify-content-end g-0 d-none d-lg-block">
+                {% if page.search %}
+                    {{ page.search }}
+                {% endif %}
             </div>
         </div>
     </div>
-    {# Secondary navigation #}
-    {% if page.navigation_secondary %}
-        {% block navigation_secondary %}
-            <div id="cua_secondary_navigation" class="container-fluid bg-black">
-                <div class="container mb-3">
-                    <div class="row">
-                        <div class="col-md-auto align-items-start">
-                            {{ page.navigation_secondary }}
-                        </div>
-                    </div>
+    <div class="container-fluid site-name-wrapper pt-3 pb-2 g-0">
+        <div class="container">
+            <div class="site-slogan"><h1>{{ site_slogan }}</h1></div>
+        </div>
+    </div>
+    <nav role="navigation"
+         class="navbar l-header-bottom navbar-expand-lg"
+         id="navbar-main" aria-labelledby="cua-main-menu">
+        <div class="container">
+            <div class="collapse navbar-collapse"
+                 id="mainNavbrSupportedContent">
+                <h2 class="visually-hidden"
+                    id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
+                {{ page.primary_menu }}
+                <div class="my-3 mx-4 d-lg-none">
+                    {% if page.search %}
+                        {{ page.search }}
+                    {% endif %}
                 </div>
             </div>
-        {% endblock %}
-    {% endif %}
+        </div>
+    </nav>
 </header>
-

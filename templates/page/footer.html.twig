@@ -1,100 +1,93 @@
-{# Footer #}
-<footer id="cua-footer" class="mt-5">
-
-    {# Super-footer #}
-    {% if page.footer_01 is not empty or page.footer_02 is not empty or page.footer_03 is not empty %}
-        <div id="cua-super-footer" class="container-fluid">
-
-            <div class="container pt-4 pb-4">
-                <div class="row center-block">
-
-                    {# Footer One #}
-                    {% if page.footer_01 %}
-                        <div class="footer-first col-md-4 col-sm-12">
-                            {{ page.footer_01 }}
+{% block footer %}
+    <div  id="site-footer-top" class="container">
+        {% if page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <section class="row region region-footer-first">
+                        <h2 class="g-0 mb-2">{{ 'University of Colorado'|t }}<br>
+                            {{ 'CU Advancement | CU Foundation'|t }}
+                        </h2>
+                        <p>{{ '1800 Grant Street, Suite 800'|t }}
+                            <br/>{{ 'Denver, CO 80203'|t }}</p>
+                        <p><span itemprop="telephone">
+                                    <a class="cua-phone link-cua"
+                                       href="tel: +13035411290"
+                                       aria-label="{{ 'telephone'|t }}">{{ '+1 303.541.1290'|t }}</a>
+                            </span></p>
+                        <p>
+                            {% set email = 'giving@cu.edu' %}
+                            {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
+                            <a class="link-cua"
+                               href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
+                        </p>
+                        <div class="social-media pt-3">
+                            <nav role="navigation" class="mt-3">
+                                <h2 class="block__title visually-hidden">{{ 'Social Media Links'|t }}</h2>
+                                <ul class="link-underline-opacity-0">
+                                    <li class="list-inline-item"><a
+                                                href="https://www.facebook.com/UniversityofColoradosystem/"
+                                                class="fa-brands fa-facebook fa-lg link-secondary"
+                                                title="Facebook">
+                                            <span class="visually-hidden">{{ 'Facebook'|t }}</span>
+                                        </a></li>
+                                    <li class="list-inline-item"><a
+                                                href="https://www.linkedin.com/company/university-of-colorado"
+                                                class="fa-brands fa-linkedin fa-lg link-secondary"
+                                                title="Linkedin">
+                                            <span class="visually-hidden">{{ 'Linkedin'|t }}</span>
+                                        </a></li>
+                                    <li class="list-inline-item"><a
+                                                href="https://twitter.com/CUSystem"
+                                                class="fa-brands fa-x-twitter fa-lg link-secondary"
+                                                title="Twitter">
+                                            <span class="visually-hidden">{{ 'Twitter'|t }}</span>
+                                        </a></li>
+                                </ul>
+                            </nav>
                         </div>
-                    {% endif %}
-
-                    {# Footer Two #}
-                    {% if page.footer_02 %}
-                        <div class="footer-second col-md-4 col-sm-12">
-                            {{ page.footer_02 }}
-                        </div>
-                    {% endif %}
-
-                    {# Footer Three #}
-                    {% if page.footer_03 %}
-                        <div class="footer-third col-md-4 col-sm-12">
-                            {{ page.footer_03 }}
-                        </div>
-                    {% endif %}
+                    </section>
 
                 </div>
+                {% if page.footer_second %}
+                    <div class="col-md-2 col-sm-6 mt-2">
+                        {{ page.footer_second }}
+                    </div>
+                {% endif %}
+
+                {% if page.footer_third %}
+                    <div class="col-md-2 col-sm-6 mt-2">
+                        {{ page.footer_third }}
+                    </div>
+                {% endif %}
+
+                {% if page.footer_fourth %}
+                    <div class="col-md-2 col-sm-6 mt-2">
+                        {{ page.footer_fourth }}
+                    </div>
+                {% endif %}
+
+                {% if page.footer_fifth %}
+                    <div class="col-md-2 col-sm-6 mt-2">
+                        {{ page.footer_fifth }}
+                    </div>
+                {% endif %}
             </div>
+        {% endif %}
+    </div>
+{% endblock %}
+<div id="site-footer-bottom" class="container-fluid bg-black px-5 py-3">
+    <div class="row">
+            {% if page.footer_sixth %}
+                <div class="col-sm-12 d-flex align-items-center justify-content-center mb-2">
+                    {{ page.footer_sixth }}
+                </div>
+            {% endif %}
+        <div class="col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center"
+             aria-label="links and copyright">
+            <p class="mt-2 strong text-light">{{ '©'|t }} {{ 'now' | date('Y') }}
+                <a href="https://regents.cu.edu/" rel="noopener" target="_blank"
+                   class="link-light link-underline-opacity-0 pl-2">{{ 'Regents of the University of Colorado'|t }}</a>
+            </p>
         </div>
-    {% endif %}
-    {# /Super-Footer #}
-
-    {# Bottom Footer #}
-    <div id="cua-footer-bottom" class="container-fluid bg-black px-5 py-3">
-        <div class="row">
-
-            {# Left Column #}
-            <div id="cua-address" class="col-md-6 col-sm-12" aria-label="colorado address and contact information">
-
-                {# title #}
-                <h3>{{ 'University of Colorado'|t }}</h3>
-                <h5>{{ 'CU Advancement | CU Foundation'|t }}</h5>
-
-                {# Address #}
-                <p>{{ '1800 Grant Street, Suite 800'|t }}<br/>{{ 'Denver, CO 80203'|t }}</p>
-
-                {# Telephone #}
-                <span itemprop="telephone">
-                   <a class="cua-phone" href="tel: +13035411290"
-                      aria-label="{{ 'telephone'|t }}">{{ '+1 303.541.1290'|t }} {{ '|'|t }} </a>
-                </span>
-
-                {# Email #}
-                {% set email = 'giving@cu.edu' %}
-                {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
-                <a href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
-
-                {# Map #}
-                <div>
-                    <a class="cua-campus-map mt-3" href="https://goo.gl/maps/6tZnMFZ7Ypi4bzNq7"
-                       aria-label="{{ 'Campus Map'|t }}">{{ 'Campus Map'|t }}</a>
-                </div>
-
-            </div>{# /Left Column #}
-
-            {#  Right Column #}
-            <div class="col-md-6 col-sm-12 mt-3" aria-label="colorado logo and copyright">
-                <div class="row">
-
-                    {#  Logo #}
-                    <div class="col-sm-12" id="cua-logo">
-                        <a href="https://cu.edu/" title="Colorado University" rel="home"
-                           class="site-branding-logo float-end">
-                            <img src="{{ base_path }}{{ active_theme_path() }}/logo-white.svg" alt="Colorado University"
-                                 width="400px" height="90px">
-                        </a>
-                    </div>
-
-                    {#  Copyright #}
-                    <div class="col-sm-12 float-end">
-                        <p class="small float-end p-1 mt-3">
-                            {{ '©'|t }}{{ 'now'|date('Y') }} {{ 'Colorado University • CU Advancement | CU Foundation'|t }}</p>
-                    </div>
-
-                    {#  CU Staff Login #}
-                    <div class="col-sm-12">
-                        <a href="/user" class="float-end">{{ 'CU Staff Login'|t }}</a>
-                    </div>
-                </div>
-            </div>{# /Right Column #}
-
-        </div> {# /Row #}
-    </div> {# /Bottom Footer #}
-
-</footer> {# /Footer #}
+    </div>
+</div>

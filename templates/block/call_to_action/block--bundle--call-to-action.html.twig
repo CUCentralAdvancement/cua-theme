@@ -1,0 +1,116 @@
+{#
+/**
+* @file
+* Theme override to display a block.
+*
+* Available variables:
+* - plugin_id: The ID of the block implementation.
+* - label: The configured label of the block if visible.
+* - configuration: A list of the block's configuration values.
+*   - label: The configured label for the block.
+*   - label_display: The display settings for the label.
+*   - provider: The module or other provider that provided this block plugin.
+*   - Block plugin specific settings will also be stored here.
+* - content: The content of this block.
+* - attributes: array of HTML attributes populated by modules, intended to
+*   be added to the main container tag of this template.
+*   - id: A valid HTML ID and guaranteed unique.
+* - title_attributes: Same as attributes, except applied to the main title
+*   tag that appears in the template.
+* - title_prefix: Additional output populated by modules, intended to be
+*   displayed in front of the main title tag that appears in the template.
+* - title_suffix: Additional output populated by modules, intended to be
+*   displayed after the main title tag that appears in the template.
+*
+* @see template_preprocess_block()
+*/
+#}
+{# Attach the library. #}
+{{ attach_library('cua_theme/call_to_action') }}
+
+{# Set Preprocess Fields #}
+{% set background_color = (content.field_color_background.0) %}
+{% set body = (content.body) %}
+{% set border_color = (content.field_color_border.0 ) %}
+{% set icon = (content.field_icon.0 ) %}
+{% set icon_color = (content.field_icon_color.0 ) %}
+{% set icon_size = (content.field_icon_size.0 ) %}
+{% set image_alt = (content.field_image.0['#item'].alt ) %}
+{% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
+{% set image_style = (content.field_image_style.0) %}
+{% set image = (content.field_image) %}
+{% set link = (content.field_link.0) %}
+{% set link_title = (content.field_link.0['#title']|render) %}
+{% set link_url = file_url(content.field_link.0['#url']|render) %}
+{% set padding = (content.field_padding.0) %}
+{% set alignment = (content.field_text_alignment.0) %}
+
+{# Set CSS Block Classes #}
+{% set container_classes  = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'call-to-action',
+    'card',
+    'm-0 px-2 g-0',
+    'clearfix'
+] %}
+
+{# Content #}
+<div{{ attributes.addClass(container_classes) }}>
+    <div class="card {{ background_color }} {{ border_color }} rounded my-2">
+        {% if video or image or icon %}
+            <div class="card-header {{ alignment }} {{ padding }} g-0 ">
+                {# Image with Link #}
+                {% if image is not empty and link is not empty %}
+                    <a title="{{ link_title }}" aria-label="{{ link_title }}"
+                       href="{{ link_url }}">
+                        <div role="img" class="cta-image mb-4" aria-label="{{ image_alt }}">
+                            <img class="card-img-top img-fluid"
+                                 src="{{ image_path }}" loading="lazy"
+                                 alt="{{ image_alt }}">
+                        </div>
+                    </a>
+                {% endif %}
+                {# Image without Link #}
+                {% if image is not empty and link is empty %}
+                    <div role="img" class="cta-image mb-4" aria-label="{{ image_alt }}">
+                        <img class="card-img-top img-fluid"
+                             src="{{ image_path }}" loading="lazy"
+                             alt="{{ image_alt }}">
+                    </div>
+                {% endif %}
+                {# Icon #}
+                {% if icon is not empty %}
+                    <span style="color: {{ icon_color }}">
+              <i class="{{ icon }} {{ icon_size }}"></i>
+            </span>
+                {% endif %}
+            </div>
+        {% endif %}
+        <div class="card-body {{ alignment }} px-4">
+            {# Copy #}
+            <div class="card-body-title {{ text_color }}">
+                {{ title_prefix }}
+                {% if label %}
+                    <h3 class="{{ alignment }} mb-2">{{ label }}</h3>
+                {% endif %}
+                {{ title_suffix }}
+                {% if body %}
+                    <div class="{{ alignment }}">{{ body }}</div>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+        {# Link #}
+        {% if link_title %}
+            <div class="card-footer {{ alignment }} px-4 pb-4">
+                <a class="cta-link border {{ border_color }} text-decoration-none rounded p-2"
+                   title="{{ link_title }}"
+                   aria-label="{{ link_title }}"
+                   href="{{ link_url }}">{{ link_title }}</a>
+            </div>
+        {% else %}
+        {% endif %}
+    </div>
+</div>

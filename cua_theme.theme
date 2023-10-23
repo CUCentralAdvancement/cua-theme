@@ -1,51 +1,7 @@
 <?php
 
-use Drupal\block_content\Entity\BlockContent;
 use Drupal\block_content\Entity\BlockContentType;
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\SortArray;
-use Drupal\node\Entity\Node;
-use Drupal\taxonomy\Entity\Term;
-
-/**
- * Implementation of hook_local_tasks().
- *
- *
- */
-function cua_theme_preprocess_menu_local_task(&$variables)
-{
-    $variables['link']['#options']['attributes']['class'][] = 'btn btn-primary';
-}
-
-/**
- * Implements hook_preprocess_html().
- *
- * Allow CSS/Footer Customization and add path alias to body class.
- */
-function cua_theme_preprocess_html(&$variables) {
-    $variables['attributes']['class'][] = theme_get_setting('hide-breadcrumb');
-    /* Add body class to nodes */
-    $current_path = \Drupal::service('path.current')->getPath();
-    $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
-    $path_alias = ltrim($path_alias, '/');
-    $variables['attributes']['class'][] = 'path-' . Html::cleanCssIdentifier($path_alias);
-
-    $node = \Drupal::request()->attributes->get('node');
-    if ($node instanceof Node) {
-        $variables['attributes']['class'][] = 'page-node-' . $node->id();
-    }
-
-    $account = \Drupal::currentUser();
-    $roles = $account->getRoles();
-    foreach ($roles as $role) {
-        $variables['attributes']['class'][] = 'role-' . $role;
-    }
-}
-
-function cua_theme_form_search_block_form_alter(&$form, &$form_state) {
-    $form['keys']['#attributes']['placeholder'][] = t('Search');
-    $form['actions']['submit']['#value'] = html_entity_decode('&#128270;');
-}
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for form templates.
@@ -60,6 +16,17 @@ function cua_theme_theme_suggestions_block_alter(array &$suggestions, array $var
     }
 }
 
+function cua_theme_form_search_block_form_alter(&$form, &$form_state) {
+    $form['keys']['#attributes']['placeholder'][] = t('Search');
+    $form['actions']['submit']['#value'] = html_entity_decode('&#xf002;');
+    $form['actions']['submit']['#attributes']['class'][] = 'fas fa-search';
+}
+
+function cua_theme_preprocess_page(&$variables) {
+  $site_config = \Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+  $variables['site_slogan'] = $site_config->get('slogan');
+}
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for form templates.
  *
@@ -77,14 +44,15 @@ function cua_theme_plugin_filter_block__layout_builder_alter(&$definitions, arra
         return SortArray::sortByKeyString($a, $b, 'label');
     });
 
-    # 'Add CUA Blocks'
+    # 'Add CU Blocks'
     foreach ($block_types as $block_type => $block) {
         # Append prefix.
         $definition = &$definitions["$block_prefix:$block_type"];
 
         # Add 'Add CUA Blocks'
-        $definition['category'] = t('Add CUA Blocks');
+        $definition['category'] = t('Add CU Blocks');
         # And sync block->label with definition.
         $definition['admin_label'] = $block->label();
     }
 }
+
