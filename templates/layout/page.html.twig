@@ -76,7 +76,7 @@
         {% include '@cua_theme/templates/page/header.html.twig' %}
         {% if page.banner %}
             {% block banner %}
-                    {{ page.banner }}
+                {{ page.banner }}
             {% endblock %}
         {% endif %}
         {% if page.highlighted %}
@@ -127,11 +127,23 @@
                 </div>
             {% endblock %}
         </div>
-        {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
-            <div class="featured-bottom container-fluid g-0">
+        {% if page.featured_bottom_first %}
+            <div class="featured-bottom-first container-fluid g-0">
                 <aside class="clearfix" role="complementary">
                     {{ page.featured_bottom_first }}
+                </aside>
+            </div>
+        {% endif %}
+        {% if page.featured_bottom_second %}
+            <div class="featured-bottom-second container g-0">
+                <aside class="clearfix" role="complementary">
                     {{ page.featured_bottom_second }}
+                </aside>
+            </div>
+        {% endif %}
+        {% if page.featured_bottom_third %}
+            <div class="featured-bottom-third container-fluid g-0">
+                <aside class="clearfix" role="complementary">
                     {{ page.featured_bottom_third }}
                 </aside>
             </div>
