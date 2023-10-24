@@ -70,6 +70,7 @@
 {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
 {% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
 {% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+
 <div id="page-wrapper">
     <div id="page">
         {% include '@cua_theme/templates/page/header.html.twig' %}
@@ -147,6 +148,9 @@
                 </aside>
             </div>
         {% endif %}
-        {% include '@cua_theme/templates/page/footer.html.twig' %}
+        <footer class="site-footer mt-5 mt-auto">
+            {# Footer #}
+            {% include '@cua_theme/templates/page/footer.html.twig' %}
+        </footer>
     </div>
 </div>
