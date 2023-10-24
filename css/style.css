@@ -469,7 +469,7 @@ footer #site-footer-bottom li.nav-item {
 }
 
 footer #site-footer-bottom .nav-link {
-  color: var(--cua-white) !important;
+  color: var(--cua-gray-500) !important;
   font-size: 1rem;
 }
 
@@ -492,7 +492,11 @@ footer .social-media li.list-inline-item {
 .site-footer {
   background: -o-radial-gradient(98.5697% 63.464%,circle,#666666,#363636);
   background: radial-gradient(circle at 98.5697% 63.464%,#666666,#363636);
-  color: #fff;
+}
+
+.site-footer .copyright,
+.site-footer .link-secondary {
+  color: var(--cua-gray-500) !important;
 }
 
 /* Font Awesome */
