@@ -128,14 +128,14 @@
   --bs-border-radius-pill: 50rem;
 }
 
-h1,.h1,h2,.h2,h1 a,.h1 a,h2 a,.h2 a,h3,.h3,h3 a,.h3 a,h4,.h4,h5,.h5,h6,.h6 {
-  font-family: 'Roboto','Arial','Verdana',sans-serif;
+h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: 'Roboto', 'Arial', 'Verdana', sans-serif;
   font-weight: 700;
   font-size: 1.750rem;
   line-height: 1.2;
 }
 
-h2,.h2,h2 a,.h2 a {
+h2, .h2, h2 a, .h2 a {
   font-size: 1.625rem;
 }
 
@@ -143,23 +143,23 @@ h2, h2 a {
   margin: 0 0 2rem;
 }
 
-h3,.h3,h3 a,.h3 a {
+h3, .h3, h3 a, .h3 a {
   text-transform: inherit;
   letter-spacing: inherit;
   font-size: 1.438rem;
 }
 
-h4,.h4 {
+h4, .h4 {
   font-size: 1.250rem;
   line-height: 1;
 }
 
-h5,.h5 {
+h5, .h5 {
   font-size: 1rem;
   line-height: 1;
 }
 
-h6,.h6 {
+h6, .h6 {
   font-weight: 500;
   text-transform: uppercase;
   font-style: italic;
@@ -167,8 +167,8 @@ h6,.h6 {
   line-height: 1;
 }
 
-body,p,a,li {
-  font-family: 'Roboto','Arial','Verdana',sans-serif;
+body, p, a, li {
+  font-family: 'Roboto', 'Arial', 'Verdana', sans-serif;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
@@ -185,28 +185,28 @@ hr {
 }
 
 @media (min-width: 36em) {
-  h1,.h1,h1 a,.h1 a {
-    font-size:2.500rem;
+  h1, .h1, h1 a, .h1 a {
+    font-size: 2.500rem;
     line-height: 1;
   }
 
-  h2,.h2,h2 a,.h2 a {
+  h2, .h2, h2 a, .h2 a {
     font-size: 2.250rem;
   }
 
-  h3,.h3,h3 a,.h3 a {
+  h3, .h3, h3 a, .h3 a {
     font-size: 1.875rem;
   }
 
-  h4,.h4 {
+  h4, .h4 {
     font-size: 1.625rem;
   }
 
-  h5,.h5 {
+  h5, .h5 {
     font-size: 1.250rem;
   }
 
-  h6,.h6 {
+  h6, .h6 {
     font-size: 1.125rem;
   }
 }
@@ -216,33 +216,26 @@ hr {
 }
 
 @media (min-width: 75em) {
-  h1,.h1,h1 a,.h1 a {
-    font-size:2.625rem;
+  h1, .h1, h1 a, .h1 a {
+    font-size: 2.625rem;
     line-height: 1.2;
   }
 
-  h2,.h2,h2 a,.h2 a {
+  h2, .h2, h2 a, .h2 a {
     font-size: 2.375rem;
   }
 
-  h4,.h4 {
+  h4, .h4 {
     font-size: 1.500rem;
   }
 
-  h6,.h6 {
+  h6, .h6 {
     font-size: 1.250rem;
   }
 }
 
 /* CUA Custom block colors */
 .card {
-  --bs-card-spacer-y: 0 !important;
-  --bs-card-spacer-x: 0 !important;
-  --bs-card-title-spacer-y: 0 !important;
-  --bs-card-cap-padding-y: 0 !important;
-  --bs-card-cap-padding-x: 0 !important;
-  --bs-card-img-overlay-padding: 0 !important;
-  --bs-card-group-margin: 0 !important;
   --bs-card-border-color: transparent !important;
 }
 
@@ -297,7 +290,7 @@ hr {
   border: 1px solid var(--cua-gold) !important;
 }
 
-.card .card-body.text-cu-bg-gold  > *,
+.card .card-body.text-cu-bg-gold > *,
 .card .col.text-cu-bg-gold > * {
   color: var(--cua-black) !important;
 }
@@ -543,8 +536,8 @@ footer .social-media li.list-inline-item {
 }
 
 .site-footer {
-  background: -o-radial-gradient(98.5697% 63.464%,circle,#666666,#363636);
-  background: radial-gradient(circle at 98.5697% 63.464%,#666666,#363636);
+  background: -o-radial-gradient(98.5697% 63.464%, circle, #666, #363636);
+  background: radial-gradient(circle at 98.5697% 63.464%, #666, #363636);
 }
 
 .site-footer .copyright,
@@ -670,7 +663,7 @@ a.site-branding__name span {
 /* Footer */
 footer.site-footer h2 {
   border-bottom: 1px solid #555;
-  border-color: rgba(255,255,255,0.15);
+  border-color: rgba(255, 255, 255, 0.15);
   font-size: 1em;
   margin-bottom: .2rem;
   padding-bottom: 3px;
@@ -819,7 +812,6 @@ h2.display.\34  {
 .justify-content-center p {
   text-align: center !important;
 }
-
 
 
 /* responsive */

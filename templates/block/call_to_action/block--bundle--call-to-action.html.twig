@@ -45,71 +45,61 @@
 {% set padding = (content.field_padding.0) %}
 {% set alignment = (content.field_text_alignment.0) %}
 
-{# Set CSS Block Classes #}
-{% set container_classes  = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'call-to-action',
-    'm-0 px-2 g-0',
-    'clearfix'
-] %}
-
 {# Content #}
-<div{{ attributes.addClass(container_classes) }}>
-    <div class="card {{ background_color }} {{ border_color }} rounded my-2">
-        {% if video or image or icon %}
-            <div class="card-header {{ alignment }} {{ padding }} g-0 ">
-                {# Image with Link #}
-                {% if image is not empty and link is not empty %}
-                    <a title="{{ link_title }}" aria-label="{{ link_title }}"
-                       href="{{ link_url }}">
-                        <div role="img" class="cta-image mb-4" aria-label="{{ image_alt }}">
-                            <img class="card-img-top img-fluid"
-                                 src="{{ image_path }}" loading="lazy"
-                                 alt="{{ image_alt }}">
-                        </div>
-                    </a>
-                {% endif %}
-                {# Image without Link #}
-                {% if image is not empty and link is empty %}
-                    <div role="img" class="cta-image mb-4" aria-label="{{ image_alt }}">
+<div class="contextual-region block block-block-content h-100 card {{ background_color }} {{ border_color }} rounded">
+    {% if video or image or icon %}
+        <div class="card-header {{ alignment }} {{ padding }} g-0 ">
+            {# Image with Link #}
+            {% if image is not empty and link is not empty %}
+                <a title="{{ link_title }}" aria-label="{{ link_title }}"
+                   href="{{ link_url }}">
+                    <div role="img" class="cta-image mb-4"
+                         aria-label="{{ image_alt }}">
                         <img class="card-img-top img-fluid"
                              src="{{ image_path }}" loading="lazy"
                              alt="{{ image_alt }}">
                     </div>
-                {% endif %}
-                {# Icon #}
-                {% if icon is not empty %}
-                    <span class="pt-3 px-3" style="color: {{ icon_color }}">
+                </a>
+            {% endif %}
+            {# Image without Link #}
+            {% if image is not empty and link is empty %}
+                <div role="img" class="cta-image mb-4"
+                     aria-label="{{ image_alt }}">
+                    <img class="card-img-top img-fluid"
+                         src="{{ image_path }}" loading="lazy"
+                         alt="{{ image_alt }}">
+                </div>
+            {% endif %}
+            {# Icon #}
+            {% if icon is not empty %}
+                <span class="pt-3 px-3" style="color: {{ icon_color }}">
               <i class="{{ icon }} {{ icon_size }}"></i>
             </span>
-                {% endif %}
-            </div>
-        {% endif %}
-        <div class="card-body text-{{ background_color }} {{ alignment }} px-4">
-            {# Copy #}
-            <div class="card-body-title {{ text_color }}">
-                {{ title_prefix }}
-                {% if label %}
-                    <h3 class="{{ alignment }} mb-2">{{ label }}</h3>
-                {% endif %}
-                {{ title_suffix }}
-                {% if body %}
-                    <div class="{{ alignment }}">{{ body }}</div>
-                {% else %}
-                {% endif %}
-            </div>
+            {% endif %}
         </div>
-        {# Link #}
-        {% if link_title %}
-            <div class="card-footer {{ alignment }} px-4 pb-4">
-                <a class="btn btn-{{ background_color }} text-decoration-none rounded p-2"
-                   title="{{ link_title }}"
-                   aria-label="{{ link_title }}"
-                   href="{{ link_url }}">{{ link_title }}</a>
-            </div>
-        {% else %}
-        {% endif %}
+    {% endif %}
+    <div class="card-body text-{{ background_color }} {{ alignment }} px-4">
+        {# Copy #}
+        <div class="card-body-title {{ text_color }}">
+            {{ title_prefix }}
+            {% if label %}
+                <h3 class="{{ alignment }} mb-2">{{ label }}</h3>
+            {% endif %}
+            {{ title_suffix }}
+            {% if body %}
+                <div class="{{ alignment }}">{{ body }}</div>
+            {% else %}
+            {% endif %}
+        </div>
     </div>
+    {# Link #}
+    {% if link_title %}
+        <div class="card-footer {{ alignment }} px-4 pb-4">
+            <a class="btn btn-{{ background_color }} text-decoration-none rounded p-2"
+               title="{{ link_title }}"
+               aria-label="{{ link_title }}"
+               href="{{ link_url }}">{{ link_title }}</a>
+        </div>
+    {% else %}
+    {% endif %}
 </div>

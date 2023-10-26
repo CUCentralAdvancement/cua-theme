@@ -1,1 +1,8 @@
 /* CSS Style Sheet for call to action */
+.block.block-block-content {
+    margin-right: 1rem !important;
+}
+
+.layout__region {
+    margin: .5rem 0 !important;
+}
