@@ -63,7 +63,7 @@
 
 {# Content #}
 <div{{ attributes.addClass(container_classes) }}>
-    <div class="container-fluid {{ background_color }}">
+    <div class="container-fluid card {{ background_color }}">
         <div class="row">
             <div class="col {{ image_size }} {{ image_alignment }} g-0">
                 {% if link_url is not empty %}
@@ -82,7 +82,7 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="col {{ alignment }} p-5">
+            <div class="col text-{{ background_color }} {{ alignment }} p-5">
                 <div class="{{ background_color }} w-75">
                     {{ title_prefix }}
                     {% if label %}
@@ -94,9 +94,12 @@
                     {% else %}
                     {% endif %}
                     {% if link_title %}
-                        <span class="{{ alignment }}">
-                           <a class="btn {{ background_color }}" href="{{ link_url }}">{{ link_title }}</a>
-                        </span>
+                        <div class="card-footer {{ alignment }}">
+                            <a class="btn btn-{{ background_color }} text-decoration-none rounded p-2"
+                               title="{{ link_title }}"
+                               aria-label="{{ link_title }}"
+                               href="{{ link_url }}">{{ link_title }}</a>
+                        </div>
                     {% else %}
                     {% endif %}
                 </div>

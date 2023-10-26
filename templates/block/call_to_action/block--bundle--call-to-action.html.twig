@@ -51,7 +51,6 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'call-to-action',
-    'card',
     'm-0 px-2 g-0',
     'clearfix'
 ] %}
@@ -82,13 +81,13 @@
                 {% endif %}
                 {# Icon #}
                 {% if icon is not empty %}
-                    <span style="color: {{ icon_color }}">
+                    <span class="pt-3 px-3" style="color: {{ icon_color }}">
               <i class="{{ icon }} {{ icon_size }}"></i>
             </span>
                 {% endif %}
             </div>
         {% endif %}
-        <div class="card-body {{ alignment }} px-4">
+        <div class="card-body text-{{ background_color }} {{ alignment }} px-4">
             {# Copy #}
             <div class="card-body-title {{ text_color }}">
                 {{ title_prefix }}
@@ -105,7 +104,7 @@
         {# Link #}
         {% if link_title %}
             <div class="card-footer {{ alignment }} px-4 pb-4">
-                <a class="cta-link border {{ border_color }} text-decoration-none rounded p-2"
+                <a class="btn btn-{{ background_color }} text-decoration-none rounded p-2"
                    title="{{ link_title }}"
                    aria-label="{{ link_title }}"
                    href="{{ link_url }}">{{ link_title }}</a>

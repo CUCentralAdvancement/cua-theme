@@ -1,13 +1,5 @@
 /* CSS Style Sheet Colors */
-/* Text alignment */
-.half-and-half .justify-content-start p {
-  text-align: left !important;
-}
-
-.half-and-half .justify-content-center p {
-  text-align: center !important;
-}
-
-.half-and-half .justify-content-end p {
-  text-align: right !important;
+.card,
+.card img {
+  border-radius: 0 !important;
 }
