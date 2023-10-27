@@ -631,12 +631,19 @@ a.site-branding__name span {
   padding: 0 0 0 .5rem !important;
 }
 
-.site-slogan h1 {
-  color: var(--cua-black);
+.site-link {
+  color: #333;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 26px;
   font-weight: 900;
-  line-height: 1.1;
+}
+
+.site-link:hover {
+  color: var(--cua-gold);
+}
+
+h1.site-link {
+  line-height: 0 !important;
 }
 /* FAQ */
 

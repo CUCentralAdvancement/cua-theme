@@ -50,9 +50,12 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid site-name-wrapper pt-3 pb-2 g-0">
+    <div class="container-fluid site-name-wrapper g-0">
         <div class="container">
-            <div class="site-slogan"><h1>{{ site_slogan }}</h1></div>
+            <h1 class="site-slogan">
+                <a href="{{ path('<front>') }}" title="Home" class="site-link" rel="home">
+                    <span>{{ site_slogan }}</span></a>
+            </h1>
         </div>
     </div>
     <nav role="navigation"
