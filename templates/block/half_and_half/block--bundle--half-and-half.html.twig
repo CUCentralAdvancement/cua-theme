@@ -95,7 +95,7 @@
                     {% endif %}
                     {% if link_title %}
                         <div class="card-footer {{ alignment }}">
-                            <a class="btn btn-{{ background_color }} text-decoration-none rounded p-2"
+                            <a class="btn {{ content.field_outline.0 }}btn-{{ background_color }} text-decoration-none rounded p-2"
                                title="{{ link_title }}"
                                aria-label="{{ link_title }}"
                                href="{{ link_url }}">{{ link_title }}</a>
