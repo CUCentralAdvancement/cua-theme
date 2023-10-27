@@ -296,11 +296,19 @@ hr {
 }
 
 .card-footer .btn.btn-cu-bg-gold {
+  background: var(--cua-black) !important;
   border: 1px solid var(--cua-black) !important;
-  color: var(--cua-black) !important;
+  color: var(--cua-gold) !important;
 }
 
-.card-footer .btn.btn-cu-bg-gold:hover {
+.card-footer .btn.btn-cu-bg-gold:hover,
+.card-footer .btn.outline-btn-cu-bg-gold {
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-black) !important;
+  background: transparent !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-gold:hover {
   background: var(--cua-black) !important;
   color: var(--cua-gold) !important;
 }
@@ -320,11 +328,20 @@ hr {
 }
 
 .card-footer .btn.btn-cu-bg-black {
+  background: var(--cua-white) !important;
+  border: 1px solid var(--cua-white) !important;
+  color: var(--cua-black) !important;
+}
+
+.card-footer .btn.btn-cu-bg-black:hover,
+.card-footer .btn.outline-btn-cu-bg-black {
+  background: var(--cua-black) !important;
   border: 1px solid var(--cua-white) !important;
   color: var(--cua-white) !important;
 }
 
-.card-footer .btn.btn-cu-bg-black:hover {
+.card-footer .btn.outline-btn-cu-bg-black:hover {
+  background: var(--cua-black) !important;
   border: 1px solid var(--cua-gold) !important;
   color: var(--cua-gold) !important;
 }
@@ -344,11 +361,19 @@ hr {
 }
 
 .card-footer .btn.btn-cu-bg-white {
+  background: var(--cua-black) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-white) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-white,
+.card-footer .btn.btn-cu-bg-white:hover {
+  background: var(--cua-white) !important;
   border: 1px solid var(--cua-black) !important;
   color: var(--cua-black) !important;
 }
 
-.card-footer .btn.btn-cu-bg-white:hover {
+.card-footer .btn.outline-btn-cu-bg-white:hover  {
   background: var(--cua-black) !important;
   color: var(--cua-white) !important;
 }
@@ -368,11 +393,19 @@ hr {
 }
 
 .card-footer .btn.btn-cu-bg-light-grey {
+  background: var(--cua-black) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-white) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-light-grey,
+.card-footer .btn.btn-cu-bg-light-grey:hover {
+  background: var(--cua-gray-500) !important;
   border: 1px solid var(--cua-black) !important;
   color: var(--cua-black) !important;
 }
 
-.card-footer .btn.btn-cu-bg-light-grey:hover {
+.card-footer .btn.outline-btn-cu-bg-light-grey:hover  {
   background: var(--cua-black) !important;
   color: var(--cua-white) !important;
 }
