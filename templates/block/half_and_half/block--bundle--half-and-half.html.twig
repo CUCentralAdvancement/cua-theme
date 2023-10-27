@@ -25,77 +25,55 @@
 * @see template_preprocess_block()
 */
 #}
-
-{# Set Preprocess Fields #}
-{% set alignment = (content.field_text_alignment.0) %}
-{% set background_color = (content.field_color_background.0) %}
-{% set body = (content.body) %}
-{% set link = (content.field_link.0) %}
-{% set link_title = (content.field_link.0['#title']|render) %}
-{% set link_url = file_url(content.field_link.0['#url']|render) %}
-{% set image_alignment = (content.field_image_aligment.0) %}
-{% set image_alt = (content.field_image.0['#item'].alt ) %}
-{% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
-{% set image_style = (content.field_image_style.0) %}
-{% set image_size = (content.field_image_size.0) %}
-{% set padding = (content.field_padding.0) %}
-
-{# Set Remove Padding and Margin #}
-{% if remove_padding is not empty %}
-    {% set padding =  remove_padding %}
-{% else %}
-    {% set padding = 'my-3 mb-4' %}
-{% endif %}
-
+{# Attach the library #}
+{{ attach_library('cua_theme/half_and_half') }}
 {# Set CSS Classes #}
 {% set container_classes = [
-    'd-flex',
-    'clearfix',
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'half-and-half'
 ] %}
-
-
-{# Attach the library #}
-{{ attach_library('cua_theme/half_and_half') }}
-
 {# Content #}
-<div{{ attributes.addClass(container_classes) }}>
-    <div class="container-fluid card {{ background_color }}">
+<div{{ attributes.addClass(container_classes, 'half-and-half d-flex clearfix') }}>
+    <div class="container-fluid card {{ content.field_color_background.0 }}">
         <div class="row">
-            <div class="col {{ image_size }} {{ image_alignment }} g-0">
+            <div class="col {{ content.field_image_size.0 }} {{ content.field_image_aligment.0 }} g-0">
+                {% set image_alt = (content.field_image.0['#item'].alt ) %}
+                {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
+                {% set link_url = file_url(content.field_link.0['#url']|render) %}
                 {% if link_url is not empty %}
                     <a href="{{ link_url }}">
-                        <div role="img" class="hh-img" aria-label="{{ image_alt }}">
+                        <div role="img" aria-label="{{ image_alt }}">
                             <img class="card-img-top img-fluid"
                                  src="{{ image_path }}" loading="eager"
                                  alt="{{ image_alt }}">
                         </div>
                     </a>
                 {% else%}
-                    <div role="img" class="hh-img" aria-label="{{ image_alt }}">
+                    <div role="img" aria-label="{{ image_alt }}">
                         <img class="card-img-top img-fluid"
                              src="{{ image_path }}" loading="eager"
                              alt="{{ image_alt }}">
                     </div>
                 {% endif %}
             </div>
-            <div class="col text-{{ background_color }} {{ alignment }} p-5">
-                <div class="{{ background_color }} w-75">
+            <div class="col text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} p-5">
+                <div class="w-75">
                     {{ title_prefix }}
                     {% if label %}
-                        <h3 class="{{ alignment }}">{{ label }}</h3>
+                        <h3 class="{{ content.field_text_alignment.0 }} mb-2">{{ label }}</h3>
                     {% endif %}
                     {{ title_suffix }}
-                    {% if body %}
-                        {{ body }}
+                    {% if content.body %}
+                        {{ content.body }}
                     {% else %}
                     {% endif %}
+                    {% set link = (content.field_link.0) %}
+                    {% set link_title = (content.field_link.0['#title']|render) %}
+                    {% set link_url = file_url(content.field_link.0['#url']|render) %}
                     {% if link_title %}
-                        <div class="card-footer {{ alignment }}">
-                            <a class="btn {{ content.field_outline.0 }}btn-{{ background_color }} text-decoration-none rounded p-2"
+                        <div class="card-footer {{ content.field_text_alignment.0 }} g-0 mt-2 p-0">
+                            <a class="btn {{ content.field_outline.0 }}btn-{{ content.field_color_background.0 }} text-decoration-none rounded p-2"
                                title="{{ link_title }}"
                                aria-label="{{ link_title }}"
                                href="{{ link_url }}">{{ link_title }}</a>

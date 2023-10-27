@@ -1,5 +1,5 @@
 /* CSS Style Sheet Colors */
-.card,
-.card img {
+.half-and-half .card,
+.half-and-half .card img {
   border-radius: 0 !important;
 }
