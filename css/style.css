@@ -185,6 +185,7 @@ hr {
 /* CUA Custom block colors */
 .card {
   --bs-card-border-color: transparent !important;
+  --bs-card-border-width: 0 !important;
 }
 
 .card h3, .card .h3, .card h3 a, .card .h3 a {

@@ -33,9 +33,16 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
 ] %}
+{# Set background color if true #}
+{% set color_background = (content.field_color_background.0) %}
+{% if color_background is not empty %}
+    {% set background_class = color_background %}
+{% else %}
+    {% set background_class = '' %}
+{% endif %}
 {# Content #}
-<div{{ attributes.addClass(container_classes, 'half-and-half d-flex clearfix') }}>
-    <div class="container-fluid card {{ content.field_color_background.0 }}">
+<div{{ attributes.addClass(container_classes, 'half-and-half d-flex clearfix container-fluid card', background_class ) }}>
+    <div class="container-xxl g-0 my-0 py-0">
         <div class="row">
             <div class="col {{ content.field_image_size.0 }} {{ content.field_image_aligment.0 }} g-0">
                 {% set image_alt = (content.field_image.0['#item'].alt ) %}
@@ -57,8 +64,8 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="col text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} p-5">
-                <div class="w-75">
+            <div class="col text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} g-0">
+                <div class="w-75 p-5">
                     {{ title_prefix }}
                     {% if label %}
                         <h3 class="{{ content.field_text_alignment.0 }} mb-2">{{ label }}</h3>
