@@ -497,7 +497,7 @@ footer #site-footer-bottom li.nav-item {
 }
 
 footer #site-footer-bottom .nav-link {
-  color: var(--cua-gray-500) !important;
+  color: var(--cua-white) !important;
   font-size: 1rem;
 }
 
@@ -666,6 +666,10 @@ footer p {
   font-size: .85rem;
   line-height: 1.2rem;
   margin-bottom: 0;
+}
+
+footer p {
+  padding-left: 0 !important;
 }
 
 footer .nav-link {
