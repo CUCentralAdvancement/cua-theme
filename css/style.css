@@ -18,15 +18,10 @@
   --cua-pimile-light: #f2f3f1;
   --cua-secondary: #d6dbd4;
   --cua-warm-gray: #d6dbd4;
-  --cua-warm-grey: #d6dbd4;
   --cua-warm-gray-medium: #e5e7e4;
-  --cua-warm-grey-medium: #e5e7e4;
   --cua-superlight-gray: #f2f2f2;
-  --cua-superlight-grey: #f2f2f2;
   --cua-light-gray: #ccc;
-  --cua-light-grey: #ccc;
   --cua-warm-gray-light: #f2f3f1;
-  --cua-warm-grey-light: #f2f3f1;
   /* Greys */
   --cua-gray-100: #f8f9fa;
   --cua-gray-200: #e9ecef;
@@ -39,8 +34,6 @@
   --cua-gray-800: #343a40;
   --cua-gray-dark: #343a40;
   --cua-gray-900: #212529;
-  --cua-mddk-grey: #8a8a8a;
-  --cua-md-grey: #545454;
   --cua-medium-gray-light: #545454;
   --cua-dark-gray: #595955;
   /* The Rainbow */
@@ -151,6 +144,26 @@ hr {
   color: var(--cua-black) !important;
   background: var(--cua-gold) !important;
   border-color: transparent !important;
+}
+
+/*Image hove effect  */
+.img-hover-effect {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  width: inherit;
+}
+.img-hover-effect img {
+  max-width: 100%;
+  transition: all 0.3s;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scale(1);
+}
+
+.img-hover-effect:hover img {
+  transform: scale(1.1);
 }
 
 /* CUA Custom block colors */

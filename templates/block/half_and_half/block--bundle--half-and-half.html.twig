@@ -50,7 +50,7 @@
                 {% set link_url = file_url(content.field_link.0['#url']|render) %}
                 {% if link_url is not empty %}
                     <a href="{{ link_url }}">
-                        <div role="img" aria-label="{{ image_alt }}">
+                        <div role="img" class="img-hover-effect" aria-label="{{ image_alt }}">
                             <img class="card-img-top img-fluid rounded-0"
                                  src="{{ image_path }}" loading="eager"
                                  alt="{{ image_alt }}">
