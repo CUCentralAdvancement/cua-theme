@@ -5,7 +5,7 @@
 /* General */
 /********* CU Official Web Colors -- mixed with Bootstrap 5 *********/
 :root {
-  /* GT Fonts -- RGB */
+  /* CUA Fonts -- RGB */
   --font-roboto: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --font-roboto-condensed: 'Roboto Condensed', sans-serif;
   --cua-body-font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -122,8 +122,18 @@ body, p, a, li {
   line-height: 1.5;
 }
 
-.strong {
+.bold,
+strong,
+.strong-text {
   font-weight: bold !important;
+}
+
+h2.display.\34  {
+  margin: 0 0 .75rem !important;
+}
+
+.justify-content-center p {
+  text-align: center !important;
 }
 
 hr {
@@ -132,54 +142,15 @@ hr {
   opacity: 1;
 }
 
-@media (min-width: 36em) {
-  h1, .h1, h1 a, .h1 a {
-    font-size: 2.500rem;
-    line-height: 1;
-  }
-
-  h2, .h2, h2 a, .h2 a {
-    font-size: 2.250rem;
-  }
-
-  h3, .h3, h3 a, .h3 a {
-    font-size: 1.875rem;
-  }
-
-  h4, .h4 {
-    font-size: 1.625rem;
-  }
-
-  h5, .h5 {
-    font-size: 1.250rem;
-  }
-
-  h6, .h6 {
-    font-size: 1.125rem;
-  }
+/* Hide title on front */
+.path-frontpage span.field.field--name-title {
+  display: none;
 }
 
-.text-small {
-  font-size: 0.875rem;
-}
-
-@media (min-width: 75em) {
-  h1, .h1, h1 a, .h1 a {
-    font-size: 2.625rem;
-    line-height: 1.2;
-  }
-
-  h2, .h2, h2 a, .h2 a {
-    font-size: 2.375rem;
-  }
-
-  h4, .h4 {
-    font-size: 1.500rem;
-  }
-
-  h6, .h6 {
-    font-size: 1.250rem;
-  }
+.btn-primary {
+  color: var(--cua-black) !important;
+  background: var(--cua-gold) !important;
+  border-color: transparent !important;
 }
 
 /* CUA Custom block colors */
@@ -230,6 +201,7 @@ hr {
 .card .justify-content-end p {
   text-align: right !important;
 }
+
 /* Gold */
 .card.cu-bg-gold {
   background: var(--cua-gold) !important;
@@ -358,35 +330,7 @@ hr {
   background: var(--cua-black) !important;
   color: var(--cua-white) !important;
 }
-
-/* Hide title on front */
-.path-frontpage span.field.field--name-title {
-  display: none;
-}
-
-/* Float search right */
-div#block-cua-theme-searchform {
-  text-align: end;
-}
-
-.btn-close {
-  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-  border: 1px solid var(--bs-white) !important;
-}
-
-.form-control {
-  border-radius: 0 !important;
-}
-
-.btn-primary {
-  color: var(--cua-black) !important;
-  background: var(--cua-gold) !important;
-  border-color: transparent !important;
-}
-
-#cua-footer-bottom {
-  background-color: var(--cua-black) !important;
-}
+/* End card */
 
 /* Navigation */
 .site-branding__text a {
@@ -428,7 +372,7 @@ a.nav-link.nav-link--,
 
 .navbar-expand-lg .navbar-nav .nav-link:hover {
   background: var(--cua-dark-gray) !important;
-  color: var(--bs-white) !important;
+  color: var(--cua-white) !important;
 }
 
 #navbar-main {
@@ -437,7 +381,7 @@ a.nav-link.nav-link--,
 }
 
 .nav-link {
-  color: var(--bs-white) !important;
+  color: var(--cua-white) !important;
   background: var(--cua-dark-gray) !important;
 }
 
@@ -460,11 +404,12 @@ a.nav-link.nav-link--,
 }
 
 .dropdown-item a:hover {
+  background-color: var(--cua-white);
   color: var(--cua-gold-hover);
 }
 
 .dropdown-item.active, .dropdown-item:active {
-  background-color: var(--cua-black);
+  background-color: var(--cua-white);
 }
 
 /* Footer navigation */
@@ -529,7 +474,7 @@ footer .social-media li.list-inline-item {
 
 /* Font Awesome */
 nav#navbar-main > li.first a:before {
-  font-family: "FontAwesome";
+  font-family: var(--fa-style-family-classic);
   display: block;
   width: 20px;
   height: 20px;
@@ -549,12 +494,12 @@ nav#navbar-main > li.first a:before {
 }
 
 .fa-edit:before {
-  color: var(--bs-green);
+  color: green;
   margin: 0 0.5rem 0;
 }
 
 a span.edit {
-  color: var(--bs-green);
+  color: green;
   font-size: 90%;
 }
 
@@ -584,13 +529,6 @@ a span.edit {
   border-style: solid;
   border-width: 1px 0 0 1px;
   width: 100%;
-}
-
-.cua-custom-department-logo {
-  width: 80%;
-  float: left;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 a.site-branding__logo {
@@ -627,8 +565,8 @@ a.site-branding__name span {
 h1.site-link {
   line-height: 0 !important;
 }
-/* FAQ */
 
+/* FAQ */
 .faq .js-views-accordion-group-header {
   margin: 2rem 0 .5rem;
 }
@@ -689,7 +627,7 @@ footer .nav-link:hover {
   border: none;
 }
 
-.link-cua {
+footer .link-cua {
   color: var(--cua-gray-500) !important;
   font-weight: 400;
   font-size: .9rem;
@@ -698,7 +636,7 @@ footer .nav-link:hover {
   text-decoration: none;
 }
 
-.link-cua:hover {
+footer .link-cua:hover {
   text-decoration: underline;
 }
 
@@ -712,7 +650,9 @@ section.row.region.region-footer-first {
   background: var(--cua-gold);
 }
 
-table tr th, table tr th a, table tr th a:hover, table tr th a:focus {
+table tr th, table tr th a,
+table tr th a:hover,
+table tr th a:focus {
   color: var(--cua-black);
 }
 
@@ -741,6 +681,20 @@ header #search-block-form {
   font-size: .85rem !important;
   margin-top: .02rem;
   padding: .1rem .5rem;
+}
+
+/* Float search right */
+div#block-cua-theme-searchform {
+  text-align: end;
+}
+
+.btn-close {
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+  border: 1px solid var(--cua-white) !important;
+}
+
+.form-control {
+  border-radius: 0 !important;
 }
 
 /* Staff Directory */
@@ -793,19 +747,6 @@ form#node-page-layout-builder-form div#edit-actions {
   display: inline-block;
 }
 
-strong,
-.strong-text {
-  font-weight: bold !important;
-}
-
-h2.display.\34  {
-  margin: 0 0 .75rem !important;
-}
-
-.justify-content-center p {
-  text-align: center !important;
-}
-
 
 /* responsive */
 @media only screen and (max-width: 600px) {
@@ -821,8 +762,55 @@ h2.display.\34  {
   #navbar-main {
     background: var(--cua-dark-gray) !important;
   }
-
-
 }
 
 
+@media (min-width: 36em) {
+  h1, .h1, h1 a, .h1 a {
+    font-size: 2.500rem;
+    line-height: 1;
+  }
+
+  h2, .h2, h2 a, .h2 a {
+    font-size: 2.250rem;
+  }
+
+  h3, .h3, h3 a, .h3 a {
+    font-size: 1.875rem;
+  }
+
+  h4, .h4 {
+    font-size: 1.625rem;
+  }
+
+  h5, .h5 {
+    font-size: 1.250rem;
+  }
+
+  h6, .h6 {
+    font-size: 1.125rem;
+  }
+}
+
+.text-small {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 75em) {
+  h1, .h1, h1 a, .h1 a {
+    font-size: 2.625rem;
+    line-height: 1.2;
+  }
+
+  h2, .h2, h2 a, .h2 a {
+    font-size: 2.375rem;
+  }
+
+  h4, .h4 {
+    font-size: 1.500rem;
+  }
+
+  h6, .h6 {
+    font-size: 1.250rem;
+  }
+}
