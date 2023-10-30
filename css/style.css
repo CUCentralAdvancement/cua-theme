@@ -530,6 +530,11 @@ a span.edit {
 }
 
 /* Header */
+h1.site-slogan {
+  padding: 0 0 10px !important;
+  margin: 0 !important;
+}
+
 .site-branding__logo img {
   max-width: 250px;
   width: 100%;
