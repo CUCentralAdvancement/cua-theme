@@ -1,9 +1,9 @@
 {% block footer %}
     <footer class="site-footer mt-5 mt-auto">
-        <div id="site-footer-top" class="container">
+        <div id="site-footer-top" class="container px-5">
             {% if page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
+                <div class="row px-4">
+                    <div class="col-md-4 col-sm-6 px-0">
                         <section class="row region region-footer-first">
                             <h2 class="g-0 mb-2">{{ 'University of Colorado'|t }}
                                 <br>
@@ -22,7 +22,7 @@
                                 <a class="link-cua"
                                    href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
                             </p>
-                            <div class="social-media pt-3 px-0">
+                            <div class="social-media pt-3">
                                 <nav role="navigation" class="mt-3">
                                     <h2 class="block__title visually-hidden">{{ 'Social Media Links'|t }}</h2>
                                     <ul class="link-underline-opacity-0">
