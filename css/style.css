@@ -257,7 +257,8 @@ hr {
 }
 
 .card .card-body.text-cu-bg-black > *,
-.card .col.text-cu-bg-black > * {
+.card .col.text-cu-bg-black > *,
+.card .text-cu-bg-black p {
   color: var(--cua-white) !important;
 }
 
