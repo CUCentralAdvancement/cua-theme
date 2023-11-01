@@ -148,6 +148,7 @@ ol.breadcrumb li:first-child a::before {
   -webkit-background-size: 1rem 1rem;
   background-size: 1rem 1rem;
   background-position: 0 0.15rem;
+  margin: 0 .25rem 0 0;
   width: 1.5rem;
   height: 1.1rem;
 }
