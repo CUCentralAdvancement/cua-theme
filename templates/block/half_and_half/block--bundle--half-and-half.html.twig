@@ -37,14 +37,12 @@
 {% set color_background = (content.field_color_background.0) %}
 {% if color_background is not empty %}
     {% set background_class = color_background %}
-{% else %}
-    {% set background_class = '' %}
 {% endif %}
 {# Content #}
 <div{{ attributes.addClass(container_classes, 'half-and-half d-flex clearfix container-fluid card', background_class ) }}>
     <div class="container-xxl g-0 my-0 py-0">
         <div class="row">
-            <div class="col-md-6 col-sm-12 {{ content.field_image_size.0 }} {{ content.field_image_aligment.0 }} g-0">
+            <div class="col-md-6 col-sm-12 {{ content.field_image_size.0 }} {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }} g-0">
                 {% set image_alt = (content.field_image.0['#item'].alt ) %}
                 {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
                 {% set link_url = file_url(content.field_link.0['#url']|render) %}
@@ -52,7 +50,7 @@
                     <a href="{{ link_url }}">
                         <div role="img" class="img-hover-effect"
                              aria-label="{{ image_alt }}">
-                            <img class="card-img-top img-fluid rounded-0"
+                            <img class="card-img-top img-fluid {{ content.field_image_size.0 }} rounded-0"
                                  src="{{ image_path }}" width="680"
                                  height="auto" loading="lazy"
                                  alt="{{ image_alt }}">
@@ -60,7 +58,7 @@
                     </a>
                 {% else %}
                     <div role="img" aria-label="{{ image_alt }}">
-                        <img class="card-img-top img-fluid rounded-0"
+                        <img class="card-img-top img-fluid {{ content.field_image_size.0 }} rounded-0"
                              src="{{ image_path }}" width="680" height="auto"
                              loading="lazy"
                              alt="{{ image_alt }}">

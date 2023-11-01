@@ -3,3 +3,19 @@
 .half-and-half .card img {
   border-radius: 0 !important;
 }
+
+.half-and-half .add-padding {
+  padding: 3rem !important;
+}
+
+.half-and-half .card-img-top.img-fluid.large {
+  scale: 100% !important;
+}
+
+.half-and-half .card-img-top.img-fluid.medium {
+  scale: 75%;
+}
+
+.half-and-half .card-img-top.img-fluid.small {
+  scale: 50% !important;
+}
