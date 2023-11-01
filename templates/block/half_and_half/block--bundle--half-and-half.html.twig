@@ -50,16 +50,19 @@
                 {% set link_url = file_url(content.field_link.0['#url']|render) %}
                 {% if link_url is not empty %}
                     <a href="{{ link_url }}">
-                        <div role="img" class="img-hover-effect" aria-label="{{ image_alt }}">
+                        <div role="img" class="img-hover-effect"
+                             aria-label="{{ image_alt }}">
                             <img class="card-img-top img-fluid rounded-0"
-                                 src="{{ image_path }}" width="680" height="auto" loading="lazy"
+                                 src="{{ image_path }}" width="680"
+                                 height="auto" loading="lazy"
                                  alt="{{ image_alt }}">
                         </div>
                     </a>
-                {% else%}
+                {% else %}
                     <div role="img" aria-label="{{ image_alt }}">
                         <img class="card-img-top img-fluid rounded-0"
-                             src="{{ image_path }}" width="680" height="auto" loading="lazy"
+                             src="{{ image_path }}" width="680" height="auto"
+                             loading="lazy"
                              alt="{{ image_alt }}">
                     </div>
                 {% endif %}
@@ -75,7 +78,6 @@
                         {{ content.body }}
                     {% else %}
                     {% endif %}
-                    {% set link = (content.field_link.0) %}
                     {% set link_title = (content.field_link.0['#title']|render) %}
                     {% set link_url = file_url(content.field_link.0['#url']|render) %}
                     {% if link_title %}
