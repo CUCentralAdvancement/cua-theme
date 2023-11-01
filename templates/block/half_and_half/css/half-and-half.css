@@ -8,14 +8,14 @@
   padding: 3rem !important;
 }
 
-.half-and-half .card-img-top.img-fluid.large {
+.half-and-half img.large {
   scale: 100% !important;
 }
 
-.half-and-half .card-img-top.img-fluid.medium {
+.half-and-half img.medium {
   scale: 75% !important;
 }
 
-.half-and-half .card-img-top.img-fluid.small {
+.half-and-half img.small {
   scale: 50% !important;
 }
