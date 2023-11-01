@@ -140,6 +140,10 @@ hr {
   text-decoration: none !important;
 }
 
+.breadcrumb a:hover {
+  text-decoration: underline !important;
+}
+
 ol.breadcrumb li:first-child a::before {
   display: inline-block;
   content: "";
@@ -151,6 +155,13 @@ ol.breadcrumb li:first-child a::before {
   margin: 0 .25rem 0 0;
   width: 1.5rem;
   height: 1.1rem;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  float: left;
+  padding-right: .5rem;
+  color: #6c757d;
+  content: var(--bs-breadcrumb-divider, "/");
 }
 
 /* Hide title on front */
