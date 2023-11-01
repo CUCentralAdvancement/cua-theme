@@ -224,8 +224,7 @@ hr {
   border: 1px solid var(--cua-gold) !important;
 }
 
-.card .card-body.text-cu-bg-gold > *,
-.card .col.text-cu-bg-gold > * {
+.card .text-cu-bg-gold > * {
   color: var(--cua-black) !important;
 }
 
@@ -256,9 +255,7 @@ hr {
   border: 1px solid var(--cua-black) !important;
 }
 
-.card .card-body.text-cu-bg-black > *,
-.card .col.text-cu-bg-black > *,
-.card .text-cu-bg-black p {
+.card .text-cu-bg-black > * {
   color: var(--cua-white) !important;
 }
 
@@ -290,8 +287,7 @@ hr {
   border: 1px solid var(--cua-white) !important;
 }
 
-.card .card-body.text-cu-bg-white > *,
-.card .col.text-cu-bg-white > * {
+.card .text-cu-bg-white > * {
   color: var(--cua-black) !important;
 }
 
@@ -322,8 +318,7 @@ hr {
   border: 1px solid var(--cua-gray-500) !important;
 }
 
-.card .card-body.text-cu-bg-light-grey > *,
-.card .col.text-cu-bg-light-grey > * {
+.card .text-cu-bg-light-grey > * {
   color: var(--cua-black) !important;
 }
 
