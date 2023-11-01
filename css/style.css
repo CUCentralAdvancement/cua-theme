@@ -478,7 +478,7 @@ footer .social-media li.list-inline-item {
 
 .site-footer .copyright,
 .site-footer .link-secondary {
-  color: var(--cua-gray-500) !important;
+  color: var(--cua-white) !important;
 }
 
 /* Font Awesome */
@@ -613,7 +613,7 @@ footer.site-footer h2 {
 
 footer,
 footer p {
-  color: var(--cua-gray-500) !important;
+  color: var(--cua-white) !important;
   font-weight: 400;
   font-size: .85rem;
   line-height: 1.2rem;
@@ -626,7 +626,7 @@ footer p {
 
 footer .nav-link {
   background: transparent !important;
-  color: var(--cua-gray-500) !important;
+  color: var(--cua-white) !important;
   font-weight: 400;
   font-size: .9rem;
   line-height: 1rem;
@@ -642,7 +642,7 @@ footer .nav-link:hover {
 }
 
 footer .link-cua {
-  color: var(--cua-gray-500) !important;
+  color: var(--cua-white) !important;
   font-weight: 400;
   font-size: .9rem;
   line-height: 1rem;
