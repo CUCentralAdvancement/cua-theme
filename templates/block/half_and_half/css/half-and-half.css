@@ -8,14 +8,34 @@
   padding: 3rem !important;
 }
 
-.half-and-half img.large {
-  scale: 100% !important;
+.half-and-half .hh-img img.large {
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
-.half-and-half img.medium {
-  scale: 75% !important;
+.half-and-half .hh-img img.medium {
+  max-width: 75% !important;
+  width: 75% !important;
+
 }
 
-.half-and-half img.small {
-  scale: 60% !important;
+.half-and-half .hh-img img.small {
+  max-width: 60% !important;
+  width: 60% !important;
+}
+
+.half-and-half .hh-img img.large,
+.half-and-half .hh-img img.medium,
+.half-and-half .hh-img img.small {
+  float: right !important;
+}
+
+.half-and-half .order-last .hh-img img.large,
+.half-and-half .order-last .hh-img img.medium,
+.half-and-half .order-last .hh-img img.small {
+  float: left !important;
+}
+
+.half-and-half .container-xl {
+  max-width: 1400px;
 }
