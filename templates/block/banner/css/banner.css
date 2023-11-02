@@ -110,3 +110,11 @@
   border-color: var(--cua-black) !important;
   color: var(--cua-black) !important;
 }
+
+
+@media (max-width: 680px) {
+  .banner-body {
+    width: 70% !important;
+  }
+
+}
