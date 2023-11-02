@@ -7,7 +7,7 @@ cua_theme.xs:
     - 2x
 cua_theme.small:
   label: small
-  mediaQuery: 'all and (max-width: 576px)'
+  mediaQuery: 'all and (max-width: 545px)'
   weight: 0
   multipliers:
     - 1x

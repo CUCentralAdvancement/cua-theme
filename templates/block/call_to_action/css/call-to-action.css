@@ -1,8 +1,4 @@
 /* CSS Style Sheet for call to action */
-.block.block-block-content {
-    margin-right: 1rem !important;
-}
-
-.layout__region {
-    margin: .5rem 0 !important;
+.call-to-action .img-hover-effect img {
+    border-radius: 0.25rem 0.25rem 0 0!important;
 }
