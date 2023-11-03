@@ -68,12 +68,11 @@
   --cua-body-color: #262626;
   --cua-body-bg: #fff;
 }
-
- * {
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-   -o-font-smoothing: antialiased;
- }
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -o-font-smoothing: antialiased;
+}
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
   font-family: 'Roboto', 'Arial', 'Verdana', sans-serif;
@@ -125,6 +124,10 @@ body, p, a, li {
 strong,
 .strong-text {
   font-weight: bold !important;
+}
+
+.text-small {
+  font-size: 0.875rem;
 }
 
 h2.display.\34  {
@@ -839,10 +842,6 @@ form#node-page-layout-builder-form div#edit-actions {
   h6, .h6 {
     font-size: 1.125rem;
   }
-}
-
-.text-small {
-  font-size: 0.875rem;
 }
 
 @media (min-width: 75em) {

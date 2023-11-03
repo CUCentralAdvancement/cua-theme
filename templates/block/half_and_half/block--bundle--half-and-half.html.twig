@@ -42,11 +42,11 @@
 <div{{ attributes.addClass(container_classes, 'half-and-half d-flex clearfix container-fluid card', background_class ) }}>
     <div class="container-xl g-0 my-0 py-0">
         <div class="row">
-            <div class="col-md-6 col-sm-12 {{ content.field_image_size.0 }} {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }} g-0">
+            <div class="col-md-6 col-sm-12 {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }} g-0">
                 {% set link_url = file_url(content.field_link.0['#url']|render) %}
                 {% if link_url is not empty %}
                     <a href="{{ link_url }}">
-                        <div role="img" class="hh-img img-hover-effect"
+                        <div role="img" class="hh-img {{ content.field_image_size.0 }} img-hover-effect"
                              aria-label="{{ content.field_image.0['#item'].alt }}">
                             {{ content.field_image.0 }}
                         </div>
