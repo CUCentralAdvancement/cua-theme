@@ -169,8 +169,22 @@ ol.breadcrumb li:first-child a::before {
 .breadcrumb-item+.breadcrumb-item::before {
   float: left;
   padding-right: .5rem;
-  color: #6c757d;
+  color: var(--cua-gray-600);
   content: var(--bs-breadcrumb-divider, "/");
+}
+
+.contextual {
+  right: inherit;
+}
+
+.contextual .trigger {
+  background-color: green !important;
+}
+
+.contextual .trigger:hover,
+.contextual .trigger:focus{
+  color: var(--cua-black) !important;
+  background-color: white !important;
 }
 
 /* Hide title on front */
