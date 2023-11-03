@@ -1,73 +1,77 @@
 /* CSS Style Sheet Colors */
 .half-and-half .card,
 .half-and-half .card img {
-  border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 .half-and-half .add-padding {
-  padding: 3rem !important;
+    padding: 3rem !important;
 }
 
 .half-and-half .large img {
-  max-width: 100% !important;
-  width: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
 }
 
 .half-and-half .medium img {
-  max-width: 75% !important;
-  width: 75% !important;
+    max-width: 75% !important;
+    width: 75% !important;
 
 }
 
 .half-and-half .small img {
-  max-width: 60% !important;
-  width: 60% !important;
+    max-width: 60% !important;
+    width: 60% !important;
 }
 
 .half-and-half .large img,
 .half-and-half .medium img,
 .half-and-half .small img {
-  float: right !important;
+    float: right !important;
 }
 
 .half-and-half .order-last .large img,
 .half-and-half .order-last .medium img,
 .half-and-half .order-last .small img {
-  float: left !important;
+    float: left !important;
 }
 
 .half-and-half .container-xl {
-  max-width: 1400px !important;
+    max-width: 1400px !important;
 }
 
 .half-and-half .hr-top {
-  border-top: 2px solid var(--cua-gold) !important;
-  margin: 1rem 0;
-  opacity: 1;
+    border-top: 2px solid var(--cua-gold) !important;
+    margin: 1rem 0;
+    opacity: 1;
 }
 
 .half-and-half .hr-top .hh-img img {
-  margin: 1rem 0 !important;
+    margin: 1rem 0 !important;
 }
 
 
 .half-and-half .hr-bottom {
-  border-bottom: 2px solid var(--cua-gold) !important;
-  margin: 1rem 0;
-  opacity: 1;
+    border-bottom: 2px solid var(--cua-gold) !important;
+    margin: 1rem 0;
+    opacity: 1;
 }
 
 .half-and-half .hr-bottom .hh-img img {
-  margin: 1rem 0 !important;
+    margin: 1rem 0 !important;
 }
 
 .half-and-half .hr-top-bottom {
-  border-bottom: 2px solid var(--cua-gold) !important;
-  border-top: 2px solid var(--cua-gold) !important;
-  margin: 1rem 0;
-  opacity: 1;
+    border-bottom: 2px solid var(--cua-gold) !important;
+    border-top: 2px solid var(--cua-gold) !important;
+    margin: 1rem 0;
+    opacity: 1;
 }
 
 .half-and-half .hr-top-bottom .hh-img img {
-  margin: 1rem 0 !important;
+    margin: 1rem 0 !important;
+}
+
+.card h3.small {
+    margin: .7rem 0 0 !important;
 }
