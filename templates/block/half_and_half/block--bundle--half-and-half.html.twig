@@ -40,7 +40,7 @@
 {% endif %}
 {# Content #}
 <div{{ attributes.addClass(container_classes, 'half-and-half d-flex clearfix container-fluid card', background_class ) }}>
-    <div class="container g-0 my-0 py-0">
+    <div class="container-xl g-0 my-0 py-0">
         <div class="row">
             <div class="col-md-6 col-sm-12 {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }} {{ content.field_border_style.0 }} g-0">
                 {% set link_url = file_url(content.field_link.0['#url']|render) %}
