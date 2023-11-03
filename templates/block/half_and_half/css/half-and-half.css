@@ -1,4 +1,8 @@
 /* CSS Style Sheet Colors */
+.container-xl {
+    width: 1200px !important;
+}
+
 .half-and-half .card,
 .half-and-half .card img {
     border-radius: 0 !important;
