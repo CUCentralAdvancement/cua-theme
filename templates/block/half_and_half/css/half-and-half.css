@@ -39,3 +39,35 @@
 .half-and-half .container-xl {
   max-width: 1400px !important;
 }
+
+.half-and-half .hr-top {
+  border-top: 2px solid var(--cua-gold) !important;
+  margin: 1rem 0;
+  opacity: 1;
+}
+
+.half-and-half .hr-top .hh-img img {
+  margin: 1rem 0 !important;
+}
+
+
+.half-and-half .hr-bottom {
+  border-bottom: 2px solid var(--cua-gold) !important;
+  margin: 1rem 0;
+  opacity: 1;
+}
+
+.half-and-half .hr-bottom .hh-img img {
+  margin: 1rem 0 !important;
+}
+
+.half-and-half .hr-top-bottom {
+  border-bottom: 2px solid var(--cua-gold) !important;
+  border-top: 2px solid var(--cua-gold) !important;
+  margin: 1rem 0;
+  opacity: 1;
+}
+
+.half-and-half .hr-top-bottom .hh-img img {
+  margin: 1rem 0 !important;
+}
