@@ -1,8 +1,4 @@
 /* CSS Style Sheet Colors */
-.container-xl {
-    width: 1200px !important;
-}
-
 .half-and-half .card,
 .half-and-half .card img {
     border-radius: 0 !important;
@@ -78,4 +74,17 @@
 
 .card h3.small {
     margin: .7rem 0 0 !important;
+}
+
+@media only screen and (max-width: 576px) {
+    .half-and-half .large img,
+    .half-and-half .medium img,
+    .half-and-half .small img,
+    .half-and-half .order-last .large img,
+    .half-and-half .order-last .medium img,
+    .half-and-half .order-last .small img {
+        float: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
 }
