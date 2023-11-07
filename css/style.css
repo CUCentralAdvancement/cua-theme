@@ -268,10 +268,12 @@ ol.breadcrumb li:first-child a::before {
 }
 
 /* Gold */
+.cu-bg-gold,
 .card.cu-bg-gold {
   background: var(--cua-gold) !important;
 }
 
+.cu-bd-gold,
 .card.cu-bd-gold {
   border: 1px solid var(--cua-gold) !important;
 }
@@ -299,10 +301,12 @@ ol.breadcrumb li:first-child a::before {
 }
 
 /* Black */
+.cu-bg-black,
 .card.cu-bg-black {
   background: var(--cua-black) !important;
 }
 
+.cu-bd-black,
 .card.cu-bd-black {
   border: 1px solid var(--cua-black) !important;
 }
@@ -331,10 +335,12 @@ ol.breadcrumb li:first-child a::before {
 }
 
 /* White */
+.cu-bg-white,
 .card.cu-bg-white {
   background: var(--cua-white) !important;
 }
 
+.cu-bd-white,
 .card.cu-bd-white {
   border: 1px solid var(--cua-white) !important;
 }
@@ -362,10 +368,12 @@ ol.breadcrumb li:first-child a::before {
 }
 
 /* Light Grey */
+.cu-bg-light-grey,
 .card.cu-bg-light-grey {
   background: var(--cua-gray-500) !important;
 }
 
+.cu-bd-light-grey,
 .card.cu-bd-light-grey {
   border: 1px solid var(--cua-gray-500) !important;
 }
