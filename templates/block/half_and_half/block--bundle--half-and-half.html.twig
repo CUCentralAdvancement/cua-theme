@@ -51,13 +51,13 @@
                         {% set link_url = file_url(content.field_link.0['#url']|render) %}
                         {% if link_url is not empty %}
                             <a href="{{ link_url }}" aria-label="{{ content.field_image.0['#item'].alt }}">
-                                <div role="img" class="hh-img {{ content.field_image_size.0 }} img-hover-effect"
+                                <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} img-hover-effect"
                                      aria-label="{{ content.field_image.0['#item'].alt }}">
                                     {{ content.field_image.0 }}
                                 </div>
                             </a>
                         {% else %}
-                            <div role="img" class="hh-img" aria-label="{{ content.field_image.0['#item'].alt }}">
+                            <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }}" aria-label="{{ content.field_image.0['#item'].alt }}">
                                 {{ content.field_image.0 }}
                             </div>
                         {% endif %}
