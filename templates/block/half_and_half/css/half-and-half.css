@@ -95,7 +95,11 @@
     }
 
     .half-and-half .hr-top-bottom .hh-img img {
-        margin: 1rem!important;
+        margin: 1rem !important;
+    }
+
+    .half-and-half .add-padding {
+        padding: 1rem 1rem !important;
     }
 
 }
