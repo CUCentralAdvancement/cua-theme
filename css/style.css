@@ -680,6 +680,11 @@ footer p {
   margin-bottom: 0;
 }
 
+footer .row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
 footer p {
   padding-left: 0 !important;
 }
@@ -823,7 +828,7 @@ form#node-page-layout-builder-form div#edit-actions {
 
 
 /* responsive */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
   #navbar-main {
     background-color: transparent !important;
     border-top: transparent !important;
@@ -835,6 +840,11 @@ form#node-page-layout-builder-form div#edit-actions {
 
   #navbar-main {
     background: var(--cua-dark-gray) !important;
+  }
+
+  h1.site-slogan {
+    padding: 10px !important;
+    margin: 0 !important;
   }
 }
 
