@@ -28,60 +28,58 @@
 {# Attach the library. #}
 {{ attach_library('cua_theme/call-to-action') }}
 {# Content #}
-<div class="call-to-action pb-3 mx-2">
-    <div class="contextual-region block block-block-content block-{{ label|lower|replace({' ': ''}) }} h-100 card {{ content.field_color_background.0 }} {{ content.field_color_border.0 }} rounded">
-        {% if content.field_image.0 or content.field_icon.0 or content.field_icon.0 %}
-            <div class="card-header {{ content.field_text_alignment.0 }} {{ content.field_padding.0 }} g-0 p-1">
-                {% if content.field_image.0 is not empty and content.field_link.0 is not empty and content.field_icon.0 is empty %}
-                    {% set image_alt = (content.field_image.0['#item'].alt ) %}
-                    {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
-                    {% set link_title = (content.field_link.0['#title']|render) %}
-                    {% set link_url = file_url(content.field_link.0['#url']|render) %}
-                    <a title="{{ link_title }}" aria-label="{{ link_title }}"
-                       href="{{ link_url }}">
-                        <div role="img" class="img-hover-effect mb-4"
-                             aria-label="{{ image_alt }}">
-                            {{ content.field_image.0 }}
-                        </div>
-                    </a>
-                {% elseif content.field_image.0 is not empty and content.field_link.0 is empty and content.field_icon.0 is empty %}
-                    {% set image_alt = (content.field_image.0['#item'].alt ) %}
-                    {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
-                    <div role="img" class="mb-4"
+<div class="call-to-action h-100 card {{ content.field_color_background.0 }} {{ content.field_color_border.0 }} rounded contextual-region">
+    {% if content.field_image.0 or content.field_icon.0 or content.field_icon.0 %}
+        <div class="card-header {{ content.field_text_alignment.0 }} {{ content.field_padding.0 }} g-0 p-1">
+            {% if content.field_image.0 is not empty and content.field_link.0 is not empty and content.field_icon.0 is empty %}
+                {% set image_alt = (content.field_image.0['#item'].alt ) %}
+                {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
+                {% set link_title = (content.field_link.0['#title']|render) %}
+                {% set link_url = file_url(content.field_link.0['#url']|render) %}
+                <a title="{{ link_title }}" aria-label="{{ link_title }}"
+                   href="{{ link_url }}">
+                    <div role="img" class="img-hover-effect mb-4"
                          aria-label="{{ image_alt }}">
                         {{ content.field_image.0 }}
                     </div>
-                {% elseif content.field_icon.0 is not empty %}
-                    <span class="pt-3 px-3" style="color: {{ content.field_icon_color.0 }}">
+                </a>
+            {% elseif content.field_image.0 is not empty and content.field_link.0 is empty and content.field_icon.0 is empty %}
+                {% set image_alt = (content.field_image.0['#item'].alt ) %}
+                {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
+                <div role="img" class="mb-4"
+                     aria-label="{{ image_alt }}">
+                    {{ content.field_image.0 }}
+                </div>
+            {% elseif content.field_icon.0 is not empty %}
+                <span class="pt-3 px-3" style="color: {{ content.field_icon_color.0 }}">
                   <i class="{{ content.field_icon.0 }} {{ content.field_icon_size.0 }}"></i>
                 </span>
-                {% else %}
-                {% endif %}
-            </div>
-        {% endif %}
-        <div class="card-body text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} px-4">
-            <div class="card-body-title">
-                {{ title_prefix }}
-                {% if label %}
-                    <h3 class="{{ content.field_text_alignment.0 }} mb-2">{{ label }}</h3>
-                {% endif %}
-                {{ title_suffix }}
-                {% if content.body %}
-                    <div class="{{content.field_text_alignment.0 }}">{{ content.body }}</div>
-                {% else %}
-                {% endif %}
-            </div>
+            {% else %}
+            {% endif %}
         </div>
-        {% if link_title %}
-            {% set link_title = (content.field_link.0['#title']|render) %}
-            {% set link_url = file_url(content.field_link.0['#url']|render) %}
-            <div class="card-footer {{ content.field_text_alignment.0 }} px-4 pb-4">
-                <a class="btn {{ content.field_outline.0 }}btn-{{ content.field_color_background.0 }} text-decoration-none rounded p-2"
-                   title="{{ link_title }}"
-                   aria-label="{{ link_title }}"
-                   href="{{ link_url }}">{{ link_title }}</a>
-            </div>
-        {% else %}
-        {% endif %}
+    {% endif %}
+    <div class="card-body text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} px-4">
+        <div class="card-body-title">
+            {{ title_prefix }}
+            {% if label %}
+                <h3 class="{{ content.field_text_alignment.0 }} mb-2">{{ label }}</h3>
+            {% endif %}
+            {{ title_suffix }}
+            {% if content.body %}
+                <div class="{{content.field_text_alignment.0 }}">{{ content.body }}</div>
+            {% else %}
+            {% endif %}
+        </div>
     </div>
+    {% if link_title %}
+        {% set link_title = (content.field_link.0['#title']|render) %}
+        {% set link_url = file_url(content.field_link.0['#url']|render) %}
+        <div class="card-footer {{ content.field_text_alignment.0 }} px-4 pb-4">
+            <a class="btn {{ content.field_outline.0 }}btn-{{ content.field_color_background.0 }} text-decoration-none rounded p-2"
+               title="{{ link_title }}"
+               aria-label="{{ link_title }}"
+               href="{{ link_url }}">{{ link_title }}</a>
+        </div>
+    {% else %}
+    {% endif %}
 </div>
