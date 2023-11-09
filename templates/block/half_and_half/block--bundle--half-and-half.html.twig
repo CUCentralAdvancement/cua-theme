@@ -67,7 +67,7 @@
                         {% else %}
                         <div class="col-6 {{ background_class }} {{ content.field_text_alignment.0 }}">
                             {% endif %}
-                            <div class="card-body text-{{ content.field_color_background.0 }} p-4">
+                            <div class="card-body text-{{ background_class }} p-4">
                                 {{ title_prefix }}
                                 {% if label %}
                                     <h3 class="{{ content.field_image_size.0 }} {{ content.field_text_alignment.0 }} mb-2">
@@ -81,8 +81,8 @@
                                 {% set link_title = (content.field_link.0['#title']|render) %}
                                 {% set link_url = file_url(content.field_link.0['#url']|render) %}
                                 {% if link_title %}
-                                    <div class="card-footer {{ content.field_text_alignment.0 }} g-0 mt-2 p-0">
-                                        <a class="btn {{ content.field_outline.0 }}btn-{{ content.field_color_background.0 }} text-decoration-none rounded p-2"
+                                    <div class="card-footer {{ content.field_text_alignment.0 }} g-0 mt-5 p-0">
+                                        <a class="btn {{ content.field_outline.0 }}btn-{{ background_class }} text-decoration-none rounded p-2"
                                            title="{{ link_title }}"
                                            aria-label="{{ link_title }}"
                                            href="{{ link_url }}">{{ link_title }}</a>
@@ -95,3 +95,4 @@
                 </div>
             </div>
         </div>
+    </div>
