@@ -41,3 +41,10 @@ half-and-half:
   css:
     base:
       templates/block/half_and_half/css/half-and-half.css: {}
+
+# Spacer.
+spacer:
+  version: "1.0.x"
+  css:
+    base:
+      templates/block/spacer/css/spacer.css: { }
