@@ -2,10 +2,20 @@
 
 {# Attach the library #}
 {{ attach_library('cua_theme/banner') }}
-
+{# Set CSS Classes #}
+{% set container_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+] %}
+{# Set background color if true #}
+{% set color_background = (content.field_color_background.0) %}
+{% if color_background is not empty %}
+    {% set background_class = color_background %}
+{% endif %}
 {# Content #}
-<div{{ attributes }}>
-    <div class="jumbotron jumbotron-fluid banner shadow-lg py-4" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %} >
+<div{{ attributes.addClass('jumbotron jumbotron-fluid banner shadow-lg py-4', background_class ) }}>
+    <div class="container-xl" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %} >
         <div class="container ">
             <div class="row {{ content.field_position_container.0 }}">
                 {% set center = (content.field_center_content.0) %}
