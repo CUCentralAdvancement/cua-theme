@@ -2,12 +2,15 @@
 
 {# Attach the library #}
 {{ attach_library('cua_theme/spacer') }}
-
+{# Set CSS Classes #}
+{% set container_classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+] %}
 {# Content #}
-<div{{ attributes }}>
-  <div id="spacer" class="{{ content.field_size.0 }}">
-    {{ title_prefix }}
-    <div class="spacer-title align-middle text-center"> {{ 'Blank Space '|t }} ({{ content.field_size.0 }})<br>{{ '(text and background only visible when logged in)'|t }}</div>
-    {{ title_suffix }}
+<div{{ attributes.addClass('spacer') }}>
+  <div class="{{ content.field_size.0 }}">
+    {{ '&nbsp;'|t }}
   </div>
 </div>
