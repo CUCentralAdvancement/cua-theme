@@ -1,6 +1,8 @@
 /* CU Banner*/
 .banner .container-xl {
   max-width: 1499px !important;
+  min-height: 100vh;
+  min-width: 100vh;
 }
 
 /* Color Background */
