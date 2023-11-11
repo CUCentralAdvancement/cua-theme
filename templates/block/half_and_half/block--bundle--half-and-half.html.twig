@@ -38,6 +38,7 @@
 {% if color_background is not empty %}
     {% set background_class = color_background %}
 {% endif %}
+
 {# Content #}
 <div{{ attributes.addClass('half-and-half g-0 p-0 m-0', background_class ) }}>
     <div class="container g-0">
@@ -48,16 +49,15 @@
                     {% else %}
                     <div class="col-6 {{ background_class }} {{ content.field_text_alignment.0 }} {{ content.field_image_aligment.0 }}">
                         {% endif %}
-                        {% set link_url = file_url(content.field_link.0['#url']|render) %}
-                        {% if link_url is not empty %}
-                            <a href="{{ link_url }}" aria-label="{{ content.field_image.0['#item'].alt }}">
-                                <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} img-hover-effect"
+                        {% if content.field_link.0['#url'] is not empty %}
+                            <a href="{{ content.field_link.0['#url'] }}" aria-label="{{ content.field_image.0['#item'].alt }}">
+                                <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} img-hover-effect w-100"
                                      aria-label="{{ content.field_image.0['#item'].alt }}">
                                     {{ content.field_image.0 }}
                                 </div>
                             </a>
-                        {% else %}
-                            <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }}" aria-label="{{ content.field_image.0['#item'].alt }}">
+                        {% elseif content.field_link.0['#url'] is empty %}
+                            <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} w-100" aria-label="{{ content.field_image.0['#item'].alt }}">
                                 {{ content.field_image.0 }}
                             </div>
                         {% endif %}
