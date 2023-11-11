@@ -564,6 +564,7 @@ footer .social-media li.list-inline-item {
 
 .site-footer {
   padding: 0;
+  margin-top: 3rem !important;
 }
 
 #site-footer-top {

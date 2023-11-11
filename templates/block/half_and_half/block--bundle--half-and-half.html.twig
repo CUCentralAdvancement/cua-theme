@@ -40,7 +40,7 @@
 {% endif %}
 {# Content #}
 <div{{ attributes.addClass('half-and-half g-0 p-0 m-0', background_class ) }}>
-    <div class="container">
+    <div class="container g-0">
         <div class="card {{ content.field_border_style.0 }}">
             <div class="row g-0">
                 {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
@@ -67,7 +67,7 @@
                         {% else %}
                         <div class="col-6 {{ background_class }} {{ content.field_text_alignment.0 }}">
                             {% endif %}
-                            <div class="card-body text-{{ background_class }} p-4">
+                            <div class="card-body text-{{ background_class }} p-5 mt-4">
                                 {{ title_prefix }}
                                 {% if label %}
                                     <h3 class="{{ content.field_image_size.0 }} {{ content.field_text_alignment.0 }} mb-2">
