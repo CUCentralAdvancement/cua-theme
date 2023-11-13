@@ -191,6 +191,10 @@ ol.breadcrumb li:first-child a::before {
   background-color: white !important;
 }
 
+.block.block-layout-builder.block-inline-blockbasic {
+  margin: 1rem 2rem;
+}
+
 /* Block Quote */
 
 blockquote {
