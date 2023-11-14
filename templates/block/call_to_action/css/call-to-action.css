@@ -6,10 +6,3 @@
 .call-to-action.h-100 {
     margin: 0 .5rem !important;
 }
-
-.layout__region.layout__region--first,
-.layout__region.layout__region--second,
-.layout__region.layout__region--third,
-.layout__region.layout__region--forth {
-    margin: .5rem 0 !important;
-}
