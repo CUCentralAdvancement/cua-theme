@@ -1005,6 +1005,10 @@ form#node-page-layout-builder-form div#edit-actions {
     font-weight: bold !important;
 }
 
+.layout {
+    margin: 1rem 0 !important;
+}
+
 /* responsive */
 @media only screen and (max-width: 576px) {
     #navbar-main {
