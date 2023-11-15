@@ -1,6 +1,9 @@
-/* CU Banner*/
+/* CU Banner styling */
 .banner .container-xl {
     max-width: 1499px !important;
+    object-fit: cover;
+    min-height: 100vh;
+    min-width: 100vh;
 }
 
 /* Color Background */
@@ -33,7 +36,7 @@
 }
 
 /* Color Buttons */
-/*Black */
+/* Black */
 .banner .btn.btn-cu-bg-black {
     background: var(--cua-black) !important;
     border-color: var(--cua-black) !important;
