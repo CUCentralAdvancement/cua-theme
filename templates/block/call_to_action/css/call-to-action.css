@@ -11,8 +11,8 @@
 @media only screen and (max-width: 576px) {
     .layout__region.layout__region--second,
     .layout__region.layout__region--third,
-    .layout__region.layout__region--forth {
-        margin: 1rem 0 0;
+    .layout__region.layout__region--fourth {
+        margin: 1rem 0 0 !important;
     }
 
 }

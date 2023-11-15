@@ -105,6 +105,12 @@ h6, .h6 {
     line-height: 1;
 }
 
+/* Force uploaded CKEditor images to have responsive width */
+.block.block-layout-builder .content .field--name-body img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
 body, p, a, li {
     font-family: 'Roboto', 'Arial', 'Verdana', sans-serif;
     font-weight: 400;
