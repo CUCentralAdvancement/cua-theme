@@ -121,5 +121,11 @@
     .banner-body {
         width: 70% !important;
     }
+    .banner .container-xl {
+        max-width: 680px !important;
+        object-fit: cover;
+        min-height: fit-content;
+        min-width: fit-content;
+    }
 
 }

@@ -1,0 +1,21 @@
+{# Include for Half and Half #}
+{% if link_url is not empty %}
+    <a href="{{ link_url }}"
+       aria-label="{{ image_alt }}">
+        <div role="img"
+             class="hh-img {{ image_size }} {{ padding }} img-hover-effect w-100"
+             aria-label="{{ image_alt }}">
+            <img class="card-img-top img-fluid"
+                 src="{{ image_path }}" loading="lazy"
+                 alt="{{ image_alt }}">
+        </div>
+    </a>
+{% elseif link_url is empty %}
+    <div role="img"
+         class="hh-img {{ image_size }} {{ padding }} w-100"
+         aria-label="{{ image_alt }}">
+        <img class="card-img-top img-fluid"
+             src="{{ image_path }}" loading="lazy"
+             alt="{{ image_alt }}">
+    </div>
+{% endif %}

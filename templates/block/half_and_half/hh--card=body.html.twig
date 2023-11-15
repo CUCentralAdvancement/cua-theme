@@ -1,0 +1,22 @@
+{# HH body code #}
+<div class="card-body text-{{ background_class }} mt-1">
+    {{ title_prefix }}
+    {% if label %}
+        <h3 class="{{ image_size }} {{ text_align }} px-0 pb-3">
+            {{ label }}
+        </h3>
+    {% endif %}
+    {{ title_suffix }}
+    {% if content.body %}
+        {{ content.body }}
+    {% endif %}
+    {% if link_title %}
+        <div class="card-footer {{ text_align }} g-0 mt-1 px-0">
+            <a class="btn {{ outline }}btn-{{ background_class }} text-decoration-none rounded p-2"
+               title="{{ link_title }}"
+               aria-label="{{ link_title }}"
+               href="{{ link_url }}">{{ link_title }}</a>
+        </div>
+    {% else %}
+    {% endif %}
+</div>
