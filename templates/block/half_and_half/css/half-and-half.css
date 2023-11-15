@@ -107,7 +107,7 @@
 }
 
 .stacked-list3_icon-wrapper.black {
-    background-color: #000000 !important;
+    background-color: #000 !important;
 }
 
 .stacked-list3_icon-wrapper.darkgray {
@@ -138,6 +138,14 @@
 
     .half-and-half .add-padding {
         padding: 1rem 1rem !important;
+    }
+
+    blockquote {
+        font-size: 1em !important;
+        width: 95% !important;
+        margin: 30px auto !important;
+        padding: 1.2em 30px 1.2em 55px !important;
+        border-left: 4px solid var(--cua-gold) !important;
     }
 
 }
