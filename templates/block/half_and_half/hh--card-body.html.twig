@@ -10,7 +10,7 @@
     {% if content.body %}
         {{ content.body }}
     {% endif %}
-    {% if content.field_link %}
+    {% if ccontent.field_link.0 is not empty %}
         <div class="card-footer {{ content.field_text_alignment.0 }} g-0 mt-1 px-0">
             <a class="btn {{ content.field_outline.0 }}btn-{{ content.field_color_background.0 }} text-decoration-none rounded p-2"
                title="{{ content.field_link.0['#title']|render }}"
