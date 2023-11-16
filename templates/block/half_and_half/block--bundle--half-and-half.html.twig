@@ -33,6 +33,10 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
 ] %}
+{% set clean_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+]
+%}
 {# Preprocess #}
 {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
 {% set style =  content.field_color_background[0]['#markup'] ~ ' ' ~ content.field_border_style[0]['#markup'] %}
