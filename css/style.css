@@ -105,6 +105,13 @@ h6, .h6 {
     line-height: 1;
 }
 
+.card h6, .card .h6 {
+    font-weight: 500;
+    font-style: normal;
+    font-size: 0.85rem;
+    text-transform: none;
+    line-height: 1.2;
+}
 /* Force uploaded CKEditor images to have responsive width */
 .block.block-layout-builder .content .field--name-body img {
     max-width: 100% !important;
@@ -1015,7 +1022,22 @@ form#node-page-layout-builder-form div#edit-actions {
     margin: 1rem 0 !important;
 }
 
-/* responsive */
+.block-link {
+    font-size: .9rem;
+    font-weight: bold;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.block-link a:hover {
+    text-decoration: underline !important;
+}
+
+a.block-link figcaption {
+    text-align: center;
+}
+
+/* Responsive */
 @media only screen and (max-width: 576px) {
     #navbar-main {
         background-color: transparent !important;

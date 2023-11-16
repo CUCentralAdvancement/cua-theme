@@ -1,21 +1,44 @@
 {# Include for Half and Half #}
 {% if link_url is not empty %}
-    <a href="{{ link_url }}"
-       aria-label="{{ image_alt }}">
-        <div role="img"
-             class="hh-img {{ image_size }} {{ padding }} img-hover-effect w-100"
-             aria-label="{{ image_alt }}">
-            <img class="card-img-top img-fluid"
-                 src="{{ image_path }}" loading="lazy"
-                 alt="{{ image_alt }}">
+    {% for item in content.field_image['#items'] %}
+        {% set image = {
+            '#theme':      'image_style',
+            '#style_name': 'webp',
+            '#attributes': { class: 'card-img-top img-fluid img-hover-effect' },
+            '#uri':        item.entity.uri.value,
+            '#alt':        item.alt,
+            '#width':      item.width,
+            '#height':     item.height
+        } %}
+        <a class="block-link" href="{{ link_url }}" aria-label="{{ content.field_link.0['#title']|render }}">
+            <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0}} img-hover-effect w-100" aria-label="{{ item.alt }}">
+                <figure>
+                    {{ image }}
+                    <figcaption class="{{ content.field_visibility.0 }}">
+                        <h6 class="text-center bold my-3 px-3">{{ item.alt }}</h6>
+                    </figcaption>
+                </figure>
+            </div>
+        </a>
+    {% endfor %}
+{% else %}
+    {% for item in content.field_image['#items'] %}
+        {% set image = {
+            '#theme':      'image_style',
+            '#style_name': 'webp',
+            '#attributes': { class: 'card-img-top img-fluid' },
+            '#uri':        item.entity.uri.value,
+            '#alt':        item.alt,
+            '#width':      item.width,
+            '#height':     item.height
+        } %}
+        <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0}} img-hover-effect w-100" aria-label="{{ item.alt }}">
+            <figure>
+                {{ image }}
+                <figcaption class="{{ content.field_visibility.0 }}">
+                    <h6 class="text-center bold my-3 px-3">{{ item.alt }}</h6>
+                </figcaption>
+            </figure>
         </div>
-    </a>
-{% elseif link_url is empty %}
-    <div role="img"
-         class="hh-img {{ image_size }} {{ padding }} w-100"
-         aria-label="{{ image_alt }}">
-        <img class="card-img-top img-fluid"
-             src="{{ image_path }}" loading="lazy"
-             alt="{{ image_alt }}">
-    </div>
+    {% endfor %}
 {% endif %}
