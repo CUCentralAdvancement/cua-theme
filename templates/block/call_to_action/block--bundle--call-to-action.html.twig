@@ -26,41 +26,31 @@
 */
 #}
 
-{# Attach the library. #}
 {{ attach_library('cua_theme/call-to-action') }}
-
-{% set color_background = (content.field_color_background.0) %}
-{% if color_background is not empty %}
-    {% set background = color_background %}
-{% endif %}
-
-{% set color_border = (content.field_color_border.0) %}
-{% if color_border is not empty %}
-    {% set border = color_border %}
-{% endif %}
-
 {% set container_classes = [
     'block',
+    'call-to-action h-100 card rounded',
     bundle ? 'block--' ~ bundle|clean_class,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
-]|merge(utility_classes ? utility_classes : []) %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
+%}
 
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ]
 %}
-{# Content #}
-<div{{ attributes|without('id').addClass('call-to-action h-100 card rounded' ,background, border ).setAttribute('id', clean_id )}}>
+
+{% set style =  content.field_color_background[0]['#markup'] ~ ' ' ~ content.field_color_border[0]['#markup'] %}
+<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', clean_id )}}>
     {% if content.field_image.0 or content.field_icon.0 %}
         <div class="card-header {{ content.field_text_alignment.0 }} {{ content.field_padding.0}} g-0 p-1">
             {% if content.field_image.0 is not empty and content.field_link.0 is not empty and content.field_icon.0 is empty %}
-                <a title="{{ content.field_link.0['#title'] }}" aria-label="{{ content.field_link.0['#title']}}"
+                <a class="img-hover-effect" title="{{ content.field_link.0['#title'] }}" aria-label="{{ content.field_link.0['#title']}}"
                    href="{{ content.field_link.0['#url'] }}">
                     {% for item in content.field_image['#items'] %}
                         {% set image = {
                             '#theme':      'image_style',
                             '#style_name': 'webp',
-                            '#attributes': { class: 'card-img-top img-fluid img-hover-effect' },
+                            '#attributes': { class: 'card-img-top img-fluid' },
                             '#uri':        item.entity.uri.value,
                             '#alt':        item.alt,
                             '#width':      item.width,

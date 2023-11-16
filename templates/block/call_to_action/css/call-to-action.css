@@ -7,6 +7,27 @@
     margin: 0 .5rem !important;
 }
 
+/*Image hover effect  */
+.call-to-action .img-hover-effect {
+    position: relative !important;
+    margin: auto !important;
+    overflow: hidden !important;
+    width: inherit !important;
+}
+
+.call-to-action .img-hover-effect img {
+    max-width: 100% !important;
+    transition: all 0.3s !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: scale(1) !important;
+}
+
+.call-to-action .img-hover-effect:hover img {
+    transform: scale(1.1) !important;
+}
+
 /* responsive */
 @media only screen and (max-width: 576px) {
     .layout__region.layout__region--second,
