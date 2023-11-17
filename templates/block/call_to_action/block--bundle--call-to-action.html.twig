@@ -26,21 +26,26 @@
 */
 #}
 {{ attach_library('cua_theme/call-to-action') }}
+{# block boilerplate #}
 {% set container_classes = [
     'block',
     'call-to-action h-100 card rounded',
     bundle ? 'block--' ~ bundle|clean_class,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
 %}
+{# add unique id number #}
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ]
 %}
+{# combine fields to work with attributes #}
 {% set style = content.field_color_background[0]['#markup'] ~ ' ' ~ content.field_color_border[0]['#markup'] %}
+{# content #}
 <div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', clean_id )}}>
     {% if content.field_image.0 or content.field_icon.0 %}
         <div class="card-header {{ content.field_text_alignment.0 }} {{ content.field_padding.0}} g-0 p-1">
             {% if content.field_image.0 is not empty and content.field_link.0 is not empty and content.field_icon.0 is empty %}
+                {# image with link #}
                 <a class="img-hover-effect" title="{{ content.field_link.0['#title'] }}" aria-label="{{ content.field_link.0['#title']}}"
                    href="{{ content.field_link.0['#url'] }}">
                     {% for item in content.field_image['#items'] %}
@@ -63,6 +68,7 @@
                         </div>
                     {% endfor %}
                 </a>
+                {# image without link #}
             {% elseif content.field_image.0 is not empty and content.field_link.0 is empty and content.field_icon.0 is empty %}
                 {% for item in content.field_image['#items'] %}
                     {% set image = {
