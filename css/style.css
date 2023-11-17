@@ -106,12 +106,17 @@ h6, .h6 {
 }
 
 .card h6, .card .h6 {
-    font-weight: 500;
+    font-weight: bold;
     font-style: normal;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     text-transform: none;
     line-height: 1.2;
 }
+
+.card-header a {
+    text-decoration: none !important;
+}
+
 /* Force uploaded CKEditor images to have responsive width */
 .block.block-layout-builder .content .field--name-body img {
     max-width: 100% !important;
@@ -1035,6 +1040,7 @@ form#node-page-layout-builder-form div#edit-actions {
 
 a.block-link figcaption {
     text-align: center;
+    text-decoration: none !important;
 }
 
 .figcaption {
@@ -1045,6 +1051,9 @@ figure {
     margin: 0 !important;
 }
 
+a figure {
+    text-decoration: none !important;
+}
 /* Responsive */
 @media only screen and (max-width: 576px) {
     #navbar-main {
