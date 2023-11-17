@@ -117,6 +117,50 @@ h6, .h6 {
     text-decoration: none !important;
 }
 
+.large img {
+    scale: 100%;
+}
+
+.medium img {
+    scale: 80%;
+}
+
+.small img {
+    scale: 60%;
+}
+
+.section-layout, .fieldset #edit-group-customize-layout {
+    background: var(--cua-gray-200) !important;
+    border: 1px solid var(--cua-gray-500) !important;
+    padding: 1rem 3rem;
+}
+
+#layout-builder-modal .btn-primary {
+    color: white !important;
+    background: #004cff !important;
+    border-color: transparent !important;
+    width: 200px !important;
+}
+
+#layout-builder-modal .fieldset-legend {
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#layout-builder-modal label {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 90%;
+}
+
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front {
+    padding: 1.5rem 0 0 !important;
+}
+
+.ui-dialog-titlebar-close {
+    background: red;
+}
 /* Force uploaded CKEditor images to have responsive width */
 .block.block-layout-builder .content .field--name-body img {
     max-width: 100% !important;
