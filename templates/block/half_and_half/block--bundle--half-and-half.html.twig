@@ -46,7 +46,7 @@
     <div class="container d-block d-sm-none g-0">
         <div class="card">
             <div class="row g-0">
-                <div class="col-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }}">
+                <div class="col-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }}">
                     {% include '@cua_theme/templates/block/half_and_half/hh--images.html.twig' %}
                 </div>
                 <div class="col-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }}">
@@ -59,9 +59,9 @@
         <div class="card">
             <div class="row ">
                 {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
-                <div class="col-md-4 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} {{ content.field_image_aligment.0 }}">
+                <div class="col-md-4 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }}">
                     {% else %}
-                    <div class="col-md-6 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} {{ content.field_image_aligment.0 }}">
+                    <div class="col-md-6 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }}">
                         {% endif %}
                         {% include '@cua_theme/templates/block/half_and_half/hh--images.html.twig' %}
                     </div>

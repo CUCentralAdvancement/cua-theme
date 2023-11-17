@@ -284,8 +284,9 @@ blockquote span {
     border-bottom: none !important;
 }
 
-.card-header.add-padding {
-    padding: 0 4rem !important;
+.card-header.add-padding,
+.add-padding {
+    padding: 2rem !important;
 }
 
 .card .card-footer {
@@ -1035,6 +1036,14 @@ form#node-page-layout-builder-form div#edit-actions {
 
 a.block-link figcaption {
     text-align: center;
+}
+
+.figcaption {
+    color: initial !important;
+}
+
+figure {
+    margin: 0 !important;
 }
 
 /* Responsive */
