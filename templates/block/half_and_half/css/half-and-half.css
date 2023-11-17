@@ -73,8 +73,13 @@
     margin: 1rem 0 !important;
 }
 
-.card h3.small {
+.half-and-half  .card h3.small {
     margin: .7rem 0 0 !important;
+}
+
+.card-img, .card-img-top {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
 }
 
 .stacked-list3_icon-wrapper {
