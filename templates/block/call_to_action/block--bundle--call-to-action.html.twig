@@ -25,7 +25,6 @@
 * @see template_preprocess_block()
 */
 #}
-
 {{ attach_library('cua_theme/call-to-action') }}
 {% set container_classes = [
     'block',
@@ -33,13 +32,11 @@
     bundle ? 'block--' ~ bundle|clean_class,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
 %}
-
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ]
 %}
-
-{% set style =  content.field_color_background[0]['#markup'] ~ ' ' ~ content.field_color_border[0]['#markup'] %}
+{% set style = content.field_color_background[0]['#markup'] ~ ' ' ~ content.field_color_border[0]['#markup'] %}
 <div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', clean_id )}}>
     {% if content.field_image.0 or content.field_icon.0 %}
         <div class="card-header {{ content.field_text_alignment.0 }} {{ content.field_padding.0}} g-0 p-1">
@@ -56,25 +53,36 @@
                             '#width':      item.width,
                             '#height':     item.height
                         } %}
-                        {{ image }}
+                        <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} img-hover-effect w-100" aria-label="{{ item.alt }}">
+                            <figure>
+                                {{ image }}
+                                <figcaption class="{{ content.field_visibility.0 }}">
+                                    <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
+                                </figcaption>
+                            </figure>
+                        </div>
                     {% endfor %}
                 </a>
             {% elseif content.field_image.0 is not empty and content.field_link.0 is empty and content.field_icon.0 is empty %}
-                <div role="img" class="mb-4"
-                     aria-label="{{ content.field_image.0['#item'].alt }}">
-                    {% for item in content.field_image['#items'] %}
-                        {% set image = {
-                            '#theme':      'image_style',
-                            '#style_name': 'webp',
-                            '#attributes': { class: 'card-img-top img-fluid' },
-                            '#uri':        item.entity.uri.value,
-                            '#alt':        item.alt,
-                            '#width':      item.width,
-                            '#height':     item.height
-                        } %}
-                        {{ image }}
-                    {% endfor %}
-                </div>
+                {% for item in content.field_image['#items'] %}
+                    {% set image = {
+                        '#theme':      'image_style',
+                        '#style_name': 'webp',
+                        '#attributes': { class: 'card-img-top img-fluid' },
+                        '#uri':        item.entity.uri.value,
+                        '#alt':        item.alt,
+                        '#width':      item.width,
+                        '#height':     item.height
+                    } %}
+                    <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} w-100" aria-label="{{ item.alt }}">
+                        <figure>
+                            {{ image }}
+                            <figcaption class="{{ content.field_visibility.0 }}">
+                                <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
+                            </figcaption>
+                        </figure>
+                    </div>
+                {% endfor %}
             {% elseif content.field_icon.0 is not empty %}
                 <span class="pt-3 px-3" style="color: {{ content.field_icon_color.0 }}">
                   <i class="{{ content.field_icon.0 }} {{ content.field_icon_size.0 }}"></i>
@@ -83,7 +91,7 @@
             {% endif %}
         </div>
     {% endif %}
-    <div class="card-body text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }}">
+    <div class="card-body text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} mb-3">
         <div class="card-body-title">
             {{ title_prefix }}
             {% if label %}

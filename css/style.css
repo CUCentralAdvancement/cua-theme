@@ -284,9 +284,8 @@ blockquote span {
     border-bottom: none !important;
 }
 
-.card-header.add-padding,
-.add-padding {
-    padding: 2rem !important;
+.card-header.add-padding, .add-padding {
+    padding: .5rem .5rem 0 .5rem !important;
 }
 
 .card .card-footer {
