@@ -10,12 +10,12 @@
     {% if content.body %}
         {{ content.body }}
     {% endif %}
-    {% if ccontent.field_link.0 is not empty %}
+    {% if content.field_link is not empty %}
         <div class="card-footer {{ content.field_text_alignment.0 }} g-0 mt-1 px-0">
             <a class="btn {{ content.field_outline.0 }}btn-{{ content.field_color_background.0 }} text-decoration-none rounded p-2"
                title="{{ content.field_link.0['#title']|render }}"
                aria-label="{{ content.field_link.0['#title']|render }}"
-               href="{{ file_url(content.field_link.0['#url']|render) }}">{{ content.field_link.0['#title']|render }}</a>
+               href="{{ link_url }}">{{ content.field_link.0['#title']|render }}</a>
         </div>
     {% else %}
     {% endif %}
