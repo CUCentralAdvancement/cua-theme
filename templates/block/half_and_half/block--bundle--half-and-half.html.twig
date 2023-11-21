@@ -33,7 +33,7 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
 ] %}
-{# add unique id number #}
+{# add unique id number to block #}
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ]
@@ -79,10 +79,10 @@
                         {% else %}
                         <div class="col-md-6 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }}">
                             {% endif %}
-                            {# include title and body #}
+                            {# include title, body and link #}
                             {% include '@cua_theme/templates/block/half_and_half/hh--card-body.html.twig' %}
                         </div>
                     </div>
                 </div>
             </div>
-        </div> {# /div is closed based on logic above #}
+        </div> {# ignore error > /div is closed based on logic above #}
