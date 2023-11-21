@@ -1,5 +1,4 @@
-{# Include for Half and Half #}
-{% if content.field_link.0 is not empty %}
+{# Include image for Half and Half #}
     {% for item in content.field_image['#items'] %}
         {% set image = {
             '#theme':      'image_style',
@@ -10,35 +9,21 @@
             '#width':      item.width,
             '#height':     item.height
         } %}
-        <a class="block-link" href="{{ link_url }}" aria-label="{{ content.field_link.0['#title']|render }}">
+        {# check if link is active #}
+        {% if content.field_link.0['#title'] is not empty %}
+            <a class="block-link" href="{{ link_url }}" aria-label="{{ content.field_link.0['#title']|render }}">
             <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} img-hover-effect w-100" aria-label="{{ item.alt }}">
-                <figure>
-                    {{ image }}
-                    <figcaption class="{{ content.field_visibility.0 }}">
-                        <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
-                    </figcaption>
-                </figure>
-            </div>
-        </a>
-    {% endfor %}
-{% else %}
-    {% for item in content.field_image['#items'] %}
-        {% set image = {
-            '#theme':      'image_style',
-            '#style_name': 'webp',
-            '#attributes': { class: 'card-img-top img-fluid' },
-            '#uri':        item.entity.uri.value,
-            '#alt':        item.alt,
-            '#width':      item.width,
-            '#height':     item.height
-        } %}
-        <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0}} w-100" aria-label="{{ item.alt }}">
-            <figure>
-                {{ image }}
-                <figcaption class="{{ content.field_visibility.0 }}">
-                    <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
-                </figcaption>
-            </figure>
+        {% else %}
+            <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} w-100" aria-label="{{ item.alt }}">
+        {% endif %}
+        <figure>
+            {{ image }}
+            <figcaption class="{{ content.field_visibility.0 }}">
+                <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
+            </figcaption>
+        </figure>
         </div>
+        {% if content.field_link.0['#title'] is not empty %}
+            </a>{# ignore error #}
+        {% endif %}
     {% endfor %}
-{% endif %}
