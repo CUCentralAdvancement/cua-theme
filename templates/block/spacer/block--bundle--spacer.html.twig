@@ -30,26 +30,25 @@
 {{ attach_library('cua_theme/spacer') }}
 {# Set CSS Classes #}
 {% set container_classes = [
-  'block',
-  'block-' ~ configuration.provider|clean_class,
-  'block-' ~ plugin_id|clean_class,
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
 ] %}
-
 {# Content #}
 <div{{ attributes.addClass('spacer') }}>
-  <div class="container g-0">
-    <div class="row g-0">
-      {{ title_prefix }}
-      {% if label %}
-        <h2{{ title_attributes }}>{{ label }}</h2>
-      {% endif %}
-      {{ title_suffix }}
-      {% block content %}
-        <div class="{{ content.field_size.0 }}">
-          <span class="visually-hidden">{{ content }}</span>
+    <div class="container g-0">
+        <div class="row g-0">
+            {{ title_prefix }}
+            {% if label %}
+                <h2{{ title_attributes }}>{{ label }}</h2>
+            {% endif %}
+            {{ title_suffix }}
+            {% block content %}
+                <div class="{{ content.field_size.0 }}">
+                    <span class="visually-hidden">{{ content }}</span>
+                </div>
+            {% endblock %}
         </div>
-      {% endblock %}
     </div>
-  </div>
 </div>
 
