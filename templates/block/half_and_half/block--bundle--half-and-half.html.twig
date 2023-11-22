@@ -36,15 +36,14 @@
 {# add unique id number to block #}
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
-]
-%}
+] %}
 {# add preprocess fields #}
 {% set link_url = file_url(content.field_link.0['#url']|render) %}
 {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
 {# combine fields to work with attributes #}
 {% set style = content.field_color_background[0]['#markup'] ~ ' ' ~ content.field_border_style[0]['#markup'] %}
 {# content #}
-<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', clean_id )}}>
+<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', clean_id ) }}>
     {# mobile code block #}
     <div class="container d-block d-sm-none g-0">
         <div class="card">
@@ -64,7 +63,7 @@
     <div class="container d-none d-sm-block g-0">
         <div class="card">
             <div class="row ">
-                {# checking layout to see if it is 50/50 or 70/30 #}
+                {# checking layout to see if it is 50/50 or 70/30 -- image container #}
                 {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
                 <div class="col-md-4 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} {{ content.field_image_aligment.0 }} {{ content.field_padding.0 }}">
                     {% else %}
@@ -73,9 +72,9 @@
                         {# include image #}
                         {% include '@cua_theme/templates/block/half_and_half/hh--images.html.twig' %}
                     </div>
-                    {# checking layout to see if it is 50/50 or 70/30 #}
+                    {# checking layout to see if it is 50/50 or 70/30 -- copy container #}
                     {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
-                    <div class="col-md-8 col-sm-12 {{ content.field_color_background.0 }} {{content.field_text_alignment.0 }}">
+                    <div class="col-md-8 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }}">
                         {% else %}
                         <div class="col-md-6 col-sm-12 {{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }}">
                             {% endif %}

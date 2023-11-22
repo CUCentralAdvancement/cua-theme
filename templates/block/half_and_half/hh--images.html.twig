@@ -18,12 +18,13 @@
         {% endif %}
         <figure>
             {{ image }}
+            {# image caption #}
             <figcaption class="{{ content.field_visibility.0 }}">
                 <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
             </figcaption>
         </figure>
         </div>
         {% if content.field_link.0['#title'] is not empty %}
-            </a>{# ignore error #}
+            </a>{# ignore error as based on logic above #}
         {% endif %}
     {% endfor %}
