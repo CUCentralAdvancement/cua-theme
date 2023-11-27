@@ -47,6 +47,7 @@
                 {% set center = (content.field_center_content.0) %}
                 {% set color_text = (content.field_text_color.0) %}
                 <div class="col-md-5 {{ content.field_color_background.0 }} banner-body shadow rounded my-5 pt-5 p-4">
+                    {# Title #}
                     {% if label is not empty %}
                         {{ title_prefix }}
                         {% if label %}
@@ -54,9 +55,11 @@
                         {% endif %}
                     {% endif %}
                     {{ title_suffix }}
+                    {# Body #}
                     {% if content.body is not empty %}
                         <div class="lead {{ center }} {{ color_text }}">{{ content.body }}</div>
                     {% endif %}
+                    {# Link #}
                     {% if content.field_link[0]['#url'] is not empty %}
                         <div class="{{ center }} my-2">
                             <a href="{{ content.field_link[0]['#url'] }}"
