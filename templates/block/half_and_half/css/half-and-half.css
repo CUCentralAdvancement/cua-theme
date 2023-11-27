@@ -52,9 +52,9 @@
 
 .hr-bottom {
     border-bottom: 2px solid var(--cua-gold) !important;
-    margin: 1rem 0;
-    padding: .25rem 0 0;
-    opacity: 1;
+    margin: 1rem 0 !important;
+    padding: .25rem 0 0 !important;
+    opacity: 1 !important;
 }
 
 .half-and-half .hr-bottom .hh-img img {
@@ -64,9 +64,9 @@
 .hr-top-bottom {
     border-bottom: 2px solid var(--cua-gold) !important;
     border-top: 2px solid var(--cua-gold) !important;
-    margin: 1rem 0;
-    opacity: 1;
-    padding: .25rem 0;
+    margin: 1rem 0 !important;
+    opacity: 1 !important;
+    padding: .25rem 0 !important;
 }
 
 .half-and-half .hr-top-bottom .hh-img img {
