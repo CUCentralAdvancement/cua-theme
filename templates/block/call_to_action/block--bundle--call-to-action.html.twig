@@ -25,26 +25,32 @@
 * @see template_preprocess_block()
 */
 #}
+
+{# add custom css #}
 {{ attach_library('cua_theme/call-to-action') }}
+
 {# block boilerplate #}
 {% set container_classes = [
     'block',
-    'call-to-action h-100 card rounded',
-    bundle ? 'block--' ~ bundle|clean_class,
+    'block-' ~ configuration.provider|clean_class,
+    'call-to-action card rounded h-100',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
-{# add unique id number #}
-{% set clean_id = [
+
+{# add unique id to block #}
+{% set unique_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
-{# combine fields to work with attributes #}
+
+{# combine fields and merge with attributes #}
 {% set style = content.field_color_background[0]['#markup'] ~ ' ' ~ content.field_color_border[0]['#markup'] %}
-{# content #}
-<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', clean_id ) }}>
-    {# render image or icon if present #}
+
+{# render block content #}
+<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', unique_id ) }}>
+    {# render image or icon #}
     {% if content.field_image or content.field_icon %}
         <div class="card-header {{ content.field_text_alignment.0 }} {{ content.field_padding.0 }} g-0 p-1">
             {% if content.field_image.0 or content.field_link.0 and content.field_icon.0 is empty %}
-                {# include image #}
+                {# image #}
                 {% include '@cua_theme/templates/block/call_to_action/cta--images.html.twig' %}
             {% elseif content.field_icon is not empty %}
                 {# icon #}
@@ -52,26 +58,32 @@
                   <i class="{{ content.field_icon.0 }} {{ content.field_icon_size.0 }}"></i>
                 </span>
             {% else %}
+                {# empty #}
             {% endif %}
         </div>
     {% else %}
+        {# empty #}
     {% endif %}
-    {# title and or body #}
+    {# title and/or body #}
     {% if label or content.body %}
         <div class="card-body text-{{ content.field_color_background.0 }} {{ content.field_text_alignment.0 }} mb-3">
             <div class="card-body-title">
+                {# title #}
                 {{ title_prefix }}
                 {% if label is not empty %}
                     <h3 class="{{ content.field_text_alignment.0 }} mb-2">{{ label }}</h3>
                 {% endif %}
                 {{ title_suffix }}
+                {# body #}
                 {% if content.body is not empty %}
                     <div class="{{ content.field_text_alignment.0 }}">{{ content.body }}</div>
                 {% else %}
+                    {# empty #}
                 {% endif %}
             </div>
         </div>
     {% else %}
+        {# empty #}
     {% endif %}
     {# link #}
     {% if content.field_link.0 is not empty %}
@@ -82,5 +94,6 @@
                href="{{ content.field_link.0['#url'] }}">{{ content.field_link.0['#title'] }}</a>
         </div>
     {% else %}
+        {# empty #}
     {% endif %}
 </div>
