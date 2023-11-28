@@ -28,17 +28,20 @@
 {# Spacer #}
 {# Attach the library #}
 {{ attach_library('cua_theme/spacer') }}
+
 {# Set CSS Classes #}
 {% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
 ] %}
+
 {# add unique id number to block #}
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
-{# Content #}
+
+{# render content #}
 <div{{ attributes|without('id').addClass(container_classes, 'spacer').setAttribute('id', clean_id ) }}>
     <div class="container g-0">
         <div class="row g-0">
