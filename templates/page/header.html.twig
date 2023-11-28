@@ -6,14 +6,13 @@
                 <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white"
                      id="navbar-top">
                     <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
-                        <div class="container d-flex align-items-baseline">
+                        <div class="container d-flex">
                             <div class="flex-shrink-1">
-                                {{ site_logo }}
                                 <a href="{{ path('<front>') }}"
                                    rel="University of Colorado home"
                                    class="site-branding__logo d-none d-lg-block">
-                                    <img src="/{{ directory ~ '/logo.png' }}"
-                                         alt="{{ 'cu.edu'|t }}" width="187" height="auto"/>
+                                    <img src="/{{ directory ~ '/logo.svg' }}"
+                                         alt="{{ 'cu.edu'|t }}" width="225" height="auto"/>
                                 </a>
                                 <a href="{{ path('<front>') }}" title="University of Colorado home"
                                    rel="University of Colorado home"
@@ -22,7 +21,7 @@
                                          alt="University of Colorado home" width="29" height="28">
                                 </a>
                             </div>
-                            <div class="w-100">
+                            <div class="w-100 align-items-baseline">
                                 <a href="{{ path('<front>') }}"
                                    title="CU Advancement | CU Foundation Home"
                                    rel="home"
