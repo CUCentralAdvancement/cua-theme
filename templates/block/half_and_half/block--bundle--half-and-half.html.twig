@@ -43,6 +43,7 @@
 
 {# add preprocess fields #}
 {% set link_url = file_url(content.field_link.0['#url']|render) %}
+{% set link_title = file_url(content.field_link.0['#title']|render) %}
 {% set image_path = (content.field_image['#items'].entity.uri.value) ? (file_url(content.field_image['#items'].entity.uri.value)) : '' %}
 
 {# combine fields to work with attributes #}
