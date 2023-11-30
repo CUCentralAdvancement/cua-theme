@@ -33,7 +33,7 @@
 {% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'call-to-action card rounded h-100',
+    'call-to-action card rounded h-100 m-2',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
 {# add unique id to block #}
