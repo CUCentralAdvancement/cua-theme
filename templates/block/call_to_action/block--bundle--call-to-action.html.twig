@@ -63,7 +63,7 @@
                     } %}
                     {# check if link is active #}
                     {% if content.field_link.0['#title'] is not empty %}
-                        <a class="block-link" href="{{ link_url }}" aria-label="{{ content.field_link.0['#title']|render }}">
+                        <a class="block-link" href="{{ content.field_link.0['#url'] }}" aria-label="{{ content.field_link.0['#title']|render }}">
                         <div role="img" class="cta-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} img-hover-effect w-100" aria-label="{{ item.alt }}">
                     {% else %}
                         <div role="img" class="cta-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} w-100" aria-label="{{ item.alt }}">
