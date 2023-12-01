@@ -10,8 +10,8 @@
             '#height':     item.height
         } %}
         {# link if active #}
-        {% if content.field_link.0['#title'] is not empty %}
-            <a class="block-link" href="{{ link_url }}" aria-label="{{ content.field_link.0['#title']|render }}">
+        {% if content.field_link.0 is not empty %}
+            <a class="block-link" href="{{ content.field_link.0['#url'] }}" aria-label="{{ content.field_link.0['#title'] }}">
             <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} img-hover-effect w-100" aria-label="{{ item.alt }}">
         {% else %}
             <div role="img" class="hh-img {{ content.field_image_size.0 }} {{ content.field_padding.0 }} w-100" aria-label="{{ item.alt }}">
@@ -25,7 +25,7 @@
         </figure>
         </div>
         {# link if active #}
-        {% if content.field_link.0['#title'] is not empty %}
+        {% if content.field_link.0 is not empty %}
             </a>{# ignore error as based on logic above #}
         {% endif %}
     {% endfor %}
