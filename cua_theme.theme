@@ -64,4 +64,65 @@ function cua_theme_plugin_filter_block__layout_builder_alter(&$definitions, arra
     }
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function cua_theme_preprocess_block(&$variables) {
+    // Check if the block has content.
+    if (!empty($variables['content']['#block_content'])) {
+        // Get the block content entity.
+        $block_content = $variables['content']['#block_content'];
+
+        // Define an array of fields to preprocess.
+        $fields_to_preprocess = [
+            'field_text_alignment',
+            'field_outline',
+            'field_color_background',
+            'field_image_alignment',
+            'field_padding',
+            'field_image_size',
+            'field_visibility',
+            'field_icon_color',
+            'field_icon',
+            'body',
+        ];
+
+        // Loop through the fields and preprocess each one.
+        foreach ($fields_to_preprocess as $field_name) {
+            if ($block_content->hasField($field_name)) {
+                // Get the value from the field.
+                $field_items = $block_content->get($field_name)->getValue();
+                $field_value = reset($field_items); // Get the first item in the list.
+
+                // Remove the "field_" prefix and add the value to a variable.
+                $variables[str_replace('field_', '', $field_name)] = $field_value['value'];
+            }
+        }
+
+        // Special handling for the link field.
+        if ($block_content->hasField('field_link')) {
+            $link_field_items = $block_content->get('field_link')->getValue();
+            $link_field_value = reset($link_field_items);
+
+            // Get the URL and title from the link field.
+            $url = $link_field_value['uri'];
+            $title = $link_field_value['title'];
+
+            // Add the URL and title to variables.
+            $variables['link_url'] = $url;
+            $variables['link_title'] = $title;
+        }
+
+        // Special handling for the image field.
+        if ($block_content->hasField('field_image')) {
+            $image_field_items = $block_content->get('field_image')->getValue();
+            $image_field_value = reset($image_field_items);
+
+            // Add the image URL, alt, and title to variables.
+            $variables['image_url'] = $image_field_value['uri'];
+            $variables['image_alt'] = $image_field_value['alt'];
+            $variables['image_title'] = $image_field_value['title'];
+        }
+    }
+}
 
