@@ -1,0 +1,10 @@
+/* Call to Action styling  */
+.call-to-action .card-img, .call-to-action .card-img-top {
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+.call-to-action .card-img, .call-to-action .card-img-bottom {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}

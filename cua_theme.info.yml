@@ -5,11 +5,10 @@ core_version_requirement: ^9.4 || ^10
 base theme: bootstrap_barrio
 
 libraries:
-  - cua_theme/bootstrap-cdn
   - cua_theme/global-styling
-  - cua_theme/cua-fonts
 
 regions:
+  alert: 'Alert'
   top_header: 'Top header'
   top_header_form: 'Top header form'
   search: 'Search'

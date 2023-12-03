@@ -1,0 +1,28 @@
+{# add custom css #}
+{{ attach_library('cua_theme/alert') }}
+
+{# block boilerplate #}
+{% set container_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'alert alert-dismissible card h-100 m-0',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+
+{# add unique id to block #}
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+] %}
+
+{# combine fields and merge with attributes #}
+{% set style = color_background ~ ' ' ~ color_border %}
+<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', unique_id ) }}>
+    <div class="container">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {# title/body #}
+        {% include '@cua_theme/component/card/card--title-body.html.twig' %}
+        {# link #}
+        {% include '@cua_theme/component/card/card--footer-btn.html.twig' %}
+    </div>
+</div>
+
+

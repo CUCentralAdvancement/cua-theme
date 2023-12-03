@@ -1,0 +1,100 @@
+/* Footer styling  */
+footer .nav {
+  --bs-nav-link-padding-x: 0 !important;
+}
+footer #site-footer-top .clearfix.nav {
+  display: flex;
+  flex-direction: column;
+}
+footer #site-footer-bottom .clearfix.nav {
+  display: flex;
+  flex-direction: row;
+}
+footer #site-footer-bottom .navbar-nav > li:not(:last-child) {
+  border-right-width: 0;
+  border-right-style: none;
+}
+footer #site-footer-bottom li.nav-item {
+  padding: 0 0.5rem;
+}
+.site-footer .region.region-footer-sixth .block {
+  margin: 1rem 0 !important;
+  padding: 0 !important;
+}
+footer #site-footer-bottom .nav-link {
+  color: var(--cua-white) !important;
+  font-size: 1rem;
+}
+footer .social-media ul {
+  padding-left: 0;
+}
+footer .social-media li.list-inline-item {
+  padding: 0 0.3rem 0 0;
+}
+.site-footer {
+  padding: 0;
+  margin-top: 3rem !important;
+}
+#site-footer-top {
+  padding: 40px 0 !important;
+}
+.site-footer {
+  background: -o-radial-gradient(98.5697% 63.464%, circle, #666, #363636);
+  background: radial-gradient(circle at 98.5697% 63.464%, #666, #363636);
+}
+.site-footer .copyright,.site-footer .link-secondary {
+  color: var(--cua-white) !important;
+}
+.social-media .list-inline-item:not(:last-child) {
+  margin-right: 0 !important;
+}
+footer.site-footer h2 {
+  border-bottom: 1px solid var(--cua-gray-700);
+  border-color: rgba(255, 255, 255, 0.15);
+  font-size: 1em;
+  margin-bottom: .2rem;
+  padding-bottom: 3px;
+  text-transform: uppercase;
+}
+footer,footer p {
+  color: var(--cua-white) !important;
+  font-weight: 400;
+  font-size: .85rem;
+  line-height: 1.2rem;
+  margin-bottom: 0;
+}
+footer .row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+footer p {
+  padding-left: 0 !important;
+}
+footer .nav-link {
+  background: transparent !important;
+  color: var(--cua-white) !important;
+  font-weight: 400;
+  font-size: .9rem;
+  line-height: 1rem;
+  margin-bottom: 0;
+}
+footer .nav-link:hover {
+  text-decoration: underline !important;
+}
+.site-footer .block {
+  border: none;
+}
+footer .link-cua {
+  color: var(--cua-white) !important;
+  font-weight: 400;
+  font-size: .9rem;
+  line-height: 1rem;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+footer .link-cua:hover {
+  text-decoration: underline;
+}
+.site-footer .block {
+  border: none !important;
+}

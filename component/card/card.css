@@ -1,0 +1,179 @@
+/* Card styling */
+.card {
+  --bs-card-border-color: transparent !important;
+  --bs-card-border-width: 0 !important;
+}
+.card h3, .card .h3, .card h3 a, .card .h3 a {
+  font-size: 1.75rem;
+  margin: 0
+}
+.card-header {
+  padding: 0;
+  margin-bottom: 0 !important;
+  color: transparent !important;
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+.card-header.add-padding, .add-padding {
+  padding: .5rem .5rem 0 .5rem !important;
+}
+.card .card-footer {
+  background-color: transparent !important;
+  border-top: none !important;
+}
+.card .btn {
+  font-size: .85rem !important;
+  padding: .4rem 1.25rem !important;
+}
+.card h3.justify-content-start,.card .justify-content-start p {
+  text-align: left !important;
+}
+.card h3.justify-content-center,.card .justify-content-center p {
+  text-align: center !important;
+}
+.card h3.justify-content-end,.card .justify-content-end p {
+  text-align: right !important;
+}
+/* Gold */
+.cu-bg-gold,.card.cu-bg-gold {
+  background: var(--cua-gold) !important;
+}
+.cu-bd-gold,.card.cu-bd-gold {
+  border: 1px solid var(--cua-gold) !important;
+}
+.card .text-cu-bg-gold > * {
+  color: var(--cua-black) !important;
+}
+.card-footer .btn.btn-cu-bg-gold {
+  background: var(--cua-black) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-gold) !important;
+}
+.card-footer .btn.btn-cu-bg-gold:hover,.card-footer .btn.outline-btn-cu-bg-gold {
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-black) !important;
+  background: transparent !important;
+}
+.card-footer .btn.outline-btn-cu-bg-gold:hover {
+  background: var(--cua-black) !important;
+  color: var(--cua-gold) !important;
+}
+/* Black */
+.cu-bg-black,.card.cu-bg-black {
+  background: var(--cua-black) !important;
+}
+.cu-bd-black,.card.cu-bd-black {
+  border: 1px solid var(--cua-black) !important;
+}
+.card .text-cu-bg-black > * {
+  color: var(--cua-white) !important;
+}
+.card-footer .btn.btn-cu-bg-black {
+  background: var(--cua-white) !important;
+  border: 1px solid var(--cua-white) !important;
+  color: var(--cua-black) !important;
+}
+.card-footer .btn.btn-cu-bg-black:hover,.card-footer .btn.outline-btn-cu-bg-black {
+  background: var(--cua-black) !important;
+  border: 1px solid var(--cua-white) !important;
+  color: var(--cua-white) !important;
+}
+.card-footer .btn.outline-btn-cu-bg-black:hover {
+  background: var(--cua-black) !important;
+  border: 1px solid var(--cua-gold) !important;
+  color: var(--cua-gold) !important;
+}
+/* White */
+.cu-bg-white,.card.cu-bg-white {
+  background: var(--cua-white) !important;
+}
+.cu-bd-white,.card.cu-bd-white {
+  border: 1px solid var(--cua-white) !important;
+}
+.card .text-cu-bg-white > * {
+  color: var(--cua-black) !important;
+}
+.card-footer .btn.btn-cu-bg-white {
+  background: var(--cua-black) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-white) !important;
+}
+.card-footer .btn.outline-btn-cu-bg-white,.card-footer .btn.btn-cu-bg-white:hover {
+  background: var(--cua-white) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-black) !important;
+}
+.card-footer .btn.outline-btn-cu-bg-white:hover {
+  background: var(--cua-black) !important;
+  color: var(--cua-white) !important;
+}
+/* Light Grey */
+.cu-bg-light-grey,.card.cu-bg-light-grey {
+  background: var(--cua-gray-500) !important;
+}
+.cu-bd-light-grey,.card.cu-bd-light-grey {
+  border: 1px solid var(--cua-gray-500) !important;
+}
+.card .text-cu-bg-light-grey > * {
+  color: var(--cua-black) !important;
+}
+.card-footer .btn.btn-cu-bg-light-grey {
+  background: var(--cua-black) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-white) !important;
+}
+.card-footer .btn.outline-btn-cu-bg-light-grey,.card-footer .btn.btn-cu-bg-light-grey:hover {
+  background: var(--cua-gray-500) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-black) !important;
+}
+.card-footer .btn.outline-btn-cu-bg-light-grey:hover {
+  background: var(--cua-black) !important;
+  color: var(--cua-white) !important;
+}
+.card h6, .card .h6 {
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.95rem;
+  text-transform: none;
+  line-height: 1.2;
+}
+.card-header a {
+  text-decoration: none !important;
+}
+/*Image hover effect */
+.img-hover-effect {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  width: inherit;
+}
+.img-hover-effect img {
+  max-width: 100%;
+  transition: all 0.3s;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scale(1);
+}
+.img-hover-effect:hover img {
+  transform: scale(1.1);
+}
+.figcaption {
+  color: initial !important;
+}
+figure {
+  margin: 0 !important;
+}
+a figure {
+  text-decoration: none !important;
+}
+.large img {
+  scale: 100%;
+}
+.medium img {
+  scale: 80%;
+}
+.small img {
+  scale: 60%;
+}
