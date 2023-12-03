@@ -70,10 +70,15 @@
 {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
 {% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
 {% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
-
+{# Alert #}
+{% if page.alert %}
+    {% block alert %}
+        {{ page.alert }}
+    {% endblock %}
+{% endif %}
 <div id="page-wrapper">
     <div id="page">
-        {% include '@cua_theme/inc/header.html.twig' %}
+        {% include '@cua_theme/component/header/header.html.twig' %}
         {% if page.banner %}
             {% block banner %}
                 {{ page.banner }}
@@ -149,6 +154,6 @@
             </div>
         {% endif %}
             {# Footer #}
-            {% include '@cua_theme/inc/footer.html.twig' %}
+            {% include '@cua_theme/component/footer/footer.html.twig' %}
     </div>
 </div>

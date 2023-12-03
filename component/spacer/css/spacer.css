@@ -1,17 +1,11 @@
-/* Spacer CSS */
-
-.spacer h2,
-.spacer-title {
-  display: none;
-}
-
+/* Spacer styling  */
 .role-administrator .logged-in .spacer-title {
-  color: black;
+  color: var(--cua-black);
   font-size: 100%;
   font-weight: 700;
   display: block;
 }
 
 .role-administrator .logged-in #spacer {
-  background: gray;
+  background: var(--cua-gray-800);
 }

@@ -1,0 +1,29 @@
+{# *** Card Footer *** #}
+
+{# add library #}
+{{ attach_library('cua_theme/card') }}
+
+{# render content #}
+    {% if label or body %}
+        <div class="card-body text-{{ color_background ~ ' ' ~ text_alignment }} mb-3">
+            <div class="card-body-title">
+                {# title #}
+                {{ title_prefix }}
+                {% if label is not empty %}
+                    <h3 class="{{ text_alignment }} mb-2">{{ label }}</h3>
+                {% endif %}
+                {{ title_suffix }}
+                {# body #}
+                {% if body is not empty %}
+                    <div class="{{ text_alignment }}">{{ body|raw|nl2br }}</div>
+                {% else %}
+                    {# empty #}
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        {# empty #}
+    {% endif %}
+
+
+

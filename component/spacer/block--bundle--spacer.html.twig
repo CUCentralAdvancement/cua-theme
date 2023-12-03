@@ -42,20 +42,13 @@
 ] %}
 
 {# render content #}
-<div{{ attributes|without('id').addClass(container_classes, 'spacer').setAttribute('id', clean_id ) }}>
-    <div class="container g-0">
-        <div class="row g-0">
-            {{ title_prefix }}
-            {% if label %}
-                <h2{{ title_attributes }}>{{ label }}</h2>
-            {% endif %}
-            {{ title_suffix }}
-            {% block content %}
-                <div class="{{ content.field_size.0 }}">
-                    <span class="visually-hidden">{{ content }}</span>
+{% block content %}
+    <div{{ attributes|without('id').addClass(container_classes, 'spacer').setAttribute('id', clean_id ) }}>
+        <div class="container g-0">
+            <div class="row g-0">
+                <div class="{{ size }} g-0">
                 </div>
-            {% endblock %}
+            </div>
         </div>
     </div>
-</div>
-
+{% endblock %}

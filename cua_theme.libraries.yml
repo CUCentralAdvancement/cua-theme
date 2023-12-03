@@ -1,50 +1,70 @@
+# Header.
+header:
+  version: "1.0.x"
+  css:
+    base:
+      component/header/header.css: {}
+
 global-styling:
-  js:
-    //kit.fontawesome.com/a54ae50b5a.js: { type: external, minified: true }
   css:
     component:
+      css/bootstrap.css: {}
       css/style.css: {}
-bootstrap-cdn:
+      css/layout-builder.css: {}
+    theme:
+      //fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,700,900&display=swap: { type: external }
+      //fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap: { type: external }
   js:
     //cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js: {}
-  css:
-    component:
-      //cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css: {}
+    //kit.fontawesome.com/a54ae50b5a.js: { type: external, minified: true }
   dependencies:
     - core/popperjs
 
-# CU Official Fonts
-cua-fonts:
+# Alert.
+alert:
+  version: "1.0.x"
   css:
-    theme:
-      //fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,700,900&display=swap: { type: external }
-      //fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap: { type: external}
-
+    base:
+      component/alert/css/alert.css: {}
 
 # Banner.
 banner:
   version: "1.0.x"
   css:
     base:
-      templates/block/banner/css/banner.css: {}
+      component/banner/css/banner.css: {}
+
+# Card.
+card:
+  version: "1.0.x"
+  css:
+    base:
+      component/card/card.css: {}
 
 # Call to Action.
 call-to-action:
   version: "1.0.x"
   css:
     base:
-      templates/block/call_to_action/css/call-to-action.css: {}
+      component/call_to_action/css/call-to-action.css: {}
 
 # Half and Half.
 half-and-half:
   version: "1.0.x"
   css:
     base:
-      templates/block/half_and_half/css/half-and-half.css: {}
+      component/half_and_half/css/half-and-half.css: {}
 
 # Spacer.
 spacer:
   version: "1.0.x"
   css:
     base:
-      templates/block/spacer/css/spacer.css: { }
+      component/spacer/css/spacer.css: {}
+
+# Footer.
+footer:
+  version: "1.0.x"
+  css:
+    base:
+      component/footer/footer.css: {}
