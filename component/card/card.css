@@ -38,22 +38,33 @@
 .cu-bg-gold,.card.cu-bg-gold {
   background: var(--cua-gold) !important;
 }
+
 .cu-bd-gold,.card.cu-bd-gold {
   border: 1px solid var(--cua-gold) !important;
 }
+
 .card .text-cu-bg-gold > * {
   color: var(--cua-black) !important;
 }
+
 .card-footer .btn.btn-cu-bg-gold {
-  background: var(--cua-black) !important;
-  border: 1px solid var(--cua-black) !important;
-  color: var(--cua-gold) !important;
-}
-.card-footer .btn.btn-cu-bg-gold:hover,.card-footer .btn.outline-btn-cu-bg-gold {
-  border: 1px solid var(--cua-black) !important;
+  background: var(--cua-gold) !important;
+  border: 1px solid var(--cua-gold) !important;
   color: var(--cua-black) !important;
+}
+
+.card-footer .btn.btn-cu-bg-gold:hover {
+  border: 1px solid var(--cua-gold) !important;
+  color: var(--cua-gold) !important;
+  background: var(--cua-black) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-gold {
+  border: 1px solid var(--cua-gold) !important;
+  color: var(--cua-gold) !important;
   background: transparent !important;
 }
+
 .card-footer .btn.outline-btn-cu-bg-gold:hover {
   background: var(--cua-black) !important;
   color: var(--cua-gold) !important;
@@ -62,47 +73,69 @@
 .cu-bg-black,.card.cu-bg-black {
   background: var(--cua-black) !important;
 }
+
 .cu-bd-black,.card.cu-bd-black {
   border: 1px solid var(--cua-black) !important;
 }
+
 .card .text-cu-bg-black > * {
   color: var(--cua-white) !important;
 }
+
 .card-footer .btn.btn-cu-bg-black {
-  background: var(--cua-white) !important;
-  border: 1px solid var(--cua-white) !important;
-  color: var(--cua-black) !important;
-}
-.card-footer .btn.btn-cu-bg-black:hover,.card-footer .btn.outline-btn-cu-bg-black {
   background: var(--cua-black) !important;
-  border: 1px solid var(--cua-white) !important;
+  border: 1px solid var(--cua-black) !important;
   color: var(--cua-white) !important;
 }
+
+.card-footer .btn.outline-btn-cu-bg-black {
+  background: var(--cua-white) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-black) !important;
+}
+
+.card-footer .btn.btn-cu-bg-black:hover {
+  background: var(--cua-white) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-black) !important;
+}
+
 .card-footer .btn.outline-btn-cu-bg-black:hover {
   background: var(--cua-black) !important;
-  border: 1px solid var(--cua-gold) !important;
-  color: var(--cua-gold) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-white) !important;
 }
 /* White */
 .cu-bg-white,.card.cu-bg-white {
   background: var(--cua-white) !important;
 }
+
 .cu-bd-white,.card.cu-bd-white {
   border: 1px solid var(--cua-white) !important;
 }
+
 .card .text-cu-bg-white > * {
   color: var(--cua-black) !important;
 }
+
 .card-footer .btn.btn-cu-bg-white {
-  background: var(--cua-black) !important;
-  border: 1px solid var(--cua-black) !important;
-  color: var(--cua-white) !important;
+  background: var(--cua-white) !important;
+  border: 1px solid var(--cua-white) !important;
+  color: var(--cua-black) !important;
 }
-.card-footer .btn.outline-btn-cu-bg-white,.card-footer .btn.btn-cu-bg-white:hover {
+
+.card-footer .btn.outline-btn-cu-bg-white {
   background: var(--cua-white) !important;
   border: 1px solid var(--cua-black) !important;
   color: var(--cua-black) !important;
 }
+
+.card-footer .btn.btn-cu-bg-white:hover {
+  background: var(--cua-white) !important;
+  border: 1px solid var(--cua-black) !important;
+  color: var(--cua-black) !important;
+}
+
 .card-footer .btn.outline-btn-cu-bg-white:hover {
   background: var(--cua-black) !important;
   color: var(--cua-white) !important;
@@ -111,26 +144,32 @@
 .cu-bg-light-grey,.card.cu-bg-light-grey {
   background: var(--cua-gray-500) !important;
 }
+
 .cu-bd-light-grey,.card.cu-bd-light-grey {
   border: 1px solid var(--cua-gray-500) !important;
 }
+
 .card .text-cu-bg-light-grey > * {
   color: var(--cua-black) !important;
 }
+
 .card-footer .btn.btn-cu-bg-light-grey {
-  background: var(--cua-black) !important;
-  border: 1px solid var(--cua-black) !important;
-  color: var(--cua-white) !important;
+  background: var(--cua-gray-300) !important;
+  border: 1px solid var(--cua-gray-300) !important;
+  color: var(--cua-black) !important;
 }
+
 .card-footer .btn.outline-btn-cu-bg-light-grey,.card-footer .btn.btn-cu-bg-light-grey:hover {
-  background: var(--cua-gray-500) !important;
+  background: var(--cua-gray-300) !important;
   border: 1px solid var(--cua-black) !important;
   color: var(--cua-black) !important;
 }
+
 .card-footer .btn.outline-btn-cu-bg-light-grey:hover {
   background: var(--cua-black) !important;
   color: var(--cua-white) !important;
 }
+/* end */
 .card h6, .card .h6 {
   font-weight: 700;
   font-style: normal;
