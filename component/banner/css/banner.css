@@ -120,6 +120,10 @@
     color: var(--cua-black) !important;
 }
 
+.half-and-half .card-header {
+    padding: 0 !important;
+}
+
 @media (max-width: 680px) {
     .banner-body {
         width: 70% !important;
