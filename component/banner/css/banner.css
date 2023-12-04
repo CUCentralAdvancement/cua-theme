@@ -6,6 +6,10 @@
     min-width: 100vh;
 }
 
+.banner .card-footer.px-4.pb-4 {
+    padding: 0 !important;
+}
+
 /* Color Background */
 .banner .cu-bg-gold {
     background: var(--cua-gold) !important;
@@ -51,16 +55,15 @@
 }
 
 .banner .btn.outline-btn-cu-bg-black {
-    background: transparent !important;
-    border-color: var(--cua-black) !important;
-    color: var(--cua-black) !important;
-    font-weight: bold !important;
+    background: var(--cua-black) !important;
+    border-color: var(--cua-white) !important;
+    color: var(--cua-white) !important;
 }
 
 .banner .btn.outline-btn-cu-bg-black:hover {
-    background: var(--cua-black) !important;
+    background: var(--cua-white) !important;
     border-color: var(--cua-black) !important;
-    color: var(--cua-white) !important;
+    color: var(--cua-black) !important;
 }
 
 /* Gold */
