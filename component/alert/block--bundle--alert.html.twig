@@ -17,12 +17,18 @@
 {% set style = color_background ~ ' ' ~ color_border %}
 <div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', unique_id ) }}>
     <div class="container">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        {# title/body #}
-        {% include '@cua_theme/component/card/card--title-body.html.twig' %}
-        {# link #}
-        {% include '@cua_theme/component/card/card--footer-btn.html.twig' %}
+        <div class="row">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="col-sm-1 g-0 mt-4">
+                {# image/icon #}
+                {% include '@cua_theme/component/card/card--image.html.twig' %}
+            </div>
+            <div class="col-sm-11">
+                {# title/body #}
+                {% include '@cua_theme/component/card/card--title-body.html.twig' %}
+                {# link #}
+                {% include '@cua_theme/component/card/card--footer-btn.html.twig' %}
+            </div>
+        </div>
     </div>
 </div>
-
-

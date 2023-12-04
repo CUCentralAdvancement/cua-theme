@@ -83,6 +83,7 @@ function cua_theme_preprocess_block(&$variables) {
       'field_color_border',
       'field_icon',
       'field_icon_color',
+      'field_icon_size',
       'field_image_alignment',
       'field_image_size',
       'field_padding',
