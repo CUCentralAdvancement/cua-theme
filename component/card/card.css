@@ -89,7 +89,7 @@
 }
 
 .card-footer .btn.outline-btn-cu-bg-black {
-  background: var(--cua-white) !important;
+  background: transparent !important;
   border: 1px solid var(--cua-black) !important;
   color: var(--cua-black) !important;
 }

@@ -44,6 +44,7 @@
 
 {# combine fields to work with attributes #}
 {% set style = color_background ~ ' ' ~ border_style %}
+
 {# render block content #}
 <div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', clean_id ) }}>
     {# mobile code block #}
