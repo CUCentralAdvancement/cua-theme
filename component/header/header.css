@@ -102,6 +102,9 @@ a.nav-link.nav-link--,.nav-item .menu-item--expanded .dropdown,.nav-item .menu-i
   background-color: var(--cua-white);
 }
 
+.dropdown-item.active, .dropdown-item:active {
+  background-color: transparent !important;
+}
 /* Font Awesome */
 nav#navbar-main > li.first a:before {
   font-family: var(--fa-style-family-classic);
