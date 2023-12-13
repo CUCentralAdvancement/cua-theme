@@ -5,6 +5,7 @@ core_version_requirement: ^9.4 || ^10
 base theme: bootstrap_barrio
 
 libraries:
+  - cua_theme/bootstrap-cdn
   - cua_theme/global-styling
 
 regions:
