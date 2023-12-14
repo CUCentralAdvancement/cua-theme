@@ -2,7 +2,13 @@
 .banner .container-xl {
     max-width: 1499px !important;
     object-fit: cover;
-    min-height: 100vh;
+    max-height: 100vh;
+    min-width: 100vh;
+}
+
+.banner .card {
+    object-fit: cover;
+    max-height: 100vh;
     min-width: 100vh;
 }
 
