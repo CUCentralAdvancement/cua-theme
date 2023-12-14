@@ -42,26 +42,32 @@
     {% set background_class = color_background %}
 {% endif %}
 
-{# render content #}
 <div{{ attributes.addClass('jumbotron jumbotron-fluid banner shadow-lg g-0', background_class ) }}>
-    <div class="container-xl g-0" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %}>
-        <div class="container">
-            <div class="row {{ position_container }} g-0">
-                <div class="col-md-5 {{ color_background }} banner-body shadow rounded my-5 pt-5 p-4">
-                    {# Title #}
-                    {% if label is not empty %}
-                        {{ title_prefix }}
-                        {% if label %}
-                            <h2 class="display 4 {{ center_content }} {{ text_color }}">{{ label }}</h2>
-                        {% endif %}
-                    {% endif %}
-                    {{ title_suffix }}
-                    {# Body #}
-                    {% if content.body is not empty %}
-                        <div class="lead {{ center_content }} {{ text_color }}">{{ body|raw|nl2br }}</div>
-                    {% endif %}
-                    {# link #}
-                    {% include '@cua_theme/component/card/card--footer-btn.html.twig' %}
+    <div class="container-xl g-0">
+        <div class="card">
+            {% if content.field_image.0 is not empty %}
+                {# image #}
+                {% for item in content.field_image['#items'] %}
+                    {% set image = {
+                        '#theme':      'image_style',
+                        '#style_name': 'webp',
+                        '#attributes': { class: 'card-img-top img-fluid w-100' },
+                        '#uri':        item.entity.uri.value,
+                        '#alt':        item.alt,
+                        '#width':      item.width,
+                        '#height':     item.height
+                    } %}
+                    {{ image }}
+                {% endfor %}
+            {% endif %}
+            <div class="card-img-overlay container mx-5 px-5">
+                <div class="row {{ position_container }} g-0">
+                    <div class="col-md-5 {{ color_background }} banner-body shadow rounded my-5 pt-5 p-4">
+                        {# title/body #}
+                        {% include '@cua_theme/component/card/card--title-body.html.twig' %}
+                        {# include link #}
+                        {% include '@cua_theme/component/card/card--footer-btn.html.twig' %}
+                    </div>
                 </div>
             </div>
         </div>

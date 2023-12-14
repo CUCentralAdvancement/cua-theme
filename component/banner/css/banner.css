@@ -6,6 +6,10 @@
     min-width: 100vh;
 }
 
+.banner .card-img-top.img-fluid.w-100.image-style-webp {
+    border-radius: 0 !important;
+}
+
 .banner .card-footer.px-4.pb-4 {
     padding: 0 !important;
 }
@@ -27,7 +31,7 @@
 }
 
 /* Color text */
-.banner .cu-text-gold {
+.banner .cu-text-gold, .cu-text-gold {
     color: var(--cua-gold) !important;
 }
 

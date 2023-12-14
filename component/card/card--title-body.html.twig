@@ -10,12 +10,16 @@
                 {# title #}
                 {{ title_prefix }}
                 {% if label is not empty %}
-                    <h3 class="card-title {{ text_alignment }} mb-2">{{ label }}</h3>
+                    <h3 class="card-title {{ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }}  mb-2">
+                        {{ label }}
+                    </h3>
                 {% endif %}
                 {{ title_suffix }}
                 {# body #}
                 {% if body is not empty %}
-                    <div class="card-text {{ text_alignment }}">{{ body|raw|nl2br }}</div>
+                    <div class="card-text {{ text_alignment ~ ' ' ~ text_color }} ">
+                        {{ body|raw|nl2br }}
+                    </div>
                 {% else %}
                     {# empty #}
                 {% endif %}

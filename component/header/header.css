@@ -125,7 +125,7 @@ header #search-block-form {
   padding: 0;
 }
 #search-block-form .btn-primary {
-  color: var(--cua-gray-500) !important;
+  color: var(--cua-gray-800) !important;
   background: transparent !important;
   padding: .25rem .5rem !important;
 }
