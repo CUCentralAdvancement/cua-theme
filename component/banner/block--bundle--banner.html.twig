@@ -56,7 +56,12 @@
                     '#width':      item.width,
                     '#height':     item.height
                 } %}
-                {{ image }}
+                <figure>
+                    {{ image }}
+                    <figcaption class="{{ visibility }}">
+                        <h3 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h3>
+                    </figcaption>
+                </figure>
             {% endfor %}
         {% endif %}
         <div class="card-img-overlay container mx-5 px-5">

@@ -88,6 +88,7 @@ function cua_theme_preprocess_block(&$variables) {
         'field_image_alignment',
         'field_image_size',
         'field_padding',
+        'field_page_title_visibility',
         'field_position_container',
         'field_size',
         'field_text_alignment',

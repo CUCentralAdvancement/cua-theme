@@ -1,4 +1,4 @@
-{# *** Card Footer *** #}
+{# *** Card Title and Body *** #}
 
 {# add library #}
 {{ attach_library('cua_theme/card') }}
@@ -10,7 +10,7 @@
                 {# title #}
                 {{ title_prefix }}
                 {% if label is not empty %}
-                    <h3 class="card-title {{ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }}  mb-2">
+                    <h3 class="card-title {{ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }}  mb-2">
                         {{ label }}
                     </h3>
                 {% endif %}
