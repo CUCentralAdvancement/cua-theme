@@ -130,14 +130,25 @@
     color: var(--cua-black) !important;
 }
 
-.half-and-half .card-header {
+.banner .card-header {
     padding: 0 !important;
+}
+
+.banner h3 {
+    font-size: 3rem !important;
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.card {
+    --bs-card-border-radius: 0 !important;
 }
 
 @media (max-width: 680px) {
     .banner-body {
         width: 70% !important;
     }
+
     .banner .container-xl {
         max-width: 680px !important;
         object-fit: cover;
