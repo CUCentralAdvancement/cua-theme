@@ -1,0 +1,30 @@
+{# ## Desktop code block ## #}
+<div class="container d-none d-sm-block g-0">
+    <div class="card">
+        <div class="row">
+            {# checking layout to see if it is 50/50 or 70/30 -- image container #}
+            {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
+            <div class="col-md-4 col-sm-12 {{ color_background ~ ' ' ~ padding ~ ' ' ~ text_alignment ~ ' ' ~ image_alignment }}">
+                {% else %}
+                <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
+                    {% endif %}
+                    {# Include Image Component #}
+                    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                </div>
+                {# checking layout to see if it is 50/50 or 70/30 -- copy container #}
+                {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
+                <div class="col-md-8 col-sm-12 {{ color_background ~ ' ' ~ text_alignment }}">
+                    {% else %}
+                    <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment }}">
+                        {% endif %}
+                        <div class="row">
+                            {# Include Title/Body Component #}
+                            {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+                            {# Include Button/Link Component #}
+                            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {# ignore error > /div is closed based on logic above #}

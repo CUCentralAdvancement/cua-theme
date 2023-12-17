@@ -1,40 +1,47 @@
-{# Haader #}
+{# ## Header ## #}
 
-{# add library #}
+{# Attach library for header styles and scripts #}
 {{ attach_library('cua_theme/header') }}
 
-{# render content #}
 <header id="header" class="header" role="banner"
         aria-label="{{ 'Site header'|t }}">
     <div class="container">
         <div class="row clearfix g-0">
             <div class="col-md-8 g-0">
+                {# Top Header Navigation #}
                 <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white"
                      id="navbar-top">
                     <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
                         <div class="container d-flex">
                             <div class="flex-shrink-1">
-                                <a href="{{ path('<front>') }}"
+                                {# Logo for larger screens #}
+                                <a href="{{ url('<front>') }}"
                                    rel="University of Colorado home"
                                    class="site-branding__logo d-none d-lg-block">
                                     <img src="/{{ directory ~ '/logo.svg' }}"
-                                         alt="{{ 'cu.edu'|t }}" width="225" height="auto"/>
+                                         alt="{{ 'cu.edu'|t }}" width="225"
+                                         height="auto"/>
                                 </a>
-                                <a href="{{ path('<front>') }}" title="University of Colorado home"
+                                {# Logo for smaller screens #}
+                                <a href="{{ url('<front>') }}"
+                                   title="University of Colorado home"
                                    rel="University of Colorado home"
                                    class="d-lg-none">
                                     <img src="/{{ directory ~ '/cu-mobile-logo.svg' }}"
-                                         alt="University of Colorado home" width="29" height="28">
+                                         alt="University of Colorado home"
+                                         width="29" height="28">
                                 </a>
                             </div>
                             <div class="w-100 align-items-baseline">
-                                <a href="{{ path('<front>') }}"
+                                {# Site name for all screens #}
+                                <a href="{{ url('<front>') }}"
                                    title="CU Advancement | CU Foundation Home"
                                    rel="home"
                                    class="site-branding__name site-name">
                                     {{ site_name }}
                                 </a>
                             </div>
+                            {# Navigation toggle button for smaller screens #}
                             <button class="navbar-toggler collapsed"
                                     type="button"
                                     data-bs-toggle="collapse"
@@ -49,20 +56,24 @@
                 </nav>
             </div>
             <div class="col-md-4 d-flex justify-content-end g-0 d-none d-lg-block">
+                {# Search bar for larger screens if provided in the page #}
                 {% if page.search %}
                     {{ page.search }}
                 {% endif %}
             </div>
         </div>
     </div>
+    {# Site Slogan Section #}
     <div class="container-fluid site-name-wrapper g-0">
         <div class="container px-4">
             <h1 class="site-slogan">
-                <a href="{{ path('<front>') }}" title="Home" class="site-link" rel="home">
+                <a href="{{ url('<front>') }}" title="Home" class="site-link"
+                   rel="home">
                     <span>{{ site_slogan }}</span></a>
             </h1>
         </div>
     </div>
+    {# Main Navigation Section #}
     <nav role="navigation"
          class="navbar l-header-bottom navbar-expand-lg"
          id="navbar-main" aria-labelledby="cua-main-menu">
@@ -71,8 +82,10 @@
                  id="mainNavbrSupportedContent">
                 <h2 class="visually-hidden"
                     id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
+                {# Display the primary menu provided by Drupal #}
                 {{ page.primary_menu }}
                 <div class="my-3 mx-4 d-lg-none">
+                    {# Search bar for smaller screens if provided in the page #}
                     {% if page.search %}
                         {{ page.search }}
                     {% endif %}

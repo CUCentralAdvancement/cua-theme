@@ -1,33 +1,40 @@
-{# add custom css #}
+{# ## Alert Card ## #}
+
+{# Attach library #}
 {{ attach_library('cua_theme/alert') }}
 
-{# block boilerplate #}
-{% set container_classes = [
+{# Block boilerplate #}
+{% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'alert alert-dismissible card h-100 m-0',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
-{# add unique id to block #}
+{# Combine fields and merge with attributes #}
+{% set style = color_background ~ ' ' ~ color_border %}
+
+{# Add unique id to block #}
 {% set unique_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# combine fields and merge with attributes #}
-{% set style = color_background ~ ' ' ~ color_border %}
-<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', unique_id ) }}>
+{# Render block content #}
+<div{{ attributes|without('id').addClass(classes, style).setAttribute('id', unique_id ) }}>
     <div class="container">
         <div class="row">
+            {# Button to close alert #}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {# Icon/Image column #}
             <div class="col-sm-1 g-0 mt-4">
-                {# image/icon #}
-                {% include '@cua_theme/component/card/card--image.html.twig' %}
+                {# Include Icon/Image Component #}
+                {% include '@cua_theme/component/card/_card--image.html.twig' %}
             </div>
+            {# Title/Body column #}
             <div class="col-sm-11">
-                {# title/body #}
-                {% include '@cua_theme/component/card/card--title-body.html.twig' %}
-                {# link #}
-                {% include '@cua_theme/component/card/card--footer-btn.html.twig' %}
+                {# Include Title/Body Component #}
+                {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+                {# Include Link Component #}
+                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
             </div>
         </div>
     </div>

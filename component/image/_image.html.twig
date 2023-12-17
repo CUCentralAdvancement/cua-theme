@@ -1,0 +1,21 @@
+{# ## Image ## #}
+ {% if content.field_image is not empty %}
+     {# image #}
+     {% for item in content.field_image['#items'] %}
+         {% set image = {
+             '#theme':      'image_style',
+             '#style_name': 'webp',
+             '#attributes': { class: 'card-img-top img-fluid', loading: 'eager' },
+             '#uri':        item.entity.uri.value,
+             '#alt':        item.alt,
+             '#width':      item.width,
+             '#height':     item.height
+         } %}
+         <figure>
+             {{ image }}
+             <figcaption class="{{ visibility }}">
+                 <h3 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h3>
+             </figcaption>
+         </figure>
+     {% endfor %}
+ {% endif %}

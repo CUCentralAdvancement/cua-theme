@@ -1,101 +1,153 @@
-{# Footer #}
+{# ## Footer ## #}
 
-{# add library #}
+{# Attach library #}
 {{ attach_library('cua_theme/footer') }}
 
-{# render content #}
+{# Render block content #}
 {% block footer %}
     <footer class="site-footer mt-5 mt-auto">
-        <div id="site-footer-top" class="container px-5">
+        <div id="site-footer-top" class="container-fluid px-5">
+
+            {# Check if any footer regions are present #}
             {% if page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
                 <div class="row px-4 g-0">
+
+                    {# Footer Region 1: University Information and Social Media Links #}
                     <div class="col-md-4 col-sm-6 px-0">
                         <section class="row region region-footer-first">
-                            <h2 class="g-0 mb-2">{{ 'University of Colorado'|t }}
-                                <br>
+
+                            {# University Information #}
+                            <h2 class="g-0 mb-2">
+                                {{ 'University of Colorado'|t }}<br>
                                 {{ 'CU Advancement | CU Foundation'|t }}
                             </h2>
-                            <a class="cua-map link-cua g-0 mb-2" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
+
+                            {# Address and Contact Information #}
+                            <a class="cua-map link-cua g-0 mb-2"
+                               href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
                                 <p>{{ '1800 Grant Street, Suite 800'|t }}
-                                    <br/>{{ 'Denver, CO 80203'|t }}</p>
+                                    <br>{{ 'Denver, CO 80203'|t }}</p>
                             </a>
-                            <p><span itemprop="telephone">
-                                    <a class="cua-phone link-cua"
-                                       href="tel: +13035411290"
-                                       aria-label="{{ 'telephone'|t }}">{{ '+1 303.541.1290'|t }}</a>
-                            </span></p>
+
+                            {# Phone Number #}
+                            <p>
+                                <span itemprop="telephone">
+                                <a class="cua-phone link-cua" href="tel: +13035411290"
+                                   aria-label="{{ 'telephone'|t }}">
+                                {{ '+1 303.541.1290'|t }}
+                                </a>
+                                </span>
+                            </p>
+
+                            {# Email Address #}
                             <p>
                                 {% set email = 'giving@cu.edu' %}
                                 {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
                                 <a class="link-cua"
                                    href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
                             </p>
+
+                            {# Social Media Links #}
                             <div class="social-media pt-3 g-0">
                                 <nav role="navigation" class="mt-3">
                                     <h2 class="block__title visually-hidden">{{ 'Social Media Links'|t }}</h2>
                                     <ul class="link-underline-opacity-0">
-                                        <li class="list-inline-item"><a
-                                                    href="https://www.facebook.com/UniversityofColoradosystem/"
-                                                    class="fa-brands fa-facebook fa-lg link-secondary"
-                                                    title="Facebook">
+
+                                        {# Facebook Link #}
+                                        <li class="list-inline-item">
+                                            <a href="https://www.facebook.com/UniversityofColoradosystem/"
+                                               class="fa-brands fa-facebook fa-lg link-secondary"
+                                               title="Facebook">
                                                 <span class="visually-hidden">{{ 'Facebook'|t }}</span>
-                                            </a></li>
-                                        <li class="list-inline-item"><a
-                                                    href="https://www.linkedin.com/company/university-of-colorado"
-                                                    class="fa-brands fa-linkedin fa-lg link-secondary"
-                                                    title="Linkedin">
+                                            </a>
+                                        </li>
+
+                                        {# Linkedin Link #}
+                                        <li class="list-inline-item">
+                                            <a href="https://www.linkedin.com/company/university-of-colorado"
+                                               class="fa-brands fa-linkedin fa-lg link-secondary"
+                                               title="Linkedin">
                                                 <span class="visually-hidden">{{ 'Linkedin'|t }}</span>
-                                            </a></li>
-                                        <li class="list-inline-item"><a
-                                                    href="https://twitter.com/CUSystem"
-                                                    class="fa-brands fa-x-twitter fa-lg link-secondary"
-                                                    title="Twitter">
+                                            </a>
+                                        </li>
+
+                                        {# Twitter Link #}
+                                        <li class="list-inline-item">
+                                            <a href="https://twitter.com/CUSystem"
+                                               class="fa-brands fa-x-twitter fa-lg link-secondary"
+                                               title="Twitter">
                                                 <span class="visually-hidden">{{ 'Twitter'|t }}</span>
-                                            </a></li>
+                                            </a>
+                                        </li>
                                     </ul>
+
                                 </nav>
                             </div>
+
                         </section>
                     </div>
+
+                    {# Additional Footer Regions #}
+                    {# Footer Region 2: Displayed as a column on medium and a row on small screens #}
                     {% if page.footer_second %}
                         <div class="col-md-2 col-sm-6 mt-2">
                             {{ page.footer_second }}
                         </div>
                     {% endif %}
+
+                    {# Footer Region 3: Displayed as a column on medium and a row on small screens #}
                     {% if page.footer_third %}
                         <div class="col-md-2 col-sm-6 mt-2">
                             {{ page.footer_third }}
                         </div>
                     {% endif %}
+
+                    {# Footer Region 4: Displayed as a column on medium and a row on small screens #}
                     {% if page.footer_fourth %}
                         <div class="col-md-2 col-sm-6 mt-2">
                             {{ page.footer_fourth }}
                         </div>
                     {% endif %}
+
+                    {# Footer Region 5: Displayed as a column on medium and a row on small screens #}
                     {% if page.footer_fifth %}
                         <div class="col-md-2 col-sm-6 mt-2">
                             {{ page.footer_fifth }}
                         </div>
                     {% endif %}
+
                 </div>
             {% endif %}
         </div>
+
+        {# Site Footer Bottom Section #}
         <div id="site-footer-bottom" class="container-fluid bg-black px-5 py-3">
             <div class="row">
+
+                {# Check if the sixth footer region is present #}
+                {# Footer Region 6: Displayed as a single column centered with flex alignment #}
                 {% if page.footer_sixth %}
                     <div class="col-sm-12 d-flex align-items-center justify-content-center mb-2">
                         {{ page.footer_sixth }}
                     </div>
                 {% endif %}
+
+                {# Copyright Information #}
                 <div class="col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center"
                      aria-label="links and copyright">
-                    <p class="mt-2 strong text-light">{{ '©'|t }} {{ 'now' | date('Y') }}
+                    <p class="mt-2 strong text-light">
+                        {{ '©'|t }} {{ 'now' | date('Y') }}
+
+                        {# Link to the University of Colorado Regents website #}
                         <a href="https://regents.cu.edu/" rel="noopener"
                            target="_blank"
-                           class="link-light link-underline-opacity-0 pl-2">{{ 'Regents of the University of Colorado'|t }}</a>
+                           class="link-light link-underline-opacity-0 pl-2">
+                            {{ 'Regents of the University of Colorado'|t }}
+                        </a>
                     </p>
                 </div>
             </div>
         </div>
+
     </footer>
 {% endblock %}

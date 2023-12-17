@@ -1,159 +1,159 @@
-/* Banner styling */
+/* Banner CSS */
+
+/* Set the maximum height, width, and object fit for the container */
 .banner .container-xl {
+    max-height: 100vh;
     max-width: 1499px !important;
-    object-fit: cover;
-    max-height: 100vh;
     min-width: 100vh;
+    object-fit: cover;
 }
 
+/* Set the maximum height, minimum width, and object fit for the card */
 .banner .card {
-    object-fit: cover;
     max-height: 100vh;
     min-width: 100vh;
+    object-fit: cover;
 }
 
+/* Style for the top image of the card */
 .banner .card-img-top.img-fluid.w-100.image-style-webp {
     border-radius: 0 !important;
 }
 
-.banner .card-footer.px-4.pb-4 {
-    padding: 0 !important;
-}
-
-/* Color Background */
+/* Gold background with opacity for the banner */
 .banner .cu-bg-gold {
     background: var(--cua-gold) !important;
-    opacity: 0.6 !important;
+    opacity: .6 !important;
 }
 
+/* Black background with opacity for the banner */
 .banner .cu-bg-black {
     background: var(--cua-black) !important;
-    opacity: 0.7 !important;
+    opacity: .7 !important;
 }
 
+/* White background with opacity for the banner */
 .banner .cu-bg-white {
     background: var(--cua-white) !important;
-    opacity: 0.7 !important;
+    opacity: .7 !important;
 }
 
-/* Color text */
-.banner .cu-text-gold, .cu-text-gold {
+/* Gold text color for the banner */
+.banner .cu-text-gold,
+.cu-text-gold {
     color: var(--cua-gold) !important;
 }
 
+/* White text color for the banner */
 .banner .cu-text-white {
     color: var(--cua-white) !important;
 }
 
+/* Black text color for the banner */
 .banner .cu-text-black {
     color: var(--cua-black) !important;
 }
 
-/* Color Buttons */
-/* Black */
+/* Style for the black background button in the banner */
 .banner .btn.btn-cu-bg-black {
     background: var(--cua-black) !important;
     border-color: var(--cua-black) !important;
     color: var(--cua-white) !important;
-    font-weight: bold !important;
+    font-weight: 700 !important;
 }
 
-.banner .btn.btn-cu-bg-black:hover {
-    background: var(--cua-black) !important;
-    border-color: var(--cua-white) !important;
-    color: var(--cua-white) !important;
-}
-
-.banner .btn.outline-btn-cu-bg-black {
-    background: var(--cua-black) !important;
-    border-color: var(--cua-white) !important;
-    color: var(--cua-white) !important;
-}
-
-.banner .btn.outline-btn-cu-bg-black:hover {
-    background: var(--cua-white) !important;
-    border-color: var(--cua-black) !important;
-    color: var(--cua-black) !important;
-}
-
-/* Gold */
+/* Style for the gold background button in the banner */
 .banner .btn.btn-cu-bg-gold {
     background: var(--cua-gold) !important;
     border-color: var(--cua-gold) !important;
     color: var(--cua-black) !important;
-    font-weight: bold !important;
+    font-weight: 700 !important;
 }
 
+/* Hover style for the gold background button in the banner */
 .banner .btn.btn-cu-bg-gold:hover {
     background: var(--cua-black) !important;
     border-color: var(--cua-gold) !important;
     color: var(--cua-gold) !important;
 }
 
+/* Style for the outlined gold background button in the banner */
 .banner .btn.outline-btn-cu-bg-gold {
     background: var(--cua-black) !important;
     border-color: var(--cua-gold) !important;
     color: var(--cua-gold) !important;
-    font-weight: bold !important;
+    font-weight: 700 !important;
 }
 
+/* Hover style for the outlined gold background button in the banner */
 .banner .btn.outline-btn-cu-bg-gold:hover {
     background: var(--cua-gold) !important;
     border-color: var(--cua-gold) !important;
     color: var(--cua-black) !important;
 }
 
-/* White */
+/* Style for the white background button in the banner */
 .banner .btn.btn-cu-bg-white {
     background: var(--cua-white) !important;
     border-color: var(--cua-white) !important;
     color: var(--cua-black) !important;
-    font-weight: bold !important;
+    font-weight: 700 !important;
 }
 
+/* Style for the outlined white background button in the banner */
+.banner .btn.outline-btn-cu-bg-white {
+    background: transparent !important;
+    border-color: var(--cua-white) !important;
+    color: var(--cua-white) !important;
+    font-weight: 700 !important;
+}
+
+/* Set font size and margin for the heading in the banner */
+.banner h3 {
+    font-size: 3rem !important;
+    margin: 0 !important;
+}
+
+/* Additional styles for the card in the banner */
+.banner .card {
+    --bs-card-border-radius: 0 !important;
+}
+
+/* Styles for the card footer and header in the banner */
+.banner .card-footer.px-4.pb-4,
+.banner .card-header {
+    padding: 0 !important;
+}
+
+/* Hover styles for specific buttons in the banner */
+.banner .btn.btn-cu-bg-black:hover,
+.banner .btn.outline-btn-cu-bg-black,
 .banner .btn.btn-cu-bg-white:hover {
     background: var(--cua-black) !important;
     border-color: var(--cua-white) !important;
     color: var(--cua-white) !important;
 }
 
-.banner .btn.outline-btn-cu-bg-white {
-    background: transparent !important;
-    border-color: var(--cua-white) !important;
-    color: var(--cua-white) !important;
-    font-weight: bold !important;
-}
-
+/* Hover styles for specific outlined buttons in the banner */
+.banner .btn.outline-btn-cu-bg-black:hover,
 .banner .btn.outline-btn-cu-bg-white:hover {
     background: var(--cua-white) !important;
     border-color: var(--cua-black) !important;
     color: var(--cua-black) !important;
 }
 
-.banner .card-header {
-    padding: 0 !important;
-}
-
-.banner h3 {
-    font-size: 3rem !important;
-    margin: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-.card {
-    --bs-card-border-radius: 0 !important;
-}
-
+/* Media query for small screens in the banner */
 @media (max-width: 680px) {
+    /* Adjust width for the banner body */
     .banner-body {
         width: 70% !important;
     }
 
+    /* Adjust max-width, min-height, min-width, and object fit for the container */
     .banner .container-xl {
         max-width: 680px !important;
-        object-fit: cover;
         min-height: fit-content;
         min-width: fit-content;
+        object-fit: cover;
     }
-
 }

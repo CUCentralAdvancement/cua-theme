@@ -1,56 +1,29 @@
-{#
-/**
-* @file
-* Theme override to display a block.
-*
-* Available variables:
-* - plugin_id: The ID of the block implementation.
-* - label: The configured label of the block if visible.
-* - configuration: A list of the block's configuration values.
-*   - label: The configured label for the block.
-*   - label_display: The display settings for the label.
-*   - provider: The module or other provider that provided this block plugin.
-*   - Block plugin specific settings will also be stored here.
-* - content: The content of this block.
-* - attributes: array of HTML attributes populated by modules, intended to
-*   be added to the main container tag of this template.
-*   - id: A valid HTML ID and guaranteed unique.
-* - title_attributes: Same as attributes, except applied to the main title
-*   tag that appears in the template.
-* - title_prefix: Additional output populated by modules, intended to be
-*   displayed in front of the main title tag that appears in the template.
-* - title_suffix: Additional output populated by modules, intended to be
-*   displayed after the main title tag that appears in the template.
-*
-* @see template_preprocess_block()
-*/
-#}
-{# add custom css #}
+{# ## Call to Action Card # ##}
+
+{# Attach library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# block boilerplate #}
-{% set container_classes = [
+{# Block boilerplate #}
+{% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'call-to-action card rounded h-100 m-2',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
-{# add unique id to block #}
+{# Combine fields and merge with attributes #}
+{% set style = color_background ~ ' ' ~ color_border %}
+
+{# Add unique id to block #}
 {% set unique_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# combine fields and merge with attributes #}
-{% set style = color_background ~ ' ' ~ color_border %}
-
-{# render block content #}
-<div{{ attributes|without('id').addClass(container_classes, style).setAttribute('id', unique_id ) }}>
-    {# image/icon #}
-    {% include '@cua_theme/component/card/card--image.html.twig' %}
-    {# title/body #}
-    {% include '@cua_theme/component/card/card--title-body.html.twig' %}
-    {# link #}
-    {% include '@cua_theme/component/card/card--footer-btn.html.twig' %}
+{# Render block content #}
+<div{{ attributes|without('id').addClass(classes, style).setAttribute('id', unique_id ) }}>
+    {# Include Image Component #}
+    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+    {# Include Title/Body Component #}
+    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 </div>
-
-

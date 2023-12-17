@@ -19,6 +19,7 @@ alert:
   version: "1.0.x"
   css:
     base:
+      component/card/css/card.css: {}
       component/alert/css/alert.css: {}
 
 # Banner.
@@ -26,6 +27,7 @@ banner:
   version: "1.0.x"
   css:
     base:
+      component/card/css/card.css: {}
       component/banner/css/banner.css: {}
 
 # Card.
@@ -33,13 +35,14 @@ card:
   version: "1.0.x"
   css:
     base:
-      component/card/card.css: {}
+      component/card/css/card.css: {}
 
 # Call to Action.
 call-to-action:
   version: "1.0.x"
   css:
     base:
+      component/card/css/card.css: {}
       component/call_to_action/css/call-to-action.css: {}
 
 # Header.
@@ -47,13 +50,14 @@ header:
   version: "1.0.x"
   css:
     base:
-      component/header/header.css: {}
+      component/header/css/header.css: {}
 
 # Half and Half.
 half-and-half:
   version: "1.0.x"
   css:
     base:
+      component/card/css/card.css: {}
       component/half_and_half/css/half-and-half.css: {}
 
 # Spacer.
@@ -68,4 +72,4 @@ footer:
   version: "1.0.x"
   css:
     base:
-      component/footer/footer.css: {}
+      component/footer/css/footer.css: {}

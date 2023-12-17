@@ -1,128 +1,140 @@
-/* Half and Half styling  */
+/* Half and Half styling */
+
+/* Card and image styling */
 .half-and-half .card,
 .half-and-half .card img {
-  border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
+/* Padding for elements with 'add-padding' class */
 .half-and-half .add-padding {
-  padding: 2rem 0 !important;
+    padding: 2rem 0 !important;
 }
 
-.half-and-half .large img {
-  max-width: 100% !important;
-  width: 100% !important;
-}
-
-.half-and-half .medium img {
-  max-width: 75% !important;
-  width: 75% !important;
-}
-
-.half-and-half .small img {
-  max-width: 60% !important;
-  width: 60% !important;
-}
-
+/* Image sizes and alignment */
 .half-and-half .large img,
 .half-and-half .medium img,
-.half-and-half .small img {
-  float: right !important;
-}
-
+.half-and-half .small img,
 .half-and-half .order-last .large img,
 .half-and-half .order-last .medium img,
 .half-and-half .order-last .small img {
-  float: left !important;
+    float: right !important;
+    max-width: 100% !important;
+    width: 100% !important;
 }
 
+/* Image alignment for 'order-last' class */
+.half-and-half .order-last .large img,
+.half-and-half .order-last .medium img,
+.half-and-half .order-last .small img {
+    float: left !important;
+}
+
+/* Container width for extra-large screens */
 .half-and-half .container-xl {
-  max-width: 1400px !important;
+    max-width: 1400px !important;
 }
 
+/* Horizontal rule styling */
 .hr-top {
-  border-top: 2px solid var(--cua-gold) !important;
-  margin: 1rem 0;
-  padding: 0 0 .25rem;
-  opacity: 1;
+    border-top: 2px solid var(--cua-gold) !important;
+    margin: 1rem 0;
+    padding: 0 0 .25rem;
+    opacity: 1;
 }
 
 .hr-top .card-img img {
-  margin: 1rem 0 !important;
+    margin: 1rem 0 !important;
 }
 
 .hr-bottom {
-  border-bottom: 2px solid var(--cua-gold) !important;
-  margin: 1rem 0 !important;
-  padding: .25rem 0 0 !important;
-  opacity: 1 !important;
+    border-bottom: 2px solid var(--cua-gold) !important;
+    margin: 1rem 0 !important;
+    padding: .25rem 0 0 !important;
+    opacity: 1 !important;
 }
 
 .hr-bottom .card-img img {
-  margin: 1rem 0 !important;
+    margin: 1rem 0 !important;
 }
 
 .hr-top-bottom {
-  border-bottom: 2px solid var(--cua-gold) !important;
-  border-top: 2px solid var(--cua-gold) !important;
-  margin: 1rem 0 !important;
-  opacity: 1 !important;
-  padding: .25rem 0 !important;
+    border-bottom: 2px solid var(--cua-gold) !important;
+    border-top: 2px solid var(--cua-gold) !important;
+    margin: 1rem 0 !important;
+    opacity: 1 !important;
+    padding: .25rem 0 !important;
 }
 
+/* Margin adjustment for horizontal rule with top and bottom border */
 .hr-top-bottom .card-img img {
-  margin: 1rem 0 !important;
+    margin: 1rem 0 !important;
 }
 
-.half-and-half .card h3.small {
-  margin: .7rem 0 0 !important;
-}
-
-.half-and-half .card-img, .half-and-half .card-img-top {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-
-.half-and-half .card-img, .half-and-half .card-img-bottom {
-  border-bottom-right-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-}
-
-.half-and-half .card-footer .btn {
-  height: 2.26rem !important;
-}
-
-@media only screen and (max-width: 576px) {
-  .half-and-half .large img,
-  .half-and-half .medium img,
-  .half-and-half .small img,
-  .half-and-half .order-last .large img,
-  .half-and-half .order-last .medium img,
-  .half-and-half .order-last .small img {
-    float: none !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-
-  .card-img.large.p-0.img-hover-effect,
-  .card-img.medium.p-0.img-hover-effect,
-  .card-img.small.p-0.img-hover-effect {
+/* Margin adjustment for image hover effect */
+.card-img.large.p-0.img-hover-effect,
+.card-img.medium.p-0.img-hover-effect,
+.card-img.small.p-0.img-hover-effect {
     margin: 1.5rem 1rem !important;
-  }
+}
 
-  .half-and-half .hr-top-bottom .card-img img {
-    margin: 1rem !important;
-  }
+/* Small heading styling within cards */
+.half-and-half .card h3.small {
+    margin: .7rem 0 0 !important;
+}
 
-  .half-and-half .add-padding {
-    padding: 1rem 1rem !important;
-  }
+/* Border radius for card images */
+.half-and-half .card-img,
+.half-and-half .card-img-top,
+.half-and-half .card-img-bottom {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
 
-  blockquote {
-    font-size: 1em !important;
-    width: 95% !important;
-    margin: 30px auto !important;
-    padding: 1.2em 30px 1.2em 55px !important;
-    border-left: 4px solid var(--cua-gold) !important;
-  }
+/* Button height for card footer */
+.half-and-half .card-footer .btn {
+    height: 2.26rem !important;
+}
 
+/* Media query for small screens */
+@media only screen and (max-width: 576px) {
+    /* Reset image float and width for small screens */
+    .half-and-half .large img,
+    .half-and-half .medium img,
+    .half-and-half .small img,
+    .half-and-half .order-last .large img,
+    .half-and-half .order-last .medium img,
+    .half-and-half .order-last .small img {
+        float: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* Margin adjustment for image hover effect */
+    .card-img.large.p-0.img-hover-effect,
+    .card-img.medium.p-0.img-hover-effect,
+    .card-img.small.p-0.img-hover-effect {
+        margin: 1.5rem 1rem !important;
+    }
+
+    /* Margin adjustment for horizontal rule with top and bottom border */
+    .hr-top-bottom .card-img img {
+        margin: 1rem !important;
+    }
+
+    /* Padding adjustment for 'add-padding' class */
+    .half-and-half .add-padding {
+        padding: 1rem 1rem !important;
+    }
+
+    /* Styling for blockquote on small screens */
+    blockquote {
+        font-size: 1em !important;
+        width: 95% !important;
+        margin: 30px auto !important;
+        padding: 1.2em 30px 1.2em 55px !important;
+        border-left: 4px solid var(--cua-gold) !important;
+    }
 }

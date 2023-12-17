@@ -1,0 +1,19 @@
+{# ## Mobile code block ## #}
+<div class="container d-block d-sm-none g-0">
+    <div class="card">
+        <div class="row g-0">
+            <div class="col-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
+                {# Include Image/Icon Component for Mobile View #}
+                {% include '@cua_theme/component/card/_card--image.html.twig' %}
+            </div>
+            <div class="col-12 {{ color_background ~ ' ' ~ text_alignment }}">
+                <div class="row">
+                    {# Include Title/Body Component for Mobile View #}
+                    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+                    {# Include Link Component for Mobile View #}
+                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

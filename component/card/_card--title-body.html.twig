@@ -1,0 +1,15 @@
+{# ## Card Title/Body ## #}
+{% if label or body %}
+    <div class="card-body text-{{ color_background ~ ' ' ~ text_alignment }} mb-3">
+        <div class="card-body-title">
+            {# Include Title Component #}
+            {% include '@cua_theme/component/title/_title.html.twig' with { 'title': title } %}
+            {# Include Body Component #}
+            <div class="card-text {{ text_alignment ~ ' ' ~ text_color }} mt-3">
+                {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
+            </div>
+        </div>
+    </div>
+{% else %}
+    {# empty #}
+{% endif %}

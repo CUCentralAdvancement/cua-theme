@@ -1,64 +1,98 @@
-/* Layout Builder */
+/* Layout Builder Styles */
+
+/* Adjusting the max width of actions in the page layout builder form */
 form#node-page-layout-builder-form input#edit-actions {
   max-width: 10rem;
 }
+
+/* Styling for the first button in the layout builder form */
 form#node-page-layout-builder-form .btn-primary:first-child {
   background-color: #0080002b !important;
   border-color: transparent !important;
 }
+
+/* Hover styling for the first button */
 form#node-page-layout-builder-form .btn-primary:first-child:hover {
   background-color: var(--cua-green) !important;
   color: var(--cua-white) !important;
 }
+
+/* Styling for the second button in the layout builder form */
 form#node-page-layout-builder-form .btn-primary:nth-child(2) {
   background-color: #ff00003b !important;
   border-color: transparent !important;
 }
+
+/* Hover styling for the second button */
 form#node-page-layout-builder-form .btn-primary:nth-child(2):hover {
   background-color: #f00 !important;
   color: white !important;
 }
+
+/* Styling for the third button in the layout builder form */
 form#node-page-layout-builder-form .btn-primary:nth-child(3) {
   background-color: #ffff004d !important;
   border-color: transparent !important;
 }
+
+/* Hover styling for the third button */
 form#node-page-layout-builder-form .btn-primary:nth-child(3):hover {
   background-color: yellow !important;
   color: black !important;
 }
+
+/* Inline flex display for the edit actions */
 form#node-page-layout-builder-form div#edit-actions {
   display: inline-flex;
 }
+
+/* Hide block-help element when the user is logged in */
 .user-logged-in .block-help {
   display: none;
 }
+
+/* Styling for elements when JavaScript is enabled */
 .js .js-show {
   display: block ruby !important;
   padding: 0 0 0 .5rem !important;
 }
+
+/* Styling for the close button in the alert wrapper */
 .user-logged-in .alert-wrapper .btn-close {
   border: 2px solid var(--cua-black) !important;
   margin: 2rem !important;
-  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M0.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
 }
+
+/* Styling for layout-builder class */
 .layout-builder {
   border: none;
 }
+
+/* Styling for layout-builder__region */
 .layout-builder__region {
   outline: 5px solid var(--cua-green);
 }
+
+/* Styling for layout-builder--content-preview-disabled class */
 .layout-builder--content-preview-disabled .layout-builder-block {
   margin: 0;
   border-bottom: 2px dashed var(--cua-black);
 }
+
+/* Styling for layout-builder__region with outline, padding, and margin */
 .layout-builder__region {
   outline: 2px dotted var(--cua-gray-200);
   padding: 1rem;
   margin: 1rem 0 2rem;
 }
+
+/* Styling for layout-builder__region with height adjustment */
 .user-logged-in .layout-builder__region .h-100 {
   height: fit-content !important;
 }
+
+/* Styling for layout-builder__link--configure */
 .use-ajax.layout-builder__link.layout-builder__link--configure {
   text-decoration: none;
   font-weight: 700;
@@ -70,14 +104,19 @@ form#node-page-layout-builder-form div#edit-actions {
   border-radius: 5px;
   font-size: .8rem;
 }
-/* remove */
+
+/* Styling for layout-builder__link--remove */
 .layout-builder__link--remove {
   background: none;
   border-color: transparent;
 }
+
+/* Hover styling for layout-builder__link--remove */
 .layout-builder__link--remove:hover {
   background-image: none !important;
 }
+
+/* Styling for layout-builder__link--remove in various states */
 .use-ajax.layout-builder__link.layout-builder__link--remove {
   text-align: right;
   float: right;
@@ -85,6 +124,8 @@ form#node-page-layout-builder-form div#edit-actions {
   font-size: 14px;
   color: transparent;
 }
+
+/* Styling for layout-builder__link--remove icon */
 .use-ajax.layout-builder__link.layout-builder__link--remove::after {
   color: var(--cua-white);
   background: var(--cua-warning);
@@ -97,6 +138,8 @@ form#node-page-layout-builder-form div#edit-actions {
   margin: 0 10px 0;
   border-radius: 5px;
 }
+
+/* Hover styling for layout-builder__link--remove icon */
 .use-ajax.layout-builder__link.layout-builder__link--remove:hover::after {
   color: var(--cua-warning);
   font-family: var(--fa-style-family-classic);
@@ -104,20 +147,28 @@ form#node-page-layout-builder-form div#edit-actions {
   border: 1px solid var(--cua-warning);
   background: var(--cua-white);
 }
+
+/* Hover styling for layout-builder__link--remove text */
 .use-ajax.layout-builder__link.layout-builder__link--remove:hover {
   color: transparent;
   text-decoration: none;
 }
+
+/* Styling for layout-builder__add-section */
 .layout-builder__add-section {
   outline: 2px dotted var(--cua-blue-visited);
   background-color: #0093ff14;
   margin: 3rem 0;
 }
+
+/* Styling for layout-builder__add-block */
 .layout-builder__add-block {
   outline: 2px dotted var(--cua-blue-visited);
   background-color: var(--cua-blue);
   margin: 1rem 0;
 }
+
+/* Styling for layout-builder-block */
 .layout-builder-block {
   padding: 1.5em;
   cursor: move;
@@ -125,62 +176,90 @@ form#node-page-layout-builder-form div#edit-actions {
   border: 2px dotted #00000040;
   margin: 0 0 1rem;
 }
+
+/* Styling for vertical-tabs__menu-item and vertical-tabs__menu */
 .vertical-tabs__menu-item {
   border: none !important;
 }
+
 .vertical-tabs__menu {
   border-top: none !important;
 }
+
+/* Styling for layout-builder__link--add */
 .layout-builder__link--add {
   color: var(--cua-black);
   background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px'%3e%3cpath fill='%23000000' d='M0.656,9.023c0,0.274,0.224,0.5,0.499,0.5l4.853,0.001c0.274-0.001,0.501,0.226,0.5,0.5l0.001,4.853 c-0.001,0.273,0.227,0.5,0.501,0.5l1.995-0.009c0.273-0.003,0.497-0.229,0.5-0.503l0.002-4.806c0-0.272,0.228-0.5,0.499-0.502 l4.831-0.021c0.271-0.005,0.497-0.23,0.501-0.502l0.008-1.998c0-0.276-0.225-0.5-0.499-0.5l-4.852,0c-0.275,0-0.502-0.228-0.501-0.5 L9.493,1.184c0-0.275-0.225-0.499-0.5-0.499L6.997,0.693C6.722,0.694,6.496,0.92,6.495,1.195L6.476,6.026 c-0.001,0.274-0.227,0.5-0.501,0.5L1.167,6.525C0.892,6.526,0.665,6.752,0.665,7.026L0.656,9.023z'/%3e%3c/svg%3e") transparent center left / 1em no-repeat;
   text-decoration: none !important;
   font-weight: 700 !important;
 }
+
+/* Styling for layout class */
 .layout {
   margin: 1rem 0 !important;
 }
+
+/* Styling for section-layout and edit-group-customize-layout */
 .section-layout, .fieldset #edit-group-customize-layout {
   background: var(--cua-gray-200) !important;
   border: 1px solid var(--cua-gray-500) !important;
   padding: 1rem 3rem;
 }
+
+/* Styling for buttons in the layout-builder-modal */
 #layout-builder-modal .btn-primary {
   color: var(--cua-white) !important;
   background: var(--cua-blue) !important;
   border-color: transparent !important;
   width: 200px !important;
 }
+
+/* Styling for fieldset-legend in the layout-builder-modal */
 #layout-builder-modal .fieldset-legend {
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: 700;
 }
+
+/* Styling for labels in the layout-builder-modal */
 #layout-builder-modal label {
   display: inline-block;
   font-weight: 700;
   font-size: 90%;
 }
+
+/* Styling for ui-dialog elements */
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front {
   padding: 1.5rem 0 0 !important;
 }
+
+/* Styling for ui-dialog-titlebar-close */
 .ui-dialog-titlebar-close {
   background: var(--cua-warning);
 }
+
 /* Force uploaded CKEditor images to have responsive width */
 .block.block-layout-builder .content .field--name-body img {
   max-width: 100% !important;
   height: auto !important;
 }
+
+/* Styling for contextual elements */
 .contextual {
   right: inherit;
 }
+
+/* Styling for contextual trigger */
 .contextual .trigger {
   background-color: var(--cua-green) !important;
 }
+
+/* Styling for contextual trigger with background image */
 .contextual .trigger {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3e%3cg%3e%3cpath fill='%23ffffff' d='M14.545 3.042l-1.586-1.585c-.389-.389-1.025-.389-1.414 0l-1.293 1.293 3 3 1.293-1.293c.389-.389.389-1.026 0-1.415z'/%3e%3crect fill='%23ffffff' x='5.129' y='3.8' transform='matrix(-.707 -.707 .707 -.707 6.189 20.064)' width='4.243' height='9.899'/%3e%3cpath fill='%23ffffff' d='M.908 14.775c-.087.262.055.397.316.312l2.001-.667-1.65-1.646-.667 2.001z'/%3e%3c/g%3e%3c/svg%3e");
 }
+
+/* Hover and focus styling for contextual trigger */
 .contextual .trigger:hover, .contextual .trigger:focus {
   color: var(--cua-black) !important;
   background-color: var(--cua-white) !important;

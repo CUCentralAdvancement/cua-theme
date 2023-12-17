@@ -1,0 +1,11 @@
+{# ## Banner title, body and link ## #}
+<div class="card-img-overlay container mx-5 px-5 mt-5">
+    <div class="row {{ position_container }} g-0">
+        <div class="col-md-7 {{ color_background }} banner-body shadow rounded p-2">
+            {# Include Title/Body Component #}
+            {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+            {# Include Button/Link Component #}
+            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+        </div>
+    </div>
+</div>

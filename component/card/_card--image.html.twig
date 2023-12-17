@@ -1,0 +1,44 @@
+{# Card image/icon #}
+{% if card_image or icon %}
+    <div class="card-header {{ text_alignment ~ ' ' ~ padding }} g-0 p-1">
+        {% if card_image or link_title and icon is empty %}
+            {# Image #}
+            {% for item in content.field_image['#items'] %}
+                {% set image = {
+                    '#theme':      'image_style',
+                    '#style_name': 'webp',
+                    '#attributes': { class: 'card-img-top img-fluid w-100' },
+                    '#uri':        item.entity.uri.value,
+                    '#alt':        item.alt,
+                    '#width':      item.width,
+                    '#height':     item.height
+                } %}
+                {# Check if link is active #}
+                {% if link_title is not empty %}
+                    <a class="block-link" href="{{ link_url }}" aria-label="{{ link_title }}">
+                {% endif %}
+                <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} img-hover-effect w-100" aria-label="{{ item.alt }}">
+                    <figure>
+                        {{ image }}
+                        <figcaption class="{{ visibility }}">
+                            <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
+                        </figcaption>
+                    </figure>
+                </div>
+                {# Check if link is active #}
+                {% if link_title is not empty %}
+                    </a>{# Ignore error #}
+                {% endif %}
+            {% endfor %}
+        {% elseif icon is not empty %}
+            {# Icon #}
+            <span class="p-3" style="color: {{ icon_color }}">
+                <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
+            </span>
+        {% else %}
+            {# Empty #}
+        {% endif %}
+    </div>
+{% else %}
+    {# Empty #}
+{% endif %}

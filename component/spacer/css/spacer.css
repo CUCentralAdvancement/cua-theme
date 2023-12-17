@@ -1,11 +1,12 @@
 /* Spacer styling  */
-.role-administrator .logged-in .spacer-title {
-  color: var(--cua-black);
-  font-size: 100%;
-  font-weight: 700;
-  display: block;
+.user-administrator .spacer {
+    background: var(--cua-gray-200) !important;
 }
 
-.role-administrator .logged-in #spacer {
-  background: var(--cua-gray-800);
+.user-administrator .small.text-align-center {
+    display: block;
+}
+
+.small.text-align-center {
+    display: none;
 }

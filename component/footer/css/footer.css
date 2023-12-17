@@ -1,0 +1,137 @@
+/* Footer styling */
+
+/* Nav */
+footer .nav {
+    --bs-nav-link-padding-x: 0 !important;
+}
+
+/* Site Footer Top */
+footer #site-footer-top .clearfix.nav {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Site Footer Bottom */
+footer #site-footer-bottom .clearfix.nav {
+    display: flex;
+    flex-direction: row;
+}
+
+footer #site-footer-bottom .navbar-nav > li:not(:last-child) {
+    border-right-width: 0;
+    border-right-style: none;
+}
+
+footer #site-footer-bottom li.nav-item {
+    padding: 0 0.5rem;
+}
+
+/* Region Footer Sixth */
+.site-footer .region.region-footer-sixth .block {
+    margin: 1rem 0 !important;
+    padding: 0 !important;
+}
+
+/* Nav Link Styling */
+footer #site-footer-bottom .nav-link {
+    color: var(--cua-white) !important;
+    font-size: 1rem;
+}
+
+/* Social Media */
+footer .social-media ul {
+    padding-left: 0;
+}
+
+footer .social-media li.list-inline-item {
+    padding: 0 0.3rem 0 0;
+}
+
+/* General Site Footer Styling */
+.site-footer {
+    padding: 0;
+    margin-top: 3rem !important;
+    background: -o-radial-gradient(98.5697% 63.464%, circle, #666, #363636);
+    background: radial-gradient(circle at 98.5697% 63.464%, #666, #363636);
+}
+
+/* Copyright and Secondary Link Styling */
+.site-footer .copyright, .site-footer .link-secondary {
+    color: var(--cua-white) !important;
+}
+
+/* Social Media List Item */
+.social-media .list-inline-item:not(:last-child) {
+    margin-right: 0 !important;
+}
+
+/* Footer Headings */
+footer.site-footer h2 {
+    border-bottom: 1px solid var(--cua-gray-700);
+    border-color: rgba(255, 255, 255, 0.15);
+    font-size: 1em;
+    margin-bottom: 0.2rem;
+    padding-bottom: 3px;
+    text-transform: uppercase;
+}
+
+/* Footer Text Styling */
+footer,
+footer p {
+    color: var(--cua-white) !important;
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 1.2rem;
+    margin-bottom: 0;
+}
+
+/* Footer Row Styling */
+footer .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* Additional Footer Paragraph Styling */
+footer p {
+    padding-left: 0 !important;
+}
+
+/* Navigation Link Styling */
+footer .nav-link {
+    background: transparent !important;
+    color: var(--cua-white) !important;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    margin-bottom: 0;
+}
+
+/* Navigation Link Hover Styling */
+footer .nav-link:hover {
+    text-decoration: underline !important;
+}
+
+/* Block Styling */
+.site-footer .block {
+    border: none;
+}
+
+/* Custom Link Styling */
+footer .link-cua {
+    color: var(--cua-white) !important;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+
+/* Custom Link Hover Styling */
+footer .link-cua:hover {
+    text-decoration: underline;
+}
+
+/* Additional Block Styling */
+.site-footer .block {
+    border: none !important;
+}
