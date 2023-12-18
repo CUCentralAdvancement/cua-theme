@@ -97,13 +97,13 @@
 
 .card-footer .btn.outline-btn-cu-bg-gold {
     border: 1px solid var(--cua-gold) !important;
-    color: var(--cua-black) !important;
-    background: var(--cua-gold) !important;
+    color: var(--cua-gold) !important;
+    background: var(--cua-black) !important;
 }
 
 .card-footer .btn.outline-btn-cu-bg-gold:hover {
-    background: var(--cua-black) !important;
-    color: var(--cua-gold) !important;
+    background: var(--cua-gold) !important;
+    color: var(--cua-black) !important;
 }
 
 /* Styling for Black theme */
