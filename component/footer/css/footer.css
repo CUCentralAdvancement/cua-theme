@@ -11,6 +11,12 @@ footer #site-footer-top .clearfix.nav {
     flex-direction: column;
 }
 
+.site-footer {
+    background: -o-radial-gradient(98.5697% 63.464%,circle,#666666,#363636) !important;
+    background: radial-gradient(circle at 98.5697% 63.464%,#666666,#363636) !important;
+    padding: 0 !important;
+}
+
 /* Site Footer Bottom */
 footer #site-footer-bottom .clearfix.nav {
     display: flex;
