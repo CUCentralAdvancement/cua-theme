@@ -7,6 +7,9 @@
 
 /* Footer Headings */
 /* Site Footer Top */
+footer h2 {
+    text-transform: uppercase;
+}
 footer h2,
 footer #site-footer-top .clearfix.nav {
     border-bottom: 1px solid var(--cua-gray-700);
@@ -14,8 +17,8 @@ footer #site-footer-top .clearfix.nav {
     font-size: 1em;
     margin-bottom: 0.2rem;
     padding-bottom: 3px;
-    text-transform: uppercase;
     display: flex;
+    flex-direction: column;
 }
 
 /* Site Footer */
@@ -49,6 +52,7 @@ footer #site-footer-bottom li.nav-item {
 
 /* Footer Text Styling */
 footer,
+footer *,
 footer p {
     color: var(--cua-white);
     font-weight: 400;
@@ -69,16 +73,22 @@ footer .nav {
     --bs-nav-link-padding-x: 0;
 }
 
+
 /* Nav Link Styling */
 footer #site-footer-bottom .nav-link,
 footer .nav-link,
 footer .link-cua {
     color: var(--cua-white);
-    font-size: 1rem;
+    font-size: .9rem;
+}
+
+footer .nav-link {
+    background: transparent;
 }
 
 /* Navigation Link Hover Styling */
 footer .nav-link:hover {
+    color: var(--cua-gray-300);
     text-decoration: underline;
 }
 
