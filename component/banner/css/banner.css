@@ -1,159 +1,287 @@
-/* Banner CSS */
+/* Card styling */
 
-/* Set the maximum height, width, and object fit for the container */
-.banner .container-xl {
-    max-height: 100vh;
-    max-width: 1499px !important;
-    min-width: 100vh;
-    object-fit: cover;
+/* Base styling for cards */
+.card {
+    --bs-card-border-color: transparent !important;
+    --bs-card-border-width: 0 !important;
 }
 
-/* Set the maximum height, minimum width, and object fit for the card */
-.banner .card {
-    max-height: 100vh;
-    min-width: 100vh;
-    object-fit: cover;
+/* Styling for heading elements within cards */
+.card h3, .card .h3, .card h3 a, .card .h3 a {
+    font-size: 1.75rem;
+    margin: 0;
 }
 
-/* Style for the top image of the card */
-.banner .card-img-top.img-fluid.w-100.image-style-webp {
-    border-radius: 0 !important;
+/* Styling for the card header */
+.card-header {
+    padding: 0;
+    margin-bottom: 0 !important;
+    color: transparent !important;
+    background-color: transparent !important;
+    border-bottom: none !important;
 }
 
-/* Gold background with opacity for the banner */
-.banner .cu-bg-gold {
+/* Additional styling for card header with padding */
+.card-header.add-padding, .add-padding {
+    padding: .5rem .5rem 0 .5rem !important;
+}
+
+/* Styling for the card footer */
+.card .card-footer {
+    background-color: transparent !important;
+    border-top: none !important;
+}
+
+/* Styling for buttons within cards */
+.card .btn {
+    font-size: .85rem !important;
+    padding: .4rem 1.25rem !important;
+}
+
+/* Heading alignment variations for cards */
+.card h3.justify-content-start, .card .justify-content-start p {
+    text-align: left !important;
+}
+
+.card h3.justify-content-center, .card .justify-content-center p {
+    text-align: center !important;
+}
+
+.card h3.justify-content-end, .card .justify-content-end p {
+    text-align: right !important;
+}
+
+/* Styling for footer justification variations */
+.card-footer.justify-content-start {
+    display: flex !important;
+    justify-content: left !important;
+}
+
+.card-footer.justify-content-center {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.card-footer.justify-content-end {
+    display: flex !important;
+    justify-content: right !important;
+}
+
+/* Styling for Gold theme */
+/* Background and border color for gold theme */
+.cu-bg-gold, .card.cu-bg-gold {
     background: var(--cua-gold) !important;
-    opacity: .6 !important;
 }
 
-/* Black background with opacity for the banner */
-.banner .cu-bg-black {
-    background: var(--cua-black) !important;
-    opacity: .7 !important;
+.cu-bd-gold, .card.cu-bd-gold {
+    border: 1px solid var(--cua-gold) !important;
 }
 
-/* White background with opacity for the banner */
-.banner .cu-bg-white {
-    background: var(--cua-white) !important;
-    opacity: .7 !important;
-}
-
-/* Gold text color for the banner */
-.banner .cu-text-gold,
-.cu-text-gold {
-    color: var(--cua-gold) !important;
-}
-
-/* White text color for the banner */
-.banner .cu-text-white {
-    color: var(--cua-white) !important;
-}
-
-/* Black text color for the banner */
-.banner .cu-text-black {
+/* Text color for elements with gold background */
+.card .text-cu-bg-gold > * {
     color: var(--cua-black) !important;
 }
 
-/* Style for the black background button in the banner */
-.banner .btn.btn-cu-bg-black {
-    background: var(--cua-black) !important;
-    border-color: var(--cua-black) !important;
-    color: var(--cua-white) !important;
-    font-weight: 700 !important;
-}
-
-/* Style for the gold background button in the banner */
-.banner .btn.btn-cu-bg-gold {
+/* Button styling for gold theme */
+.card-footer .btn.btn-cu-bg-gold {
     background: var(--cua-gold) !important;
-    border-color: var(--cua-gold) !important;
+    border: 1px solid var(--cua-gold) !important;
     color: var(--cua-black) !important;
-    font-weight: 700 !important;
 }
 
-/* Hover style for the gold background button in the banner */
-.banner .btn.btn-cu-bg-gold:hover {
-    background: var(--cua-black) !important;
-    border-color: var(--cua-gold) !important;
+.card-footer .btn.btn-cu-bg-gold:hover {
+    border: 1px solid var(--cua-gold) !important;
     color: var(--cua-gold) !important;
-}
-
-/* Style for the outlined gold background button in the banner */
-.banner .btn.outline-btn-cu-bg-gold {
     background: var(--cua-black) !important;
-    border-color: var(--cua-gold) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-gold {
+    border: 1px solid var(--cua-gold) !important;
     color: var(--cua-gold) !important;
-    font-weight: 700 !important;
-}
-
-/* Hover style for the outlined gold background button in the banner */
-.banner .btn.outline-btn-cu-bg-gold:hover {
-    background: var(--cua-gold) !important;
-    border-color: var(--cua-gold) !important;
-    color: var(--cua-black) !important;
-}
-
-/* Style for the white background button in the banner */
-.banner .btn.btn-cu-bg-white {
-    background: var(--cua-white) !important;
-    border-color: var(--cua-white) !important;
-    color: var(--cua-black) !important;
-    font-weight: 700 !important;
-}
-
-/* Style for the outlined white background button in the banner */
-.banner .btn.outline-btn-cu-bg-white {
     background: transparent !important;
-    border-color: var(--cua-white) !important;
-    color: var(--cua-white) !important;
-    font-weight: 700 !important;
 }
 
-/* Set font size and margin for the heading in the banner */
-.banner h3 {
-    font-size: 3rem !important;
+.card-footer .btn.outline-btn-cu-bg-gold:hover {
+    background: var(--cua-gold) !important;
+    color: var(--cua-black) !important;
+}
+
+/* Styling for Black theme */
+/* Background and border color for black theme */
+.cu-bg-black, .card.cu-bg-black {
+    background: var(--cua-black) !important;
+}
+
+.cu-bd-black, .card.cu-bd-black {
+    border: 1px solid var(--cua-black) !important;
+}
+
+/* Text color for elements with black background */
+.card .text-cu-bg-black > * {
+    color: var(--cua-white) !important;
+}
+
+/* Button styling for black theme */
+.card-footer .btn.btn-cu-bg-black {
+    background: var(--cua-black) !important;
+    border: 1px solid var(--cua-black) !important;
+    color: var(--cua-white) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-black {
+    background: transparent !important;
+    border: 1px solid var(--cua-black) !important;
+    color: var(--cua-black) !important;
+}
+
+.card-footer .btn.btn-cu-bg-black:hover {
+    background: var(--cua-white) !important;
+    border: 1px solid var(--cua-black) !important;
+    color: var(--cua-black) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-black:hover {
+    background: var(--cua-black) !important;
+    border: 1px solid var(--cua-black) !important;
+    color: var(--cua-white) !important;
+}
+
+/* Styling for White theme */
+/* Background and border color for white theme */
+.cu-bg-white, .card.cu-bg-white {
+    background: var(--cua-white) !important;
+}
+
+.cu-bd-white, .card.cu-bd-white {
+    border: 1px solid var(--cua-white) !important;
+}
+
+/* Text color for elements with white background */
+.card .text-cu-bg-white > * {
+    color: var(--cua-black) !important;
+}
+
+/* Button styling for white theme */
+.card-footer .btn.btn-cu-bg-white {
+    background: var(--cua-white) !important;
+    border: 1px solid var(--cua-white) !important;
+    color: var(--cua-black) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-white {
+    background: var(--cua-black) !important;
+    border: 1px solid var(--cua-white) !important;
+    color: var(--cua-white) !important;
+}
+
+.card-footer .btn.btn-cu-bg-white:hover {
+    background: var(--cua-white) !important;
+    border: 1px solid var(--cua-black) !important;
+    color: var(--cua-black) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-white:hover {
+    background: var(--cua-white) !important;
+    color: var(--cua-black) !important;
+}
+
+/* Styling for Light Grey theme */
+/* Background and border color for light grey theme */
+.cu-bg-light-grey, .card.cu-bg-light-grey {
+    background: var(--cua-gray-500) !important;
+}
+
+.cu-bd-light-grey, .card.cu-bd-light-grey {
+    border: 1px solid var(--cua-gray-500) !important;
+}
+
+/* Text color for elements with light grey background */
+.card .text-cu-bg-light-grey > * {
+    color: var(--cua-black) !important;
+}
+
+/* Button styling for light grey theme */
+.card-footer .btn.btn-cu-bg-light-grey {
+    background: var(--cua-gray-300) !important;
+    border: 1px solid var(--cua-gray-300) !important;
+    color: var(--cua-black) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-light-grey,
+.card-footer .btn.btn-cu-bg-light-grey:hover {
+    background: var(--cua-gray-300) !important;
+    border: 1px solid var(--cua-black) !important;
+    color: var(--cua-black) !important;
+}
+
+.card-footer .btn.outline-btn-cu-bg-light-grey:hover {
+    background: var(--cua-black) !important;
+    color: var(--cua-white) !important;
+}
+
+/* Styling for heading level 6 in cards */
+.card h6, .card .h6 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 0.95rem;
+    text-transform: none;
+    line-height: 1.2;
+}
+
+/* Styling for card header links */
+.card-header a {
+    text-decoration: none !important;
+}
+
+/* Image hover effect styles */
+/* Container for image hover effect */
+.img-hover-effect {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    width: inherit;
+}
+
+/* Styling for images within image hover effect */
+.img-hover-effect img {
+    max-width: 100%;
+    transition: all 0.3s;
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: scale(1);
+}
+
+/* Image scaling on hover effect */
+.img-hover-effect:hover img {
+    transform: scale(1.1);
+}
+
+/* Styling for figure captions */
+.figcaption {
+    color: initial !important;
+}
+
+/* Styling for figures */
+figure {
     margin: 0 !important;
 }
 
-/* Additional styles for the card in the banner */
-.banner .card {
-    --bs-card-border-radius: 0 !important;
+/* Styling for links within figures */
+a figure {
+    text-decoration: none !important;
 }
 
-/* Styles for the card footer and header in the banner */
-.banner .card-footer.px-4.pb-4,
-.banner .card-header {
-    padding: 0 !important;
+/* Image scaling variations */
+.large img {
+    scale: 100%;
 }
 
-/* Hover styles for specific buttons in the banner */
-.banner .btn.btn-cu-bg-black:hover,
-.banner .btn.outline-btn-cu-bg-black,
-.banner .btn.btn-cu-bg-white:hover {
-    background: var(--cua-black) !important;
-    border-color: var(--cua-white) !important;
-    color: var(--cua-white) !important;
+.medium img {
+    scale: 80%;
 }
 
-/* Hover styles for specific outlined buttons in the banner */
-.banner .btn.outline-btn-cu-bg-black:hover,
-.banner .btn.outline-btn-cu-bg-white:hover {
-    background: var(--cua-white) !important;
-    border-color: var(--cua-black) !important;
-    color: var(--cua-black) !important;
+.small img {
+    scale: 60%;
 }
-
-/* Media query for small screens in the banner */
-@media (max-width: 680px) {
-    /* Adjust width for the banner body */
-    .banner-body {
-        width: 70% !important;
-    }
-
-    /* Adjust max-width, min-height, min-width, and object fit for the container */
-    .banner .container-xl {
-        max-width: 680px !important;
-        min-height: fit-content;
-        min-width: fit-content;
-        object-fit: cover;
-    }
-}
+/* end */
