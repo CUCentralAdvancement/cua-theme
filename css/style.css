@@ -1,16 +1,15 @@
 /* Global Variables */
 
 :root {
+    /* Colors */
     --cua-black: #111;
     --cua-blue: #0d6efd;
     --cua-blue-hover: #1879db;
     --cua-blue-visited: #1879db;
     --cua-body-bg: #fff;
     --cua-body-color: #262626;
-    --cua-body-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --cua-body-font-size: 1rem;
-    --cua-body-font-weight: 400;
-    --cua-body-line-height: 1.5;
+
+    /* Grays */
     --cua-dark-gray: #595955;
     --cua-gold: #cfb87c;
     --cua-gold-hover: #846f39;
@@ -24,18 +23,31 @@
     --cua-gray-700: #495057;
     --cua-gray-800: #343a40;
     --cua-gray-900: #212529;
+
+    /* Additional Colors */
     --cua-green: #198754;
     --cua-warning: #ba0c2f;
     --cua-white: #fff;
     --cua-white-darker: #ddd;
     --cua-white-light: #f5f5f5;
+
+    /* Typography */
+    --cua-body-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --cua-body-font-size: 1rem;
+    --cua-body-font-weight: 400;
+    --cua-body-line-height: 1.5;
+
+    /* Bootstrap Typography */
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+
+    /* Font Awesome and Typography */
     --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
     --fa-style-family-classic: 'Font Awesome 6 Free';
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', sans-serif;
-    --bs-body-font-size: 1rem;
-    --bs-body-font-weight: 400;
-    --bs-body-line-height: 1.5;
+
 }
 
 /* Headings */
@@ -78,6 +90,12 @@ body, p, a, li {
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
+}
+
+/* Hide page title on front */
+
+.path-frontpage .title {
+    visibility: hidden;
 }
 
 /* Text Styles */
