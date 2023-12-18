@@ -8,10 +8,8 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'alert alert-dismissible card h-100 m-0',
+    color_background is not empty ? color_background : '',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
-
-{# Combine fields and merge with attributes #}
-{% set style = color_background ~ ' ' ~ color_border %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -19,7 +17,7 @@
 ] %}
 
 {# Render block content #}
-<div{{ attributes|without('id').addClass(classes, style).setAttribute('id', unique_id ) }}>
+<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     <div class="container">
         <div class="row">
             {# Button to close alert #}
