@@ -2,6 +2,7 @@
 {% if card_image or icon %}
     <div class="card-header {{ text_alignment ~ ' ' ~ padding }} g-0 p-1">
         {% if card_image or link_title and icon is empty %}
+
             {# Image attributes #}
             {% for item in content.field_image['#items'] %}
                 {% set image = {
@@ -14,24 +15,28 @@
                     '#height':     item.height
                 } %}
                 {# Check if link is active #}
-                {% if link_title is not empty %}
+                {% if link_url is not empty %}
                     <a class="block-link" href="{{ link_url }}" aria-label="{{ link_title }}">
                 {% endif %}
+
                 {# Render image #}
-                <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} img-hover-effect w-100" aria-label="{{ item.alt }}">
+                <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url is not empty %}img-hover-effect{% endif %}" aria-label="{{ item.alt }}">
                     <figure>
                         {{ image }}
+
                         {# Render alt tag #}
                         <figcaption class="{{ visibility }}">
                             <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
                         </figcaption>
                     </figure>
                 </div>
+
                 {# Check if link is not active #}
-                {% if link_title is not empty %}
+                {% if link_url is not empty %}
                     </a>{# Ignore error #}
                 {% endif %}
             {% endfor %}
+
             {# Render Icon #}
         {% elseif icon is not empty %}
             <span class="p-3" style="color: {{ icon_color }}">
