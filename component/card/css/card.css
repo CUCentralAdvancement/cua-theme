@@ -1,225 +1,186 @@
-/* Card styling */
-
 /* Base styling for cards */
 .card {
-    --bs-card-border-color: transparent !important;
-    --bs-card-border-width: 0 !important;
+    --bs-card-border-color: transparent;
+    --bs-card-border-width: 0;
 }
 
-/* Styling for heading elements within cards */
+/* Heading elements within cards */
 .card h3, .card .h3, .card h3 a, .card .h3 a {
     font-size: 1.75rem;
     margin: 0;
 }
 
-/* Styling for the card header */
+/* Card header styling */
 .card-header {
     padding: 0;
-    margin-bottom: 0 !important;
-    color: transparent !important;
-    background-color: transparent !important;
-    border-bottom: none !important;
+    margin-bottom: 0;
+    color: transparent;
+    background-color: transparent;
+    border-bottom: none;
 }
 
 /* Additional styling for card header with padding */
 .card-header.add-padding, .add-padding {
-    padding: .5rem .5rem 0 .5rem !important;
+    padding: .5rem .5rem 0 .5rem;
 }
 
-/* Styling for the card footer */
+/* Card footer styling */
 .card .card-footer {
-    background-color: transparent !important;
-    border-top: none !important;
+    background-color: transparent;
+    border-top: none;
 }
 
-/* Styling for buttons within cards */
+/* Buttons within cards */
 .card .btn {
-    font-size: .85rem !important;
-    padding: .4rem 1.25rem !important;
+    font-size: .85rem;
+    padding: .4rem 1.25rem;
 }
 
 /* Heading alignment variations for cards */
-.card h3.justify-content-start, .card .justify-content-start p {
-    text-align: left !important;
+.card h3.justify-content-start,
+.card .justify-content-start *,
+.card .justify-content-start p {
+    text-align: left;
 }
 
-.card h3.justify-content-center, .card .justify-content-center p {
-    text-align: center !important;
+.card h3.justify-content-center,
+.card .justify-content-center *,
+.card .justify-content-center p {
+    text-align: center;
 }
 
-.card h3.justify-content-end, .card .justify-content-end p {
-    text-align: right !important;
+.card h3.justify-content-end,
+.card .justify-content-end *,
+.card .justify-content-end p {
+    text-align: right;
 }
 
-/* Styling for footer justification variations */
-.card-footer.justify-content-start {
-    display: flex !important;
-    justify-content: left !important;
-}
-
-.card-footer.justify-content-center {
-    display: flex !important;
-    justify-content: center !important;
-}
-
+/* Footer justification variations */
+.card-footer.justify-content-start,
+.card-footer.justify-content-center,
 .card-footer.justify-content-end {
-    display: flex !important;
-    justify-content: right !important;
+    display: flex;
 }
 
-/* Styling for Gold theme */
-/* Background and border color for gold theme */
+/* Themes */
+
+/* Gold theme */
 .cu-bg-gold, .card.cu-bg-gold {
-    background: var(--cua-gold) !important;
+    background: var(--cua-gold);
 }
 
 .cu-bd-gold, .card.cu-bd-gold {
-    border: 1px solid var(--cua-gold) !important;
+    border: 1px solid var(--cua-gold);
 }
 
-/* Text color for elements with gold background */
 .card .text-cu-bg-gold > * {
-    color: var(--cua-black) !important;
+    color: var(--cua-black);
 }
 
-/* Button styling for gold theme */
-.card-footer .btn.btn-cu-bg-gold {
-    background: var(--cua-gold) !important;
-    border: 1px solid var(--cua-gold) !important;
-    color: var(--cua-black) !important;
-}
-
+.card-footer .btn.btn-cu-bg-gold,
 .card-footer .btn.btn-cu-bg-gold:hover {
-    border: 1px solid var(--cua-gold) !important;
-    color: var(--cua-gold) !important;
-    background: var(--cua-black) !important;
+    background: var(--cua-gold);
+    border: 1px solid var(--cua-gold);
+    color: var(--cua-black);
 }
 
-.card-footer .btn.outline-btn-cu-bg-gold {
-    border: 1px solid var(--cua-gold) !important;
-    color: var(--cua-gold) !important;
-    background: var(--cua-black) !important;
-}
-
+.card-footer .btn.outline-btn-cu-bg-gold,
 .card-footer .btn.outline-btn-cu-bg-gold:hover {
-    background: var(--cua-gold) !important;
-    color: var(--cua-black) !important;
+    border: 1px solid var(--cua-gold);
+    color: var(--cua-gold);
+    background: var(--cua-black);
 }
 
-/* Styling for Black theme */
-/* Background and border color for black theme */
+/* Black theme */
 .cu-bg-black, .card.cu-bg-black {
-    background: var(--cua-black) !important;
+    background: var(--cua-black);
 }
 
 .cu-bd-black, .card.cu-bd-black {
-    border: 1px solid var(--cua-black) !important;
+    border: 1px solid var(--cua-black);
 }
 
-/* Text color for elements with black background */
 .card .text-cu-bg-black > * {
-    color: var(--cua-white) !important;
+    color: var(--cua-white);
 }
 
-/* Button styling for black theme */
-.card-footer .btn.btn-cu-bg-black {
-    background: var(--cua-black) !important;
-    border: 1px solid var(--cua-black) !important;
-    color: var(--cua-white) !important;
-}
-
+.card-footer .btn.btn-cu-bg-black,
 .card-footer .btn.outline-btn-cu-bg-black {
-    background: transparent !important;
-    border: 1px solid var(--cua-black) !important;
-    color: var(--cua-black) !important;
+    background: var(--cua-black);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-white);
 }
 
 .card-footer .btn.btn-cu-bg-black:hover {
-    background: var(--cua-white) !important;
-    border: 1px solid var(--cua-black) !important;
-    color: var(--cua-black) !important;
+    background: var(--cua-white);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-black);
 }
 
 .card-footer .btn.outline-btn-cu-bg-black:hover {
-    background: var(--cua-black) !important;
-    border: 1px solid var(--cua-black) !important;
-    color: var(--cua-white) !important;
+    background: var(--cua-black);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-white);
 }
 
-/* Styling for White theme */
-/* Background and border color for white theme */
+/* White theme */
 .cu-bg-white, .card.cu-bg-white {
-    background: var(--cua-white) !important;
+    background: var(--cua-white);
 }
 
 .cu-bd-white, .card.cu-bd-white {
-    border: 1px solid var(--cua-white) !important;
+    border: 1px solid var(--cua-white);
 }
 
-/* Text color for elements with white background */
 .card .text-cu-bg-white > * {
-    color: var(--cua-black) !important;
+    color: var(--cua-black);
 }
 
-/* Button styling for white theme */
-.card-footer .btn.btn-cu-bg-white {
-    background: var(--cua-white) !important;
-    border: 1px solid var(--cua-white) !important;
-    color: var(--cua-black) !important;
-}
-
+.card-footer .btn.btn-cu-bg-white,
 .card-footer .btn.outline-btn-cu-bg-white {
-    background: var(--cua-black) !important;
-    border: 1px solid var(--cua-white) !important;
-    color: var(--cua-white) !important;
+    background: var(--cua-white);
+    border: 1px solid var(--cua-white);
+    color: var(--cua-black);
 }
 
 .card-footer .btn.btn-cu-bg-white:hover {
-    background: var(--cua-white) !important;
-    border: 1px solid var(--cua-black) !important;
-    color: var(--cua-black) !important;
+    background: var(--cua-white);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-black);
 }
 
 .card-footer .btn.outline-btn-cu-bg-white:hover {
-    background: var(--cua-white) !important;
-    color: var(--cua-black) !important;
+    background: var(--cua-white);
+    color: var(--cua-black);
 }
 
-/* Styling for Light Grey theme */
-/* Background and border color for light grey theme */
+/* Light Grey theme */
 .cu-bg-light-grey, .card.cu-bg-light-grey {
-    background: var(--cua-gray-500) !important;
+    background: var(--cua-gray-500);
 }
 
 .cu-bd-light-grey, .card.cu-bd-light-grey {
-    border: 1px solid var(--cua-gray-500) !important;
+    border: 1px solid var(--cua-gray-500);
 }
 
-/* Text color for elements with light grey background */
 .card .text-cu-bg-light-grey > * {
-    color: var(--cua-black) !important;
+    color: var(--cua-black);
 }
 
-/* Button styling for light grey theme */
-.card-footer .btn.btn-cu-bg-light-grey {
-    background: var(--cua-gray-300) !important;
-    border: 1px solid var(--cua-gray-300) !important;
-    color: var(--cua-black) !important;
-}
-
+.card-footer .btn.btn-cu-bg-light-grey,
 .card-footer .btn.outline-btn-cu-bg-light-grey,
 .card-footer .btn.btn-cu-bg-light-grey:hover {
-    background: var(--cua-gray-300) !important;
-    border: 1px solid var(--cua-black) !important;
-    color: var(--cua-black) !important;
+    background: var(--cua-gray-300);
+    border: 1px solid var(--cua-gray-300);
+    color: var(--cua-black);
 }
 
 .card-footer .btn.outline-btn-cu-bg-light-grey:hover {
-    background: var(--cua-black) !important;
-    color: var(--cua-white) !important;
+    background: var(--cua-black);
+    color: var(--cua-white);
 }
 
-/* Styling for heading level 6 in cards */
+/* Heading level 6 in cards */
 .card h6, .card .h6 {
     font-weight: 700;
     font-style: normal;
@@ -228,13 +189,12 @@
     line-height: 1.2;
 }
 
-/* Styling for card header links */
+/* Card header links */
 .card-header a {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 /* Image hover effect styles */
-/* Container for image hover effect */
 .img-hover-effect {
     position: relative;
     margin: auto;
@@ -242,7 +202,7 @@
     width: inherit;
 }
 
-/* Styling for images within image hover effect */
+/* Images within image hover effect */
 .img-hover-effect img {
     max-width: 100%;
     transition: all 0.3s;
@@ -257,19 +217,19 @@
     transform: scale(1.1);
 }
 
-/* Styling for figure captions */
+/* Figure captions */
 .figcaption {
-    color: initial !important;
+    color: initial;
 }
 
-/* Styling for figures */
+/* Figures */
 figure {
-    margin: 0 !important;
+    margin: 0;
 }
 
-/* Styling for links within figures */
+/* Links within figures */
 a figure {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 /* Image scaling variations */
@@ -284,4 +244,4 @@ a figure {
 .small img {
     scale: 60%;
 }
-/* end */
+/* End */

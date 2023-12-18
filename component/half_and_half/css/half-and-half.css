@@ -1,14 +1,37 @@
 /* Half and Half styling */
 
-/* Card and image styling */
+/* General styles */
+.half-and-half .add-padding {
+    padding: 2rem 0 !important;
+}
+
+.half-and-half .container-xl {
+    max-width: 1400px !important;
+}
+
+/* Small heading styling within cards */
+.half-and-half .card h3.small {
+    margin: .7rem 0 0 !important;
+}
+
+/* Button height for card footer */
+.half-and-half .card-footer .btn {
+    height: 2.26rem !important;
+}
+
+/* Card images */
 .half-and-half .card,
 .half-and-half .card img {
     border-radius: 0 !important;
 }
-
-/* Padding for elements with 'add-padding' class */
-.half-and-half .add-padding {
-    padding: 2rem 0 !important;
+/* Border radius for card images */
+.half-and-half .card-img,
+.half-and-half .card-img-top,
+.half-and-half .card-img-bottom {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
 
 /* Image sizes and alignment */
@@ -23,79 +46,41 @@
     width: 100% !important;
 }
 
-/* Image alignment for 'order-last' class */
 .half-and-half .order-last .large img,
 .half-and-half .order-last .medium img,
 .half-and-half .order-last .small img {
     float: left !important;
 }
 
-/* Container width for extra-large screens */
-.half-and-half .container-xl {
-    max-width: 1400px !important;
-}
-
-/* Horizontal rule styling */
-.hr-top {
-    border-top: 2px solid var(--cua-gold) !important;
-    margin: 1rem 0;
-    padding: 0 0 .25rem;
-    opacity: 1;
-}
-
-.hr-top .card-img img {
-    margin: 1rem 0 !important;
-}
-
-.hr-bottom {
-    border-bottom: 2px solid var(--cua-gold) !important;
-    margin: 1rem 0 !important;
-    padding: .25rem 0 0 !important;
-    opacity: 1 !important;
-}
-
-.hr-bottom .card-img img {
-    margin: 1rem 0 !important;
-}
-
-.hr-top-bottom {
-    border-bottom: 2px solid var(--cua-gold) !important;
-    border-top: 2px solid var(--cua-gold) !important;
-    margin: 1rem 0 !important;
-    opacity: 1 !important;
-    padding: .25rem 0 !important;
-}
-
-/* Margin adjustment for horizontal rule with top and bottom border */
-.hr-top-bottom .card-img img {
-    margin: 1rem 0 !important;
-}
-
 /* Margin adjustment for image hover effect */
-.card-img.large.p-0.img-hover-effect,
-.card-img.medium.p-0.img-hover-effect,
-.card-img.small.p-0.img-hover-effect {
+.half-and-half .card-img.large.p-0.img-hover-effect,
+.half-and-half .card-img.medium.p-0.img-hover-effect,
+.half-and-half .card-img.small.p-0.img-hover-effect {
     margin: 1.5rem 1rem !important;
 }
 
-/* Small heading styling within cards */
-.half-and-half .card h3.small {
-    margin: .7rem 0 0 !important;
+/* Horizontal rule styling */
+.half-and-half .hr-top,
+.half-and-half .hr-bottom,
+.half-and-half .hr-top-bottom {
+    margin: 1rem 0 !important;
+    opacity: 1 !important;
 }
 
-/* Border radius for card images */
-.half-and-half .card-img,
-.half-and-half .card-img-top,
-.half-and-half .card-img-bottom {
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
+.half-and-half .hr-top {
+    border-top: 2px solid var(--cua-gold) !important;
+    padding: 0 0 .25rem !important;
 }
 
-/* Button height for card footer */
-.half-and-half .card-footer .btn {
-    height: 2.26rem !important;
+.half-and-half .hr-bottom {
+    border-bottom: 2px solid var(--cua-gold) !important;
+    padding: .25rem 0 0 !important;
+}
+
+.half-and-half .hr-top-bottom {
+    border-bottom: 2px solid var(--cua-gold) !important;
+    border-top: 2px solid var(--cua-gold) !important;
+    padding: .25rem 0 !important;
 }
 
 /* Media query for small screens */
@@ -113,14 +98,14 @@
     }
 
     /* Margin adjustment for image hover effect */
-    .card-img.large.p-0.img-hover-effect,
-    .card-img.medium.p-0.img-hover-effect,
-    .card-img.small.p-0.img-hover-effect {
+    .half-and-half .card-img.large.p-0.img-hover-effect,
+    .half-and-half .card-img.medium.p-0.img-hover-effect,
+    .half-and-half .card-img.small.p-0.img-hover-effect {
         margin: 1.5rem 1rem !important;
     }
 
     /* Margin adjustment for horizontal rule with top and bottom border */
-    .hr-top-bottom .card-img img {
+    .half-and-half .hr-top-bottom .card-img img {
         margin: 1rem !important;
     }
 

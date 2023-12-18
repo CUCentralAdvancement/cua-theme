@@ -30,9 +30,6 @@
  */
 #}
 
-{# Attach library #}
-{{ attach_library('cua_theme/alert') }}
-
 {# Add Classes #}
 {% set classes = [
     'block',
@@ -46,7 +43,7 @@
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Render block content #}
+{# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     <div class="container">
         <div class="row">

@@ -2,43 +2,43 @@
 
 /* Set alert padding-y to 0 */
 .alert {
-  --bs-alert-padding-y: 0 !important;
+  --bs-alert-padding-y: 0;
 }
 
 /* Remove margin and padding for card-body within an alert */
 .alert .card-body {
-  margin-bottom: 0 !important;
-  padding: 0 !important;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 /* Remove padding for card-footer within an alert */
 .alert .card-footer {
-  padding: 0 !important;
+  padding: 0;
 }
 
 /* Adjust styling for close button in dismissible alerts */
 .alert-dismissible .btn-close {
-  top: 10px !important;
-  right: 20px !important;
-  padding: .5rem !important;
-  color: inherit !important;
+  top: 10px;
+  right: 20px;
+  padding: .5rem;
+  color: inherit;
 }
 
 /* Float the .fa-solid icon to the end of the alert */
 .alert .fa-solid {
-  float: inline-end !important;
+  float: inline-end;
 }
 
 /* Customize close button colors and background */
 .alert .btn-close {
-  --bs-btn-close-color: inherit !important;
-  --bs-btn-close-bg: none !important;
+  --bs-btn-close-color: inherit;
+  --bs-btn-close-bg: none;
 }
 
 /* Style the close button icon */
 .alert .btn-close::before {
-  color: white !important;
-  background: black !important;
+  color: white;
+  background: black;
   content: "\58";
   font-size: 1.5em;
   left: 9px;

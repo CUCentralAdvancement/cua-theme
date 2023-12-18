@@ -30,9 +30,6 @@
  */
 #}
 
-{# Attach library #}
-{{ attach_library('cua_theme/half-and-half') }}
-
 {# Add Classes #}
 {% set classes = [
     'block',
@@ -47,7 +44,7 @@
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Render block content #}
+{# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', clean_id ) }}>
     {# Include Mobile Component #}
     {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}

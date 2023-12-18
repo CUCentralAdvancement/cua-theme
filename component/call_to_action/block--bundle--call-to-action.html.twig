@@ -30,9 +30,6 @@
  */
 #}
 
-{# Attach library #}
-{{ attach_library('cua_theme/call-to-action') }}
-
 {# Add Classes #}
 {% set classes = [
     'block',
@@ -46,7 +43,7 @@
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Render block content #}
+{# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}

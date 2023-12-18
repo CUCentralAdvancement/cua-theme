@@ -2,8 +2,8 @@
 
 /* Site Slogan */
 h1.site-slogan {
-    padding: 0 0 10px !important;
-    margin: 0 !important;
+    padding: 0 0 10px;
+    margin: 0;
 }
 
 /* Site Name Wrapper */
@@ -17,26 +17,26 @@ h1.site-slogan {
 
 /* Site Branding Links */
 a.site-branding__logo, a.site-branding__name {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 /* Site Branding Name */
 a.site-branding__name {
     display: block;
-    text-decoration: none !important;
+    text-decoration: none;
     color: var(--cua-black);
     font-weight: 700;
     font-size: 1.15rem;
     padding: 0 0 0 .5rem;
-    margin: .01rem 0 0 !important;
+    margin: .01rem 0 0;
 }
 
 a.site-branding__name:hover {
-    color: var(--cua-gold) !important;
+    color: var(--cua-gold);
 }
 
 a.site-branding__name span {
-    padding: 0 0 0 .5rem !important;
+    padding: 0 0 0 .5rem;
 }
 
 /* Site Link */
@@ -52,7 +52,7 @@ a.site-branding__name span {
 }
 
 h1.site-link {
-    line-height: 0 !important;
+    line-height: 0;
 }
 
 /* Navigation */
@@ -64,7 +64,7 @@ h1.site-link {
 
 /* Navbar Padding and Links */
 a.nav-link.nav-link--, .nav-item .menu-item--expanded .dropdown, .nav-item .menu-item--expanded. .active .dropdown {
-    padding: 0.938rem !important;
+    padding: 0.938rem;
 }
 
 .navbar-nav > li:not(:last-child) {
@@ -82,41 +82,41 @@ li.dropdown .dropdown-menu .dropdown-item {
 }
 
 .navbar {
-    --bs-navbar-padding-y: 0 !important;
+    --bs-navbar-padding-y: 0;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
-    padding: .75rem 1.5rem !important;
+    padding: .75rem 1.5rem;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link ul li a:first-child {
-    padding: .75rem 1.5rem .75rem 0 !important;
+    padding: .75rem 1.5rem .75rem 0;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link:hover {
-    background: var(--cua-dark-gray) !important;
-    color: var(--cua-white) !important;
+    background: var(--cua-dark-gray);
+    color: var(--cua-white);
 }
 
 #navbar-main {
-    border-top: 1px solid var(--cua-white) !important;
-    background: var(--cua-dark-gray) !important;
+    border-top: 1px solid var(--cua-white);
+    background: var(--cua-dark-gray);
 }
 
 .nav-link {
-    color: var(--cua-white) !important;
-    background: var(--cua-dark-gray) !important;
+    color: var(--cua-white);
+    background: var(--cua-dark-gray);
 }
 
 .navbar-expand-lg .navbar-nav .nav-link ul li:first-child {
-    padding: 0.75rem 1.5rem !important;
+    padding: 0.75rem 1.5rem;
     position: relative;
     left: -9999px;
 }
 
 /* Dropdown */
 .dropdown-menu {
-    border: none !important;
+    border: none;
 }
 
 .dropdown-item a, .dropdown-item a:visited {
@@ -135,7 +135,7 @@ li.dropdown .dropdown-menu .dropdown-item {
 }
 
 .dropdown-item.active, .dropdown-item:active {
-    background-color: transparent !important;
+    background-color: transparent;
 }
 
 /* Font Awesome */
@@ -161,15 +161,15 @@ header #search-block-form {
 }
 
 #search-block-form .btn-primary {
-    color: var(--cua-gray-800) !important;
-    background: transparent !important;
-    padding: .25rem .5rem !important;
+    color: var(--cua-gray-800);
+    background: transparent;
+    padding: .25rem .5rem;
 }
 
 #search-block-form .js-form-type-search input.form-search {
-    background: var(--cua-white) !important;
-    border: 1px solid var(--cua-gray-300) !important;
-    font-size: .85rem !important;
+    background: var(--cua-white);
+    border: 1px solid var(--cua-gray-300);
+    font-size: .85rem;
     margin-top: .02rem;
     padding: .1rem .5rem;
 }
@@ -182,8 +182,8 @@ div#block-cua-theme-searchform {
 /* Responsive */
 @media only screen and (max-width: 576px) {
     #navbar-main {
-        background-color: transparent !important;
-        border-top: transparent !important;
+        background-color: transparent;
+        border-top: transparent;
     }
 
     .navbar-nav > li:not(:last-child) {
@@ -191,11 +191,11 @@ div#block-cua-theme-searchform {
     }
 
     #navbar-main {
-        background: var(--cua-dark-gray) !important;
+        background: var(--cua-dark-gray);
     }
 
     h1.site-slogan {
-        padding: 10px !important;
-        margin: 0 !important;
+        padding: 10px;
+        margin: 0;
     }
 }

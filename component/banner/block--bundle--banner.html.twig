@@ -30,9 +30,6 @@
  */
 #}
 
-{# Attach library #}
-{{ attach_library('cua_theme/banner') }}
-
 {# Add Classes #}
 {% set classes = [
     'block',
@@ -44,7 +41,7 @@
     'g-0',
 ] %}
 
-{# Render block content #}
+{# Render content #}
 <div{{ attributes.addClass(classes) }}>
     <div class="container-xl card g-0">
         {# Include Image Component #}
