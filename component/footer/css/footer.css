@@ -12,9 +12,10 @@ footer #site-footer-top .clearfix.nav {
 }
 
 .site-footer {
-    background: -o-radial-gradient(98.5697% 63.464%,circle,#666666,#363636) !important;
-    background: radial-gradient(circle at 98.5697% 63.464%,#666666,#363636) !important;
     padding: 0 !important;
+    margin-top: 3rem !important;
+    background: -o-radial-gradient(98.5697% 63.464%, circle, #666, #363636) !important;
+    background: radial-gradient(circle at 98.5697% 63.464%, #666, #363636) !important;
 }
 
 /* Site Footer Bottom */
@@ -54,12 +55,6 @@ footer .social-media li.list-inline-item {
 }
 
 /* General Site Footer Styling */
-.site-footer {
-    padding: 0;
-    margin-top: 3rem !important;
-    background: -o-radial-gradient(98.5697% 63.464%, circle, #666, #363636);
-    background: radial-gradient(circle at 98.5697% 63.464%, #666, #363636);
-}
 
 /* Copyright and Secondary Link Styling */
 .site-footer .copyright, .site-footer .link-secondary {

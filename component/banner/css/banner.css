@@ -1,4 +1,6 @@
 /* Banner styling */
+
+/* Limit container width and height */
 .banner .container-xl {
     max-width: 1499px !important;
     object-fit: cover;
@@ -6,51 +8,63 @@
     min-width: 100vh;
 }
 
+/* Adjust card styling */
 .banner .card {
     object-fit: cover;
     max-height: 100vh;
     min-width: 100vh;
 }
 
+/* Customize image styling */
 .banner .card-img-top.img-fluid.w-100.image-style-webp {
     border-radius: 0 !important;
 }
 
+/* Adjust card footer styling */
 .banner .card-footer.px-4.pb-4 {
     padding: 0 !important;
 }
 
 /* Color Background */
+
+/* Gold background with opacity */
 .banner .cu-bg-gold {
     background: var(--cua-gold) !important;
     opacity: 0.6 !important;
 }
 
+/* Black background with opacity */
 .banner .cu-bg-black {
     background: var(--cua-black) !important;
     opacity: 0.7 !important;
 }
 
+/* White background with opacity */
 .banner .cu-bg-white {
     background: var(--cua-white) !important;
     opacity: 0.7 !important;
 }
 
 /* Color text */
+
+/* Gold text color */
 .banner .cu-text-gold, .cu-text-gold {
     color: var(--cua-gold) !important;
 }
 
+/* White text color */
 .banner .cu-text-white {
     color: var(--cua-white) !important;
 }
 
+/* Black text color */
 .banner .cu-text-black {
     color: var(--cua-black) !important;
 }
 
 /* Color Buttons */
-/* Black */
+
+/* Black buttons */
 .banner .btn.btn-cu-bg-black {
     background: var(--cua-black) !important;
     border-color: var(--cua-black) !important;
@@ -58,25 +72,28 @@
     font-weight: bold !important;
 }
 
+/* Hover effect for black buttons */
 .banner .btn.btn-cu-bg-black:hover {
     background: var(--cua-black) !important;
     border-color: var(--cua-white) !important;
     color: var(--cua-white) !important;
 }
 
+/* Outline black buttons */
 .banner .btn.outline-btn-cu-bg-black {
     background: var(--cua-black) !important;
     border-color: var(--cua-white) !important;
     color: var(--cua-white) !important;
 }
 
+/* Hover effect for outline black buttons */
 .banner .btn.outline-btn-cu-bg-black:hover {
     background: var(--cua-white) !important;
     border-color: var(--cua-black) !important;
     color: var(--cua-black) !important;
 }
 
-/* Gold */
+/* Gold buttons */
 .banner .btn.btn-cu-bg-gold {
     background: var(--cua-gold) !important;
     border-color: var(--cua-gold) !important;
@@ -84,12 +101,14 @@
     font-weight: bold !important;
 }
 
+/* Hover effect for gold buttons */
 .banner .btn.btn-cu-bg-gold:hover {
     background: var(--cua-black) !important;
     border-color: var(--cua-gold) !important;
     color: var(--cua-gold) !important;
 }
 
+/* Outline gold buttons */
 .banner .btn.outline-btn-cu-bg-gold {
     background: var(--cua-black) !important;
     border-color: var(--cua-gold) !important;
@@ -97,13 +116,14 @@
     font-weight: bold !important;
 }
 
+/* Hover effect for outline gold buttons */
 .banner .btn.outline-btn-cu-bg-gold:hover {
     background: var(--cua-gold) !important;
     border-color: var(--cua-gold) !important;
     color: var(--cua-black) !important;
 }
 
-/* White */
+/* White buttons */
 .banner .btn.btn-cu-bg-white {
     background: var(--cua-white) !important;
     border-color: var(--cua-white) !important;
@@ -111,12 +131,14 @@
     font-weight: bold !important;
 }
 
+/* Hover effect for white buttons */
 .banner .btn.btn-cu-bg-white:hover {
     background: var(--cua-black) !important;
     border-color: var(--cua-white) !important;
     color: var(--cua-white) !important;
 }
 
+/* Outline white buttons */
 .banner .btn.outline-btn-cu-bg-white {
     background: transparent !important;
     border-color: var(--cua-white) !important;
@@ -124,16 +146,19 @@
     font-weight: bold !important;
 }
 
+/* Hover effect for outline white buttons */
 .banner .btn.outline-btn-cu-bg-white:hover {
     background: var(--cua-white) !important;
     border-color: var(--cua-black) !important;
     color: var(--cua-black) !important;
 }
 
+/* Adjust card header padding */
 .banner .card-header {
     padding: 0 !important;
 }
 
+/* Responsive adjustments for small screens */
 @media (max-width: 680px) {
     .banner-body {
         width: 70% !important;
@@ -144,5 +169,4 @@
         min-height: fit-content;
         min-width: fit-content;
     }
-
 }
