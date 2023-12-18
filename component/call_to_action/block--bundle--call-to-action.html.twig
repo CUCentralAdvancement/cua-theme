@@ -3,15 +3,13 @@
 {# Attach library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Block boilerplate #}
+{# Add Classes #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'call-to-action card rounded h-100 m-2',
+    color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class  : '',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
-
-{# Combine fields and merge with attributes #}
-{% set style = color_background ~ ' ' ~ color_border %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -19,7 +17,7 @@
 ] %}
 
 {# Render block content #}
-<div{{ attributes|without('id').addClass(classes, style).setAttribute('id', unique_id ) }}>
+<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
     {# Include Title/Body Component #}
