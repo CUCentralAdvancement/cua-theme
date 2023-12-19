@@ -114,6 +114,11 @@ li.dropdown .dropdown-menu .dropdown-item {
     left: -9999px;
 }
 
+.nav-link.active.dropdown-toggle.is-active,
+.nav-link.active.is-active {
+    color: var(--cua-gold);
+}
+
 /* Dropdown */
 .dropdown-menu {
     border: none;

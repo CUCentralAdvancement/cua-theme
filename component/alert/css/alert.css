@@ -38,7 +38,7 @@
 /* Style the close button icon */
 .alert .btn-close::before {
   color: white;
-  background: black;
+  background: transparent;
   content: "\58";
   font-size: 1.5em;
   left: 9px;
