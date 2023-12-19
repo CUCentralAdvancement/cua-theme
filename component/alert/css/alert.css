@@ -45,3 +45,13 @@
   position: absolute;
   top: -3px;
 }
+
+.alert .card-footer {
+  padding: 0 !important;
+  margin: 0 0 1rem !important;
+}
+
+.alert .card .btn {
+  font-size: .8rem;
+  padding: .3rem 1.25rem !important;
+}

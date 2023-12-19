@@ -33,7 +33,7 @@
 /* Buttons within cards */
 .card .btn {
     font-size: .85rem;
-    padding: .4rem 1.25rem;
+    padding: .4rem 1.25rem !important;
 }
 
 /* Heading alignment variations for cards */
@@ -84,11 +84,16 @@
     color: var(--cua-black);
 }
 
-.card-footer .btn.outline-btn-cu-bg-gold,
-.card-footer .btn.outline-btn-cu-bg-gold:hover {
+.card-footer .btn.outline-btn-cu-bg-gold{
     border: 1px solid var(--cua-gold);
     color: var(--cua-gold);
     background: var(--cua-black);
+}
+
+.card-footer .btn.outline-btn-cu-bg-gold:hover {
+    border: 1px solid var(--cua-gold);
+    color: var(--cua-black);
+    background: var(--cua-gold);
 }
 
 /* Black theme */

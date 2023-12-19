@@ -1,15 +1,4 @@
-/* Footer Styling */
-
-/* Additional Block Styling */
-.site-footer .block {
-    border: none;
-}
-
 /* Footer Headings */
-/* Site Footer Top */
-footer h2 {
-    text-transform: uppercase;
-}
 footer h2,
 footer #site-footer-top .clearfix.nav {
     border-bottom: 1px solid var(--cua-gray-700);
@@ -19,6 +8,7 @@ footer #site-footer-top .clearfix.nav {
     padding-bottom: 3px;
     display: flex;
     flex-direction: column;
+    text-transform: uppercase;
 }
 
 /* Site Footer */
@@ -27,6 +17,11 @@ footer #site-footer-top .clearfix.nav {
     margin-top: 3rem;
     background: -o-radial-gradient(98.5697% 63.464%, circle, #666, #363636);
     background: radial-gradient(circle at 98.5697% 63.464%, #666, #363636);
+}
+
+/* Additional Block Styling */
+.site-footer .block {
+    border: none;
 }
 
 /* Site Footer Bottom */
@@ -73,16 +68,12 @@ footer .nav {
     --bs-nav-link-padding-x: 0;
 }
 
-
 /* Nav Link Styling */
 footer #site-footer-bottom .nav-link,
 footer .nav-link,
 footer .link-cua {
     color: var(--cua-white);
     font-size: .9rem;
-}
-
-footer .nav-link {
     background: transparent;
 }
 
@@ -118,4 +109,8 @@ footer .social-media li.list-inline-item {
 /* Copyright and Secondary Link Styling */
 .site-footer .copyright, .site-footer .link-secondary {
     color: var(--cua-white);
+}
+
+.site-footer .nav-link {
+    padding: 0 0 .5rem;
 }
