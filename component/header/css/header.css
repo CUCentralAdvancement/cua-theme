@@ -117,8 +117,8 @@ li.dropdown .dropdown-menu .dropdown-item {
 .nav-link.active.dropdown-toggle.is-active,
 .nav-link.active.is-active,
 .nav-link.active.dropdown-toggle {
-    background: white;
-    color: var(--cua-black);
+    background: var(--cua-white) !important;
+    color: var(--cua-black) !important;
 }
 
 /* Dropdown */
