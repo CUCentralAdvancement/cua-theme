@@ -109,6 +109,11 @@ footer .social-media li.list-inline-item {
     margin-right: 0;
 }
 
+.fa-brands::before {
+    font-size: 1.5rem;
+    color: white;
+}
+
 /* Copyright and Secondary Link Styling */
 .site-footer .copyright, .site-footer .link-secondary {
     color: var(--cua-white);
