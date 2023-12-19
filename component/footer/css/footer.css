@@ -1,4 +1,8 @@
 /* Footer Headings */
+footer h2 {
+    text-transform: uppercase;
+}
+
 footer h2,
 footer #site-footer-top .clearfix.nav {
     border-bottom: 1px solid var(--cua-gray-700);
@@ -8,7 +12,6 @@ footer #site-footer-top .clearfix.nav {
     padding-bottom: 3px;
     display: flex;
     flex-direction: column;
-    text-transform: uppercase;
 }
 
 /* Site Footer */
