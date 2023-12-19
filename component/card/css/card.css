@@ -5,7 +5,10 @@
 }
 
 /* Heading elements within cards */
-.card h3, .card .h3, .card h3 a, .card .h3 a {
+.card h3,
+.card .h3,
+.card h3 a,
+.card .h3 a {
     font-size: 1.75rem;
     margin: 0;
 }
@@ -20,8 +23,9 @@
 }
 
 /* Additional styling for card header with padding */
-.card-header.add-padding, .add-padding {
-    padding: .5rem .5rem 0 .5rem;
+.card-header.add-padding,
+.add-padding {
+    padding: 0.5rem 0.5rem 0 0.5rem;
 }
 
 /* Card footer styling */
@@ -32,8 +36,8 @@
 
 /* Buttons within cards */
 .card .btn {
-    font-size: .85rem;
-    padding: .4rem 1.25rem !important;
+    font-size: 0.85rem;
+    padding: 0.4rem 1.25rem !important;
 }
 
 /* Heading alignment variations for cards */
@@ -63,7 +67,6 @@
 }
 
 /* Themes */
-
 /* Gold theme */
 .cu-bg-gold, .card.cu-bg-gold {
     background: var(--cua-gold);
@@ -89,10 +92,10 @@
     color: var(--cua-gold);
 }
 
-.card-footer .btn.outline-btn-cu-bg-gold{
+.card-footer .btn.outline-btn-cu-bg-gold {
     border: 1px solid var(--cua-gold);
     color: var(--cua-gold);
-    background: var(--cua-white);
+    background: inherit;
 }
 
 .card-footer .btn.outline-btn-cu-bg-gold:hover {
@@ -127,7 +130,7 @@
 }
 
 .card-footer .btn.outline-btn-cu-bg-black {
-    background: var(--cua-white);
+    background: inherit;
     border: 1px solid var(--cua-black);
     color: var(--cua-black);
 }
@@ -187,17 +190,28 @@
     color: var(--cua-black);
 }
 
-.card-footer .btn.btn-cu-bg-light-grey,
-.card-footer .btn.outline-btn-cu-bg-light-grey,
+.card-footer .btn.btn-cu-bg-light-grey {
+    background: var(--cua-gray-500);
+    border: 1px solid var(--cua-gray-500);
+    color: inherit;
+}
+
 .card-footer .btn.btn-cu-bg-light-grey:hover {
-    background: var(--cua-gray-300);
-    border: 1px solid var(--cua-gray-300);
+    background: var(--cua-white);
+    border: 1px solid var(--cua-black);
     color: var(--cua-black);
 }
 
+.card-footer .btn.outline-btn-cu-bg-light-grey {
+    background: inherit;
+    border: 1px solid var(--cua-gray-500);
+    color: var(--cua-gray-500);
+}
+
 .card-footer .btn.outline-btn-cu-bg-light-grey:hover {
-    background: var(--cua-black);
-    color: var(--cua-white);
+    background: var(--cua-gray-500);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-black);
 }
 
 /* Heading level 6 in cards */
