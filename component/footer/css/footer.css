@@ -1,277 +1,125 @@
-/* Base styling for cards */
-.card {
-    --bs-card-border-color: transparent;
-    --bs-card-border-width: 0;
+/* Footer Headings */
+footer h2 {
+    text-transform: uppercase;
 }
 
-/* Heading elements within cards */
-.card h3,
-.card .h3,
-.card h3 a,
-.card .h3 a {
-    font-size: 1.75rem;
-    margin: 0;
-}
-
-/* Card header styling */
-.card-header {
-    padding: 0;
-    margin-bottom: 0;
-    color: transparent;
-    background-color: transparent;
-    border-bottom: none;
-}
-
-/* Additional styling for card header with padding */
-.card-header.add-padding,
-.add-padding {
-    padding: 0.5rem 0.5rem 0 0.5rem;
-}
-
-/* Card footer styling */
-.card .card-footer {
-    background-color: transparent;
-    border-top: none;
-}
-
-/* Buttons within cards */
-.card .btn {
-    font-size: 0.85rem;
-    padding: 0.4rem 1.25rem !important;
-}
-
-/* Heading alignment variations for cards */
-.card h3.justify-content-start,
-.card .justify-content-start *,
-.card .justify-content-start p {
-    text-align: left;
-}
-
-.card h3.justify-content-center,
-.card .justify-content-center *,
-.card .justify-content-center p {
-    text-align: center;
-}
-
-.card h3.justify-content-end,
-.card .justify-content-end *,
-.card .justify-content-end p {
-    text-align: right;
-}
-
-/* Footer justification variations */
-.card-footer.justify-content-start,
-.card-footer.justify-content-center,
-.card-footer.justify-content-end {
+footer h2,
+footer #site-footer-top .clearfix.nav {
+    border-bottom: 1px solid var(--cua-gray-700);
+    border-color: rgba(255, 255, 255, 0.15);
+    font-size: 1em;
+    margin-bottom: 0.2rem;
+    padding-bottom: 3px;
     display: flex;
+    flex-direction: column;
 }
 
-/* Themes */
-/* Gold theme */
-.cu-bg-gold, .card.cu-bg-gold {
-    background: var(--cua-gold);
+/* Site Footer */
+.site-footer {
+    padding: 0;
+    margin-top: 3rem;
+    background: -o-radial-gradient(98.5697% 63.464%, circle, #666, #363636);
+    background: radial-gradient(circle at 98.5697% 63.464%, #666, #363636);
 }
 
-.cu-bd-gold, .card.cu-bd-gold {
-    border: 1px solid var(--cua-gold);
+/* Additional Block Styling */
+.site-footer .block {
+    border: none;
 }
 
-.card .text-cu-bg-gold > * {
-    color: var(--cua-black);
+/* Site Footer Bottom */
+footer #site-footer-bottom .clearfix.nav {
+    display: flex;
+    flex-direction: row;
 }
 
-.card-footer .btn.btn-cu-bg-gold {
-    background: var(--cua-gold);
-    border: 1px solid var(--cua-gold);
-    color: var(--cua-black);
+footer #site-footer-bottom .navbar-nav > li:not(:last-child) {
+    border-right-width: 0;
+    border-right-style: none;
 }
 
-.card-footer .btn.btn-cu-bg-gold:hover {
-    background: var(--cua-black);
-    color: var(--cua-gold);
+footer #site-footer-bottom li.nav-item {
+    padding: 0 0.5rem;
 }
 
-.card-footer .btn.outline-btn-cu-bg-gold {
-    border: 1px solid var(--cua-gold);
-    color: var(--cua-gold) !important;
-    background: inherit;
+/* Region Footer Sixth */
+.site-footer .region.region-footer-sixth .block {
+    margin: 1rem 0;
+    padding: 0;
 }
 
-.card-footer .btn.outline-btn-cu-bg-gold:hover {
-    color: var(--cua-black) !important;
-    background: var(--cua-gold);
-}
-
-/* Black theme */
-.cu-bg-black, .card.cu-bg-black {
-    background: var(--cua-black);
-}
-
-.cu-bd-black, .card.cu-bd-black {
-    border: 1px solid var(--cua-black);
-}
-
-.card .text-cu-bg-black > * {
+/* Footer Text Styling */
+footer,
+footer *,
+footer p {
     color: var(--cua-white);
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 1.2rem;
+    margin-bottom: 0;
+    padding-left: 0;
 }
 
-.card-footer .btn.btn-cu-bg-black {
-    background: var(--cua-black);
-    border: 1px solid var(--cua-black);
+/* Footer Row Styling */
+footer .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/* Footer Nav */
+footer .nav {
+    --bs-nav-link-padding-x: 0;
+}
+
+/* Nav Link Styling */
+footer #site-footer-bottom .nav-link,
+footer .nav-link,
+footer .link-cua {
     color: var(--cua-white);
+    font-size: .9rem;
+    background: transparent;
 }
 
-.card-footer .btn.btn-cu-bg-black:hover {
-    background: var(--cua-white);
-    color: var(--cua-black) !important;
+/* Navigation Link Hover Styling */
+footer .nav-link:hover {
+    color: var(--cua-gray-300);
+    text-decoration: underline;
 }
 
-.card-footer .btn.outline-btn-cu-bg-black {
-    background: inherit;
-    border: 1px solid var(--cua-black);
-    color: var(--cua-black);
-}
-
-.card-footer .btn.outline-btn-cu-bg-black:hover {
-    background: var(--cua-black);
-    color: var(--cua-white);
-}
-
-/* White theme */
-.cu-bg-white, .card.cu-bg-white {
-    background: var(--cua-white);
-}
-
-.cu-bd-white, .card.cu-bd-white {
-    border: 1px solid var(--cua-white);
-}
-
-.card .text-cu-bg-white > * {
-    color: var(--cua-black);
-}
-
-.card-footer .btn.btn-cu-bg-white {
-    background: var(--cua-white);
-    border: 1px solid var(--cua-white);
-    color: var(--cua-black);
-}
-
-.card-footer .btn.btn-cu-bg-white:hover {
-    background: var(--cua-white);
-    border: 1px solid var(--cua-black);
-    color: var(--cua-black);
-}
-
-.card-footer .btn.outline-btn-cu-bg-white {
-    background: inherit;
-    border: 1px solid var(--cua-white);
-    color: var(--cua-white);
-}
-
-.card-footer .btn.outline-btn-cu-bg-white:hover {
-    background: var(--cua-white);
-    color: var(--cua-black) !important;
-}
-
-/* Light Grey theme */
-.cu-bg-light-grey, .card.cu-bg-light-grey {
-    background: var(--cua-gray-500);
-}
-
-.cu-bd-light-grey, .card.cu-bd-light-grey {
-    border: 1px solid var(--cua-gray-500);
-}
-
-.card .text-cu-bg-light-grey > * {
-    color: var(--cua-black);
-}
-
-.card-footer .btn.btn-cu-bg-light-grey {
-    background: var(--cua-gray-500);
-    border: 1px solid var(--cua-gray-500);
-    color: inherit;
-}
-
-.card-footer .btn.btn-cu-bg-light-grey:hover {
-    background: var(--cua-white);
-    border: 1px solid var(--cua-black);
-    color: var(--cua-black);
-}
-
-.card-footer .btn.outline-btn-cu-bg-light-grey {
-    background: inherit;
-    border: 1px solid var(--cua-gray-500);
-    color: var(--cua-gray-500);
-}
-
-.card-footer .btn.outline-btn-cu-bg-light-grey:hover {
-    background: var(--cua-gray-500);
-    border: 1px solid var(--cua-black);
-    color: var(--cua-black);
-}
-
-/* Heading level 6 in cards */
-.card h6, .card .h6 {
-    font-weight: 700;
-    font-style: normal;
-    font-size: 0.95rem;
-    text-transform: none;
-    line-height: 1.2;
-}
-
-/* Card header links */
-.card-header a {
+/* Custom Link Styling */
+footer .link-cua {
     text-decoration: none;
 }
 
-/* Image hover effect styles */
-.img-hover-effect {
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    width: inherit;
+/* Custom Link Hover Styling */
+footer .link-cua:hover {
+    text-decoration: underline;
 }
 
-/* Images within image hover effect */
-.img-hover-effect img {
-    max-width: 100%;
-    transition: all 0.3s;
-    display: block;
-    width: 100%;
-    height: auto;
-    transform: scale(1);
+/* Social Media */
+footer .social-media ul {
+    padding-left: 0;
 }
 
-/* Image scaling on hover effect */
-.img-hover-effect:hover img {
-    transform: scale(1.1);
+footer .social-media li.list-inline-item {
+    padding: 0 0.3rem 0 0;
 }
 
-/* Figure captions */
-.figcaption {
-    color: initial;
+.social-media .list-inline-item:not(:last-child) {
+    margin-right: 0;
 }
 
-/* Figures */
-figure {
-    margin: 0;
+.fa-brands::before {
+    font-size: 1.5rem;
+    color: white;
 }
 
-/* Links within figures */
-a figure {
-    text-decoration: none;
+/* Copyright and Secondary Link Styling */
+.site-footer .copyright, .site-footer .link-secondary {
+    color: var(--cua-white);
 }
 
-/* Image scaling variations */
-.large img {
-    scale: 100%;
+.site-footer .nav-link {
+    padding: 0 0 .5rem;
 }
-
-.medium img {
-    scale: 80%;
-}
-
-.small img {
-    scale: 60%;
-}
-/* End */
+/* end */
