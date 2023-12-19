@@ -115,8 +115,10 @@ li.dropdown .dropdown-menu .dropdown-item {
 }
 
 .nav-link.active.dropdown-toggle.is-active,
-.nav-link.active.is-active {
-    color: var(--cua-gold);
+.nav-link.active.is-active,
+.nav-link.active.dropdown-toggle {
+    background: white;
+    color: var(--cua-black);
 }
 
 /* Dropdown */

@@ -63,10 +63,10 @@
                             <div class="w-100 align-items-baseline">
                                 {# Site name for all screens #}
                                 <a href="{{ url('<front>') }}"
-                                   title="CU Advancement | CU Foundation Home"
+                                   title="{{ site_slogan }}"
                                    rel="home"
                                    class="site-branding__name site-name">
-                                    {{ site_name }}
+                                    {{ site_slogan }}
                                 </a>
                             </div>
                             {# Navigation toggle button for smaller screens #}
@@ -95,9 +95,9 @@
     <div class="container-fluid site-name-wrapper g-0">
         <div class="container px-4">
             <h1 class="site-slogan">
-                <a href="{{ url('<front>') }}" title="Home" class="site-link"
+                <a href="{{ url('<front>') }}" title="{{ site_name }}" class="site-link"
                    rel="home">
-                    <span>{{ site_slogan }}</span></a>
+                    <span>{{ site_name }}</span></a>
             </h1>
         </div>
     </div>
