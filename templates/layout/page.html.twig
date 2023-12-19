@@ -115,7 +115,7 @@
                             </section>
                         </main>
                         {% if sidebar_first_exists %}
-                            <div{{ sidebar_first_attributes }}>
+                            <div class="col-md-3 col-sm-12">
                                 <aside class="section" role="complementary">
                                     {{ page.sidebar_first }}
                                 </aside>
@@ -153,7 +153,7 @@
                 </aside>
             </div>
         {% endif %}
-            {# Footer #}
-            {% include '@cua_theme/component/footer/footer.html.twig' %}
+        {# Footer #}
+        {% include '@cua_theme/component/footer/footer.html.twig' %}
     </div>
 </div>

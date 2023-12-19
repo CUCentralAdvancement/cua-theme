@@ -84,6 +84,15 @@ h6, .h6 {
 }
 
 /* Body */
+a {
+    color: var(--cua-gold-hover);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 
 body, p, a, li {
     font-family: var(--font-roboto);
@@ -289,6 +298,33 @@ a.block-link figcaption {
     text-decoration: underline;
 }
 
+/* Address - Contact */
+.address {
+    margin: 1rem 0 0;
+}
+
+.organization {
+    font-weight: bold;
+    font-size: 110%;
+}
+
+.views-field.views-field-field-office-phone {
+    margin: 1rem 0 0;
+    line-height: 1.8;
+}
+
+.contact .cols-0.responsive-enabled {
+    margin: 1rem 0 0;
+}
+
+.contact tr {
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid var(--cua-gold);
+    background: var(--cua-white);
+    margin: 1rem 0 3rem 1rem !important;
+    display: block;
+}
+
 /* Media Queries */
 
 @media (min-width: 36em) {
@@ -336,3 +372,7 @@ a.block-link figcaption {
         font-size: 1.25rem;
     }
 }
+
+
+
+
