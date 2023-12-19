@@ -325,6 +325,16 @@ a.block-link figcaption {
     display: block;
 }
 
+input#edit-reset--2 {
+    margin: 0.25rem 0 0;
+}
+
+#block-cua-theme-viewsexposedfilterblock h2{
+    font-size: 1.5rem;
+    margin: 4rem 0 1rem;
+}
+
+
 /* Media Queries */
 
 @media (min-width: 36em) {
