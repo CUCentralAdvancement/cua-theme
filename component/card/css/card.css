@@ -77,17 +77,22 @@
     color: var(--cua-black);
 }
 
-.card-footer .btn.btn-cu-bg-gold,
-.card-footer .btn.btn-cu-bg-gold:hover {
+.card-footer .btn.btn-cu-bg-gold {
     background: var(--cua-gold);
     border: 1px solid var(--cua-gold);
     color: var(--cua-black);
 }
 
+.card-footer .btn.btn-cu-bg-gold:hover {
+    background: var(--cua-black);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-gold);
+}
+
 .card-footer .btn.outline-btn-cu-bg-gold{
     border: 1px solid var(--cua-gold);
     color: var(--cua-gold);
-    background: var(--cua-black);
+    background: var(--cua-white);
 }
 
 .card-footer .btn.outline-btn-cu-bg-gold:hover {
@@ -109,14 +114,19 @@
     color: var(--cua-white);
 }
 
-.card-footer .btn.btn-cu-bg-black,
-.card-footer .btn.outline-btn-cu-bg-black {
+.card-footer .btn.btn-cu-bg-black {
     background: var(--cua-black);
     border: 1px solid var(--cua-black);
     color: var(--cua-white);
 }
 
 .card-footer .btn.btn-cu-bg-black:hover {
+    background: var(--cua-white);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-black);
+}
+
+.card-footer .btn.outline-btn-cu-bg-black {
     background: var(--cua-white);
     border: 1px solid var(--cua-black);
     color: var(--cua-black);
@@ -141,14 +151,19 @@
     color: var(--cua-black);
 }
 
-.card-footer .btn.btn-cu-bg-white,
-.card-footer .btn.outline-btn-cu-bg-white {
+.card-footer .btn.btn-cu-bg-white {
     background: var(--cua-white);
     border: 1px solid var(--cua-white);
     color: var(--cua-black);
 }
 
 .card-footer .btn.btn-cu-bg-white:hover {
+    background: var(--cua-white);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-black);
+}
+
+.card-footer .btn.outline-btn-cu-bg-white {
     background: var(--cua-white);
     border: 1px solid var(--cua-black);
     color: var(--cua-black);
