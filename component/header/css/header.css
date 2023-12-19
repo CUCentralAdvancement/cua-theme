@@ -121,6 +121,11 @@ li.dropdown .dropdown-menu .dropdown-item {
     color: var(--cua-black) !important;
 }
 
+footer .nav-link.active.is-active, .nav-link.active.dropdown-toggle {
+    background: transparent !important;
+    color: var(--cua-white) !important;
+}
+
 /* Dropdown */
 .dropdown-menu {
     border: none;
