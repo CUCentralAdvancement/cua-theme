@@ -1,6 +1,6 @@
 {# Card image/icon #}
 {% if card_image or icon %}
-    <div class="card-header {{ text_alignment ~ ' ' ~ padding }} g-0 p-1">
+    <div class="card-header {{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} g-0 p-1">
         {% if card_image or link_title and icon is empty %}
             {# Image attributes #}
             {% for item in content.field_image['#items'] %}

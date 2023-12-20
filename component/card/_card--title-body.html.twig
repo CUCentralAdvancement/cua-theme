@@ -1,6 +1,6 @@
 {# ## Card Title/Body ## #}
 {% if label or body %}
-    <div class="card-body text-{{ color_background ~ ' ' ~ text_alignment }} mb-3">
+    <div class="card-body text-{{ color_background ~ ' ' ~ text_alignment  ~ ' ' ~ position_container }} mb-3">
         <div class="card-body-title">
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' with { 'title': title } %}

@@ -34,7 +34,7 @@
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'alert alert-dismissible card h-100 m-0',
+    'alert alert-dismissible card h-100 m-0 pt-3',
     color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
@@ -46,7 +46,7 @@
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     <div class="container">
-        <div class="row">
+        <div class="row {{ position_container }}">
             {# button close #}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             <div class="col-sm-1 g-0 mt-4">
