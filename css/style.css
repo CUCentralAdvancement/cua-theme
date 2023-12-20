@@ -181,6 +181,11 @@ blockquote span {
     color: var(--cua-black);
 }
 
+.btn-primary:hover {
+    background: var(--cua-black);
+    text-decoration: none;
+}
+
 /* Navigation Styles */
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
