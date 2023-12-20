@@ -317,8 +317,13 @@ a.block-link figcaption {
 }
 
 .contact .organization {
+    font-style: normal;
     font-weight: bold;
     font-size: 110%;
+}
+
+.node--type-contact-us .organization {
+    font-style: italic;
 }
 
 .contact h3 {
@@ -334,6 +339,10 @@ a.block-link figcaption {
     margin: 1rem 0 1.25rem;
 }
 
+.contact .h5.title.headshot {
+    font-size: 1.25rem;
+    margin: 1rem 0 0 0 !important;
+}
 .contact .views-view-responsive-grid__item {
     padding: 1.5rem;
     border-radius: 10px;
@@ -372,6 +381,11 @@ input#edit-submit-contact--2 {
 
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
     margin: 0 0 2rem;
+}
+
+.field.field--name-title.field--type-string.field--label-hidden {
+    font-size: 110%;
+    font-weight: bold;
 }
 
 /* Media Queries */
