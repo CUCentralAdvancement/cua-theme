@@ -299,16 +299,43 @@ a.block-link figcaption {
 }
 
 /* Address - Contact */
-.address {
+.country {
+    display: none;
+}
+
+.contact .address {
     margin: 1rem 0 0;
 }
 
-.organization {
+.path-about-us .contact .address {
+    margin: 0;
+}
+
+.contact .organization {
     font-weight: bold;
     font-size: 110%;
 }
 
-.views-field.views-field-field-office-phone {
+.contact h3 {
+    margin: .5rem 0 2rem 0 !important;
+    border-bottom: 2px solid var(--cua-gold);
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.contact .h5.title {
+    font-size: 1.25rem;
+    margin: 1rem 0 1.25rem;
+}
+
+.contact .views-view-responsive-grid__item {
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: var(--cua-gray-100);
+}
+
+.contact .views-field.views-field-field-office-phone {
     margin: 1rem 0 0;
     line-height: 1.8;
 }
@@ -318,24 +345,28 @@ a.block-link figcaption {
 }
 
 .contact tr {
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid var(--cua-gold);
+    border-bottom: 4px solid var(--cua-gold);
     background: var(--cua-white);
     margin: 1rem 0 3rem 1rem !important;
     display: block;
 }
 
-input#edit-reset--2 {
-    margin: 0.25rem 0 0;
+input#edit-submit-contact--2 {
+    margin: 0.2rem 0 !important;
 }
 
-#block-cua-theme-viewsexposedfilterblock h2{
+.views-exposed-form h2 {
     font-size: 1.5rem;
-    margin: 4rem 0 1rem;
+    margin: 1rem 0 1rem;
 }
 
-.country {
-    display: none;
+.views-exposed-form {
+    background: var(--cua-gray-100);
+    padding: .1rem 1rem;
+}
+
+.views-view-responsive-grid.views-view-responsive-grid--horizontal {
+    margin: 0 0 2rem;
 }
 
 /* Media Queries */
