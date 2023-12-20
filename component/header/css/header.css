@@ -131,6 +131,20 @@ footer .nav-link.active.is-active, .nav-link.active.dropdown-toggle {
     border: none;
 }
 
+.country {
+    display: none;
+}
+
+.contact h3 {
+    margin: 0 0 2rem !important;
+}
+
+.contact .views-view-responsive-grid__item {
+    padding: 1.5rem;
+    border: 1px solid var(--cua-gray-400);
+    border-radius: 10px;
+}
+
 .dropdown-item a, .dropdown-item a:visited {
     color: var(--cua-black);
     font-weight: 400;

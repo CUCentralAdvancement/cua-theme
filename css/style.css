@@ -334,6 +334,9 @@ input#edit-reset--2 {
     margin: 4rem 0 1rem;
 }
 
+.country {
+    display: none;
+}
 
 /* Media Queries */
 
