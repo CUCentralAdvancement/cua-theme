@@ -126,6 +126,18 @@ footer .nav-link.active.is-active, .nav-link.active.dropdown-toggle {
     color: var(--cua-white) !important;
 }
 
+.navbar-nav .nav-link.show {
+    background: white !important;
+}
+
+.nav-link.active.is-active,
+.nav-link.dropdown-toggle {
+    text-decoration: none;
+}
+.nav-link.dropdown-toggle.show:hover {
+    background: black !important;
+}
+
 /* Dropdown */
 .dropdown-menu {
     border: none;
