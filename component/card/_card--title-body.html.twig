@@ -5,7 +5,7 @@
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' with { 'title': title } %}
             {# Include Body Component #}
-            <div class="card-text {{ text_alignment ~ ' ' ~ text_color }} mt-3">
+            <div class="card-text {{ text_alignment ~ ' ' ~ text_color }}">
                 {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
             </div>
         </div>
