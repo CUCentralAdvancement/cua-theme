@@ -71,6 +71,10 @@ footer .nav {
     --bs-nav-link-padding-x: 0;
 }
 
+footer .nav-link.active.is-active {
+    background: transparent;
+    color: var(--cua-white);
+}
 /* Nav Link Styling */
 footer #site-footer-bottom .nav-link,
 footer .nav-link,
