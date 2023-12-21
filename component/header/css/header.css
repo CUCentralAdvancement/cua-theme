@@ -140,6 +140,11 @@ li.dropdown .dropdown-menu .dropdown-item {
     background: var(--cua-black);
 }
 
+.nav-link.active.is-active {
+    color: var(--cua-black);
+    background: var(--cua-white);
+}
+
 /* Dropdown */
 .dropdown-menu {
     border: none;
