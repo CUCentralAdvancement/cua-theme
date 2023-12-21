@@ -335,6 +335,7 @@ a.block-link figcaption {
 }
 
 .contact .h5.title {
+    color: var(--cua-gold-hover);
     font-size: 1.25rem;
     margin: 1rem 0 1.25rem;
 }
@@ -348,6 +349,7 @@ a.block-link figcaption {
     padding: 1.5rem;
     border-radius: 10px;
     background: var(--cua-gray-200);
+    border: 1px solid var(--cua-gray-300);
 }
 
 .contact .views-field.views-field-field-office-phone {
