@@ -90,6 +90,13 @@ footer .nav-link:hover {
     text-decoration: underline;
 }
 
+.site-footer .nav-link:hover,
+.site-footer .nav-link.is-active:hover {
+    color: var(--cua-gray-200) !important;
+    background: transparent !important;
+    text-decoration: underline;
+}
+
 /* Custom Link Styling */
 footer .link-cua {
     text-decoration: none;
