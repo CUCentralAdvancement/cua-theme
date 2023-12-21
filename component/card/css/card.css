@@ -169,7 +169,7 @@
 .card-footer .btn.outline-btn-cu-bg-white {
     background: var(--cua-white);
     border: 1px solid var(--cua-black);
-    color: var(--cua-black);
+    color: var(--cua-black) !important;
 }
 
 .card-footer .btn.outline-btn-cu-bg-white:hover {
