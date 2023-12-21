@@ -343,10 +343,11 @@ a.block-link figcaption {
     font-size: 1.25rem;
     margin: 1rem 0 0 0 !important;
 }
+
 .contact .views-view-responsive-grid__item {
     padding: 1.5rem;
     border-radius: 10px;
-    background: var(--cua-gray-100);
+    background: var(--cua-gray-200);
 }
 
 .contact .views-field.views-field-field-office-phone {
@@ -375,8 +376,11 @@ input#edit-submit-contact--2 {
 }
 
 .views-exposed-form {
-    background: var(--cua-gray-100);
-    padding: .1rem 1rem;
+    background: var(--cua-dark-gray);
+    padding: 0.1rem 1rem;
+    color: var(--cua-white);
+    border-radius: 10px;
+    margin-top: 5.5rem;
 }
 
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
