@@ -394,6 +394,10 @@ input#edit-submit-contact--2 {
     font-weight: bold;
 }
 
+/* hiding h3 from board of directors because why? */
+.page-view-board-of-directors h3 {
+    display: none;
+}
 /* Media Queries */
 
 @media (min-width: 36em) {
