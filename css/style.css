@@ -385,10 +385,6 @@ input#edit-submit-contact--2 {
     margin-top: 5.5rem;
 }
 
-.views-view-responsive-grid.views-view-responsive-grid--horizontal {
-    margin: 0 0 2rem;
-}
-
 .field.field--name-title.field--type-string.field--label-hidden {
     font-size: 110%;
     font-weight: bold;

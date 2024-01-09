@@ -1,13 +1,23 @@
 {# ## Card Title/Body ## #}
 {% if label or body %}
+    {# If either label or body is present, render the following HTML block #}
     <div class="card-body text-{{ color_background ~ ' ' ~ text_alignment  ~ ' ' ~ position_container }} mb-3">
+        {# Start of card-body div with dynamic classes based on color_background, text_alignment, and position_container variables #}
         <div class="card-body-title">
+            {# Start of card-body-title div #}
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' with { 'title': title } %}
+            {# Include the Title component using an external Twig file with the provided title variable #}
             {# Include Body Component #}
             <div class="card-text {{ text_alignment ~ ' ' ~ text_color }}">
+                {# Start of div for card-text with dynamic classes based on text_alignment and text_color variables #}
                 {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
+                {# Include the Body component using an external Twig file with the provided body variable #}
             </div>
+            {# End of div for card-text #}
         </div>
+        {# End of card-body-title div #}
     </div>
+    {# End of card-body div #}
 {% endif %}
+{# End of conditional check for label or body presence #}
