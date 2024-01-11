@@ -25,6 +25,7 @@ footer #site-footer-top .clearfix.nav {
 /* Additional Block Styling */
 .site-footer .block {
     border: none;
+    margin: 23px 0;
 }
 
 /* Site Footer Bottom */

@@ -40,67 +40,24 @@
                     <div class="col-md-4 col-sm-6 px-0">
                         <section class="row region region-footer-first">
                             {# University Information #}
-                            <h2 class="g-0 mb-2">
-                                {{ 'University of Colorado'|t }}<br>
-                                {{ 'CU Advancement | CU Foundation'|t }}
-                            </h2>
+                            <h2 class="g-0 mb-2">{{ 'University of Colorado'|t }}
+                                <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
                             {# Address and Contact Information #}
-                            <a class="cua-map link-cua g-0 mb-2"
-                               href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
-                                <p>{{ '1800 Grant Street, Suite 800'|t }}
-                                    <br>{{ 'Denver, CO 80203'|t }}</p>
-                            </a>
+                            <a class="cua-map link-cua g-0 mb-2" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
+                                <p>{{ '1800 Grant Street, Suite 800'|t }}<br>{{ 'Denver, CO 80203'|t }}</p></a>
                             {# Phone Number #}
                             <p>
                                 <span itemprop="telephone">
-                                <a class="cua-phone link-cua" href="tel: +13035411290"
-                                   aria-label="{{ 'telephone'|t }}">
-                                {{ '+1 303.541.1290'|t }}
-                                </a>
+                                    <a class="cua-phone link-cua" href="tel: +13035411290"
+                                       aria-label="{{ 'telephone'|t }}">{{ '+1 303.541.1290'|t }}</a>
                                 </span>
                             </p>
                             {# Email Address #}
+                            {% set email = 'giving@cu.edu' %}
+                            {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
                             <p>
-                                {% set email = 'giving@cu.edu' %}
-                                {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
-                                <a class="link-cua"
-                                   href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
+                                <a class="link-cua" href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
                             </p>
-                            {# Social Media Links #}
-                            <div class="social-media pt-3 g-0">
-                                <nav role="navigation" class="mt-3">
-                                    <h2 class="block__title visually-hidden">{{ 'Social Media Links'|t }}</h2>
-                                    <ul class="link-underline-opacity-0">
-                                        {# Facebook Link #}
-                                        <li class="list-inline-item">
-                                            <a href="https://www.facebook.com/UniversityofColoradosystem" rel="noopener"
-                                               target="_blank"
-                                               class="fa-brands fa-facebook fa-lg link-secondary"
-                                               title="Facebook">
-                                                <span class="visually-hidden">{{ 'Facebook'|t }}</span>
-                                            </a>
-                                        </li>
-                                        {# Linkedin Link #}
-                                        <li class="list-inline-item">
-                                            <a href="https://www.linkedin.com/company/university-of-colorado" rel="noopener"
-                                               target="_blank"
-                                               class="fa-brands fa-linkedin fa-lg link-secondary"
-                                               title="Linkedin">
-                                                <span class="visually-hidden">{{ 'Linkedin'|t }}</span>
-                                            </a>
-                                        </li>
-                                        {# Twitter Link #}
-                                        <li class="list-inline-item">
-                                            <a href="https://twitter.com/CUSystem" rel="noopener"
-                                               target="_blank"
-                                               class="fa-brands fa-x-twitter fa-lg link-secondary"
-                                               title="Twitter">
-                                                <span class="visually-hidden">{{ 'Twitter'|t }}</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
                         </section>
                     </div>
                     {# Additional Footer Regions #}
@@ -144,13 +101,10 @@
                 {# Copyright Information #}
                 <div class="col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center"
                      aria-label="links and copyright">
-                    <p class="mt-2 strong text-light">
-                        {{ '©'|t }} {{ 'now' | date('Y') }}
+                    <p class="mt-2 strong text-light">{{ '©'|t }} {{ 'now' | date('Y') }}
                         {# Link to the University of Colorado Regents website #}
-                        <a href="https://regents.cu.edu" rel="noopener"
-                           target="_blank"
-                           class="link-light link-underline-opacity-0 pl-2">
-                            {{ 'Regents of the University of Colorado'|t }}
+                        <a href="https://regents.cu.edu" rel="noopener" target="_blank"
+                           class="link-light link-underline-opacity-0 pl-2">{{ 'Regents of the University of Colorado'|t }}
                         </a>
                     </p>
                 </div>
