@@ -36,11 +36,14 @@
     <div class="container">
         <div class="row clearfix g-0">
             <div class="col-md-8 g-0">
+
                 {# Top Header Navigation #}
                 <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white"
                      id="navbar-top">
                     <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
                         <div class="container d-flex">
+
+                            {# CU Logos #}
                             <div class="flex-shrink-1">
                                 {# Logo for larger screens #}
                                 <a href="{{ url('<front>') }}"
@@ -60,15 +63,18 @@
                                          width="29" height="28">
                                 </a>
                             </div>
-                            <div class="w-100 align-items-baseline">
-                                {# Site name for all screens #}
-                                <a href="{{ url('<front>') }}"
-                                   title="{{ site_slogan }}"
-                                   rel="home"
-                                   class="site-branding__name site-name">
-                                    {{ site_slogan }}
-                                </a>
-                            </div>
+
+                            {# Site name for all screens #}
+                            {% if site_slogan %}
+                                <div class="w-100 align-items-baseline">
+                                    <a href="{{ url('<front>') }}"
+                                       title="{{ site_slogan }}" rel="home"
+                                       class="site-branding__name site-name">
+                                        {{ site_slogan }}
+                                    </a>
+                                </div>
+                            {% endif %}
+
                             {# Navigation toggle button for smaller screens #}
                             <button class="navbar-toggler collapsed"
                                     type="button"
@@ -79,46 +85,58 @@
                                     aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
+
                         </div>
                     </div>
                 </nav>
             </div>
-            <div class="col-md-4 d-flex justify-content-end g-0 d-none d-lg-block">
-                {# Search bar for larger screens if provided in the page #}
-                {% if page.search %}
+
+            {# Search bar for larger screens if provided in the page #}
+            {% if page.search %}
+                <div class="col-md-4 d-flex justify-content-end g-0 d-none d-lg-block">
                     {{ page.search }}
-                {% endif %}
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    {# Site Slogan Section #}
+    {% if site_name %}
+        <div class="container-fluid site-name-wrapper g-0">
+            <div class="container px-4">
+                <h1 class="site-slogan">
+                    <a href="{{ url('<front>') }}" title="{{ site_name }}"
+                       class="site-link"
+                       rel="home">
+                        <span>{{ site_name }}</span>
+                    </a>
+                </h1>
             </div>
         </div>
-    </div>
-    {# Site Slogan Section #}
-    <div class="container-fluid site-name-wrapper g-0">
-        <div class="container px-4">
-            <h1 class="site-slogan">
-                <a href="{{ url('<front>') }}" title="{{ site_name }}" class="site-link"
-                   rel="home">
-                    <span>{{ site_name }}</span></a>
-            </h1>
-        </div>
-    </div>
+    {% endif %}
+
     {# Main Navigation Section #}
-    <nav role="navigation"
-         class="navbar l-header-bottom navbar-expand-lg"
-         id="navbar-main" aria-labelledby="cua-main-menu">
-        <div class="container">
-            <div class="collapse navbar-collapse"
-                 id="mainNavbrSupportedContent">
-                <h2 class="visually-hidden"
-                    id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
-                {# Display the primary menu provided by Drupal #}
-                {{ page.primary_menu }}
-                <div class="my-3 mx-4 d-lg-none">
+    {% if page.primary_menu or page.search %}
+        <nav role="navigation"
+             class="navbar l-header-bottom navbar-expand-lg"
+             id="navbar-main" aria-labelledby="cua-main-menu">
+            <div class="container">
+                <div class="collapse navbar-collapse"
+                     id="mainNavbrSupportedContent">
+                    <h2 class="visually-hidden"
+                        id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
+                    {# Display the primary menu provided by Drupal #}
+                    {% if page.primary_menu %}
+                        {{ page.primary_menu }}
+                    {% endif %}
                     {# Search bar for smaller screens if provided in the page #}
                     {% if page.search %}
-                        {{ page.search }}
+                        <div class="my-3 mx-4 d-lg-none">{{ page.search }}</div>
                     {% endif %}
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    {% endif %}
+
 </header>
