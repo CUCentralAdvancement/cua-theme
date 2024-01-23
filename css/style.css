@@ -327,7 +327,7 @@ a.block-link figcaption {
 }
 
 .contact h3 {
-    margin: .5rem 0 2rem 0 !important;
+    margin: 2rem 0 2rem 0 !important;
     border-bottom: 2px solid var(--cua-gold);
     padding: 0;
     text-transform: uppercase;
@@ -377,12 +377,16 @@ input#edit-submit-contact--2 {
     margin: 1rem 0 1rem;
 }
 
+#views-exposed-form-trustees-page-1 {
+    display: none;
+}
+
 .views-exposed-form {
-    background: var(--cua-dark-gray);
+    background: var(--cua-gold-hover);
     padding: 0.1rem 1rem;
     color: var(--cua-white);
     border-radius: 10px;
-    margin-top: 5.5rem;
+    margin-top: 4.2rem;
 }
 
 .field.field--name-title.field--type-string.field--label-hidden {
@@ -394,6 +398,7 @@ input#edit-submit-contact--2 {
 .page-view-board-of-directors h3 {
     display: none;
 }
+
 /* Media Queries */
 
 @media (min-width: 36em) {
