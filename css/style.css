@@ -403,6 +403,10 @@ input#edit-submit-contact--2 {
     margin-bottom: 1rem;
 }
 
+.green {
+    color: green !important;
+}
+
 /* Media Queries */
 
 @media (min-width: 36em) {
