@@ -76,7 +76,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
 }
 
 h6, .h6 {
@@ -335,9 +335,8 @@ a.block-link figcaption {
 }
 
 .contact .h5.title {
-    color: var(--cua-gold-hover);
-    font-size: 1.25rem;
-    margin: 1rem 0 1.25rem;
+    font-size: 1.3rem;
+    margin: 1rem 0 0;
 }
 
 .contact .h5.title.headshot {
@@ -428,11 +427,11 @@ input#edit-submit-contact--2 {
     }
 
     h5, .h5 {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
     }
 
     h6, .h6 {
-        font-size: 1.125rem;
+        font-size: 1.15rem;
     }
 }
 
