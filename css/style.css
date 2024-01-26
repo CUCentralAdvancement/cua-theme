@@ -430,18 +430,10 @@ aside a {
 aside .nav-link {
     color: var(--cua-dark-gray);
     background: var(--cua-white);
-    border: 1px solid var(--cua-gray-200);
-    border-bottom: none;
-}
-
-aside .nav-link.active.is-active {
-    color: var(--cua-dark-gray);
-    background: var(--cua-gray-200);
-}
-
-/* Override the border on the bottom for all .nav-link except the last one */
-aside .nav-link:not(:last-child) {
-    border: 1px solid var(--cua-gray-200);
+    border-top: 1px solid var(--cua-white);
+    border-right: 1px solid var(--cua-white);
+    border-left: 5px solid var(--cua-gold);
+    border-bottom: 1px solid var(--cua-white);
 }
 
 /* Media Queries */
