@@ -406,6 +406,44 @@ input#edit-submit-contact--2 {
     color: green !important;
 }
 
+/* Side column links */
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: .5rem;
+}
+
+aside li {
+    width: 100%;
+}
+
+aside a {
+    display: block;
+    width: 100%;
+    text-decoration: none; /* optional: remove underline from links */
+    color: inherit; /* optional: inherit text color from parent */
+    padding: 10px; /* optional: add padding as needed */
+    box-sizing: border-box; /* include padding and border in the total width */
+}
+
+/* Apply border on all sides for all .nav-link elements */
+aside .nav-link {
+    color: var(--cua-dark-gray);
+    background: var(--cua-white);
+    border: 1px solid var(--cua-gray-200);
+    border-bottom: none;
+}
+
+aside .nav-link.active.is-active {
+    color: var(--cua-dark-gray);
+    background: var(--cua-gray-200);
+}
+
+/* Override the border on the bottom for all .nav-link except the last one */
+aside .nav-link:not(:last-child) {
+    border: 1px solid var(--cua-gray-200);
+}
+
 /* Media Queries */
 
 @media (min-width: 36em) {
@@ -453,7 +491,3 @@ input#edit-submit-contact--2 {
         font-size: 1.25rem;
     }
 }
-
-
-
-
