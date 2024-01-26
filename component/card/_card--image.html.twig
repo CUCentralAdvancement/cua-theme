@@ -19,7 +19,7 @@
                 } %}
                 {# Set image variable with necessary attributes for rendering #}
                 {# Check if link is active #}
-                {% if link_url is not empty %}
+                {% if link_title is not empty %}
                     <a class="block-link" href="{{ link_url }}" aria-label="{{ link_title }}">
                 {% endif %}
                 {# If link is active, start anchor tag with necessary attributes #}
@@ -39,7 +39,7 @@
                 </div>
                 {# End of div for image #}
                 {# Check if link is not active #}
-                {% if link_url is not empty %}
+                {% if link_title is not empty %}
                     </a>
                 {% endif %}
                 {# If link is active, close the anchor tag #}
