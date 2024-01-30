@@ -457,3 +457,8 @@ aside .nav-link {
 #main-wrapper-landing-page  h1 {
     margin: 1rem 5rem;
 }
+
+.block-inline-blockbanner .card-img-top {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
