@@ -72,6 +72,10 @@ h2, .h2 {
     font-size: 2.25rem;
 }
 
+.block-layout-builder h2, .block-layout-builder .h2 {
+    font-size: 1.75rem;
+}
+
 h3, .h3 {
     font-size: 1.875rem;
 }
