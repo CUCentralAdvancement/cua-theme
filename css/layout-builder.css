@@ -264,3 +264,7 @@ form#node-page-layout-builder-form div#edit-actions {
   color: var(--cua-black);
   background-color: var(--cua-white);
 }
+
+.block.block-layout-builder.block-inline-blockbasic {
+  margin: 0 0 2rem;
+}
