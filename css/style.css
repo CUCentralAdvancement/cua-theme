@@ -42,13 +42,19 @@
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
 
+    /* Bootstrap5 colors */
+    --bs-link-color: #0d6efd;
+    --cua-link-color: #0d6efd;
+
     /* Font Awesome and Typography */
     --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
     --fa-style-family-classic: 'Font Awesome 6 Free';
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', sans-serif;
 
+
 }
+
 
 /* Headings */
 
@@ -84,7 +90,7 @@ h6, .h6 {
 
 /* Body */
 a {
-    color: var(--cua-gold-hover);
+    color: var(--cua-link-color);
     text-decoration: none;
 }
 
