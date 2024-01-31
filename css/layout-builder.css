@@ -1,47 +1,55 @@
 /* Layout Builder Styles */
 
 /* Adjusting the max width of actions in the page layout builder form */
+form#node-landing-page-layout-builder-form input#edit-actions,
 form#node-page-layout-builder-form input#edit-actions {
   max-width: 10rem;
 }
 
 /* Styling for the first button in the layout builder form */
+form#node-landing-page-layout-builder-form .btn-primary:first-child,
 form#node-page-layout-builder-form .btn-primary:first-child {
   background-color: #0080002b;
   border-color: transparent;
 }
 
 /* Hover styling for the first button */
+form#node-landing-page-layout-builder-form .btn-primary:first-child:hover,
 form#node-page-layout-builder-form .btn-primary:first-child:hover {
   background-color: var(--cua-green);
   color: var(--cua-white);
 }
 
 /* Styling for the second button in the layout builder form */
+form#node-landing-page-layout-builder-form .btn-primary:nth-child(2),
 form#node-page-layout-builder-form .btn-primary:nth-child(2) {
   background-color: #ff00003b;
   border-color: transparent;
 }
 
 /* Hover styling for the second button */
+form#node-landing-page-layout-builder-form .btn-primary:nth-child(2):hover,
 form#node-page-layout-builder-form .btn-primary:nth-child(2):hover {
   background-color: #f00;
   color: white;
 }
 
 /* Styling for the third button in the layout builder form */
+form#node-landing-page-layout-builder-form .btn-primary:nth-child(3),
 form#node-page-layout-builder-form .btn-primary:nth-child(3) {
   background-color: #ffff004d;
   border-color: transparent;
 }
 
 /* Hover styling for the third button */
+form#node-landing-page-layout-builder-form .btn-primary:nth-child(3):hover,
 form#node-page-layout-builder-form .btn-primary:nth-child(3):hover {
   background-color: yellow;
   color: black;
 }
 
 /* Inline flex display for the edit actions */
+form#node-landing-page-layout-builder-form div#edit-actions,
 form#node-page-layout-builder-form div#edit-actions {
   display: inline-flex;
 }
