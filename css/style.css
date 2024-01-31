@@ -43,8 +43,8 @@
     --bs-body-line-height: 1.5;
 
     /* Bootstrap5 colors */
-    --bs-link-color: #0d6efd;
-    --cua-link-color: #0d6efd;
+    --bs-link-color: #0277BD;
+    --cua-link-color: #0277BD;
 
     /* Font Awesome and Typography */
     --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
@@ -99,6 +99,7 @@ a {
 }
 
 a:hover {
+    color: var(--cua-gold-hover);
     text-decoration: underline;
 }
 
@@ -353,13 +354,6 @@ a.block-link figcaption {
     margin: 1rem 0 0 0 !important;
 }
 
-.contact .views-view-responsive-grid__item {
-    padding: 1.5rem;
-    border-radius: 10px;
-    background: var(--cua-gray-200);
-    border: 1px solid var(--cua-gray-300);
-}
-
 .contact .views-field.views-field-field-office-phone {
     margin: 1rem 0 0;
     line-height: 1.8;
@@ -461,4 +455,8 @@ aside .nav-link {
 .block-inline-blockbanner .card-img-top {
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
+}
+
+.views-view-responsive-grid__item {
+    margin-bottom: 2rem;
 }
