@@ -517,6 +517,12 @@ div#block-cua-theme-viewsexposedfilterblock {
     margin: 1rem 0 0;
 }
 
+div#edit-contacts--2 {
+    border-radius: 0;
+    border: 1px solid white;
+    border-right: 1px solid var(--cua-gray-400) !important;
+}
+
 /* Layout Builder Bootstrap Module Full Width -- Do Not Change */
 #main-wrapper-landing-page .row {
     --bs-gutter-x: 0 !important;
@@ -554,3 +560,4 @@ div#block-cua-theme-viewsexposedfilterblock {
     text-decoration: none;
     z-index: 100000;
 }
+
