@@ -518,7 +518,8 @@ div#block-cua-theme-viewsexposedfilterblock {
     margin: 1rem 0 0;
 }
 
-div#edit-contacts--2 {
+div#edit-contacts--2,
+div#edit-bod--2 {
     border-radius: 0;
     border: 1px solid white;
     border-right: 1px solid var(--cua-gray-400) !important;
