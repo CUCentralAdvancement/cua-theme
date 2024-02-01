@@ -477,6 +477,7 @@ aside a {
     text-decoration: none;
     padding: 10px 0 0;
     width: 100%;
+    margin-bottom: 0.5rem;
 }
 
 aside a:hover {
@@ -485,7 +486,6 @@ aside a:hover {
     border-bottom: 2px solid var(--cua-gold);
 
 }
-
 /* Apply border on all sides for all .nav-link elements */
 aside .nav-link {
     color: var(--cua-dark-gray);
