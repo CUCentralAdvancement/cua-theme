@@ -326,8 +326,9 @@ a.block-link figcaption {
     margin: 1rem 0 0;
 }
 
-.path-about-us .contact .address {
+.contact .address {
     margin: 0;
+    padding-bottom: 0.5rem;
 }
 
 .contact .organization {
@@ -342,10 +343,19 @@ a.block-link figcaption {
 
 .contact h3 {
     /*margin: 2rem 0 2rem 0 !important;*/
-    border-bottom: 2px solid var(--cua-gold);
+    /*border-bottom: 2px solid var(--cua-gold);*/
     padding: 0;
     text-transform: uppercase;
     font-size: 1.5rem;
+}
+
+.contact h3::after {
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    background-color: #cfb87c;
+    margin: 0.4em 0;
 }
 
 .contact .h5.title {
@@ -389,6 +399,7 @@ a.block-link figcaption {
 .contact .fa-phone:before,
 .contact .fa-envelope:before {
     font-size: 90%;
+    color: var(--cua-gold);
 }
 
 .contact .field-content,
@@ -398,6 +409,19 @@ a.block-link figcaption {
 
 .contact h5 {
     margin-bottom: 0;
+}
+
+.contact .views-view-responsive-grid__item {
+    background: #f4f4f5;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem;
+    margin: 0 0 1em 0;
+}
+
+.contact .views-field.views-field-field-address {
+    border-bottom: 2px solid #fff;
+    /* margin-top: 1rem; */
 }
 
 input#edit-submit-contact--2 {
@@ -500,3 +524,4 @@ aside .nav-link {
     text-decoration: none;
     z-index: 100000;
 }
+
