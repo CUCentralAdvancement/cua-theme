@@ -523,6 +523,10 @@ div#edit-contacts--2 {
     border-right: 1px solid var(--cua-gray-400) !important;
 }
 
+a.bef-link.bef-link--selected {
+    border-bottom: 2px solid var(--cua-gold) !important;
+}
+
 /* Layout Builder Bootstrap Module Full Width -- Do Not Change */
 #main-wrapper-landing-page .row {
     --bs-gutter-x: 0 !important;
