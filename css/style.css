@@ -460,7 +460,6 @@ input#edit-submit-contact--2 {
 aside ul {
     list-style-type: none;
     padding: 0;
-    margin-top: .5rem;
 }
 
 aside li {
@@ -468,14 +467,22 @@ aside li {
 }
 
 aside a {
+    border-bottom: 2px solid var(--cua-white);
+    box-sizing: border-box;
+    color: var(--cua-black);
     display: block;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 0 0;
     width: 100%;
-    text-decoration: none; /* optional: remove underline from links */
-    color: inherit; /* optional: inherit text color from parent */
-    padding: 10px; /* optional: add padding as needed */
-    box-sizing: border-box; /* include padding and border in the total width */
 }
 
+aside a:hover {
+    color: var(--cua-gold-hover);
+    text-decoration: none;
+    border-bottom: 2px solid var(--cua-gold);
+
+}
 /* Apply border on all sides for all .nav-link elements */
 aside .nav-link {
     color: var(--cua-dark-gray);
@@ -517,10 +524,21 @@ aside .nav-link {
     height: 60px;
     border-radius: 50%;
     color: black;
-    border: 3px solid #cfb87c;
+    border: 3px solid var(--cua-gold);
     background-color: #f4f5f5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     text-decoration: none;
     z-index: 100000;
 }
 
+.form-select {
+    border: 1px solid var(--cua-white) !important;
+}
+
+.form-select {
+    --bs-form-select-bg-img: none !important;
+}
+
+.bef-link .bef-link--selected {
+    color: var(--cua-gold-hover);
+}
