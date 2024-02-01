@@ -509,7 +509,8 @@ aside .nav-link {
     color: var(--cua-gold-hover);
 }
 
-a#edit-contacts-all:first-child {
+a#edit-contacts-all:first-child,
+a#edit-bod-all:first-child {
     display: none !important;
 }
 
