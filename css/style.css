@@ -43,8 +43,8 @@
     --bs-body-line-height: 1.5;
 
     /* Bootstrap5 colors */
-    --bs-link-color: #0277BD;
-    --cua-link-color: #0277BD;
+    --bs-link-color: #0277bd;
+    --cua-link-color: #0277bd;
 
     /* Font Awesome and Typography */
     --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
@@ -374,6 +374,32 @@ a.block-link figcaption {
     display: block;
 }
 
+
+.contact a {
+    color: var(--cua-black);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    color: var(--cua-gold-hover);
+    text-decoration: none;
+}
+
+.contact .fa-phone:before,
+.contact .fa-envelope:before {
+    font-size: 90%;
+}
+
+.contact .field-content,
+.contact .email.mb-2 {
+    margin: 0 0 0 .5rem;
+}
+
+.contact h5 {
+    margin-bottom: 0;
+}
+
 input#edit-submit-contact--2 {
     margin: 0.2rem 0 !important;
 }
@@ -446,7 +472,7 @@ aside .nav-link {
     margin-top: 0 !important;
 }
 
-#main-wrapper-landing-page  h1 {
+#main-wrapper-landing-page h1 {
     margin: 1rem 5rem;
 }
 
@@ -468,9 +494,9 @@ aside .nav-link {
     height: 60px;
     border-radius: 50%;
     color: black;
-    border: 3px solid #CFB87C;
+    border: 3px solid #cfb87c;
     background-color: #f4f5f5;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     text-decoration: none;
     z-index: 100000;
 }
