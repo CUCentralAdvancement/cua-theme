@@ -471,7 +471,9 @@ aside a {
     box-sizing: border-box;
     color: var(--cua-black);
     display: block;
+    font-size: 1.1rem;
     font-weight: 600;
+    line-height: 1.3;
     text-decoration: none;
     padding: 10px 0 0;
     width: 100%;
@@ -483,6 +485,7 @@ aside a:hover {
     border-bottom: 2px solid var(--cua-gold);
 
 }
+
 /* Apply border on all sides for all .nav-link elements */
 aside .nav-link {
     color: var(--cua-dark-gray);
@@ -491,6 +494,27 @@ aside .nav-link {
     border-right: 1px solid var(--cua-white);
     border-left: 5px solid var(--cua-gold);
     border-bottom: 1px solid var(--cua-white);
+}
+
+
+.form-select {
+    border: 1px solid var(--cua-white) !important;
+}
+
+.form-select {
+    --bs-form-select-bg-img: none !important;
+}
+
+.bef-link .bef-link--selected {
+    color: var(--cua-gold-hover);
+}
+
+a#edit-contacts-all:first-child {
+    display: none !important;
+}
+
+div#block-cua-theme-viewsexposedfilterblock {
+    margin: 1rem 0 0;
 }
 
 /* Layout Builder Bootstrap Module Full Width -- Do Not Change */
@@ -529,16 +553,4 @@ aside .nav-link {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     text-decoration: none;
     z-index: 100000;
-}
-
-.form-select {
-    border: 1px solid var(--cua-white) !important;
-}
-
-.form-select {
-    --bs-form-select-bg-img: none !important;
-}
-
-.bef-link .bef-link--selected {
-    color: var(--cua-gold-hover);
 }
