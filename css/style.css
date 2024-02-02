@@ -128,10 +128,14 @@ body, p, a, li {
 }
 
 /* Breadcrumb */
-
 .breadcrumb a {
     color: var(--bs-breadcrumb-item-active-color);
     text-decoration: none;
+    font-size: .9rem;
+}
+
+.breadcrumb-item.active {
+    font-size: .9rem;
 }
 
 ol.breadcrumb li:first-child a::before {
