@@ -108,9 +108,64 @@ header .nav-link {
     text-transform: uppercase;
 }
 
+/* Custom CSS to move the last link to the right */
+#block-cua-theme-main-menu {
+    width: 100% !important;
+}
+
+.menu--main ul li a {
+    position: relative;
+    text-decoration: none;
+    color: var(--cua-black)
+}
+
+.menu--main ul li a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; /* Adjust the line thickness as needed */
+    background-color: var(--cua-gray-400);
+    transition: width 0.3s ease;
+}
+
+.menu--main ul li a:last-child::before {
+    background-color: var(--cua-white) !important;
+}
+
+.menu--main ul li a:hover::before {
+    width: 100%;
+}
+
+header  ul.nav.navbar-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+header  ul.nav.navbar-nav li {
+    margin-right: 1rem; /* Adjust the margin between list items as needed */
+}
+
+header  ul.nav.navbar-nav li:last-child {
+    margin-left: auto;
+}
+
 header .nav-link:last-child {
-    color: var(--cua-gold-hover);
+    color: var(--cua-black);
     background: var(--cua-white);
+    justify-content: end !important;
+}
+
+header .nav-link:last-child:hover {
+    color: var(--cua-gold) !important;
+}
+
+.nav-link:hover {
+    color: var(--cua-gold);
+    background: var(--cua-white);
+    text-decoration: none;
 }
 
 header .nav-link:last-child::before {
@@ -118,6 +173,9 @@ header .nav-link:last-child::before {
     content: "\f004";
     font-family: FontAwesome;
     margin: 0 .5rem 0;
+    position: absolute;
+    top: 7px;
+    left: -25px;
 }
 
 .nav-link:hover,
@@ -251,3 +309,4 @@ div#block-cua-theme-searchform {
         margin: 0;
     }
 }
+
