@@ -99,7 +99,7 @@ a.nav-link.nav-link--, .nav-item .menu-item--expanded .dropdown, .nav-item .menu
     background: var(--cua-white);
 }
 
-.nav-link {
+header .nav-link {
     color: var(--cua-dark-gray);
     background: var(--cua-white);
     padding: .5rem;
@@ -108,12 +108,12 @@ a.nav-link.nav-link--, .nav-item .menu-item--expanded .dropdown, .nav-item .menu
     text-transform: uppercase;
 }
 
-.nav-link:last-child {
+header .nav-link:last-child {
     color: var(--cua-gold-hover);
     background: var(--cua-white);
 }
 
-.nav-link:last-child::before {
+header .nav-link:last-child::before {
     color: var(--cua-gold);
     content: "\f004";
     font-family: FontAwesome;
