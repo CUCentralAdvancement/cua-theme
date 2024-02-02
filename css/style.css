@@ -345,15 +345,13 @@ a.block-link figcaption {
     font-style: italic;
 }
 
-.contact h3 {
-    /*margin: 2rem 0 2rem 0 !important;*/
-    /*border-bottom: 2px solid var(--cua-gold);*/
+.contact h3, .h3 {
     padding: 0;
     text-transform: uppercase;
     font-size: 1.5rem;
 }
 
-.contact h3::after {
+.contact h3::after, .block-layout-builder h2::after {
     content: " ";
     display: block;
     width: 1.5em;
@@ -581,4 +579,8 @@ div#block-cua-theme-breadcrumbs {
 
 .h4.title a:hover {
     color: var(--cua-black);
+}
+
+.row.region.region-banner {
+    margin-bottom: 1.5rem;
 }

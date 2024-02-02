@@ -276,3 +276,12 @@ form#node-page-layout-builder-form div#edit-actions {
 .block.block-layout-builder.block-inline-blockbasic {
   margin: 0 0 2rem;
 }
+
+#layout-builder-modal form {
+  color: #000 !important;
+  font-family: inherit;
+}
+
+#drupal-off-canvas-wrapper {
+  width: 90% !important;
+}
