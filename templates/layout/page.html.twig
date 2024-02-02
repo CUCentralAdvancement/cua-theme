@@ -102,11 +102,11 @@
                 </div>
             {% endblock %}
         {% endif %}
-        <div id="main-wrapper" class="layout-main-wrapper pt-4 pb-5 clearfix">
+        <div id="main-wrapper" class="layout-main-wrapper pb-5 clearfix">
             {% block content %}
                 <div id="main" class="{{ container }}">
                     {{ page.breadcrumb }}
-                    <div class="row row-offcanvas row-offcanvas-left clearfix">
+                    <div class="row row-offcanvas row-offcanvas-left mt-4 clearfix">
                         <main{{ content_attributes }}>
                             <section class="section">
                                 <a href="#main-content" id="main-content"
@@ -115,7 +115,7 @@
                             </section>
                         </main>
                         {% if sidebar_first_exists %}
-                            <div class="col-md-3 col-sm-12">
+                            <div class="col-md-3 col-sm-12 mt-2">
                                 <aside class="section" role="complementary">
                                     {{ page.sidebar_first }}
                                 </aside>

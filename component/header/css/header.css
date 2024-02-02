@@ -2,14 +2,22 @@
 
 /* Site Slogan */
 h1.site-slogan {
-    padding: 0 0 10px;
+    padding: 0 0 15px;
     margin: 0;
+}
+
+.uccs-site-title-header
+{
+    font-size: 1.75rem;
+    font-weight: bolder;
+    margin: 0;
+    padding: 0.25em 0;
 }
 
 /* Site Name Wrapper */
 .site-name-wrapper {
     background-color: var(--cua-white-light);
-    border-color: var(--cua-white-darker);
+    border-color: var(--cua-white);
     border-style: solid;
     border-width: 1px 0 0 1px;
     width: 100%;
@@ -43,8 +51,10 @@ a.site-branding__name span {
 .site-link {
     color: var(--cua-gray-800);
     text-decoration: none;
-    font-size: 26px;
-    font-weight: 900;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0.25em 0;
 }
 
 .site-link:hover {
@@ -67,26 +77,11 @@ a.nav-link.nav-link--, .nav-item .menu-item--expanded .dropdown, .nav-item .menu
     padding: 0.938rem;
 }
 
-.navbar-nav > li:not(:last-child) {
-    border-right-color: var(--cua-gray-600);
-}
-
-.navbar-nav > li:first-child,
-li.dropdown .dropdown-menu .dropdown-item {
-    border-top-color: var(--cua-gray-600);
-}
-
-.navbar-nav > li:not(:last-child) {
-    border-right-width: 1px;
-    border-right-style: solid;
-}
-
 .navbar {
     --bs-navbar-padding-y: 0;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
-    padding: .75rem 1.5rem;
     text-decoration: none;
 }
 
@@ -101,13 +96,16 @@ li.dropdown .dropdown-menu .dropdown-item {
 
 #navbar-main {
     border-top: 1px solid var(--cua-white);
-    background: var(--cua-dark-gray);
+    background: var(--cua-white);
 }
 
 .nav-link {
-    color: var(--cua-white);
-    background: var(--cua-dark-gray);
+    color: var(--cua-dark-gray);
+    background: var(--cua-white);
+    padding: .5rem;
+    font-weight: 600;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 .nav-link:hover,
@@ -116,7 +114,6 @@ li.dropdown .dropdown-menu .dropdown-item {
     background: var(--cua-white) !important;
     text-decoration: none;
 }
-
 
 .navbar-expand-lg .navbar-nav .nav-link ul li:first-child {
     padding: 0.75rem 1.5rem;
@@ -143,6 +140,10 @@ li.dropdown .dropdown-menu .dropdown-item {
 .nav-link.active.is-active {
     color: var(--cua-black);
     background: var(--cua-white);
+}
+
+ul .nav.navbar-nav {
+    margin: 0.75rem 0;
 }
 
 /* Dropdown */

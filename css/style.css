@@ -383,7 +383,6 @@ a.block-link figcaption {
     display: block;
 }
 
-
 .contact a {
     color: var(--cua-black);
     font-weight: 500;
@@ -443,10 +442,6 @@ input#edit-submit-contact--2 {
 }
 
 /* hiding h3 from board of directors because why? */
-.page-view-board-of-directors h3 {
-    display: none;
-}
-
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
     margin-bottom: 3rem;
     margin-top: 0;
@@ -567,3 +562,6 @@ a.bef-link.bef-link--selected {
     z-index: 100000;
 }
 
+div#block-cua-theme-breadcrumbs {
+    padding: 0 .5rem 0;
+}
