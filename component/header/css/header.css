@@ -6,14 +6,6 @@ h1.site-slogan {
     margin: 0;
 }
 
-.uccs-site-title-header
-{
-    font-size: 1.75rem;
-    font-weight: bolder;
-    margin: 0;
-    padding: 0.25em 0;
-}
-
 /* Site Name Wrapper */
 .site-name-wrapper {
     background-color: var(--cua-white-light);
@@ -238,6 +230,11 @@ ul .nav.navbar-nav {
 .dropdown-item a:hover {
     background-color: var(--cua-white);
     color: var(--cua-gold-hover);
+}
+
+.dropdown-item:hover {
+    color: var(--bs-dropdown-link-hover-color);
+    background-color: var(--cua-white) !important;
 }
 
 .dropdown-item.active, .dropdown-item:active {
