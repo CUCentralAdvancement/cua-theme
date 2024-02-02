@@ -43,8 +43,8 @@
     --bs-body-line-height: 1.5;
 
     /* Bootstrap5 colors */
-    --bs-link-color: #0277bd;
-    --cua-link-color: #0277bd;
+    --bs-link-color: #0854BB;
+    --cua-link-color: #0854BB;
 
     /* Font Awesome and Typography */
     --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
@@ -568,4 +568,17 @@ a.bef-link.bef-link--selected {
 
 div#block-cua-theme-breadcrumbs {
     padding: 0 .5rem 0;
+}
+
+.h4.title a {
+    font-size: 1.2rem !important;
+    color: var(--cua-link-color);
+    line-height: 1.2;
+    font-weight: 600;
+    margin: 0 0 1rem !important;
+    display: block;
+}
+
+.h4.title a:hover {
+    color: var(--cua-black);
 }
