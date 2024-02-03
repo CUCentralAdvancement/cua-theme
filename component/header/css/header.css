@@ -223,6 +223,7 @@ ul .nav.navbar-nav {
 .dropdown-menu.show {
     border-top: 3px solid var(--cua-black);
     border-radius: 0;
+    z-index: 99999;
     box-shadow: -3px 4px 13px -3px rgba(0,0,0,0.44);
     -webkit-box-shadow: -3px 4px 13px -3px rgba(0,0,0,0.44);
     -moz-box-shadow: -3px 4px 13px -3px rgba(0,0,0,0.44);

@@ -135,7 +135,8 @@ body, p, a, li {
 }
 
 .breadcrumb-item.active {
-    font-size: .9rem;
+    font-size: 1rem;
+    color: var(--cua-gold-hover);
 }
 
 ol.breadcrumb li:first-child a::before {
@@ -219,9 +220,19 @@ blockquote span {
 }
 
 /* FAQ Styles */
-
 .faq .js-views-accordion-group-header {
-    margin: 2rem 0 .5rem;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.faq .js-views-accordion-group-header::after {
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    background-color: #cfb87c;
+    margin: 0.4em 0;
 }
 
 .faq .ui-state-active {
@@ -311,7 +322,7 @@ a.block-link figcaption {
 
 /* Strong Text Styles */
 
-.bold, strong, .strong-text, .ui-accordion .ui-accordion-header {
+.bold, strong, .strong-text {
     font-weight: 700;
 }
 
@@ -345,7 +356,7 @@ a.block-link figcaption {
     font-style: italic;
 }
 
-.contact h3, .h3 {
+.contact h3, .h3{
     padding: 0;
     text-transform: uppercase;
     font-size: 1.5rem;
@@ -483,22 +494,28 @@ aside a:hover {
     border-bottom: 2px solid var(--cua-gold);
 
 }
+
 /* Apply border on all sides for all .nav-link elements */
 aside .nav-link {
-    color: var(--cua-dark-gray);
-    background: var(--cua-white);
-    border-top: 1px solid var(--cua-white);
-    border-right: 1px solid var(--cua-white);
-    border-left: 5px solid var(--cua-gold);
-    border-bottom: 1px solid var(--cua-white);
+    border-bottom: 2px solid var(--cua-white);
+    box-sizing: border-box;
+    color: var(--cua-black);
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+    padding: 10px 0 0;
+    width: 100%;
+    margin-bottom: 0.5rem;
 }
 
+aside .block.block-menu.navigation {
+    border-right: 1px solid var(--cua-gray-400);
+}
 
 .form-select {
     border: 1px solid var(--cua-white) !important;
-}
-
-.form-select {
     --bs-form-select-bg-img: none !important;
 }
 
@@ -570,7 +587,6 @@ div#block-cua-theme-breadcrumbs {
 
 .h4.title a {
     font-size: 1.2rem !important;
-    color: var(--cua-link-color);
     line-height: 1.2;
     font-weight: 600;
     margin: 0 0 1rem !important;
@@ -578,9 +594,10 @@ div#block-cua-theme-breadcrumbs {
 }
 
 .h4.title a:hover {
-    color: var(--cua-black);
+    color: var(--cua-gold);
 }
 
 .row.region.region-banner {
     margin-bottom: 1.5rem;
 }
+
