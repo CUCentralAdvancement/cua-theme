@@ -43,8 +43,8 @@
     --bs-body-line-height: 1.5;
 
     /* Bootstrap5 colors */
-    --bs-link-color: #0854BB;
-    --cua-link-color: #0854BB;
+    --bs-link-color: #0854bb;
+    --cua-link-color: #0854bb;
 
     /* Font Awesome and Typography */
     --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
@@ -74,6 +74,21 @@ h1.title {
 
 h2, .h2 {
     font-size: 2.25rem;
+}
+
+aside h2, aside.h2 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+
+aside h2::after {
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    background-color: #cfb87c;
+    margin: 0.4em 0;
 }
 
 .block-layout-builder h2, .block-layout-builder .h2 {
@@ -356,7 +371,7 @@ a.block-link figcaption {
     font-style: italic;
 }
 
-.contact h3, .h3{
+.contact h3, .h3 {
     padding: 0;
     text-transform: uppercase;
     font-size: 1.5rem;
@@ -472,6 +487,7 @@ aside ul {
 
 aside li {
     width: 100%;
+    padding: 0 1rem;
 }
 
 aside a {
@@ -486,13 +502,13 @@ aside a {
     padding: 10px 0 0;
     width: 100%;
     margin-bottom: 0.5rem;
+    transition: border-bottom 0.5s ease; /* Added smooth transition */
 }
 
 aside a:hover {
     color: var(--cua-gold-hover);
     text-decoration: none;
-    border-bottom: 2px solid var(--cua-gold);
-
+    border-bottom: 2px solid var(--cua-gray-400);
 }
 
 /* Apply border on all sides for all .nav-link elements */
@@ -601,3 +617,10 @@ div#block-cua-theme-breadcrumbs {
     margin-bottom: 1.5rem;
 }
 
+h2.title {
+    font-size: 1.2rem;
+}
+p.intro {
+    font-size: 1.2rem;
+    color: var(--cua-gray-800);
+}
