@@ -512,7 +512,7 @@ aside a.nav-link {
 
 aside .form-select a:hover,
 aside a.nav-link:hover {
-    color: var(--cua-gold-hover);
+    color: var(--cua-black);
     text-decoration: none;
 }
 
@@ -531,7 +531,7 @@ aside a.nav-link::before {
 aside .form-select a:hover::before,
 aside  a.nav-link:hover::before {
     width: 100%; /* Expand width to 100% on hover */
-    background-color: var(--cua-gray-400);
+    background-color: var(--cua-gold);
 }
 
 aside .form-select .block.block-menu.navigation,
@@ -629,6 +629,7 @@ div#block-cua-theme-breadcrumbs {
 h2.title {
     font-size: 1.2rem;
 }
+
 p.intro {
     font-size: 1.2rem;
     color: var(--cua-gray-800);
