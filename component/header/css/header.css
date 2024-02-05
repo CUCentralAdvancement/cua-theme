@@ -279,7 +279,7 @@ button#search-icon {
 button#search-icon {
     border-radius: 50%;
     padding: 0.6rem;
-    background: #F3F3F3;
+    background: #f3f3f3;
     box-shadow: 0 0 1px 0 rgb(0 0 0 / 50%);
     margin: 0 3px;
 }
@@ -313,12 +313,12 @@ header .search-block-form {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color:  var(--cua-gray-800);
+    color: var(--cua-gray-800);
     background-color: var(--cua-white);
     background-clip: padding-box;
     border: 2px solid var(--cua-gray-300);
     border-radius: 0.25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .search-block-form .container {
@@ -345,8 +345,8 @@ header .search-block-form {
         border-right-color: transparent;
     }
 
-    #navbar-main {
-        background: var(--cua-dark-gray);
+    header ul.nav.navbar-nav li:last-child {
+        margin-left: 1.5rem;
     }
 
     h1.site-slogan {
