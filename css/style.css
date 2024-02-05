@@ -539,9 +539,13 @@ aside .block.block-menu.navigation {
     border-right: 1px solid var(--cua-gray-400);
 }
 
-.form-select {
+aside .form-select {
     border: 1px solid var(--cua-white) !important;
     --bs-form-select-bg-img: none !important;
+}
+
+aside .form-select ul li ul {
+    margin-left: 1rem;
 }
 
 .bef-link .bef-link--selected {
@@ -634,3 +638,4 @@ p.intro {
     font-size: 1.2rem;
     color: var(--cua-gray-800);
 }
+
