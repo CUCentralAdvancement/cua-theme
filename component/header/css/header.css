@@ -296,6 +296,8 @@ header .search-block-form {
     color: var(--cua-gray-800);
     background: var(--cua-gold);
     padding: .35rem .5rem;
+    border-radius: 3px;
+    margin: 0 0 0 1rem;
 }
 
 .search-block-form .js-form-type-search input.form-search,

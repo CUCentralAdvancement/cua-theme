@@ -54,18 +54,20 @@ function cua_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
  *   The form structure array.
  * @param array $form_state
  *   An array representing the form's state.
+ */
+/**
+ * Implements hook_form_alter().
+ */
+function cua_theme_form_alter(&$form, &$form_state, $form_id) {
+    // Check if the form is the search form.
+    if ($form_id == 'search_block_form') {
+        // Change the text on the search button to "Submit".
+        $form['actions']['submit']['#value'] = t('Submit');
 
-function cua_theme_form_search_block_form_alter(&$form, &$form_state) {
-    // Add a placeholder text to the search input field.
-    $form['keys']['#attributes']['placeholder'][] = t('Search');
-
-    // Change the submit button value to a Font Awesome icon.
-    $form['actions']['submit']['#value'] = html_entity_decode('&#xf002;');
-
-    // Add a class to the submit button for styling purposes, using Font Awesome.
-    $form['actions']['submit']['#attributes']['class'][] = 'fas fa-search';
+        // Add a placeholder text to the search input field.
+        $form['keys']['#attributes']['placeholder'] = t('Search');
+    }
 }
-*/
 
 /**
  * Implements hook_preprocess_HOOK() for page templates.
