@@ -222,7 +222,7 @@ blockquote span {
 
 /* Navigation Styles */
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link, .nav-link.active.dropdown-toggle {
     background-color: var(--cua-gold);
     color: var(--cua-black);
     margin: 0 .2rem;
@@ -480,18 +480,17 @@ input#edit-submit-contact--2 {
 }
 
 /* Side column links */
-aside ul {
+aside .form-select ul {
     list-style-type: none;
     padding: 0;
 }
 
-aside li {
+aside .form-select li {
     width: 100%;
-    padding: 0 1rem;
 }
 
-aside a {
-    border-bottom: 2px solid var(--cua-white);
+/* Side column links */
+aside .form-select a {
     box-sizing: border-box;
     color: var(--cua-black);
     display: block;
@@ -502,31 +501,32 @@ aside a {
     padding: 10px 0 0;
     width: 100%;
     margin-bottom: 0.5rem;
-    transition: border-bottom 0.5s ease; /* Added smooth transition */
+    position: relative;
 }
 
-aside a:hover {
+aside .form-select a:hover {
     color: var(--cua-gold-hover);
     text-decoration: none;
-    border-bottom: 2px solid var(--cua-gray-400);
 }
 
-/* Apply border on all sides for all .nav-link elements */
-aside .nav-link {
-    border-bottom: 2px solid var(--cua-white);
-    box-sizing: border-box;
-    color: var(--cua-black);
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 600;
-    line-height: 1.3;
-    text-decoration: none;
-    padding: 10px 0 0;
-    width: 100%;
-    margin-bottom: 0.5rem;
+aside .form-select a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Set initial width to 0 */
+    height: 2px;
+    background-color: var(--cua-white);
+    transition: width 0.5s ease; /* Added smooth transition for width */
 }
 
-aside .block.block-menu.navigation {
+aside .form-select a:hover::before {
+    width: 100%; /* Expand width to 100% on hover */
+    background-color: var(--cua-gray-400);
+}
+
+
+aside .form-select .block.block-menu.navigation {
     border-right: 1px solid var(--cua-gray-400);
 }
 

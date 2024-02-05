@@ -117,7 +117,6 @@ header .nav-link {
     color: var(--cua-black)
 }
 
-
 .menu--main ul li a::before {
     content: "";
     position: absolute;
@@ -198,12 +197,12 @@ header .nav-link:last-child::before {
 
 .nav-link.active.dropdown-toggle {
     background: transparent;
-    color: var(--cua-white);
+    color: var(--cua-gold-hover);
 }
 
 .nav-link.dropdown-toggle.show:hover {
-    color: var(--cua-white);
-    background: var(--cua-black);
+    color: var(--cua-black);
+    background: var(--cua-white);
 }
 
 .nav-link.active.is-active {
