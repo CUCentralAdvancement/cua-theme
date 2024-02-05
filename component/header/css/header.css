@@ -263,31 +263,73 @@ nav#navbar-main > li.first a:before {
 }
 
 /* Search */
-header #search-block-form {
+#search-icon {
+    display: block;
+    float: inline-end;
+}
+
+button#search-icon {
+    padding: 0.7em;
+    background: #ebebeb;
+    box-shadow: none;
+    margin: 0;
+    line-height: 0;
+}
+
+button#search-icon {
+    border-radius: 50%;
+    padding: 0.6rem;
+    background: #F3F3F3;
+    box-shadow: 0 0 1px 0 rgb(0 0 0 / 50%);
+    margin: 0 3px;
+}
+
+header .search-block-form {
     margin: .8rem 0 0;
 }
 
-#search-block-form .form-control {
+.search-block-form .form-control {
     padding: 0;
 }
 
-#search-block-form .btn-primary {
+.search-block-form .btn-primary {
     color: var(--cua-gray-800);
-    background: transparent;
-    padding: .25rem .5rem;
+    background: var(--cua-gold);
+    padding: .35rem .5rem;
 }
 
-#search-block-form .js-form-type-search input.form-search {
-    background: var(--cua-white);
-    border: 1px solid var(--cua-gray-300);
-    font-size: .85rem;
-    margin-top: .02rem;
-    padding: .1rem .5rem;
+.search-block-form .js-form-type-search input.form-search,
+.search-block-form .container {
+    box-sizing: border-box;
 }
 
-/* Float search right */
-div#block-cua-theme-searchform {
-    text-align: end;
+.search-block-form .js-form-type-search input.form-search {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color:  var(--cua-gray-800);
+    background-color: var(--cua-white);
+    background-clip: padding-box;
+    border: 2px solid var(--cua-gray-300);
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.search-block-form .container {
+    /* Adjust the container width if needed */
+    width: 100%;
+}
+
+.search-block-form .content.container-inline {
+    width: 100% !important;
+}
+
+.search-block-form .js-form-item.js-form-type-search.form-type-search.js-form-item-keys.form-item-keys.form-no-label.mb-3 {
+    flex: auto;
 }
 
 /*** Responsive ***/
@@ -312,5 +354,10 @@ div#block-cua-theme-searchform {
 }
 
 
+.search-block-form .content.container-inline {
+    width: 100% !important;
+}
 
-
+.search-block-form .js-form-item.js-form-type-search.form-type-search.js-form-item-keys.form-item-keys.form-no-label.mb-3 {
+    flex: auto;
+}
