@@ -480,17 +480,23 @@ input#edit-submit-contact--2 {
 }
 
 /* Side column links */
-aside .form-select ul {
+aside .form-select ul,
+aside ul {
     list-style-type: none;
     padding: 0;
 }
 
-aside .form-select li {
+aside .form-select li,
+aside li{
     width: 100%;
 }
 
-/* Side column links */
-aside .form-select a {
+aside .nav-item {
+    padding: 0 1rem 0;
+}
+
+aside .form-select a,
+aside a.nav-link {
     box-sizing: border-box;
     color: var(--cua-black);
     display: block;
@@ -504,12 +510,14 @@ aside .form-select a {
     position: relative;
 }
 
-aside .form-select a:hover {
+aside .form-select a:hover,
+aside a.nav-link:hover {
     color: var(--cua-gold-hover);
     text-decoration: none;
 }
 
-aside .form-select a::before {
+aside .form-select a::before,
+aside a.nav-link::before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -520,13 +528,14 @@ aside .form-select a::before {
     transition: width 0.5s ease; /* Added smooth transition for width */
 }
 
-aside .form-select a:hover::before {
+aside .form-select a:hover::before,
+aside  a.nav-link:hover::before {
     width: 100%; /* Expand width to 100% on hover */
     background-color: var(--cua-gray-400);
 }
 
-
-aside .form-select .block.block-menu.navigation {
+aside .form-select .block.block-menu.navigation,
+aside .block.block-menu.navigation {
     border-right: 1px solid var(--cua-gray-400);
 }
 
