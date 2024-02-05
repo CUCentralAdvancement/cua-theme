@@ -290,7 +290,7 @@ div#block-cua-theme-searchform {
     text-align: end;
 }
 
-/* Responsive */
+/*** Responsive ***/
 @media only screen and (max-width: 576px) {
     #navbar-main {
         background-color: transparent;
