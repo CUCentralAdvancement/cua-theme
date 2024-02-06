@@ -639,6 +639,9 @@ p.intro {
     color: var(--cua-gray-800);
 }
 
+.path-frontpage div#block-cua-theme-page-title {
+    display: none;
+}
 
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {

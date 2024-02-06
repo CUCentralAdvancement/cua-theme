@@ -1,51 +1,44 @@
-{#
-/**
- * @file
- * Template for the Banner component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Available array of classes:
- * - border_style :
- * - button_color :
- * - color_background :
- * - color_border :
- * - icon :
- * - icon_color :
- * - icon_size :
- * - image_alignment :
- * - image_size :
- * - padding :
- * - page_title_visibility :
- * - position_container :
- * - size :
- * - text_alignment :
- * - text_color :
- * - outline :
- * - visibility :
- */
-#}
+{# CU Banner #}
 
-{# Add Classes #}
-{% set classes = [
+{# Attach the library #}
+{{ attach_library('cua_theme/banner') }}
+{# Set CSS Classes #}
+{% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'jumbotron jumbotron-fluid banner',
-    color_background is not empty ? color_background : '',
-    'g-0',
 ] %}
-
-{# Render content #}
-<div{{ attributes.addClass(classes) }}>
-    <div class="container-xl card g-0">
-        {# Include Image Component #}
-        {% include '@cua_theme/component/image/_image.html.twig' %}
-        {# Include Banner Card Component #}
-        {% include '@cua_theme/component/banner/_banner_card.html.twig' %}
+{# Set background color if true #}
+{% set color_background = (content.field_color_background.0) %}
+{% if color_background is not empty %}
+    {% set background_class = color_background %}
+{% endif %}
+{# Content #}
+<div{{ attributes.addClass('jumbotron jumbotron-fluid banner g-0', background_class ) }}>
+    <div class="container-xl py-5 px-5" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %} >
+        <div class="{{ content.field_position_container.0 }}">
+            {% set center = (content.field_center_content.0) %}
+            {% set color_text = (content.field_text_color.0) %}
+            <div class="col-md-5 {{ content.field_color_background.0 }} banner-body my-5 pt-5 p-4">
+                {% if label is not empty %}
+                    {{ title_prefix }}
+                    {% if label %}
+                        <h2 class="display 4 {{ center }} {{ color_text }}">{{ label }}</h2>
+                    {% endif %}
+                {% endif %}
+                {{ title_suffix }}
+                {% if content.body is not empty %}
+                    <div class="lead {{ center }} {{ color_text }}">{{ content.body }}</div>
+                {% endif %}
+                {% if content.field_link[0]['#url'] is not empty %}
+                    <div class="{{ center }} my-2">
+                        <a href="{{ content.field_link[0]['#url'] }}"
+                           class="btn {{ content.field_outline.0 }}btn-{{ content.field_button_color.0 }}">
+                            {{ content.field_link[0]['#title'] }}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>

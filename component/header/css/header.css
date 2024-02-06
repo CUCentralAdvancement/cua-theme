@@ -286,6 +286,7 @@ button#search-icon {
 
 header .search-block-form {
     margin: .8rem 0 0;
+    border-bottom: 2px solid var(--cua-white);
 }
 
 .search-block-form .form-control {
