@@ -643,8 +643,7 @@ p.search-button {
     margin: 0.72rem;
 }
 
-.ui-accordion-header-icon.ui-icon.ui-icon-circle-minus,
-.ui-accordion-header-icon.ui-icon.ui-icon-circle-plus {
+.ui-accordion-header-icon.ui-icon {
     float: right;
     margin: .2rem .5rem 0;
 }
