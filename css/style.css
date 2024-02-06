@@ -638,6 +638,10 @@ p.intro {
     display: none;
 }
 
+p.search-button {
+    margin: 0.72rem;
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
