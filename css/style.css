@@ -642,6 +642,36 @@ p.search-button {
     margin: 0.72rem;
 }
 
+.ui-accordion-header-icon.ui-icon.ui-icon-circle-minus,
+.ui-accordion-header-icon.ui-icon.ui-icon-circle-plus {
+    float: right;
+    margin: .2rem .5rem 0;
+}
+
+.ui-widget-content {
+    border: 2px solid var(--cua-white);
+    border-left: 2px solid var(--cua-gray-400)
+}
+
+.ui-accordion .ui-accordion-content {
+    padding: 1em 2.2em;
+    border-top: 0;
+    overflow: auto;
+    margin: 1rem;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+}
+
+.ui-state-default {
+    border: 2px solid var(--cua-gray-50);
+    background: var(--cua-gray-50);
+    color: var(--cua-gray-800);
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
