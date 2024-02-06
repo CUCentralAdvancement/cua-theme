@@ -653,6 +653,11 @@ p.search-button {
     border-left: 2px solid var(--cua-gray-400)
 }
 
+.ui-state-default:hover {
+    background: var(--cua-gray-600);
+    color: var(--cua-gray-100);
+}
+
 .ui-accordion .ui-accordion-content {
     padding: 1em 2.2em;
     border-top: 0;
