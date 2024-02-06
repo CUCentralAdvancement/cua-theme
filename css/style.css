@@ -438,16 +438,15 @@ a.block-link figcaption {
 }
 
 .contact .views-view-responsive-grid__item {
-    background: #f4f4f5;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 1rem;
-    margin: 0 0 1em 0;
 }
 
 .contact .views-field.views-field-field-address {
-    border-bottom: 2px solid #fff;
-    /* margin-top: 1rem; */
+    border-bottom: 2px solid var(--cua-white);
+}
+
+.contact .views-view-responsive-grid__item-inner {
+    padding: 1rem;
+    background-color: var(--cua-white-light);
 }
 
 input#edit-submit-contact--2 {
@@ -487,7 +486,7 @@ aside ul {
 }
 
 aside .form-select li,
-aside li{
+aside li {
     width: 100%;
 }
 
@@ -529,7 +528,7 @@ aside a.nav-link::before {
 }
 
 aside .form-select a:hover::before,
-aside  a.nav-link:hover::before {
+aside a.nav-link:hover::before {
     width: 100%; /* Expand width to 100% on hover */
     background-color: var(--cua-gold);
 }
@@ -618,7 +617,6 @@ div#block-cua-theme-breadcrumbs {
     font-size: 1.2rem !important;
     line-height: 1.2;
     font-weight: 600;
-    margin: 0 0 1rem !important;
     display: block;
 }
 
@@ -626,9 +624,6 @@ div#block-cua-theme-breadcrumbs {
     color: var(--cua-gold);
 }
 
-.row.region.region-banner {
-    margin-bottom: 1.5rem;
-}
 
 h2.title {
     font-size: 1.2rem;

@@ -11,3 +11,7 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.layout__region.layout__region--first .call-to-action {
+  margin: 0 0 1rem;
+}
