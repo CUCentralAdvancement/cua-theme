@@ -294,8 +294,8 @@ header .search-block-form {
 }
 
 .search-block-form .btn-primary {
-    color: var(--cua-gray-800);
-    background: var(--cua-gold);
+    color: var(--cua-black);
+    background: var(--cui-gold);
     padding: .35rem .5rem;
     border-radius: 3px;
     margin: 0 0 0 1rem;
