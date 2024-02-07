@@ -3,7 +3,7 @@
 :root {
     /* Colors */
     --cua-black: #111;
-    --cua-blue: #0d6efd;
+    --cua-blue: #1879db;
     --cua-blue-hover: #1879db;
     --cua-blue-visited: #1879db;
     --cua-body-bg: #fff;
@@ -119,7 +119,7 @@ a {
 }
 
 a:hover {
-    color: var(--cua-gold-hover);
+    color: var(--cua-link-color);
     text-decoration: underline;
 }
 
@@ -233,34 +233,6 @@ blockquote span {
     background-color: var(--cua-black);
     color: var(--cua-gold);
     margin: 0 .2rem;
-}
-
-/* FAQ Styles */
-.faq .js-views-accordion-group-header {
-    padding: 0;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-}
-
-.faq .js-views-accordion-group-header::after {
-    content: " ";
-    display: block;
-    width: 1.5em;
-    height: 0.1em;
-    background-color: #cfb87c;
-    margin: 0.4em 0;
-}
-
-.faq .ui-state-active {
-    background: var(--cua-gold);
-    border: 1px solid var(--cua-gold);
-    color: var(--cua-black);
-}
-
-.faq h3, .faq h3 a {
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-transform: none;
 }
 
 /* Section Styles */
@@ -419,8 +391,8 @@ a.block-link figcaption {
 }
 
 .contact a:hover {
-    color: var(--cua-gold-hover);
-    text-decoration: none;
+    color: var(--cua-black);
+    text-decoration: underline;
 }
 
 .contact .fa-phone:before,
@@ -448,6 +420,20 @@ a.block-link figcaption {
 .contact .views-view-responsive-grid__item-inner {
     padding: 1rem;
     background-color: var(--cua-white-light);
+}
+
+.contact.blue a {
+    color: var(--cua-blue);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.contact.blue a:hover {
+    text-decoration: underline;
+}
+
+.contact.blue .views-row {
+    margin: 0 0 0.5rem;
 }
 
 input#edit-submit-contact--2 {
@@ -622,7 +608,8 @@ div#block-cua-theme-breadcrumbs {
 }
 
 .h4.title a:hover {
-    color: var(--cua-gold);
+    color: var(--cua-black);
+    text-decoration: underline;
 }
 
 
@@ -643,44 +630,76 @@ p.search-button {
     margin: 0.72rem;
 }
 
-.ui-accordion-header-icon.ui-icon {
+/* FAQ Styles */
+.faq .js-views-accordion-group-header {
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.faq .ui-widget-content {
+    border: 2px solid var(--cua-white);
+    border-left: 2px solid var(--cua-gray-400);
+    margin: 1rem 1rem 2rem 1rem;
+}
+
+.faq .ui-state-default {
+    border: 2px solid var(--cua-gray-50);
+    background: var(--cua-gray-50);
+    color: var(--cua-gray-800);
+    font-size: 100%; /* Font size on hover */
+    font-weight: normal; /* Font weight on hover */
+}
+
+.form-control:focus {
+    border-color: var(--cua-gray-200);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1);
+}
+
+.faq .ui-state-active,
+.faq .ui-state-default:hover {
+    background: var(--cua-gray-300);
+    border: 1px solid var(--cua-gray-300);
+    color: var(--cua-black);
+    font-size: 105%; /* Initial font size */
+    transition: font-size 0.4s ease, font-weight 0.4s ease; /* Transition for font size and font weight */
+    font-weight: bold; /* Font weight on hover */
+}
+
+.faq h3, .faq h3 a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.faq .ui-accordion-header-icon.ui-icon {
     float: right;
     margin: .2rem .5rem 0;
 }
 
-.ui-widget-content {
-    border: 2px solid var(--cua-white);
-    border-left: 2px solid var(--cua-gray-400)
-}
-
-.ui-state-default:hover {
-    background: var(--cua-gray-600);
-    color: var(--cua-gray-100);
-}
-
-.ui-accordion .ui-accordion-content {
+.faq .ui-accordion .ui-accordion-content {
     padding: 1em 2.2em;
     border-top: 0;
     overflow: auto;
     margin: 1rem;
 }
 
-.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+.faq .ui-corner-all, .faq .ui-corner-top, .faq .ui-corner-left, .faq .ui-corner-tl {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-
 }
 
-.ui-state-default {
-    border: 2px solid var(--cua-gray-50);
-    background: var(--cua-gray-50);
-    color: var(--cua-gray-800);
-}
 
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
         border-right: 1px solid var(--cua-white) !important;
+    }
+
+    aside .block.block-menu.navigation {
+        border-right: 1px solid var(--cua-white);
+        border-bottom: 1px solid var(--cua-gray-400);
     }
 }
 
