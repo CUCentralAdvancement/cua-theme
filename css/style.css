@@ -748,10 +748,9 @@ p.search-button {
     margin: 1rem 0 0;
 }
 
-#edit-submit-contact--2, #edit-submit-board-of-directors--2, #edit-submit-trustees--2, #edit-actions--3 {
-    display: none;
+.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper  {
+    display: none !important;
 }
-
 
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
