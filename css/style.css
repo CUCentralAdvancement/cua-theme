@@ -131,6 +131,20 @@ body, p, a, li {
     line-height: var(--bs-body-line-height);
 }
 
+.btn.btn-primary {
+    background: var(--cua-gold);
+    border: 1px solid var(--cua-gold);
+    color: var(--cua-black);
+    transition: background-color 0.7s ease, border-color 0.7s ease; /* Transition for background color and border color */
+}
+
+.btn.btn-primary:hover {
+    background: var(--cua-black);
+    border: 1px solid var(--cua-black);
+    color: var(--cua-gold);
+    text-decoration: none;
+}
+
 /* Hide page title on front */
 
 .path-frontpage .title {
@@ -690,6 +704,14 @@ p.search-button {
     border-top-right-radius: 0;
 }
 
+.field--name-field-email.field--label-inline .field__label {
+    margin-bottom: 2rem;
+}
+
+.field--name-field-email.field--label-inline .field__label,
+.field--name-field-office-phone.field--label-inline .field__label {
+    font-weight: bold;
+}
 
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
@@ -702,4 +724,3 @@ p.search-button {
         border-bottom: 1px solid var(--cua-gray-400);
     }
 }
-
