@@ -748,9 +748,10 @@ p.search-button {
     margin: 1rem 0 0;
 }
 
-#edit-submit-contact--2, #edit-submit-board-of-directors--2, #edit-submit-trustees--2 {
+#edit-submit-contact--2, #edit-submit-board-of-directors--2, #edit-submit-trustees--2, #edit-actions--3 {
     display: none;
 }
+
 
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
