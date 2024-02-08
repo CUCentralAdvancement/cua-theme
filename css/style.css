@@ -626,10 +626,11 @@ div#block-cua-theme-breadcrumbs {
 }
 
 .h4.title a {
-    font-size: 1.2rem !important;
+    font-size: 1.4rem !important;
     line-height: 1.2;
     font-weight: 600;
     display: block;
+    margin: 0 0 .25rem;
 }
 
 .h4.title a:hover {
@@ -720,9 +721,10 @@ p.search-button {
     margin-bottom: 1rem;
 }
 
-.field--name-field-email.field--label-inline .field__label,
-.field--name-field-office-phone.field--label-inline .field__label {
-    font-weight: bold;
+.field--label-inline .field__label {
+    font-weight: bold !important;
+    margin: 0;
+    padding-right: 5px;
 }
 
 .path-node.node--type-contact-us h1 {
