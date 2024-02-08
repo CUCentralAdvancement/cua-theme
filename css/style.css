@@ -170,15 +170,19 @@ body, p, a, li {
 }
 
 /* Breadcrumb */
-.breadcrumb a {
+.breadcrumb a,
+.breadcrumb-item.active {
     color: var(--bs-breadcrumb-item-active-color);
     text-decoration: none;
     font-size: .9rem;
 }
 
-.breadcrumb-item.active {
-    font-size: 1rem;
+.breadcrumb a:hover {
     color: var(--cua-gold-hover);
+}
+
+li.breadcrumb-item.active {
+    margin: 0.1rem 0 0;
 }
 
 ol.breadcrumb li:first-child a::before {
@@ -748,7 +752,7 @@ p.search-button {
     margin: 1rem 0 0;
 }
 
-.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper  {
+.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper {
     display: none !important;
 }
 

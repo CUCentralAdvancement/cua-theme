@@ -70,6 +70,13 @@
 <div id="page-wrapper">
     <div id="page">
         {% include '@cua_theme/component/header/header.html.twig' %}
+        {% if page.breadcrumb %}
+            {% block breadcrumb %}
+                <div class="container">
+                    {{ page.breadcrumb }}
+                </div>
+            {% endblock %}
+        {% endif %}
         {% if page.banner %}
             {% block banner %}
                 {{ page.banner }}
