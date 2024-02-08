@@ -12,6 +12,7 @@
  * Available array of classes:
  * - border_style :
  * - button_color :
+ * - container_size :
  * - color_background :
  * - color_border :
  * - icon :
@@ -37,7 +38,9 @@
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
     color_background is not empty ? color_background ~ ' ' ~ border_style|clean_class  : '',
+    container_size is not empty ? container_size|clean_class  : '',
 ] %}
+
 
 {# Add unique id number to block #}
 {% set clean_id = [

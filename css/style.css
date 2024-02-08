@@ -2,7 +2,8 @@
 
 :root {
     /* Colors */
-    --cua-black: #111;
+    --cua-black-pure: #000000;
+    --cua-black: #262626;
     --cua-blue: #0854bb;
     --cua-blue-hover: #0854bb;
     --cua-blue-visited: #0854bb;
