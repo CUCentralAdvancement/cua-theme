@@ -31,13 +31,16 @@
 
 /* Customize close button colors and background */
 .alert .btn-close {
-  --bs-btn-close-color: inherit;
-  --bs-btn-close-bg: none;
+  --bs-btn-close-bg: none !important;
+}
+
+.btn-close {
+  border: 1px solid var(--cua-black) !important;
 }
 
 /* Style the close button icon */
 .alert .btn-close::before {
-  color: white;
+  color:inherit;
   background: transparent;
   content: "\58";
   font-size: 1.5em;
