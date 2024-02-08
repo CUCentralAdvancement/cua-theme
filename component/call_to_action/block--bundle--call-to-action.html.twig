@@ -36,6 +36,7 @@
     'block-' ~ configuration.provider|clean_class,
     'call-to-action card rounded h-100 m-2',
     color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
+    container_size is not empty ? container_size|clean_class  : '',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
 {# Add unique id to block #}
