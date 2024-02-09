@@ -381,6 +381,15 @@ a.block-link figcaption {
     margin: 0.4em 0;
 }
 
+h2.text-align-center::after {
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    background-color: #cfb87c;
+    margin: 0.4em auto; /* Use auto for left and right margins to center the pseudo-element */
+}
+
 .contact .h5.title {
     font-size: 1.3rem;
 }
