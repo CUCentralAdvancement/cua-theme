@@ -716,6 +716,35 @@ p.search-button {
     border-top-right-radius: 0;
 }
 
+/* FAQ Node */
+.page-vocabulary-accordion-categories .node--view-mode-teaser h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.page-vocabulary-accordion-categories .node--view-mode-teaser {
+    border-bottom: 1px solid var(--cua-gray-400);
+    margin: 1rem;
+}
+
+.page-view-taxonomy-term .node__content .nav-link a {
+    background: var(--cui-gold);
+    color: var(--cua-black);
+    font-weight: bold;
+    padding: .75rem 2rem;
+}
+
+
+.page-view-taxonomy-term .node__content .nav-link a:hover {
+    color: var(--cua-black-pure);
+    background: var(--cui-gold-hover);
+    text-decoration: none;
+}
+
+.page-view-taxonomy-term .field.field--name-title {
+    font-size: 1.2rem;
+}
+
 .field--name-field-email.field--label-inline .field__label {
     margin-bottom: 1rem;
 }
