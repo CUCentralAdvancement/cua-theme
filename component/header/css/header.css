@@ -185,6 +185,11 @@ header .search-block-form {
     flex: auto;
 }
 
+p.search-button {
+    margin: 1.2rem 0 0;
+    padding: 0 1rem 0;
+}
+
 #edit-actions .btn.btn-primary:hover {
     background: var(--cui-gold-hover);
     border-left: 1px solid var(--cui-gold-hover); /* Only the left border will change */

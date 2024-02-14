@@ -126,14 +126,12 @@ a:hover {
     text-decoration: underline;
 }
 
-
 body, p, a, li {
     font-family: var(--font-roboto);
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
 }
-
 
 .btn.btn-primary {
     background: var(--cui-gold);
@@ -145,7 +143,6 @@ body, p, a, li {
     display: inline-block;
     border-radius: 0;
     transition: background-color 0.7s ease; /* Transition for background color and border color */
-
 }
 
 .btn.btn-primary:hover {
@@ -197,9 +194,6 @@ ol.breadcrumb li:first-child a::before {
     -webkit-background-size: 1rem 1rem;
     background-size: 1rem 1rem;
     background-position: 0 0.15rem;
-    /* font-family: FontAwesome; */
-    /* content: "\f015"; */
-    /* display: inline-block; */
     width: 1.5rem;
     height: 1.1rem;
 }
@@ -649,7 +643,6 @@ div#block-cua-theme-breadcrumbs {
     color: var(--cua-blue-hover);
     text-decoration: underline;
     transition: color 0.5s ease, text-decoration 0.5s ease; /* Transition for color and text-decoration */
-
 }
 
 h2.title {
@@ -663,10 +656,6 @@ p.intro {
 
 .path-frontpage div#block-cua-theme-page-title {
     display: none;
-}
-
-p.search-button {
-    margin: 0.72rem;
 }
 
 /* FAQ Styles */
@@ -747,7 +736,6 @@ p.search-button {
     font-weight: bold;
     padding: .75rem 2rem;
 }
-
 
 .page-view-taxonomy-term .node__content .nav-link a:hover {
     color: var(--cua-black-pure);
