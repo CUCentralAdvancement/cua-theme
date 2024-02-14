@@ -257,7 +257,7 @@ blockquote span {
 
 /* Navigation Styles */
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link, .nav-link.active.dropdown-toggle {
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
     background-color: var(--cua-gold);
     color: var(--cua-black);
     margin: 0 .2rem;
