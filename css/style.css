@@ -114,6 +114,24 @@ h6, .h6 {
     font-size: 1.125rem;
 }
 
+h2.title {
+    font-size: 1.2rem;
+}
+
+.h4.title a {
+    font-size: 1.4rem !important;
+    line-height: 1.2;
+    font-weight: 600;
+    display: block;
+    margin: 0 0 .25rem;
+}
+
+.h4.title a:hover {
+    color: var(--cua-blue-hover);
+    text-decoration: underline;
+    transition: color 0.5s ease, text-decoration 0.5s ease; /* Transition for color and text-decoration */
+}
+
 /* Body */
 a {
     color: var(--cua-link-color);
@@ -137,12 +155,11 @@ body, p, a, li {
     background: var(--cui-gold);
     color: var(--cua-black);
     border: none;
-    padding: 1em 2em;
+    padding: .45rem 1.5rem;
     font-weight: bold;
-    letter-spacing: 0.75px;
     display: inline-block;
     border-radius: 0;
-    transition: background-color 0.7s ease; /* Transition for background color and border color */
+    transition: background-color 0.7s ease;
 }
 
 .btn.btn-primary:hover {
@@ -448,7 +465,8 @@ h2.text-align-center::after {
     border-bottom: 2px solid var(--cua-white);
 }
 
-.contact .views-view-responsive-grid__item-inner {
+.contact .views-view-responsive-grid__item-inner,
+.views-view-responsive-grid__item {
     padding: 1rem;
     background-color: var(--cua-white-light);
 }
@@ -476,10 +494,6 @@ input#edit-submit-contact--2 {
     margin: 1rem 0 1rem;
 }
 
-#views-exposed-form-trustees-page-1 {
-    display: none;
-}
-
 .views-exposed-form {
     padding: 0.1rem 1rem;
     color: var(--cua-black);
@@ -499,21 +513,25 @@ input#edit-submit-contact--2 {
 /* Side column links */
 aside .form-select ul,
 aside ul {
+    /* Remove bullet points and padding for list items */
     list-style-type: none;
     padding: 0;
 }
 
 aside .form-select li,
 aside li {
+    /* Ensure full width for list items */
     width: 100%;
 }
 
 aside .nav-item {
+    /* Set padding for navigation items */
     padding: 0 .75rem 0;
 }
 
 aside .form-select a,
 aside a.nav-link {
+    /* Define styles for links in side column */
     box-sizing: border-box;
     color: var(--cua-black);
     display: block;
@@ -529,12 +547,14 @@ aside a.nav-link {
 
 aside .form-select a:hover,
 aside a.nav-link:hover {
+    /* Adjust link styles on hover */
     color: var(--cua-black);
     text-decoration: none;
 }
 
 aside .form-select a::before,
 aside a.nav-link::before {
+    /* Create underline effect for links */
     content: "";
     position: absolute;
     bottom: 0;
@@ -542,28 +562,33 @@ aside a.nav-link::before {
     width: 0; /* Set initial width to 0 */
     height: 2px;
     background-color: var(--cua-white);
-    transition: width 0.5s ease; /* Added smooth transition for width */
+    transition: width 0.5s ease; /* Smooth transition for width */
 }
 
 aside .form-select a:hover::before,
 aside a.nav-link:hover::before {
-    width: 100%; /* Expand width to 100% on hover */
+    /* Expand underline on hover */
+    width: 100%;
     background-color: var(--cua-gold);
 }
 
 aside .form-select .block.block-menu.navigation,
 aside .block.block-menu.navigation {
+    /* Add border to separate navigation items */
     border-right: 1px solid var(--cua-gray-400);
 }
 
 aside .form-select {
+    /* Adjust border and background for select form */
     border: 1px solid var(--cua-white) !important;
     --bs-form-select-bg-img: none !important;
 }
 
 aside .form-select ul li ul {
+    /* Indent nested lists */
     margin-left: 1rem;
 }
+/**/
 
 .bef-link .bef-link--selected {
     color: var(--cua-gold-hover);
@@ -629,24 +654,6 @@ a.bef-link.bef-link--selected {
 
 div#block-cua-theme-breadcrumbs {
     padding: 0 .5rem 0;
-}
-
-.h4.title a {
-    font-size: 1.4rem !important;
-    line-height: 1.2;
-    font-weight: 600;
-    display: block;
-    margin: 0 0 .25rem;
-}
-
-.h4.title a:hover {
-    color: var(--cua-blue-hover);
-    text-decoration: underline;
-    transition: color 0.5s ease, text-decoration 0.5s ease; /* Transition for color and text-decoration */
-}
-
-h2.title {
-    font-size: 1.2rem;
 }
 
 p.intro {
