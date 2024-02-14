@@ -156,6 +156,11 @@ body, p, a, li {
     text-decoration: none;
 }
 
+.path-search .btn.btn-primary {
+    padding: 0.5rem;
+    width: 100px;
+}
+
 /* Hide page title on front */
 
 .path-frontpage .title {
