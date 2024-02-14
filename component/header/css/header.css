@@ -250,6 +250,35 @@ p.search-button {
     background-color: transparent;
 }
 
+/* Secondary Menu */
+#secondary-menu > div {
+    margin: 1.2rem 0 0 ;
+}
+
+#secondary-menu .nav-link.nav-link- {
+    background: var(--cua-gold);
+    color: var(--cua-black);
+    text-transform: none;
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+#secondary-menu .nav-link.nav-link-:hover {
+    background: var(--cua-gold-hover);
+    color: var(--cua-white);
+}
+
+#secondary-menu .nav-link.nav-link--about-us-contact {
+    color: var(--cua-gray-600);
+    font-size: .95rem;
+    font-weight: 400;
+    text-transform: none;
+}
+
+#secondary-menu .nav-link.nav-link--about-us-contact:hover {
+    color: var(--cua-gray-800);
+}
+
 /* Responsive */
 @media only screen and (max-width: 576px) {
     #navbar-main {
