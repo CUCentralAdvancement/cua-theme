@@ -61,8 +61,8 @@ function cua_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
 function cua_theme_form_alter(&$form, &$form_state, $form_id) {
     // Check if the form is the search form.
     if ($form_id == 'search_block_form') {
-        // Change the text on the search button to "Submit".
-        $form['actions']['submit']['#value'] = t('Submit');
+        // Change the text on the search button.
+        $form['actions']['submit']['#value'] = t('Search');
 
         // Add a placeholder text to the search input field.
         $form['keys']['#attributes']['placeholder'] = t('Search');
