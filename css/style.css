@@ -382,13 +382,17 @@ a.block-link figcaption {
     font-style: italic;
 }
 
-.contact h3, .h3, .faq .js-views-accordion-group-header h3 {
+.views-exposed-form h2 .contact h3, .h3, .faq .js-views-accordion-group-header h3 {
     padding: 0;
     text-transform: uppercase;
     font-size: 1.5rem;
 }
 
-.contact h3::after, .block-layout-builder h2::after, .js-views-accordion-group-header::after {
+.views-exposed-form h2 {
+    font-size: 1.875rem;
+}
+
+.views-exposed-form h2::after, .contact h3::after, .block-layout-builder h2::after, .js-views-accordion-group-header::after {
     content: " ";
     display: block;
     width: 1.5em;
@@ -404,6 +408,10 @@ h2.text-align-center::after {
     height: 0.1em;
     background-color: #cfb87c;
     margin: 0.4em auto; /* Use auto for left and right margins to center the pseudo-element */
+}
+
+.view-display-id-page_3 h3 {
+    display: none;
 }
 
 .contact .h5.title {
@@ -489,16 +497,12 @@ input#edit-submit-contact--2 {
     margin: 0.2rem 0 !important;
 }
 
-.views-exposed-form h2 {
-    font-size: 1.5rem;
-    margin: 1rem 0 1rem;
-}
-
 .views-exposed-form {
     padding: 0.1rem 1rem 0 .3rem;
     color: var(--cua-black);
     border-radius: 0;
 }
+
 
 /* hiding h3 from board of directors because why? */
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
@@ -781,7 +785,8 @@ p.intro {
     margin: 1rem 0 0;
 }
 
-.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper {
+.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper,
+#edit-submit-trustees {
     display: none !important;
 }
 
