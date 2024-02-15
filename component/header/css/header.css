@@ -124,9 +124,13 @@ button#search-icon {
 button#search-icon {
     border-radius: 50%;
     padding: 0.6rem;
-    background: #f3f3f3;
+    background: var(--cua-gray-200);
     box-shadow: 0 0 1px 0 rgb(0 0 0 / 50%);
     margin: 0 3px;
+}
+
+button#search-icon:hover {
+    background: var(--cua-gray-400)
 }
 
 header .search-block-form {
@@ -186,7 +190,7 @@ header .search-block-form {
 }
 
 p.search-button {
-    margin: 1.2rem 0 0;
+    margin: 1.1rem 0 0;
     padding: 0 1rem 0;
 }
 
@@ -256,16 +260,16 @@ p.search-button {
 }
 
 #secondary-menu .nav-link.nav-link- {
-    background: var(--cua-gold);
+    background: var(--cui-gold);
     color: var(--cua-black);
     text-transform: none;
     font-size: .9rem;
     font-weight: 400;
+    padding: .4rem 1.5rem;
 }
 
 #secondary-menu .nav-link.nav-link-:hover {
-    background: var(--cua-gold-hover);
-    color: var(--cua-white);
+    background: var(--cui-gold-hover);
 }
 
 #secondary-menu .nav-link.nav-link--about-us-contact {
