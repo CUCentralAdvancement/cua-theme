@@ -495,9 +495,9 @@ input#edit-submit-contact--2 {
 }
 
 .views-exposed-form {
-    padding: 0.1rem 1rem;
+    padding: 0.1rem 1rem 0 .3rem;
     color: var(--cua-black);
-    border-radius: 10px;
+    border-radius: 0;
 }
 
 /* hiding h3 from board of directors because why? */
@@ -597,10 +597,6 @@ aside .form-select ul li ul {
 a#edit-contacts-all:first-child,
 a#edit-bod-all:first-child {
     display: none !important;
-}
-
-div#block-cua-theme-viewsexposedfilterblock {
-    margin: 1rem 0 0;
 }
 
 div#edit-contacts--2,
