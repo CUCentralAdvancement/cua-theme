@@ -197,7 +197,7 @@ p.search-button {
 #edit-actions .btn.btn-primary:hover {
     background: var(--cui-gold-hover);
     border-left: 1px solid var(--cui-gold-hover); /* Only the left border will change */
-    border-top: 1px solid var(--cui-gold);/* Retain other borders */
+    border-top: 1px solid var(--cui-gold); /* Retain other borders */
     border-right: 1px solid var(--cui-gold); /* Retain other borders */
     border-bottom: 1px solid var(--cui-gold); /* Retain other borders */
     box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, .1);
@@ -256,7 +256,7 @@ p.search-button {
 
 /* Secondary Menu */
 #secondary-menu > div {
-    margin: 1.2rem 0 0 ;
+    margin: 1.2rem 0 0;
 }
 
 #secondary-menu .nav-link.nav-link- {
