@@ -255,38 +255,70 @@ p.search-button {
 }
 
 /* Secondary Menu */
-#secondary-menu > div {
+#secondary-menu .nav-link.nav-link- {
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    color: var(--cua-black) !important;
+}
+
+#secondary-menu .nav-link.nav-link-:hover {
+    color: var(--cua-gold-hover) !important;
+}
+
+#secondary-menu > div:last-child {
     margin: 1.2rem 0 0;
 }
 
-#secondary-menu .nav-link.nav-link- {
-    position: relative;
-    z-index: 1; /* Ensure the link text is on top of the pseudo-element */
-    background: var(--cua-white);
-    border: 1px solid var(--cua-gold);
+/* Target the last anchor element within .nav-link */
+#secondary-menu .nav-item:last-child .nav-link:last-child a {
     color: var(--cua-black);
     text-transform: none;
     font-size: .9rem;
-    font-weight: 400;
+    font-weight: 700;
     padding: .4rem 1.5rem;
+}
+
+/* Target all anchor elements within .nav-link */
+#secondary-menu .nav-item .nav-link a {
+    text-transform: none;
+    font-size: .9rem;
+    font-weight: 700;
+    padding: .4rem 1.5rem;
+}
+
+/* Style the last .nav-link element */
+#secondary-menu .nav-item:last-child .nav-link {
+    position: relative;
+    z-index: 1; /* Ensure the link text is on top of the pseudo-element */
+    background: var(--cui-gold);
+    border: 1px solid var(--cui-gold);
+    color: var(--cua-black);
+    text-transform: none;
+    font-size: .9rem;
+    font-weight: 700;
     overflow: hidden; /* Hide overflow for the pseudo-element */
 }
 
-#secondary-menu .nav-link.nav-link-::before {
+/* Style the pseudo-element for the last .nav-link element */
+#secondary-menu .nav-item:last-child .nav-link::before {
     content: "";
     position: absolute;
     top: 0;
     left: -100%; /* Start off-screen to the left */
     width: 100%;
     height: 100%;
-    background: var(--cui-gold-hover); /* Background color on hover */
+    background: var(--cua-white); /* Background color on hover */
     z-index: -1; /* Behind the link text */
     transition: left 0.5s ease; /* Transition the left position */
 }
 
-#secondary-menu .nav-link.nav-link-:hover::before {
-    left: 0; /* Move to the right on hover */
+/* Move the pseudo-element to the right on hover */
+#secondary-menu .nav-item:last-child .nav-link:hover::before {
+    left: 0;
 }
+
 
 /* Responsive */
 @media only screen and (max-width: 576px) {
