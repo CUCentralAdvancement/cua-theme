@@ -95,8 +95,34 @@
         </div>
     {% endif %}
 
-    {# Include Title/Body Component #}
-    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+    {# ## Card Title/Body ## #}
+    {% if label or body %}
+        <div class="mb-3">
+            <div class="card-body-title">
+
+                {# Title #}
+                {% if label %}
+                    {{ title_prefix }}
+                    <h3 class="card-title mb-2">
+                        {{ label }}
+                    </h3>
+                    {{ title_suffix }}
+                {% endif %}
+
+                {# Body #}
+                <div class="card-text">
+                    {# body #}
+                    {% if body is not empty %}
+                        {{ body|raw|nl2br }}
+                    {% endif %}
+                </div>
+                {# End of div for card-text #}
+            </div>
+            {# End of card-body-title div #}
+        </div>
+        {# End of card-body div #}
+    {% endif %}
+    {# End of conditional check for label or body presence #}
 
 </div>
 

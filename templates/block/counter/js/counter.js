@@ -1,52 +1,56 @@
-/**
- * @file
- * Global utilities.
- *
- */
 (function ($, Drupal) {
-
   'use strict';
 
   Drupal.behaviors.cuaCounterUpWaypoints = {
     attach: function (context, settings) {
-      // Define the waypoint
-      var waypoint = new Waypoint({
-        element: $('.counter-up', context),
-        handler: function() {
-          $('.counter-up', context).each(function() {
-            var $this = $(this);
-            var countTo = parseFloat($this.data('count')); // Parse as float
-            if (!isNaN(countTo)) { // Check if it's a valid number
-              $({ countNum: $this.text() }).animate({
-                    countNum: countTo
-                  },
-                  {
-                    duration: 1000,
-                    easing: 'linear',
-                    step: function() {
-                      $this.text(commaSeparateNumber(Math.floor(this.countNum)));
-                    },
-                    complete: function() {
-                      $this.text(commaSeparateNumber(countTo));
-                    }
-                  });
-            } else {
-              console.error('Invalid count value:', countTo); // Log error to console
+      // Select all elements with the counter-up class
+      var $counterUpElements = $('.counter-up', context);
+
+      // Iterate through each counter-up element
+      $counterUpElements.each(function(index, element) {
+        var $this = $(element);
+        // Create a waypoint for the current element
+        var waypoint = new Waypoint({
+          element: $this[0],
+          handler: function(direction) {
+            if (direction === 'down') {
+              console.log('Waypoint triggered for element:', $this);
+              // Animate the current element
+              animateCounter($this);
+              // Destroy this waypoint to prevent re-triggering
+              this.destroy();
             }
-          });
-          // Destroy the waypoint after it's triggered once
-          this.destroy();
-        },
-        offset: 'bottom-in-view' // Trigger the handler when bottom of the element hits the bottom of the viewport
+          },
+          offset: 'bottom-in-view'
+        });
       });
 
-      function commaSeparateNumber(val) {
-        while (/(\d+)(\d{3})/.test(val.toString())) {
-          val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+      // Function to animate counter
+      function animateCounter($element) {
+        var countTo = parseFloat($element.data('count'));
+        if (!isNaN(countTo)) {
+          $({ countNum: 0 }).animate({
+                countNum: countTo
+              },
+              {
+                duration: 2000,
+                easing: 'linear',
+                step: function() {
+                  $element.text(commaSeparateNumber(Math.floor(this.countNum)));
+                },
+                complete: function() {
+                  $element.text(commaSeparateNumber(countTo));
+                }
+              });
+        } else {
+          console.error('Invalid count value:', countTo);
         }
-        return val;
+      }
+
+      // Function to add comma separators to numbers
+      function commaSeparateNumber(val) {
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
     }
   };
-
 })(jQuery, Drupal);
