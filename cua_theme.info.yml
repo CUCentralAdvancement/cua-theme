@@ -6,6 +6,7 @@ base theme: bootstrap_barrio
 
 libraries:
   - cua_theme/global-styling
+  - cua_theme/counter
 
 regions:
   alert: 'Alert'
