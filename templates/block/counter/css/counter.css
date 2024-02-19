@@ -15,3 +15,7 @@
 .counter .card-title {
   text-align: center !important;
 }
+
+.counter .card-img-top {
+  max-height: 175px;
+}
