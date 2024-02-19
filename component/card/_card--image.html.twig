@@ -1,7 +1,7 @@
 {# Card image/icon #}
 {% if card_image or icon %}
     {# If either card_image or icon is present, render the following HTML block #}
-    <div class="card-header {{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} g-0 p-1">
+    <div class="card-header {{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} g-0">
         {# Start of card-header div with dynamic classes based on text_alignment, padding, and position_container variables #}
         {% if card_image or link_title and icon is empty %}
             {# If card_image is present or link_title is present and icon is empty, render image attributes #}

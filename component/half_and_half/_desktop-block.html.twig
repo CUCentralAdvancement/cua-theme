@@ -3,10 +3,10 @@
     <div class="card">
         <div class="row">
             {# Is layout 50/50 or 70/30 #}
-            {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
+            {% if content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "4" %}
             {# 70/30 #}
             <div class="col-md-4 col-sm-12 {{ color_background ~ ' ' ~ padding ~ ' ' ~ text_alignment ~ ' ' ~ image_alignment }}">
-                {% else %}
+                {% elseif content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "50_50" %}
                 {# 50/50 #}
                 <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
                     {% endif %}
@@ -14,10 +14,10 @@
                     {% include '@cua_theme/component/card/_card--image.html.twig' %}
                 </div>
                 {# Is layout 50/50 or 70/30 #}
-                {% if (content.field_custom_layout[0] is not empty) and (content.field_custom_layout.value != "4") %}
+                {% if content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "4" %}
                 {# 70/30 #}
                 <div class="col-md-8 col-sm-12 {{ color_background ~ ' ' ~ text_alignment }}">
-                    {% else %}
+                    {% elseif content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "50_50" %}
                     {# 50/50 #}
                     <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment }}">
                         {% endif %}
