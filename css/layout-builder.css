@@ -202,11 +202,6 @@ form#node-page-layout-builder-form div#edit-actions {
   font-weight: 700;
 }
 
-/* Styling for layout class */
-.layout {
-  margin: 1rem 0;
-}
-
 /* Styling for section-layout and edit-group-customize-layout */
 .section-layout, .fieldset #edit-group-customize-layout {
   background: var(--cua-gray-200);
