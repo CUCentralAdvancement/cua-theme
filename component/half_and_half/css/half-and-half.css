@@ -14,11 +14,6 @@
     margin: .7rem 0 0 !important;
 }
 
-/* Button height for card footer */
-.half-and-half .card-footer .btn {
-    height: 2.26rem !important;
-}
-
 /* Card images */
 .half-and-half .card,
 .half-and-half .card img {
