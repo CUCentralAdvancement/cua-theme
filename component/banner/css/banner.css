@@ -76,28 +76,33 @@
 
 /* Black buttons */
 .banner .btn.btn-cu-bg-black {
-    background: rgba(0,0,0,1); /* Change to black background */
+    background: rgba(0, 0, 0, 1); /* Change to black background */
     border: 3px solid var(--cua-black); /* Change to black border */
     color: var(--cua-white); /* Change to white text color */
     font-weight: 700;
     position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for black buttons */
 .banner .btn.btn-cu-bg-black:hover {
-    background: rgba(255,255,255,0.1); /* Change to light gray background */
+    background: rgba(255, 255, 255, 0.1); /* Change to light gray background */
     border-color: var(--cua-black); /* Keep black border */
     color: var(--cua-black); /* Change to black text color */
 }
 
 /* Outline black buttons */
 .banner .btn.outline-btn-cu-bg-black {
-    position: relative;
-    overflow: hidden;
     background: transparent;
     border: 3px solid var(--cua-black); /* Change to black border */
     color: var(--cua-black); /* Change to black text color */
     font-weight: 700;
+    position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for outline black buttons */
@@ -109,7 +114,7 @@
     left: 0;
     width: 0;
     height: 100%;
-    background: rgba(0,0,0,0.5); /* Change to semi-transparent black background */
+    background: rgba(0, 0, 0, 0.5); /* Change to semi-transparent black background */
     transition: width 0.3s ease;
     z-index: -1;
 }
@@ -133,23 +138,28 @@
     color: var(--cua-black); /* Change to black text color */
     font-weight: 700;
     position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for gold buttons */
 .banner .btn.btn-cu-bg-gold:hover {
     background: rgba(207, 184, 124, 0.5); /* Change to light gray background */
-    border: 3px solid var(--cua-gold);/* Keep gold border */
+    border: 3px solid var(--cua-gold); /* Keep gold border */
     color: var(--cua-black); /* Change to black text color */
 }
 
 /* Outline gold buttons */
 .banner .btn.outline-btn-cu-bg-gold {
-    position: relative;
-    overflow: hidden;
     background: transparent;
     border: 3px solid var(--cua-gold); /* Change to gold border */
     color: rgba(207, 184, 124, 1); /* Change to gold text color */
     font-weight: 700;
+    position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for outline gold buttons */
@@ -180,28 +190,33 @@
 
 /* White buttons */
 .banner .btn.btn-cu-bg-white {
-    background: rgba(255,255,255,1);
+    background: rgba(255, 255, 255, 1);
     border: 3px solid var(--cua-white);
     color: var(--cua-black);
     font-weight: 700;
     position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for white buttons */
 .banner .btn.btn-cu-bg-white:hover {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     border-color: var(--cua-white);
     color: var(--cua-white);
 }
 
 /* Outline white buttons */
 .banner .btn.outline-btn-cu-bg-white {
-    position: relative;
-    overflow: hidden;
     background: transparent;
     border: 3px solid var(--cua-white);
     color: var(--cua-white);
     font-weight: 700;
+    position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for outline white buttons */
@@ -213,7 +228,7 @@
     left: 0;
     width: 0;
     height: 100%;
-    background: rgba(255,255,255,0.5); /* Match the button's background color */
+    background: rgba(255, 255, 255, 0.5); /* Match the button's background color */
     transition: width 0.3s ease;
     z-index: -1;
 }
@@ -237,23 +252,28 @@
     color: var(--cua-black);
     font-weight: 700;
     position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for light-grey buttons */
 .banner .btn.btn-cu-bg-light-grey:hover {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     border-color: var(--cua-light-grey);
     color: var(--cua-light-grey);
 }
 
 /* Outline light-grey buttons */
 .banner .btn.outline-btn-cu-bg-light-grey {
-    position: relative;
-    overflow: hidden;
     background: transparent;
     border: 3px solid var(--cua-light-grey);
     color: var(--cua-light-grey);
     font-weight: 700;
+    position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
 }
 
 /* Hover effect for outline light-grey buttons */
@@ -265,7 +285,7 @@
     left: 0;
     width: 0;
     height: 100%;
-    background: rgba(255,255,255,0.3); /* Match the button's background color */
+    background: rgba(255, 255, 255, 0.3); /* Match the button's background color */
     transition: width 0.3s ease;
     z-index: -1;
 }
