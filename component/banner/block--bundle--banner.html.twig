@@ -7,23 +7,31 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+
+{# Add unique id to block #}
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
+
 {# Set background color if true #}
 {% set color_background = (content.field_color_background.0) %}
 {% if color_background is not empty %}
     {% set background_class = color_background %}
 {% endif %}
+
+
 {# Content #}
-<div{{ attributes.addClass('jumbotron jumbotron-fluid banner g-0', background_class ) }}>
-    <div class="container-xl py-5 px-5" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %} >
+<div{{ attributes|without('id').addClass('jumbotron jumbotron-fluid banner g-0', background_class ).setAttribute('id', unique_id ) }}>
+    <div class="container-xl kenburns-{{ effect }} py-5 px-5" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %} >
         <div class="d-flex {{ content.field_position_container.0 }}">
             {% set center = (content.field_center_content.0) %}
             {% set color_text = (content.field_text_color.0) %}
-            <div class="col-md-5 {{ content.field_color_background.0 }} banner-body my-5 pt-5 p-4">
+            <div class="col-md-5 {{ content.field_color_background.0 }} banner-body kenburns-{{ effect_copy }} my-5 pt-5 p-4 mx-5">
                 {% if label is not empty %}
                     {{ title_prefix }}
                     {% if label %}
-                        <h2 class="display 4 d-flex {{ center }} {{ color_text }}">{{ label }}</h2>
+                        <h2 class="display-4 d-flex {{ center }} {{ color_text }}">{{ label }}</h2>
                     {% endif %}
                 {% endif %}
                 {{ title_suffix }}
@@ -42,3 +50,4 @@
         </div>
     </div>
 </div>
+
