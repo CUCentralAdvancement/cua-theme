@@ -68,7 +68,6 @@
     font-weight: 700;
     padding: .7rem 4.5rem;
     border-radius: 0 !important;
-    border: 3px solid inherit !important
 }
 
 .banner .btn:hover {
@@ -77,91 +76,160 @@
 
 /* Black buttons */
 .banner .btn.btn-cu-bg-black {
-    background: var(--cua-black);
-    border-color: var(--cua-black);
-    color: var(--cua-white);
+    background: rgba(0,0,0,1); /* Change to black background */
+    border: 3px solid var(--cua-black); /* Change to black border */
+    color: var(--cua-white); /* Change to white text color */
+    font-weight: 700;
+    position: relative; /* Ensure z-index works */
 }
 
 /* Hover effect for black buttons */
 .banner .btn.btn-cu-bg-black:hover {
-    background: var(--cua-black);
-    border-color: var(--cua-white);
-    color: var(--cua-white);
+    background: rgba(255,255,255,0.1); /* Change to light gray background */
+    border-color: var(--cua-black); /* Keep black border */
+    color: var(--cua-black); /* Change to black text color */
 }
 
 /* Outline black buttons */
 .banner .btn.outline-btn-cu-bg-black {
-    background: var(--cua-black);
-    border-color: var(--cua-white);
-    color: var(--cua-white);
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: 3px solid var(--cua-black); /* Change to black border */
+    color: var(--cua-black); /* Change to black text color */
+    font-weight: 700;
 }
 
 /* Hover effect for outline black buttons */
-.banner .btn.outline-btn-cu-bg-black:hover {
-    background: var(--cua-white);
-    border-color: var(--cua-black);
-    color: var(--cua-black);
+.banner .btn.outline-btn-cu-bg-black::before,
+.banner .btn.btn-cu-bg-black::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(0,0,0,0.5); /* Change to semi-transparent black background */
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.banner .btn.outline-btn-cu-bg-black:hover::before,
+.banner .btn.btn-cu-bg-black:hover::before {
+    width: 100%;
+}
+
+.banner .btn.outline-btn-cu-bg-black:hover,
+.banner .btn.btn-cu-bg-black:hover {
+    border-color: var(--cua-black); /* Keep black border */
+    color: var(--cua-white); /* Change to white text color */
+    z-index: 1; /* Ensure button text appears above the background */
 }
 
 /* Gold buttons */
 .banner .btn.btn-cu-bg-gold {
-    background: var(--cua-gold);
-    border-color: var(--cua-gold);
-    color: var(--cua-black);
-    font-weight: bold;
+    background: rgba(207, 184, 124, 1); /* Change to gold background */
+    border: 3px solid var(--cua-gold); /* Change to gold border */
+    color: var(--cua-black); /* Change to black text color */
+    font-weight: 700;
+    position: relative; /* Ensure z-index works */
 }
 
 /* Hover effect for gold buttons */
 .banner .btn.btn-cu-bg-gold:hover {
-    background: var(--cua-black);
-    border-color: var(--cua-gold);
-    color: var(--cua-gold);
+    background: rgba(207, 184, 124, 0.5); /* Change to light gray background */
+    border: 3px solid var(--cua-gold);/* Keep gold border */
+    color: var(--cua-black); /* Change to black text color */
 }
 
 /* Outline gold buttons */
 .banner .btn.outline-btn-cu-bg-gold {
-    background: var(--cua-black);
-    border-color: var(--cua-gold);
-    color: var(--cua-gold);
-    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: 3px solid var(--cua-gold); /* Change to gold border */
+    color: rgba(207, 184, 124, 1); /* Change to gold text color */
+    font-weight: 700;
 }
 
 /* Hover effect for outline gold buttons */
-.banner .btn.outline-btn-cu-bg-gold:hover {
-    background: var(--cua-gold);
-    border-color: var(--cua-gold);
-    color: var(--cua-black);
+.banner .btn.outline-btn-cu-bg-gold::before,
+.banner .btn.btn-cu-bg-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(207, 184, 124, .5); /* Change to semi-transparent gold background */
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.banner .btn.outline-btn-cu-bg-gold:hover::before,
+.banner .btn.btn-cu-bg-gold:hover::before {
+    width: 100%;
+}
+
+.banner .btn.outline-btn-cu-bg-gold:hover,
+.banner .btn.btn-cu-bg-gold:hover {
+    border: 3px solid var(--cua-gold); /* Keep gold border */
+    color: var(--cua-black); /* Change to black text color */
+    z-index: 1; /* Ensure button text appears above the background */
 }
 
 /* White buttons */
 .banner .btn.btn-cu-bg-white {
-    background: var(--cua-white);
-    border-color: var(--cua-white);
+    background: rgba(255,255,255,1);
+    border: 3px solid var(--cua-white);
     color: var(--cua-black);
-    font-weight: bold;
+    font-weight: 700;
+    position: relative; /* Ensure z-index works */
 }
 
 /* Hover effect for white buttons */
 .banner .btn.btn-cu-bg-white:hover {
-    background: var(--cua-black);
+    background: rgba(0,0,0,0.1);
     border-color: var(--cua-white);
     color: var(--cua-white);
 }
 
 /* Outline white buttons */
 .banner .btn.outline-btn-cu-bg-white {
+    position: relative;
+    overflow: hidden;
     background: transparent;
-    border-color: var(--cua-white);
+    border: 3px solid var(--cua-white);
     color: var(--cua-white);
-    font-weight: bold;
+    font-weight: 700;
 }
 
 /* Hover effect for outline white buttons */
-.banner .btn.outline-btn-cu-bg-white:hover {
-    background: var(--cua-white);
-    border-color: var(--cua-black);
-    color: var(--cua-black);
+.banner .btn.outline-btn-cu-bg-white::before,
+.banner .btn.btn-cu-bg-white::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.5); /* Match the button's background color */
+    transition: width 0.3s ease;
+    z-index: -1;
 }
+
+.banner .btn.outline-btn-cu-bg-white:hover::before,
+.banner .btn.btn-cu-bg-white:hover::before {
+    width: 100%;
+}
+
+.banner .btn.outline-btn-cu-bg-white:hover,
+.banner .btn.btn-cu-bg-white:hover {
+    border-color: var(--cua-white);
+    color: var(--cua-black);
+    z-index: 1; /* Ensure button text appears above the background */
+}
+
 
 /* Adjust card header padding */
 .banner .card-header {
