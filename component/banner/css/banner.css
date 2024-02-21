@@ -230,6 +230,57 @@
     z-index: 1; /* Ensure button text appears above the background */
 }
 
+/* light-grey buttons */
+.banner .btn.btn-cu-bg-light-grey {
+    background: var(--cua-light-grey);
+    border: 3px solid var(--cua-light-grey);
+    color: var(--cua-black);
+    font-weight: 700;
+    position: relative; /* Ensure z-index works */
+}
+
+/* Hover effect for light-grey buttons */
+.banner .btn.btn-cu-bg-light-grey:hover {
+    background: rgba(0,0,0,0.1);
+    border-color: var(--cua-light-grey);
+    color: var(--cua-light-grey);
+}
+
+/* Outline light-grey buttons */
+.banner .btn.outline-btn-cu-bg-light-grey {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: 3px solid var(--cua-light-grey);
+    color: var(--cua-light-grey);
+    font-weight: 700;
+}
+
+/* Hover effect for outline light-grey buttons */
+.banner .btn.outline-btn-cu-bg-light-grey::before,
+.banner .btn.btn-cu-bg-light-grey::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.3); /* Match the button's background color */
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.banner .btn.outline-btn-cu-bg-light-grey:hover::before,
+.banner .btn.btn-cu-bg-light-grey:hover::before {
+    width: 100%;
+}
+
+.banner .btn.outline-btn-cu-bg-light-grey:hover,
+.banner .btn.btn-cu-bg-light-grey:hover {
+    border-color: var(--cua-light-grey);
+    color: var(--cua-black);
+    z-index: 1; /* Ensure button text appears above the background */
+}
 
 /* Adjust card header padding */
 .banner .card-header {

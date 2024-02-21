@@ -10,14 +10,16 @@
     --cua-body-bg: #fff;
     --cua-body-color: #262626;
 
-    /* Grays */
-
-    --cua-dark-gray: #595955;
+    /* Golds*/
     --cua-gold: #cfb87c;
     --cua-gold-hover: #846f39;
     --cui-gold: #dfc88c;
     --cui-gold-hover: #efd89c;
+
+    /* Grays */
+    --cua-light-grey:#adb5bd;
     --cua-gray: #6c757d;
+    --cua-dark-gray: #595955;
     --cua-gray-50: #f5f5f5;
     --cua-gray-100: #f8f9fa;
     --cua-gray-200: #e9ecef;
