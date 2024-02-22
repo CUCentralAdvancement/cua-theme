@@ -52,5 +52,12 @@
     {# Include Mobile Component #}
     {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}
     {# Include Desktop Component #}
-    {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
+    {% if animation or animation_speed or animation_delay is not empty %}
+    <div class="animate-trigger g-0 p-0 m-0"
+         data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+        {% endif %}
+        {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
+        {% if animation or animation_speed or animation_delay is not empty %}
+    </div>
+    {% endif %}
 </div>
