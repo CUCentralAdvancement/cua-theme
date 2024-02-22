@@ -49,39 +49,16 @@
 
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
-    <div class="animate-trigger g-0 p-0 m-0" data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+    {% if animation or animation_speed or animation_delay is not empty %}
+    <div class="animate-trigger g-0 p-0 m-0"
+         data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+        {% endif %}
         {% include '@cua_theme/component/card/_card--image.html.twig' %}
         {# Include Title/Body Component #}
         {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
         {# Include Link/Button Component #}
         {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+        {% if animation or animation_speed or animation_delay is not empty %}
     </div>
+    {% endif %}
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const elements = document.querySelectorAll(".animate-trigger");
-
-        function handleAnimations(entries, observer) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const animationClasses = entry.target.dataset.animationClasses;
-                    if (animationClasses) {
-                        animationClasses.split(" ").forEach(className => {
-                            entry.target.classList.add(className);
-                        });
-                    }
-                    observer.unobserve(entry.target);
-                }
-            });
-        }
-
-        const observer = new IntersectionObserver(handleAnimations, { threshold: 0.1 });
-
-        elements.forEach(element => {
-            observer.observe(element);
-        });
-    });
-
-
-</script>
