@@ -34,7 +34,10 @@
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'call-to-action card rounded h-100',
+    'call-to-action',
+    'card',
+    'rounded',
+    'h-100',
     color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
     container_size is not empty ? container_size|clean_class  : '',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
@@ -46,10 +49,39 @@
 
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
-    {# Include Image Component #}
-    {% include '@cua_theme/component/card/_card--image.html.twig' %}
-    {# Include Title/Body Component #}
-    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-    {# Include Link/Button Component #}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+    <div class="animate-trigger g-0 p-0 m-0" data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+        {% include '@cua_theme/component/card/_card--image.html.twig' %}
+        {# Include Title/Body Component #}
+        {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+        {# Include Link/Button Component #}
+        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+    </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll(".animate-trigger");
+
+        function handleAnimations(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const animationClasses = entry.target.dataset.animationClasses;
+                    if (animationClasses) {
+                        animationClasses.split(" ").forEach(className => {
+                            entry.target.classList.add(className);
+                        });
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(handleAnimations, { threshold: 0.1 });
+
+        elements.forEach(element => {
+            observer.observe(element);
+        });
+    });
+
+
+</script>

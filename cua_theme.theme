@@ -131,6 +131,9 @@ function cua_theme_preprocess_block(&$variables) {
         // Define an array of fields to preprocess.
         $fields_to_preprocess = [
             'body',
+            'field_animation',
+            'field_animation_delay',
+            'field_animation_speed',
             'field_border_style',
             'field_button_color',
             'field_container_size',
