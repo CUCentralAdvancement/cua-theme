@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Template for the Call to Action component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available array of classes:
+ * - border_style :
+ * - button_color :
+ * - color_background :
+ * - color_border :
+ * - icon :
+ * - icon_color :
+ * - icon_size :
+ * - image_alignment :
+ * - image_size :
+ * - padding :
+ * - page_title_visibility :
+ * - position_container :
+ * - size :
+ * - text_alignment :
+ * - text_color :
+ * - outline :
+ * - visibility :
+ */
+#}
+
+{# Add Classes #}
+{% set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'video',
+    'card',
+    'my-5',
+    color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
+    container_size is not empty ? container_size|clean_class  : '',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+
+{# Add unique id to block #}
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+] %}
+
+{# Render content #}
+<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+
+    <div class="container">
+        {# ## Title ## #}
+        {{ title_prefix }}
+        {% if label is not empty %}
+            <h2 class="card-title {{ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }} mb-2">
+                {{ label }}
+            </h2>
+        {% endif %}
+        {{ title_suffix }}
+
+        {# Video Youtube #}
+        {% if content.field_provider is not empty and content.field_provider[0]['#markup'] == "youtube" %}
+        <iframe width="100%" height="600"
+                src="https://www.youtube.com/embed/{{ video }}&amp;controls=0"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+    </div>
+    {% else %}
+        {# Video Viemo #}
+        <div style="padding:56.25% 0 0 0;position:relative;">
+            <iframe src="https://player.vimeo.com/video/{{ video }}?h=364db7b3dd&autoplay=1&title=0&byline=0&portrait=0"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+    {% endif %}
+
+    {# Include /Body Component #}
+    {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
+
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
+</div>

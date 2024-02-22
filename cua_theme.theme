@@ -149,10 +149,12 @@ function cua_theme_preprocess_block(&$variables) {
             'field_padding',
             'field_page_title_visibility',
             'field_position_container',
+            'field_provider',
             'field_size',
             'field_text_alignment',
             'field_text_color',
             'field_outline',
+            'field_video',
             'field_visibility',
         ];
 
