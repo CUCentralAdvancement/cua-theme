@@ -281,11 +281,16 @@ p.search-button {
 }
 
 /* Target all anchor elements within .nav-link */
-#secondary-menu .nav-item .nav-link a {
-    text-transform: none;
-    font-size: .9rem;
+#secondary-menu a.nav-link {
+    color: var(--cua-gray-700);
+    font-size: .95rem;
     font-weight: 700;
+    text-transform: none !important;
     padding: .4rem 1.5rem;
+}
+
+#secondary-menu a.nav-link:hover {
+    color: var(--cua-gold);
 }
 
 /* Style the last .nav-link element */
@@ -318,6 +323,7 @@ p.search-button {
 #secondary-menu .nav-item:last-child .nav-link:hover::before {
     left: 0;
 }
+
 
 
 /* Responsive */
