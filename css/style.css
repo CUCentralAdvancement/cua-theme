@@ -177,11 +177,12 @@ body, p, a, li {
     width: 100px;
 }
 
-/* Hide page title on front */
+/* Hide page title on front
 
 .path-frontpage .title {
     visibility: hidden;
 }
+*/
 
 /* Text Styles */
 
