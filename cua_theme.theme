@@ -149,6 +149,7 @@ function cua_theme_preprocess_block(&$variables) {
             'field_image_size',
             'field_padding',
             'field_page_title_visibility',
+            'field_parallax',
             'field_position_container',
             'field_provider',
             'field_size',
