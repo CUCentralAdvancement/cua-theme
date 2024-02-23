@@ -134,6 +134,7 @@ function cua_theme_preprocess_block(&$variables) {
             'field_animation',
             'field_animation_delay',
             'field_animation_speed',
+            'field_autoplay',
             'field_border_style',
             'field_button_color',
             'field_container_size',
