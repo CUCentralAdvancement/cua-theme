@@ -340,6 +340,34 @@
     animation: kenburns-bottom-right 5s ease-out both;
 }
 
+.container-fluid .kenburns-top {
+    height: 100vh; /* Set height to 100% of viewport height */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-width: 100%; /* Limit maximum width */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    overflow: hidden;
+}
+
+.container-fluid {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) { /* Adjust the max-width value as needed */
+    .container-fluid .kenburns-top {
+        height: auto; /* Reset height */
+        background-size: auto; /* Reset background size */
+        background-position: top; /* Reset background position */
+        background-repeat: repeat; /* Reset background repeat */
+        max-width: none; /* Reset maximum width */
+        margin-left: 0; /* Reset margin left */
+        margin-right: 0; /* Reset margin right */
+        overflow: visible; /* Reset overflow */
+    }
+}
+
 /**
  * ----------------------------------------
  * animation kenburns-top
@@ -550,3 +578,4 @@
         transform-origin: right top;
     }
 }
+
