@@ -19,7 +19,7 @@
                 <div class="col-md-8 col-sm-12 {{ color_background ~ ' ' ~ text_alignment }}">
                     {% elseif content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "50_50" %}
                     {# 50/50 #}
-                    <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment }}">
+                    <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment }} p-4">
                         {% endif %}
                         <div class="row">
                             {# Include Title/Body Component #}

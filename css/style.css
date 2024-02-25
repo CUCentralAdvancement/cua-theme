@@ -840,6 +840,11 @@ p.intro {
     background-size: cover;
 }
 
+.container-fluid {
+    --bs-gutter-x: 0 !important;
+    --bs-gutter-y: 0 !important;
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
