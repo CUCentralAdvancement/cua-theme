@@ -137,6 +137,8 @@ function cua_theme_preprocess_block(&$variables) {
             'field_autoplay',
             'field_border_style',
             'field_button_color',
+            'field_campus',
+            'field_category',
             'field_container_size',
             'field_color_background',
             'field_color_border',

@@ -81,7 +81,7 @@ h2, .h2 {
 }
 
 aside h2, aside.h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
 }
 
@@ -808,8 +808,8 @@ p.intro {
 }
 
 .stories .h4.title a {
-    color: black !important;
-    margin: .5rem 0 .75rem;
+    color: var(--cua-black) !important;
+    margin: 0;
 }
 
 .stories .card-footer .btn.outline-btn-cu-bg-black {
@@ -822,12 +822,28 @@ p.intro {
     z-index: 1;
     border-radius: 0;
     margin: 1.5rem 0 0 0;
-    padding: .7rem 2.4rem !important;
+    padding: .25rem 2rem !important;
+    font-size: .9rem;
 }
 
 .stories .views-view-responsive-grid__item {
     padding: 1rem;
     background-color: transparent;
+}
+
+.stories .taxonomy {
+    color: var(--cua-gold-hover);
+    font-weight: bold;
+}
+
+.parallax {
+    font-size: .9rem; /* Set a specific height */
+    margin: 0 1rem 0 0 !important;
+}
+
+.stories .taxonomy {
+    color: var(--cua-gold-hover);
+    padding-right: 1rem;
 }
 
 .parallax {
@@ -861,5 +877,7 @@ p.intro {
         border-bottom: 1px solid var(--cua-gray-400);
     }
 }
+
+
 
 
