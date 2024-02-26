@@ -834,11 +834,7 @@ p.intro {
 .stories .taxonomy {
     color: var(--cua-gold-hover);
     font-weight: bold;
-}
-
-.parallax {
     font-size: .9rem; /* Set a specific height */
-    margin: 0 1rem 0 0 !important;
 }
 
 .stories .taxonomy {
