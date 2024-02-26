@@ -17,7 +17,7 @@
     --cui-gold-hover: #efd89c;
 
     /* Grays */
-    --cua-light-grey:#adb5bd;
+    --cua-light-grey: #adb5bd;
     --cua-gray: #6c757d;
     --cua-dark-gray: #595955;
     --cua-gray-50: #f5f5f5;
@@ -59,7 +59,6 @@
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', sans-serif;
 }
-
 
 /* Headings */
 
@@ -385,17 +384,17 @@ a.block-link figcaption {
     font-style: italic;
 }
 
-.views-exposed-form h2 .contact h3, .h3, .faq .js-views-accordion-group-header h3, .views-element-container  h2 {
+.views-exposed-form h2 .contact h3, .h3, .faq .js-views-accordion-group-header h3, .views-element-container h2 {
     padding: 0;
     text-transform: uppercase;
     font-size: 1.5rem;
 }
 
-.views-exposed-form h2, .views-element-container  h2 {
+.views-exposed-form h2, .views-element-container h2 {
     font-size: 1.875rem;
 }
 
-.views-exposed-form h2::after, .contact h3::after, .block-layout-builder h2::after, .js-views-accordion-group-header::after, .views-element-container  h2::after {
+.views-exposed-form h2::after, .contact h3::after, .block-layout-builder h2::after, .js-views-accordion-group-header::after, .views-element-container h2::after {
     content: " ";
     display: block;
     width: 1.5em;
@@ -594,6 +593,7 @@ aside .form-select ul li ul {
     /* Indent nested lists */
     margin-left: 1rem;
 }
+
 /**/
 
 .bef-link .bef-link--selected {
@@ -796,6 +796,7 @@ p.intro {
     font-size: inherit;
     margin-top: 0;
 }
+
 /* Stories */
 .stories .taxonomy a {
     color: var(--cua-gold-hover);
@@ -843,6 +844,10 @@ p.intro {
 .container-fluid {
     --bs-gutter-x: 0 !important;
     --bs-gutter-y: 0 !important;
+}
+
+.card {
+    border-radius: 0 !important;
 }
 
 /*** Responsive ***/
