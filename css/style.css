@@ -866,6 +866,15 @@ p.intro {
     border-radius: 0 !important;
 }
 
+.active > .page-link, .page-link.active {
+    background-color: var(--cua-gold-hover);
+    border-color: var(--cua-gold-hover);
+}
+
+.page-item:not(:first-child) .page-link {
+    color: var(--cua-black);
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
