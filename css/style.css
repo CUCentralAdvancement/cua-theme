@@ -906,6 +906,14 @@ p.intro {
     color: var(--cua-black);
 }
 
+.video .cu-bg-white {
+    background:rgba(255, 255, 255, 0.75) !important;
+}
+
+.video .cu-bg-black {
+    background:rgba(0, 0, 0, 0.75) !important;
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
