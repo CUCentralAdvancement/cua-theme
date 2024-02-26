@@ -47,13 +47,6 @@
     float: left !important;
 }
 
-/* Margin adjustment for image hover effect */
-.half-and-half .card-img.large.p-0.img-hover-effect,
-.half-and-half .card-img.medium.p-0.img-hover-effect,
-.half-and-half .card-img.small.p-0.img-hover-effect {
-    margin: 1.5rem 1rem !important;
-}
-
 /* Horizontal rule styling */
 .hr-top,
 .hr-bottom,
