@@ -438,4 +438,20 @@ a figure {
     scale: 60%;
 }
 
-/* End */
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    flex: 1;
+}
+
+.card-footer {
+    margin-top: auto;
+    background-color: transparent;
+    border-top: none;
+    width: 100%; /* Ensure footer width spans the entire container */
+}
+
