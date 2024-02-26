@@ -875,6 +875,26 @@ p.intro {
     display: none;
 }
 
+.field--type-entity-reference a {
+    color: var(--cua-gold-hover);
+    font-size: .85rem;
+    font-weight: 700;
+    background-color: var(--cua-white);
+    border: 1px solid var(--cua-gold-hover);
+    padding: .35rem 1rem;
+    margin-top: 1rem;
+}
+
+.field--type-entity-reference a:hover {
+    color: var(--cua-white);
+    background-color: var(--cua-gold-hover);
+    text-decoration: none;
+}
+
+.page-link {
+    color: var(--cua-black);
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
