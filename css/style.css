@@ -926,8 +926,9 @@ p.intro {
 .stories .js-form-item label {
     color: var(--cua-gold-hover);
     font-weight: 700;
-    font-size: .9rem;
-    padding: 0 0 .25rem .25rem;
+    font-size: .8rem;
+    padding: 0 0 0.25rem 0.25rem;
+    text-transform: uppercase;
 }
 
 .stories #edit-actions .btn.btn-primary {
@@ -940,10 +941,6 @@ p.intro {
     color: var(--cua-black);
     cursor: pointer;
     text-decoration: none;
-}
-
-form#views-exposed-form-stories-page-1 {
-    border-bottom: 3px solid var(--cua-gray-300);
 }
 
 /* Taxonomy */
