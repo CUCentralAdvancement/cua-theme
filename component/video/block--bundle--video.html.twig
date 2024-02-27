@@ -54,7 +54,8 @@
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Render content #}<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+{# Render content #}
+<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     {# Video Container #}
     {% if content.field_provider is not empty and content.field_provider[0]['#markup'] == "youtube" %}
         <div class="video-container g-0 m-0 p-0 position-relative">
@@ -78,26 +79,52 @@
     {% endif %}
 
     {# Title, Body, and Link Container #}
-    <div class="col-md-4 col-sm-12 {{ color_background }} overlay-content position-absolute top-50 end-0 translate-middle-y p-4" style="margin-right: 30px;">
-        {# Title #}
-        {{ title_prefix }}
-        {% if label is not empty %}
-            <h3 class="card-title {{ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }} mb-2 px-3">
-                {{ label }}
-            </h3>
-        {% endif %}
-        {{ title_suffix }}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 {{ color_background }} position-absolute top-50 end-0 translate-middle d-none d-md-block p-4">
+                {# Title #}
+                {{ title_prefix }}
+                {% if label is not empty %}
+                    <h3 class="card-title {{ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }} mb-2">
+                        {{ label }}
+                    </h3>
+                {% endif %}
+                {{ title_suffix }}
 
-        {# Card Title/Body #}
-        {% if label or body %}
-            <div class="card-body">
-                <div class="card-text {{ text_alignment ~ ' ' ~ text_color }}">
-                    {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
-                </div>
+                {# Card Title/Body #}
+                {% if label or body %}
+                    <div class="card-body">
+                        <div class="card-text {{ text_alignment ~ ' ' ~ text_color }}">
+                            {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {# Include Link/Button Component #}
+                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
             </div>
-        {% endif %}
+            <div class="col-md-4 d-md-none">
+                {# Title #}
+                {{ title_prefix }}
+                {% if label is not empty %}
+                    <h3 class="card-title {{ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }} mb-2">
+                        {{ label }}
+                    </h3>
+                {% endif %}
+                {{ title_suffix }}
 
-        {# Include Link/Button Component #}
-        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                {# Card Title/Body #}
+                {% if label or body %}
+                    <div class="card-body">
+                        <div class="card-text {{ text_alignment ~ ' ' ~ text_color }}">
+                            {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {# Include Link/Button Component #}
+                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+            </div>
+        </div>
     </div>
 </div>
