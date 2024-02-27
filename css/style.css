@@ -899,6 +899,10 @@ p.intro {
     border-bottom: 3px solid var(--cua-gray-400);
 }
 
+.path-frontpage .stories {
+    border-bottom: 0 solid var(--cua-gray-400);
+}
+
 .view-footer {
     display: flex;
     justify-content: center;
