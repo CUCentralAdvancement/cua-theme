@@ -853,14 +853,18 @@ p.intro {
     background-size: cover;
 }
 
+/* Remove all margin and padding from container-fluid  */
 .container-fluid {
     --bs-gutter-x: 0 !important;
     --bs-gutter-y: 0 !important;
 }
 
+/* Remove all borders from cards */
 .card {
     border-radius: 0 !important;
 }
+
+/* Pagination */
 
 .active > .page-link, .page-link.active {
     background-color: var(--cua-gold-hover);
@@ -870,6 +874,8 @@ p.intro {
 .page-item:not(:first-child) .page-link {
     color: var(--cua-black);
 }
+
+/* Taxonomy */
 
 .field.field--name-field-tags .field__label {
     display: none;
@@ -906,6 +912,7 @@ p.intro {
     color: var(--cua-black);
 }
 
+/* Video Component */
 .video .cu-bg-white {
     background:rgba(255, 255, 255, 0.75) !important;
 }
