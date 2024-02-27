@@ -1,27 +1,26 @@
-{# CU Banner #}
+{# CUA Banner #}
 
 {# Attach the library #}
 {{ attach_library('cua_theme/banner') }}
+
 {# Set CSS Classes #}
 {% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+    'jumbotron jumbotron-fluid banner g-0',
+    color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
+    container_size is not empty ? container_size|clean_class  : '',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
+%}
 
 {# Add unique id to block #}
 {% set unique_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Set background color if true #}
-{% set color_background = (content.field_color_background.0) %}
-{% if color_background is not empty %}
-    {% set background_class = color_background %}
-{% endif %}
-
 {# Content #}
-<div{{ attributes|without('id').addClass('container-fluid banner g-0', background_class ).setAttribute('id', unique_id ) }}>
+<div{{ attributes|without('id').addClass(container_classes, background_class ).setAttribute('id', unique_id ) }}>
     <div class="{{ parallax }} ken kenburns-{{ effect }} py-5 px-5" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %} >
         <div class="d-flex {{ content.field_position_container.0 }}">
             {% set center = (content.field_center_content.0) %}

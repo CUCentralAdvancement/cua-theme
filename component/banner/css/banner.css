@@ -355,6 +355,14 @@
     overflow: hidden;
 }
 
+.ken.kenburns- {
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    width: 100vw; /* Set width to 100% of viewport width */
+}
+
+
 @media (max-width: 768px) { /* Adjust the max-width value as needed */
     .container-fluid .kenburns-top {
         height: auto; /* Reset height */
