@@ -10,6 +10,14 @@
     padding: 0;
 }
 
+.banner p, .banner li {
+    font-size: 1.2rem;
+}
+
+.banner h2::after {
+    display: none !important;
+}
+
 /* Color Background */
 
 /* Gold background with opacity */
@@ -51,7 +59,7 @@
 
 .banner .btn {
     font-weight: 700;
-    padding: .7rem 4.5rem;
+    padding: .65rem 4rem !important;
     border-radius: 0 !important;
 }
 
