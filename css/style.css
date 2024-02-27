@@ -865,14 +865,81 @@ p.intro {
 }
 
 /* Pagination */
+.pagination.js-pager__items {
+    display: flex;
+    justify-content: center;
+}
+
+.page-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--cua-gold-hover);
+    font-size: 1rem;
+    font-weight: 700;
+}
 
 .active > .page-link, .page-link.active {
-    background-color: var(--cua-gold-hover);
-    border-color: var(--cua-gold-hover);
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--cua-gold-hover);
 }
 
 .page-item:not(:first-child) .page-link {
+    color: var(--cua-gold-hover);
+}
+
+.page-link:hover {
+    z-index: 2;
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--cua-gold);
+}
+
+.stories {
+    border-bottom: 3px solid var(--cua-gray-400);
+}
+
+.view-footer {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 .75rem;
+    font-size: .9rem;
+    color: var(--cua-gray-600);
+}
+
+.stories .form-control, .stories .form-select {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: var(--cua-gray-100);
+    border-radius: 0 !important;
+}
+
+.stories .js-form-item {
+    margin: 0 .5rem 0;
+}
+
+.stories .js-form-item label {
+    color: var(--cua-gold-hover);
+    font-weight: 700;
+    font-size: .9rem;
+    padding: 0 0 .25rem .25rem;
+}
+
+.stories #edit-actions .btn.btn-primary {
+    background: var(--cua-gray-400);
+    border-left: 1px solid var(--cua-gray-400);
+    border-top: 1px solid var(--cua-gray-400);
+    border-right: 1px solid var(--cua-gray-400);
+    border-bottom: 1px solid var(--cua-gray-400);
+    box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, .1);
     color: var(--cua-black);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+form#views-exposed-form-stories-page-1 {
+    border-bottom: 3px solid var(--cua-gray-300);
 }
 
 /* Taxonomy */
@@ -906,10 +973,6 @@ p.intro {
     border: none;
     padding: 0;
     margin-top: 2rem;
-}
-
-.page-link {
-    color: var(--cua-black);
 }
 
 /* Video Component */
