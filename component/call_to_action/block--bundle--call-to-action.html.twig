@@ -36,10 +36,8 @@
     'block-' ~ configuration.provider|clean_class,
     'call-to-action',
     'card',
-    'animate__animated animate__fadeIn',
     'rounded-0',
-    'border border-light border-5',
-    'h-100',
+    'mx-2 h-100',
     color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
     container_size is not empty ? container_size|clean_class  : '',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
