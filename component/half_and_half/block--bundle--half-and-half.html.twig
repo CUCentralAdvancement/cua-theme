@@ -41,23 +41,24 @@
     container_size is not empty ? container_size|clean_class  : '',
 ] %}
 
-
 {# Add unique id number to block #}
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', clean_id ) }}>
-    {# Include Mobile Component #}
-    {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}
-    {# Include Desktop Component #}
-    {% if animation or animation_speed or animation_delay is not empty %}
-    <div class="animate-trigger g-0 p-0 m-0"
-         data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
-        {% endif %}
+{# Animation Start #}
+{% if animation or animation_speed or animation_delay is not empty %}
+<div class="animate-trigger g-0 p-0 m-0"
+     data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+    {% endif %}
+    <div{{ attributes|without('id').addClass(classes).setAttribute('id', clean_id ) }}>
+        {# Include Desktop Component #}
         {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
+        {# Animation End #}
         {% if animation or animation_speed or animation_delay is not empty %}
     </div>
     {% endif %}
+    {# Include Mobile Component #}
+    {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}
 </div>
