@@ -13,7 +13,5 @@
 }
 
 .border-light {
-  --bs-border-opacity: 1;
-  border-color: rgba(var(--bs-light-rgb),var(--bs-border-opacity))!important;
   border-color: transparent !important;
 }

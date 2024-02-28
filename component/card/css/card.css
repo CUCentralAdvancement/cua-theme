@@ -21,7 +21,7 @@
 
 /* Additional styling for card header with padding */
 .card-header.add-padding, .add-padding {
-    padding: 1.1rem 0.5rem 0 0.5rem;
+    padding: 1.5rem;
 }
 
 /* Card footer styling */
@@ -455,3 +455,6 @@ a figure {
     width: 100%; /* Ensure footer width spans the entire container */
 }
 
+.xcard-body {
+    padding: 0;
+}
