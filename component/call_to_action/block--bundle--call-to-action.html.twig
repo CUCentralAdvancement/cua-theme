@@ -1,33 +1,33 @@
 {#
 /**
- * @file
- * Template for the Call to Action component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Available array of classes:
- * - border_style :
- * - button_color :
- * - color_background :
- * - color_border :
- * - icon :
- * - icon_color :
- * - icon_size :
- * - image_alignment :
- * - image_size :
- * - padding :
- * - page_title_visibility :
- * - position_container :
- * - size :
- * - text_alignment :
- * - text_color :
- * - outline :
- * - visibility :
- */
+* @file
+* Template for the Call to Action component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
+* Available array of classes:
+* - border_style :
+* - button_color :
+* - color_background :
+* - color_border :
+* - icon :
+* - icon_color :
+* - icon_size :
+* - image_alignment :
+* - image_size :
+* - padding :
+* - page_title_visibility :
+* - position_container :
+* - size :
+* - text_alignment :
+* - text_color :
+* - outline :
+* - visibility :
+*/
 #}
 
 {# Add Classes #}
@@ -48,17 +48,20 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
-    {% if animation or animation_speed or animation_delay is not empty %}
-    <div class="animate-trigger g-0 p-0 m-0"
-         data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
-        {% endif %}
+{# Include Animation if called #}
+{% if animation or animation_speed or animation_delay is not empty %}
+<div class="animate-trigger g-0 p-0 m-0 h-100"
+     data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+    {% endif %}
+    <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+        {# Include Image Component #}
         {% include '@cua_theme/component/card/_card--image.html.twig' %}
         {# Include Title/Body Component #}
         {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
         {# Include Link/Button Component #}
         {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-        {% if animation or animation_speed or animation_delay is not empty %}
     </div>
-    {% endif %}
+    {# Include Animation if called / end #}
+    {% if animation or animation_speed or animation_delay is not empty %}
 </div>
+{% endif %}
