@@ -1,20 +1,77 @@
+{#
+/**
+ * @file
+ * Template for the Call to Action component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available array of classes:
+       'body',
+            'field_animation',
+            'field_animation_delay',
+            'field_animation_speed',
+            'field_border_style',
+            'field_button_color',
+            'field_container_size',
+            'field_color_background',
+            'field_color_border',
+            'field_effect',
+            'field_effect_copy',
+            'field_icon',
+            'field_icon_color',
+            'field_icon_size',
+            'field_image_alignment',
+            'field_image_size',
+            'field_padding',
+            'field_page_title_visibility',
+            'field_position_container',
+            'field_provider',
+            'field_size',
+            'field_text_alignment',
+            'field_text_color',
+            'field_outline',
+            'field_video',
+            'field_visibility',
+ */
+#}
+
+{# Add Classes #}
+{% set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'video',
+    'animate-trigger',
+    'card',
+    'g-0',
+    container_size is not empty ? container_size|clean_class  : '',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+
+{# Add unique id to block #}
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+] %}
+
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     {# Video Containers #}
     {# Include Youtube Component #}
     {% if content.field_provider is not empty and content.field_provider[0]['#markup'] == "youtube" %}
-        {% include '@cua_theme/component/video/include/_block--video-youtube.html.twig' %}
+        {% include '@cua_theme/component/video/include/_block--youtube.html.twig' %}
         {# Include Vimeo Component #}
     {% elseif content.field_provider is not empty and content.field_provider[0]['#markup'] == "vimeo" %}
-        {% include '@cua_theme/component/video/include/_block--video-vimeo.html.twig' %}
+        {% include '@cua_theme/component/video/include/_block--vimeo.html.twig' %}
     {% endif %}
     {# Title, Body, and Link Container #}
     <div class="container mt-5">
         <div class="row">
             {# Include Desktop Component #}
-            {% include '@cua_theme/component/video/include/_block--video-desktop.html.twig' %}
+            {% include '@cua_theme/component/video/include/_desktop-video-block.html.twig' %}
             {# Include Mobile Component #}
-            {% include '@cua_theme/component/video/include/_block--video-mobile.html.twig' %}
+            {% include '@cua_theme/component/video/include/_mobile-video-block.html.twig' %}
         </div>
     </div>
 </div>
