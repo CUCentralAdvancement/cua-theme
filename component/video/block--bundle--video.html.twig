@@ -44,6 +44,7 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'video',
+    'animate-trigger',
     'card',
     'g-0',
     container_size is not empty ? container_size|clean_class  : '',
@@ -56,75 +57,21 @@
 
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
-    {# Video Container #}
+    {# Video Containers #}
+    {# Include Youtube Component #}
     {% if content.field_provider is not empty and content.field_provider[0]['#markup'] == "youtube" %}
-        <div class="video-container g-0 m-0 p-0 position-relative">
-            <iframe width="100%" height="600"
-                    src="https://www.youtube.com/embed/{{ video }}&amp;controls=0"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
-        </div>
-    {% else %}
-        <div class="video-container g-0 m-0 p-0 position-relative">
-            <div style="padding:56.25% 0 0 0;position:relative;">
-                <iframe src="https://player.vimeo.com/video/{{ video }}?h=364db7b3dd&autoplay=1&title=0&byline=0&portrait=0=autoplay=1{{ autoplay }}"
-                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                        frameborder="0"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowfullscreen></iframe>
-                <script src="https://player.vimeo.com/api/player.js"></script>
-            </div>
-        </div>
+        {% include '@cua_theme/component/video/include/_block--youtube.html.twig' %}
+        {# Include Vimeo Component #}
+    {% elseif content.field_provider is not empty and content.field_provider[0]['#markup'] == "vimeo" %}
+        {% include '@cua_theme/component/video/include/_block--vimeo.html.twig' %}
     {% endif %}
-
     {# Title, Body, and Link Container #}
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4 {{ color_background }} position-absolute top-50 end-0 translate-middle d-none d-md-block p-4">
-                {# Title #}
-                {{ title_prefix }}
-                {% if label is not empty %}
-                    <h3 class="card-title {{ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }} mb-2">
-                        {{ label }}
-                    </h3>
-                {% endif %}
-                {{ title_suffix }}
-
-                {# Card Title/Body #}
-                {% if label or body %}
-                    <div class="card-body">
-                        <div class="card-text {{ text_alignment ~ ' ' ~ text_color }}">
-                            {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
-                        </div>
-                    </div>
-                {% endif %}
-
-                {# Include Link/Button Component #}
-                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-            </div>
-            <div class="col-md-4 d-md-none">
-                {# Title #}
-                {{ title_prefix }}
-                {% if label is not empty %}
-                    <h3 class="card-title {{ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color }} mb-2">
-                        {{ label }}
-                    </h3>
-                {% endif %}
-                {{ title_suffix }}
-
-                {# Card Title/Body #}
-                {% if label or body %}
-                    <div class="card-body">
-                        <div class="card-text {{ text_alignment ~ ' ' ~ text_color }}">
-                            {% include '@cua_theme/component/body/_body.html.twig' with { 'body': body } %}
-                        </div>
-                    </div>
-                {% endif %}
-
-                {# Include Link/Button Component #}
-                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-            </div>
+            {# Include Desktop Component #}
+            {% include '@cua_theme/component/video/include/_desktop-video-block.html.twig' %}
+            {# Include Mobile Component #}
+            {% include '@cua_theme/component/video/include/_mobile-video-block.html.twig' %}
         </div>
     </div>
 </div>
