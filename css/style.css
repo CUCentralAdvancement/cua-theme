@@ -903,6 +903,10 @@ p.intro {
     border-bottom: 0 solid var(--cua-gray-400);
 }
 
+.stories form#views-exposed-form-stories-page-1 {
+    background: var(--cua-gray-100);
+}
+
 .view-footer {
     display: flex;
     justify-content: center;
