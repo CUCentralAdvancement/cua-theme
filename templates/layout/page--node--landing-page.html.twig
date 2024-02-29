@@ -97,6 +97,29 @@
                 </div>
             {% endblock %}
         </div>
+
+        {% if page.featured_bottom_first %}
+            <div class="featured-bottom-first container-fluid g-0">
+                <aside class="clearfix" role="complementary">
+                    {{ page.featured_bottom_first }}
+                </aside>
+            </div>
+        {% endif %}
+        {% if page.featured_bottom_second %}
+            <div class="featured-bottom-second container g-0">
+                <aside class="clearfix" role="complementary">
+                    {{ page.featured_bottom_second }}
+                </aside>
+            </div>
+        {% endif %}
+        {% if page.featured_bottom_third %}
+            <div class="featured-bottom-third container-fluid g-0">
+                <aside class="clearfix" role="complementary">
+                    {{ page.featured_bottom_third }}
+                </aside>
+            </div>
+        {% endif %}
+
         {# Footer #}
         {% include '@cua_theme/component/footer/footer.html.twig' %}
     </div>
