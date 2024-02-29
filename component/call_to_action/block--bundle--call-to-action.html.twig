@@ -50,7 +50,7 @@
 {# Render content #}
 {# Include Animation if called #}
 {% if animation or animation_speed or animation_delay is not empty %}
-<div class="animate-trigger g-0 p-0 m-0 h-100"
+<div class="animate-trigger g-0 px-2 m-0 h-100"
      data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
     {% endif %}
     <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
