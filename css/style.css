@@ -404,6 +404,11 @@ a.block-link figcaption {
     font-style: italic;
 }
 
+
+.node__content {
+    margin-bottom: 80px;
+}
+
 .views-exposed-form h2 .contact h3, .h3, .faq .js-views-accordion-group-header h3, .views-element-container h2 {
     padding: 0;
     text-transform: uppercase;
@@ -917,6 +922,7 @@ p.intro {
 
 .stories {
     border-bottom: 3px solid var(--cua-gray-400);
+    margin: 0 0 2rem;
 }
 
 .path-frontpage .stories {
@@ -1007,6 +1013,14 @@ p.intro {
 
 .video .cu-bg-black {
     background:rgba(0, 0, 0, 0.75) !important;
+}
+
+.node__content {
+    margin-bottom: 80px;
+}
+
+div#block-cua-theme-page-title {
+    margin: 0 0 0 1.5rem;
 }
 
 /*** Responsive ***/
