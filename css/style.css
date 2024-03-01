@@ -73,7 +73,26 @@ h1, .h1 {
 }
 
 h1.title {
-    margin: 0 0 1rem;
+    margin: 1rem 0 1rem;
+    background: white;
+    color: var(--cua-gray-700);
+    text-transform: uppercase;
+    font-size: 2rem;
+    position: relative;
+}
+
+.base-heading-square__accent {
+    position: absolute;
+    top: -16px;
+    left: -28px;
+    display: block;
+    width: 52px;
+    height: 52px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--cua-gold);
+    pointer-events: none;
+    z-index: -100;
 }
 
 h2, .h2 {
@@ -1000,7 +1019,6 @@ p.intro {
         border-bottom: 1px solid var(--cua-gray-400);
     }
 }
-
 
 
 
