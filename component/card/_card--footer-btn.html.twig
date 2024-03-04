@@ -1,18 +1,11 @@
-{# ## Card link ## #}
+{# If link btn is present, render the following HTML block #}
 {% if link_title is not empty %}
-    {# If the link title is not empty, render the following HTML block #}
     <div class="card-footer {{ text_alignment ~ ' ' ~ position_container }} px-4 pb-4 mb-3">
-        {# Start of card-footer div with dynamic classes based on text_alignment and position_container variables #}
         <a href="{{ link_url }}"
            title="{{ link_title }}"
            aria-label="{{ link_title }}"
            class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
-            {# Anchor tag with link properties and dynamic classes based on outline and button_color variables #}
             {{ link_title }}
-            {# Display the link title inside the anchor tag #}
         </a>
-        {# End of anchor tag #}
     </div>
-    {# End of card-footer div #}
 {% endif %}
-{# End of conditional check for link_title not being empty #}
