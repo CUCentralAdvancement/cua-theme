@@ -35,8 +35,5 @@ counter:
     //cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js: { type: external, minified: true }
     templates/block/counter/js/counter.js: {}
 video:
-  css:
-    component:
-      templates/component/video/css/video.css: { }
   js:
     //player.vimeo.com/api/player.js: { type: external, minified: true }
