@@ -16,12 +16,11 @@
                     <a class="block-link" href="{{ link_url }}" aria-label="{{ link_title }}">
                 {% endif %}
                 <div role="img"
-                     class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}"
-                     aria-label="{{ item.alt }}">
+                     class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}">
                     <figure>
                         {{ image }}
                         <figcaption class="{{ visibility }}">
-                            <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
+                            <p class="figcaption text-center bold my-3 px-3">{{ label }}</p>
                         </figcaption>
                     </figure>
                 </div>
