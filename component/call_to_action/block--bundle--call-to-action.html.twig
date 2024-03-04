@@ -56,6 +56,8 @@
     <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
         {# Include Image Component #}
         {% include '@cua_theme/component/card/_card--image.html.twig' %}
+        {# Include Icon Component #}
+        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
         {# Include Title/Body Component #}
         {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
         {# Include Link/Button Component #}

@@ -1,0 +1,6 @@
+{# If icon is present, render the following HTML block #}
+  {% if icon %}
+      <div class="{{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} pt-5" style="color: {{ icon_color }}">
+          <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
+      </div>
+  {% endif %}

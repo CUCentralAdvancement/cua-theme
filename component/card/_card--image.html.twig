@@ -1,13 +1,8 @@
 {# Card image/icon #}
-{% if card_image or icon %}
-    {# If either card_image or icon is present, render the following HTML block #}
+{% if card_image %}
     <div class="card-header {{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} g-0">
-        {# Start of card-header div with dynamic classes based on text_alignment, padding, and position_container variables #}
-        {% if card_image or link_title and icon is empty %}
-            {# If card_image is present or link_title is present and icon is empty, render image attributes #}
-            {# Image attributes #}
+        {% if card_image %}
             {% for item in content.field_image['#items'] %}
-                {# Loop through each item in the field_image items #}
                 {% set image = {
                     '#theme':      'image_style',
                     '#style_name': 'webp',
@@ -17,45 +12,23 @@
                     '#width':      item.width,
                     '#height':     item.height
                 } %}
-                {# Set image variable with necessary attributes for rendering #}
-                {# Check if link is active #}
-                {% if link_title is not empty %}
+                {% if link_title %}
                     <a class="block-link" href="{{ link_url }}" aria-label="{{ link_title }}">
                 {% endif %}
-                {# If link is active, start anchor tag with necessary attributes #}
-                {# Render image #}
                 <div role="img"
-                     class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url is not empty %}img-hover-effect{% endif %}"
+                     class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}"
                      aria-label="{{ item.alt }}">
-                    {# Start of div for image with dynamic classes based on image_size, padding, and img-hover-effect if link is active #}
                     <figure>
                         {{ image }}
-                        {# Render the image using the previously defined 'image' variable #}
-                        {# Render alt tag and dynamic visibility #}
                         <figcaption class="{{ visibility }}">
                             <h6 class="figcaption text-center bold my-3 px-3">{{ item.alt }}</h6>
                         </figcaption>
                     </figure>
                 </div>
-                {# End of div for image #}
-                {# Check if link is not active #}
-                {% if link_title is not empty %}
+                {% if link_title %}
                     </a>
                 {% endif %}
-                {# If link is active, close the anchor tag #}
             {% endfor %}
-            {# End of loop through field_image items #}
-            {# Render Icon #}
-        {% elseif icon is not empty %}
-            {# If icon is present, render the following HTML block #}
-            <span class="pt-5" style="color: {{ icon_color }}">
-                {# Start of span with padding and text color based on icon_color variable #}
-                <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
-                {# Render the icon with classes based on icon and icon_size variables #}
-            </span>
-            {# End of span for icon #}
         {% endif %}
     </div>
-    {# End of card-header div #}
 {% endif %}
-{# End of conditional check for card_image or icon presence #}
