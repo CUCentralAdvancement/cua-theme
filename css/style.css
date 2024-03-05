@@ -1027,6 +1027,24 @@ p.intro {
     margin-bottom: 80px;
 }
 
+/*** Add Line under text ***/
+.cu-line {
+    font-family: var(--font-roboto);
+    font-size: 1.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 1rem 0 0;
+}
+
+.cu-line::after {
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    background-color: #cfb87c;
+    margin: 0.4em 0;
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
