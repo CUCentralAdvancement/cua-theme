@@ -26,29 +26,31 @@
 #}
 {%
   set body_classes = [
-    logged_in ? 'user-logged-in',
-    not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
-    node_type ? 'node--type-' ~ node_type|clean_class,
-    db_offline ? 'db-offline',
-    current_user.hasRole('administrator') ? 'user-administrator',
-  ]
+  logged_in ? 'user-logged-in',
+  not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
+  node_type ? 'node--type-' ~ node_type|clean_class,
+  db_offline ? 'db-offline',
+  current_user.hasRole('administrator') ? 'user-administrator',
+]
 %}
 
 <!DOCTYPE html>
 <html{{ html_attributes }}>
-  <head>
-    <head-placeholder token="{{ placeholder_token|raw }}">
+<head>
+  <head-placeholder token="{{ placeholder_token|raw }}">
+    {# Content-Security-Policy header #}
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://player.vimeo.com https://kit.fontawesome.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com/ajax/libs; object-src 'none';">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token|raw }}">
-    <js-placeholder token="{{ placeholder_token|raw }}">
-  </head>
-  <body{{ attributes.addClass(body_classes) }}>
-    <a href="#main-content" class="visually-hidden-focusable">
-      {{ 'Skip to main content'|t }}
-    </a>
-    {{ page_top }}
-    {{ page }}
-    {{ page_bottom }}
-    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
-  </body>
+      <js-placeholder token="{{ placeholder_token|raw }}">
+</head>
+<body{{ attributes.addClass(body_classes) }}>
+<a href="#main-content" class="visually-hidden-focusable">
+  {{ 'Skip to main content'|t }}
+</a>
+{{ page_top }}
+{{ page }}
+{{ page_bottom }}
+<js-bottom-placeholder token="{{ placeholder_token|raw }}">
+</body>
 </html>
