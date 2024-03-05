@@ -85,7 +85,7 @@ a.nav-link.nav-link--,
 
 .nav-link.active.dropdown-toggle {
     background-color: var(--cua-white);
-    color: var(--cua-gold);
+    color: var(--cua-gold-hover);
 }
 
 /* Custom CSS to move the last link to the right */

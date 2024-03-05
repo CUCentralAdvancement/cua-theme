@@ -82,10 +82,15 @@ h1.title {
     position: relative;
 }
 
+div#block-cua-theme-page-title {
+    margin: 0 0 0 2.7rem;
+    position: relative;
+}
+
 .base-heading-square__accent {
     position: absolute;
-    top: -16px;
-    left: -28px;
+    top: 0;
+    left: -25px;
     display: block;
     width: 52px;
     height: 52px;
@@ -1019,9 +1024,6 @@ p.intro {
     margin-bottom: 80px;
 }
 
-div#block-cua-theme-page-title {
-    margin: 0 0 0 1.5rem;
-}
 
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
