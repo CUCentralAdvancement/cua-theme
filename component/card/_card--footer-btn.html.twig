@@ -6,6 +6,12 @@
            aria-label="{{ link_title }}"
            class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
             {{ link_title }}
+            {# title for SEO/508 #}
+            {{ title_prefix }}
+            {% if label is not empty %}
+                <span class="visually-hidden">{{ label }}</span>
+            {% endif %}
+            {{ title_suffix }}
         </a>
     </div>
 {% endif %}
