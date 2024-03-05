@@ -107,8 +107,8 @@
 }
 
 .card-footer .btn.outline-btn-cu-bg-gold {
-    border: 3px solid var(--cua-gold);
-    color: var(--cua-gold);
+    border: 3px solid var(--cua-gold-hover);
+    color: var(--cua-gold-hover);
     background: inherit;
     position: relative; /* Ensure z-index works */
     overflow: hidden;

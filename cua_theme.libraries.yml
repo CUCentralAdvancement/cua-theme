@@ -25,15 +25,18 @@ global-styling:
     //kit.fontawesome.com/a54ae50b5a.js: { type: external, minified: true }
   dependencies:
     - core/popperjs
-
+    -
+# Counter
 counter:
   css:
     component:
-      templates/block/counter/css/counter.css: { }
+      component/counter/css/counter.css: { }
   js:
     //cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js: { type: external, minified: true }
     //cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js: { type: external, minified: true }
-    templates/block/counter/js/counter.js: {}
+    component/counter/js/counter.js: {}
+
+# Video
 video:
   js:
     //player.vimeo.com/api/player.js: { type: external, minified: true }
