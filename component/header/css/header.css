@@ -324,7 +324,30 @@ p.search-button {
     left: 0;
 }
 
+/* Sticky Header Menu */
 
+.sticky {
+    background: var(--cua-white);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Adjust the z-index as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Small bottom shadow */
+    border-bottom: 1px solid #f0f0f0; /* Light grey border at the bottom */
+}
+
+.sticky .container.my-2 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.nav-link {
+    transition: font-size 0.3s ease; /* Adjust the transition timing and easing function as needed */
+}
+
+.scrolled .nav-link {
+    font-size: .85rem;
+}
 
 /* Responsive */
 @media only screen and (max-width: 576px) {

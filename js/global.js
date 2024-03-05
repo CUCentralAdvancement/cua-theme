@@ -25,6 +25,24 @@
   };
 
   /**
+   * Sticky Menu
+   */
+  var navbar = document.getElementById('navbar-main');
+  var sticky = navbar.offsetTop;
+
+  function stickyNav() {
+    if (window.pageYOffset >= sticky) {
+      navbar.classList.add("sticky");
+    } else {
+      navbar.classList.remove("sticky");
+    }
+  }
+
+  window.onscroll = function() {
+    stickyNav();
+  };
+
+  /**
    * animations viewpoint
    */
   document.addEventListener("DOMContentLoaded", function() {
