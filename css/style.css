@@ -64,7 +64,7 @@
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
     font-family: var(--font-roboto);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.2;
 }
 
@@ -75,10 +75,9 @@ h1, .h1 {
 h1.title {
     margin: 1rem 0 2rem;
     background: white;
-    color: var(--cua-gray-700);
-    text-transform: uppercase;
-    font-size: 2rem;
-    font-weight: 100;
+    color: var(--cua-black);
+    font-size: 1.9rem;
+    font-weight: 500;
     position: relative;
 }
 
@@ -90,7 +89,7 @@ div#block-cua-theme-page-title {
 .base-heading-square__accent {
     position: absolute;
     top: 0;
-    left: -25px;
+    left: -8px;
     display: block;
     width: 52px;
     height: 52px;
@@ -533,6 +532,10 @@ input#edit-submit-contact--2 {
     padding: 0.1rem 1rem 0 .3rem;
     color: var(--cua-black);
     border-radius: 0;
+}
+
+.content .views-exposed-form {
+    margin: 2rem 0 0;
 }
 
 /* hiding h3 from board of directors because why? */
