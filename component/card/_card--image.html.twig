@@ -12,18 +12,23 @@
                     '#width':      item.width,
                     '#height':     item.height
                 } %}
+                {# If Link #}
                 {% if link_title %}
                     <a class="block-link" href="{{ link_url }}" aria-label="{{ link_title }}">
                 {% endif %}
-                <div role="img"
-                     class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}">
+                {# Image #}
+                <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}">
                     <figure>
                         {{ image }}
-                        <figcaption class="{{ visibility }}">
-                            <p class="figcaption text-center bold my-3 px-3">{{ label }}</p>
-                        </figcaption>
+                        {# Figcaption #}
+                        {% if visibility is not empty %}
+                            <figcaption class="{{ visibility }}">
+                                <p class="figcaption fw-bold {{ text_alignment ~ ' ' ~ text_color }} my-2 mx-2">{{ item.alt }}</p>
+                            </figcaption>
+                        {% endif %}
                     </figure>
                 </div>
+                {# If Link #}
                 {% if link_title %}
                     </a>
                 {% endif %}
