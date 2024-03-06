@@ -352,12 +352,6 @@ thead > tr {
     text-decoration: underline;
 }
 
-/* View Content Styles */
-
-.view-content.row {
-    margin: 1rem 0 0;
-}
-
 /* Block Link Styles */
 
 .block-link {
@@ -495,9 +489,6 @@ h2.text-align-center::after {
 
 .contact h5 {
     margin-bottom: 0;
-}
-
-.contact .views-view-responsive-grid__item {
 }
 
 .contact .views-field.views-field-field-address {
@@ -686,10 +677,6 @@ a.bef-link.bef-link--selected {
     border-top-right-radius: 0 !important;
 }
 
-.views-view-responsive-grid__item {
-    margin-bottom: 2rem;
-}
-
 #backtotop {
     display: none;
     position: fixed;
@@ -724,7 +711,6 @@ p.intro {
     padding: 0;
     text-transform: uppercase;
     font-size: 1.5rem;
-    margin: 1rem 0 0;
 }
 
 .faq .ui-widget-content {
@@ -778,6 +764,14 @@ p.intro {
 .faq .ui-corner-all, .faq .ui-corner-top, .faq .ui-corner-left, .faq .ui-corner-tl {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.faq .views-element-container {
+    margin:0 0 3rem;
+}
+
+.faq .attachment.attachment-after {
+    margin: 3rem 0 0;
 }
 
 /* FAQ Node */
