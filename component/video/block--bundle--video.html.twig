@@ -32,6 +32,12 @@
 
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+    {# ## Title ## #}
+    {{ title_prefix }}
+    {% if label is not empty %}
+        <span class="visually-hidden">{{ label }}</span>
+    {% endif %}
+    {{ title_suffix }}
     {# Video Containers #}
     {# Include Youtube Component #}
     {% if content.field_provider is not empty and content.field_provider[0]['#markup'] == "youtube" %}
