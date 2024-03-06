@@ -524,6 +524,14 @@ h2.text-align-center::after {
     margin: 0 0 0.5rem;
 }
 
+.contact-title a {
+    color: var(--cua-black);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.5s ease, text-decoration 0.5s ease;
+    font-size: 1.5rem;
+}
+
 input#edit-submit-contact--2 {
     margin: 0.2rem 0 !important;
 }
@@ -583,13 +591,13 @@ aside a.nav-link {
     position: relative;
 }
 
-aside a.link-cua  {
+aside a.link-cua {
     color: var(--cua-black);
     font-weight: 600;
     text-decoration: none;
 }
 
-aside a.link-cua:hover  {
+aside a.link-cua:hover {
     color: var(--cua-gold-hover);
     text-decoration: underline !important;
 }
@@ -1014,7 +1022,7 @@ p.intro {
     text-decoration: none;
 }
 
-.page-view-taxonomy-term  article .nav-link {
+.page-view-taxonomy-term article .nav-link {
     display: block;
     color: var(--cua-gold-hover);
     font-size: .85rem;
@@ -1027,11 +1035,11 @@ p.intro {
 
 /* Video Component */
 .video .cu-bg-white {
-    background:rgba(255, 255, 255, 0.75) !important;
+    background: rgba(255, 255, 255, 0.75) !important;
 }
 
 .video .cu-bg-black {
-    background:rgba(0, 0, 0, 0.75) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
 }
 
 .node__content {
@@ -1054,6 +1062,15 @@ p.intro {
     height: 0.1em;
     background-color: #cfb87c;
     margin: 0.4em 0;
+}
+
+div#block-cua-theme-viewsexposedfilterblock {
+    margin: 2rem 0 0;
+}
+
+div#block-cua-theme-page-title {
+    margin: 0.5rem 0 0 1.7rem;
+    position: relative;
 }
 
 /*** Responsive ***/
