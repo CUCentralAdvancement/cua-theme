@@ -39,6 +39,10 @@
         {# Include Vimeo Component #}
     {% elseif content.field_provider is not empty and content.field_provider[0]['#markup'] == "vimeo" %}
         {% include '@cua_theme/component/video/include/_block--vimeo.html.twig' %}
+        {# Include lcoal video #}
+    {% elseif content.field_provider is not empty and content.field_provider[0]['#markup'] == "local" %}
+        {% include '@cua_theme/component/video/include/_block--mp4.html.twig' %}
+    {% else %}
     {% endif %}
     {# Title, Body, and Link Container #}
     <div class="container mt-5">
