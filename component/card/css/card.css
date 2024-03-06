@@ -116,6 +116,11 @@
     z-index: 1;
 }
 
+.cu-bg-black .card-footer .btn.outline-btn-cu-bg-gold {
+    border: 3px solid var(--cua-gold);
+    color: var(--cua-gold);
+}
+
 /* Hover effect for outline gold buttons */
 .card-footer .btn.outline-btn-cu-bg-gold::before {
     content: '';
@@ -453,8 +458,4 @@ a figure {
     background-color: transparent;
     border-top: none;
     width: 100%; /* Ensure footer width spans the entire container */
-}
-
-.xcard-body {
-    padding: 0;
 }
