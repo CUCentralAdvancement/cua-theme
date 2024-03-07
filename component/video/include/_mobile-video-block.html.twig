@@ -2,10 +2,42 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12 d-md-none">
-            {# Include Title/Body Component #}
-            {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-            {# Include Button/Link Component #}
-            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+            {# If title or body is present, render the following HTML block #}
+            {% if label or body %}
+                <div class="my-3">
+                    {# Title #}
+                    {% if label %}
+                        {{ title_prefix }}
+                        <div class="card-title mx-3">
+                            <h3>{{ label }}</h3>
+                        </div>
+                        {{ title_suffix }}
+                    {% endif %}
+                    {# Body #}
+                    {% if body  %}
+                        <div class="card-body">
+                            {{ body|raw|nl2br }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            {# If link btn is present, render the following HTML block #}
+            {% if link_title or label %}
+                <div class="card-footer {{ text_alignment }} px-3 pb-4 mb-3">
+                    <a href="{{ link_url }}"
+                       title="{{ link_title }}"
+                       aria-label="{{ link_title }}"
+                       class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
+                        {{ link_title }}
+                        {% if label %}
+                            {# title for SEO/508 #}
+                            {{ title_prefix }}
+                            <span class="visually-hidden"> {{ label }}</span>
+                            {{ title_suffix }}
+                        {% endif %}
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
