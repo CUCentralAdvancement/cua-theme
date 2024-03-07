@@ -528,6 +528,10 @@ input#edit-submit-contact--2 {
     margin: 2rem 0 0;
 }
 
+.page-view-trustees .content .views-exposed-form {
+    margin: 0 !important;
+}
+
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
     margin-bottom: 3rem;
     margin-top: 0;
@@ -1032,12 +1036,17 @@ p.intro {
     margin: 0.4em 0;
 }
 
-.cu-line-sm {
+.cu-line-sm,
+.cu-line-sm a {
     font-family: var(--font-roboto);
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.2;
     margin: .75rem 0 0;
+}
+
+.cu-line-sm a:hover {
+    color: var(--cua-gold-hover) !important
 }
 
 .cu-line-sm::after {
