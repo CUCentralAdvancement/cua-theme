@@ -13,14 +13,16 @@
 * - cua_theme.theme
 */
 #}
-#}
+
 {%
     set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
+    'cu-image',
 ]
 %}
+
 <div{{ attributes.addClass(classes) }}>
     {{ title_prefix }}
     {% if label %}
