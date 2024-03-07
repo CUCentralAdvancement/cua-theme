@@ -21,7 +21,7 @@
                     <figure>
                         {{ image }}
                         {# Figcaption #}
-                        {% if visibility is not empty %}
+                        {% if visibility %}
                             <figcaption class="{{ visibility }}">
                                 <p class="figcaption fw-bold {{ text_alignment ~ ' ' ~ text_color }} my-2 mx-2">{{ item.alt }}</p>
                             </figcaption>

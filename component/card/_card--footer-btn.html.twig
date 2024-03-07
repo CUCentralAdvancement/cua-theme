@@ -1,5 +1,5 @@
 {# If link btn is present, render the following HTML block #}
-{% if link_title is not empty %}
+{% if link_title or label %}
     <div class="card-footer {{ text_alignment ~ ' ' ~ position_container }} px-4 pb-4 mb-3">
         <a href="{{ link_url }}"
            title="{{ link_title }}"
@@ -7,11 +7,11 @@
            class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
             {{ link_title }}
             {# title for SEO/508 #}
-            {{ title_prefix }}
-            {% if label is not empty %}
+            {% if label %}
+                {{ title_prefix }}
                 <span class="visually-hidden">{{ label }}</span>
+                {{ title_suffix }}
             {% endif %}
-            {{ title_suffix }}
         </a>
     </div>
 {% endif %}
