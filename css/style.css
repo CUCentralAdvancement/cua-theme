@@ -1028,7 +1028,24 @@ p.intro {
     display: block;
     width: 1.5em;
     height: 0.1em;
-    background-color: #cfb87c;
+    background-color: var(--cua-gold);
+    margin: 0.4em 0;
+}
+
+.cu-line-sm {
+    font-family: var(--font-roboto);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: .75rem 0 0;
+}
+
+.cu-line-sm::after {
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    background-color: var(--cua-gold);
     margin: 0.4em 0;
 }
 
