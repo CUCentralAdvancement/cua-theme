@@ -109,7 +109,6 @@ aside h2, aside.h2 {
     text-transform: uppercase;
 }
 
-
 aside h2::after {
     content: " ";
     display: block;
@@ -199,13 +198,6 @@ body, p, a, li {
     padding: 0.5rem;
     width: 100px;
 }
-
-/* Hide page title on front
-
-.path-frontpage .title {
-    visibility: hidden;
-}
-*/
 
 /* Text Styles */
 
@@ -402,7 +394,6 @@ a.block-link figcaption {
     font-style: italic;
 }
 
-
 .node__content {
     margin-bottom: 80px;
 }
@@ -431,8 +422,8 @@ h2.text-align-center::after {
     display: block;
     width: 1.5em;
     height: 0.1em;
-    background-color: #cfb87c;
-    margin: 0.4em auto; /* Use auto for left and right margins to center the pseudo-element */
+    background-color: var(--cua-gold);
+    margin: 0.4em auto;
 }
 
 .view-display-id-page_3 h3 {
@@ -468,7 +459,7 @@ h2.text-align-center::after {
     color: var(--cua-black);
     font-weight: 500;
     text-decoration: none;
-    transition: color 0.5s ease, text-decoration 0.5s ease; /* Transition for color and text-decoration */
+    transition: color 0.5s ease, text-decoration 0.5s ease;
 }
 
 .contact a:hover {
@@ -537,7 +528,6 @@ input#edit-submit-contact--2 {
     margin: 2rem 0 0;
 }
 
-/* hiding h3 from board of directors because why? */
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
     margin-bottom: 3rem;
     margin-top: 0;
@@ -602,15 +592,14 @@ aside a.nav-link:hover {
 
 aside .form-select a::before,
 aside a.nav-link::before {
-    /* Create underline effect for links */
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0; /* Set initial width to 0 */
+    width: 0;
     height: 2px;
     background-color: var(--cua-white);
-    transition: width 0.5s ease; /* Smooth transition for width */
+    transition: width 0.5s ease;
 }
 
 aside .form-select a:hover::before,
@@ -622,22 +611,17 @@ aside a.nav-link:hover::before {
 
 aside .form-select .block.block-menu.navigation,
 aside .block.block-menu.navigation {
-    /* Add border to separate navigation items */
     border-right: 1px solid var(--cua-gray-400);
 }
 
 aside .form-select {
-    /* Adjust border and background for select form */
     border: 1px solid var(--cua-white) !important;
     --bs-form-select-bg-img: none !important;
 }
 
 aside .form-select ul li ul {
-    /* Indent nested lists */
     margin-left: 1rem;
 }
-
-/**/
 
 .bef-link .bef-link--selected {
     color: var(--cua-gold-hover);
@@ -659,7 +643,6 @@ a.bef-link.bef-link--selected {
     border-bottom: 2px solid var(--cua-gold) !important;
 }
 
-/* Layout Builder Bootstrap Module Full Width -- Do Not Change */
 #main-wrapper-landing-page .row {
     --bs-gutter-x: 0 !important;
     --bs-gutter-y: 0 !important;
@@ -675,6 +658,10 @@ a.bef-link.bef-link--selected {
 .block-inline-blockbanner .card-img-top {
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
+}
+
+.card {
+    border-radius: 0 !important;
 }
 
 #backtotop {
@@ -723,14 +710,8 @@ p.intro {
     border: 2px solid var(--cua-gray-50);
     background: var(--cua-gray-50);
     color: var(--cua-gray-800);
-    font-size: 100%; /* Font size on hover */
-    font-weight: normal; /* Font weight on hover */
-}
-
-.form-control:focus {
-    border-color: var(--cua-gray-200);
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1);
+    font-size: 100%;
+    font-weight: normal;
 }
 
 .faq .ui-state-active,
@@ -738,9 +719,9 @@ p.intro {
     background: var(--cua-gray-300);
     border: 1px solid var(--cua-gray-300);
     color: var(--cua-black);
-    font-size: 105%; /* Initial font size */
-    transition: font-size 0.4s ease, font-weight 0.4s ease; /* Transition for font size and font weight */
-    font-weight: bold; /* Font weight on hover */
+    font-size: 105%;
+    transition: font-size 0.4s ease, font-weight 0.4s ease;
+    font-weight: 700;
 }
 
 .faq h3, .faq h3 a {
@@ -767,14 +748,13 @@ p.intro {
 }
 
 .faq .views-element-container {
-    margin:0 0 3rem;
+    margin: 0 0 3rem;
 }
 
 .faq .attachment.attachment-after {
     margin: 3rem 0 0;
 }
 
-/* FAQ Node */
 .page-vocabulary-accordion-categories .node--view-mode-teaser h2 {
     margin-top: 0;
     padding-top: 0;
@@ -843,7 +823,25 @@ p.intro {
     margin-top: 0;
 }
 
+.form-control:focus {
+    border-color: var(--cua-gray-200);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1);
+}
+
 /* Stories */
+.stories {
+    border-bottom: 3px solid var(--cua-gray-400);
+    margin: 0 0 2rem;
+}
+
+.stories .taxonomy {
+    color: var(--cua-gold-hover);
+    font-weight: bold;
+    font-size: .9rem;
+    padding-right: 1rem;
+}
+
 .stories .taxonomy a {
     color: var(--cua-gold-hover);
     display: block;
@@ -877,22 +875,48 @@ p.intro {
     background-color: transparent;
 }
 
-.stories .taxonomy {
-    color: var(--cua-gold-hover);
-    font-weight: bold;
-    font-size: .9rem; /* Set a specific height */
+.path-frontpage .stories {
+    border-bottom: 0 solid var(--cua-gray-400);
 }
 
-.stories .taxonomy {
+.stories form#views-exposed-form-stories-page-1 {
+    background: var(--cua-gray-100);
+}
+
+.stories .form-control, .stories .form-select {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: var(--cua-gray-100);
+    border-radius: 0 !important;
+}
+
+.stories .js-form-item {
+    margin: 0 .5rem 0;
+}
+
+.stories .js-form-item label {
     color: var(--cua-gold-hover);
-    padding-right: 1rem;
+    font-weight: 700;
+    font-size: .8rem;
+    padding: 0 0 0.25rem 0.25rem;
+    text-transform: uppercase;
+}
+
+.stories #edit-actions .btn.btn-primary {
+    background: var(--cua-gray-400);
+    border-left: 1px solid var(--cua-gray-400);
+    border-top: 1px solid var(--cua-gray-400);
+    border-right: 1px solid var(--cua-gray-400);
+    border-bottom: 1px solid var(--cua-gray-400);
+    box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, .1);
+    color: var(--cua-black);
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .parallax {
-    /* Set a specific height */
     min-height: 500px;
-
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -903,11 +927,6 @@ p.intro {
 .container-fluid {
     --bs-gutter-x: 0 !important;
     --bs-gutter-y: 0 !important;
-}
-
-/* Remove all borders from cards */
-.card {
-    border-radius: 0 !important;
 }
 
 /* Pagination */
@@ -941,57 +960,12 @@ p.intro {
     color: var(--cua-gold);
 }
 
-.stories {
-    border-bottom: 3px solid var(--cua-gray-400);
-    margin: 0 0 2rem;
-}
-
-.path-frontpage .stories {
-    border-bottom: 0 solid var(--cua-gray-400);
-}
-
-.stories form#views-exposed-form-stories-page-1 {
-    background: var(--cua-gray-100);
-}
-
 .view-footer {
     display: flex;
     justify-content: center;
     margin: 0 0 .75rem;
     font-size: .9rem;
     color: var(--cua-gray-600);
-}
-
-.stories .form-control, .stories .form-select {
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 700;
-    background-color: var(--cua-gray-100);
-    border-radius: 0 !important;
-}
-
-.stories .js-form-item {
-    margin: 0 .5rem 0;
-}
-
-.stories .js-form-item label {
-    color: var(--cua-gold-hover);
-    font-weight: 700;
-    font-size: .8rem;
-    padding: 0 0 0.25rem 0.25rem;
-    text-transform: uppercase;
-}
-
-.stories #edit-actions .btn.btn-primary {
-    background: var(--cua-gray-400);
-    border-left: 1px solid var(--cua-gray-400);
-    border-top: 1px solid var(--cua-gray-400);
-    border-right: 1px solid var(--cua-gray-400);
-    border-bottom: 1px solid var(--cua-gray-400);
-    box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, .1);
-    color: var(--cua-black);
-    cursor: pointer;
-    text-decoration: none;
 }
 
 /* Taxonomy */
@@ -1105,9 +1079,10 @@ div#block-cua-theme-page-title {
     margin-bottom: 3rem;
 }
 
-.margin_top_and_bottom{
+.margin_top_and_bottom {
     margin: 3rem 0;
 }
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
