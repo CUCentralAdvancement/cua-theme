@@ -1,12 +1,44 @@
 {# Desktop #}
-<div class="container-fluid mx-auto position-absolute mt-5">
-    <div class="row d-flex {{ position_container }} pt-5">
-        <div class="col-sm-5 {{ color_background }} animate__animated animate__fadeIn animate__slow animate__delay-2s d-none d-md-block p-4">
-            {# Include Title/Body Component #}
-            {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-            {# Include Button/Link Component #}
-            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-        </div>
+<div class="container-fluid mx-auto position-absolute d-flex {{ position_container }}">
+    <div class="col-sm-5 {{ color_background }} animate__animated animate__fadeIn animate__slow animate__delay-2s d-none d-md-block p-4 mt-5 mx-5">
+        {# If title or body is present, render the following HTML block #}
+        {% if label or body %}
+            <div class="card-body {{ text_alignment }} my-3">
+                <div class="card-body-title m-2">
+                    {# ## Title ## #}
+                    {{ title_prefix }}
+                    {% if label is not empty %}
+                        <h3 class="{{ text_color }} mb-3">
+                            {{ label }}
+                        </h3>
+                    {% endif %}
+                    {{ title_suffix }}
+                    {% if body is not empty %}
+                        <div class="lead d-flex {{ text_color }}">
+                            {{ body|raw|nl2br }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {# If link btn is present, render the following HTML block #}
+        {% if link_title is not empty %}
+            <div class="card-footer px-4 pb-4 mb-3">
+                <a href="{{ link_url }}"
+                   title="{{ link_title }}"
+                   aria-label="{{ link_title }}"
+                   class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
+                    {{ link_title }}
+                    {# title for SEO/508 #}
+                    {{ title_prefix }}
+                    {% if label is not empty %}
+                        <span class="visually-hidden">{{ label }}</span>
+                    {% endif %}
+                    {{ title_suffix }}
+                </a>
+            </div>
+        {% endif %}
     </div>
 </div>
+
 
