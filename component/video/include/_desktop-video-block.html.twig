@@ -1,7 +1,12 @@
 {# Desktop #}
-<div class="col-md-4 animate__animated animate__fadeIn animate__slow animate__delay-2s {{ color_background }} position-absolute top-50 end-0 translate-middle d-none d-md-block p-4">
-    {# Include Title/Body Component #}
-    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-    {# Include Button/Link Component #}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+<div class="container-fluid mx-auto position-absolute mt-5">
+    <div class="row d-flex {{ position_container }} pt-5">
+        <div class="col-sm-5 {{ color_background }} animate__animated animate__fadeIn animate__slow animate__delay-2s d-none d-md-block p-4">
+            {# Include Title/Body Component #}
+            {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+            {# Include Button/Link Component #}
+            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+        </div>
+    </div>
 </div>
+

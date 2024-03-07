@@ -50,13 +50,8 @@
         {% include '@cua_theme/component/video/include/_block--mp4.html.twig' %}
     {% else %}
     {% endif %}
-    {# Title, Body, and Link Container #}
-    <div class="container mt-5">
-        <div class="row">
-            {# Include Desktop Component #}
-            {% include '@cua_theme/component/video/include/_desktop-video-block.html.twig' %}
-            {# Include Mobile Component #}
-            {% include '@cua_theme/component/video/include/_mobile-video-block.html.twig' %}
-        </div>
-    </div>
+    {# Include Desktop Component #}
+    {% include '@cua_theme/component/video/include/_desktop-video-block.html.twig' %}
+    {# Include Mobile Component #}
+    {% include '@cua_theme/component/video/include/_mobile-video-block.html.twig' %}
 </div>
