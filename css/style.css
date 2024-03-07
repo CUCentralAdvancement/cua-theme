@@ -1071,13 +1071,14 @@ div#block-cua-theme-page-title {
 .content-type-label {
     background-color: var(--cua-gold);
     color: var(--cua-black);
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: 700;
     z-index: 1;
     left: 16px;
     padding: 3px 10px;
     top: 35px;
     pointer-events: none;
+    letter-spacing: .09rem;
 }
 
 .content-type-label:after {
