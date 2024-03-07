@@ -39,22 +39,19 @@
 }
 
 /* Heading alignment variations for cards */
-.card h3.justify-content-start,
-.card .justify-content-start *,
-.card .justify-content-start p {
-    text-align: left;
+.card h3.justify-content-end,
+.card .justify-content-end p {
+    text-align: right;
 }
 
 .card h3.justify-content-center,
-.card .justify-content-center *,
 .card .justify-content-center p {
     text-align: center;
 }
 
-.card h3.justify-content-end,
-.card .justify-content-end *,
-.card .justify-content-end p {
-    text-align: right;
+.card h3.justify-content-start,
+.card .justify-content-start p {
+    text-align: left;
 }
 
 /* Footer justification variations */
