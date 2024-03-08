@@ -4,9 +4,6 @@
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/CUCentralAdvancement/cua-theme",
-    "require": {
-        "drupal/bootstrap_barrio": "^5.0"
-    },
     "authors": [
         {
             "name": "Bradly Waye",
