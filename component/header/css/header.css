@@ -349,6 +349,7 @@ p.search-button {
     font-size: .85rem;
 }
 
+/* Add Home icon to first link in main nav */
 .navbar-nav > .nav-item:first-child > .nav-link {
     font-size: 0; /* Hide the text */
 }
