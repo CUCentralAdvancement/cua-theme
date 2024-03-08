@@ -2,7 +2,7 @@ name: CU Theme
 type: theme
 description: 'CU Advancement | CU Foundation'
 core_version_requirement: ^9.4 || ^10
-version: '1.0'
+version: '1.0.0'
 project: 'CU Advancement theme'
 base theme: bootstrap_barrio
 

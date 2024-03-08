@@ -1,5 +1,23 @@
 {
     "name": "cu/cua_theme",
     "description": "The CU 1.x theme",
-    "type": "drupal-theme"
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/CUCentralAdvancement/cua-theme",
+    "require": {
+        "drupal/bootstrap_barrio": "^5.0"
+    },
+    "authors": [
+        {
+            "name": "Bradly Waye",
+            "email": "bradley.waye@cu.edu"
+        }
+    ],
+    "extra": {
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
+        }
+    }
 }
