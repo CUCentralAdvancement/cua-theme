@@ -1109,6 +1109,11 @@ div#block-cua-theme-page-title {
     margin: 3rem 0;
 }
 
+/* Video */
+.block.block-layout-builder.video .container-fluid.mx-auto.position-absolute {
+    bottom: 20%;
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     div#edit-contacts--2, div#edit-bod--2 {
@@ -1120,6 +1125,5 @@ div#block-cua-theme-page-title {
         border-bottom: 1px solid var(--cua-gray-400);
     }
 }
-
 
 
