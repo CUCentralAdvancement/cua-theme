@@ -349,6 +349,16 @@ p.search-button {
     font-size: .85rem;
 }
 
+.navbar-nav > .nav-item:first-child > .nav-link {
+    font-size: 0; /* Hide the text */
+}
+
+.navbar-nav > .nav-item:first-child > .nav-link::before {
+    font-family: "FontAwesome";
+    content: "\f015"; /* Font Awesome icon for home */
+    font-size: 14px; /* Adjust the icon size */
+}
+
 /* Responsive */
 @media only screen and (max-width: 576px) {
     #navbar-main {

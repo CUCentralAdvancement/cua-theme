@@ -60,6 +60,22 @@
     --font-roboto-condensed: 'Roboto Condensed', sans-serif;
 }
 
+/* HTML and Body
+----------------------- */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+html {
+    font-size: 1rem;
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+}
+
 /* Headings */
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
