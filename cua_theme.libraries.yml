@@ -25,7 +25,7 @@ global-styling:
     //kit.fontawesome.com/a54ae50b5a.js: { type: external, minified: true }
   dependencies:
     - core/popperjs
-    -
+
 # Counter
 counter:
   css:
