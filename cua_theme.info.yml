@@ -6,11 +6,6 @@ version: '1.0.0'
 project: 'drupal'
 base theme: bootstrap_barrio
 
-libraries:
-  - cua_theme/global-styling
-  - cua_theme/counter
-  - cua_theme/video
-
 regions:
   alert: 'Alert'
   top_header: 'Top header'
@@ -40,4 +35,7 @@ regions:
   footer_sixth: 'Footer sixth'
   placeholder: 'Placeholder'
 
-
+libraries:
+  - cua_theme/global-styling
+  - cua_theme/counter
+  - cua_theme/video
