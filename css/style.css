@@ -803,6 +803,12 @@ p.intro {
     font-size: 1.2rem;
 }
 
+.page-view-taxonomy-term .field--type-image img {
+    margin: 0 0 1em;
+    max-width: 400px;
+    height: fit-content;
+}
+
 .field--name-field-email.field--label-inline .field__label {
     margin-bottom: 1rem;
 }
