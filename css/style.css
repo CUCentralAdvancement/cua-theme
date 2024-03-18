@@ -1096,6 +1096,7 @@ div#block-cua-theme-page-title {
     top: 35px;
     pointer-events: none;
     letter-spacing: .09rem;
+    box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.50)
 }
 
 .content-type-label:after {
