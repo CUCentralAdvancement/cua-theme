@@ -25,8 +25,7 @@
     'jumbotron jumbotron-fluid banner g-0',
     color_background is not empty ? color_background: '',
     container_size is not empty ? container_size|clean_class  : '',
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
-%}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -36,24 +35,33 @@
 {# Content #}
 <div{{ attributes|without('id').addClass(container_classes ).setAttribute('id', unique_id ) }}>
     <div class="{{ parallax }} ken kenburns-{{ effect }} py-5 px-5 {{ margins }}" {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %} >
-        <div class="d-flex {{ position_container }}">
-            <div class="col-md-5 col-sm-12 {{ color_background ~ ' ' ~ text_color }} banner-body kenburns-{{ effect_copy }} py-md-4 mx-md-5 m-sm-0 p-sm-0 pt-sm-5">
-                {% if label is not empty %}
-                    {{ title_prefix }}
-                    {% if label %}
-                        <h2 class="display-4 d-flex {{ center_content ~ ' ' ~ text_color }}">{{ label }}</h2>
+        {# Include Animation if called #}
+        {% if animation or animation_speed or animation_delay is not empty %}
+        <div class="animate-trigger"
+             data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+            {% endif %}
+            <div class="d-flex {{ position_container }}">
+                <div class="col-md-5 col-sm-12 {{ color_background ~ ' ' ~ text_color }} banner-body kenburns-{{ effect_copy }} py-md-4 mx-md-5 m-sm-0 p-sm-0 pt-sm-5">
+                    {% if label is not empty %}
+                        {{ title_prefix }}
+                        {% if label %}
+                            <h2 class="display-4 d-flex {{ center_content ~ ' ' ~ text_color }}">{{ label }}</h2>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                {{ title_suffix }}
-                {% if body is not empty %}
-                    <div class="lead d-flex {{ text_color }}">
-                        {{ body|raw|nl2br }}
-                    </div>
-                {% endif %}
-                {# Include Link/Button Component #}
-                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                    {{ title_suffix }}
+                    {% if body is not empty %}
+                        <div class="lead d-flex {{ text_color }}">
+                            {{ body|raw|nl2br }}
+                        </div>
+                    {% endif %}
+                    {# Include Link/Button Component #}
+                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                </div>
             </div>
+            {# Include Animation if called / end #}
+            {% if animation or animation_speed or animation_delay is not empty %}
         </div>
+        {% endif %}
     </div>
 </div>
 
