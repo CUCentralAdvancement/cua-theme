@@ -8,29 +8,17 @@
  * @see template_preprocess_maintenance_page()
  */
  #}
+<style>
+  /* Custom CSS to force container to bottom */
+  .sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
 {% include '@cua_theme/component/header/header.html.twig' %}
 <div id="page-wrapper" class="mt-5">
   <div id="page">
-    <header id="header" role="banner">
-      <div class="section clearfix">
-        {% if site_name or site_slogan %}
-          <div id="name-and-slogan"{{ hide_site_name and hide_site_slogan ? ' class="visually-hidden"' }}>
-            {% if site_name %}
-              <div id="site-name"{{ hide_site_name ? ' class="visually-hidden"' }}>
-                <strong>
-                  <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home"><span>{{ site_name }}</span></a>
-                </strong>
-              </div>
-            {% endif %}
-            {% if site_slogan %}
-              <div id="site-slogan"{{ hide_site_slogan ? ' class="visually-hidden"' }}>
-                {{ site_slogan }}
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-      </div>
-    </header>
     <div id="main-wrapper">
       <div id="main" class="clearfix">
         <main id="content" class="column" role="main">
@@ -46,4 +34,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Sticky bottom container -->
+<div class="sticky-bottom">
+        {# Footer #}
+        {% include '@cua_theme/component/footer/footer.html.twig' %}
 </div>
