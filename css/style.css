@@ -7,6 +7,7 @@
     --cua-blue: #0854bb;
     --cua-blue-hover: #0854bb;
     --cua-blue-visited: #0854bb;
+    --cua-blue-dark: #03306c;
     --cua-body-bg: #fff;
     --cua-body-color: #262626;
 
@@ -130,7 +131,7 @@ aside h2::after {
     display: block;
     width: 1.5em;
     height: 0.1em;
-    background-color: #cfb87c;
+    background-color: var(--cui-gold);
     margin: 0.4em 0;
 }
 
@@ -429,7 +430,7 @@ a.block-link figcaption {
     display: block;
     width: 1.5em;
     height: 0.1em;
-    background-color: #cfb87c;
+    background-color: var(--cua-gold);
     margin: 0.4em 0;
 }
 
@@ -1085,8 +1086,8 @@ div#block-cua-theme-page-title {
 
 /* Spotlight */
 .content-type-label {
-    background-color: var(--cua-gold);
-    color: var(--cua-black);
+    background-color: var(--cua-blue);
+    color: var(--cua-white);
     font-size: .8rem;
     font-weight: 700;
     z-index: 1;
@@ -1098,7 +1099,7 @@ div#block-cua-theme-page-title {
 }
 
 .content-type-label:after {
-    border-color: transparent var(--cua-gold-hover) transparent transparent;
+    border-color: transparent var(--cua-blue-dark) transparent transparent;
     content: "";
     width: 0;
     height: 0;
