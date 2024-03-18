@@ -350,11 +350,11 @@ p.search-button {
 }
 
 /* Add Home icon to first link in main nav */
-.navbar-nav > .nav-item:first-child > .nav-link {
+header .navbar-nav > .nav-item:first-child > .nav-link {
     font-size: 0; /* Hide the text */
 }
 
-.navbar-nav > .nav-item:first-child > .nav-link::before {
+header .navbar-nav > .nav-item:first-child > .nav-link::before {
     font-family: "FontAwesome";
     content: "\f015"; /* Font Awesome icon for home */
     font-size: 14px; /* Adjust the icon size */
