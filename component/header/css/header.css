@@ -40,16 +40,18 @@ a.site-branding__name {
     margin: .01rem 0 0 .5rem; /* Top margin added for spacing */
 }
 
-a.site-branding__name:hover,
-.site-link:hover {
-    color: var(--cua-gold);
-}
 
 .site-link {
     color: var(--cua-gray-800);
     font-size: 2rem;
     font-weight: 600;
     padding: 0.25em 0;
+}
+
+a.site-branding__name:hover,
+.site-link:hover {
+    color: var(--cua-gold-hover);
+    text-decoration: none;
 }
 
 h1.site-link {
@@ -290,7 +292,7 @@ p.search-button {
 }
 
 #secondary-menu a.nav-link:hover {
-    color: var(--cua-gold);
+    color: var(--cua-gold-hover);
 }
 
 /* Style the last .nav-link element */
