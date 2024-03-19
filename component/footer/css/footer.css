@@ -28,8 +28,13 @@ footer #site-footer-top .clearfix.nav {
 /* Additional Block Styling */
 .site-footer .block {
     border: none;
-    margin: 23px 0;
+    margin: 1.5rem 0;
 }
+
+.cua-address {
+    margin-top: 1.3rem;
+}
+
 
 /* Site Footer Bottom */
 footer #site-footer-bottom .clearfix.nav {

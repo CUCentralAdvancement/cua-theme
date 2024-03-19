@@ -21,35 +21,44 @@
             {% if page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
                 <div class="row g-0">
 
-                    {# Footer Region 1: University Information and Social Media Links #}
-                    <div class="col-md-3 col-sm-6 px-2">
+                    {# Footer Region 1: University Information #}
+                    <div class="col-md-4 col-sm-6 px-2">
                         <section class="row region region-footer-first">
 
-                            {# University Information #}
-                            <h2 class="g-0 mb-2">{{ 'University of Colorado'|t }}
-                                <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
-
-                            {# Address and Contact Information #}
-                            <div class="cua-address g-0 mb-2">
-                                <i class="fa-solid fa-map"></i>
-                                <a class="cua-map link-cua g-0 mb-2" aria-label="{{ 'Map to Colorado University System Advancement'|t }}" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
-                                    {{ '1800 Grant Street, Suite 800'|t }}<br>
-                                    <span class="p-4">{{'Denver, CO 80203'|t }}</span>
-                                </a>
+                            {# Column one #}
+                            <div class="col-md-1">
+                                {# #CU Logo #}
+                                <img src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado Logo" width="29" height="28">
                             </div>
 
-                            {# Phone Number #}
-                            <div class="cua-phone g-0 mb-2">
-                                <i class="fa-solid fa-phone"></i>
-                                <a class="link-cua" href="tel:+13035411290" itemprop="telephone" aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '+1 303.541.1290'|t }}</a>
-                            </div>
+                            {# Column two #}
+                            <div class="col-md-11 px-4">
 
-                            {# Email Address #}
-                            {% set email = 'giving@cu.edu' %}
-                            {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
-                            <div class="cua-email g-0 mb-2">
-                                <i class="fa-solid fa-envelope"></i>
-                                <a class="link-cua" aria-label="{{ 'email address'|t }}" href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
+                                {# CU Name/Department #}
+                                <div class="cua-name-title">
+                                    <h2 class="g-0 mb-2">{{ 'University of Colorado'|t }}
+                                        <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
+                                </div>
+
+                                {# Address and Contact Information #}
+                                <div class="cua-address g-0 mb-2">
+                                    <a class="cua-map link-cua g-0 mb-2" aria-label="{{ 'Map to Colorado University System Advancement'|t }}" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
+                                        {{ '1800 Grant Street, Suite 800'|t }}<br>
+                                        {{'Denver, CO 80203'|t }}
+                                    </a>
+                                </div>
+
+                                {# Phone Number #}
+                                <div class="cua-phone g-0 mb-2">
+                                    <a class="link-cua" href="tel:+13035411290" itemprop="telephone" aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '+1 303.541.1290'|t }}</a>
+                                </div>
+
+                                {# Email Address #}
+                                {% set email = 'giving@cu.edu' %}
+                                {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
+                                <div class="cua-email g-0 mb-2">
+                                    <a class="link-cua" aria-label="{{ 'email address'|t }}" href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
+                                </div>
                             </div>
 
                         </section>
@@ -72,7 +81,7 @@
 
                     {# Footer Region 4: Displayed as a column on medium and a row on small screens #}
                     {% if page.footer_fourth %}
-                        <div class="col-md-3 col-sm-6 mt-2 px-2">
+                        <div class="col-md-2 col-sm-6 mt-2 px-2">
                             {{ page.footer_fourth }}
                         </div>
                     {% endif %}
