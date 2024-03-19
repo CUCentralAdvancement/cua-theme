@@ -100,16 +100,20 @@
         <div id="site-footer-bottom" class="container-fluid bg-black px-5 pb-2">
             <div class="row">
 
-                {# Check if the sixth footer region is present #}
-                {# Footer Region 6: Displayed as a single column centered with flex alignment #}
+                {# #CU Logo #}
+                <div class="col-sm-12 mt-3 d-flex align-items-center justify-content-center">
+                    <img src="/{{ directory ~ '/images/logo-white.svg' }}" alt="University of Colorado Logo" width="300" height="auto">
+                </div>
+
+                {# Footer Region 6 #}
                 {% if page.footer_sixth %}
                     <div class="col-sm-12 d-flex align-items-center justify-content-center">
                         {{ page.footer_sixth }}
                     </div>
                 {% endif %}
 
-                {# Copyright Information #}
-                <div class="col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center">
+                {# Copyright/Regents Information #}
+                <div class="col-sm-12 border-top border-secondary  d-flex align-items-center justify-content-center">
                     <p class="mt-2 strong text-light" aria-label="{{ 'Copyright'|t }}" >{{ '©'|t }} {{ 'now' | date('Y') }}
                         {# Link to the University of Colorado Regents website #}
                         <a href="https://regents.cu.edu" rel="noopener" target="_blank"
