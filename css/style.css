@@ -1137,6 +1137,13 @@ div#block-cua-theme-page-title {
 .block.block-layout-builder.video .container-fluid.mx-auto.position-absolute {
     bottom: 20%;
 }
+/* Spinner */
+.ajax-progress {
+    width:100px;
+    height: 100px;
+    background-color: black;
+    background-image: url(../images/loading.gif);
+}
 
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
