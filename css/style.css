@@ -90,12 +90,14 @@ h1, .h1 {
 }
 
 h1.title {
-    margin: 1rem 0 2rem;
-    background: white;
+    margin: 1.1rem 0 2rem !important;
+    background: var(--cua-white);
     color: var(--cua-black);
-    font-size: 1.9rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
     position: relative;
+    text-transform: uppercase;
 }
 
 div#block-cua-theme-page-title {
