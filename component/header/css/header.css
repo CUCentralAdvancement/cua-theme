@@ -326,6 +326,19 @@ p.search-button {
     left: 0;
 }
 
+
+
+/* Add Home icon to first link in main nav */
+header .navbar-nav > .nav-item:first-child > .nav-link {
+    font-size: 0; /* Hide the text */
+}
+
+header .navbar-nav > .nav-item:first-child > .nav-link::before {
+    font-family: "FontAwesome";
+    content: "\f015"; /* Font Awesome icon for home */
+    font-size: 14px; /* Adjust the icon size */
+}
+
 /* Sticky Header Menu */
 
 .sticky {
@@ -351,25 +364,11 @@ p.search-button {
     font-size: .85rem;
 }
 
-/* Add Home icon to first link in main nav */
-header .navbar-nav > .nav-item:first-child > .nav-link {
-    font-size: 0; /* Hide the text */
-}
-
-header .navbar-nav > .nav-item:first-child > .nav-link::before {
-    font-family: "FontAwesome";
-    content: "\f015"; /* Font Awesome icon for home */
-    font-size: 14px; /* Adjust the icon size */
-}
-
-/* Sticky Header */
-
 .sticky {
     background: #000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid #000;
     transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
-
 }
 
 .sticky .nav-link {
@@ -377,8 +376,29 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
+.sticky .nav-link:hover {
+    color: var(--cua-gold) !important;
+    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
+}
+
 .sticky .nav-link.active.dropdown-toggle {
     background-color: transparent;
+}
+
+.nav-link.nav-link-:last-child {
+    color: var(--cua-gold) !important;
+    font-size: 0;
+    transition: color .25s ease-in-out, font-size .25s ease-in-out;
+}
+
+.sticky .nav-link.nav-link-:last-child  {
+    font-size: .9rem;
+    position: absolute;
+    right: 25px;
+}
+
+.sticky .nav-link.nav-link-:last-child:hover  {
+    color: var(--cua-white) !important;
 }
 
 /* Responsive */
