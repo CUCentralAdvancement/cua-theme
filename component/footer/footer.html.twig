@@ -14,116 +14,121 @@
 */
 #}
 {# Render content #}
-{% block footer %}
-    <footer class="site-footer mt-auto">
+<footer class="site-footer mt-auto">
 
-        {#Site Footer Top Section #}
-        <div id="site-footer-top" class="container pt-3">
-            {# Check if any footer regions are present #}
-            {% if page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
-                <div class="row g-0">
+    {# Site Footer Top Section #}
+    <div id="site-footer-top" class="container pt-3">
+        {# Check if any footer regions are present #}
+        {% if page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
+            <div class="row g-0">
 
-                    {# Footer Region 1: University Information #}
-                    <div class="col-md-4 col-sm-6 px-2">
-                        <section class="row region region-footer-first">
+                {# Footer Region 1: University Information #}
+                <div class="col-md-4 col-sm-6 px-2">
+                    <section class="row region region-footer-first">
 
-                            {# Column one #}
-                            <div class="col-md-1">
-                                {# #CU Logo #}
-                                <img src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado Logo" width="38" height="37">
+                        {# Column one #}
+                        <div class="col-md-1">
+                            {# #CU Logo #}
+                            <img src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado Logo"
+                                 width="38" height="37">
+                        </div>
+
+                        {# Column two #}
+                        <div class="col-md-11 px-4">
+
+                            {# CU Name/Department #}
+                            <div class="cua-name-title">
+                                <h2 class="g-0 mb-2 px-1">{{ 'University of Colorado'|t }}
+                                    <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
                             </div>
 
-                            {# Column two #}
-                            <div class="col-md-11 px-4">
-
-                                {# CU Name/Department #}
-                                <div class="cua-name-title">
-                                    <h2 class="g-0 mb-2 px-1">{{ 'University of Colorado'|t }}
-                                        <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
-                                </div>
-
-                                {# Address and Contact Information #}
-                                <div class="cua-address g-0 mb-2">
-                                    <a class="cua-map link-cua g-0 mb-2" aria-label="{{ 'Map to Colorado University System Advancement'|t }}" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
-                                        {{ '1800 Grant Street, Suite 800'|t }}<br>
-                                        {{'Denver, CO 80203'|t }}
-                                    </a>
-                                </div>
-
-                                {# Phone Number #}
-                                <div class="cua-phone g-0 mb-2">
-                                    <a class="link-cua" href="tel:+13035411290" itemprop="telephone" aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '+1 303.541.1290'|t }}</a>
-                                </div>
-
-                                {# Email Address #}
-                                {% set email = 'giving@cu.edu' %}
-                                {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
-                                <div class="cua-email g-0 mb-2">
-                                    <a class="link-cua" aria-label="{{ 'email address'|t }}" href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
-                                </div>
+                            {# Address and Contact Information #}
+                            <div class="cua-address g-0 mb-2">
+                                <a class="cua-map link-cua g-0 mb-2"
+                                   aria-label="{{ 'Map to Colorado University System Advancement'|t }}"
+                                   href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
+                                    {{ '1800 Grant Street, Suite 800'|t }}<br>
+                                    {{ 'Denver, CO 80203'|t }}
+                                </a>
                             </div>
 
-                        </section>
-                    </div>
+                            {# Phone Number #}
+                            <div class="cua-phone g-0 mb-2">
+                                <a class="link-cua" href="tel:+13035411290" itemprop="telephone"
+                                   aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '+1 303.541.1290'|t }}</a>
+                            </div>
 
-                    {# Additional Footer Regions #}
-                    {# Footer Region 2: Displayed as a column on medium and a row on small screens #}
-                    {% if page.footer_second %}
-                        <div class="col-md-3 col-sm-6 mt-2 px-2">
-                            {{ page.footer_second }}
+                            {# Email Address #}
+                            {% set email = 'giving@cu.edu' %}
+                            {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
+                            <div class="cua-email g-0 mb-2">
+                                <a class="link-cua" aria-label="{{ 'email address'|t }}"
+                                   href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
+                            </div>
                         </div>
-                    {% endif %}
 
-                    {# Footer Region 3: Displayed as a column on medium and a row on small screens #}
-                    {% if page.footer_third %}
-                        <div class="col-md-3 col-sm-6 mt-2 px-2">
-                            {{ page.footer_third }}
-                        </div>
-                    {% endif %}
-
-                    {# Footer Region 4: Displayed as a column on medium and a row on small screens #}
-                    {% if page.footer_fourth %}
-                        <div class="col-md-2 col-sm-6 mt-2 px-2">
-                            {{ page.footer_fourth }}
-                        </div>
-                    {% endif %}
-
-                    {# Footer Region 5: Displayed as a column on medium and a row on small screens #}
-                    {% if page.footer_fifth %}
-                        <div class="col-sm-12 mt-2 px-2">
-                            {{ page.footer_fifth }}
-                        </div>
-                    {% endif %}
-                </div>
-            {% endif %}
-        </div>
-
-        {# Site Footer Bottom Section #}
-        <div id="site-footer-bottom" class="container-fluid bg-black px-5 pb-2">
-            <div class="row">
-
-                {# #CU Logo #}
-                <div class="col-sm-12 mt-4 d-flex align-items-center justify-content-center">
-                    <img src="/{{ directory ~ '/images/logo-white.svg' }}" alt="University of Colorado Logo" width="300" height="auto">
+                    </section>
                 </div>
 
-                {# Footer Region 6 #}
-                {% if page.footer_sixth %}
-                    <div class="col-sm-12 d-flex align-items-center justify-content-center">
-                        {{ page.footer_sixth }}
+                {# Additional Footer Regions #}
+                {# Footer Region 2: Displayed as a column on medium and a row on small screens #}
+                {% if page.footer_second %}
+                    <div class="col-md-3 col-sm-6 mt-2 px-2">
+                        {{ page.footer_second }}
                     </div>
                 {% endif %}
 
-                {# Copyright/Regents Information #}
-                <div class="col-sm-12 border-top border-secondary  d-flex align-items-center justify-content-center">
-                    <p class="mt-2 strong text-light" aria-label="{{ 'Copyright'|t }}" >{{ '©'|t }} {{ 'now' | date('Y') }}
-                        {# Link to the University of Colorado Regents website #}
-                        <a href="https://regents.cu.edu" rel="noopener" target="_blank"
-                           class="link-light link-underline-opacity-0 pl-2" aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">{{ 'Regents of the University of Colorado'|t }}</a>
-                    </p>
-                </div>
+                {# Footer Region 3: Displayed as a column on medium and a row on small screens #}
+                {% if page.footer_third %}
+                    <div class="col-md-3 col-sm-6 mt-2 px-2">
+                        {{ page.footer_third }}
+                    </div>
+                {% endif %}
 
+                {# Footer Region 4: Displayed as a column on medium and a row on small screens #}
+                {% if page.footer_fourth %}
+                    <div class="col-md-2 col-sm-6 mt-2 px-2">
+                        {{ page.footer_fourth }}
+                    </div>
+                {% endif %}
+
+                {# Footer Region 5: Displayed as a column on medium and a row on small screens #}
+                {% if page.footer_fifth %}
+                    <div class="col-sm-12 mt-2 px-2">
+                        {{ page.footer_fifth }}
+                    </div>
+                {% endif %}
             </div>
+        {% endif %}
+    </div>
+
+    {# Site Footer Bottom Section #}
+    <div id="site-footer-bottom" class="container-fluid bg-black px-5 pb-2">
+        <div class="row">
+
+            {# #CU Logo #}
+            <div class="col-sm-12 mt-4 d-flex align-items-center justify-content-center">
+                <img src="/{{ directory ~ '/images/logo-white.svg' }}" alt="University of Colorado Logo" width="300"
+                     height="auto">
+            </div>
+
+            {# Footer Region 6 #}
+            {% if page.footer_sixth %}
+                <div class="col-sm-12 d-flex align-items-center justify-content-center">
+                    {{ page.footer_sixth }}
+                </div>
+            {% endif %}
+
+            {# Copyright/Regents Information #}
+            <div class="col-sm-12 border-top border-secondary  d-flex align-items-center justify-content-center">
+                <p class="mt-2 strong text-light" aria-label="{{ 'Copyright'|t }}">{{ '©'|t }} {{ 'now' | date('Y') }}
+                    {# Link to the University of Colorado Regents website #}
+                    <a href="https://regents.cu.edu" rel="noopener" target="_blank"
+                       class="link-light link-underline-opacity-0 pl-2"
+                       aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">{{ 'Regents of the University of Colorado'|t }}</a>
+                </p>
+            </div>
+
         </div>
-    </footer>
-{% endblock %}
+    </div>
+</footer>
