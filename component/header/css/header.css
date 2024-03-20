@@ -326,8 +326,6 @@ p.search-button {
     left: 0;
 }
 
-
-
 /* Add Home icon to first link in main nav */
 header .navbar-nav > .nav-item:first-child > .nav-link {
     font-size: 0; /* Hide the text */
@@ -365,9 +363,9 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .sticky {
-    background: #000;
+    background: var(--cua-black-pure);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--cua-black-pure);
     transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
@@ -391,10 +389,21 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     transition: color .25s ease-in-out, font-size .25s ease-in-out;
 }
 
-.sticky .nav-link.nav-link-:last-child  {
+.nav-link.nav-link-:last-child::before {
+    font-size: 0;
+}
+
+.sticky .nav-link.nav-link-:last-child {
     font-size: .9rem;
     position: absolute;
     right: 25px;
+}
+
+.sticky .nav-link.nav-link-:last-child::before {
+    font-family: "FontAwesome";
+    font-size: .9rem;
+    content: "\f004"; /* Font Awesome icon for heart */
+    margin: 0 0.3rem 0;
 }
 
 .sticky .nav-link.nav-link-:last-child:hover  {
