@@ -7,7 +7,7 @@
  *
  * @see template_preprocess_maintenance_page()
  */
- #}
+#}
 <style>
   /* Custom CSS to force container to bottom */
   .sticky-bottom {
@@ -16,7 +16,9 @@
     width: 100%;
   }
 </style>
+<!-- Header -->
 {% include '@cua_theme/component/header/header.html.twig' %}
+<!-- Page Content -->
 <div id="page-wrapper" class="mt-5">
   <div id="page">
     <div id="main-wrapper">
@@ -35,9 +37,8 @@
     </div>
   </div>
 </div>
-
 <!-- Sticky bottom container -->
 <div class="sticky-bottom">
-        {# Footer #}
-        {% include '@cua_theme/component/footer/footer.html.twig' %}
+  {# Footer #}
+  {% include '@cua_theme/component/footer/footer.html.twig' %}
 </div>
