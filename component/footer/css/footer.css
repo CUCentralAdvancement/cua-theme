@@ -151,6 +151,10 @@ footer .border-secondary {
     border-color: var(--cua-gray-800) !important;
 }
 
+div#site-footer-bottom {
+    border-top: 2px solid var(--cua-gold);
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
     .site-footer .block {
