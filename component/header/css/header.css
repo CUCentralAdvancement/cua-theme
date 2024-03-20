@@ -362,6 +362,25 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     font-size: 14px; /* Adjust the icon size */
 }
 
+/* Sticky Header */
+
+.sticky {
+    background: #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #000;
+    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
+
+}
+
+.sticky .nav-link {
+    color: var(--cua-white) !important;
+    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
+}
+
+.sticky .nav-link.active.dropdown-toggle {
+    background-color: transparent;
+}
+
 /* Responsive */
 @media only screen and (max-width: 576px) {
     #navbar-main {
