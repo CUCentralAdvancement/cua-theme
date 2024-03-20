@@ -697,7 +697,6 @@ a.bef-link.bef-link--selected {
     border-radius: 50%;
     color: black;
     border: 3px solid var(--cua-gold);
-    background-color: #f4f5f5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     text-decoration: none;
     z-index: 100000;
