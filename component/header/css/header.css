@@ -341,7 +341,11 @@ header .navbar-nav > .nav-item:first-child > .nav-link {
 header .navbar-nav > .nav-item:first-child > .nav-link::before {
     font-family: "FontAwesome";
     content: "\f015"; /* Font Awesome icon for home */
-    font-size: 14px; /* Adjust the icon size */
+    font-size: .9rem; /* Adjust the icon size */
+}
+
+header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
+    font-size: .75rem;
 }
 
 .navbar-toggler {
@@ -444,10 +448,11 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     right: 15px;
 }
 
-.header .sticky  button#search-icon {
-    background:var(--cua-black);
-    color:var(--cua-white) !important;
+.header .sticky button#search-icon {
+    background: var(--cua-black);
+    color: var(--cua-white) !important;
 }
+
 
 /* Responsive */
 @media only screen and (max-width: 576px) {
