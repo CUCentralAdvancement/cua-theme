@@ -380,12 +380,13 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-top: 2px solid var(--cua-gold);
     border-bottom: 1px solid var(--cua-black-pure);
-    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
+    transition: font-size .25s ease-in-out, color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
 .header .sticky .nav-link {
     color: var(--cua-white) !important;
-    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
+    font-size: .85rem;
+    transition: font-size .3s ease-in-out, color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out;
 }
 
 .header .sticky .nav-link:hover {
@@ -409,7 +410,7 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .header .sticky .nav-link.nav-link-:last-child {
-    font-size: .9rem;
+    font-size: .85rem;
     position: absolute;
     right: 4rem;
     transition: color .25s ease-in-out, font-size .25s ease-in-out;
@@ -438,13 +439,13 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .header .sticky #search-icon {
-    top: -9px;
+    top: -11px;
     position: absolute;
     right: 15px;
 }
 
 .header .sticky  button#search-icon {
-    background:var(--cua-black-pure);
+    background:var(--cua-black);
     color:var(--cua-white) !important;
 }
 
