@@ -26,45 +26,34 @@
                 <div class="col-md-4 col-sm-6 px-2">
                     <section class="row region region-footer-first">
 
-                        {# Column one #}
-                        <div class="col-md-1">
-                            {# #CU Logo #}
-                            <img src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado Logo"
-                                 width="38" height="37">
+                        {# CU Name/Department #}
+                        <div class="cua-name-title g-0">
+                            <h2 class="g-0 mb-1 px-1">{{ 'University of Colorado'|t }}
+                                <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
                         </div>
 
-                        {# Column two #}
-                        <div class="col-md-11 px-4">
+                        {# Address and Contact Information #}
+                        <div class="cua-address g-0 mb-2">
+                            <a class="cua-map link-cua g-0 mb-2"
+                               aria-label="{{ 'Map to Colorado University System Advancement'|t }}"
+                               href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
+                                {{ '1800 Grant Street, Suite 800'|t }}<br>
+                                {{ 'Denver, CO 80203'|t }}
+                            </a>
+                        </div>
 
-                            {# CU Name/Department #}
-                            <div class="cua-name-title">
-                                <h2 class="g-0 mb-2 px-1">{{ 'University of Colorado'|t }}
-                                    <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
-                            </div>
+                        {# Phone Number #}
+                        <div class="cua-phone g-0 mb-2">
+                            <a class="link-cua" href="tel:+13035411290" itemprop="telephone"
+                               aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '+1 303.541.1290'|t }}</a>
+                        </div>
 
-                            {# Address and Contact Information #}
-                            <div class="cua-address g-0 mb-2">
-                                <a class="cua-map link-cua g-0 mb-2"
-                                   aria-label="{{ 'Map to Colorado University System Advancement'|t }}"
-                                   href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
-                                    {{ '1800 Grant Street, Suite 800'|t }}<br>
-                                    {{ 'Denver, CO 80203'|t }}
-                                </a>
-                            </div>
-
-                            {# Phone Number #}
-                            <div class="cua-phone g-0 mb-2">
-                                <a class="link-cua" href="tel:+13035411290" itemprop="telephone"
-                                   aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '+1 303.541.1290'|t }}</a>
-                            </div>
-
-                            {# Email Address #}
-                            {% set email = 'giving@cu.edu' %}
-                            {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
-                            <div class="cua-email g-0 mb-2">
-                                <a class="link-cua" aria-label="{{ 'email address'|t }}"
-                                   href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
-                            </div>
+                        {# Email Address #}
+                        {% set email = 'giving@cu.edu' %}
+                        {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
+                        <div class="cua-email g-0 mb-2">
+                            <a class="link-cua" aria-label="{{ 'email address'|t }}"
+                               href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
                         </div>
 
                     </section>

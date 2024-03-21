@@ -8,7 +8,7 @@ footer #site-footer-top .clearfix.nav {
     font-size: 1.3em;
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
     padding-bottom: 5px;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ footer #site-footer-top .clearfix.nav {
 }
 
 .cua-address {
-    margin-top: 1.3rem;
+    margin-top: .5rem;
 }
 
 
