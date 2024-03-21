@@ -376,7 +376,6 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 
 .sticky .nav-link:hover {
     color: var(--cua-gold) !important;
-    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
 .sticky .nav-link.active.dropdown-toggle {
@@ -391,22 +390,25 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 
 .nav-link.nav-link-:last-child::before {
     font-size: 0;
+    transition: color .25s ease-in-out, font-size .25s ease-in-out, content .25s ease-in-out;
+
 }
 
 .sticky .nav-link.nav-link-:last-child {
     font-size: .9rem;
     position: absolute;
     right: 25px;
+    transition: color .25s ease-in-out, font-size .25s ease-in-out;
 }
 
-.sticky .nav-link.nav-link-:last-child::before {
+.sticky .nav-link.nav-link-:last-child::after {
     font-family: "FontAwesome";
-    font-size: .9rem;
-    content: "\f004"; /* Font Awesome icon for heart */
-    margin: 0 0.3rem 0;
+    font-size: .85rem;
+    content: "\f06b"; /* Font Awesome icon for heart */
+    margin: 0 0 0 0.5rem;
 }
 
-.sticky .nav-link.nav-link-:last-child:hover  {
+.sticky .nav-link.nav-link-:last-child:hover {
     color: var(--cua-white) !important;
 }
 
