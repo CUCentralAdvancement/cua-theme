@@ -308,6 +308,13 @@ p.search-button {
     overflow: hidden; /* Hide overflow for the pseudo-element */
 }
 
+#secondary-menu .nav-item:last-child .nav-link::after {
+    font-family: "FontAwesome";
+    font-size: .85rem;
+    content: "\f06b"; /* Font Awesome icon for heart */
+    margin: 0 0 0 0.5rem;
+}
+
 /* Style the pseudo-element for the last .nav-link element */
 #secondary-menu .nav-item:last-child .nav-link::before {
     content: "";
