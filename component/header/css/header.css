@@ -404,7 +404,7 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 .sticky .nav-link.nav-link-:last-child {
     font-size: .9rem;
     position: absolute;
-    right: 25px;
+    right: 4rem;
     transition: color .25s ease-in-out, font-size .25s ease-in-out;
 }
 
@@ -417,6 +417,28 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 
 .sticky .nav-link.nav-link-:last-child:hover {
     color: var(--cua-white) !important;
+}
+
+/* Sticky Search */
+.sticky-search {
+    display: none !important;
+}
+
+.sticky .sticky-search {
+    display: block !important;
+    position: absolute;
+    right: 0;
+}
+
+.sticky #search-icon {
+    top: -9px;
+    position: absolute;
+    right: 15px;
+}
+
+.sticky  button#search-icon {
+    background:var(--cua-black-pure);
+    color:var(--cua-white) !important;
 }
 
 /* Responsive */
