@@ -1,8 +1,3 @@
-/**
- * @file
- * Global utilities.
- *
- */
 (function (Drupal) {
 
   'use strict';
@@ -15,7 +10,12 @@
   var sticky = navbar.offsetTop;
 
   function stickyNav() {
-    navbar.classList.toggle('sticky', window.pageYOffset >= sticky);
+    // Check if viewport width is greater than or equal to 768 pixels (typical tablet portrait breakpoint)
+    if (window.innerWidth >= 768) {
+      navbar.classList.toggle('sticky', window.scrollY >= sticky);
+    } else {
+      navbar.classList.remove('sticky'); // Remove sticky class on smaller viewports
+    }
   }
 
   window.addEventListener('scroll', stickyNav);
