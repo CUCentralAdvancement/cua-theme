@@ -362,20 +362,20 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     border-bottom: 1px solid #f0f0f0; /* Light grey border at the bottom */
 }
 
-.sticky .container.my-2 {
+.header .sticky .container.my-2 {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
-.nav-link {
+.header .nav-link {
     transition: font-size 0.3s ease; /* Adjust the transition timing and easing function as needed */
 }
 
-.scrolled .nav-link {
+.header .scrolled .nav-link {
     font-size: .85rem;
 }
 
-.sticky {
+.header .sticky {
     background: var(--cua-black-pure);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-top: 2px solid var(--cua-gold);
@@ -383,67 +383,67 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
-.sticky .nav-link {
+.header .sticky .nav-link {
     color: var(--cua-white) !important;
     transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
-.sticky .nav-link:hover {
+.header .sticky .nav-link:hover {
     color: var(--cua-gold) !important;
 }
 
-.sticky .nav-link.active.dropdown-toggle {
+.header .sticky .nav-link.active.dropdown-toggle {
     background-color: transparent;
 }
 
-.nav-link.nav-link-:last-child {
+.header .nav-link.nav-link-:last-child {
     color: var(--cua-gold) !important;
     font-size: 0;
     transition: color .25s ease-in-out, font-size .25s ease-in-out;
 }
 
-.nav-link.nav-link-:last-child::before {
+.header .nav-link.nav-link-:last-child::before {
     font-size: 0;
     transition: color .25s ease-in-out, font-size .25s ease-in-out, content .25s ease-in-out;
 
 }
 
-.sticky .nav-link.nav-link-:last-child {
+.header .sticky .nav-link.nav-link-:last-child {
     font-size: .9rem;
     position: absolute;
     right: 4rem;
     transition: color .25s ease-in-out, font-size .25s ease-in-out;
 }
 
-.sticky .nav-link.nav-link-:last-child::after {
+.header .sticky .nav-link.nav-link-:last-child::after {
     font-family: "FontAwesome";
     font-size: .85rem;
     content: "\f06b"; /* Font Awesome icon for heart */
     margin: 0 0 0 0.5rem;
 }
 
-.sticky .nav-link.nav-link-:last-child:hover {
+.header .sticky .nav-link.nav-link-:last-child:hover {
     color: var(--cua-white) !important;
 }
 
 /* Sticky Search */
-.sticky-search {
+.header .sticky-search {
     display: none !important;
 }
 
-.sticky .sticky-search {
+.header .sticky .sticky-search {
     display: block !important;
     position: absolute;
     right: 0;
 }
 
-.sticky #search-icon {
+.header .sticky #search-icon {
     top: -9px;
     position: absolute;
     right: 15px;
 }
 
-.sticky  button#search-icon {
+.header .sticky  button#search-icon {
     background:var(--cua-black-pure);
     color:var(--cua-white) !important;
 }

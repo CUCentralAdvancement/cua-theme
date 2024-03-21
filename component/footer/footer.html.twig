@@ -56,6 +56,13 @@
                                href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
                         </div>
 
+                        {# Footer Region 5 #}
+                        {% if page.footer_fifth %}
+                            <div class="make-a-gift g-0">
+                                {{ page.footer_fifth }}
+                            </div>
+                        {% endif %}
+
                     </section>
                 </div>
 
@@ -81,12 +88,6 @@
                     </div>
                 {% endif %}
 
-                {# Footer Region 5: Displayed as a column on medium and a row on small screens #}
-                {% if page.footer_fifth %}
-                    <div class="col-sm-12 mt-2 px-2">
-                        {{ page.footer_fifth }}
-                    </div>
-                {% endif %}
             </div>
         {% endif %}
     </div>
