@@ -344,6 +344,12 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     font-size: 14px; /* Adjust the icon size */
 }
 
+.navbar-toggler {
+    color: var(--cua-white);
+    background-color: var(--cua-gold);
+    border: var(--bs-border-width) solid var(--cua-white);
+}
+
 /* Sticky Header Menu */
 
 .sticky {
@@ -372,6 +378,7 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
 .sticky {
     background: var(--cua-black-pure);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-top: 2px solid var(--cua-gold);
     border-bottom: 1px solid var(--cua-black-pure);
     transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
