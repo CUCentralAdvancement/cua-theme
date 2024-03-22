@@ -1167,6 +1167,11 @@ div#block-cua-theme-page-title {
     .stories img {
         padding: 0 0 .75rem !important;
     }
+
+    .parallax {
+        min-height: auto;
+        background-attachment: scroll;
+    }
 }
 
 
