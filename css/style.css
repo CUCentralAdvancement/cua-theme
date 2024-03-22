@@ -1158,6 +1158,15 @@ div#block-cua-theme-page-title {
         border-right: 1px solid var(--cua-white);
         border-bottom: 1px solid var(--cua-gray-400);
     }
+
+    .content-type-label {
+        left: -8px;
+        top: 15px;
+    }
+
+    .stories img {
+        padding: 0 0 .75rem !important;
+    }
 }
 
 
