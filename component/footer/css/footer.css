@@ -229,4 +229,8 @@ div#site-footer-bottom {
         border: none;
         margin: 0;
     }
+    .copyright a,
+    .copyright p {
+        font-size: .7rem !important;
+    }
 }
