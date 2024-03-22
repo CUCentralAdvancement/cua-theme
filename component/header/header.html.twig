@@ -99,15 +99,23 @@
         </div>
     </div>
 
-    {# Site Slogan Section #}
-    {% if site_name %}
-        <div class="container-fluid site-name-wrapper g-0">
-            <div class="container px-3 my-2">
+    {# Search Field #}
+    {% if page.search %}
+        <div class="container-fluid main-search search-background ">
+            <div class="container">
                 <div class="collapse" id="CollapseSearch" data-bs-parent=".site-name-wrapper" aria-labelledby="search-icon">
                     <div class="cua-search">
                         {{ page.search }}
                     </div>
                 </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {# Site Slogan Section #}
+    {% if site_name %}
+        <div class="container-fluid site-name-wrapper g-0">
+            <div class="container px-3 my-2">
                 <h1 class="site-slogan">
                     <a href="{{ url('<front>') }}" title="{{ site_name }}"
                        class="site-link"

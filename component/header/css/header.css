@@ -40,7 +40,6 @@ a.site-branding__name {
     margin: .01rem 0 0 .5rem; /* Top margin added for spacing */
 }
 
-
 .site-link {
     color: var(--cua-gray-800);
     font-size: 2rem;
@@ -136,8 +135,7 @@ button#search-icon:hover {
 }
 
 header .search-block-form {
-    margin: .8rem 0 0;
-    border-bottom: 1px solid var(--cua-white);
+    margin: 0.5rem 0 0;
 }
 
 .search-block-form .form-control {
@@ -145,15 +143,24 @@ header .search-block-form {
 }
 
 .search-block-form .btn-primary {
-    color: var(--cua-black);
-    background: var(--cui-gold);
-    border: 1px solid var(--cui-gold);
+    color: var(--cua-gold);
+    background: var(--cua-black);
+    border: 1px solid var(--cua-black);
     border-radius: 0 10px 10px 0;
-    font-weight: 400;
+    font-weight: 700;
     font-size: .95rem;
     letter-spacing: normal;
     margin: 0;
     padding: .41rem 1.25rem;
+}
+
+.search-block-form .btn-primary:hover  {
+    color: var(--cua-white);
+    background: var(--cua-gold-hover);
+    border: 1px solid var(--cua-gold-hover);
+    box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, .1);
+    cursor: pointer !important;
+    text-decoration: none;
 }
 
 .search-block-form .js-form-type-search input.form-search,
@@ -172,7 +179,7 @@ header .search-block-form {
     color: var(--cua-gray-800);
     background-color: var(--cua-white);
     background-clip: padding-box;
-    border: 1px solid var(--cui-gold);
+    border: 1px solid var(--cua-white);
     border-radius: 10px 0 0 10px;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     border-right: 0;
@@ -196,17 +203,6 @@ p.search-button {
     padding: 0 1rem 0;
 }
 
-#edit-actions .btn.btn-primary:hover {
-    background: var(--cui-gold-hover);
-    border-left: 1px solid var(--cui-gold-hover); /* Only the left border will change */
-    border-top: 1px solid var(--cui-gold); /* Retain other borders */
-    border-right: 1px solid var(--cui-gold); /* Retain other borders */
-    border-bottom: 1px solid var(--cui-gold); /* Retain other borders */
-    box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, .1);
-    color: var(--cua-black);
-    cursor: pointer;
-    text-decoration: none;
-}
 
 #edit-actions .btn.btn-primary:focus,
 .form-control:focus {
@@ -266,7 +262,7 @@ p.search-button {
 }
 
 #secondary-menu .nav-link.nav-link-:hover {
-    color: var(--cua-gold-hover) !important;
+    color: var(--cua-gold-hover);
 }
 
 #secondary-menu > div:last-child {
@@ -299,18 +295,22 @@ p.search-button {
 #secondary-menu .nav-item:last-child .nav-link {
     position: relative;
     z-index: 1; /* Ensure the link text is on top of the pseudo-element */
-    background: var(--cui-gold);
-    border: 1px solid var(--cui-gold);
-    color: var(--cua-black);
+    background: var(--cua-white);
+    border: 1px solid var(--cua-gold-hover);
+    color: var(--cua-gold-hover) !important;
     text-transform: none;
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: 700;
     overflow: hidden; /* Hide overflow for the pseudo-element */
 }
 
+#secondary-menu .nav-item:last-child .nav-link:hover {
+    color: var(--cua-white) !important;
+}
+
 #secondary-menu .nav-item:last-child .nav-link::after {
     font-family: "FontAwesome";
-    font-size: .85rem;
+    font-size: .8rem;
     content: "\f06b"; /* Font Awesome icon for heart */
     margin: 0 0 0 0.5rem;
 }
@@ -323,7 +323,8 @@ p.search-button {
     left: -100%; /* Start off-screen to the left */
     width: 100%;
     height: 100%;
-    background: var(--cua-white); /* Background color on hover */
+    background: var(--cua-gold-hover); /* Background color on hover */
+    color: var(--cua-white); /* Background color on hover */
     z-index: -1; /* Behind the link text */
     transition: left 0.5s ease; /* Transition the left position */
 }
@@ -452,6 +453,9 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
     color: var(--cua-white) !important;
 }
 
+.search-background {
+    background: var(--cua-gold);
+}
 
 /* Responsive */
 @media only screen and (max-width: 576px) {
@@ -478,4 +482,3 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
         padding: 0.2rem 0 0 0.5rem;
     }
 }
-
