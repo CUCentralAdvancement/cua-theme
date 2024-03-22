@@ -143,7 +143,7 @@ header .search-block-form {
 }
 
 .search-block-form .btn-primary {
-    color: var(--cua-gold);
+    color: var(--cua-white);
     background: var(--cua-black);
     border: 1px solid var(--cua-black);
     border-radius: 0 10px 10px 0;
@@ -454,7 +454,7 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .search-background {
-    background: var(--cua-gold);
+    background: #d8d8d8;
 }
 
 /* Responsive */
