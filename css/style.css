@@ -455,7 +455,7 @@ h2.text-align-center::after {
 
 .contact .h5.title.headshot {
     font-size: 1.25rem;
-    margin: 1rem 0 0 0 !important;
+    margin: 0 !important;
 }
 
 .contact .views-field.views-field-field-office-phone {
