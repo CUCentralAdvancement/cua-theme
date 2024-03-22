@@ -1172,6 +1172,10 @@ div#block-cua-theme-page-title {
         min-height: auto;
         background-attachment: scroll;
     }
+
+    .contact .h5.title.headshot {
+        margin: 1rem 0 0 !important;
+    }
 }
 
 
