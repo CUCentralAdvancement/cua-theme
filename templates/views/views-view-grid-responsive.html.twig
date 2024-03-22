@@ -25,31 +25,10 @@
  */
 #}
 
-{{ attach_library('views/views.responsive-grid') }}
-
-{%
-    set classes = [
-    'views-view-responsive-grid',
-    'views-view-responsive-grid--' ~ options.alignment,
-]
-%}
-
-{% set responsive_grid_styles = [
-    '--views-responsive-grid--column-count:' ~ options.columns ~ ';',
-    '--views-responsive-grid--cell-min-width:' ~ options.cell_min_width ~ 'px;',
-    '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
-]
-%}
-
-{% if title %}
-    <p class="cu-line fw-bolder">{{ title }}</p>
-{% endif %}
-<div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
-    {% for item in items %}
-        <div class="views-view-responsive-grid__item">
-            <div class="views-view-responsive-grid__item-inner">
-                {{- item.content -}}
-            </div>
+{% for item in items %}
+    <div class="col-md-6 col-sm-12 g-0">
+        <div class="bg-light g-0 px-3 py-4 m-2">
+            {{- item.content -}}
         </div>
-    {% endfor %}
-</div>
+    </div>
+{% endfor %}
