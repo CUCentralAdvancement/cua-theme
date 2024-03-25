@@ -15,7 +15,6 @@ h1.site-slogan {
 /* Site Name Wrapper */
 .site-name-wrapper {
     background: var(--cua-white-light);
-    border: 1px solid var(--cua-white);
     width: 100%;
 }
 
@@ -478,7 +477,8 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 
     a.site-branding__name {
         font-size: .95rem;
-        padding: 0.2rem 0 0 0.5rem;
+        padding: .3rem 0 0;
+        line-height: 1;
     }
 
     .navbar-expand-lg .navbar-nav .nav-link, .nav-link.dropdown-toggle, .nav-link.is-active, .nav-link.active.is-active {
@@ -558,6 +558,10 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
         border-right: 0.4em solid transparent;
         border-bottom: 0;
         border-left: 0.4em solid transparent;
+    }
+
+    .site-name-wrapper {
+
     }
 
 }
