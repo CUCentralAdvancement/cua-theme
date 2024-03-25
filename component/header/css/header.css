@@ -561,3 +561,24 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 
 }
 
+/* iphone > 12 */
+@media only screen and (max-width: 430px) {
+    a.site-branding__name {
+        padding: .5rem 0 0;
+    }
+
+    .site-name-logo img {
+        margin: .25rem 0 0;
+    }
+}
+
+/* iphone < 12 */
+@media only screen and (max-width: 390px) {
+    a.site-branding__name {
+        padding: 0;
+    }
+
+    .site-name-logo img {
+        margin: .3rem 0 0;
+    }
+}
