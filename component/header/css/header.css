@@ -3,7 +3,6 @@
 /* Site Slogan */
 h1.site-slogan {
     padding: 0;
-    margin: 0 0 15px; /* Margin added to bottom for spacing */
 }
 
 /* Banner */
@@ -62,7 +61,6 @@ h1.site-link {
 header .nav-link {
     text-decoration: none;
     font-weight: 700;
-    text-transform: uppercase;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link,
@@ -70,6 +68,7 @@ header .nav-link {
 .nav-link.is-active,
 .nav-link.active.is-active {
     text-decoration: none;
+    margin: 0.5rem 0;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link ul li a:first-child,
@@ -179,7 +178,7 @@ header .search-block-form {
     color: var(--cua-gray-800);
     background-color: var(--cua-white);
     background-clip: padding-box;
-    border: 1px solid var(--cua-white);
+    border: 1px solid var(--cua-gray-500);
     border-radius: 10px 0 0 10px;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     border-right: 0;
@@ -374,6 +373,7 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 
 .header .nav-link {
     transition: font-size 0.3s ease; /* Adjust the transition timing and easing function as needed */
+    font-size: 1.05rem;
 }
 
 .header .scrolled .nav-link {
@@ -454,14 +454,14 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .search-background {
-    background: #d8d8d8;
+    background: var(--cua-white);
 }
 
 /* Responsive */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 991px) {
     #navbar-main {
         background-color: transparent;
-        border-top: transparent;
+        border-top: 1px solid var(--cua-gray-200)
     }
 
     .navbar-nav > li:not(:last-child) {
@@ -469,11 +469,10 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
     }
 
     header ul.nav.navbar-nav li:last-child {
-        margin-left: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     h1.site-slogan {
-        padding: 10px;
         margin: 0;
     }
 
@@ -482,4 +481,84 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
         padding: 0.2rem 0 0 0.5rem;
     }
 
+    .navbar-expand-lg .navbar-nav .nav-link, .nav-link.dropdown-toggle, .nav-link.is-active, .nav-link.active.is-active {
+        text-decoration: none;
+        margin: 0;
+        padding: .5rem 0;
+        border-bottom: 1px solid var(--cua-gray-200);
+    }
+
+    button#search-icon {
+        border-radius: 50%;
+        padding: 0.6rem;
+        box-shadow: none;
+        margin: 0 3px;
+    }
+
+    .header .nav-link {
+        font-size: 1rem !important;
+    }
+
+    header .navbar-nav > .nav-item:first-child > .nav-link::before {
+        display: none;
+    }
+
+    /* Custom Hamburger */
+    .navbar-toggler {
+        background-color: var(--cua-black-pure);
+        border: var(--bs-border-width) solid var(--cua-black-pure);
+    }
+
+    .navbar-toggler-icon {
+        --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-toggler:focus {
+        background: var(--cua-gold) !important;
+        border: var(--bs-border-width) solid var(--cua-gold);
+        box-shadow: none !important;
+        text-decoration: none !important;
+        outline: 0 !important;
+    }
+
+    .navbar-toggler:focus .navbar-toggler-icon {
+        --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M3 3L27 27'/%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M3 27L27 3'/%3e%3c/svg%3e");
+    }
+
+    .header .nav-link.nav-link-:last-child {
+        color: var(--bs-nav-link-color) !important;
+        font-size: .9rem;
+        padding: 0;
+    }
+
+    .dropdown-menu.show {
+        border-bottom: none;
+        box-shadow: none !important;
+        font-size: .9rem;
+    }
+
+    .dropdown-item a, .dropdown-item a:visited {
+        font-weight: 700;
+        padding-left: 15px;
+    }
+
+    .navbar-collapse .nav-link.nav-link-:last-child {
+        margin: 0.25rem 0;
+    }
+
+    header #search-block-form {
+        padding: 0;
+    }
+
+    .dropdown-toggle::after {
+        position: absolute;
+        right:15px;
+        top:10px;
+        border-top: 0.4em solid;
+        border-right: 0.4em solid transparent;
+        border-bottom: 0;
+        border-left: 0.4em solid transparent;
+    }
+
 }
+

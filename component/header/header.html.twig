@@ -15,15 +15,14 @@
 #}
 
 {# Render content #}
-<header id="header" class="header" role="banner"
+<header id="header" class="header shadow-sm" role="banner"
         aria-label="{{ 'Site header'|t }}">
-    <div class="container">
+    <div class="container mb-2">
         <div class="row clearfix g-0">
-            <div class="col-md-6 g-0">
+            <div class="col g-0">
 
                 {# Top Header Navigation #}
-                <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white"
-                     id="navbar-top">
+                <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white p-0 m-0" id="navbar-top">
                     <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
                         <div class="container d-flex g-0">
                             {# CU Logos #}
@@ -60,7 +59,14 @@
                                 </div>
                             {% endif %}
 
-                            {# Navigation toggle button for smaller screens #}
+                            {# Navigation toggle buttons for smaller screens #}
+                            <button id="search-icon" class="btn btn-default d-lg-none mx-4" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="Search">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                </svg>
+                            </button>
+
+                            {# Hamburger #}
                             <button class="navbar-toggler collapsed"
                                     type="button"
                                     data-bs-toggle="collapse"
@@ -70,6 +76,7 @@
                                     aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
+
                         </div>
                     </div>
                 </nav>
@@ -114,12 +121,10 @@
 
     {# Site Slogan Section #}
     {% if site_name %}
-        <div class="container-fluid site-name-wrapper g-0">
+        <div class="container-fluid site-name-wrapper d-none d-lg-block g-0">
             <div class="container px-3 my-2">
                 <h1 class="site-slogan">
-                    <a href="{{ url('<front>') }}" title="{{ site_name }}"
-                       class="site-link"
-                       rel="home">
+                    <a href="{{ url('<front>') }}" title="{{ site_name }}" class="site-link" rel="home">
                         <span>{{ site_name }}</span>
                     </a>
                 </h1>
@@ -129,10 +134,9 @@
 
     {# Main Navigation Section #}
     {% if page.primary_menu or page.search %}
-        <nav role="navigation"
-             class="navbar l-header-bottom navbar-expand-lg"
-             id="navbar-main" aria-labelledby="cua-main-menu">
-            <div class="container my-2">
+
+        <nav role="navigation" class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 p-0 m-0" id="navbar-main" aria-labelledby="cua-main-menu">
+            <div class="container px-2 g-0">
                 <div class="collapse navbar-collapse" id="mainNavbrSupportedContent">
                     <h2 class="visually-hidden" id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
 
@@ -154,22 +158,22 @@
                         </div>
                     {% endif %}
 
-                    {# Display the primary menu provided by Drupal / desktop  #}
-                    {% if page.secondary_menu %}
-                        <div id="secondary-menu" class="d-lg-none">
-                            <div class="d-flex justify-content-start">
-                                {{ page.secondary_menu }}
-                            </div>
-                        </div>
-                    {% endif %}
-
-                    {# Search bar for smaller screens if provided in the page #}
-                    {% if page.search %}
-                        <div class="my-3 mx-4 d-lg-none">{{ page.search }}</div>
-                    {% endif %}
-
                 </div>
             </div>
         </nav>
     {% endif %}
+
+    {# Site Slogan Section #}
+    {% if site_name %}
+        <div class="container-fluid site-name-wrapper d-lg-none g-0">
+            <div class="container px-3 mt-3 mt-sm-2">
+                <h1 class="site-slogan">
+                    <a href="{{ url('<front>') }}" title="{{ site_name }}" class="site-link" rel="home">
+                        <span>{{ site_name }}</span>
+                    </a>
+                </h1>
+            </div>
+        </div>
+    {% endif %}
+
 </header>

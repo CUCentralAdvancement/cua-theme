@@ -1148,8 +1148,12 @@ div#block-cua-theme-page-title {
     background-image: url(../images/loading.gif);
 }
 
+.featured-top {
+    margin: 1rem 0 0;
+}
+
 /*** Responsive ***/
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 991px) {
     div#edit-contacts--2, div#edit-bod--2 {
         border-right: 1px solid var(--cua-white) !important;
     }
@@ -1176,6 +1180,6 @@ div#block-cua-theme-page-title {
     .contact .h5.title.headshot {
         margin: 1rem 0 0 !important;
     }
-}
 
+}
 
