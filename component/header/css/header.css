@@ -36,7 +36,7 @@ a.site-branding__name {
     font-weight: 700;
     line-height: 1.1;
     padding: 0;
-    margin: .01rem 0 0 .5rem; /* Top margin added for spacing */
+    margin: .27rem 0 0 .5rem;
 }
 
 .site-link {
