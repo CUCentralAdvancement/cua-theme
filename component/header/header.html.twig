@@ -24,8 +24,9 @@
                 {# Top Header Navigation #}
                 <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white p-0 m-0" id="navbar-top">
                     <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
+
+                        {# CU Logos #}
                         <div class="container d-flex g-0">
-                            {# CU Logos #}
                             <div class="flex-shrink-1">
 
                                 {# Logo for larger screens #}
@@ -48,7 +49,7 @@
                                 </a>
                             </div>
 
-                            {# Site name for all screens #}
+                            {# Site name #}
                             {% if site_slogan %}
                                 <div class="w-100 align-items-baseline">
                                     <a href="{{ url('<front>') }}"
@@ -82,7 +83,7 @@
                 </nav>
             </div>
 
-            {# Display the primary menu provided by Drupal / desktop  #}
+            {# Secondary menu  / desktop  #}
             {% if page.secondary_menu %}
                 <div id="secondary-menu" class="col-md-5 g-0 d-none d-lg-block">
                     <div class="d-flex justify-content-end">
@@ -91,7 +92,7 @@
                 </div>
             {% endif %}
 
-            {# Search bar for larger screens if provided in the page #}
+            {# Search Icon #}
             {% if page.search %}
                 <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
                     <p class="search-button">
@@ -106,7 +107,7 @@
         </div>
     </div>
 
-    {# Search Field #}
+    {# Search Form #}
     {% if page.search %}
         <div class="container-fluid main-search search-background ">
             <div class="container">
@@ -119,7 +120,7 @@
         </div>
     {% endif %}
 
-    {# Site Slogan Section #}
+    {# Site Slogan #}
     {% if site_name %}
         <div class="container-fluid site-name-wrapper d-none d-lg-block g-0">
             <div class="container px-3 my-2">
@@ -134,28 +135,39 @@
 
     {# Main Navigation Section #}
     {% if page.primary_menu or page.search %}
-
         <nav role="navigation" class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 p-0 m-0" id="navbar-main" aria-labelledby="cua-main-menu">
             <div class="container px-3 g-0">
                 <div class="collapse navbar-collapse" id="mainNavbrSupportedContent">
+
+                    {# Screen Reader Link #}
                     <h2 class="visually-hidden" id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
 
-                    {# Display the primary menu provided by Drupal #}
+                    {# Display the primary menu #}
                     {% if page.primary_menu %}
                         {{ page.primary_menu }}
                     {% endif %}
 
-                    {# Search bar for sticky menu #}
-                    {% if page.search %}
-                        <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block sticky-search">
-                            <p class="search-button">
+                    {% if page.secondary_menu or page.searc %}
+                    <div class="col-4 g-0 d-lg-none sticky-search">
+
+                        {# Seondary menu / mobile  #}
+                        {% if page.secondary_menu %}
+                        <div class="secondary-menu-sticky d-flex justify-content-end">
+                            {{ page.secondary_menu }}
+                            {% endif %}
+                        </div>
+
+                        {# Search bar for sticky menu / mobile #}
+                        {% if page.search %}
+                            <p class="search-button d-flex justify-content-end ">
                                 <button id="search-icon" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="Search">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                                     </svg>
                                 </button>
                             </p>
-                        </div>
+                        {% endif %}
+                    </div>
                     {% endif %}
 
                 </div>
@@ -163,7 +175,7 @@
         </nav>
     {% endif %}
 
-    {# Site Slogan Section #}
+    {# Site Slogan Mobile #}
     {% if site_name %}
         <div class="container-fluid site-name-wrapper d-lg-none g-0">
             <div class="container">
