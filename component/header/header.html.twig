@@ -148,26 +148,26 @@
                     {% endif %}
 
                     {% if page.secondary_menu or page.searc %}
-                    <div class="col-4 g-0 d-lg-none sticky-search">
+                        <div class="col-4 g-0 d-lg-none sticky-search">
 
-                        {# Seondary menu / mobile  #}
-                        {% if page.secondary_menu %}
-                        <div class="secondary-menu-sticky d-flex justify-content-end">
-                            {{ page.secondary_menu }}
+                            {# Seondary menu / mobile  #}
+                            {% if page.secondary_menu %}
+                            <div class="secondary-menu-sticky d-flex justify-content-end">
+                                {{ page.secondary_menu }}
+                                {% endif %}
+                            </div>
+
+                            {# Search bar for sticky menu / mobile #}
+                            {% if page.search %}
+                                <p class="search-button d-flex justify-content-end ">
+                                    <button id="search-icon" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="Search">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                        </svg>
+                                    </button>
+                                </p>
                             {% endif %}
                         </div>
-
-                        {# Search bar for sticky menu / mobile #}
-                        {% if page.search %}
-                            <p class="search-button d-flex justify-content-end ">
-                                <button id="search-icon" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="Search">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                                    </svg>
-                                </button>
-                            </p>
-                        {% endif %}
-                    </div>
                     {% endif %}
 
                 </div>

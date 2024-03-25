@@ -436,7 +436,7 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .header .sticky #search-icon {
-    top: 1.15rem;
+    top: 1.05rem;
     position: absolute;
     right: 15px;
 }
@@ -446,8 +446,8 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
     color: var(--cua-white) !important;
 }
 
-.secondary-menu-sticky.d-flex.justify-content-end {
-    margin: 0 4rem 0 0 !important;
+.secondary-menu-sticky {
+    margin: 1.1rem 4rem 0 0 !important;
 }
 
 .search-background {
