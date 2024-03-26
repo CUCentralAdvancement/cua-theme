@@ -568,7 +568,9 @@ img.sticky-show {
     }
 
     .block-menu.menu--secondary-menu a.nav-link {
-        padding: 0;
+        color: var(--cua-gray-700);
+        border-bottom: 1px solid var(--cua-gray-200);
+        padding: .4rem 0;
     }
 
     p.search-button {
@@ -578,6 +580,11 @@ img.sticky-show {
 
     img.sticky-show {
         display: none;
+    }
+
+    header .border-bottom {
+        border-bottom: 1px solid var(--cua-white)!important;
+        /* display: none; */
     }
 
 }
