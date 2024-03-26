@@ -5,6 +5,15 @@ use Drupal\Component\Utility\SortArray;
 use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Theme\ThemeNegotiatorInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the search form.
+ */
+function cua_theme_form_search_block_form_alter(array &$form, FormStateInterface $form_state, $form_id): void {
+    // Change the label of the submit button to "Submit".
+    $form['actions']['submit']['#value'] = t('Submit');
+}
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for form templates.

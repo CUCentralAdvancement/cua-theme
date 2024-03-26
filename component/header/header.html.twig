@@ -83,7 +83,7 @@
 
     {# Search Form #}
     {% if page.search %}
-        <div class="container-fluid main-search search-background ">
+        <div class="container-fluid main-search bg-light border-bottom border-white">
             <div class="container">
                 <div class="collapse" id="CollapseSearch" data-bs-parent=".site-name-wrapper" aria-labelledby="search-icon">
                     <div class="cua-search">
@@ -96,7 +96,7 @@
 
     {# Site Name / Desktop #}
     {% if site_name %}
-        <span class="d-none d-lg-block">
+        <span class="bg-light d-none d-lg-block">
             {% include '@cua_theme/component/header/_site-name.html.twig' %}
         </span>
     {% endif %}

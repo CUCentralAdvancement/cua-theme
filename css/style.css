@@ -59,6 +59,10 @@
     --fa-style-family-classic: 'Font Awesome 6 Free';
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', sans-serif;
+
+    /* Background Colors */
+    --bg-light: #f4f4f5;
+
 }
 
 /* HTML and Body
@@ -218,6 +222,9 @@ body, p, a, li {
     width: 100px;
 }
 
+.bg-light {
+    background: var(--bg-light) !important;
+}
 /* Text Styles */
 
 .text-small, .small {

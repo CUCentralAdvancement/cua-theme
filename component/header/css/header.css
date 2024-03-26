@@ -14,7 +14,6 @@ h1.site-slogan {
 
 /* Site Name Wrapper */
 .site-name-wrapper {
-    background: var(--cua-white-light);
     width: 100%;
 }
 
@@ -444,11 +443,6 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 .secondary-menu-sticky {
     margin: .65rem 4rem 0 0 !important;
 }
-
-.search-background {
-    background: var(--cua-white);
-}
-
 
 /* Responsive */
 @media only screen and (max-width: 991px) {
