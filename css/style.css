@@ -723,6 +723,8 @@ a.bef-link.bef-link--selected {
 
 div#block-cua-theme-breadcrumbs {
     padding: 0 .5rem 0;
+    display: flex;
+    justify-content: end;
 }
 
 p.intro {

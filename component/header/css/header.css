@@ -15,6 +15,7 @@ h1.site-slogan {
 /* Site Name Wrapper */
 .site-name-wrapper {
     width: 100%;
+    background: var(--bg-light) !important;
 }
 
 /* Site Branding Links */

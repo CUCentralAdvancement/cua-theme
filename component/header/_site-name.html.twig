@@ -1,4 +1,4 @@
-{# Site name #}
+{# Site name and breadcrumb #}
 <div class="container-fluid site-name-wrapper g-0">
     <div class="container px-3 my-2">
         <div class="row">
@@ -9,14 +9,13 @@
                     </a>
                 </h1>
             </div>
-            <div class="col d-flex justify-content-end mt-3 mx-3">
-                {% if page.breadcrumb %}
-                    {% block breadcrumb %}
+            {% if page.breadcrumb %}
+                {% block breadcrumb %}
+                    <div class="col d-none d-lg-block mt-3 mx-3">
                         {{ page.breadcrumb }}
-                    {% endblock %}
-                {% endif %}
-            </div>
-
+                    </div>
+                {% endblock %}
+            {% endif %}
         </div>
     </div>
 </div>
