@@ -16,7 +16,7 @@
 
 {# Render content #}
 <header id="header" class="header shadow-sm" role="banner" aria-label="{{ 'Site header'|t }}">
-    <div class="container mb-2">
+    <div class="container">
         <div class="row clearfix g-0">
             <div class="col g-0">
 
@@ -27,11 +27,11 @@
 
                             {# CU Logo #}
                             <div class="flex-shrink-1">
-                                <a href="{{ url('<front>') }}" rel="University of Colorado home" class="site-branding__logo">
+                                <a href="{{ url('<front>') }}" rel="{{ 'University of Colorado home'|t }}" class="site-branding__logo">
                                     {# Logo for larger screens #}
-                                    <img class="d-none d-lg-block" src="/{{ directory ~ '/images/logo.svg' }}" alt="{{ 'cu.edu'|t }}" width="225" height="24"/>
+                                    <img class="d-none d-lg-block" src="/{{ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado home'|t }}" width="225" height="24"/>
                                     {# Logo for smaller screens #}
-                                    <img class="d-lg-none"  src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado home" width="29" height="28">
+                                    <img class="d-lg-none" src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="{{ 'University of Colorado home'|t }}" width="29" height="28"/>
                                 </a>
                             </div>
 
@@ -67,7 +67,7 @@
 
             {# Secondary menu  / desktop  #}
             {% if page.secondary_menu %}
-                <div id="secondary-menu" class="col-md-5 g-0 d-none d-lg-block">
+                <div class="col-md-5 secondary-menu d-none d-lg-block g-0 ">
                     <div class="d-flex justify-content-end">
                         {{ page.secondary_menu }}
                     </div>
@@ -102,8 +102,8 @@
     {% endif %}
 
     {# Main Navigation Section #}
-    {% if page.primary_menu or page.search %}
-        <nav role="navigation" class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 p-0 m-0" id="navbar-main" aria-labelledby="cua-main-menu">
+    {% if page.primary_menu or page.secondary_menu or page.search %}
+        <nav role="navigation" class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 p-0 m-0" id="navbar-main" aria-labelledby="{{ 'CUA main menu'|t }}">
             <div class="container px-3 g-0">
                 <div class="collapse navbar-collapse" id="mainNavbrSupportedContent">
 
@@ -115,29 +115,25 @@
                         {{ page.primary_menu }}
                     {% endif %}
 
-                    {# Search and Secondary menu #}
-                    {% if page.secondary_menu or page.search %}
-                        {# Secondary menu / mobile  #}
+                    {# Secondary menu / mobile  #}
+                    {% if page.secondary_menu %}
+                        <div class="secondary-menu-mobile d-lg-none">
+                            {{ page.secondary_menu }}
+                        </div>
+                    {% endif %}
+
+                    {# Sticky menu bar  #}
+                    <div class="flex-shrink-1 g-0 d-lg-none sticky-search">
+                        {# Secondary menu / sticky  #}
                         {% if page.secondary_menu %}
-                            <div class="secondary-menu-mobile d-lg-none">
+                            <div class="secondary-menu-sticky d-flex justify-content-end">
                                 {{ page.secondary_menu }}
                             </div>
                         {% endif %}
 
-                        {# Sticky menu bar  #}
-                        <div class="flex-shrink-1 g-0 d-lg-none sticky-search">
-
-                            {# Secondary menu / sticky  #}
-                            {% if page.secondary_menu %}
-                                <div class="secondary-menu-sticky d-flex justify-content-end">
-                                    {{ page.secondary_menu }}
-                                </div>
-                            {% endif %}
-
-                            {# Search Icon #}
-                            {% include '@cua_theme/component/header/_search-icon.html.twig' %}
-                        </div>
-                    {% endif %}
+                        {# Search Icon #}
+                        {% include '@cua_theme/component/header/_search-icon.html.twig' %}
+                    </div>
 
                 </div>
             </div>
