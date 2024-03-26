@@ -23,48 +23,35 @@
                 {# Top Header Navigation #}
                 <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white p-0 m-0" id="navbar-top">
                     <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
-
-                        {# CU Logos #}
                         <div class="container d-flex g-0">
+
+                            {# CU Logo #}
                             <div class="flex-shrink-1">
-
-                                {# Logo for larger screens #}
-                                <a href="{{ url('<front>') }}"
-                                   rel="University of Colorado home"
-                                   class="site-branding__logo d-none d-lg-block">
-                                    <img src="/{{ directory ~ '/images/logo.svg' }}"
-                                         alt="{{ 'cu.edu'|t }}" width="225"
-                                         height="24"/>
-                                </a>
-
-                                {# Logo for smaller screens #}
-                                <a href="{{ url('<front>') }}"
-                                   title="University of Colorado home"
-                                   rel="University of Colorado home"
-                                   class="d-lg-none">
-                                    <img src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}"
-                                         alt="University of Colorado home"
-                                         width="29" height="28">
+                                <a href="{{ url('<front>') }}" rel="University of Colorado home" class="site-branding__logo">
+                                    {# Logo for larger screens #}
+                                    <span class="d-none d-lg-block">
+                                        <img src="/{{ directory ~ '/images/logo.svg' }}" alt="{{ 'cu.edu'|t }}" width="225" height="24"/>
+                                    </span>
+                                    {# Logo for smaller screens #}
+                                    <span class="d-lg-none">
+                                        <img src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado home" width="29" height="28">
+                                    </span>
                                 </a>
                             </div>
 
                             {# Site name #}
                             {% if site_slogan %}
                                 <div class="w-100 align-items-baseline">
-                                    <a href="{{ url('<front>') }}"
-                                       title="{{ site_slogan }}" rel="home"
-                                       class="site-branding__name site-name">
+                                    <a href="{{ url('<front>') }}" title="{{ site_slogan }}" rel="home" class="site-branding__name site-name">
                                         {{ site_slogan }}
                                     </a>
                                 </div>
                             {% endif %}
 
                             {# Navigation toggle buttons for smaller screens #}
-                            <button id="search-icon" class="btn btn-default d-lg-none mx-4" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="Search">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                                </svg>
-                            </button>
+                            <span class="d-lg-none mx-4">
+                                {% include '@cua_theme/component/header/_search-icon.html.twig' %}
+                            </span>
 
                             {# Hamburger #}
                             <button class="navbar-toggler collapsed"
@@ -92,17 +79,9 @@
             {% endif %}
 
             {# Search Icon #}
-            {% if page.search %}
-                <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
-                    <p class="search-button">
-                        <button id="search-icon" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="Search">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                            </svg>
-                        </button>
-                    </p>
-                </div>
-            {% endif %}
+            <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
+                {% include '@cua_theme/component/header/_search-icon.html.twig' %}
+            </div>
         </div>
     </div>
 
@@ -119,17 +98,11 @@
         </div>
     {% endif %}
 
-    {# Site Slogan #}
+    {# Site Name / Desktop #}
     {% if site_name %}
-        <div class="container-fluid site-name-wrapper d-none d-lg-block g-0">
-            <div class="container px-3 my-2">
-                <h1 class="site-slogan">
-                    <a href="{{ url('<front>') }}" title="{{ site_name }}" class="site-link" rel="home">
-                        <span>{{ site_name }}</span>
-                    </a>
-                </h1>
-            </div>
-        </div>
+        <span class="d-none d-lg-block">
+            {% include '@cua_theme/component/header/_site-name.html.twig' %}
+        </span>
     {% endif %}
 
     {# Main Navigation Section #}
@@ -138,16 +111,17 @@
             <div class="container px-3 g-0">
                 <div class="collapse navbar-collapse" id="mainNavbrSupportedContent">
 
-                    {# Screen Reader Link #}
+                    {# Screen reader Link #}
                     <h2 class="visually-hidden" id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
 
-                    {# Display the primary menu #}
+                    {# Primary menu #}
                     {% if page.primary_menu %}
                         {{ page.primary_menu }}
                     {% endif %}
 
+                    {# Search and Secondary menu #}
                     {% if page.secondary_menu or page.search %}
-
+                        {# Secondary menu / mobile  #}
                         {% if page.secondary_menu %}
                             <div class="secondary-menu-mobile d-lg-none">
                                 {{ page.secondary_menu }}
@@ -155,25 +129,17 @@
                         {% endif %}
 
                         {# Sticky menu bar  #}
-                        <div class="col-4 g-0 d-lg-none sticky-search">
+                        <div class="flex-shrink-1 g-0 d-lg-none sticky-search">
 
-                            {# Secondary menu / mobile  #}
+                            {# Secondary menu / sticky  #}
                             {% if page.secondary_menu %}
                                 <div class="secondary-menu-sticky d-flex justify-content-end">
                                     {{ page.secondary_menu }}
                                 </div>
                             {% endif %}
 
-                            {# Search bar for sticky menu / mobile #}
-                            {% if page.search %}
-                                <p class="search-button d-flex justify-content-end ">
-                                    <button id="search-icon" class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="Search">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                                        </svg>
-                                    </button>
-                                </p>
-                            {% endif %}
+                            {# Search Icon #}
+                            {% include '@cua_theme/component/header/_search-icon.html.twig' %}
                         </div>
                     {% endif %}
 
@@ -182,17 +148,11 @@
         </nav>
     {% endif %}
 
-    {# Site Slogan Mobile #}
+    {# Site Name / Mobile #}
     {% if site_name %}
-        <div class="container-fluid site-name-wrapper d-lg-none g-0">
-            <div class="container">
-                <h1 class="site-slogan">
-                    <a href="{{ url('<front>') }}" title="{{ site_name }}" class="site-link" rel="home">
-                        <span>{{ site_name }}</span>
-                    </a>
-                </h1>
-            </div>
-        </div>
+        <span class="d-lg-none">
+            {% include '@cua_theme/component/header/_site-name.html.twig' %}
+        </span>
     {% endif %}
 
 </header>
