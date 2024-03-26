@@ -380,9 +380,6 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 
 .header .sticky {
     background: var(--cua-black-pure);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-top: 2px solid var(--cua-gold);
-    border-bottom: 1px solid var(--cua-black-pure);
     transition: font-size .25s ease-in-out, color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
@@ -419,8 +416,10 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 
 .header .sticky nav#block-cua-theme-secondarymenu--2 {
     margin: 1.1rem 0 0;
-    /* text-align: end; */
-    /* float: right; */
+}
+
+.navbar.sticky {
+    border-top: 1px solid var(--cua-gold) !important;
 }
 
 /* Sticky Search */
