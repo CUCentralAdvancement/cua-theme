@@ -338,8 +338,11 @@ header .navbar-nav > .nav-item:first-child > .nav-link {
 
 header .navbar-nav > .nav-item:first-child > .nav-link::before {
     font-family: "FontAwesome";
-    content: "\f015"; /* Font Awesome icon for home */
-    font-size: .9rem; /* Adjust the icon size */
+    content: "\f015";
+    font-size: .9rem;
+    position: absolute;
+    top: .55rem;
+    left: -.2rem;
 }
 
 header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
@@ -457,6 +460,28 @@ img.sticky-show {
     margin: 0 1rem 0 0;
 }
 
+.navbar-expand-lg .navbar-nav .nav-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit; /* Use the default text color */
+}
+
+.navbar-expand-lg .navbar-nav .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Start from the center */
+    width: 0;
+    height: 2px; /* Customize the line height as needed */
+    background-color: var(--cua-gold); /* Replace with your custom color */
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:hover::before {
+    left: 0; /* Expand the line to the left */
+    width: 100%; /* Expand the line to the right */
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
@@ -494,6 +519,7 @@ img.sticky-show {
         padding: .5rem 0;
         border-bottom: 1px solid var(--cua-gray-200);
     }
+
 
     button#search-icon {
         border-radius: 50%;
@@ -609,3 +635,5 @@ img.sticky-show {
         margin: .3rem 0 0;
     }
 }
+
+
