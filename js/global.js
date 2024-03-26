@@ -11,7 +11,7 @@
 
   function stickyNav() {
     // Check if viewport width is greater than or equal to 768 pixels (typical tablet portrait breakpoint)
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 991) {
       navbar.classList.toggle('sticky', window.scrollY >= sticky);
     } else {
       navbar.classList.remove('sticky'); // Remove sticky class on smaller viewports
