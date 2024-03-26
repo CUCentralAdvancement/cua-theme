@@ -143,8 +143,8 @@ header .search-block-form {
 
 .search-block-form .btn-primary {
     color: var(--cua-white);
-    background: var(--cua-black);
-    border: 1px solid var(--cua-black);
+    background: var(--cua-gold-hover);
+    border: 1px solid var(--cua-gold-hover);
     border-radius: 0 10px 10px 0;
     font-weight: 700;
     font-size: .95rem;
@@ -155,8 +155,8 @@ header .search-block-form {
 
 .search-block-form .btn-primary:hover {
     color: var(--cua-white);
-    background: var(--cua-gold-hover);
-    border: 1px solid var(--cua-gold-hover);
+    background: var(--cua-black);
+    border: 1px solid var(--cua-black);
     box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, .1);
     cursor: pointer !important;
     text-decoration: none;
