@@ -449,6 +449,15 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
     margin: .65rem 4rem 0 0 !important;
 }
 
+img.sticky-show {
+    display: none;
+}
+
+.sticky img.sticky-show {
+    display: block;
+    margin: 0 1rem 0 0;
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
@@ -565,6 +574,10 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
     p.search-button {
         padding: 0 !important;
         margin: 0 !important;
+    }
+
+    img.sticky-show {
+        display: none;
     }
 
 }

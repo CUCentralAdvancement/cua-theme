@@ -110,6 +110,9 @@
                     {# Screen reader Link #}
                     <h2 class="visually-hidden" id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
 
+                    {# Small logo for sticky menu #}
+                    <img class="sticky-show" src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="{{ 'University of Colorado home'|t }}" width="25" height="24"/>
+
                     {# Primary menu #}
                     {% if page.primary_menu %}
                         {{ page.primary_menu }}
