@@ -482,6 +482,10 @@ img.sticky-show {
     width: 100%; /* Expand the line to the right */
 }
 
+.navbar-expand-lg li.nav-item.active {
+    margin: 0.5rem 0;
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
