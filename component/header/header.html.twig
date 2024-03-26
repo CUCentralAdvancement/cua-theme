@@ -29,13 +29,9 @@
                             <div class="flex-shrink-1">
                                 <a href="{{ url('<front>') }}" rel="University of Colorado home" class="site-branding__logo">
                                     {# Logo for larger screens #}
-                                    <span class="d-none d-lg-block">
-                                        <img src="/{{ directory ~ '/images/logo.svg' }}" alt="{{ 'cu.edu'|t }}" width="225" height="24"/>
-                                    </span>
+                                    <img class="d-none d-lg-block" src="/{{ directory ~ '/images/logo.svg' }}" alt="{{ 'cu.edu'|t }}" width="225" height="24"/>
                                     {# Logo for smaller screens #}
-                                    <span class="d-lg-none">
-                                        <img src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado home" width="29" height="28">
-                                    </span>
+                                    <img class="d-lg-none"  src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}" alt="University of Colorado home" width="29" height="28">
                                 </a>
                             </div>
 
