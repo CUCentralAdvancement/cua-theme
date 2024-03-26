@@ -239,6 +239,11 @@ body, p, a, li {
     font-size: .9rem;
 }
 
+ol li.breadcrumb-item:nth-of-type(1) a {
+    color: var(--cua-gold-hover);
+    font-weight: 700;
+}
+
 .breadcrumb a:hover {
     color: var(--cua-gold-hover);
 }
@@ -247,6 +252,12 @@ li.breadcrumb-item.active {
     margin: 0.1rem 0 0;
 }
 
+.breadcrumb-item+.breadcrumb-item::before {
+    color: var(--cua-gray-400);
+    content: var(--bs-breadcrumb-divider, ">");
+}
+
+/*
 ol.breadcrumb li:first-child a::before {
     display: inline-block;
     content: "";
@@ -265,6 +276,7 @@ ol.breadcrumb li:first-child a::before {
     float: left;
     padding-right: .5rem;
 }
+*/
 
 /* Blockquote */
 
