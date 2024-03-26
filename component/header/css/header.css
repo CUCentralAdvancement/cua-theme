@@ -70,6 +70,11 @@ header .nav-link {
     margin: 0.5rem 0;
 }
 
+.nav-link.is-active,
+.nav-link.active.is-active {
+    margin: 0;
+}
+
 .navbar-expand-lg .navbar-nav .nav-link ul li a:first-child,
 .navbar-expand-lg .navbar-nav .nav-link ul li:first-child {
     padding: .75rem 1.5rem;
@@ -276,7 +281,7 @@ p.search-button {
     font-size: .95rem;
     font-weight: 700;
     text-transform: none !important;
-    padding: .4rem 1.5rem;
+    padding: 0.5rem;
 }
 
 .secondary-menu a.nav-link:hover {
@@ -286,14 +291,14 @@ p.search-button {
 /* Style the last .nav-link element */
 .secondary-menu .nav-item:last-child .nav-link {
     position: relative;
-    z-index: 1; /* Ensure the link text is on top of the pseudo-element */
+    z-index: 1;
     background: var(--cua-white);
     border: 1px solid var(--cua-gold-hover);
     color: var(--cua-gold-hover) !important;
-    text-transform: none;
     font-size: .8rem;
-    font-weight: 700;
-    overflow: hidden; /* Hide overflow for the pseudo-element */
+    overflow: hidden;
+    padding: .5rem 1rem;
+    margin-left: 1rem;
 }
 
 .secondary-menu .nav-item:last-child .nav-link:hover {
