@@ -1,4 +1,8 @@
 {# body #}
 {% if body is not empty %}
-    {{ body|raw|nl2br }}
+    <div class="card-text lead {{ center_content ~ ' ' ~ text_alignment ~ ' ' ~ text_color  }}">
+        {{ body|raw|nl2br }}
+    </div>
 {% endif %}
+
+f %}
