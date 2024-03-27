@@ -390,7 +390,8 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .header .sticky {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 .05rem 1rem rgba(0, 0, 0, 1) !important;
     transition: font-size .25s ease-in-out, color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
 }
 
