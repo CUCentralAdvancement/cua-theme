@@ -1,7 +1,7 @@
 {# If title or body is present, render the following HTML block #}
 {% if label or body %}
     <div class="card-body d-flex flex-column text-{{ color_background ~ ' ' ~ text_alignment  ~ ' ' ~ position_container ~ ' ' ~ padding }} my-3">
-        <div class="card-body-title m-2">
+        <div class="card-body-title">
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' with { 'title': title } %}
             {# Include Body Component #}
