@@ -31,18 +31,20 @@
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Animation #}
-{% include '@cua_theme/component/animation/_animation--start.html.twig' %}
-{# Content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
-    {# Include Image Component #}
-    {% include '@cua_theme/component/card/_card--image.html.twig' %}
-    {# Include Icon Component #}
-    {% include '@cua_theme/component/card/_card--icon.html.twig' %}
-    {# Include Title/Body Component #}
-    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-    {# Include Link/Button Component #}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-</div>
-{# /Animation #}
+{# Animation  #}
+{% if animation or animation_speed or animation_delay %}
+<div class="animate-trigger mx-2 h-100" data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+    {% endif %}
+    {# Content #}
+    <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+        {# Include Image Component #}
+        {% include '@cua_theme/component/card/_card--image.html.twig' %}
+        {# Include Icon Component #}
+        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+        {# Include Title/Body Component #}
+        {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+        {# Include Link/Button Component #}
+        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+    </div>
+    {# /Animation #}
 {% include '@cua_theme/component/animation/_animation--end.html.twig' %}
