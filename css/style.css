@@ -1173,6 +1173,11 @@ div#block-cua-theme-page-title {
     margin: 1rem 0 0;
 }
 
+.node__content {
+    font-size: 1rem;
+    margin-top: 0;
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 991px) {
     div#edit-contacts--2, div#edit-bod--2 {

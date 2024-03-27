@@ -372,8 +372,7 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
     top: 0;
     width: 100%;
     z-index: 1000; /* Adjust the z-index as needed */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Small bottom shadow */
-    border-bottom: 1px solid #f0f0f0; /* Light grey border at the bottom */
+    border-bottom: 1px solid var(--cua-black-pure) !important; /* Light grey border at the bottom */
 }
 
 .header .sticky .container.my-2 {
