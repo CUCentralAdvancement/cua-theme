@@ -451,8 +451,10 @@ a figure {
 }
 
 .card-footer {
-    margin-top: auto;
     background-color: transparent;
     border-top: none;
+    margin-top: auto;
+    padding: 0;
     width: 100%; /* Ensure footer width spans the entire container */
 }
+
