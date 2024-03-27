@@ -33,10 +33,10 @@
 {% include '@cua_theme/component/animation/_animation--start.html.twig' %}
 {# Content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', clean_id ) }}>
-        {# Include Desktop Component #}
-        {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
-        {# /Animation #}
-        {% include '@cua_theme/component/animation/_animation--start.html.twig' %}
+    {# Include Desktop Component #}
+    {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
+    {# /Animation #}
+    {% include '@cua_theme/component/animation/_animation--start.html.twig' %}
     {# Include Mobile Component #}
     {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}
 </div>
