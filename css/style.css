@@ -41,6 +41,7 @@
 
     /* Typography */
     --cua-body-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --cua-arvo: 'Arvo', sans-serif;
     --cua-body-font-size: 1rem;
     --cua-body-font-weight: 400;
     --cua-body-line-height: 1.5;
