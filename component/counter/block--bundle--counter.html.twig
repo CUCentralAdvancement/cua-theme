@@ -17,15 +17,18 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/counter') }}
 
+{# If class is active #}
+{% set background_color = color_background is not empty ? color_background|clean_class : '' %}
+
 {# Add Classes #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'counter',
-    'card',
-    'rounded-0',
-    color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+    'card rounded-0',
+    background_color,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
+%}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -53,13 +56,8 @@
             {% endif %}
         </div>
     {% endif %}
-    {# Card Title/Body #}
-    {% if label or body %}
-        <div class="card-text {{ text_alignment ~ ' ' ~ text_color }} mb-2">
-            {# Include Title Component #}
-            {% include '@cua_theme/component/title/_title.html.twig' %}
-            {# Include Body Component #}
-            {% include '@cua_theme/component/body/_body.html.twig' %}
-        </div>
-    {% endif %}
+    {# Include Title/Body Component #}
+    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 </div>
