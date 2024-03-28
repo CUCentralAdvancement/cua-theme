@@ -1178,6 +1178,11 @@ div#block-cua-theme-page-title {
     font-size: 2.5rem;
 }
 
+.border-white {
+    --bs-border-opacity: 0;
+    border-color: rgba(var(--bs-white-rgb),var(--bs-border-opacity))!important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
