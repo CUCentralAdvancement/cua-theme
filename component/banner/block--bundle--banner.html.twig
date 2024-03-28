@@ -41,6 +41,14 @@
     {% set effect_classes = effect_classes | merge(['ken', 'kenburns-' ~ effect]) %}
 {% endif %}
 
+{# Initialize animation classes #}
+{% set animation_classes = [] %}
+
+{# Add optional classes based on conditions #}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = animation_classes | merge(['animate-trigger']) %}
+{% endif %}
+
 {# Add unique id to block #}
 {% set unique_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
@@ -48,14 +56,16 @@
 
 {# Content #}
 <div{{ attributes|without('id').addClass(container_classes).setAttribute('id', unique_id) }}{% if effect_classes|length %} class="{{ effect_classes|join(' ') }}"{% endif %}{% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %}>
-    <div class="{% if position_container is not empty %}{{ 'd-flex' ~ ' ' ~ position_container|clean_class }}{% endif %} py-5">
-        <div class="col-md-5 col-sm-12 {{ color_background ~ ' ' ~ text_color }} banner-body {% if effect_copy is not empty %}{{ 'kenburns-'|t ~ '' ~ effect_copy|clean_class }}{% endif %} py-md-4 mx-md-5 m-sm-0 p-sm-0 pt-sm-5">
-            {# Include Title Component #}
-            {% include '@cua_theme/component/title/_title.html.twig' %}
-            {# Include Body Component #}
-            {% include '@cua_theme/component/body/_body.html.twig' %}
-            {# Include Link/Button Component #}
-            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+    <div{{ attributes.addClass(animation_classes).setAttribute('id', unique_id ) }}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
+        <div class="{% if position_container is not empty %}{{ 'd-flex' ~ ' ' ~ position_container|clean_class }}{% endif %} py-5">
+            <div class="col-md-5 col-sm-12 {{ color_background ~ ' ' ~ text_color }} banner-body {% if effect_copy is not empty %}{{ 'kenburns-'|t ~ '' ~ effect_copy|clean_class }}{% endif %} py-md-4 mx-md-5 m-sm-0 p-sm-0 pt-sm-5">
+                {# Include Title Component #}
+                {% include '@cua_theme/component/title/_title.html.twig' %}
+                {# Include Body Component #}
+                {% include '@cua_theme/component/body/_body.html.twig' %}
+                {# Include Link/Button Component #}
+                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+            </div>
         </div>
     </div>
 </div>
