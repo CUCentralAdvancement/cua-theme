@@ -14,7 +14,12 @@
 */
 #}
 
-{# Add Classes #}
+{# If class is active #}
+{% set background_class = color_background is not empty ? color_background|clean_class : '' %}
+{% set size_class = container_size is not empty ? container_size|clean_class : '' %}
+{% set border_class = color_border is not empty ? color_border|clean_class : '' %}
+
+{# Classes #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -23,11 +28,19 @@
     'rounded-0',
     'transparent-border',
     'h-100',
-    'animate-trigger',
-    color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
-    container_size is not empty ? container_size|clean_class  : '',
+    background_class,
+    size_class,
+    border_class,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
 ] %}
+
+{# Initialize animation classes #}
+{% set animation_classes = [] %}
+
+{# Add optional classes based on conditions #}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = animation_classes | merge(['animate-trigger']) %}
+{% endif %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -35,7 +48,7 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
+<div{{ attributes|without('id').addClass(classes, animation_classes).setAttribute('id', unique_id ) }}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
     {# Include Icon Component #}
