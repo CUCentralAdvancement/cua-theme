@@ -15,22 +15,19 @@
 #}
 
 {# If class is active #}
-{% set background_class = color_background is not empty ? color_background|clean_class : '' %}
-{% set size_class = container_size is not empty ? container_size|clean_class : '' %}
-{% set border_class = color_border is not empty ? color_border|clean_class : '' %}
+{% set background_color = color_background is not empty ? color_background|clean_class : '' %}
+{% set size = container_size is not empty ? container_size|clean_class : '' %}
+{% set border_color = color_border is not empty ? color_border|clean_class : '' %}
 
 {# Classes #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'call-to-action',
-    'card',
-    'rounded-0',
-    'transparent-border',
-    'h-100',
-    background_class,
-    size_class,
-    border_class,
+    'card rounded-0 transparent-border h-100',
+    size,
+    background_color,
+    border_color,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
 ] %}
 

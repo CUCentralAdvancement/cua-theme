@@ -13,6 +13,10 @@
 * - cua_theme.theme
 */
 #}
+{# If class is active #}
+{% set background_color = color_background is not empty ? color_background|clean_class : '' %}
+{% set size = container_size is not empty ? container_size|clean_class : '' %}
+{% set border_style = border_style is not empty ? border_style|clean_class : '' %}
 
 {# Add Classes #}
 {% set classes = [
@@ -20,23 +24,29 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
-    color_background is not empty ? color_background ~ ' ' ~ border_style|clean_class  : '',
-    container_size is not empty ? container_size|clean_class  : '',
+    background_color,
+    border_style,
+    sizes,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
 ] %}
+
+{# Initialize animation classes #}
+{% set animation_classes = [] %}
+
+{# Add optional classes based on conditions #}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = animation_classes | merge(['animate-trigger']) %}
+{% endif %}
 
 {# Add unique id number to block #}
 {% set clean_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Animation #}
-{% include '@cua_theme/component/animation/_animation--start.html.twig' %}
 {# Content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', clean_id ) }}>
+<div{{ attributes|without('id').addClass(classes, animation_classes).setAttribute('id', unique_id ) }}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
     {# Include Desktop Component #}
     {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
-    {# /Animation #}
-    {% include '@cua_theme/component/animation/_animation--start.html.twig' %}
     {# Include Mobile Component #}
     {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}
 </div>
