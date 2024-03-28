@@ -26,7 +26,8 @@
     'animate-trigger',
     color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
     container_size is not empty ? container_size|clean_class  : '',
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
+] %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -34,7 +35,7 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }} data-animation-classes="animate__animated animate__{{ animation }} animate__{{ animation_speed }} animate__delay-{{ animation_delay }}">
+<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
     {# Include Icon Component #}

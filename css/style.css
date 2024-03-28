@@ -64,6 +64,7 @@
     /* Background Colors */
     --bg-light: #f4f4f5;
 
+
 }
 
 /* HTML and Body
@@ -1181,6 +1182,13 @@ div#block-cua-theme-page-title {
 .border-white {
     --bs-border-opacity: 0;
     border-color: rgba(var(--bs-white-rgb),var(--bs-border-opacity))!important;
+}
+
+.animate__animated.animate__delay-1s {
+    -webkit-animation-delay: 0.5s !important;
+    animation-delay: 0.5s !important;
+    -webkit-animation-delay: 0.5s !important;
+    animation-delay: 0.5s !important;
 }
 
 /*** Responsive ***/
