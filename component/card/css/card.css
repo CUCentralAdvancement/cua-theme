@@ -142,6 +142,87 @@
     z-index: 1; /* Ensure button text appears above the background */
 }
 
+/* dark gold theme */
+.card .text-cu-bg-gold-hover > * {
+    color: var(--cua-black);
+}
+
+.cu-bg-gold-hover, .card.cu-bg-gold-hover {
+    background: var(--cua-gold-hover);
+}
+
+.cu-bd-gold-hover, .card.cu-bd-gold-hover {
+    border: 3px solid var(--cua-gold-hover);
+}
+
+.card-footer .btn.btn-cu-bg-gold-hover {
+    background: var(--cua-gold-hover);
+    border: 3px solid var(--cua-gold-hover);
+    color: var(--cua-black);
+    position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
+}
+
+/* Hover effect for gold-hover buttons */
+.card-footer .btn.btn-cu-bg-gold-hover:hover {
+    color: var(--cua-gold-hover) !important;
+}
+
+/* Hover effect for gold-hover buttons */
+.card-footer .btn.btn-cu-bg-gold-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--cua-black);
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: -1;
+}
+
+.card-footer .btn.outline-btn-cu-bg-gold-hover {
+    border: 3px solid var(--cua-gold-hover);
+    color: var(--cua-gold-hover);
+    background: inherit;
+    position: relative; /* Ensure z-index works */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: 1;
+}
+
+.cu-bg-black .card-footer .btn.outline-btn-cu-bg-gold-hover {
+    border: 3px solid var(--cua-gold-hover);
+    color: var(--cua-gold-hover);
+}
+
+/* Hover effect for outline gold-hover buttons */
+.card-footer .btn.outline-btn-cu-bg-gold-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--cua-gold-hover);
+    transition: width 0.5s ease; /* Transition width property */
+    z-index: -1;
+}
+
+.card-footer .btn.outline-btn-cu-bg-gold-hover:hover::before,
+.card-footer .btn.btn-cu-bg-gold-hover:hover::before {
+    width: 100%; /* Adjust width to 100% on hover */
+}
+
+.card-footer .btn.outline-btn-cu-bg-gold-hover:hover,
+.card-footer .btn.btn-cu-bg-gold-hover:hover {
+    color: var(--cua-black);
+    z-index: 1; /* Ensure button text appears above the background */
+}
+
+
 /* black theme */
 .card .text-cu-bg-black > * {
     color: var(--cua-white);
