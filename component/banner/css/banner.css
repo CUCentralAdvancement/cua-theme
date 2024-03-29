@@ -300,10 +300,14 @@
     padding: 0;
 }
 
+.banner-body {
+    padding: 5rem;
+}
+
 /* Responsive adjustments for small screens */
 @media (max-width: 680px) {
     .banner-body {
-        width: 90%;
+        padding: 3rem;
     }
 
     .banner h2, .banner .h2 {
