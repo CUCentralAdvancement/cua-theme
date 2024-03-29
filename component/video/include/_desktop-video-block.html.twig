@@ -1,43 +1,11 @@
 {# Desktop #}
 <div class="container-fluid mx-auto position-absolute d-flex {{ position_container }}">
     <div class="col-sm-4 {{ color_background }} animate__animated animate__fadeIn animate__slow animate__delay-2s d-none d-md-block p-4 mt-5 mx-5">
-        {# If title or body #}
-        {% if label or body %}
-            <div class="my-3">
-                {# Title #}
-                {% if label %}
-                    {{ title_prefix }}
-                    <div class="card-title {{ text_alignment }} mx-3">
-                        <h3 class="{{ text_color }}">
-                            {{ label }}
-                        </h3>
-                    </div>
-                    {{ title_suffix }}
-                {% endif %}
-                {# Body #}
-                {% if body %}
-                    <div class="card-body {{ text_alignment }} {{ text_color }}">
-                        {{ body|raw|nl2br }}
-                    </div>
-                {% endif %}
-            </div>
-        {% endif %}
-        {# If link btn  #}
-        {% if link_title or label %}
-            <div class="card-footer {{ text_alignment }} px-3 pb-4 mb-3">
-                <a href="{{ link_url }}"
-                   title="{{ link_title }}"
-                   aria-label="{{ link_title }}"
-                   class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
-                    {{ link_title }}
-                    {# title for SEO/508 #}
-                    {% if label %}
-                        {{ title_prefix }}
-                        <span class="visually-hidden"> {{ label }}</span>
-                        {{ title_suffix }}
-                    {% endif %}
-                </a>
-            </div>
-        {% endif %}
+        {# Include Title Component #}
+        {% include '@cua_theme/component/title/_title.html.twig' %}
+        {# Include Body Component #}
+        {% include '@cua_theme/component/body/_body.html.twig' %}
+        {# Include Link/Button Component #}
+        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
     </div>
 </div>
