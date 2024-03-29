@@ -1191,6 +1191,18 @@ div#block-cua-theme-page-title {
     animation-delay: 0.5s !important;
 }
 
+/* Margins */
+.margin-top-and-bottom {
+    margin: 3rem 0 !important;
+}
+
+.margin-bottom {
+    margin: 0 0 3rem 0 !important;
+}
+
+.margin-top {
+    margin: 3rem 0 0 0!important;
+}
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {

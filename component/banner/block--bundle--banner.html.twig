@@ -21,6 +21,7 @@
 {% set background_color = color_background is not empty ? color_background|clean_class : '' %}
 {% set size = container_size is not empty ? container_size|clean_class : '' %}
 {% set parallax_on = parallax is not empty ? parallax|clean_class : '' %}
+{% set margins_on = margins is not empty ? margins|clean_class : '' %}
 
 {# Set CSS Classes #}
 {% set container_classes = [
@@ -29,6 +30,7 @@
     'block-' ~ plugin_id|clean_class,
     'jumbotron jumbotron-fluid banner g-0',
     parallax_on,
+    margins_on,
     background_color,
     size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
