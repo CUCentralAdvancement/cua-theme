@@ -58,8 +58,8 @@
 
 {# Content #}
 <div{{ attributes|without('id').addClass(container_classes).setAttribute('id', unique_id) }} {% if effect_classes|length %} class="{{ effect_classes|join(' ') }}"{% endif %}{% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %}>
-    <div{{ attributes.addClass(animation_classes).setAttribute('id', unique_id ) }} {% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %} {% if position_container is not empty %}{{ 'd-flex' ~ ' ' ~ position_container|clean_class }}{% endif %}">
-        <div class="col-md-5 col-sm-12 banner-body {{ color_background ~ ' ' ~ text_color }} {% if effect_copy is not empty %}{{ 'kenburns-'|t ~ '' ~ effect_copy|clean_class }}{% endif %} ">
+    <div{{ attributes.addClass(animation_classes) }} {% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %} {% if position_container is not empty %}d-flex {{ position_container }}{% endif %}">
+        <div class="col-md-5 col-sm-12 banner-body {{ color_background ~ ' ' ~ text_color }} {% if effect_copy is not empty %}kenburns-{{ effect_copy }}{% endif %}">
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' %}
             {# Include Body Component #}
