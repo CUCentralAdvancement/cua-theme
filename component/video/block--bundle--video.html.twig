@@ -43,6 +43,8 @@
     {% elseif content.field_provider is not empty and content.field_provider[0]['#markup'] == "local" %}
         {% include '@cua_theme/component/video/include/_video--mp4.html.twig' %}
     {% else %}
+        {# No video provider specified #}
+        <p>No video provider specified.</p>
     {% endif %}
     {# Include Desktop Component #}
     {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
