@@ -98,7 +98,7 @@
 
             {# #CU Logo #}
             <div class="col-sm-12 mt-4 d-flex align-items-center justify-content-center">
-                <img src="/{{ directory ~ '/images/logo-white.svg' }}" alt="University of Colorado Logo" width="300"
+                <img src="/{{ directory ~ '/images/logo-white.svg' }}" alt="{{ 'University of Colorado Logo'|t }}" width="300"
                      height="auto">
             </div>
 
@@ -110,7 +110,7 @@
             {% endif %}
 
             {# Copyright/Regents Information #}
-            <div class="copyright col-sm-12 border-top border-secondary  d-flex align-items-center justify-content-center">
+            <div class="copyright col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center">
                 <p class="mt-2 strong text-light" aria-label="{{ 'Copyright'|t }}">{{ '©'|t }} {{ 'now' | date('Y') }}
                     {# Link to the University of Colorado Regents website #}
                     <a href="https://regents.cu.edu" rel="noopener" target="_blank"
