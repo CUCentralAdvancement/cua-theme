@@ -1209,8 +1209,8 @@ div#block-cua-theme-page-title {
     color: var(--cua-white);
 }
 
-.container.mobile-video-wrapper .cu-text-gold,
-.container.mobile-video-wrapper .cu-text-white {
+.mobile-video-wrapper .cu-text-gold,
+.mobile-video-wrapper .cu-text-white {
     color: var(--cua-black);
 }
 
