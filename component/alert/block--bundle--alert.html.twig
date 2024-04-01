@@ -1,27 +1,32 @@
 {#
 /**
-* @file
-* Template for the Alert component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Alert component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
 {# Add Classes #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'alert alert-dismissible card rounded-0 h-100',
+    'alert',
+    'alert-dismissible',
+    'card',
+    'rounded-0',
+    'h-100',
     color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
-    container_size is not empty ? container_size|clean_class  : '',
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+    container_size is not empty ? container_size|clean_class : '',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
+] %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -34,15 +39,18 @@
         <div class="row {{ position_container }}">
             {# button close #}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            {# Include Image Component #}
+
+            {# Include Image Component if field_image is not empty #}
             {% if content.field_image is not empty %}
                 <div class="col-sm-1 g-0 mt-1">
                     {% include '@cua_theme/component/card/_card--image.html.twig' %}
                 </div>
             {% endif %}
-            <div class="col-sm-11 p-3">
+
+            <div class="col-sm-{{ content.field_image is not empty ? '11' : '12' }} p-3">
                 {# Include Title/Body Component #}
                 {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+
                 {# Include Link/Button Component #}
                 {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
             </div>
