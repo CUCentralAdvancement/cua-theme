@@ -18,10 +18,8 @@
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'alert',
-    'alert-dismissible',
-    'card',
-    'rounded-0',
+    'alert alert-dismissible',
+    'card rounded-0',
     'h-100',
     color_background is not empty ? color_background ~ ' ' ~ color_border|clean_class : '',
     container_size is not empty ? container_size|clean_class : '',
@@ -37,13 +35,16 @@
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     <div class="container">
         <div class="row">
+
             {# button close #}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 
-            {# If icon is present, render the following HTML block #}
+            {# Icon #}
             {% if icon %}
-                <div class="col-sm-1 d-flex justify-content-end g-0" style="color: {{ icon_color }}">
-                    <i class="{{ icon ~ ' ' ~ icon_size }} mt-5 pt-1"></i>
+                <div class="col-sm-1">
+                    <div class="{% if icon %}d-md-flex justify-content-md-end justify-content-sm-start{% endif %}">
+                        <i class="{{ icon ~ ' ' ~ icon_size }} mt-5 pt-1" style="color: {{ icon_color }}"></i>
+                    </div>
                 </div>
             {% endif %}
 
@@ -53,6 +54,7 @@
                 {# Include Link/Button Component #}
                 {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
             </div>
+
         </div>
     </div>
 </div>

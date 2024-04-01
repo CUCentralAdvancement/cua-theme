@@ -23,11 +23,6 @@
   color: inherit;
 }
 
-/* Float the .fa-solid icon to the end of the alert */
-.alert .fa-solid {
-  float: inline-end;
-}
-
 .alert .card-footer {
   padding: 0 !important;
   margin: 0 0 1rem !important;
@@ -68,4 +63,11 @@
 .cu-bg-white .btn-close::before {
   color: var(--cua-black);
   border: 1px solid var(--cua-black);
+}
+
+@media only screen and (max-width: 991px) {
+  .block-content-alert {
+    justify-content: flex-start !important;
+  }
+
 }
