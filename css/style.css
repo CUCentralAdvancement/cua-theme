@@ -1203,6 +1203,17 @@ div#block-cua-theme-page-title {
 .margin-top {
     margin: 3rem 0 0 0!important;
 }
+
+/* Video color correction */
+.video .cu-text-white {
+    color: var(--cua-white);
+}
+
+.container.mobile-video-wrapper .cu-text-gold,
+.container.mobile-video-wrapper .cu-text-white {
+    color: var(--cua-black);
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
