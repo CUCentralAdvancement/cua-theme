@@ -28,26 +28,6 @@
   float: inline-end;
 }
 
-/* Customize close button colors and background */
-.alert .btn-close {
-  --bs-btn-close-bg: none !important;
-}
-
-.btn-close {
-  border: 1px solid var(--cua-black) !important;
-}
-
-/* Style the close button icon */
-.alert .btn-close::before {
-  color:inherit;
-  background: transparent;
-  content: "\58";
-  font-size: 1.5em;
-  left: 9px;
-  position: absolute;
-  top: -3px;
-}
-
 .alert .card-footer {
   padding: 0 !important;
   margin: 0 0 1rem !important;
@@ -56,4 +36,36 @@
 .alert .card .btn {
   font-size: .8rem;
   padding: .3rem 1.25rem !important;
+}
+
+
+/* Customize close button colors and background */
+.btn-close {
+  --bs-btn-close-bg: none !important;
+}
+
+/* Style the close button icon */
+.btn-close::before {
+  color: inherit;
+  border: transparent;
+  background: transparent;
+  content: "\58";
+  font-size: 1rem;
+  font-weight: 700;
+  padding: .25rem .75rem;
+  position: absolute;
+  top: -3px;
+  left: -15px;
+}
+
+.cu-bg-black .btn-close::before {
+  color: var(--cua-white);
+  border: 1px solid var(--cua-white);
+}
+
+.cu-bg-gold .btn-close::before,
+.cu-bg-light-grey .btn-close::before,
+.cu-bg-white .btn-close::before {
+  color: var(--cua-black);
+  border: 1px solid var(--cua-black);
 }
