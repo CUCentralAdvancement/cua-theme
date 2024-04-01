@@ -143,7 +143,7 @@ aside h2::after {
     margin: 0.4em 0;
 }
 
-.block-layout-builder h2, .block-layout-builder .h2 {
+.block-layout-builder aside  h2, .block-layout-builder aside  .h2 {
     font-size: 1.75rem;
 }
 
