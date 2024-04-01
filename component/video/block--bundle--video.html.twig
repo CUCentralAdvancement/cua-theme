@@ -33,15 +33,9 @@
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     {# Video Containers #}
-    {# Include Youtube Component #}
-    {% if content.field_provider is not empty and content.field_provider[0]['#markup'] == "youtube" %}
-        {% include '@cua_theme/component/video/include/_video--youtube.html.twig' %}
-        {# Include Vimeo Component #}
-    {% elseif content.field_provider is not empty and content.field_provider[0]['#markup'] == "vimeo" %}
-        {% include '@cua_theme/component/video/include/_video--vimeo.html.twig' %}
-        {# Include lcoal video #}
-    {% elseif content.field_provider is not empty and content.field_provider[0]['#markup'] == "local" %}
-        {% include '@cua_theme/component/video/include/_video--mp4.html.twig' %}
+    {% if content.field_provider is not empty %}
+        {% set provider = content.field_provider[0]['#markup'] %}
+        {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
     {% else %}
         {# No video provider specified #}
         <p>No video provider specified.</p>
