@@ -33,8 +33,7 @@
 {# Render content #}
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     {# Video Containers #}
-    {% if content.field_provider is not empty %}
-        {% set provider = content.field_provider[0]['#markup'] %}
+    {% if provider %}
         {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
     {% else %}
         {# No video provider specified #}
