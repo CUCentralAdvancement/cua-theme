@@ -46,13 +46,13 @@
         <div class="counter-size {{ text_alignment ~ ' ' ~ text_color }}">
             {# Before number #}
             {% if content.field_before_number is not empty %}
-                <span class="padding-right">{{ content.field_before_number }}</span>
+                <span class="padding-right">{{ content.field_before_number.0 }}</span>
             {% endif %}
             {# Counter #}
             <span class="counter-up" data-count="{{ content.field_number['#items'].value }}">0</span>
             {# After number #}
             {% if content.field_after_number is not empty %}
-                <span class="padding-left">{{ content.field_after_number }}</span>
+                <span class="padding-left">{{ content.field_after_number.0 }}</span>
             {% endif %}
         </div>
     {% endif %}
