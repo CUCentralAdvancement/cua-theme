@@ -20,3 +20,24 @@
 .counter .card-img-top {
   max-height: 175px;
 }
+
+.counter .counter-up.cu-text-white,
+.counter .padding-left.cu-text-white,
+.counter .padding-right.cu-text-white,
+.counter .figcaption.cu-text-white {
+  color: var(--cua-white) !important;
+}
+
+.counter .counter-up.cu-text-black,
+.counter .padding-left.cu-text-black,
+.counter .padding-right.cu-text-black,
+.counter .figcaption.cu-text-black {
+  color: var(--cua-black) !important;
+}
+
+.counter .counter-up.cu-text-gold,
+.counter .padding-left.cu-text-gold,
+.counter .padding-right.cu-text-gold,
+.counter .figcaption.cu-text-gold {
+  color: var(--cua-gold) !important;
+}

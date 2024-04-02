@@ -18,15 +18,20 @@
 {{ attach_library('cua_theme/counter') }}
 
 {# If class is active #}
+{# If class is active #}
 {% set background_color = color_background is not empty ? color_background|clean_class : '' %}
+{% set size = container_size is not empty ? container_size|clean_class : '' %}
+{% set border_color = color_border is not empty ? color_border|clean_class : '' %}
 
 {# Add Classes #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'counter',
-    'card rounded-0',
+    'card rounded-0 mx-2',
     background_color,
+    border_color,
+    size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
 %}
 
@@ -46,13 +51,13 @@
         <div class="counter-size {{ text_alignment ~ ' ' ~ text_color }}">
             {# Before number #}
             {% if content.field_before_number is not empty %}
-                <span class="padding-right">{{ content.field_before_number.0 }}</span>
+                <span class="padding-right {{ text_color }}">{{ content.field_before_number.0 }}</span>
             {% endif %}
             {# Counter #}
-            <span class="counter-up" data-count="{{ content.field_number['#items'].value }}">0</span>
+            <span class="counter-up {{ text_color }}" data-count="{{ content.field_number['#items'].value }}">0</span>
             {# After number #}
             {% if content.field_after_number is not empty %}
-                <span class="padding-left">{{ content.field_after_number.0 }}</span>
+                <span class="padding-left {{ text_color }}">{{ content.field_after_number.0 }}</span>
             {% endif %}
         </div>
     {% endif %}
