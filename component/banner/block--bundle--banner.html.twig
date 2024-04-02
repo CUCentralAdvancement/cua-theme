@@ -19,8 +19,11 @@
 
 {# If class is active #}
 {% set background_color = color_background is not empty ? color_background|clean_class : '' %}
+{% set effect_on = effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect|clean_class : '' %}
+{% set effect_copy_on = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
 {% set size = container_size is not empty ? container_size|clean_class : '' %}
 {% set parallax_on = parallax is not empty ? parallax|clean_class : '' %}
+{% set position_container_on = position_container is not empty ? 'd-flex' ~ ' ' ~ position_container|clean_class : '' %}
 {% set margins_on = margins is not empty ? margins|clean_class : '' %}
 
 {# Set CSS Classes #}
@@ -29,22 +32,18 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'jumbotron jumbotron-fluid banner g-0',
+    effect_on,
     parallax_on,
     margins_on,
     background_color,
     size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
-{# Initialize effect classes #}
-{% set effect_classes = [] %}
-
-{# Add optional classes based on conditions #}
-{% if effect %}
-    {% set effect_classes = effect_classes | merge(['ken', 'kenburns-' ~ effect]) %}
-{% endif %}
-
 {# Initialize animation classes #}
-{% set animation_classes = [] %}
+{% set animation_classes = [
+    position_container_on
+]
+%}
 
 {# Add optional classes based on conditions #}
 {% if animation or animation_speed or animation_delay %}
@@ -57,9 +56,9 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').addClass(container_classes).setAttribute('id', unique_id) }} {% if effect_classes|length %} class="{{ effect_classes|join(' ') }}"{% endif %}{% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %}>
-    <div{{ attributes.addClass(animation_classes) }} {% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %} {% if position_container is not empty %}d-flex {{ position_container }}{% endif %}">
-        <div class="col-md-5 col-sm-12 banner-body {{ color_background ~ ' ' ~ text_color }} {% if effect_copy is not empty %}kenburns-{{ effect_copy }}{% endif %}">
+<div{{ attributes|without('id').addClass(container_classes).setAttribute('id', unique_id) }} {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %}>
+    <div{{ attributes.addClass(animation_classes) }}  {% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %}">
+        <div class="col-md-5 col-sm-12 banner-body {{ color_background ~ ' ' ~ text_color ~ ' ' ~ effect_copy_on }}">
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' %}
             {# Include Body Component #}
