@@ -35,11 +35,7 @@
 <div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
     <div class="container">
         <div class="row">
-
-            {# button close #}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-
-            {# Icon #}
+            <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
             {% if icon %}
                 <div class="col-sm-1 icon-container">
                     <div class="{% if icon %}d-md-flex justify-content-md-end justify-content-sm-start{% endif %}">
@@ -47,7 +43,6 @@
                     </div>
                 </div>
             {% endif %}
-
             <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
                 {# Include Title/Body Component #}
                 {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
