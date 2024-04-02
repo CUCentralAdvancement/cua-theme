@@ -1,4 +1,4 @@
-{# If image is present, render the following HTML block #}
+{# If Image #}
 {% if card_image %}
     <div class="card-header {{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} g-0">
         {% for item in content.field_image['#items'] %}
@@ -11,13 +11,12 @@
                 '#width':      item.width,
                 '#height':     item.height
             } %}
-            {# If Link #}
-            {% set link_attributes = link_title ? { href: link_url, 'aria-label': link_title, class: 'block-link' } : {} %}
-            {% if link_attributes %}
-                <a {{ link_attributes }}>
+            {# If Link exists #}
+            {% if link_title %}
+                <a href="{{ link_url }}" title="{{ link_title }}" aria-label="{{ link_title }}">
             {% endif %}
             {# Image #}
-            <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_attributes %}img-hover-effect{% endif %}">
+            <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}">
                 <figure>
                     {{ image_attributes|render }}
                     {# Figcaption #}
@@ -28,8 +27,8 @@
                     {% endif %}
                 </figure>
             </div>
-            {# If Link #}
-            {% if link_attributes %}
+            {# If Link exists #}
+            {% if link_title %}
                 </a>
             {% endif %}
         {% endfor %}
