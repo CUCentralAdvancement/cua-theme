@@ -2,33 +2,49 @@
 <div class="{{ container_size }} d-none d-sm-block g-0">
     <div class="card">
         <div class="row">
-            {# Is layout 50/50 or 70/30 #}
-            {% if content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "4" %}
-            {# 70/30 #}
-            <div class="col-md-4 col-sm-12 {{ color_background ~ ' ' ~ padding ~ ' ' ~ text_alignment }} {{ content.field_image_aligment.0 }}">
-                {% elseif content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "50_50" %}
-                {# 50/50 #}
-                <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }} {{ content.field_image_aligment.0 }}">
-                    {% endif %}
+            {# Determine layout and alignment #}
+            {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
+            {% set is_7030_layout = layout == "4" %}
+            {% set is_5050_layout = layout == "50_50" %}
+            {% set alignment = content.field_image_aligment.0 ?? '' %}
+
+            {# Set column classes for image container #}
+            {% set image_col_classes %}
+                {% if is_7030_layout %}
+                    col-md-4
+                {% elseif is_5050_layout %}
+                    col-md-6
+                {% endif %}
+            {% endset %}
+
+            {# Render image container if layout is set #}
+            {% if layout %}
+                <div class="{{ image_col_classes }} col-sm-12 {{ color_background ~ ' ' ~ padding ~ ' ' ~ image_alignment }}">
                     {# Include Image Component #}
                     {% include '@cua_theme/component/card/_card--image.html.twig' %}
                 </div>
-                {# Is layout 50/50 or 70/30 #}
-                {% if content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "4" %}
-                {# 70/30 #}
-                <div class="col-md-8 col-sm-12 {{ color_background ~ ' ' ~ text_alignmen ~ ' ' ~ paddingt }}">
-                    {% elseif content.field_custom_layout is not empty and content.field_custom_layout[0]['#markup'] == "50_50" %}
-                    {# 50/50 #}
-                    <div class="col-md-6 col-sm-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
-                        {% endif %}
-                        <div class="row mx-5 pt-3">
-                            {# Include Title/Body Component #}
-                            {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-                            {# Include Button/Link Component #}
-                            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-                        </div>
+            {% endif %}
+
+            {# Set column classes for title/body container #}
+            {% set title_body_col_classes %}
+                {% if is_7030_layout %}
+                    col-md-8
+                {% elseif is_5050_layout %}
+                    col-md-6
+                {% endif %}
+            {% endset %}
+
+            {# Render title/body container if layout is set #}
+            {% if layout %}
+                <div class="{{ title_body_col_classes }} col-sm-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
+                    <div class="row mx-5 pt-3">
+                        {# Include Title/Body Component #}
+                        {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+                        {# Include Button/Link Component #}
+                        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
                     </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
-    </div> {# ignore error > /div is closed based on logic above #}
+    </div>
+</div>
