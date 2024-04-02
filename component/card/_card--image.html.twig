@@ -1,38 +1,37 @@
 {# If image is present, render the following HTML block #}
 {% if card_image %}
     <div class="card-header {{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} g-0">
-        {% if card_image %}
-            {% for item in content.field_image['#items'] %}
-                {% set image = {
-                    '#theme':      'image_style',
-                    '#style_name': 'webp',
-                    '#attributes': { class: 'card-img-top img-fluid' },
-                    '#uri':        item.entity.uri.value,
-                    '#alt':        item.alt,
-                    '#width':      item.width,
-                    '#height':     item.height
-                } %}
-                {# If Link #}
-                {% if link_title %}
-                    <a class="block-link" href="{{ link_url }}" aria-label="{{ link_title }}">
-                {% endif %}
-                {# Image #}
-                <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}">
-                    <figure>
-                        {{ image }}
-                        {# Figcaption #}
-                        {% if visibility %}
-                            <figcaption class="{{ visibility }}">
-                                <p class="figcaption fw-bold {{ text_alignment ~ ' ' ~ text_color }} my-2 mx-2">{{ item.alt }}</p>
-                            </figcaption>
-                        {% endif %}
-                    </figure>
-                </div>
-                {# If Link #}
-                {% if link_title %}
-                    </a>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+        {% for item in content.field_image['#items'] %}
+            {% set image_attributes = {
+                '#theme':      'image_style',
+                '#style_name': 'webp',
+                '#attributes': { class: 'card-img-top img-fluid' },
+                '#uri':        item.entity.uri.value,
+                '#alt':        item.alt,
+                '#width':      item.width,
+                '#height':     item.height
+            } %}
+            {# If Link #}
+            {% set link_attributes = link_title ? { href: link_url, 'aria-label': link_title, class: 'block-link' } : {} %}
+            {% if link_attributes %}
+                <a {{ link_attributes }}>
+            {% endif %}
+            {# Image #}
+            <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_attributes %}img-hover-effect{% endif %}">
+                <figure>
+                    {{ image_attributes|render }}
+                    {# Figcaption #}
+                    {% if visibility %}
+                        <figcaption class="{{ visibility }}">
+                            <p class="figcaption fw-bold {{ text_alignment ~ ' ' ~ text_color }} my-2 mx-2">{{ item.alt }}</p>
+                        </figcaption>
+                    {% endif %}
+                </figure>
+            </div>
+            {# If Link #}
+            {% if link_attributes %}
+                </a>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endif %}
