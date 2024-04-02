@@ -158,7 +158,7 @@
 .card-footer .btn.btn-cu-bg-gold-hover {
     background: var(--cua-gold-hover);
     border: 3px solid var(--cua-gold-hover);
-    color: var(--cua-black);
+    color: var(--cua-white);
     position: relative; /* Ensure z-index works */
     overflow: hidden;
     transition: width 0.5s ease; /* Transition width property */

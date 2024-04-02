@@ -214,7 +214,7 @@ body, p, a, li {
 .btn.btn-primary:hover {
     background: var(--cui-gold-hover);
     border: none;
-    color: var(--cua-black);
+    color: var(--cua-white);
     cursor: pointer;
     text-decoration: none;
 }
@@ -813,7 +813,7 @@ p.intro {
 }
 
 .page-view-taxonomy-term .node__content .nav-link a:hover {
-    color: var(--cua-black-pure);
+    color: var(--cua-white);
     background: var(--cui-gold-hover);
     text-decoration: none;
 }
