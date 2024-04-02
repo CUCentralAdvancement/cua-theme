@@ -21,7 +21,7 @@
 
 /* Additional styling for card header with padding */
 .card-header.add-padding, .add-padding {
-    padding: 1.5rem !important;
+    padding: .5rem 2.5rem 0 2.5rem !important
 }
 
 /* Card footer styling */
