@@ -1,8 +1,4 @@
 /* Call to Action styling */
-.call-to-action {
-  margin-left: 1.25rem !important;
-}
-
 /* Styles for the card image and card image top in the call to action */
 .call-to-action .card-img, .call-to-action .card-img-top {
   border-top-left-radius: 0;
