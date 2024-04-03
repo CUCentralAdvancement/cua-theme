@@ -32,7 +32,7 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
     <div class="container">
         <div class="row">
             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>

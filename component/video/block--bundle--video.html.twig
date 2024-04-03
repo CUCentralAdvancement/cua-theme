@@ -31,7 +31,7 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
     {# Video Containers #}
     {% if provider %}
         {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}

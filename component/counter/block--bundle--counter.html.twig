@@ -41,7 +41,7 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').addClass(classes).setAttribute('id', unique_id ) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
     {# Include Icon Component #}
     {% include '@cua_theme/component/card/_card--icon.html.twig' %}
     {# Include Image Component #}
