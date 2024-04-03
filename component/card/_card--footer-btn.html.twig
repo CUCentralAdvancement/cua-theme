@@ -1,5 +1,5 @@
 {# If link btn is present, render the following HTML block #}
-{% if link_title or label %}
+{% if link_title is not empty %}
     <div class="card-footer {{ center_content ~ ' ' ~ text_alignment ~ ' ' ~ padding }} mb-5">
         <a href="{{ link_url }}"
            title="{{ link_title }}"
