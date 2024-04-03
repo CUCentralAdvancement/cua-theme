@@ -5,12 +5,12 @@
            title="{{ link_title }}"
            aria-label="{{ link_title }}"
            class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
-            {{ link_title }}
-            {# title for SEO/508 #}
-            {% if label %}
+            {% if label is not empty and (link_title == 'Learn More' or link_title == 'Read More') %}
                 {{ title_prefix }}
-                <span class="visually-hidden">{{ label }}</span>
+                {{ link_title|title ~ ' ' ~ ' About' ~ ' ' ~ label|title }}
                 {{ title_suffix }}
+            {% else %}
+                {{ link_title }}
             {% endif %}
         </a>
     </div>
