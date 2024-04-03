@@ -521,6 +521,9 @@ a figure {
     scale: 60%;
 }
 
+.card-img.xsmall {
+    width: 25%;
+}
 .card {
     display: flex;
     flex-direction: column;
@@ -538,3 +541,4 @@ a figure {
     padding: 0;
     width: 100%; /* Ensure footer width spans the entire container */
 }
+
