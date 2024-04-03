@@ -36,8 +36,16 @@
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
+{# Initialize animation classes #}
+{% set animate_classes = [] %}
+
+{# Add animate-trigger class based on conditions #}
+{% if animation or animation_speed or animation_delay %}
+    {% set animate_classes = ['animate-trigger'] %}
+{% endif %}
+
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes, 'animate-trigger')}}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes, animate_classes) }}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
     {# Include Icon Component #}
