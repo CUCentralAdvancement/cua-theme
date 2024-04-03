@@ -280,3 +280,11 @@ form#node-page-layout-builder-form div#edit-actions {
 #drupal-off-canvas-wrapper {
   width: 90% !important;
 }
+
+.layout--threecol-section--33-34-33 > .layout__region--first,
+.layout--threecol-section--33-34-33 > .layout__region--second,
+.layout--threecol-section--33-34-33 > .layout__region--third,
+.layout--threecol-section--33-34-33 > .layout__region--forth {
+  flex: 0 1 33.333%;
+  padding: 0 1rem !important;
+}
