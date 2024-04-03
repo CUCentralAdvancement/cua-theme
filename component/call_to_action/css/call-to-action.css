@@ -36,22 +36,3 @@
   border-color: transparent !important;
 }
 
-.transparent-border {
-  border-top-width: 0;
-  border-bottom-width: 0;
-  border-left-width: 8px;
-  border-right-width: 8px;
-  border-color: rgba(255, 255, 255, 1); /* Transparent white (RGB: 255, 255, 255, Alpha: 0) */
-}
-
-.cu-bg-gold .transparent-border {
-  border-color: var(--cua-gold); /* Transparent white (RGB: 255, 255, 255, Alpha: 0) */
-}
-
-.cu-bg-black .transparent-border {
-  border-color: var(--cua-black) !important; /* Transparent white (RGB: 255, 255, 255, Alpha: 0) */
-}
-
-.cu-bg-light-grey .transparent-border {
-  border-color: var(--cua-light-grey); /* Transparent white (RGB: 255, 255, 255, Alpha: 0) */
-}
