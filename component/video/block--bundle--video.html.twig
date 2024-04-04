@@ -37,7 +37,7 @@
         {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
     {% else %}
         {# No video provider specified #}
-        <p>No video provider specified.</p>
+        <p>{{ 'No video provider specified.'|t }}</p>
     {% endif %}
     {# If Desktop include component #}
     {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
