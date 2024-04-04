@@ -1,5 +1,4 @@
-(function (Drupal) {
-
+(function (Drupal, IntersectionObserver) {
   'use strict';
 
   // Cache frequently accessed elements
@@ -34,20 +33,28 @@
   document.addEventListener('DOMContentLoaded', function () {
     const observer = new IntersectionObserver(handleAnimations, { threshold: 0.1 });
 
-    document.querySelectorAll('.animate-trigger').forEach(function (element) {
-      observer.observe(element);
-    });
+    // Check if there are elements with the class 'animate-trigger'
+    const animateElements = document.querySelectorAll('.animate-trigger');
+    if (animateElements.length > 0) {
+      // Observe each animate-trigger element
+      animateElements.forEach(function (element) {
+        observer.observe(element);
+      });
+    }
 
     function handleAnimations(entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          // Get animation classes from data-animation-classes attribute
           const animationClasses = entry.target.dataset.animationClasses;
-          if (animationClasses) {
+          if (animationClasses && animationClasses.trim() !== '') {
+            // Add animation classes to the element's classList
             entry.target.classList.add(...animationClasses.split(' '));
           }
+          // Stop observing the element to avoid redundant animations
           observer.unobserve(entry.target);
         }
       });
     }
   });
-})(Drupal);
+})(Drupal, IntersectionObserver);
