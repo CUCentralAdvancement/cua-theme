@@ -639,14 +639,14 @@ img.sticky-show {
 
 /* Change header nav dark */
 header .nav-item {
-    border-right: 1px solid var(--cua-gray-300);
+    border-right: 1px solid var(--cua-gray-500);
 }
 
-header .sticky .nav-item  {
+header .sticky .nav-item {
     border-right: 1px solid transparent;
 }
 
-header .nav-item.active{
+header .nav-item.active {
     color: var(--cua-black) !important;
 }
 
