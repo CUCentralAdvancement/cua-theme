@@ -16,7 +16,7 @@
 
 {# Render content #}
 <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
-    <div class="container">
+    <div class="container top-bar">
         <div class="row clearfix g-0">
             <div class="col g-0">
 
@@ -83,7 +83,7 @@
 
     {# Search Form #}
     {% if page.search %}
-        <div class="container-fluid main-search bg-light border-bottom border-white">
+        <div class="container-fluid main-search bg-light border-top border-grey">
             <div class="container">
                 <div class="collapse" id="CollapseSearch" data-bs-parent=".site-name-wrapper" aria-labelledby="search-icon">
                     <div class="cua-search">
@@ -96,7 +96,7 @@
 
     {# Site Name / Desktop #}
     {% if site_name %}
-        <span class="bg-light d-none d-lg-block">
+        <span class="bg-light border-bottom border-grey d-none d-lg-block">
             {% include '@cua_theme/component/header/_site-name.html.twig' %}
         </span>
     {% endif %}
