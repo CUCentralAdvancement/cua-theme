@@ -180,7 +180,7 @@ form#node-page-layout-builder-form div#edit-actions {
 .layout-builder-block {
   padding: 1.5em;
   cursor: move;
-  background-color: var(--cua-white);
+  background-color: transparent;
   border: 2px dotted #00000040;
   margin: 0 0 1rem;
 }
