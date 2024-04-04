@@ -18,14 +18,14 @@
 {{ attach_library('cua_theme/banner') }}
 
 {# If class is active #}
-{% set color_background_on = color_background is not empty ? color_background|clean_class : '' %}
-{% set effect_on = effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect|clean_class : '' %}
-{% set effect_copy_on = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
-{% set size = container_size is not empty ? container_size|clean_class : '' %}
-{% set text_color_on = text_color is not empty ? text_color|clean_class : '' %}
-{% set parallax_on = parallax is not empty ? parallax|clean_class : '' %}
-{% set position_container_on = position_container is not empty ? 'd-flex ' ~ position_container|clean_class : '' %}
-{% set margins_on = margins is not empty ? margins|clean_class : '' %}
+{% set color_background = color_background is not empty ? color_background|clean_class : '' %}
+{% set effect = effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect|clean_class : '' %}
+{% set effect_copy = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
+{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
+{% set text_color = text_color is not empty ? text_color|clean_class : '' %}
+{% set parallax = parallax is not empty ? parallax|clean_class : '' %}
+{% set position_container = position_container is not empty ? 'd-flex ' ~ position_container|clean_class : '' %}
+{% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Set CSS Classes #}
 {% set container_classes = [
@@ -33,19 +33,17 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'jumbotron jumbotron-fluid banner g-0',
-    effect_on,
-    parallax_on,
-    margins_on,
+    effect,
+    parallax,
+    margins,
     background_color,
-    size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-]|merge(utility_classes ? utility_classes : []) %}
+    container_size,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class]|merge(utility_classes ? utility_classes : []) %}
 
 {# Initialize animation classes #}
 {% set animation_classes = [
-    position_container_on
-]
-%}
+    position_container
+] %}
 
 {# Add optional classes based on conditions #}
 {% if animation or animation_speed or animation_delay %}
@@ -58,9 +56,10 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes) }} {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center"{% endif %}>
-    <div{{ attributes.addClass(animation_classes) }}  {% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %}">
-        <div class="col-md-5 col-sm-12 banner-body {{ color_background_on ~ ' ' ~ text_color_on ~ ' ' ~ effect_copy_on }}">
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes) }} {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-container_size: cover; background-position: center"{% endif %}>
+    <div{{ attributes.addClass(animation_classes) }}  {% if animation or animation_speed or animation_delay %}
+            data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %}">
+        <div class="col-md-5 col-sm-12 banner-body {{ color_background ~ ' ' ~ text_color ~ ' ' ~ effect_copy }}">
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' %}
             {# Include Body Component #}

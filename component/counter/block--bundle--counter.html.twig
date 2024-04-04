@@ -18,10 +18,9 @@
 {{ attach_library('cua_theme/counter') }}
 
 {# If class is active #}
-{# If class is active #}
-{% set background_color = color_background is not empty ? color_background|clean_class : '' %}
-{% set size = container_size is not empty ? container_size|clean_class : '' %}
-{% set border_color = color_border is not empty ? color_border|clean_class : '' %}
+{% set color_background = color_background is not empty ? color_background|clean_class : '' %}
+{% set color_border = color_border is not empty ? color_border|clean_class : '' %}
+{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 
 {# Add Classes #}
 {% set classes = [
@@ -29,9 +28,9 @@
     'block-' ~ configuration.provider|clean_class,
     'counter',
     'card rounded-0 mx-2',
-    background_color,
-    border_color,
-    size,
+    color_background,
+    color_border,
+    container_size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
 %}
 
