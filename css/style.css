@@ -1215,6 +1215,15 @@ div#block-cua-theme-page-title {
     color: var(--cua-black);
 }
 
+.page-vocabulary-stories .node--view-mode-teaser.node--sticky,
+.path-taxonomy .node--view-mode-teaser.node--sticky {
+    padding: 2rem;
+}
+
+.node--type-article {
+    margin-bottom: 80px;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
