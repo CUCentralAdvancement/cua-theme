@@ -90,9 +90,7 @@ form#node-page-layout-builder-form div#edit-actions {
 
 /* Styling for layout-builder__region with outline, padding, and margin */
 .layout-builder__region {
-  outline: 2px dotted var(--cua-gray-200);
-  padding: 1rem;
-  margin: 1rem 0 2rem;
+  outline: 0;
 }
 
 /* Styling for layout-builder__region with height adjustment */
@@ -107,8 +105,8 @@ form#node-page-layout-builder-form div#edit-actions {
   padding: .5rem 1rem;
   color: var(--cua-white);
   margin: 0;
-  border: 1px solid var(--cua-blue);
-  background: var(--cua-blue);
+  border: 1px solid #008000;
+  background: #008000;
   border-radius: 5px;
   font-size: .8rem;
 }
@@ -164,27 +162,26 @@ form#node-page-layout-builder-form div#edit-actions {
 
 /* Styling for layout-builder__add-section */
 .layout-builder__add-section {
-  outline: 2px dotted var(--cua-blue-visited);
-  background-color: #0093ff14;
-  margin: 3rem 0;
+  outline: 2px dotted #00800075;
+  background-color: #00800075;
+  margin: 5rem 0;
 }
 
 /* Styling for layout-builder__add-block */
 .layout-builder__add-block {
-  outline: 2px dotted var(--cua-blue-visited);
-  background-color: var(--cua-blue);
-  margin: 1rem 0;
+  outline: 2px dotted #00800040;
+  background-color: #00800040;
+  padding: 1em 0 !important;
+  margin: 1rem 0 !important;
 }
 
 /* Styling for layout-builder-block */
 .layout-builder-block {
   padding: 1.5em;
   cursor: move;
-  background-color: transparent;
   border: 2px dotted #00000040;
-  margin: 0 0 1rem;
+  background-color: inherit;
 }
-
 /* Styling for vertical-tabs__menu-item and vertical-tabs__menu */
 .vertical-tabs__menu-item {
   border: none;
@@ -212,7 +209,7 @@ form#node-page-layout-builder-form div#edit-actions {
 /* Styling for buttons in the layout-builder-modal */
 #layout-builder-modal .btn-primary {
   color: var(--cua-white);
-  background: var(--cua-blue);
+  background: #00800040;
   border-color: transparent;
   width: 200px;
 }
@@ -287,4 +284,11 @@ form#node-page-layout-builder-form div#edit-actions {
 .layout--threecol-section--33-34-33 > .layout__region--forth {
   flex: 0 1 33.333%;
   padding: 0 1rem !important;
+}
+
+#layout-builder-modal fieldset:not(.fieldgroup) {
+  background-color: var(--cua-gray-200) !important;
+}
+.layout-builder__layout.container.mx-auto.layout {
+  padding-top: 2rem;
 }
