@@ -1,24 +1,14 @@
 {# If link btn is present, render the following HTML block #}
 {% if link_title is not empty %}
-    <div class="card-footer {{ center_content ~ ' ' ~ text_alignment ~ ' ' ~ padding }} mb-5">
-        <a href="{{ link_url }}" title="
-            {% if label is not empty and (link_title == 'Learn More' or link_title == 'Read More') %}
-                {{ link_title|title ~ ' ' ~ ' About' ~ ' ' ~ label|title }}
-            {% else %}
-                {{ link_title }}
-            {% endif %}" aria-label="{% if label is not empty and (link_title == 'Learn More' or link_title == 'Read More') %}
-                {{ link_title|title ~ ' ' ~ ' About' ~ ' ' ~ label|title }}
-            {% else %}
-                {{ link_title }}
-            {% endif %}" class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
-
-            {# Link #}
-            {% if label is not empty and (link_title == 'Learn More' or link_title == 'Read More') %}
-                {{ link_title|title ~ ' ' ~ ' About' ~ ' ' ~ label|title }}
-            {% else %}
-                {{ link_title }}
-            {% endif %}
-
+    {# Define the aria-label once to avoid repetition #}
+    {% set aria_label = link_title %}
+    {% if label is not empty and (link_title in ['Learn More', 'Read More']) %}
+        {% set aria_label = link_title|title ~ ' About ' ~ label|title %}
+    {% endif %}
+    <div class="card-footer {{ center_content }} {{ text_alignment }} {{ padding }} mb-5">
+        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
+            {# Output the link title with or without the 'About' prefix #}
+            {{ aria_label }}
         </a>
     </div>
 {% endif %}
