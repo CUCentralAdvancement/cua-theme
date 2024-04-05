@@ -1234,6 +1234,10 @@ ed11y-element-panel {
     right: 100%;
 }
 
+.tabs {
+    padding: 0 0 2rem 0;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
