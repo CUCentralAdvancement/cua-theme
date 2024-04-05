@@ -682,9 +682,11 @@ header .secondary-menu .nav-item {
 
 .header .sticky .nav-link {
     color: var(--cua-white) !important;
+    background: transparent;
     font-size: .85rem;
     transition: font-size .3s ease-in-out, color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out;
 }
+
 .header .sticky .nav-link:hover {
     color: var(--cua-gold) !important;
 }

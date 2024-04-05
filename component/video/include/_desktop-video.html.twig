@@ -1,6 +1,7 @@
 {# Desktop #}
 <div class="container-fluid mx-auto position-absolute d-flex {{ position_container }}">
-    <div class="col-sm-4 {{ color_background }} animate__animated animate__fadeIn animate__slow animate__delay-2s d-none d-md-block p-4 mt-5 mx-5">
+    <div class="col-sm-4 d-none d-md-block {{ color_background }} p-4 mt-5 mx-5 {% if animation or animation_speed or animation_delay %}
+            animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %}">
         {# Include Title Component #}
         {% include '@cua_theme/component/title/_title.html.twig' %}
         {# Include Body Component #}
@@ -9,3 +10,4 @@
         {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
     </div>
 </div>
+
