@@ -13,7 +13,11 @@
             } %}
             {# If Link exists #}
             {% if link_title %}
-                <a href="{{ link_url }}" title="{{ link_title }}" aria-label="{{ link_title }}">
+                {% set aria_label = link_title %}
+                {% if label is not empty and (link_title in ['Learn More', 'Read More', 'More Information']) %}
+                    {% set aria_label = link_title|title ~ ' About ' ~ label|title %}
+                {% endif %}
+                <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
             {% endif %}
             {# Image #}
             <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}">
@@ -34,3 +38,4 @@
         {% endfor %}
     </div>
 {% endif %}
+
