@@ -1228,6 +1228,12 @@ div#block-cua-theme-page-title {
     padding-bottom: 25px;
 }
 
+ed11y-element-panel {
+    left: 25px;
+    bottom: 25px;
+    right: 100%;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
