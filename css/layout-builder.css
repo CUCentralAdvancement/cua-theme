@@ -9,42 +9,42 @@ form#node-page-layout-builder-form input#edit-actions {
 /* Styling for the first button in the layout builder form */
 form#node-landing-page-layout-builder-form .btn-primary:first-child,
 form#node-page-layout-builder-form .btn-primary:first-child {
-  background-color: #0080002b;
+  background-color: green;
   border-color: transparent;
 }
 
 /* Hover styling for the first button */
 form#node-landing-page-layout-builder-form .btn-primary:first-child:hover,
 form#node-page-layout-builder-form .btn-primary:first-child:hover {
-  background-color: var(--cua-green);
+  background-color: #0080002b;
   color: var(--cua-white);
 }
 
 /* Styling for the second button in the layout builder form */
 form#node-landing-page-layout-builder-form .btn-primary:nth-child(2),
 form#node-page-layout-builder-form .btn-primary:nth-child(2) {
-  background-color: #ff00003b;
+  background-color: red;
   border-color: transparent;
 }
 
 /* Hover styling for the second button */
 form#node-landing-page-layout-builder-form .btn-primary:nth-child(2):hover,
 form#node-page-layout-builder-form .btn-primary:nth-child(2):hover {
-  background-color: #f00;
+  background-color: #ff00003b;
   color: white;
 }
 
 /* Styling for the third button in the layout builder form */
 form#node-landing-page-layout-builder-form .btn-primary:nth-child(3),
 form#node-page-layout-builder-form .btn-primary:nth-child(3) {
-  background-color: #ffff004d;
+  background-color: yellow;
   border-color: transparent;
 }
 
 /* Hover styling for the third button */
 form#node-landing-page-layout-builder-form .btn-primary:nth-child(3):hover,
 form#node-page-layout-builder-form .btn-primary:nth-child(3):hover {
-  background-color: yellow;
+  background-color: #ffff004d;
   color: black;
 }
 
@@ -52,6 +52,27 @@ form#node-page-layout-builder-form .btn-primary:nth-child(3):hover {
 form#node-landing-page-layout-builder-form div#edit-actions,
 form#node-page-layout-builder-form div#edit-actions {
   display: inline-flex;
+}
+
+#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected {
+  border-right-width: 0;
+  background-color: transparent;
+}
+
+#node-page-layout-builder-form .vertical-tabs {
+  border: 1px solid #262626;
+}
+
+#node-page-layout-builder-form .js-form-item.js-form-type-vertical-tabs.form-type-vertical-tabs.js-form-item-.form-item-.form-no-label.mb-3 {
+  margin-bottom: 0 !important;
+}
+
+#node-page-layout-builder-form #edit-actions {
+  margin: 0 !important;
+}
+
+#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title {
+  color: white !important;
 }
 
 /* Hide block-help element when the user is logged in */
@@ -105,10 +126,16 @@ form#node-page-layout-builder-form div#edit-actions {
   padding: .5rem 1rem;
   color: var(--cua-white);
   margin: 0;
-  border: 1px solid #008000;
-  background: #008000;
-  border-radius: 5px;
-  font-size: .8rem;
+  border: 1px solid var(--cua-blue);
+  background: var(--cua-blue);
+  border-radius: 0;
+  font-size:1.1rem;
+}
+
+.use-ajax.layout-builder__link.layout-builder__link--configure:hover {
+  color: var(--cua-white);
+  border: 1px solid green;
+  background: green;
 }
 
 /* Styling for layout-builder__link--remove */
@@ -135,24 +162,23 @@ form#node-page-layout-builder-form div#edit-actions {
 .use-ajax.layout-builder__link.layout-builder__link--remove::after {
   color: var(--cua-white);
   background: var(--cua-warning);
-  font-family: var(--fa-style-family-classic);
   content: '\F00D';
-  border: 1px solid var(--cua-warning);
-  width: 20px;
-  height: 20px;
-  padding: 5px 6px;
-  margin: 0 10px 0;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; /* Ensure correct font weight for solid icons */
+  width: 25px;
+  height: 25px;
+  padding: 2px 6px;
+  margin: 0;
   border-radius: 5px;
+  display: inline-block;
 }
 
 /* Hover styling for layout-builder__link--remove icon */
 .use-ajax.layout-builder__link.layout-builder__link--remove:hover::after {
   color: var(--cua-warning);
-  font-family: var(--fa-style-family-classic);
-  content: '\F00D';
-  border: 1px solid var(--cua-warning);
   background: var(--cua-white);
 }
+
 
 /* Hover styling for layout-builder__link--remove text */
 .use-ajax.layout-builder__link.layout-builder__link--remove:hover {
@@ -162,15 +188,13 @@ form#node-page-layout-builder-form div#edit-actions {
 
 /* Styling for layout-builder__add-section */
 .layout-builder__add-section {
-  outline: 2px dotted #00800075;
-  background-color: #00800075;
-  margin: 5rem 0;
+  outline: 2px dotted #0000004d;
+  margin: 7rem 0;
 }
 
 /* Styling for layout-builder__add-block */
 .layout-builder__add-block {
-  outline: 2px dotted #00800040;
-  background-color: #00800040;
+  outline: 2px dotted #0000004d;
   padding: 1em 0 !important;
   margin: 1rem 0 !important;
 }
@@ -181,6 +205,7 @@ form#node-page-layout-builder-form div#edit-actions {
   cursor: move;
   border: 2px dotted #00000040;
   background-color: inherit;
+  margin-top: 1rem !important;
 }
 /* Styling for vertical-tabs__menu-item and vertical-tabs__menu */
 .vertical-tabs__menu-item {
@@ -274,9 +299,11 @@ form#node-page-layout-builder-form div#edit-actions {
   font-family: inherit;
 }
 
+/*
 #drupal-off-canvas-wrapper {
   width: 90% !important;
 }
+*/
 
 .layout--threecol-section--33-34-33 > .layout__region--first,
 .layout--threecol-section--33-34-33 > .layout__region--second,
@@ -289,6 +316,32 @@ form#node-page-layout-builder-form div#edit-actions {
 #layout-builder-modal fieldset:not(.fieldgroup) {
   background-color: var(--cua-gray-200) !important;
 }
+
 .layout-builder__layout.container.mx-auto.layout {
   padding-top: 2rem;
+}
+
+.use-ajax.layout-builder__link.layout-builder__link--add {
+  color: #0058d0;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+.btn-close::before {
+  top: 0;
+  left: 0;
+}
+
+#node-page-layout-builder-form {
+  background: #262626;
+  color: white !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 1rem 5rem;
+  border-top: 1px solid #c1bdbd;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Adjust shadow properties as needed */
 }
