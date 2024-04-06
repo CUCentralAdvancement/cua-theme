@@ -1234,8 +1234,60 @@ ed11y-element-panel {
     right: 100%;
 }
 
-.tabs {
+nav.tabs {
     padding: 1rem 0 2rem 0;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
+    background-color: var(--cua-blue);
+    color: white;
+    margin: 0 .2rem;
+}
+
+.nav-pills .show > .nav-link, .nav-pills .nav-link:hover {
+    background: green;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-pills .nav-link {
+    border-radius: var(--bs-nav-pills-border-radius);
+    border-radius: 0;
+    padding: .75rem 3rem;
+    font-size: 1.1rem;
+}
+
+.container.mx-auto.nav.primary.nav-pills {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important ;
+}
+
+.nav.primary.nav-pills li a::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; /* Ensure correct font weight for solid icons */
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.nav.primary.nav-pills li:first-child a::before {
+    content: "\f06e"; /* Content for Font Awesome eye icon */
+}
+
+.nav.primary.nav-pills li:nth-child(2) a::before {
+    content: "\f044"; /* Content for Font Awesome edit icon */
+}
+
+.nav.primary.nav-pills li:nth-child(3) a::before {
+    content: "\f014"; /* Content for Font Awesome delete icon */
+}
+
+.nav.primary.nav-pills li:nth-child(4) a::before {
+    content: "\f013"; /* Content for Font Awesome gear icon */
+}
+
+.nav.primary.nav-pills li:nth-child(5) a::before {
+    content: "\f1da"; /* Content for Font Awesome history icon */
 }
 
 /*** Responsive ***/
