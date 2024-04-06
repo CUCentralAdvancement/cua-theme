@@ -1,6 +1,16 @@
-{# If Image #}
+{# Image #}
+
+{# Add optional variables based on conditions #}
+{% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
+{% set image_size = image_size ?? '' %}
+{% set padding = padding ?? '' %}
+{% set position_container = position_container ?? '' %}
+{% set text_alignment = text_alignment ?? '' %}
+{% set text_color = text_color ?? '' %}
+
+{# Content #}
 {% if card_image %}
-    <div class="card-header {{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} g-0">
+    <div class="card-header {{ text_alignment }} {{ padding }} {{ position_container }} g-0">
         {% for item in content.field_image['#items'] %}
             {% set image_attributes = {
                 '#theme':      'image_style',
@@ -13,20 +23,16 @@
             } %}
             {# If Link exists #}
             {% if link_title %}
-                {% set aria_label = link_title %}
-                {% if label is not empty and (link_title in ['Learn More', 'Read More', 'More Information']) %}
-                    {% set aria_label = link_title|title ~ ' About ' ~ label|title %}
-                {% endif %}
                 <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
             {% endif %}
             {# Image #}
-            <div role="img" class="card-img {{ image_size ~ ' ' ~ padding }} {% if link_url %}img-hover-effect{% endif %}">
+            <div role="img" class="card-img {{ image_size }} {{ padding }} {% if link_title %}img-hover-effect{% endif %}">
                 <figure>
                     {{ image_attributes|render }}
                     {# Figcaption #}
                     {% if visibility %}
                         <figcaption class="{{ visibility }}">
-                            <p class="figcaption fw-bold {{ text_alignment ~ ' ' ~ text_color }} my-2 mx-2">{{ item.alt }}</p>
+                            <p class="figcaption fw-bold {{ text_alignment }} {{ text_color }} my-2 mx-2">{{ item.alt }}</p>
                         </figcaption>
                     {% endif %}
                 </figure>

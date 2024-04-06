@@ -1,6 +1,13 @@
-{# If icon is present, render the following HTML block #}
+{# Icon #}
+
+{# Add optional variables based on conditions #}
+{% set text_alignment = text_alignment ?? '' %}
+{% set padding = padding ?? '' %}
+{% set position_container = position_container ?? '' %}
+
+{# Content #}
   {% if icon %}
-      <div class="{{ text_alignment ~ ' ' ~ padding ~ ' ' ~ position_container }} pt-5 pb-3" style="color: {{ icon_color }}">
+      <div class="{{ text_alignment }} {{ padding }} {{ position_container }} pt-5 pb-3" style="color:{{ icon_color }}">
           <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
       </div>
   {% endif %}

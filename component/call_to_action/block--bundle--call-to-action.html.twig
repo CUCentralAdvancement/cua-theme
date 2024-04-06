@@ -14,12 +14,12 @@
 */
 #}
 
-{# If class is active #}
+{# Add optional classes based on conditions #}
 {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
 {% set color_border = color_border is not empty ? color_border|clean_class : '' %}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 
-{# Classes #}
+{# Add unique id to block #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
