@@ -1,8 +1,18 @@
-{# ## Title ## #}
+{# Title #}
+
+{# Add optional variables based on conditions #}
+{% set center_content = center_content ?? '' %}
+{% set page_title_visibility = page_title_visibility ?? '' %}
+{% set text_alignment = text_alignment ?? '' %}
+{% set position_container = position_container ?? '' %}
+{% set text_color = text_color ?? '' %}
+
+{# Content #}
 {{ title_prefix }}
 {% if label is not empty %}
-    <h2 class="display-4 {{ center_content ~ ' ' ~ page_title_visibility ~ ' ' ~ text_alignment ~ ' ' ~ position_container ~ ' ' ~ text_color  }} mb-2">
+    <h2 class="display-4 {{ center_content }} {{ page_title_visibility }} {{ text_alignment }} {{ position_container }} {{ text_color }} mb-2">
         {{ label }}
     </h2>
 {% endif %}
 {{ title_suffix }}
+

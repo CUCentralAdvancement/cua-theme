@@ -1,11 +1,19 @@
-{# If link btn is present, render the following HTML block #}
+{# Card Footer Button #}
+
+{# Add optional variables based on conditions #}
+{% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
+{% set button_color = button_color ?? '' %}
+{% set center_content = center_content ?? '' %}
+{% set padding = padding ?? '' %}
+{% set text_alignment = text_alignment ?? '' %}
+{% set outline = outline ?? '' %}
+
+{# Content #}
 {% if link_title is not empty %}
-    {% set aria_label = link_title %}
-    {% if label is not empty and (link_title in ['Learn More', 'Read More', 'More Information']) %}
-        {% set aria_label = link_title|title ~ ' About ' ~ label|title %}
-    {% endif %}
     <div class="card-footer {{ center_content }} {{ text_alignment }} {{ padding }} mb-5">
-        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
+        <a href="{{ link_url }}" title="{{ aria_label }}"
+           aria-label="{{ aria_label }}"
+           class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
             {{ aria_label }}
         </a>
     </div>

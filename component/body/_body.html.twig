@@ -1,6 +1,14 @@
-{# body #}
+{# Body #}
+
+{# Add optional variables based on conditions #}
+{% set center_content = center_content ?? '' %}
+{% set text_alignment = text_alignment ?? '' %}
+{% set text_color = text_color ?? '' %}
+
+{# Content #}
 {% if body is not empty %}
-    <div class="card-text lead {{ center_content ~ ' ' ~ text_alignment ~ ' ' ~ text_color  }}">
+    <div class="card-text lead
+        {{ center_content }} {{ text_alignment }} {{ text_color }}">
         {{ body|raw|nl2br }}
     </div>
 {% endif %}
