@@ -32,15 +32,8 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
-    {# Video Containers #}
-    {% if provider %}
-        <div class="video-container g-0 m-0 p-0 position-relative">
-            {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
-        </div>
-    {% else %}
-        {# No video provider specified #}
-        <p>{{ 'No video provider specified.'|t }}</p>
-    {% endif %}
+    {# If Video include component #}
+    {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
     {# If Desktop include component #}
     {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
     {# If Mobile include component #}
