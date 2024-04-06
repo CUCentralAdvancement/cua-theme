@@ -333,7 +333,8 @@ form#node-page-layout-builder-form div#edit-actions {
   left: 0;
 }
 
-#node-page-layout-builder-form {
+.node-page-layout-builder-form,
+#node-page-layout-builder-form{
   background: #262626;
   color: white !important;
   position: fixed;
