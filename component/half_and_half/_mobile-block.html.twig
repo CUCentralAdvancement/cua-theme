@@ -5,6 +5,10 @@
             <div class="col-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
                 {# Include Image Component for Mobile View #}
                 {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                {# If Video include component #}
+                {% if provider is not empty and image is empty %}
+                    {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+                {% endif %}
             </div>
             <div class="col-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
                 <div class="row m-4">

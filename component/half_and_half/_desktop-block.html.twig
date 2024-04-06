@@ -22,6 +22,10 @@
                 <div class="{{ image_col_classes }} col-sm-12 {{ color_background ~ ' ' ~ padding ~ ' ' ~ image_alignment }}">
                     {# Include Image Component #}
                     {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                    {# If Video include component #}
+                    {% if provider is not empty and image is empty %}
+                        {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+                    {% endif %}
                 </div>
             {% endif %}
 
