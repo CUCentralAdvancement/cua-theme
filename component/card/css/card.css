@@ -24,6 +24,11 @@
     padding: .5rem 2.5rem 0 2.5rem !important
 }
 
+.card-header.add-padding img {
+    padding-top:  1.5rem !important;
+}
+
+
 /* Card footer styling */
 .card .card-footer {
     background-color: transparent;

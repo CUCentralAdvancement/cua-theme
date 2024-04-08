@@ -26,7 +26,7 @@
                 <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
             {% endif %}
             {# Image #}
-            <div role="img" class="card-img {{ image_size }} {{ padding }} {% if link_title %}img-hover-effect{% endif %}">
+            <div role="img" class="card-img {{ image_size }} {% if link_title %}img-hover-effect{% endif %}">
                 <figure>
                     {{ image_attributes|render }}
                     {# Figcaption #}
