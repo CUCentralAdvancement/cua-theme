@@ -42,6 +42,18 @@
       });
     }
 
+    // Add event listener to toggle link text when collapse is shown/hidden
+    const collapseElement = document.getElementById('collapseExample');
+    const linkElement = document.getElementById('collapseLink');
+
+    collapseElement.addEventListener('shown.bs.collapse', function () {
+      linkElement.innerHTML = '<i class="fas fa-times"></i><span class="px-3">Close</span>';
+    });
+
+    collapseElement.addEventListener('hidden.bs.collapse', function () {
+      linkElement.innerHTML = '<i class="fas fa-save"></i><span class="px-3">Saving Options</span>';
+    });
+
     function handleAnimations(entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
