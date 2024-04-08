@@ -47,11 +47,11 @@
     const linkElement = document.getElementById('collapseLink');
 
     collapseElement.addEventListener('shown.bs.collapse', function () {
-      linkElement.innerHTML = '<i class="fas fa-times"></i><span class="px-3">Close</span>';
+      linkElement.innerHTML = '<i class="fas fa-times"></i><span class="px-3">Close Options</span>';
     });
 
     collapseElement.addEventListener('hidden.bs.collapse', function () {
-      linkElement.innerHTML = '<i class="fas fa-save"></i><span class="px-3">Saving Options</span>';
+      linkElement.innerHTML = '<i class="fas fa-save"></i><span class="px-4">Save Options</span>';
     });
 
     function handleAnimations(entries) {
