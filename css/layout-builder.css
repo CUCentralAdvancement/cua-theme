@@ -14,11 +14,33 @@ form#node-page-layout-builder-form .btn-primary {
   cursor: pointer;
 }
 
+/* Styling for the first button in the layout builder form */
+form#node-landing-page-layout-builder-form .btn-primary:first-child,
+form#node-page-layout-builder-form .btn-primary:first-child {
+  background-color: green;
+  border-color: transparent;
+}
+
+/* Styling for the second button in the layout builder form */
+form#node-landing-page-layout-builder-form .btn-primary:nth-child(2),
+form#node-page-layout-builder-form .btn-primary:nth-child(2) {
+  background-color: red;
+  border-color: transparent;
+}
+
+/* Styling for the third button in the layout builder form */
+form#node-landing-page-layout-builder-form .btn-primary:nth-child(3),
+form#node-page-layout-builder-form .btn-primary:nth-child(3) {
+  background-color: yellow;
+  border-color: transparent;
+  color: black !important;
+}
+
 /* Hover styling for the first button */
 form#node-landing-page-layout-builder-form .btn-primary:hover,
 form#node-page-layout-builder-form .btn-primary:hover {
-  background-color: green;
-  color: var(--cua-white);
+  background-color: #00800078;
+  color: var(--cua-black) !important;
   cursor: pointer;
 }
 
