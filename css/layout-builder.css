@@ -6,17 +6,17 @@ form#node-page-layout-builder-form input#edit-actions {
   max-width: 10rem;
 }
 
-/* Styling for the first button in the layout builder form */
 form#node-landing-page-layout-builder-form .btn-primary:first-child,
 form#node-page-layout-builder-form .btn-primary:first-child {
-  background-color: green;
-  border-color: transparent;
+  background-color: #0854bb;
+  border-color: #0854bb;
+  color: white !important;
 }
 
 /* Hover styling for the first button */
 form#node-landing-page-layout-builder-form .btn-primary:first-child:hover,
 form#node-page-layout-builder-form .btn-primary:first-child:hover {
-  background-color: #0080002b;
+  background-color: green;
   color: var(--cua-white);
 }
 
@@ -30,7 +30,7 @@ form#node-page-layout-builder-form .btn-primary:nth-child(2) {
 /* Hover styling for the second button */
 form#node-landing-page-layout-builder-form .btn-primary:nth-child(2):hover,
 form#node-page-layout-builder-form .btn-primary:nth-child(2):hover {
-  background-color: #ff00003b;
+  background-color: green;
   color: white;
 }
 
@@ -44,46 +44,38 @@ form#node-page-layout-builder-form .btn-primary:nth-child(3) {
 /* Hover styling for the third button */
 form#node-landing-page-layout-builder-form .btn-primary:nth-child(3):hover,
 form#node-page-layout-builder-form .btn-primary:nth-child(3):hover {
-  background-color: #ffff004d;
-  color: black;
+  background-color: green;
+  color: white;
 }
 
-/* Inline flex display for the edit actions */
-form#node-landing-page-layout-builder-form div#edit-actions,
-form#node-page-layout-builder-form div#edit-actions {
-  display: inline-flex;
-}
-
-#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected {
+#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected,
+form#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected {
   border-right-width: 0;
   background-color: transparent;
 }
 
-#node-page-layout-builder-form .vertical-tabs {
+#node-page-layout-builder-form .vertical-tabs, form#node-page-layout-builder-form.vertical-tabs {
   border: 1px solid #262626;
+  background: #6495edb8;
 }
-
-#node-page-layout-builder-form .js-form-item.js-form-type-vertical-tabs.form-type-vertical-tabs.js-form-item-.form-item-.form-no-label.mb-3 {
+#node-page-layout-builder-form .js-form-item.js-form-type-vertical-tabs.form-type-vertical-tabs.js-form-item-.form-item-.form-no-label.mb-3,
+form#node-page-layout-builder-form .js-form-item.js-form-type-vertical-tabs.form-type-vertical-tabs.js-form-item-.form-item-.form-no-label.mb-3 {
   margin-bottom: 0 !important;
 }
 
-#node-page-layout-builder-form #edit-actions {
+#node-page-layout-builder-form #edit-actions,
+form#node-page-layout-builder-form #edit-actions {
   margin: 0 !important;
 }
 
-#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title {
+#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title,
+form#node-page-layout-builder-form .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title{
   color: white !important;
 }
 
 /* Hide block-help element when the user is logged in */
 .user-logged-in .block-help {
   display: none;
-}
-
-/* Styling for elements when JavaScript is enabled */
-.js .js-show {
-  display: block ruby;
-  padding: 0 0 0 .5rem;
 }
 
 /* Styling for the close button in the alert wrapper */
@@ -321,18 +313,60 @@ form#node-page-layout-builder-form div#edit-actions {
   padding-top: 2rem;
 }
 
-.use-ajax.layout-builder__link.layout-builder__link--add {
-  color: #0058d0;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 1.2rem;
-}
-
 .btn-close::before {
-  top: 0;
-  left: 0;
+  top: 3px;
+  left: 6px;
 }
 
+
+
+
+.layout-builder-form nav.tabs {
+  padding: 0;
+}
+
+.layout-builder-form .form-actions {
+  display: flex; /* Use flexbox to arrange items */
+  flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+}
+
+/* Adjust spacing between input elements */
+.layout-builder-form .form-actions input[type="submit"] {
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.layout-builder-form .form-actions input[type="submit"] {
+  height: 3rem; /* Adjust height as needed */
+  width: auto; /* Set width to auto to adjust based on content */
+}
+
+/* Target the form */
+.node-landing-page-layout-builder-form,
+form#node-page-layout-builder-form  {
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+/* Target the top navigation */
+.node-landing-page-layout-builder-form .nav.nav-pills,
+form#node-page-layout-builder-form .nav.nav-pills {
+  justify-content: space-between; /* Push items to the sides */
+  width: 100%; /* Ensure the navigation spans the entire width */
+}
+
+/* Optionally, style the individual buttons */
+.node-landing-page-layout-builder-form .nav.nav-pills .nav-item,
+form#node-page-layout-builder-form .nav.nav-pills .nav-item {
+  /* Add styling for the nav items */
+}
+
+form .form-actions {
+
+  align-self: center !important;
+}
+
+/*
 .node-page-layout-builder-form,
 #node-page-layout-builder-form,
 #node-landing-page-layout-builder-form,
@@ -346,5 +380,17 @@ form#node-page-layout-builder-form div#edit-actions {
   z-index: 9999;
   padding: 1rem 5rem;
   border-top: 1px solid #c1bdbd;
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Adjust shadow properties as needed */
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/*** Responsive ***/
+
+@media only screen and (max-width: 991px) {
+  .layout--threecol-section--33-34-33 > .layout__region--first,
+  .layout--threecol-section--33-34-33 > .layout__region--second,
+  .layout--threecol-section--33-34-33 > .layout__region--third,
+  .layout--threecol-section--33-34-33 > .layout__region--forth {
+    flex: 0 1 100%;
+    padding: 0 1rem !important;
+  }
 }

@@ -1,0 +1,29 @@
+ <div id="cu-layout-builder" class="container-fluid d-flex flex-column justify-content-end align-items-center fixed-bottom">
+
+    <div class="row">
+            <div class="collapse container-fluid" id="collapseExample">
+                <div class="col container-fluid cu-bg-light-grey px-5 py-5 d-flex justify-content-center align-items-center border border-dark-subtle">
+                    {%
+                        set classes = [
+                        has_parent ? 'js-form-wrapper',
+                        has_parent ? 'form-wrapper',
+                        has_parent ? 'mb-3',
+                    ]
+                    %}
+                    <div{{ attributes.addClass(classes) }}>{{ children }}</div>
+
+                </div>
+            </div>
+    </div>
+
+    <nav class="tabs" role="navigation" aria-label="Tabs">
+        <ul class="container mx-auto nav nav-pills g-0 p-0 m-0">
+            <li class="nav-item">
+                <a class="nav-link rounded-top" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fas fa-save"></i><span class="ml-3"> {{ 'Saving Options'|t }}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
