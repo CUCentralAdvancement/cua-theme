@@ -362,8 +362,12 @@ form#node-page-layout-builder-form .nav.nav-pills .nav-item {
 }
 
 form .form-actions {
-
   align-self: center !important;
+}
+
+#cu-layout-builder nav.tabs {
+  padding: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /*

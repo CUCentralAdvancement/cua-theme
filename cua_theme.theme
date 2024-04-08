@@ -277,3 +277,17 @@ function cua_theme_preprocess_html(array &$variables): void {
         $variables['attributes']['class'][] = 'user-administrator';
     }
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() to provide custom theme suggestions for forms.
+ */
+function cua_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+    // Get the form ID.
+    $form_id = $variables['element']['#form_id'];
+
+    // Replace dashes with underscores in the form ID.
+    $form_id = str_replace('--', '_', $form_id);
+
+    // Add a theme suggestion based on the modified form ID.
+    $suggestions[] = 'form__' . $form_id;
+}
