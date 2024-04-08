@@ -32,41 +32,41 @@
   {% for type, messages in message_list %}
     {%
       set classes = [
-        'toast',
-        'fade',
-      ]
+      'toast',
+      'fade',
+    ]
     %}
     {%
       set heading = {
-        'status': 'Status message'|t,
-        'error': 'Error message'|t,
-        'warning': 'Warning message'|t,
-        'info': 'Informative message'|t,
-      }
+      'status': 'Status message'|t,
+      'error': 'Error message'|t,
+      'warning': 'Warning message'|t,
+      'info': 'Informative message'|t,
+    }
     %}
     {%
       set color = {
-        'status': '#28a745',
-        'warning': '#dc3545',
-        'error': '#ffc107',
-        'info': '#17a2b8',
-      }
+      'status': '#28a745',
+      'warning': '#dc3545',
+      'error': '#ffc107',
+      'info': '#17a2b8',
+    }
     %}
     {%
       set role = {
-        'status': 'status',
-        'warning': 'alert',
-        'error': 'alert',
-        'info': 'info',
-      }
+      'status': 'status',
+      'warning': 'alert',
+      'error': 'alert',
+      'info': 'info',
+    }
     %}
     {%
       set autohide = {
-        'status': 'true',
-        'warning': 'false',
-        'error': 'true',
-        'info': 'false',
-      }
+      'status': 'true',
+      'warning': 'false',
+      'error': 'true',
+      'info': 'false',
+    }
     %}
     {% for message in messages %}
       <!-- Then put toasts within -->
