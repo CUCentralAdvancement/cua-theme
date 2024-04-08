@@ -234,3 +234,18 @@ div#site-footer-bottom {
         font-size: .7rem !important;
     }
 }
+
+/* Apply max width to CU Logo */
+.cu-logo {
+    max-width: 500px; /* Set maximum width for the logo */
+    width: 100%; /* Ensure logo fills its container */
+}
+
+/* Media query for screens below 991px */
+@media (max-width: 991px) {
+    /* Center the CU Logo horizontally */
+    .cu-logo-section {
+        display: flex; /* Use flexbox */
+        justify-content: center; /* Center the contents horizontally */
+    }
+}
