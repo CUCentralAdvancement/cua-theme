@@ -21,13 +21,8 @@
 
 /* Additional styling for card header with padding */
 .card-header.add-padding, .add-padding {
-    padding: .5rem 2.5rem 0 2.5rem !important
+    padding: .5rem 2rem 0 2rem !important
 }
-
-.card-header.add-padding img {
-    padding-top:  1.5rem !important;
-}
-
 
 /* Card footer styling */
 .card .card-footer {
@@ -77,12 +72,12 @@
 }
 
 .cu-bd-gold, .card.cu-bd-gold {
-    border: 3px solid var(--cua-gold);
+    border: 2px solid var(--cua-gold);
 }
 
 .card-footer .btn.btn-cu-bg-gold {
     background: var(--cua-gold);
-    border: 3px solid var(--cua-gold);
+    border: 2px solid var(--cua-gold);
     color: var(--cua-black);
     position: relative; /* Ensure z-index works */
     overflow: hidden;
@@ -109,7 +104,7 @@
 }
 
 .card-footer .btn.outline-btn-cu-bg-gold {
-    border: 3px solid var(--cua-gold-hover);
+    border: 2px solid var(--cua-gold-hover);
     color: var(--cua-gold-hover);
     background: inherit;
     position: relative; /* Ensure z-index works */
@@ -119,7 +114,7 @@
 }
 
 .cu-bg-black .card-footer .btn.outline-btn-cu-bg-gold {
-    border: 3px solid var(--cua-gold);
+    border: 2px solid var(--cua-gold);
     color: var(--cua-gold);
 }
 
@@ -157,12 +152,12 @@
 }
 
 .cu-bd-gold-hover, .card.cu-bd-gold-hover {
-    border: 3px solid var(--cua-gold-hover);
+    border: 2px solid var(--cua-gold-hover);
 }
 
 .card-footer .btn.btn-cu-bg-gold-hover {
     background: var(--cua-gold-hover);
-    border: 3px solid var(--cua-gold-hover);
+    border: 2px solid var(--cua-gold-hover);
     color: var(--cua-white);
     position: relative; /* Ensure z-index works */
     overflow: hidden;
@@ -189,7 +184,7 @@
 }
 
 .card-footer .btn.outline-btn-cu-bg-gold-hover {
-    border: 3px solid var(--cua-gold-hover);
+    border: 2px solid var(--cua-gold-hover);
     color: var(--cua-gold-hover);
     background: inherit;
     position: relative; /* Ensure z-index works */
@@ -199,7 +194,7 @@
 }
 
 .cu-bg-black .card-footer .btn.outline-btn-cu-bg-gold-hover {
-    border: 3px solid var(--cua-gold-hover);
+    border: 2px solid var(--cua-gold-hover);
     color: var(--cua-gold-hover);
 }
 
@@ -238,12 +233,12 @@
 }
 
 .cu-bd-black, .card.cu-bd-black {
-    border: 3px solid var(--cua-black);
+    border: 2px solid var(--cua-black);
 }
 
 .card-footer .btn.btn-cu-bg-black {
     background: var(--cua-black);
-    border: 3px solid var(--cua-black);
+    border: 2px solid var(--cua-black);
     color: var(--cua-white);
     position: relative; /* Ensure z-index works */
     overflow: hidden;
@@ -313,12 +308,12 @@
 }
 
 .cu-bd-white, .card.cu-bd-white {
-    border: 3px solid var(--cua-white);
+    border: 2px solid var(--cua-white);
 }
 
 .card-footer .btn.btn-cu-bg-white {
     background: var(--cua-white);
-    border: 3px solid var(--cua-white);
+    border: 2px solid var(--cua-white);
     color: var(--cua-black);
     position: relative; /* Ensure z-index works */
     overflow: hidden;
@@ -345,7 +340,7 @@
 }
 
 .card-footer .btn.outline-btn-cu-bg-white {
-    border: 3px solid var(--cua-white);
+    border: 2px solid var(--cua-white);
     color: var(--cua-white);
     background: inherit;
     position: relative; /* Ensure z-index works */
@@ -392,12 +387,12 @@
 }
 
 .cu-bd-light-grey, .card.cu-bd-light-grey {
-    border: 3px solid var(--cua-light-grey);
+    border: 2px solid var(--cua-light-grey);
 }
 
 .card-footer .btn.btn-cu-bg-light-grey {
     background: var(--cua-light-grey);
-    border: 3px solid var(--cua-light-grey);
+    border: 2px solid var(--cua-light-grey);
     color: var(--cua-black);
     position: relative; /* Ensure z-index works */
     overflow: hidden;
@@ -424,7 +419,7 @@
 }
 
 .card-footer .btn.outline-btn-cu-bg-light-grey {
-    border: 3px solid var(--cua-light-grey);
+    border: 2px solid var(--cua-light-grey);
     color: var(--cua-light-grey);
     background: inherit;
     position: relative; /* Ensure z-index works */

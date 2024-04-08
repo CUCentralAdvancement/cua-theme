@@ -10,7 +10,7 @@
 
 {# Content #}
 {% if card_image %}
-    <div class="card-header {{ text_alignment }} {{ padding }} {{ position_container }} g-0">
+    <div class="card-header {{ text_alignment }} {{ position_container }} g-0">
         {% for item in content.field_image['#items'] %}
             {% set image_attributes = {
                 '#theme':      'image_style',
