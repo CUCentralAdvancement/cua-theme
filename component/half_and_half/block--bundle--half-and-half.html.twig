@@ -15,7 +15,6 @@
 #}
 
 {# If class is active #}
-{% set color_background = color_background is not empty ? color_background|clean_class : '' %}
 {% set border_style = border_style is not empty ? border_style|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
@@ -26,7 +25,6 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
-    color_background,
     border_style,
     margins,
     container_size,

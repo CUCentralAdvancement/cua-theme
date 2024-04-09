@@ -902,6 +902,15 @@ p.intro {
     margin: 0;
 }
 
+.lead-story-title a {
+    color: var(--cua-black);
+    display: block;
+    font-size: 1.1rem;
+    margin: .25rem 0 0;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
 .stories .card-footer .btn.outline-btn-cu-bg-black {
     border: 3px solid var(--cua-black);
     color: var(--cua-black);
