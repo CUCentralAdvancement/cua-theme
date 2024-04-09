@@ -383,10 +383,9 @@ form .form-actions {
   padding: 1rem;
 }
 
-
 #cu-layout-builder #edit-preview-toggle {
   position: absolute;
-  top: 5rem;
+  top: 7rem;
 }
 
 #cu-layout-builder .vertical-tabs.clearfix {
@@ -425,6 +424,10 @@ form .form-actions {
   color: white !important;
 }
 
+#block-cua-theme-content form .form-actions {
+  margin-top: 1.55rem !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
@@ -436,3 +439,4 @@ form .form-actions {
     padding: 0 1rem !important;
   }
 }
+
