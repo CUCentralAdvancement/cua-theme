@@ -18,6 +18,7 @@
 {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
 {% set color_border = color_border is not empty ? color_border|clean_class : '' %}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
+{% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Add unique id to block #}
 {% set classes = [
@@ -28,6 +29,7 @@
     color_background,
     color_border,
     container_size,
+    margins,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
 ] %}
 
