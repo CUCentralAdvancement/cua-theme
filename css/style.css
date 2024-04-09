@@ -130,8 +130,7 @@ h2, .h2 {
 }
 
 aside h2, aside.h2 {
-    font-size: 1.2rem;
-    text-transform: uppercase;
+    font-size: 1.5rem !important;
 }
 
 aside h2::after {
