@@ -24,7 +24,7 @@ form#node-page-layout-builder-form .btn-primary:first-child {
 /* Styling for the second button in the layout builder form */
 form#node-landing-page-layout-builder-form .btn-primary:nth-child(2),
 form#node-page-layout-builder-form .btn-primary:nth-child(2) {
-  background-color: red;
+  background-color: var(--cua-warning);
   border-color: transparent;
   color: black !important;
 }
@@ -174,9 +174,17 @@ form#node-page-layout-builder-form #edit-actions {
 }
 
 /* Styling for layout-builder__add-section */
+.layout-builder__section {
+  margin-bottom: 7em;
+  background: var(--cua-gray-100);
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  border: 2px dotted #d3ebff;
+}
+
 .layout-builder__add-section {
   outline: 2px dotted #0000004d;
-  margin: 7rem 0;
+  margin: 0;
 }
 
 /* Styling for layout-builder__add-block */
@@ -248,6 +256,18 @@ form#node-page-layout-builder-form #edit-actions {
 /* Styling for ui-dialog-titlebar-close */
 .ui-dialog-titlebar-close {
   background: var(--cua-warning);
+}
+
+.ui-dialog-titlebar-close::after {
+  content: "×"; /* Unicode for the "x" character */
+  font-family: Arial, sans-serif; /* Use appropriate font family */
+  font-size: 16px; /* Adjust font size as needed */
+  color: white; /* Set the color of the "x" icon */
+  position: absolute; /* Position the icon absolutely */
+  top: 50%; /* Align vertically */
+  left: 50%; /* Align horizontally */
+  transform: translate(-50%, -50%); /* Center the icon */
+  cursor: pointer; /* Show pointer cursor on hover */
 }
 
 /* Force uploaded CKEditor images to have responsive width */
@@ -380,6 +400,9 @@ form .form-actions {
   width: 30rem;
 }
 
+.layout-builder__add-section {
+  background-color: #d0e5f7 !important;
+}
 
 /*** Responsive ***/
 

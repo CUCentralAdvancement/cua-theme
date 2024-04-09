@@ -6,12 +6,18 @@
 #}
 {% block content %}
     {% if content %}
-        <div class="container text-center mt-4">
-            <h6>{{ ' Edit Page Content Below -'|t }}</h6>
-            <p><i class="fa-solid fa-gear"></i> {{ 'Layout Builder Tutorial:'|t }} <a href="https://www.youtube.com/watch?v=OOM4yRWv7Ew&ab_channel=EvolvingWeb" target="_blank">More Information</a></p>
+        <div class="container text-center mt-2">
+            {#
+            <nav class="tabs" role="navigation" aria-label="{{ 'Tabs'|t }}">
+                <ul class="container mx-auto nav primary nav-pills">
+                    <li class="nav-item"><a href="/admin/content/block" class="nav-link nav-link--node-746-revisions">Custom Block Library</a></li>
+                    <li class="nav-item"><a href="/block/add?destination=/admin/content/block" class="nav-link nav-link--node-746-revisions">Custom Block Library</a></li>
+                </ul>
+            </nav>
+            #}
+            <nav class="tabs" role="navigation" aria-label="{{ 'Tabs'|t }}">
+                {{ content }}
+            </nav>
         </div>
-        <nav class="tabs" role="navigation" aria-label="{{ 'Tabs'|t }}">
-            {{ content }}
-        </nav>
     {% endif %}
 {% endblock %}
