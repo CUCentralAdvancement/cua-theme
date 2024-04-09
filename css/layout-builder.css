@@ -421,6 +421,10 @@ form .form-actions {
   padding-top: 1rem;
 }
 
+#drupal-off-canvas-wrapper .description, #drupal-off-canvas-wrapper .form-item__description {
+  color: white !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
