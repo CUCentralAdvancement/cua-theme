@@ -112,11 +112,14 @@
 
             {# Copyright/Regents Information #}
             <div class="copyright col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center">
-                <p class="mt-2 strong text-light" aria-label="{{ 'Copyright'|t }}">{{ '©'|t }} {{ 'now' | date('Y') }}
+                <p class="my-2 strong text-light" aria-label="{{ 'Copyright'|t }}">{{ '©'|t }} {{ 'now' | date('Y') }}
                     {# Link to the University of Colorado Regents website #}
                     <a href="https://regents.cu.edu" rel="noopener" target="_blank"
-                       class="link-light link-underline-opacity-0 pl-2"
+                       class="link-light link-underline-opacity-0 px-2"
                        aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">{{ 'Regents of the University of Colorado'|t }}</a>
+                    {{ '|'|t }}
+                    <a href="/user/login" rel="noopener" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Admin Login'|t }}">
+                        {{ 'Admin Login'|t }}<i class="px-2 fas fa-sign-in-alt"></i></a>
                 </p>
             </div>
 
