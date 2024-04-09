@@ -152,12 +152,9 @@ form#node-page-layout-builder-form #edit-actions {
   content: '\F00D';
   font-family: "Font Awesome 5 Free";
   font-weight: 900; /* Ensure correct font weight for solid icons */
-  width: 25px;
-  height: 25px;
-  padding: 2px 6px;
+  padding: 8px 10px;
   margin: 0;
-  border-radius: 5px;
-  display: inline-block;
+  border-radius: 0;
 }
 
 /* Hover styling for layout-builder__link--remove icon */
@@ -165,7 +162,6 @@ form#node-page-layout-builder-form #edit-actions {
   color: var(--cua-warning);
   background: var(--cua-white);
 }
-
 
 /* Hover styling for layout-builder__link--remove text */
 .use-ajax.layout-builder__link.layout-builder__link--remove:hover {
@@ -189,7 +185,7 @@ form#node-page-layout-builder-form #edit-actions {
 
 /* Styling for layout-builder__add-block */
 .layout-builder__add-block {
-  outline: 2px dotted #0000004d;
+  border: 2px dotted #0000004d;
   padding: 1em 0 !important;
   margin: 1rem 0 !important;
 }
@@ -202,6 +198,7 @@ form#node-page-layout-builder-form #edit-actions {
   background-color: inherit;
   margin-top: 1rem !important;
 }
+
 /* Styling for vertical-tabs__menu-item and vertical-tabs__menu */
 .vertical-tabs__menu-item {
   border: none;
@@ -402,6 +399,26 @@ form .form-actions {
 
 .layout-builder__add-section {
   background-color: #d0e5f7 !important;
+}
+
+#layout-builder-discard-changes #edit-actions .btn.btn-primary,
+#layout-builder-revert-overrides .btn.btn-primary {
+  background: var(--cua-blue);
+  color: var(--cua-white);
+  border: none;
+  padding: .45rem 1.5rem;
+  font-weight: bold;
+  display: inline-block;
+  border-radius: 0;
+  transition: background-color 0.7s ease;
+}
+
+#layout-builder-discard-changes,
+#layout-builder-revert-overrides {
+  width: 225px; /* Set the width of the button */
+  text-align: center; /* Center align the text content */
+  margin: auto; /* Set left and right margins to auto */
+  padding-top: 1rem;
 }
 
 /*** Responsive ***/
