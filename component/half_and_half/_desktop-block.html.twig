@@ -2,6 +2,7 @@
 <div class="{{ container_size }} d-none d-sm-block g-0">
     <div class="card">
         <div class="row">
+
             {# Determine layout and alignment #}
             {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
             {% set is_7030_layout = layout == "4" %}

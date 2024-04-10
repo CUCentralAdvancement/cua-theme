@@ -1,3 +1,22 @@
+{#
+/**
+* @file
+* Template for the Half and Half component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
+* Available fields located in:
+* - cua_theme.theme
+*/
+#}
+
+{# If class is active #}
+{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
+{% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Add Classes #}
 {% set classes = [
@@ -7,8 +26,8 @@
     'animate-trigger',
     'card',
     'g-0',
-    margins is not empty ? margins|clean_class  : '',
-    container_size is not empty ? container_size|clean_class  : '',
+    margins,
+    container_size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
 {# Add unique id to block #}
