@@ -584,7 +584,6 @@ header .nav-item:first-child:hover {
         border-bottom: 1px solid var(--cua-gray-200);
     }
 
-
     button.search-icon {
         border-radius: 50%;
         padding: 0.6rem;
