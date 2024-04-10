@@ -53,9 +53,9 @@
     {% if provider is not empty %}
         {# Include Video Component  #}
         {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
-        {# Include Image #}
-    {% elseif content.field_image is not empty %}
-        {{ content.field_image.0 }}
+    {% elseif card_image is not empty %}
+        {# Include Image Component #}
+        {% include '@cua_theme/component/card/_card--image.html.twig' %}
     {% elseif icon is not empty %}
         {# Include Icon Component #}
         {% include '@cua_theme/component/card/_card--icon.html.twig' %}

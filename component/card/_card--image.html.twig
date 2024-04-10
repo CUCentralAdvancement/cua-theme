@@ -12,15 +12,6 @@
 {% if card_image %}
     <div class="card-header {{ text_alignment }} {{ position_container }} g-0">
         {% for item in content.field_image['#items'] %}
-            {% set image_attributes = {
-                '#theme':      'image_style',
-                '#style_name': 'webp',
-                '#attributes': { class: 'card-img-top img-fluid' },
-                '#uri':        item.entity.uri.value,
-                '#alt':        item.alt,
-                '#width':      item.width,
-                '#height':     item.height
-            } %}
             {# If Link exists #}
             {% if link_title %}
                 <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
@@ -28,7 +19,8 @@
             {# Image #}
             <div role="img" class="card-img {{ image_size }} {% if link_title %}img-hover-effect{% endif %}">
                 <figure>
-                    {{ image_attributes|render }}
+                    {# Image #}
+                    {{ content.field_image.0 }}
                     {# Figcaption #}
                     {% if visibility %}
                         <figcaption class="{{ visibility }}">
