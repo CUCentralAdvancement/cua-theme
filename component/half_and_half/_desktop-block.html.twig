@@ -19,7 +19,7 @@
 
             {# Render image container if layout is set #}
             {% if layout %}
-                <div class="{{ image_col_classes }} col-sm-12 {{ color_background ~ ' ' ~ padding ~ ' ' ~ image_alignment }}">
+                <div class="{{ image_col_classes }} col-sm-12 {{ color_background }} {{ padding }} {{ image_alignment }}">
                     {# Include Image Component #}
                     {% include '@cua_theme/component/card/_card--image.html.twig' %}
                     {# If Video include component #}
@@ -40,7 +40,7 @@
 
             {# Render title/body container if layout is set #}
             {% if layout %}
-                <div class="{{ title_body_col_classes }} col-sm-12 {{ color_background ~ ' ' ~ text_alignment ~ ' ' ~ padding }}">
+                <div class="{{ title_body_col_classes }} col-sm-12 {{ color_background }} {{ text_alignment }} {{ padding }}">
                     <div class="row mx-5 pt-3">
                         {# Include Title/Body Component #}
                         {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
@@ -49,6 +49,7 @@
                     </div>
                 </div>
             {% endif %}
+
         </div>
     </div>
 </div>

@@ -16,8 +16,8 @@
 
 {# If class is active #}
 {% set border_style = border_style is not empty ? border_style|clean_class : '' %}
-{% set margins = margins is not empty ? margins|clean_class : '' %}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
+{% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Add Classes #}
 {% set classes = [
@@ -26,8 +26,8 @@
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
     border_style,
-    margins,
     container_size,
+    margins,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
 ] %}
 
