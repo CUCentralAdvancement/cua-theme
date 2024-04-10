@@ -24,17 +24,18 @@ function cua_theme_form_search_block_form_alter(array &$form, FormStateInterface
  *   An associative array of variables passed to the theme hook.
  */
 function cua_theme_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
-    // Add a suggestion based on the field name and view mode.
-    $suggestions[] = 'field__' .
-        $variables['element']['#field_name'] . '__' .
-        $variables['element']['#view_mode'];
+    // Add a suggestion based on the field name and view mode if it exists.
+    if (isset($variables['element']['#field_name'])) {
+        $suggestions[] = 'field__' .
+            $variables['element']['#field_name'] . '__' .
+            $variables['element']['#view_mode'];
+    }
 
     // Block suggestions for custom block bundles.
     if (isset($variables['elements']['content']['#block_content'])) {
         array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
     }
 }
-
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for field templates.
@@ -179,10 +180,17 @@ function cua_theme_preprocess_block(array &$variables): void {
             if ($block_content->hasField($field_name)) {
                 // Get the value from the field.
                 $field_items = $block_content->get($field_name)->getValue();
-                $field_value = reset($field_items); // Get the first item in the list.
 
-                // Remove the "field_" prefix and add the value to a variable.
-                $variables[str_replace('field_', '', $field_name)] = $field_value['value'];
+                // Check if field_items is not empty and is an array.
+                if (!empty($field_items) && is_array($field_items)) {
+                    $field_value = reset($field_items); // Get the first item in the list.
+
+                    // Ensure $field_value is an array and has 'value' key.
+                    if (is_array($field_value) && isset($field_value['value'])) {
+                        // Remove the "field_" prefix and add the value to a variable.
+                        $variables[str_replace('field_', '', $field_name)] = $field_value['value'];
+                    }
+                }
             }
         }
 
@@ -225,17 +233,24 @@ function cua_theme_preprocess_block(array &$variables): void {
         // Special handling for the image field.
         if ($block_content->hasField('field_image')) {
             $image_field_items = $block_content->get('field_image')->getValue();
-            $image_field_value = reset($image_field_items);
 
-            // Add the image URL, alt, and title to variables.
-            $variables['image'] = $image_field_value['image'];
-            $variables['image_url'] = $image_field_value['uri'];
-            $variables['image_alt'] = $image_field_value['alt'];
-            $variables['image_title'] = $image_field_value['title'];
+            // Check if image_field_items is not empty and is an array.
+            if (!empty($image_field_items) && is_array($image_field_items)) {
+                $image_field_value = reset($image_field_items);
+
+                // Ensure $image_field_value is an array and has the 'image' key.
+                if (is_array($image_field_value) && isset($image_field_value['image'])) {
+                    // Add the image URL, alt, and title to variables.
+                    $variables['image'] = $image_field_value['image'];
+                    $variables['image_url'] = $image_field_value['uri'];
+                    $variables['image_alt'] = $image_field_value['alt'];
+                    $variables['image_title'] = $image_field_value['title'];
+                }
+            }
         }
+
     }
 }
-
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for HTML templates.
@@ -281,7 +296,7 @@ function cua_theme_preprocess_html(array &$variables): void {
 /**
  * Implements hook_theme_suggestions_HOOK_alter() to provide custom theme suggestions for forms.
  */
-function cua_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+function cua_theme_theme_suggestions_form_alter(array &$suggestions, array $variables): void {
     // Get the form ID.
     $form_id = $variables['element']['#form_id'];
 
