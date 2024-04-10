@@ -59,14 +59,18 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes) }} {% if content.field_image['#items'].entity.uri.value %} style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-container_size: cover; background-position: center"{% endif %}>
     <div{{ attributes.addClass(animation_classes) }} {% if animation or animation_speed or animation_delay %}
             data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %}">
+
         <div class="col-md-5 col-sm-12 banner-body {{ color_background }} {{ text_color }} {{ effect_copy }}">
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' %}
+
             {# Include Body Component #}
             {% include '@cua_theme/component/body/_body.html.twig' %}
+
             {# Include Link/Button Component #}
             {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
         </div>
+
     </div>
 </div>
 

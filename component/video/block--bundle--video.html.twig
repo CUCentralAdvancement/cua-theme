@@ -37,11 +37,15 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
-    {# If Video include component #}
+
+    {# Video component #}
     {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
-    {# If Desktop include component #}
+
+    {# Desktop component #}
     {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
-    {# If Mobile include component #}
+
+    {# Mobile component #}
     {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
+
 </div>
 

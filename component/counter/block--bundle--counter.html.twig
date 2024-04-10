@@ -41,10 +41,16 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
-    {# Include Icon Component #}
-    {% include '@cua_theme/component/card/_card--icon.html.twig' %}
-    {# Include Image Component #}
-    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+
+    {# Media Component Logic #}
+    {% if card_image is not empty %}
+        {# Include Image Component #}
+        {% include '@cua_theme/component/card/_card--image.html.twig' %}
+    {% elseif icon is not empty %}
+        {# Include Icon Component #}
+        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+    {% endif %}
+
     {# Counter #}
     {% if content.field_number is not empty %}
         <div class="counter-size {{ text_alignment ~ ' ' ~ text_color }}">
@@ -60,8 +66,11 @@
             {% endif %}
         </div>
     {% endif %}
+
     {# Include Title/Body Component #}
     {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+
     {# Include Link/Button Component #}
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
 </div>

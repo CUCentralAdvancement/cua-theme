@@ -1,23 +1,29 @@
-{# ## Mobile code block ## #}
+{# Half and Half --  Mobile code block ## #}
 <div class="container d-block d-sm-none g-0">
     <div class="card">
         <div class="row g-0">
+
             <div class="col-12 {{ color_background }} {{ text_alignment }} {{ padding }}">
-                {# Include Image Component for Mobile View #}
-                {% include '@cua_theme/component/card/_card--image.html.twig' %}
-                {# If Video include component #}
-                {% if provider is not empty and image is empty %}
+                {# Media Component Logic #}
+                {% if provider is not empty %}
+                    {# Include Video Component if no image or card image is available #}
                     {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+                {% elseif card_image is not empty %}
+                    {# Include Image Component #}
+                    {% include '@cua_theme/component/card/_card--image.html.twig' %}
                 {% endif %}
             </div>
+
             <div class="col-12 {{ color_background }} {{ text_alignment }} {{ padding }}">
                 <div class="row m-4">
                     {# Include Title/Body Component for Mobile View #}
                     {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+
                     {# Include Link Component for Mobile View #}
                     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
                 </div>
             </div>
+
         </div>
     </div>
 </div>
