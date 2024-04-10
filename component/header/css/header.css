@@ -540,6 +540,10 @@ header .sticky li.nav-item:hover {
     background: transparent !important;
 }
 
+/* first child main nav home button overrides */
+header .nav-item:first-child:hover {
+    background: transparent !important;
+}
 
 /* Responsive */
 @media only screen and (max-width: 991px) {
