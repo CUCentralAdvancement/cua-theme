@@ -48,16 +48,25 @@
 
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes, animate_classes) }}{% if animation or animation_speed or animation_delay %} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
-    {# Include Image Component #}
-    {% include '@cua_theme/component/card/_card--image.html.twig' %}
-    {# If Video include component #}
-    {% if provider is not empty and image is empty %}
-        {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+
+    {# Media Component Logic #}
+    {% if provider is not empty %}
+        {% if image is empty %}
+            {# Include Video Component #}
+            {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+        {% endif %}
+    {% elseif card_image is not empty %}
+        {# Include Image Component #}
+        {% include '@cua_theme/component/card/_card--image.html.twig' %}
+    {% elseif icon is not empty %}
+        {# Include Icon Component #}
+        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
     {% endif %}
-    {# Include Icon Component #}
-    {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+
     {# Include Title/Body Component #}
     {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+
     {# Include Link/Button Component #}
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
 </div>
