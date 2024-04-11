@@ -258,7 +258,9 @@ li.breadcrumb-item.active {
     content: var(--bs-breadcrumb-divider, ">");
 }
 
-/*
+ol.breadcrumb li:first-child a {
+    font-size: 0;
+}
 ol.breadcrumb li:first-child a::before {
     display: inline-block;
     content: "";
@@ -277,7 +279,7 @@ ol.breadcrumb li:first-child a::before {
     float: left;
     padding-right: .5rem;
 }
-*/
+
 
 /* Blockquote */
 

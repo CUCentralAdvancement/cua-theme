@@ -361,9 +361,9 @@ header #search-block-form {
     left: 0;
 }
 
-/* Add Home icon to first link in main nav */
+/* Add Home icon to first link in main nav
 header .navbar-nav > .nav-item:first-child > .nav-link {
-    font-size: 0; /* Hide the text */
+    font-size: 0;
 }
 
 header .navbar-nav > .nav-item:first-child > .nav-link::before {
@@ -374,6 +374,7 @@ header .navbar-nav > .nav-item:first-child > .nav-link::before {
     top: 1rem;
     left: 0;
 }
+*/
 
 header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
     font-size: .75rem;
@@ -541,10 +542,11 @@ header .sticky li.nav-item:hover {
     background: transparent !important;
 }
 
-/* first child main nav home button overrides */
+/* first child main nav home button overrides
 header .nav-item:first-child:hover {
     background: transparent !important;
 }
+*/
 
 /* Responsive */
 @media only screen and (max-width: 991px) {
