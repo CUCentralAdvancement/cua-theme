@@ -677,9 +677,12 @@ div#edit-bod--2 {
     border: 1px solid white;
 }
 
+/*
 a.bef-link.bef-link--selected {
     border-bottom: 2px solid var(--cua-gold) !important;
 }
+*/
+
 
 #main-wrapper-landing-page .row {
     --bs-gutter-x: 0 !important;
