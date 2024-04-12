@@ -2,31 +2,42 @@
 
 {# Add optional variables based on conditions #}
 {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-{% set position_container = position_container ?? '' %}
-{% set text_alignment = text_alignment ?? '' %}
-{% set text_color = text_color ?? '' %}
 {% set image_size = image_size ?? '' %}
+
+{# Concatenate optional classes with a space #}
+{% set card_image_classes = [
+    position_container is not empty ? position_container : null,
+    text_alignment is not empty ? text_alignment : null,
+    text_color is not empty ? text_color : null,
+] | join(' ') %}
 
 {# Content #}
 {% if card_image %}
+
+    {# If link is active wrap card #}
     {% if link_title is not empty %}
         <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
     {% endif %}
 
-    <div class="card-header {{ text_alignment }} {{ position_container }} g-0">
+    {# Card Image #}
+    <div class="card-header {{card_image_classes|trim }} g-0">
         <div role="presentation" class="card-img {{ image_size }} {% if link_title is not empty %}img-hover-effect{% endif %}">
+            {# Image #}
             {{ card_image }}
+            {# Card Image Caption #}
             {% if visibility %}
                 <figcaption class="{{ visibility }}">
-                    <p class="figcaption fw-bold {{ text_alignment }} {{ text_color }} my-2 mx-2">{{ item.alt }}</p>
+                    <p class="figcaption fw-bold {{card_image_classes|trim }} my-2 mx-2">{{ item.alt }}</p>
                 </figcaption>
             {% endif %}
         </div>
     </div>
 
+    {# /If link is active wrap card #}
     {% if link_title is not empty %}
         </a>
     {% endif %}
+
 {% endif %}
 
 
