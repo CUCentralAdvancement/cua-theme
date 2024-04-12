@@ -1,39 +1,27 @@
-{# Image #}
+{# Card Image #}
 
 {# Add optional variables based on conditions #}
 {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-{% set image_size = image_size ?? '' %}
-{% set padding = padding ?? '' %}
 {% set position_container = position_container ?? '' %}
 {% set text_alignment = text_alignment ?? '' %}
 {% set text_color = text_color ?? '' %}
+{% set image_size = image_size ?? '' %}
 
 {# Content #}
 {% if card_image %}
-    <div class="card-header {{ text_alignment }} {{ position_container }} g-0">
-        {% for item in content.field_image['#items'] %}
-            {# If Link exists #}
-            {% if link_title %}
-                <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
-            {% endif %}
-            {# Image #}
-            <div role="img" class="card-img {{ image_size }} {% if link_title %}img-hover-effect{% endif %}">
-                <figure>
-                    {# Image #}
-                    {{ content.field_image.0 }}
-                    {# Figcaption #}
-                    {% if visibility %}
-                        <figcaption class="{{ visibility }}">
-                            <p class="figcaption fw-bold {{ text_alignment }} {{ text_color }} my-2 mx-2">{{ item.alt }}</p>
-                        </figcaption>
-                    {% endif %}
-                </figure>
-            </div>
-            {# If Link exists #}
-            {% if link_title %}
-                </a>
-            {% endif %}
-        {% endfor %}
-    </div>
-{% endif %}
+    {% set link_start = link_title is not empty ? '<a href="' ~ link_url ~ '" title="' ~ aria_label ~ '" aria-label="' ~ aria_label ~ '">' : '' %}
+    {% set link_end = link_title is not empty ? '</a>' : '' %}
 
+    {{ link_start|raw }}
+    <div class="card-header {{ text_alignment }} {{ position_container }} g-0">
+        <div role="img" class="card-img {{ image_size }} {{ link_title is not empty ? 'img-hover-effect' }}">
+            {{ card_image }}
+            {% if visibility %}
+                <figcaption class="{{ visibility }}">
+                    <p class="figcaption fw-bold {{ text_alignment }} {{ text_color }} my-2 mx-2">{{ item.alt }}</p>
+                </figcaption>
+            {% endif %}
+        </div>
+    </div>
+    {{ link_end|raw }}
+{% endif %}

@@ -14,6 +14,10 @@
 */
 #}
 
+{# Preload background image #}
+{% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
+<link rel="preload" href="{{ bg_image_url }}" as="image">
+
 {# Attach the library #}
 {{ attach_library('cua_theme/banner') }}
 
@@ -36,17 +40,8 @@
     'container_fluid',
     color_background,
     margins,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class]|merge(utility_classes ? utility_classes : []) %}
-
-{# Initialize animation classes #}
-{% set animation_classes = [
-    position_container
-] %}
-
-{# Add optional classes based on conditions #}
-{% if animation or animation_speed or animation_delay %}
-    {% set animation_classes = animation_classes | merge(['animate-trigger']) %}
-{% endif %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+]|merge(utility_classes ? utility_classes : []) %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -56,29 +51,17 @@
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes) }}>
     {# Image Container with variables #}
-    <div class="{{ parallax }} {{ effect }} {{ position_container }} {{ container_size }}" style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }}); background-size: cover; background-position: center;">
-
-        {# Include Animation if Active #}
-        {% if animation or animation_speed or animation_delay %}
-        <div{{ attributes.addClass(animation_classes) }} data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}">
-            {% endif %}
-
-            {# Title, Body and Link Content #}
-            <div class="col-md-7 col-sm-12 banner-body {{ color_background }} {{ text_color }} {{ effect_copy }} my-5">
-                {# Include Title Component #}
-                {% include '@cua_theme/component/title/_title.html.twig' %}
-
-                {# Include Body Component #}
-                {% include '@cua_theme/component/body/_body.html.twig' %}
-
-                {# Include Link/Button Component #}
-                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-            </div>
-
-            {# Include Animation if Active #}
-            {% if animation or animation_speed or animation_delay %}
+    <div class="{{ parallax }} {{ effect }} {{ position_container }} {{ container_size }}"
+         style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+        {# Title, Body, Link and Animation #}
+        <div class="col-md-7 col-sm-12 banner-body {{ color_background }} {{ text_color }} {{ effect_copy }} my-5 {% if animation or animation_speed or animation_delay %} animate-trigger{% endif %}"
+             {% if animation or animation_speed or animation_delay %}data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
+            {# Include Title Component #}
+            {% include '@cua_theme/component/title/_title.html.twig' %}
+            {# Include Body Component #}
+            {% include '@cua_theme/component/body/_body.html.twig' %}
+            {# Include Link/Button Component #}
+            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
         </div>
-        {% endif %}
-
     </div>
 </div>
