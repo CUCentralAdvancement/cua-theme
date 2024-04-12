@@ -1,13 +1,15 @@
 {# Icon #}
 
-{# Add optional variables based on conditions #}
-{% set text_alignment = text_alignment ?? '' %}
-{% set padding = padding ?? '' %}
-{% set position_container = position_container ?? '' %}
+{# Concatenate optional classes with a space #}
+{% set icon_classes = [
+    padding is not empty ? padding : null,
+    position_container is not empty ? position_container : null,
+    text_alignment is not empty ? text_alignment : null,
+] | join(' ') %}
 
 {# Content #}
   {% if icon %}
-      <div class="{{ text_alignment }} {{ padding }} {{ position_container }} pt-5 pb-3" style="color:{{ icon_color }}">
+      <div class="{{ icon_classes|trim }} pt-5 pb-3" style="color:{{ icon_color }}">
           <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
       </div>
   {% endif %}
