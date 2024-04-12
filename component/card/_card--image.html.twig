@@ -9,12 +9,12 @@
 
 {# Content #}
 {% if card_image %}
-    {% set link_start = link_title is not empty ? '<a href="' ~ link_url ~ '" title="' ~ aria_label ~ '" aria-label="' ~ aria_label ~ '">' : '' %}
-    {% set link_end = link_title is not empty ? '</a>' : '' %}
+    {% if link_title is not empty %}
+        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
+    {% endif %}
 
-    {{ link_start|raw }}
     <div class="card-header {{ text_alignment }} {{ position_container }} g-0">
-        <div role="img" class="card-img {{ image_size }} {{ link_title is not empty ? 'img-hover-effect' }}">
+        <div role="presentation" class="card-img {{ image_size }} {% if link_title is not empty %}img-hover-effect{% endif %}">
             {{ card_image }}
             {% if visibility %}
                 <figcaption class="{{ visibility }}">
@@ -23,5 +23,10 @@
             {% endif %}
         </div>
     </div>
-    {{ link_end|raw }}
+
+    {% if link_title is not empty %}
+        </a>
+    {% endif %}
 {% endif %}
+
+
