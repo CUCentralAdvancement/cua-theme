@@ -15,10 +15,12 @@
 {# Content #}
 {% if link_title is not empty %}
     <div class="card-footer {{ footer_classes|trim }} mb-5">
-        <a href="{{ link_url }}" title="{{ aria_label }}"
+        <a href="{{ link_url }}"
+           title="{{ aria_label }}"
            aria-label="{{ aria_label }}"
-           class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
+           class="align-self-end card-link btn {{ outline }}{% if button_color is not empty %}btn-{{ button_color }}{% endif %} text-decoration-none p-2">
             {{ aria_label }}
         </a>
     </div>
 {% endif %}
+
