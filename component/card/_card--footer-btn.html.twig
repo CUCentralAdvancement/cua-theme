@@ -3,14 +3,18 @@
 {# Add optional variables based on conditions #}
 {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
 {% set button_color = button_color ?? '' %}
-{% set center_content = center_content ?? '' %}
-{% set padding = padding ?? '' %}
-{% set text_alignment = text_alignment ?? '' %}
 {% set outline = outline ?? '' %}
+
+{# Concatenate optional classes with a space #}
+{% set footer_classes = [
+    center_content is not empty ? center_content : null,
+    text_alignment is not empty ? text_alignment : null,
+    padding is not empty ? padding : null,
+] | join(' ') %}
 
 {# Content #}
 {% if link_title is not empty %}
-    <div class="card-footer {{ center_content }} {{ text_alignment }} {{ padding }} mb-5">
+    <div class="card-footer {{ footer_classes|trim }} mb-5">
         <a href="{{ link_url }}" title="{{ aria_label }}"
            aria-label="{{ aria_label }}"
            class="align-self-end card-link btn {{ outline }}btn-{{ button_color }} text-decoration-none p-2">
