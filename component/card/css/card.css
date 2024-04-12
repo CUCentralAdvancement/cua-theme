@@ -85,6 +85,16 @@
     z-index: 1;
 }
 
+.card-link.btn.nobtn-cu-bg-gold {
+    color: var(--cua-gold);
+    background: transparent;
+    border-color: transparent;
+}
+
+a.align-self-end.card-link.btn.nobtn-cu-bg-gold.text-decoration-none:hover {
+    text-decoration: underline !important; /* Change to your desired hover background color */
+}
+
 /* Hover effect for gold buttons */
 .card-footer .btn.btn-cu-bg-gold:hover {
     color: var(--cua-gold) !important;
@@ -164,6 +174,7 @@
     transition: width 0.5s ease; /* Transition width property */
     z-index: 1;
 }
+
 
 /* Hover effect for gold-hover buttons */
 .card-footer .btn.btn-cu-bg-gold-hover:hover {
@@ -298,6 +309,10 @@
     z-index: 1; /* Ensure button text appears above the background */
 }
 
+.align-self-end.card-link.btn.nobtn-cu-bg-black.text-decoration-none:hover {
+    text-decoration: underline !important;
+}
+
 /* white theme */
 .card .text-cu-bg-white > * {
     color: var(--cua-black);
@@ -349,6 +364,16 @@
     z-index: 1;
 }
 
+.align-self-end.card-link.btn.nobtn-cu-bg-white.text-decoration-none {
+    color: var(--cua-white);
+    background: transparent;
+}
+
+.align-self-end.card-link.btn.nobtn-cu-bg-white.text-decoration-none:hover {
+    text-decoration: underline !important;
+}
+
+
 /* Hover effect for outline white buttons */
 .card-footer .btn.outline-btn-cu-bg-white::before {
     content: '';
@@ -398,6 +423,15 @@
     overflow: hidden;
     transition: width 0.5s ease; /* Transition width property */
     z-index: 1;
+}
+
+a.align-self-end.card-link.btn.nobtn-cu-bg-light-grey.text-decoration-none {
+    color: var(--cua-light-grey);
+    background: transparent;
+}
+
+a.align-self-end.card-link.btn.nobtn-cu-bg-light-grey.text-decoration-none:hover  {
+    text-decoration: underline !important;
 }
 
 /* Hover effect for light-grey buttons */
