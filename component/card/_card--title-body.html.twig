@@ -1,19 +1,19 @@
 {# Card title and body #}
 
-{# Add optional variables based on conditions #}
-{% set color_background = color_background ?? '' %}
-{% set text_alignment = text_alignment ?? '' %}
-{% set position_container = position_container ?? '' %}
-{% set padding = padding ?? '' %}
+{# Concatenate optional classes with a space #}
+{% set all_classes = [
+    color_background is not empty ? 'text-' ~ color_background : null,
+    text_alignment is not empty ? text_alignment : null,
+    position_container is not empty ? position_container : null,
+    padding is not empty ? padding : null
+] | join(' ') %}
 
 {# Content #}
-{% if label or body %}
-    <div class="d-flex flex-column text-{{ color_background }} {{ text_alignment }} {{ position_container }} {{ padding }} my-3">
-        <div class="card-body-title">
-            {# Include Title Component #}
-            {% include '@cua_theme/component/title/_title.html.twig' %}
-            {# Include Body Component #}
-            {% include '@cua_theme/component/body/_body.html.twig' %}
-        </div>
+{% if label is not empty or body is not empty %}
+    <div class="d-flex flex-column {{ all_classes|trim }} my-3">
+        {# Include Title Component #}
+        {% include '@cua_theme/component/title/_title.html.twig' %}
+        {# Include Body Component #}
+        {% include '@cua_theme/component/body/_body.html.twig' %}
     </div>
 {% endif %}
