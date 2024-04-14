@@ -5,11 +5,12 @@
     padding is not empty ? padding : null,
     position_container is not empty ? position_container : null,
     text_alignment is not empty ? text_alignment : null,
+    'pt-5 pb-3',
 ] | join(' ') %}
 
 {# Content #}
   {% if icon %}
-      <div class="{{ icon_classes|trim }} pt-5 pb-3" style="color:{{ icon_color }}">
+      <div{{ attributes.addClass(icon_classes|trim) }} style="color:{{ icon_color }}">
           <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
       </div>
   {% endif %}
