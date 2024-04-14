@@ -5,8 +5,10 @@
 {% set button_color = button_color ?? '' %}
 {% set outline = outline ?? '' %}
 
-{# Concatenate optional classes with a space #}
-{% set footer_classes = [
+{# Set footer card classes #}
+{% set card_footer_classes = [
+    'card-footer',
+    'mb-5',
     center_content is not empty ? center_content : null,
     text_alignment is not empty ? text_alignment : null,
     padding is not empty ? padding : null,
@@ -14,11 +16,11 @@
 
 {# Content #}
 {% if link_title is not empty %}
-    <div class="card-footer {{ footer_classes|trim }} mb-5">
+    <div{{ attributes.addClass(card_footer_classes|trim) }}>
         <a href="{{ link_url }}"
            title="{{ aria_label }}"
            aria-label="{{ aria_label }}"
-           class="align-self-end card-link btn {{ outline }}{% if button_color is not empty %}btn-{{ button_color }}{% endif %} text-decoration-none p-2">
+           class="align-self-end card-link btn {% if outline is not empty %}{{ outline }}{% endif %}{% if button_color is not empty %}{{ 'btn-' ~ button_color }}{% endif %} text-decoration-none p-2">
             {{ aria_label }}
         </a>
     </div>
