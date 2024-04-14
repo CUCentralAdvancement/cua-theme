@@ -977,7 +977,7 @@ p.intro {
 }
 
 .parallax {
-    min-height: 500px;
+    min-height: max-content;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

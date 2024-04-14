@@ -14,21 +14,17 @@
 */
 #}
 
+{# Attach the library #}
+{{ attach_library('cua_theme/banner') }}
+
 {# Preload background image #}
 {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
 <link rel="preload" href="{{ bg_image_url }}" as="image">
 
-{# Attach the library #}
-{{ attach_library('cua_theme/banner') }}
-
 {# Add optional variables based on conditions #}
 {% set color_background = color_background is not empty ? color_background : '' %}
-{% set container_size = container_size is not empty ? container_size : '' %}
-{% set effect = effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect : '' %}
 {% set effect_copy = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
 {% set text_color = text_color is not empty ? text_color|clean_class : '' %}
-{% set parallax = parallax is not empty ? parallax|clean_class : '' %}
-{% set position_container = position_container is not empty ? 'd-flex ' ~ position_container|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Set id and classes #}
@@ -43,6 +39,34 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ]|merge(utility_classes ? utility_classes : []) %}
 
+{% set image_container_classes = [
+    parallax is not empty ? parallax : null,
+    effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect : null,
+    position_container is not empty ? 'd-flex ' ~ position_container|clean_class : null,
+    container_size is not empty ? container_size : null,
+] | join(' ') %}
+
+{# Set classes for banner-body #}
+{% set banner_body_classes = [
+    'col-md-7',
+    'col-sm-12',
+    'banner-body',
+    color_background,
+    text_color,
+    effect_copy,
+    'my-5',
+    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
+] %}
+
+{# Combine optional classes and data attributes #}
+{% set banner_body_attributes = {
+    class: banner_body_classes|join(' '),
+    'data-animation-classes': animation_classes is not empty ? animation_classes : null
+} %}
+
+{# Set data attributes for animation #}
+{% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
+
 {# Add unique id to block #}
 {% set unique_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
@@ -51,11 +75,9 @@
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes) }}>
     {# Image Container with variables #}
-    <div class="{{ parallax }} {{ effect }} {{ position_container }} {{ container_size }}"
-         style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+    <div{{ attributes.addClass(image_container_classes|trim) }} style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
         {# Title, Body, Link and Animation #}
-        <div class="col-md-7 col-sm-12 banner-body {{ color_background }} {{ text_color }} {{ effect_copy }} my-5 {% if animation or animation_speed or animation_delay %} animate-trigger{% endif %}"
-             {% if animation or animation_speed or animation_delay %}data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"{% endif %}>
+        <div class="{{ banner_body_classes|join(' ') }}" {% if animation_classes %}data-animation-classes="{{ animation_classes }}"{% endif %}>
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' %}
             {# Include Body Component #}
