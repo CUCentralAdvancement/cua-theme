@@ -2,15 +2,17 @@
 
 {# Concatenate optional classes with a space #}
 {% set card_classes = [
+    'd-flex flex-column',
     color_background is not empty ? 'text-' ~ color_background : null,
     text_alignment is not empty ? text_alignment : null,
     position_container is not empty ? position_container : null,
-    padding is not empty ? padding : null
+    padding is not empty ? padding : null,
+    'my-3',
 ] | join(' ') %}
 
 {# Content #}
 {% if label is not empty or body is not empty %}
-    <div class="d-flex flex-column {{ card_classes|trim }} my-3">
+    <div class="{{ card_classes|trim }}">
         {# Include Title Component #}
         {% include '@cua_theme/component/title/_title.html.twig' %}
         {# Include Body Component #}
