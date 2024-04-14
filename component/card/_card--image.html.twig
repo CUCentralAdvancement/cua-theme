@@ -6,21 +6,23 @@
 
 {# Concatenate optional classes with a space #}
 {% set card_image_classes = [
+    'card-header',
     position_container is not empty ? position_container : null,
     text_alignment is not empty ? text_alignment : null,
     text_color is not empty ? text_color : null,
+    'g-0',
 ] | join(' ') %}
 
 {# Content #}
 {% if card_image %}
-
-    {# If link is active wrap card #}
-    {% if link_title is not empty %}
-        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
-    {% endif %}
+    {% block link_wrapper %}
+        {% if link_title is not empty %}
+            <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
+        {% endif %}
+    {% endblock %}
 
     {# Card Image #}
-    <div class="card-header {{card_image_classes|trim }} g-0">
+    <div{{ attributes.addClass(card_image_classes|trim) }}>
         <div role="presentation" class="card-img {{ image_size }} {% if link_title is not empty %}img-hover-effect{% endif %}">
             {# Image #}
             {{ card_image }}
@@ -33,11 +35,9 @@
         </div>
     </div>
 
-    {# /If link is active wrap card #}
-    {% if link_title is not empty %}
-        </a>
-    {% endif %}
-
+    {% block link_wrapper_close %}
+        {% if link_title is not empty %}
+            </a>
+        {% endif %}
+    {% endblock %}
 {% endif %}
-
-
