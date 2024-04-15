@@ -21,7 +21,7 @@
 {% set text_color = text_color is not empty ? text_color : '' %}
 
 {# Set id and classes #}
-{% set classes = [
+{% set alert_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'alert alert-dismissible',
@@ -30,8 +30,8 @@
     color_background,
     color_border,
     container_size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
-] %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -39,13 +39,11 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(alert_classes|trim) }}>
     <div class="container">
         <div class="row">
-
             {# Close Button #}
             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-
             {# Icon #}
             {% if icon %}
                 <div class="col-sm-1 icon-container">
@@ -54,15 +52,13 @@
                     </div>
                 </div>
             {% endif %}
-
+            {# Include Title/Body/Link Components #}
             <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
                 {# Include Title/Body Component #}
                 {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-
                 {# Include Link/Button Component #}
                 {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
             </div>
-
         </div>
     </div>
 </div>
