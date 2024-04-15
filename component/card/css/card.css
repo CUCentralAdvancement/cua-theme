@@ -576,3 +576,11 @@ a figure {
     width: 100%; /* Ensure footer width spans the entire container */
 }
 
+.card .invisible {
+    position: absolute;
+    left: -9999px;
+}
+
+p.figcaption.card-header {
+    margin: 1rem 0 0;
+}

@@ -5,20 +5,18 @@
          {% set image = {
              '#theme':      'image_style',
              '#style_name': 'webp',
-             '#attributes': { class: 'card-img-top img-fluid', loading: 'eager' },
+             '#attributes': { class: 'card-img-top img-fluid', loading: 'lazy' },
              '#uri':        item.entity.uri.value,
              '#alt':        item.alt,
              '#width':      item.width,
              '#height':     item.height
          } %}
-         <figure>
-             {{ image }}
-             {# Figcaption #}
-             {% if visibility %}
+         {{ image }}
+         {# Figcaption #}
+         {% if visibility %}
              <figcaption class="{{ visibility }}">
                  <h3 class="figcaption text-center fw-bold {{ text_alignment }} {{ text_color }} my-3 px-3">{{ item.alt }}</h3>
              </figcaption>
-             {% endif %}
-         </figure>
+         {% endif %}
      {% endfor %}
  {% endif %}
