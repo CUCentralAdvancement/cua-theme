@@ -5,7 +5,7 @@
     'd-flex flex-column',
     color_background is not empty ? 'text-' ~ color_background : null,
     text_alignment is not empty ? text_alignment : null,
-    position_container is not empty ? position_container : null,
+    position_container is not empty ? 'd-flex ' ~ position_container : null,
     padding is not empty ? padding : null,
     'my-3',
 ] | join(' ') %}

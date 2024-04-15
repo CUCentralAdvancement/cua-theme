@@ -3,7 +3,7 @@
 {# Concatenate optional classes with a space #}
 {% set icon_classes = [
     padding is not empty ? padding : null,
-    position_container is not empty ? position_container : null,
+    position_container is not empty ? 'd-flex ' ~ position_container : null,
     text_alignment is not empty ? text_alignment : null,
     'pt-5 pb-3',
 ] | join(' ') %}

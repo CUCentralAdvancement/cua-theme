@@ -7,7 +7,7 @@
 {# Concatenate optional classes with a space #}
 {% set card_image_classes = [
     'card-header',
-    position_container is not empty ? position_container : null,
+    position_container is not empty ? 'd-flex ' ~ position_container : null,
     text_alignment is not empty ? text_alignment : null,
     text_color is not empty ? text_color : null,
     'g-0',
