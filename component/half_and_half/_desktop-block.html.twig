@@ -10,20 +10,21 @@
             {% set alignment = content.field_image_aligment.0 ?? '' %}
 
             {# Set column classes for image container #}
-            {% set image_col_classes %}
-                {% if is_7030_layout %}
-                    col-md-4
-                {% elseif is_5050_layout %}
-                    col-md-6
-                {% endif %}
-            {% endset %}
+            {% set image_col_classes = [
+                is_7030_layout ? 'col-md-4',
+                is_5050_layout ? 'col-md-6',
+                'col-sm-12',
+                color_background ? color_background,
+                padding ? padding,
+                image_alignment ? image_alignment
+            ] | join(' ') %}
 
             {# Render image container if layout is set #}
             {% if layout %}
-                <div class="{{ image_col_classes }} col-sm-12 {{ color_background }} {{ padding }} {{ image_alignment }}">
+                <div class="{{ image_col_classes }}">
                     {# Media Component Logic #}
                     {% if provider is not empty %}
-                        {# Include Video Componen #}
+                        {# Include Video Component #}
                         {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
                     {% elseif card_image is not empty %}
                         {# Include Image Component #}
@@ -33,25 +34,24 @@
             {% endif %}
 
             {# Set column classes for title/body container #}
-            {% set title_body_col_classes %}
-                {% if is_7030_layout %}
-                    col-md-8
-                {% elseif is_5050_layout %}
-                    col-md-6
-                {% endif %}
-            {% endset %}
+            {% set title_body_col_classes = [
+                is_7030_layout ? 'col-md-8',
+                is_5050_layout ? 'col-md-6',
+                'col-sm-12',
+                color_background ? color_background,
+                text_alignment ? text_alignment,
+                padding ? padding
+            ] | join(' ') %}
 
             {# Render title/body container if layout is set #}
             {% if layout %}
-                <div class="{{ title_body_col_classes }} col-sm-12 {{ color_background }} {{ text_alignment }} {{ padding }}">
-
+                <div class="{{ title_body_col_classes }}">
                     <div class="row mx-5 pt-3">
                         {# Include Title/Body Component #}
                         {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
                         {# Include Button/Link Component #}
                         {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
                     </div>
-
                 </div>
             {% endif %}
 
