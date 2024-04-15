@@ -429,6 +429,10 @@ form .form-actions {
 }
 
 /*** Responsive ***/
+.layout--fourcol-section > .layout__region {
+  flex: 0 1 23%;
+  margin: 1%;
+}
 
 @media only screen and (max-width: 991px) {
   .layout--threecol-section--33-34-33 > .layout__region--first,
@@ -438,5 +442,32 @@ form .form-actions {
     flex: 0 1 100%;
     padding: 0 1rem !important;
   }
+
+  .layout--fourcol-section > .layout__region {
+    flex: 0 1 auto;
+    margin: 1%;
+  }
+
+  .layout--threecol-section > .layout__region {
+    flex: 0 1 auto;
+    margin: 1%;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .layout--threecol-section--33-34-33 > .layout__region--first,
+  .layout--threecol-section--33-34-33 > .layout__region--second,
+  .layout--threecol-section--33-34-33 > .layout__region--third,
+  .layout--threecol-section--33-34-33 > .layout__region--forth {
+    flex: 0 1 100%;
+    padding: 0 1rem !important;
+  }
+
+  .layout--fourcol-section > .layout__region {
+    flex: 0 1 100%;
+    padding: 0 1rem !important;
+  }
+
 }
 
