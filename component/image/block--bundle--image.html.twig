@@ -27,13 +27,13 @@
 <div{{ attributes.addClass(classes) }}>
     {{ title_prefix }}
     {% if label %}
-        <h2{{ title_attributes }}>{{ label }}</h2>
+        <h2{{ title_attributes.addClass(text_alignment is not empty ? ' ' ~ text_alignment) }}>{{ label }}</h2>
     {% endif %}
     {{ title_suffix }}
     {% block content %}
         <div{{ content_attributes.addClass('content') }}>
             {# Include Image Component #}
-            {% include '@cua_theme/component/image/_image.html.twig' %}
+            {% include '@cua_theme/component/card/_card--image.html.twig' %}
         </div>
     {% endblock %}
 </div>
