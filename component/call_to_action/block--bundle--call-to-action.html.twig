@@ -20,8 +20,8 @@
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
-{# Add unique id to block #}
-{% set classes = [
+{# Add Classes #}
+{% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'call-to-action',
@@ -30,8 +30,8 @@
     color_border,
     container_size,
     margins,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
-] %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -47,7 +47,7 @@
 {% endif %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes, animate_classes) }}
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes|trim, animate_classes) }}
         {# If Animation #}
         {% if animation or animation_speed or animation_delay %}
     data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"

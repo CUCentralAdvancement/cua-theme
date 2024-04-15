@@ -14,7 +14,7 @@
 */
 #}
 
-{# If class is active #}
+{# Add optional classes based on conditions #}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
@@ -28,7 +28,8 @@
     'g-0',
     margins,
     container_size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -36,7 +37,7 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(video_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(video_classes|trim) }}>
     {# Video component #}
     {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
     {# Desktop component #}
@@ -44,4 +45,3 @@
     {# Mobile component #}
     {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
 </div>
-
