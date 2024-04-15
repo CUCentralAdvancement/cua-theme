@@ -29,10 +29,15 @@
             {# Image #}
             {{ card_image }}
             {# Card Image Caption #}
-            {% if visibility %}
-                <figcaption class="{{ visibility }}">
-                    <p class="figcaption fw-bold {{card_image_classes|trim }} my-2 mx-2">{{ item.alt }}</p>
-                </figcaption>
+            {% if content.field_image is not empty and visibility is not empty %}
+                {# Render the image #}
+                {% for item in content.field_image %}
+                    {% if item['#item'].alt is not empty %}
+                        <figcaption class="{{ visibility }}">
+                            <p class="figcaption fw-bold {{card_image_classes|trim }} my-2 mx-2">{{ item['#item'].alt }}</p>
+                        </figcaption>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         </div>
     </div>
@@ -45,3 +50,4 @@
     {% endblock %}
 
 {% endif %}
+
