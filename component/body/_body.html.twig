@@ -1,14 +1,16 @@
 {# Body #}
 
-{# Add optional variables based on conditions #}
-{% set center_content = center_content ?? '' %}
-{% set text_alignment = text_alignment ?? '' %}
-{% set text_color = text_color ?? '' %}
+{# Concatenate optional classes with a space #}
+{% set body_classes = [
+    'card-text lead g-0',
+    center_content is not empty ? center_contentd : null,
+    text_alignment is not empty ? text_alignment : null,
+    text_color is not empty ? text_color : null,
+] | join(' ') %}
 
 {# Content #}
 {% if body is not empty %}
-    <div class="card-text lead
-        {{ center_content }} {{ text_alignment }} {{ text_color }}">
+    <div class="{{ body_classes|trim }}">
         {{ body|raw|nl2br }}
     </div>
 {% endif %}

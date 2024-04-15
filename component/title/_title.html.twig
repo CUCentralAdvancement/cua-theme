@@ -1,18 +1,18 @@
 {# Title #}
 
-{# Add optional variables based on conditions #}
-{% set center_content = center_content ?? '' %}
-{% set page_title_visibility = page_title_visibility ?? '' %}
-{% set text_alignment = text_alignment ?? '' %}
-{% set position_container = position_container ?? '' %}
-{% set text_color = text_color ?? '' %}
+{# Concatenate optional classes with a space #}
+{% set title_classes = [
+    'display-4 card-text lead mb-2',
+    center_content is not empty ? center_contentd : null,
+    page_title_visibility is not empty ? page_title_visibility : null,
+    position_container is not empty ? position_container : null,
+    text_alignment is not empty ? text_alignment : null,
+    text_color is not empty ? text_color : null,
+] | join(' ') %}
 
 {# Content #}
-{{ title_prefix }}
 {% if label is not empty %}
-    <h2 class="display-4 {{ center_content }} {{ page_title_visibility }} {{ text_alignment }} {{ position_container }} {{ text_color }} mb-2">
+    <h2 class="{{ title_classes|trim }}">
         {{ label }}
     </h2>
 {% endif %}
-{{ title_suffix }}
-
