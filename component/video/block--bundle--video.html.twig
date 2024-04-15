@@ -19,7 +19,7 @@
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Add Classes #}
-{% set classes = [
+{% set video_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'video',
@@ -36,16 +36,12 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
-
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(video_classes) }}>
     {# Video component #}
     {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
-
     {# Desktop component #}
     {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
-
     {# Mobile component #}
     {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
-
 </div>
 
