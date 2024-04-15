@@ -1,9 +1,17 @@
-{# Half and Half --  Mobile code block ## #}
+{# Half and Half -- Mobile code block #}
 <div class="container d-block d-sm-none g-0">
     <div class="card">
         <div class="row g-0">
 
-            <div class="col-12 {{ color_background }} {{ text_alignment }} {{ padding }}">
+            {# Set column classes for Media Component #}
+            {% set media_col_classes = [
+                'col-12',
+                color_background ? color_background,
+                text_alignment ? text_alignment,
+                padding ? padding
+            ] | join(' ') %}
+
+            <div class="{{ media_col_classes|trim }}">
                 {# Media Component Logic #}
                 {% if provider is not empty %}
                     {# Include Video Component if no image or card image is available #}
@@ -14,7 +22,15 @@
                 {% endif %}
             </div>
 
-            <div class="col-12 {{ color_background }} {{ text_alignment }} {{ padding }}">
+            {# Set column classes for Title/Body Component #}
+            {% set title_body_col_classes = [
+                'col-12',
+                color_background ? color_background,
+                text_alignment ? text_alignment,
+                padding ? padding
+            ] | join(' ') %}
+
+            <div class="{{ title_body_col_classes|trim }}">
                 <div class="row m-4">
                     {# Include Title/Body Component for Mobile View #}
                     {% include '@cua_theme/component/card/_card--title-body.html.twig' %}

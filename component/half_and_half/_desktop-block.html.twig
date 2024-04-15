@@ -21,7 +21,7 @@
 
             {# Render image container if layout is set #}
             {% if layout %}
-                <div class="{{ image_col_classes }}">
+                <div class="{{ image_col_classes|trim }}">
                     {# Media Component Logic #}
                     {% if provider is not empty %}
                         {# Include Video Component #}
@@ -45,7 +45,7 @@
 
             {# Render title/body container if layout is set #}
             {% if layout %}
-                <div class="{{ title_body_col_classes }}">
+                <div class="{{ title_body_col_classes|trim }}">
                     <div class="row mx-5 pt-3">
                         {# Include Title/Body Component #}
                         {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
