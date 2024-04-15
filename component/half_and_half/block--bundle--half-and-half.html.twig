@@ -20,7 +20,7 @@
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Add Classes #}
-{% set classes = [
+{% set hh_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
@@ -28,8 +28,8 @@
     border_style,
     container_size,
     margins,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
-] %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -45,10 +45,10 @@
 {% endif %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes, animate_classes) }}
-    {% if animation or animation_speed or animation_delay %}
-        data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"
-    {% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes|trim, animate_classes) }}
+        {% if animation or animation_speed or animation_delay %}
+    data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"
+        {% endif %}>
     {# Include Desktop Component #}
     {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
     {# Include Mobile Component #}
