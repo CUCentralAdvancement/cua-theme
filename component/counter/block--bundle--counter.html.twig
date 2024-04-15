@@ -41,7 +41,6 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
-
     {# Media Component Logic #}
     {% if card_image is not empty %}
         {# Include Image Component #}
@@ -50,27 +49,10 @@
         {# Include Icon Component #}
         {% include '@cua_theme/component/card/_card--icon.html.twig' %}
     {% endif %}
-
-    {# Counter #}
-    {% if content.field_number is not empty %}
-        <div class="counter-size {{ text_alignment ~ ' ' ~ text_color }}">
-            {# Before number #}
-            {% if content.field_before_number is not empty %}
-                <span class="padding-right {{ text_color }}">{{ content.field_before_number.0 }}</span>
-            {% endif %}
-            {# Counter #}
-            <span class="counter-up {{ text_color }}" data-count="{{ content.field_number['#items'].value }}">0</span>
-            {# After number #}
-            {% if content.field_after_number is not empty %}
-                <span class="padding-left {{ text_color }}">{{ content.field_after_number.0 }}</span>
-            {% endif %}
-        </div>
-    {% endif %}
-
+    {# Include Counter #}
+    {% include '@cua_theme/component/counter/_counter.html.twig' %}
     {# Include Title/Body Component #}
     {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-
     {# Include Link/Button Component #}
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-
 </div>

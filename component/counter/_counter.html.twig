@@ -1,0 +1,15 @@
+{# Counter #}
+    {% if content.field_number is not empty %}
+        <div class="counter-size {{ text_alignment ~ ' ' ~ text_color }}">
+            {# Before number #}
+            {% if content.field_before_number is not empty %}
+                <span class="padding-right {{ text_color }}">{{ content.field_before_number.0 }}</span>
+            {% endif %}
+            {# Counter #}
+            <span class="counter-up {{ text_color }}" data-count="{{ content.field_number['#items'].value }}">0</span>
+            {# After number #}
+            {% if content.field_after_number is not empty %}
+                <span class="padding-left {{ text_color }}">{{ content.field_after_number.0 }}</span>
+            {% endif %}
+        </div>
+    {% endif %}

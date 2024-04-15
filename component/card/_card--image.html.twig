@@ -15,6 +15,8 @@
 
 {# Content #}
 {% if card_image %}
+
+    {# Link wrapper if active #}
     {% block link_wrapper %}
         {% if link_title is not empty %}
             <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
@@ -35,9 +37,11 @@
         </div>
     </div>
 
+    {# Link wrapper if active #}
     {% block link_wrapper_close %}
         {% if link_title is not empty %}
             </a>
         {% endif %}
     {% endblock %}
+
 {% endif %}
