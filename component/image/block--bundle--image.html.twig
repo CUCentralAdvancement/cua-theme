@@ -14,23 +14,22 @@
 */
 #}
 
-{%
-    set classes = [
+{% set image_bundle_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'cu-image',
     'm-3',
-]
-%}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class]|merge(utility_classes ? utility_classes : []) %}
 
-<div{{ attributes.addClass(classes) }}>
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+] %}
+
+{# Render content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(image_bundle_classes) }}>
     {# Title #}
-    {{ title_prefix }}
-    {% if label %}
-        <h4{{ title_attributes.addClass(text_alignment is not empty ? ' ' ~ text_alignment) }}>{{ label }}</h4>
-    {% endif %}
-    {{ title_suffix }}
+    {% include '@cua_theme/component/title/_title.html.twig' %}
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
 </div>
