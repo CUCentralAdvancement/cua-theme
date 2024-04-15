@@ -20,14 +20,15 @@
     'block-' ~ plugin_id|clean_class,
     'cu-image',
     'm-3',
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class]|merge(utility_classes ? utility_classes : []) %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
 {% set unique_id = [
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(image_bundle_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(image_bundle_classes|trim) }}>
     {# Title #}
     {% include '@cua_theme/component/title/_title.html.twig' %}
     {# Include Image Component #}
