@@ -23,7 +23,7 @@
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 
 {# Add Classes #}
-{% set classes = [
+{% set counter_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'counter',
@@ -31,8 +31,8 @@
     color_background,
     color_border,
     container_size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
-%}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -40,7 +40,7 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(counter_classes|trim) }}>
     {# Media Component Logic #}
     {% if card_image is not empty %}
         {# Include Image Component #}
