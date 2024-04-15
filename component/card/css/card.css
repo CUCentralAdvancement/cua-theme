@@ -590,3 +590,21 @@ a figure {
 p.figcaption.card-header {
     margin: 1rem 0 0;
 }
+
+/* Gold Text */
+.display-4.cu-text-gold,
+.card-text.cu-text-gold {
+    color: var(--cua-gold);
+}
+
+/* White Text */
+.display-4.cu-white-gold,
+.card-text.cu-white-gold {
+    color: var(--cua-gold);
+}
+
+/* Black Text */
+.display-4.cu-black-gold,
+.card-text.cu-black-gold {
+    color: var(--cua-gold);
+}
