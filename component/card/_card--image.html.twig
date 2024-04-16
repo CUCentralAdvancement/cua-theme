@@ -7,15 +7,21 @@
 {# Set card image classes #}
 {% set card_image_classes = [
     'card-header',
-    position_container is not empty ? 'd-flex ' ~ position_container : null,
-    text_alignment is not empty ? text_alignment : null,
-    text_color is not empty ? text_color : null,
+    position_container is not empty ? 'd-flex ' ~ position_container : '',
+    text_alignment is not empty ? text_alignment : '',
+    text_color is not empty ? text_color : '',
     'g-0',
-] | join(' ') %}
+] | join(' ')|trim %}
+
+{# Set presentation classes based on conditions #}
+{% set presentation_classes = [
+    'card-img',
+    image_size is not empty ? image_size : '',
+    link_title is not empty ? 'img-hover-effect' : '',
+] | join(' ')|trim %}
 
 {# Content #}
 {% if card_image %}
-
     {# Link wrapper if active #}
     {% block link_wrapper %}
         {% if link_title is not empty %}
@@ -24,8 +30,8 @@
     {% endblock %}
 
     {# Card Image #}
-    <div class="{{ card_image_classes|trim }}">
-        <div role="presentation" class="card-img {{ image_size }} {% if link_title is not empty %}img-hover-effect{% endif %}">
+    <div class="{{ card_image_classes }}">
+        <div role="presentation" class="{{ presentation_classes }}">
             {# Card Image #}
             {{ card_image }}
             {# Card Image Caption #}
@@ -34,7 +40,7 @@
                 {% for item in content.field_image %}
                     {% if item['#item'].alt is not empty %}
                         <figcaption class="{{ visibility }}">
-                            <p class="figcaption {{card_image_classes|trim }}">{{ item['#item'].alt }}</p>
+                            <p class="figcaption {{ card_image_classes }}">{{ item['#item'].alt }}</p>
                         </figcaption>
                     {% endif %}
                 {% endfor %}
@@ -48,6 +54,4 @@
             </a>
         {% endif %}
     {% endblock %}
-
 {% endif %}
-
