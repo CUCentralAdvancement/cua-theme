@@ -3,6 +3,7 @@
 {# Add optional variables based on conditions #}
 {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
 {% set image_size = image_size ?? '' %}
+{% set link_wrapper_active = link_title is not empty %}
 
 {# Set card image classes #}
 {% set card_image_classes = [
@@ -22,12 +23,11 @@
 
 {# Content #}
 {% if card_image %}
-    {# Link wrapper if active #}
-    {% block link_wrapper %}
-        {% if link_title is not empty %}
-            <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
-        {% endif %}
-    {% endblock %}
+
+    {# Render link wrapper if active #}
+    {% if link_wrapper_active %}
+        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
+    {% endif %}
 
     {# Card Image #}
     <div class="{{ card_image_classes }}">
@@ -40,7 +40,7 @@
                 {% for item in content.field_image %}
                     {% if item['#item'].alt is not empty %}
                         <figcaption class="{{ visibility }}">
-                            <p class="figcaption {{ card_image_classes }}">{{ item['#item'].alt }}</p>
+                            <p class="{{ 'figcaption ' ~ card_image_classes }}">{{ item['#item'].alt }}</p>
                         </figcaption>
                     {% endif %}
                 {% endfor %}
@@ -49,9 +49,8 @@
     </div>
 
     {# Link wrapper if active #}
-    {% block link_wrapper_close %}
-        {% if link_title is not empty %}
-            </a>
-        {% endif %}
-    {% endblock %}
+    {% if link_wrapper_active %}
+        </a>
+    {% endif %}
+
 {% endif %}
