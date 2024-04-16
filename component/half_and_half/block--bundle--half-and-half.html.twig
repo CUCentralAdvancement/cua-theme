@@ -19,36 +19,29 @@
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
+{# Set data attributes for animation #}
+{% set animation_classes = [] %}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
+{% endif %}
+{% set data_animation_classes = animation_classes | join(' ') %}
+{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
+
 {# Add Classes #}
 {% set hh_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
+    animate_trigger,
     border_style,
     container_size,
     margins,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
-{# Add unique id to block #}
-{% set unique_id = [
-    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
-] %}
-
-{# Initialize animation classes #}
-{% set animate_classes = [] %}
-
-{# Add animate-trigger class based on conditions #}
-{% if animation or animation_speed or animation_delay %}
-    {% set animate_classes = ['animate-trigger'] %}
-{% endif %}
-
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes|trim, animate_classes) }}
-        {% if animation or animation_speed or animation_delay %}
-    data-animation-classes="animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"
-        {% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes|trim) }}{% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
     {# Include Desktop Component #}
     {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
     {# Include Mobile Component #}

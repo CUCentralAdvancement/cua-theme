@@ -20,12 +20,21 @@
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
+{# Set data attributes for animation #}
+{% set animation_classes = [] %}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
+{% endif %}
+{% set data_animation_classes = animation_classes | join(' ') %}
+{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
+
 {# Add Classes #}
 {% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'call-to-action',
     'card rounded-0 h-100 mx-3',
+    animate_trigger,
     color_background,
     color_border,
     container_size,
@@ -38,20 +47,8 @@
     plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
 ] %}
 
-{# Initialize animation classes #}
-{% set animate_classes = [] %}
-
-{# Add animate-trigger class based on conditions #}
-{% if animation or animation_speed or animation_delay %}
-    {% set animate_classes = ['animate-trigger'] %}
-{% endif %}
-
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes|trim, animate_classes) }}
-        {# If Animation #}
-        {% if animation or animation_speed or animation_delay %}
-    data-animation-classes="{{ 'animate__animated' ~ ' ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}"
-        {% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes|trim, animate_classes) }}{% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
     {# Media Component Logic #}
     {% if provider is not empty %}
         {# Include Video Component  #}

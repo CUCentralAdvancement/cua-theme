@@ -28,7 +28,7 @@
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Set id and classes #}
-{% set banner_container_classes = [
+{% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
@@ -37,7 +37,7 @@
     color_background,
     margins,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ') %}
+]|merge(utility_classes ? utility_classes : []) %}
 
 {% set image_container_classes = [
     parallax is not empty ? parallax : null,
@@ -73,7 +73,7 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(banner_container_classes|trim) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes) }}>
     {# Image Container with variables #}
     <div{{ attributes.addClass(image_container_classes|trim) }} style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
         {# Title, Body, Link and Animation #}
