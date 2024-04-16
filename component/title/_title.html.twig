@@ -7,17 +7,17 @@
 {% set position_container = position_container ? 'd-flex ' ~ position_container ?? '' %}
 {% set text_color = text_color ?? '' %}
 
-        {# Content #}
-        {{ title_prefix }}
-    {% if label is not empty %}
-        <h2 class="display-4 card-text lead
-        {% if center_content is not empty %}{{ center_content|trim }}{% endif %}
-        {% if page_title_visibility is not empty %}{{ page_title_visibility|trim }}{% endif %}
-        {% if text_alignment is not empty %}{{ text_alignment|trim }}{% endif %}
-        {% if position_container is not empty %}{{ position_container|trim }}{% endif %}
-        {% if text_color is not empty %}{{ text_color|trim }}{% endif %}
-        mb-2">
-            {{ label }}
-        </h2>
-    {% endif %}
-    {{ title_suffix }}
+{# Content #}
+{{ title_prefix }}
+{% if label is not empty %}
+    <h2 class="display-4 card-text lead
+{% if center_content is not empty %}{{ center_content|trim }}{% endif %}
+{% if page_title_visibility is not empty %}{{ page_title_visibility|trim }}{% endif %}
+{% if text_alignment is not empty %}{{ text_alignment|trim }}{% endif %}
+{% if position_container is not empty %}{{ position_container|trim }}{% endif %}
+{% if text_color is not empty %}{{ text_color|trim }}{% endif %}
+mb-2">
+        {{ label }}
+    </h2>
+{% endif %}
+{{ title_suffix }}
