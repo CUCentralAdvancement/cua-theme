@@ -41,7 +41,8 @@
 ] | merge(utility_classes ? utility_classes : []) | join(' ') %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes|trim) }}{% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes|trim) }}
+        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
     {# Include Desktop Component #}
     {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
     {# Include Mobile Component #}

@@ -8,11 +8,11 @@
     position_container is not empty ? 'd-flex ' ~ position_container : null,
     padding is not empty ? padding : null,
     'my-3',
-] | join(' ') %}
+] | join(' ')|trim %}
 
 {# Content #}
 {% if label is not empty or body is not empty %}
-    <div class="{{ card_classes|trim }}">
+    <div class="{{ card_classes }}">
         {# Include Title Component #}
         {% include '@cua_theme/component/title/_title.html.twig' %}
         {# Include Body Component #}

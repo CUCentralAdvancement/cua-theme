@@ -48,7 +48,8 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes|trim, animate_classes) }}{% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes|trim, animate_classes) }}
+        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
     {# Media Component Logic #}
     {% if provider is not empty %}
         {# Include Video Component  #}
