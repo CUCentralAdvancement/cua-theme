@@ -842,10 +842,12 @@ p.intro {
     padding-right: 5px;
 }
 
+/*
 .path-node.node--type-contact-us h1 {
     font-size: 1.75rem;
     margin: 2rem 0 !important;
 }
+*/
 
 .path-node.node--type-contact-us .layout {
     margin: 0;
