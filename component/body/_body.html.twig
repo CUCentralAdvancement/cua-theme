@@ -6,11 +6,11 @@
     center_content is not empty ? center_contentd : null,
     text_alignment is not empty ? text_alignment : null,
     text_color is not empty ? text_color : null,
-] | join(' ') %}
+] | join(' ')|trim %}
 
 {# Content #}
 {% if body is not empty %}
-    <div class="{{ body_classes|trim }}">
+    <div class="{{ body_classes}}">
         {{ body|raw|nl2br }}
     </div>
 {% endif %}

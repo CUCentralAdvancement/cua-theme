@@ -24,7 +24,7 @@
 {% if animation or animation_speed or animation_delay %}
     {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
 {% endif %}
-{% set data_animation_classes = animation_classes | join(' ') %}
+{% set data_animation_classes = animation_classes | join(' ')|trim %}
 {% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
 
 {# Add Classes #}
@@ -38,10 +38,10 @@
     container_size,
     margins,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ') %}
+] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes|trim) }}
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes) }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
     {# Include Desktop Component #}
     {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}

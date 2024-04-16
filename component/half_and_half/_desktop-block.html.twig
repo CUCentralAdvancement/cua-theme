@@ -17,11 +17,11 @@
                 color_background ? color_background,
                 padding ? padding,
                 image_alignment ? image_alignment
-            ] | join(' ') %}
+            ] | join(' ')|trim %}
 
             {# Render image container if layout is set #}
             {% if layout %}
-                <div class="{{ image_col_classes|trim }}">
+                <div class="{{ image_col_classes }}">
                     {# Media Component Logic #}
                     {% if provider is not empty %}
                         {# Include Video Component #}
@@ -41,11 +41,11 @@
                 color_background ? color_background,
                 text_alignment ? text_alignment,
                 padding ? padding
-            ] | join(' ') %}
+            ] | join(' ')|trim %}
 
             {# Render title/body container if layout is set #}
             {% if layout %}
-                <div class="{{ title_body_col_classes|trim }}">
+                <div class="{{ title_body_col_classes }}">
                     <div class="row mx-5 pt-3">
                         {# Include Title/Body Component #}
                         {% include '@cua_theme/component/card/_card--title-body.html.twig' %}

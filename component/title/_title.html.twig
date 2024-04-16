@@ -8,11 +8,11 @@
     position_container is not empty ? 'd-flex ' ~ position_container : null,
     text_alignment is not empty ? text_alignment : null,
     text_color is not empty ? text_color : null,
-] | join(' ') %}
+] | join(' ')|trim %}
 
 {# Content #}
 {% if label is not empty %}
-    <h2 class="{{ title_classes|trim }}">
+    <h2 class="{{ title_classes }}">
         {{ label }}
     </h2>
 {% endif %}

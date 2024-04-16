@@ -32,7 +32,7 @@
     color_border,
     container_size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ') %}
+] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -40,7 +40,7 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(counter_classes|trim) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(counter_classes) }}>
     {# Media Component Logic #}
     {% if card_image is not empty %}
         {# Include Image Component #}

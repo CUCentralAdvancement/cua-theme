@@ -9,9 +9,9 @@
                 color_background ? color_background,
                 text_alignment ? text_alignment,
                 padding ? padding
-            ] | join(' ') %}
+            ] | join(' ')|trim %}
 
-            <div class="{{ media_col_classes|trim }}">
+            <div class="{{ media_col_classes }}">
                 {# Media Component Logic #}
                 {% if provider is not empty %}
                     {# Include Video Component if no image or card image is available #}
@@ -28,9 +28,9 @@
                 color_background ? color_background,
                 text_alignment ? text_alignment,
                 padding ? padding
-            ] | join(' ') %}
+            ] | join(' ')|trim %}
 
-            <div class="{{ title_body_col_classes|trim }}">
+            <div class="{{ title_body_col_classes }}">
                 <div class="row m-4">
                     {# Include Title/Body Component for Mobile View #}
                     {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
