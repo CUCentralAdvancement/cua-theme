@@ -60,8 +60,11 @@
           // Get animation classes from data-animation-classes attribute
           const animationClasses = entry.target.dataset.animationClasses;
           if (animationClasses && animationClasses.trim() !== '') {
-            // Add animation classes to the element's classList
-            entry.target.classList.add(...animationClasses.split(' '));
+            // Delay the addition of animation classes
+            setTimeout(function () {
+              // Add animation classes to the element's classList
+              entry.target.classList.add(...animationClasses.split(' '));
+            }, 1); // Adjust the delay time as needed
           }
           // Stop observing the element to avoid redundant animations
           observer.unobserve(entry.target);
