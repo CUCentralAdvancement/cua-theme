@@ -14,13 +14,27 @@
     padding is not empty ? padding : null,
 ] | join(' ') %}
 
+{# Set footer card link classes #}
+{% set card_link_footer_classes = [
+    'align-self-end',
+    'card-link',
+    'btn',
+    (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
+    (outline is empty) ? ('btn-' ~ button_color) : null,
+    'text-decoration-none',
+    'p-2'
+] %}
+
+{# Join classes with space #}
+{% set final_classes = card_link_footer_classes|join(' ') %}
+
 {# Content #}
 {% if link_title is not empty %}
     <div class="{{ card_footer_classes|trim }}">
         <a href="{{ link_url }}"
            title="{{ aria_label }}"
            aria-label="{{ aria_label }}"
-           class="align-self-end card-link btn {% if outline is not empty %}{{ outline }}{% endif %}{% if button_color is not empty %}{{ 'btn-' ~ button_color }}{% endif %} text-decoration-none p-2">
+           class="{{ final_classes }}">
             {{ aria_label }}
         </a>
     </div>
