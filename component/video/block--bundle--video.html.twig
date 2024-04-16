@@ -23,13 +23,22 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'video',
-    'animate-trigger',
     'card',
     'g-0',
     margins,
     container_size,
+    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+
+{# Combine optional classes and data attributes #}
+{% set video_body_attributes = {
+    class: video_body_classes|join(' '),
+    'data-animation-classes': animation_classes is not empty ? animation_classes : null
+} %}
+
+{# Set data attributes for animation #}
+{% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
 
 {# Add unique id to block #}
 {% set unique_id = [
