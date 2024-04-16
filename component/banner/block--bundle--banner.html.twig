@@ -45,7 +45,7 @@
     effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect : null,
     position_container is not empty ? 'd-flex ' ~ position_container|clean_class : null,
     container_size is not empty ? container_size : null,
-] | join(' ') %}
+] %}
 
 {# Set banner-body classes #}
 {% set banner_body_classes = [
@@ -74,11 +74,11 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes|join(' ')|trim) }}>
     {# Image Container with variables #}
-    <div{{ attributes.addClass(image_container_classes|trim) }} style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+    <div{{ attributes.addClass(image_container_classes|join(' ')|trim) }} style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
         {# Title, Body, Link and Animation #}
-        <div class="{{ banner_body_classes|join(' ') }}" {% if animation_classes %}data-animation-classes="{{ animation_classes }}"{% endif %}>
+        <div class="{{ banner_body_classes|join(' ')|trim }}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
             {# Include Title Component #}
             {% include '@cua_theme/component/title/_title.html.twig' %}
             {# Include Body Component #}
