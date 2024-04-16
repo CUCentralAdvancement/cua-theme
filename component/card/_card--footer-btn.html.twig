@@ -16,7 +16,7 @@
 
 {# Content #}
 {% if link_title is not empty %}
-    <div{{ attributes.addClass(card_footer_classes|trim) }}>
+    <div class="{{ card_footer_classes|trim }}">
         <a href="{{ link_url }}"
            title="{{ aria_label }}"
            aria-label="{{ aria_label }}"

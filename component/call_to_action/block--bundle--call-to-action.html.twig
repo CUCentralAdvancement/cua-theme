@@ -28,7 +28,7 @@
 {% set data_animation_classes = animation_classes | join(' ') %}
 {% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
 
-{# Add Classes #}
+{# Add CTA classes #}
 {% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,

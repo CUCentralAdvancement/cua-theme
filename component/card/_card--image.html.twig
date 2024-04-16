@@ -4,7 +4,7 @@
 {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
 {% set image_size = image_size ?? '' %}
 
-{# Concatenate optional classes with a space #}
+{# Set card image classes #}
 {% set card_image_classes = [
     'card-header',
     position_container is not empty ? 'd-flex ' ~ position_container : null,
@@ -24,7 +24,7 @@
     {% endblock %}
 
     {# Card Image #}
-    <div{{ attributes.addClass(card_image_classes|trim) }}>
+    <div class="{{ card_image_classes|trim }}">
         <div role="presentation" class="card-img {{ image_size }} {% if link_title is not empty %}img-hover-effect{% endif %}">
             {# Card Image #}
             {{ card_image }}

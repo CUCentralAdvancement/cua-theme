@@ -10,7 +10,9 @@
 
 {# Content #}
   {% if icon %}
-      <div{{ attributes.addClass(icon_classes|trim) }} style="color:{{ icon_color }}">
+      <div class="{{ icon_classes|trim }}" style="color:{{ icon_color }}">
           <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
       </div>
   {% endif %}
+
+

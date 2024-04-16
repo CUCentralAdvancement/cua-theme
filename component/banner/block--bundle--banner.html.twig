@@ -27,7 +27,7 @@
 {% set text_color = text_color is not empty ? text_color|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
-{# Set id and classes #}
+{# Set container classes #}
 {% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -39,6 +39,7 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ]|merge(utility_classes ? utility_classes : []) %}
 
+{# Set image classes #}
 {% set image_container_classes = [
     parallax is not empty ? parallax : null,
     effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect : null,
@@ -46,7 +47,7 @@
     container_size is not empty ? container_size : null,
 ] | join(' ') %}
 
-{# Set classes for banner-body #}
+{# Set banner-body classes #}
 {% set banner_body_classes = [
     'col-md-7',
     'col-sm-12',
