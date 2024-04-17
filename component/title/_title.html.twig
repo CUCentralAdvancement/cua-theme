@@ -9,13 +9,13 @@
 {# Content #}
 {{ title_prefix ?? '' }}
 {% if label is not empty %}
-    <h2 class="display-4 card-text lead {{ [
+    <div class="display-4 card-text lead {{ [
         center_content is not empty ? ' ' ~ center_content,
         page_title_visibility is not empty ? ' ' ~ page_title_visibility,
         text_alignment is not empty ? ' ' ~ text_alignment,
         text_color is not empty ? ' ' ~ text_color
-    ]|join }} mb-2">
+    ]|join }} mb-2 g-0">
         {{ label }}
-    </h2>
+    </div>
 {% endif %}
 {{ title_suffix ?? '' }}
