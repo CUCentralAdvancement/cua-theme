@@ -86,6 +86,7 @@ body {
 /* Headings */
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
+    color: var(--cua-gray-700);
     font-family: var(--font-roboto);
     font-weight: 500;
     line-height: 1.2;
@@ -96,14 +97,13 @@ h1, .h1 {
 }
 
 h1.title {
-    margin: 1.1rem 0 2rem !important;
+    margin: .75rem 0 2rem !important;
     background: var(--cua-white);
-    color: var(--cua-gray-800);
-    font-size: 2rem;
+    color: var(--cua-gray-700);
+    font-size: 2.25rem;
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
     position: relative;
-    text-transform: uppercase;
 }
 
 div#block-cua-theme-page-title {
@@ -126,11 +126,13 @@ div#block-cua-theme-page-title {
 }
 
 h2, .h2 {
-    font-size: 2.25rem;
+    font-size: 2rem;
+    color: var(--cua-gray-700);
 }
 
 aside h2, aside.h2 {
     font-size: 1.5rem !important;
+    color: var(--cua-gray-700);
 }
 
 aside h2::after {
@@ -427,8 +429,9 @@ a.block-link figcaption {
 
 .contact .organization {
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 110%;
+    color: var(--cua-gray-700);
 }
 
 .node--type-contact-us .organization {
@@ -439,14 +442,14 @@ a.block-link figcaption {
     margin-bottom: 80px;
 }
 
-.views-exposed-form h2 .contact h3, .h3, .faq .js-views-accordion-group-header h3, .views-element-container h2 {
+.views-exposed-form h2 .contact h3, .h3, .faq .js-views-accordion-group-header h3, .views-element-container h2, .views-exposed-form h2, .views-element-container h2 {
     padding: 0;
-    text-transform: uppercase;
-    font-size: 1.5rem;
+    font-size: 2.25rem !important;
+    color: var(--cua-gray-700);
 }
 
-.views-exposed-form h2, .views-element-container h2 {
-    font-size: 1.875rem;
+aside .views-exposed-form h2 .contact h3, aside .h3, aside .faq .js-views-accordion-group-header h3, aside .views-element-container h2, aside .views-exposed-form h2, aside .views-element-container h2 {
+    font-size: 1.5rem !important;
 }
 
 .views-exposed-form h2::after, .contact h3::after, .js-views-accordion-group-header::after, .views-element-container h2::after {
@@ -473,10 +476,13 @@ h2.text-align-center::after {
 
 .contact .h5.title {
     font-size: 1.3rem;
+    color: var(--cua-gray-700);
 }
 
 .contact .h5.title.headshot {
+    color: var(--cua-gray-700);
     font-size: 1.25rem;
+    font-weight: 700;
     margin: 0 !important;
 }
 
@@ -1079,6 +1085,7 @@ p.intro {
 
 /*** Add Line under text ***/
 .cu-line {
+    color: var(--cua-gray-700);
     font-family: var(--font-roboto);
     font-size: 1.875rem;
     font-weight: 500;
@@ -1097,6 +1104,7 @@ p.intro {
 
 .cu-line-sm,
 .cu-line-sm a {
+    color: var(--cua-gray-700);
     font-family: var(--font-roboto);
     font-size: 1.25rem;
     font-weight: 700;
