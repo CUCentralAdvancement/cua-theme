@@ -14,8 +14,8 @@
     /* Golds*/
     --cua-gold: #cfb87c;
     --cua-gold-hover: #5d4916;
-    --cui-gold: #cfb87c;
-    --cui-gold-hover: #5d4916;
+    --cua-gold: #cfb87c;
+    --cua-gold-hover: #5d4916;
 
     /* Grays */
     --cua-light-grey: #f8f9fa;
@@ -86,7 +86,6 @@ body {
 /* Headings */
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
-    color: var(--cua-gray-700);
     font-family: var(--font-roboto);
     font-weight: 500;
     line-height: 1.2;
@@ -107,6 +106,7 @@ h1.title {
 }
 
 div#block-cua-theme-page-title {
+    color: var(--cua-gray-700);
     margin: 0 0 0 1.7rem;
     position: relative;
 }
@@ -127,7 +127,6 @@ div#block-cua-theme-page-title {
 
 h2, .h2 {
     font-size: 2rem;
-    color: var(--cua-gray-700);
 }
 
 aside h2, aside.h2 {
@@ -140,7 +139,7 @@ aside h2::after {
     display: block;
     width: 1.5em;
     height: 0.1em;
-    background-color: var(--cui-gold);
+    background-color: var(--cua-gold);
     margin: 0.4em 0;
 }
 
@@ -166,6 +165,7 @@ h6, .h6 {
 
 h2.title {
     font-size: 1.2rem;
+    color: var(--cua-gray-700);
 }
 
 .h4.title a {
@@ -202,7 +202,7 @@ body, p, a, li {
 }
 
 .btn.btn-primary {
-    background: var(--cui-gold);
+    background: var(--cua-gold);
     color: var(--cua-black);
     border: none;
     padding: .45rem 1.5rem;
@@ -213,7 +213,7 @@ body, p, a, li {
 }
 
 .btn.btn-primary:hover {
-    background: var(--cui-gold-hover);
+    background: var(--cua-gold-hover);
     border: none;
     color: var(--cua-white);
     cursor: pointer;
@@ -816,7 +816,7 @@ p.intro {
 }
 
 .page-view-taxonomy-term .node__content .nav-link a {
-    background: var(--cui-gold);
+    background: var(--cua-gold);
     color: var(--cua-black);
     font-weight: bold;
     padding: .75rem 2rem;
@@ -824,7 +824,7 @@ p.intro {
 
 .page-view-taxonomy-term .node__content .nav-link a:hover {
     color: var(--cua-white);
-    background: var(--cui-gold-hover);
+    background: var(--cua-gold-hover);
     text-decoration: none;
 }
 
