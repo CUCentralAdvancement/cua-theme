@@ -42,16 +42,20 @@
       });
     }
 
-    // Add event listener to toggle link text when collapse is shown/hidden
-    const collapseElement = document.getElementById('collapseExample');
-    const linkElement = document.getElementById('collapseLink');
+    // Animations for layout builder
+    document.addEventListener('DOMContentLoaded', function () {
+      const collapseElement = document.getElementById('CollapseSearch');
+      const linkElement = document.getElementById('search-icon');
 
-    collapseElement.addEventListener('shown.bs.collapse', function () {
-      linkElement.innerHTML = '<i class="fas fa-times"></i><span class="px-3">Close Options</span>';
-    });
+      if (collapseElement && linkElement) {
+        collapseElement.addEventListener('shown.bs.collapse', function () {
+          linkElement.innerHTML = '<i class="fas fa-times"></i><span class="px-3">Close Options</span>';
+        });
 
-    collapseElement.addEventListener('hidden.bs.collapse', function () {
-      linkElement.innerHTML = '<i class="fas fa-save"></i><span class="px-4">Save Options</span>';
+        collapseElement.addEventListener('hidden.bs.collapse', function () {
+          linkElement.innerHTML = '<i class="fas fa-save"></i><span class="px-4">Save Options</span>';
+        });
+      }
     });
 
     function handleAnimations(entries) {
