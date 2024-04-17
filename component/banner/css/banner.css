@@ -387,6 +387,11 @@
     min-height: 500px;
 }
 
+.banner .display-4 {
+    font-weight: 700 !important;
+    font-size: 3rem !important;
+    font-family: 'Arvo', serif !important;
+}
 
 @media (max-width: 768px) { /* Adjust the max-width value as needed */
     .container-fluid .kenburns-top {
