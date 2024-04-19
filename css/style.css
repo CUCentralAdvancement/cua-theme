@@ -83,6 +83,12 @@ body {
     height: 100%;
 }
 
+p.intro {
+    font-size: 1.2rem;
+    color: var(--cua-gray-800);
+}
+
+
 /* Headings */
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
@@ -126,7 +132,7 @@ div#block-cua-theme-page-title {
 }
 
 h2, .h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 
 aside h2, aside.h2 {
@@ -202,20 +208,21 @@ body, p, a, li {
 }
 
 .btn.btn-primary {
-    background: var(--cua-gold);
-    color: var(--cua-black);
-    border: none;
+    background: var(--cua-blue);
+    color: var(--cua-white);
+    border: 1px solid var(--cua-blue);
     padding: .45rem 1.5rem;
     font-weight: bold;
     display: inline-block;
     border-radius: 0;
     transition: background-color 0.7s ease;
+    width: auto;
 }
 
 .btn.btn-primary:hover {
-    background: var(--cua-gold-hover);
-    border: none;
-    color: var(--cua-white);
+    background: var(--cua-white);
+    color: var(--cua-blue);
+    border: 1px solid var(--cua-blue);
     cursor: pointer;
     text-decoration: none;
 }
@@ -734,11 +741,6 @@ div#block-cua-theme-breadcrumbs {
     justify-content: end;
 }
 
-p.intro {
-    font-size: 1.2rem;
-    color: var(--cua-gray-800);
-}
-
 .path-frontpage div#block-cua-theme-page-title {
     display: none;
 }
@@ -1087,7 +1089,7 @@ p.intro {
 .cu-line {
     color: var(--cua-gray-700);
     font-family: var(--font-roboto);
-    font-size: 1.875rem;
+    font-size: 1.75rem;
     font-weight: 500;
     line-height: 1.2;
     margin: 1rem 0 0;
@@ -1314,6 +1316,12 @@ nav.tabs {
     content: "\f1da"; /* Content for Font Awesome history icon */
 }
 
+#edit-moderation-state-0-current {
+    font-size: 110%;
+    font-weight: 700 !important;
+    margin: 1rem 0 !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
@@ -1345,4 +1353,3 @@ nav.tabs {
     }
 
 }
-
