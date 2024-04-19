@@ -1337,6 +1337,16 @@ nav.tabs {
     content: "\f1da"; /* Content for Font Awesome history icon */
 }
 
+/* Search */
+
+.node_search-results .list-group-item {
+    border: none !important;
+}
+
+ol.list-group.node_search-results a {
+    font-size: 1.5rem !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
@@ -1368,4 +1378,3 @@ nav.tabs {
     }
 
 }
-
