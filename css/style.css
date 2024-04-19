@@ -202,22 +202,40 @@ body, p, a, li {
 }
 
 .btn.btn-primary {
-    background: var(--cua-gold);
-    color: var(--cua-black);
-    border: none;
+    background: var(--cua-blue);
+    color: var(--cua-white);
+    border: 1px solid var(--cua-blue);
     padding: .45rem 1.5rem;
     font-weight: bold;
     display: inline-block;
     border-radius: 0;
     transition: background-color 0.7s ease;
+    width: auto;
 }
 
 .btn.btn-primary:hover {
-    background: var(--cua-gold-hover);
-    border: none;
-    color: var(--cua-white);
+    background: var(--cua-white);
+    color: var(--cua-blue);
+    border: 1px solid var(--cua-blue);
     cursor: pointer;
     text-decoration: none;
+}
+
+a#edit-delete {
+    color: white;
+    background: red;
+    padding: .5rem 1.5rem;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 0;
+    transition: background-color 0.7s ease;
+    width: auto;
+}
+
+a#edit-delete:hover  {
+    color: red;
+    background:black;
+    text-decoration: none !important;
 }
 
 .path-search .btn.btn-primary {
