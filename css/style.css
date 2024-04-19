@@ -83,12 +83,6 @@ body {
     height: 100%;
 }
 
-p.intro {
-    font-size: 1.2rem;
-    color: var(--cua-gray-800);
-}
-
-
 /* Headings */
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
@@ -132,7 +126,7 @@ div#block-cua-theme-page-title {
 }
 
 h2, .h2 {
-    font-size: 1.75rem;
+    font-size: 2rem;
 }
 
 aside h2, aside.h2 {
@@ -208,21 +202,20 @@ body, p, a, li {
 }
 
 .btn.btn-primary {
-    background: var(--cua-blue);
-    color: var(--cua-white);
-    border: 1px solid var(--cua-blue);
+    background: var(--cua-gold);
+    color: var(--cua-black);
+    border: none;
     padding: .45rem 1.5rem;
     font-weight: bold;
     display: inline-block;
     border-radius: 0;
     transition: background-color 0.7s ease;
-    width: auto;
 }
 
 .btn.btn-primary:hover {
-    background: var(--cua-white);
-    color: var(--cua-blue);
-    border: 1px solid var(--cua-blue);
+    background: var(--cua-gold-hover);
+    border: none;
+    color: var(--cua-white);
     cursor: pointer;
     text-decoration: none;
 }
@@ -614,7 +607,8 @@ aside .nav-item {
 }
 
 aside .form-select a,
-aside a.nav-link {
+aside a.nav-link,
+aside a.bef-link {
     box-sizing: border-box;
     color: var(--cua-black);
     display: block;
@@ -632,20 +626,23 @@ aside a.link-cua {
     text-decoration: none;
 }
 
-aside a.link-cua:hover {
+aside a.link-cua:hover,
+aside a.bef-link:hover {
     color: var(--cua-gold-hover);
     text-decoration: underline !important;
 }
 
 aside .form-select a:hover,
-aside a.nav-link:hover {
+aside a.nav-link:hover,
+aside a.bef-link:hover {
     /* Adjust link styles on hover */
     color: var(--cua-black);
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 aside .form-select a::before,
-aside a.nav-link::before {
+aside a.nav-link::before,
+aside a.bef-link::before{
     content: "";
     position: absolute;
     bottom: 0;
@@ -657,7 +654,8 @@ aside a.nav-link::before {
 }
 
 aside .form-select a:hover::before,
-aside a.nav-link:hover::before {
+aside a.nav-link:hover::before,
+aside a.bef-link:hover::before{
     /* Expand underline on hover */
     width: 100%;
     background-color: var(--cua-gold);
@@ -739,6 +737,11 @@ div#block-cua-theme-breadcrumbs {
     padding: 0 .5rem 0;
     display: flex;
     justify-content: end;
+}
+
+p.intro {
+    font-size: 1.2rem;
+    color: var(--cua-gray-800);
 }
 
 .path-frontpage div#block-cua-theme-page-title {
@@ -1089,7 +1092,7 @@ div#block-cua-theme-breadcrumbs {
 .cu-line {
     color: var(--cua-gray-700);
     font-family: var(--font-roboto);
-    font-size: 1.75rem;
+    font-size: 1.875rem;
     font-weight: 500;
     line-height: 1.2;
     margin: 1rem 0 0;
@@ -1316,12 +1319,6 @@ nav.tabs {
     content: "\f1da"; /* Content for Font Awesome history icon */
 }
 
-#edit-moderation-state-0-current {
-    font-size: 110%;
-    font-weight: 700 !important;
-    margin: 1rem 0 !important;
-}
-
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
@@ -1353,3 +1350,4 @@ nav.tabs {
     }
 
 }
+
