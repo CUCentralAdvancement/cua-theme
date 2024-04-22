@@ -196,9 +196,9 @@ a:hover {
 
 body, p, a, li {
     font-family: var(--font-roboto);
-    font-size: var(--bs-body-font-size);
-    font-weight: var(--bs-body-font-weight);
-    line-height: var(--bs-body-line-height);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 .btn.btn-primary {
@@ -630,9 +630,11 @@ aside a.bef-link {
     box-sizing: border-box;
     color: var(--cua-black);
     display: block;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
+    line-height: 1.1;
+    margin: 0 0 .5rem;
     padding: .25rem 0;
     position: relative;
     width: 100%;
