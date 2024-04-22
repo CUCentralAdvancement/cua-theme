@@ -287,6 +287,10 @@ header #search-block-form {
     background-color: transparent;
 }
 
+.dropdown-toggle::after {
+    color: #cfb87b;
+}
+
 /* Secondary Menu */
 
 .secondary-menu {
@@ -541,6 +545,7 @@ header .secondary-menu .nav-item {
 header .sticky li.nav-item:hover {
     background: transparent !important;
 }
+
 
 /* first child main nav home button overrides
 header .nav-item:first-child:hover {
