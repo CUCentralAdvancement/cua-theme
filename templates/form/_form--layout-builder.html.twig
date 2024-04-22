@@ -5,8 +5,8 @@
             <ul class="container-fluid mx-auto nav nav-pills g-0 p-0 m-0">
                 <li class="nav-item">
                     <a id="collapseLink" class="nav-link rounded-top" data-bs-toggle="collapse"
-                       href="#collapseExample" role="button"
-                       aria-expanded="false" aria-controls="collapseExample">
+                       href="#collapseBuilder" role="button"
+                       aria-expanded="false" aria-controls="collapseBuilder">
                         <i class="fas fa-save"></i><span
                                 class="mx-3"> {{ 'Saving Options'|t }}</span>
                     </a>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="row container-fluid shadow-lg bg-white rounded">
-        <div class="collapse position-relative" id="collapseExample" data-bs-parent="#cu-layout-builder">
+        <div class="collapse position-relative" id="collapseBuilder" data-bs-parent="#cu-layout-builder">
             <div class="col d-flex justify-content-center align-items-center py-4">
                 {{ attach_library('bootstrap_barrio/form') }}
                 <form{{ attributes }}>
@@ -27,4 +27,5 @@
     </div>
 
 </div>
+
 
