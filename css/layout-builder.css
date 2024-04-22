@@ -385,7 +385,13 @@ form .form-actions {
 
 #cu-layout-builder #edit-preview-toggle {
   position: absolute;
-  top: 1rem;
+  top: 2rem;
+  right: 18rem;
+}
+
+#edit-moderation-state-0 {
+  margin: 1rem 0 0;
+  margin-bottom: 0px;
 }
 
 #cu-layout-builder .vertical-tabs.clearfix {
