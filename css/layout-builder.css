@@ -385,7 +385,7 @@ form .form-actions {
 
 #cu-layout-builder #edit-preview-toggle {
   position: absolute;
-  top: 7rem;
+  top: 1rem;
 }
 
 #cu-layout-builder .vertical-tabs.clearfix {
@@ -437,6 +437,13 @@ form .form-actions {
   z-index: 99999 !important;
 }
 
+#edit-moderation-state-0-current {
+  font-weight: bold;
+}
+
+#edit-moderation-state-wrapper {
+  min-width: 400px;
+}
 /*** Responsive ***/
 @media only screen and (max-width: 991px) {
   .layout--threecol-section--33-34-33 > .layout__region--first,

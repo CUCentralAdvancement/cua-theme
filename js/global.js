@@ -68,11 +68,11 @@
 
     if (collapseElement && linkElement) {
       collapseElement.addEventListener('shown.bs.collapse', function () {
-        linkElement.innerHTML = '<i class="fas fa-times"></i><span class="px-3">Close Options</span>';
+        linkElement.innerHTML = '<i class="fas fa-times"></i><span class="px-3">Close</span>';
       });
 
       collapseElement.addEventListener('hidden.bs.collapse', function () {
-        linkElement.innerHTML = '<i class="fas fa-save"></i><span class="px-4">Save Options</span>';
+        linkElement.innerHTML = '<i class="fas fa-save"></i><span class="px-4">Save</span>';
       });
     }
   });
