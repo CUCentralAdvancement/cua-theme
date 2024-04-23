@@ -1,11 +1,6 @@
 {# Card Footer Button #}
 
-{# Add optional variables based on conditions #}
-{% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-{% set button_color = button_color ?? '' %}
-{% set outline = outline ?? '' %}
-
-{# Set footer card classes #}
+{# Set card footer classes #}
 {% set card_footer_classes = [
     'card-footer',
     'mb-5',
@@ -14,8 +9,8 @@
     padding is not empty ? padding : null,
 ] | join(' ')|trim %}
 
-{# Set footer card link classes #}
-{% set card_link_footer_classes = [
+{# Set card footer link classes #}
+{% set card_footer_link_classes = [
     'align-self-end',
     'card-link',
     'btn',
@@ -25,13 +20,13 @@
     'p-2'
 ] | join(' ')|trim %}
 
-{# Join classes with space #}
-{% set final_classes = card_link_footer_classes %}
+{# Add optional variables based on conditions #}
+{% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
 
 {# Content #}
 {% if link_title is not empty %}
     <div class="{{ card_footer_classes }}">
-        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="{{ final_classes }}">
+        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="{{ card_footer_link_classes }}">
             {{ aria_label }}
         </a>
     </div>
