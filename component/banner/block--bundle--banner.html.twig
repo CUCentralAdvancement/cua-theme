@@ -43,7 +43,7 @@
 {% set image_container_classes = [
     parallax is not empty ? parallax : null,
     effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect : null,
-    position_container is not empty ? 'd-flex ' ~ position_container|clean_class : null,
+    position_container is not empty ? 'd-flex' ~ ' ' ~ position_container|clean_class : null,
     container_size is not empty ? container_size : null,
 ] %}
 

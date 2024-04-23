@@ -1,5 +1,5 @@
 {# Video - Desktop #}
-<div class="container-fluid mx-auto position-absolute{% if position_container is defined and position_container %} {{ 'd-flex ' ~ position_container }}{% endif %}">
+<div class="container-fluid mx-auto position-absolute{% if position_container is defined and position_container %} {{ 'd-flex' ~ ' ' ~ position_container }}{% endif %}">
     <div class="col-sm-4 d-none d-md-block {{ color_background|default('') }} {{ animation_classes|default('') }} p-4 mt-5 mx-5" {% if animation_classes is defined %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
         {# Include Title Component #}
         {% include '@cua_theme/component/title/_title.html.twig' %}
