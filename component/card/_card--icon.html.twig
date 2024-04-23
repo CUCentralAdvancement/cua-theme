@@ -1,18 +1,21 @@
 {# Icon #}
 
-{# Concatenate optional classes with a space #}
-{% set icon_classes = [
-    padding is not empty ? padding : null,
-    position_container is not empty ? 'd-flex' ~ ' ' ~ position_container : null,
-    text_alignment is not empty ? text_alignment : null,
-    'pt-5 pb-3',
-] | join(' ')|trim %}
+{# If active render #}
+{% if icon is not empty %}
 
-{# Content #}
-  {% if icon %}
-      <div class="{{ icon_classes }}" style="color:{{ icon_color }}">
-          <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
-      </div>
-  {% endif %}
+    {# Concatenate optional classes with a space #}
+    {% set icon_classes = [
+        padding is not empty ? padding : null,
+        position_container is not empty ? 'd-flex' ~ ' ' ~ position_container : null,
+        text_alignment is not empty ? text_alignment : null,
+        'pt-5 pb-3',
+    ] | join(' ')|trim %}
+
+    {# Content #}
+    <div class="{{ icon_classes }}" style="color:{{ icon_color }}">
+        <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
+    </div>
+
+{% endif %}
 
 
