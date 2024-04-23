@@ -1,34 +1,37 @@
 {# Card Footer Button #}
 
-{# Set card footer classes #}
-{% set card_footer_classes = [
-    'card-footer',
-    'mb-5',
-    center_content is not empty ? center_content : null,
-    text_alignment is not empty ? text_alignment : null,
-    padding is not empty ? padding : null,
-] | join(' ')|trim %}
-
-{# Set card footer link classes #}
-{% set card_footer_link_classes = [
-    'align-self-end',
-    'card-link',
-    'btn',
-    (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
-    (outline is empty) ? ('btn-' ~ button_color) : null,
-    'text-decoration-none',
-    'p-2'
-] | join(' ')|trim %}
-
-{# Add optional variables based on conditions #}
-{% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-
-{# Content #}
+{# If active render #}
 {% if link_title is not empty %}
+
+    {# Set card footer classes #}
+    {% set card_footer_classes = [
+        'card-footer',
+        'mb-5',
+        center_content is not empty ? center_content : null,
+        text_alignment is not empty ? text_alignment : null,
+        padding is not empty ? padding : null,
+    ] | join(' ')|trim %}
+
+    {# Set card footer link classes #}
+    {% set card_footer_link_classes = [
+        'align-self-end',
+        'card-link',
+        'btn',
+        (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
+        (outline is empty) ? ('btn-' ~ button_color) : null,
+        'text-decoration-none',
+        'p-2'
+    ] | join(' ')|trim %}
+
+    {# Add optional variables based on conditions #}
+    {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
+
+    {# Content #}
     <div class="{{ card_footer_classes }}">
         <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="{{ card_footer_link_classes }}">
             {{ aria_label }}
         </a>
     </div>
+
 {% endif %}
 
