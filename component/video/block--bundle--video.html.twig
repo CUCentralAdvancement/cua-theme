@@ -47,10 +47,21 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(video_classes) }}>
+
     {# Video component #}
-    {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+    {% if provider %}
+        <div class="video-container g-0 m-0 p-0 position-relative">
+            {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
+        </div>
+    {% else %}
+        {# No video provider specified #}
+        <p>{{ 'No video provider specified.'|t }}</p>
+    {% endif %}
+
     {# Desktop component #}
     {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
+
     {# Mobile component #}
     {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
+
 </div>
