@@ -1349,6 +1349,16 @@ ol.list-group.node_search-results a {
     font-size: 1.5rem !important;
 }
 
+.bef-nested ul li ul li a {
+    font-size: 95%;
+    margin: 0 0 0 .5rem !important
+}
+
+.bef-nested ul li a {
+    margin: 0 .5rem 0 0 !important;
+    line-height: 1.5;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
