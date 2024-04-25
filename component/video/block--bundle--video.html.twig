@@ -58,10 +58,14 @@
         <p>{{ 'No video provider specified.'|t }}</p>
     {% endif %}
 
-    {# Desktop component #}
-    {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
+    {# Render desktop component only for mediumn desktop screens and above #}
+    <div class="video-desktop d-none d-md-block">
+        {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
+    </div>
 
-    {# Mobile component #}
-    {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
+    {# Render ombile component only for mobile screens #}
+    <div class="video-mobile d-md-none">
+        {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
+    </div>
 
 </div>
