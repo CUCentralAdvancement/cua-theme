@@ -17,13 +17,14 @@
 {# If class is active #}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
+{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
 
 {# Add Classes #}
 {% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'video',
-    'animate-trigger',
+    animate-trigger,
     'card',
     'g-0',
     margins,
@@ -37,15 +38,11 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
-
     {# Video component #}
     {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
-
     {# Desktop component #}
     {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
-
     {# Mobile component #}
     {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
-
 </div>
 
