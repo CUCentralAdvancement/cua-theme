@@ -125,7 +125,7 @@ nav#navbar-main.sticky {
 
 /* Font Awesome */
 nav#navbar-main > li.first a:before {
-    font-family: var(--fa-style-family-classic);
+    font-family: var(--font-awesome);
     display: block;
     width: 20px;
     height: 20px;
@@ -340,7 +340,7 @@ header #search-block-form {
 }
 
 .secondary-menu .nav-item:last-child .nav-link::after {
-    font-family: "FontAwesome";
+    font-family: var(--font-awesome);
     font-size: .8rem;
     content: "\f06b"; /* Font Awesome icon for heart */
     margin: 0 0 0 0.5rem;
@@ -348,6 +348,7 @@ header #search-block-form {
 
 /* Style the pseudo-element for the last .nav-link element */
 .secondary-menu .nav-item:last-child .nav-link::before {
+    font-family: var(--font-awesome);
     content: "";
     position: absolute;
     top: 0;
@@ -435,7 +436,7 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .header .sticky .nav-link.nav-link-:last-child::after {
-    font-family: "FontAwesome";
+    font-family: var(--font-awesome);
     font-size: .85rem;
     content: "\f06b"; /* Font Awesome icon for heart */
     margin: 0 0 0 0.5rem;

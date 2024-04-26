@@ -57,6 +57,7 @@
 
     /* Font Awesome and Typography */
     --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
+    --font-awesome: normal 900 1em/1 'Font Awesome 6 Free';
     --fa-style-family-classic: 'Font Awesome 6 Free';
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', sans-serif;

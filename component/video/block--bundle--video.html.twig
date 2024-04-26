@@ -14,31 +14,21 @@
 */
 #}
 
-{# Add optional classes based on conditions #}
+{# If class is active #}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
 
 {# Add Classes #}
-{% set video_classes = [
+{% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'video',
+    'animate-trigger',
     'card',
     'g-0',
     margins,
     container_size,
-    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
-
-{# Combine optional classes and data attributes #}
-{% set video_body_attributes = {
-    class: video_body_classes|join(' '),
-    'data-animation-classes': animation_classes is not empty ? animation_classes : null
-} %}
-
-{# Set data attributes for animation #}
-{% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -46,26 +36,16 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(video_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
 
     {# Video component #}
-    {% if provider %}
-        <div class="video-container g-0 m-0 p-0 position-relative">
-            {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
-        </div>
-    {% else %}
-        {# No video provider specified #}
-        <p>{{ 'No video provider specified.'|t }}</p>
-    {% endif %}
+    {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
 
-    {# Render desktop component only for mediumn desktop screens and above #}
-    <div class="video-desktop d-none d-md-block">
-        {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
-    </div>
+    {# Desktop component #}
+    {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
 
-    {# Render ombile component only for mobile screens #}
-    <div class="video-mobile d-md-none">
-        {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
-    </div>
+    {# Mobile component #}
+    {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
 
 </div>
+

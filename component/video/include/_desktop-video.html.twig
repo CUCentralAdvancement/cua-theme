@@ -1,11 +1,18 @@
 {# Video - Desktop #}
-<div class="container-fluid mx-auto position-absolute {% if position_container is defined and position_container %} {{ 'd-flex' ~ ' ' ~ position_container }}{% endif %}">
-    <div class="col-sm-4 {{ color_background }} {{ animation_classes|join(' ')|trim }} p-4 mt-5 mx-5" {% if animation_classes is defined %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
+<div class="container-fluid mx-auto position-absolute d-flex {{ position_container }}">
+
+    <div class="col-sm-4 d-none d-md-block {{ color_background }} p-4 mt-5 mx-5 {% if animation or animation_speed or animation_delay %}
+            animate__animated {{ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay }}{% endif %}">
+
         {# Include Title Component #}
         {% include '@cua_theme/component/title/_title.html.twig' %}
+
         {# Include Body Component #}
         {% include '@cua_theme/component/body/_body.html.twig' %}
+
         {# Include Link/Button Component #}
         {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
     </div>
+
 </div>
+
