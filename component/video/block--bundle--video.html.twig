@@ -25,7 +25,8 @@
     'block-' ~ configuration.provider|clean_class,
     'video',
     animate-trigger,
-    'card g-0',
+    'card',
+    'g-0',
     margins,
     container_size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
@@ -37,11 +38,50 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
+
     {# Video component #}
-    {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+    {% if provider %}
+        <div class="video-container g-0 m-0 p-0 position-relative">
+            {% include '@cua_theme/component/video/include/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
+        </div>
+    {% else %}
+        {# No video provider specified #}
+        <p>{{ 'No video provider specified.'|t }}</p>
+    {% endif %}
+
     {# Desktop component #}
-    {% include '@cua_theme/component/video/include/_desktop-video.html.twig' %}
-    {# Mobile component #}
-    {% include '@cua_theme/component/video/include/_mobile-video.html.twig' %}
+    {% if label or body %}
+        <div class="video-desktop-copy d-none d-md-block g-0">
+            <div class="container-fluid mx-auto position-absolute d-flex {{ position_container }}">
+                {# Set data attributes for animation #}
+                {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
+                <div class="col-sm-4 {{ color_background }} p-4 mt-5 mx-5 {% if animation_classes %}{{ animation_classes }}{% endif %}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
+                    {# Include Title Component #}
+                    {% include '@cua_theme/component/title/_title.html.twig' %}
+                    {# Include Body Component #}
+                    {% include '@cua_theme/component/body/_body.html.twig' %}
+                    {# Include Link/Button Component #}
+                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                </div>
+            </div>
+        </div>
+
+        {# Video -- Mobile #}
+        <div class="video-mobile-copy d-md-none g-0">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-sm-12">
+                        {# Include Title Component #}
+                        {% include '@cua_theme/component/title/_title.html.twig' %}
+                        {# Include Body Component #}
+                        {% include '@cua_theme/component/body/_body.html.twig' %}
+                        {# Include Link/Button Component #}
+                        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
 </div>
 
