@@ -1,22 +1,16 @@
 {# Include Title, Body, and Link Components #}
 
 {# Include Title Component #}
-{% if label is defined %}
+{% if label is defined and label is not empty %}
     {% include '@cua_theme/component/title/_title.html.twig' with {'label': label} %}
-{% else %}
-    <div class="error-message">{{ 'Title component is missing or unavailable.'|t }}</div>
 {% endif %}
 
 {# Include Body Component #}
-{% if body is defined %}
+{% if body is defined and body is not empty %}
     {% include '@cua_theme/component/body/_body.html.twig' with {'body': body} %}
-{% else %}
-    <div class="error-message">{{ 'Body component is missing or unavailable.'|t }}</div>
 {% endif %}
 
 {# Include Link/Button Component #}
-{% if link_title is defined %}
+{% if link_title is defined and link_title is not empty %}
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' with {'link_title': link_title} %}
-{% else %}
-    <div class="error-message">{{ 'Link/Button component is missing or unavailable.'|t }}</div>
 {% endif %}
