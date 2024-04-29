@@ -55,13 +55,10 @@
             <div class="container-fluid mx-auto position-absolute d-flex {{ position_container }}">
                 {# Set data attributes for animation #}
                 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
+                {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
                 <div class="col-sm-4 {{ color_background }} p-4 mt-5 mx-5 {% if animation_classes %}{{ animation_classes }}{% endif %}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
-                    {# Include Title Component #}
-                    {% include '@cua_theme/component/title/_title.html.twig' %}
-                    {# Include Body Component #}
-                    {% include '@cua_theme/component/body/_body.html.twig' %}
-                    {# Include Link/Button Component #}
-                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                    {# Include all components #}
+                    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
                 </div>
             </div>
         </div>
@@ -71,12 +68,8 @@
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-sm-12">
-                        {# Include Title Component #}
-                        {% include '@cua_theme/component/title/_title.html.twig' %}
-                        {# Include Body Component #}
-                        {% include '@cua_theme/component/body/_body.html.twig' %}
-                        {# Include Link/Button Component #}
-                        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                        {# Include all components #}
+                        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
                     </div>
                 </div>
             </div>
