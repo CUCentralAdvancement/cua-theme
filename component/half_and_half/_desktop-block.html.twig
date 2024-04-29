@@ -29,6 +29,7 @@
                     {% elseif card_image is not empty %}
                         {# Include Image Component #}
                         {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                    {% else %}
                     {% endif %}
                 </div>
             {% endif %}
@@ -47,10 +48,8 @@
             {% if layout %}
                 <div class="{{ title_body_col_classes }}">
                     <div class="row mx-5 pt-3">
-                        {# Include Title/Body Component #}
-                        {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-                        {# Include Button/Link Component #}
-                        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                        {# Include Title/Body/Link Component #}
+                        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
                     </div>
                 </div>
             {% endif %}
