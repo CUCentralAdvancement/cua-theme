@@ -25,8 +25,7 @@
     'block-' ~ configuration.provider|clean_class,
     'video',
     animate-trigger,
-    'card',
-    'g-0',
+    'card g-0',
     margins,
     container_size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
