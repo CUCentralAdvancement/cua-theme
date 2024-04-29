@@ -2,21 +2,21 @@
 
 {# Include Title Component #}
 {% if label is defined %}
-    {% include '@cua_theme/component/title/_title.html.twig' with {'label': label} ignore missing %}
+    {% include '@cua_theme/component/title/_title.html.twig' with {'label': label} %}
 {% else %}
     <div class="error-message">{{ 'Title component is missing or unavailable.'|t }}</div>
 {% endif %}
 
 {# Include Body Component #}
 {% if body is defined %}
-    {% include '@cua_theme/component/body/_body.html.twig' with {'body': body} ignore missing %}
+    {% include '@cua_theme/component/body/_body.html.twig' with {'body': body} %}
 {% else %}
-    <div class="error-message">{{ 'Title component is missing or unavailable.'|t }}</div>
+    <div class="error-message">{{ 'Body component is missing or unavailable.'|t }}</div>
 {% endif %}
 
 {# Include Link/Button Component #}
 {% if link_title is defined %}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' with {'link_title': link_title} ignore missing %}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' with {'link_title': link_title} %}
 {% else %}
-    <div class="error-message">{{ 'Title component is missing or unavailable.'|t }}</div>
+    <div class="error-message">{{ 'Link/Button component is missing or unavailable.'|t }}</div>
 {% endif %}
