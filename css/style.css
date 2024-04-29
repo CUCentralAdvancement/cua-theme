@@ -203,9 +203,9 @@ body, p, a, li {
 }
 
 .btn.btn-primary {
-    background: var(--cua-blue);
-    color: var(--cua-white);
-    border: 1px solid var(--cua-blue);
+    background: var(--cua-white);
+    color: var(--cua-black);
+    border: 1px solid var(--cua-black);
     padding: .45rem 1.5rem;
     font-weight: bold;
     display: inline-block;
@@ -215,9 +215,9 @@ body, p, a, li {
 }
 
 .btn.btn-primary:hover {
-    background: var(--cua-white);
-    color: var(--cua-blue);
-    border: 1px solid var(--cua-blue);
+    background: var(--cua-black);
+    color: var(--cua-white);
+    border: 1px solid var(--cua-black);
     cursor: pointer;
     text-decoration: none;
 }
