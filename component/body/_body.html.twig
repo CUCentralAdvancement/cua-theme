@@ -1,4 +1,5 @@
 {# Body #}
+{% if body is not empty %}
 
 {# Concatenate optional classes with a space #}
 {% set body_classes = [
@@ -9,8 +10,8 @@
 ] | join(' ')|trim %}
 
 {# Content #}
-{% if body is not empty %}
     <div class="{{ body_classes }}">
         {{ body|raw|nl2br }}
     </div>
+
 {% endif %}
