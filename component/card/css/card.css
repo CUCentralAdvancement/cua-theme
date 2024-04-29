@@ -593,18 +593,21 @@ p.figcaption.card-header {
 
 /* Gold Text */
 .display-4.cu-text-gold,
-.card-text.cu-text-gold {
-    color: var(--cua-gold);
+.card-text.cu-text-gold,
+.cu-text-gold {
+    color: var(--cua-gold) !important;
 }
 
 /* White Text */
-.display-4.cu-white-gold,
-.card-text.cu-white-gold {
-    color: var(--cua-gold);
+.display-4.cu-text-white,
+.card-text.cu-text-white,
+.cu-text-white {
+    color: var(--cua-white) !important;
 }
 
 /* Black Text */
-.display-4.cu-black-gold,
-.card-text.cu-black-gold {
-    color: var(--cua-gold);
+.display-4.cu-black-black,
+.card-text.cu-black-black,
+.cu-text-black {
+    color: var(--cua-black) !important;
 }
