@@ -42,8 +42,10 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(alert_classes) }}>
     <div class="container">
         <div class="row">
+
             {# Close Button #}
             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+
             {# Icon #}
             {% if icon %}
                 <div class="col-sm-1 icon-container">
@@ -52,13 +54,12 @@
                     </div>
                 </div>
             {% endif %}
+
             {# Include Title/Body/Link Components #}
             <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
-                {# Include Title/Body Component #}
-                {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-                {# Include Link/Button Component #}
-                {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
             </div>
+
         </div>
     </div>
 </div>
