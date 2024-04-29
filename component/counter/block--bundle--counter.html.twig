@@ -48,11 +48,10 @@
     {% elseif icon is not empty %}
         {# Include Icon Component #}
         {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+    {% else %}
     {% endif %}
     {# Include Counter #}
     {% include '@cua_theme/component/counter/_counter.html.twig' %}
-    {# Include Title/Body Component #}
-    {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
-    {# Include Link/Button Component #}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+    {# Include Title/Body/Link Component #}
+    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
 </div>
