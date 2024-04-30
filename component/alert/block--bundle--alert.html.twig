@@ -18,15 +18,12 @@
 {% set color_background = color_background is not empty ? color_background : '' %}
 {% set color_border = color_background is not empty ? color_border : '' %}
 {% set container_size = container_size is not empty ? container_size : '' %}
-{% set text_color = text_color is not empty ? text_color : '' %}
 
 {# Set id and classes #}
 {% set alert_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'alert alert-dismissible',
-    'card rounded-0',
-    'h-100',
+    'alert alert-dismissible card rounded-0 h-100',
     color_background,
     color_border,
     container_size,
@@ -48,9 +45,11 @@
 
             {# Icon #}
             {% if icon %}
+                {% set icon = icon is not empty ? icon : '' %}
+                {% set icon_size = icon_size is not empty ? icon_size : '' %}
                 <div class="col-sm-1 icon-container">
                     <div class="{% if icon %}d-md-flex justify-content-md-end justify-content-sm-start{% endif %}">
-                        <i class="{{ icon ~ ' ' ~ icon_size }} mt-5 pt-1" style="color: {{ icon_color }}"></i>
+                        <i class="{{ icon }} {{ icon_size }} mt-5 pt-1" style="color:{{ icon_color }}"></i>
                     </div>
                 </div>
             {% endif %}
