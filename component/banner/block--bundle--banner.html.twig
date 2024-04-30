@@ -42,7 +42,7 @@
 {# Set image classes #}
 {% set image_container_classes = [
     parallax is not empty ? parallax : null,
-    effect is not empty ? 'px-5 mx-5 kenburns-' ~ effect : null,
+    effect is not empty ? 'px-5 mx-5 px-sm-2 mx-sm-2 kenburns-' ~ effect : null,
     position_container is not empty ? 'd-flex' ~ ' ' ~ position_container|clean_class : null,
     container_size is not empty ? container_size : null,
 ] %}
@@ -55,7 +55,7 @@
     color_background,
     text_color,
     effect_copy,
-    'my-5',
+    'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] %}
 
