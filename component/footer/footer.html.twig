@@ -99,7 +99,11 @@
             {# CU Logo #}
             <div class="col-sm-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
                 <a href="https://www.cu.edu/" rel="{{ 'University of Colorado home'|t }}" class="footer-site-branding__logo">
-                    <img src="/{{ directory ~ '/images/cua-logo-white.png' }}" alt="{{ 'University of Colorado Logo'|t }}" class="cu-logo">
+                    <picture>
+                        <source media="(max-width: 499px)" srcset="/{{ directory ~ '/images/cua-logo-white-small.png' }}" width=250 height=50.5/>
+                        <source media="(min-width: 500px)" srcset="/{{ directory ~ '/images/cua-logo-white.png' }}" width=500 height=101.5/>
+                        <img src="/{{ directory ~ '/images/cua-logo-white.png' }}" alt="{{ 'University of Colorado Logo'|t }}" width=500 height=101.5/>
+                    </picture>
                 </a>
             </div>
 
