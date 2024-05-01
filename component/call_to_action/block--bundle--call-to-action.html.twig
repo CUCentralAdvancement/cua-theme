@@ -19,6 +19,7 @@
 {% set color_border = color_border is not empty ? color_border|clean_class : '' %}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
+{% set padding = padding is not empty ? padding|clean_class : '' %}
 
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
@@ -34,13 +35,17 @@
     'block-' ~ configuration.provider|clean_class,
     'call-to-action',
     'card rounded-0 h-100',
-    'mx-3 mx-sm-0',
+    'mx-2 mx-sm-0 p-2',
     animate_trigger,
-    color_background,
-    color_border,
     container_size,
     margins,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+
+{% set cta_body_classes = [
+    color_background,
+    color_border,
+    padding,
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {# Add unique id to block #}
@@ -52,20 +57,22 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes, animate_classes) }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    {# Include Video Component  #}
-    {% if provider is not empty %}
-        {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+    <div{{ attributes.addClass(cta_body_classes) }}>
+        {# Include Video Component  #}
+        {% if provider is not empty %}
+            {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
 
-        {# Include Image Component #}
-    {% elseif card_image is not empty %}
-        {% include '@cua_theme/component/card/_card--image.html.twig' %}
+            {# Include Image Component #}
+        {% elseif card_image is not empty %}
+            {% include '@cua_theme/component/card/_card--image.html.twig' %}
 
-        {# Include Icon Component #}
-    {% elseif icon is not empty %}
-        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
-    {% endif %}
+            {# Include Icon Component #}
+        {% elseif icon is not empty %}
+            {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+        {% endif %}
 
-    {# Include Title/Body/Link Component #}
-    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+        {# Include Title/Body/Link Component #}
+        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
 
+    </div>
 </div>
