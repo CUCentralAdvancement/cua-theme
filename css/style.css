@@ -1360,6 +1360,11 @@ ol.list-group.node_search-results a {
     line-height: 1.5;
 }
 
+/* Move staff email block down on right column */
+#block-cua-theme-tocontactourstaffbyemailreachouttothefollowingteamsat--2 {
+    margin: 4.2rem 0 0;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
