@@ -67,22 +67,32 @@
  * @see html.html.twig
  */
 #}
+
 {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
 {% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
 {% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+
 <div id="page-wrapper">
     <div id="page">
+
+        {# Alert #}
         {% if page.alert %}
             {% block alert %}
                 {{ page.alert }}
             {% endblock %}
         {% endif %}
+
+        {# Header #}
         {% include '@cua_theme/component/header/header.html.twig' %}
+
+        {# Banner #}
         {% if page.banner %}
             {% block banner %}
                 {{ page.banner }}
             {% endblock %}
         {% endif %}
+
+        {# Highlight #}
         {% if page.highlighted %}
             <div class="highlighted">
                 <aside class="{{ container }} section clearfix"
@@ -91,6 +101,8 @@
                 </aside>
             </div>
         {% endif %}
+
+        {# Featured Top #}
         {% if page.featured_top %}
             {% block featured %}
                 <div class="featured-top">
@@ -101,6 +113,8 @@
                 </div>
             {% endblock %}
         {% endif %}
+
+        {#Main Content #}
         <div id="main-wrapper" class="layout-main-wrapper pb-5 clearfix">
             {% block content %}
                 <div id="main" class="{{ container }}">
@@ -111,6 +125,8 @@
                                 {{ page.content }}
                             </section>
                         </main>
+
+                        {# Left Sidebar #}
                         {% if sidebar_first_exists %}
                             <div class="col-md-3 col-sm-12 mb-4">
                                 <aside class="section" role="complementary">
@@ -118,8 +134,10 @@
                                 </aside>
                             </div>
                         {% endif %}
+
+                        {# Right Sidebar #}
                         {% if sidebar_second_exists %}
-                            <div{{ sidebar_second_attributes }}>
+                            <div class="col-md-3 col-sm-12 mb-4 order-md-last">
                                 <aside class="section" role="complementary">
                                     {{ page.sidebar_second }}
                                 </aside>
@@ -129,6 +147,8 @@
                 </div>
             {% endblock %}
         </div>
+
+        {# Featured Botton One #}
         {% if page.featured_bottom_first %}
             <div class="featured-bottom-first container-fluid g-0">
                 <aside class="clearfix" role="complementary">
@@ -136,6 +156,8 @@
                 </aside>
             </div>
         {% endif %}
+
+        {# Featured Botton Second #}
         {% if page.featured_bottom_second %}
             <div class="featured-bottom-second container g-0">
                 <aside class="clearfix" role="complementary">
@@ -143,6 +165,8 @@
                 </aside>
             </div>
         {% endif %}
+
+        {# Featured Botton Third #}
         {% if page.featured_bottom_third %}
             <div class="featured-bottom-third container-fluid g-0">
                 <aside class="clearfix" role="complementary">
@@ -150,7 +174,9 @@
                 </aside>
             </div>
         {% endif %}
+
         {# Footer #}
         {% include '@cua_theme/component/footer/footer.html.twig' %}
+
     </div>
 </div>
