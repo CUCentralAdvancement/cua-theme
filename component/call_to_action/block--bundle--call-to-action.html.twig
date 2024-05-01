@@ -51,18 +51,23 @@
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes, animate_classes) }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+
     {# Media Component Logic #}
     {% if provider is not empty %}
+
         {# Include Video Component  #}
         {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
     {% elseif card_image is not empty %}
+
         {# Include Image Component #}
         {% include '@cua_theme/component/card/_card--image.html.twig' %}
     {% elseif icon is not empty %}
+
         {# Include Icon Component #}
         {% include '@cua_theme/component/card/_card--icon.html.twig' %}
-    {% else %}
     {% endif %}
+
     {# Include Title/Body/Link Component #}
     {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
 </div>
