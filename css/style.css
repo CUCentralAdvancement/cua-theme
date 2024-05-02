@@ -1366,7 +1366,7 @@ span.views-summary.views-summary-unformatted {
     margin: 0 .25rem 0;
 }
 
-.view-id-trustees .views-element-container .view-content.row>* {
+.view-id-trustees .view-display-id-attachment_1 .view-content.row>* {
     width: inherit;
 }
 
@@ -1379,6 +1379,16 @@ span.views-summary.views-summary-unformatted {
     display: inline-block; /* Displays spans horizontally */
 }
 
+.views-exposed-form .bef-exposed-form #block-cua-theme-content form .form-actions {
+    margin-top: 0 !important;
+}
+
+.view-id-trustees .btn.btn-primary {
+    background: var(--cua-gray-700);
+    color: var(--cua-white);
+    border: 1px solid var(--cua-gray-700);
+    padding: .35rem  1rem;
+}
 
 /*** Responsive ***/
 

@@ -430,7 +430,7 @@ form .form-actions {
   color: white !important;
 }
 
-#block-cua-theme-content form .form-actions {
+#cu-layout-builder #block-cua-theme-content form .form-actions {
   margin-top: 1.55rem !important;
 }
 
