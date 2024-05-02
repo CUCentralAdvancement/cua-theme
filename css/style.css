@@ -1366,7 +1366,7 @@ span.views-summary.views-summary-unformatted {
     margin: 0 .25rem 0;
 }
 
-.view-id-trustees .view-display-id-attachment_1 .view-content.row>* {
+.attachment.attachment-before .view-content.row>* {
     width: inherit;
 }
 
@@ -1427,3 +1427,4 @@ span.views-summary.views-summary-unformatted {
         color: var(--cua-black) !important;
     }
 }
+
