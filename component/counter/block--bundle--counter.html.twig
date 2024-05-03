@@ -18,21 +18,26 @@
 {{ attach_library('cua_theme/counter') }}
 
 {# If class is active #}
-{% set color_background = color_background is not empty ? color_background|clean_class : '' %}
-{% set color_border = color_border is not empty ? color_border|clean_class : '' %}
-{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
+{% set background_color = color_background is not empty ? color_background|clean_class : '' %}
+{% set size = container_size is not empty ? container_size|clean_class : '' %}
+{% set border_color = color_border is not empty ? color_border|clean_class : '' %}
+{% set center_content = center_content ?? null %}
+{% set page_title_visibility = page_title_visibility ?? null %}
+{% set text_alignment = text_alignment ?? null %}
+{% set text_color = text_color ?? null %}
+
 
 {# Add Classes #}
-{% set counter_classes = [
+{% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'counter',
     'card rounded-0 mx-2',
-    color_background,
-    color_border,
-    container_size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+    background_color,
+    border_color,
+    size,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
+%}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -40,18 +45,52 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(counter_classes) }}>
-    {# Media Component Logic #}
-    {% if card_image is not empty %}
-        {# Include Image Component #}
-        {% include '@cua_theme/component/card/_card--image.html.twig' %}
-    {% elseif icon is not empty %}
-        {# Include Icon Component #}
-        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
-    {% else %}
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
+
+    {# Include Icon Component #}
+    {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+
+    {# Include Image Component #}
+    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+
+    {# Counter #}
+    {% if content.field_number is not empty %}
+        <div class="counter-size {{ text_alignment ~ ' ' ~ text_color }}">
+            {# Before number #}
+            {% if content.field_before_number is not empty %}
+                <span class="padding-right {{ text_color }}">{{ content.field_before_number.0 }}</span>
+            {% endif %}
+            {# Counter #}
+            <span class="counter-up {{ text_color }}" data-count="{{ content.field_number['#items'].value }}">0</span>
+            {# After number #}
+            {% if content.field_after_number is not empty %}
+                <span class="padding-left {{ text_color }}">{{ content.field_after_number.0 }}</span>
+            {% endif %}
+        </div>
     {% endif %}
-    {# Include Counter #}
-    {% include '@cua_theme/component/counter/_counter.html.twig' %}
-    {# Include Title/Body/Link Component #}
-    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
+    {# Title #}
+    {{ title_prefix ?? '' }}
+    <div class="display-4 {{ [
+        center_content is not empty ? ' ' ~ center_content,
+        page_title_visibility is not empty ? ' ' ~ page_title_visibility,
+        text_alignment is not empty ? ' ' ~ text_alignment,
+        text_color is not empty ? ' ' ~ text_color
+    ]|join }}">
+        {{ label }}
+    </div>
+    {{ title_suffix ?? '' }}
+
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/body/_body.html.twig' %}
+
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
 </div>
+
+
+
+
+
+
