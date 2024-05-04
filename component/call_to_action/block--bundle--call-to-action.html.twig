@@ -15,11 +15,14 @@
 #}
 
 {# Add optional classes based on conditions #}
-{% set color_background = color_background is not empty ? color_background|clean_class : '' %}
-{% set color_border = color_border is not empty ? color_border|clean_class : '' %}
-{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
-{% set margins = margins is not empty ? margins|clean_class : '' %}
-{% set padding = padding is not empty ? padding|clean_class : '' %}
+{% set color_background = color_background is not empty ? color_background : '' %}
+{% set color_border = color_border is not empty ? color_border : '' %}
+{% set container_size = container_size is not empty ? container_size : '' %}
+{% set margins = margins is not empty ? margins : '' %}
+{% set padding =  padding is not empty ?  padding : '' %}
+{% set page_title_visibility =  page_title_visibility is not empty ?  page_title_visibility : '' %}
+{% set text_alignment = text_alignment is not empty ? text_alignment : '' %}
+{% set text_color = text_color is not empty ? text_color : '' %}
 
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
@@ -37,16 +40,18 @@
     'card rounded-0 h-100',
     'mx-2 mx-sm-0 p-2',
     animate_trigger,
-    container_size,
-    margins,
     color_background,
     color_border,
+    container_size,
+    margins,
+    padding,
+    text_alignment,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {% set cta_body_classes = [
-    padding,
     color_background,
+    padding,
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {# Add unique id to block #}
@@ -72,8 +77,55 @@
             {% include '@cua_theme/component/card/_card--icon.html.twig' %}
         {% endif %}
 
-        {# Include Title/Body/Link Component #}
-        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+        {# TItle #}
+        {{ title_prefix ?? '' }}
+        <div class="display-4 card-text lead {{ [
+            page_title_visibility,
+            text_color,
+        ]|join(' ') }} my-3 g-0">
+            {{ label }}
+        </div>
+        {{ title_suffix ?? '' }}
+
+        {# Body #}
+        {% if body is not empty %}
+            {# Concatenate optional classes with a space #}
+            {% set body_classes = [
+                'card-text lead g-0',
+                text_color,
+            ] | join(' ')|trim %}
+            <div class="{{ body_classes }}">
+                {{ body|raw|nl2br }}
+            </div>
+        {% endif %}
+
+        {# Card Footer Button #}
+        {% if link_title is not empty %}
+            {# Set card footer classes #}
+            {% set card_footer_classes = [
+                'card-footer',
+                'mb-5',
+                color_background,
+                text_alignment,
+            ] | join(' ')|trim %}
+            {# Set card footer link classes #}
+            {% set card_footer_link_classes = [
+                'align-self-end',
+                'card-link',
+                'btn',
+                (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
+                (outline is empty) ? ('btn-' ~ button_color) : null,
+                'text-decoration-none',
+                'p-2 mt-2'
+            ] | join(' ')|trim %}
+            {# Add optional variables based on conditions #}
+            {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
+            <div class="{{ card_footer_classes }}">
+                <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="{{ card_footer_link_classes }}">
+                    {{ aria_label }}
+                </a>
+            </div>
+        {% endif %}
 
     </div>
 </div>
