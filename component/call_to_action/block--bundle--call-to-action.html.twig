@@ -39,13 +39,14 @@
     animate_trigger,
     container_size,
     margins,
+    color_background,
+    color_border,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {% set cta_body_classes = [
-    color_background,
-    color_border,
     padding,
+    color_background,
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {# Add unique id to block #}

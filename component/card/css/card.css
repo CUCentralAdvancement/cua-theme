@@ -24,6 +24,10 @@
     padding: 1.5rem !important;
 }
 
+.parallax .add-padding {
+    padding: 10rem 0 !important;
+}
+
 /* Card footer styling */
 .card .card-footer {
     background-color: transparent;
@@ -611,3 +615,4 @@ p.figcaption.card-header {
 .cu-text-black {
     color: var(--cua-black) !important;
 }
+

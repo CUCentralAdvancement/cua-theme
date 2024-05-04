@@ -607,6 +607,11 @@ input#edit-submit-contact--2 {
     color: green !important;
 }
 
+/*background */
+.cu-bg-pure-black {
+    background-color: var(--cua-black-pure) !important;
+}
+
 /* Side column links */
 aside .form-select ul,
 aside ul {
@@ -763,6 +768,10 @@ div#block-cua-theme-breadcrumbs {
 p.intro {
     font-size: 1.2rem;
     color: var(--cua-gray-800);
+}
+
+.cu-text-white p.intro {
+    color: var(--cua-white);
 }
 
 .path-frontpage div#block-cua-theme-page-title {

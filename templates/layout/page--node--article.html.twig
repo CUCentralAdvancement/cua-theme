@@ -80,6 +80,19 @@
                 {{ page.banner }}
             {% endblock %}
         {% endif %}
+
+        {# Featured Top #}
+        {% if page.featured_top %}
+            {% block featured %}
+                <div class="featured-top">
+                    <aside class="featured-top__inner section {{ container }} clearfix"
+                           role="complementary">
+                        {{ page.featured_top }}
+                    </aside>
+                </div>
+            {% endblock %}
+        {% endif %}
+
         <div id="main-wrapper-landing-page" class="container-fluid g-0">
             {% block content %}
                 <div id="main" class="container-fluid g-0">

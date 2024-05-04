@@ -26,6 +26,7 @@
 {% set effect_copy = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
 {% set text_color = text_color is not empty ? text_color|clean_class : '' %}
 {% set margins = margins is not empty ? margins|clean_class : '' %}
+{% set padding = padding is not empty ? padding|clean_class : '' %}
 
 {# Set container classes #}
 {% set container_classes = [
@@ -55,6 +56,7 @@
     color_background,
     text_color,
     effect_copy,
+    padding,
     'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] %}

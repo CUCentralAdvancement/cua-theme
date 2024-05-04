@@ -1,7 +1,6 @@
 {# Title #}
-{% if label is not empty %}
 
-    {# Add optional variables based on conditions #}
+{# Add optional variables based on conditions #}
     {% set center_content = center_content ?? null %}
     {% set page_title_visibility = page_title_visibility ?? null %}
     {% set text_alignment = text_alignment ?? null %}
@@ -18,5 +17,3 @@
         {{ label }}
     </div>
     {{ title_suffix ?? '' }}
-
-{% endif %}
