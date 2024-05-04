@@ -29,8 +29,15 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(image_bundle_classes) }}>
+
     {# Title #}
-    {% include '@cua_theme/component/title/_title.html.twig' %}
+    {{ title_prefix ?? '' }}
+    <div class="display-4">
+        {{ label }}
+    </div>
+    {{ title_suffix ?? '' }}
+
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
+
 </div>
