@@ -78,55 +78,8 @@
             {% include '@cua_theme/component/card/_card--icon.html.twig' %}
         {% endif %}
 
-        {# TItle #}
-        {{ title_prefix ?? '' }}
-        <div class="display-4 card-text lead {{ [
-            page_title_visibility,
-            text_color,
-        ]|join(' ') }} my-3 g-0">
-            {{ label }}
-        </div>
-        {{ title_suffix ?? '' }}
-
-        {# Body #}
-        {% if body is not empty %}
-            {% set body_classes = [
-                'card-text lead g-0',
-                text_color,
-            ] | join(' ')|trim %}
-            <div class="{{ body_classes }}">
-                {{ body|raw|nl2br }}
-            </div>
-        {% endif %}
-
-        {# Card Footer Button #}
-        {% if link_title is not empty %}
-            {% set card_footer_classes = [
-                'card-footer',
-                'mb-5',
-                color_background,
-                text_alignment,
-            ] | join(' ')|trim %}
-            {% set card_footer_link_classes = [
-                'align-self-end',
-                'card-link',
-                'btn',
-                (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
-                (outline is empty) ? ('btn-' ~ button_color) : null,
-                'text-decoration-none',
-                'p-2 mt-2'
-            ] | join(' ')|trim %}
-            {# Add optional variables based on conditions #}
-            {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-
-            {# Button #}
-            <div class="{{ card_footer_classes }}">
-                <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="{{ card_footer_link_classes }}">
-                    {{ aria_label }}
-                </a>
-            </div>
-
-        {% endif %}
+        {# Include Title/Body/Link Component #}
+        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
 
     </div>
 </div>
