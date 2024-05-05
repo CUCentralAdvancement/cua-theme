@@ -1,17 +1,10 @@
 {# Body #}
 {% if body is not empty %}
-
-{# Concatenate optional classes with a space #}
-{% set body_classes = [
-    'card-text lead g-0',
-    center_content is not empty ? center_contentd : null,
-    text_alignment is not empty ? text_alignment : null,
-    text_color is not empty ? text_color : null,
-] | join(' ')|trim %}
-
-{# Content #}
+    {% set body_classes = [
+        'card-text lead g-0',
+        text_color,
+    ] | join(' ')|trim %}
     <div class="{{ body_classes }}">
         {{ body|raw|nl2br }}
     </div>
-
 {% endif %}

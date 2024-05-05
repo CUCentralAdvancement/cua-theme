@@ -2,10 +2,10 @@
 
 {# Include Title Component #}
 {% if label is defined and label is not empty %}
-    {% include '@cua_theme/component/title/_title.html.twig' with {'label': label} %}
+    {% include '@cua_theme/component/title/_title.html.twig' %}
 {% endif %}
 
 {# Include Body Component #}
 {% if body is defined and body is not empty %}
-    {% include '@cua_theme/component/body/_body.html.twig' with {'body': body} %}
+    {% include '@cua_theme/component/body/_body.html.twig'%}
 {% endif %}

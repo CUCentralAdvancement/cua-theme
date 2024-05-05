@@ -1,19 +1,11 @@
 {# Title #}
-
-{# Add optional variables based on conditions #}
-    {% set center_content = center_content ?? null %}
-    {% set page_title_visibility = page_title_visibility ?? null %}
-    {% set text_alignment = text_alignment ?? null %}
-    {% set text_color = text_color ?? null %}
-
-    {# Content #}
-    {{ title_prefix ?? '' }}
-    <div class="display-4 card-text lead {{ [
-        center_content is not empty ? ' ' ~ center_content,
-        page_title_visibility is not empty ? ' ' ~ page_title_visibility,
-        text_alignment is not empty ? ' ' ~ text_alignment,
-        text_color is not empty ? ' ' ~ text_color
-    ]|join }} my-3 g-0">
-        {{ label }}
-    </div>
-    {{ title_suffix ?? '' }}
+{{ title_prefix ?? '' }}
+<div class="display-4 card-text lead {{ [
+    center_content is not empty ? ' ' ~ center_content,
+    page_title_visibility is not empty ? ' ' ~ page_title_visibility,
+    text_alignment is not empty ? ' ' ~ text_alignment,
+    text_color is not empty ? ' ' ~ text_color
+]|join }} my-3 g-0">
+    {{ label }}
+</div>
+{{ title_suffix ?? '' }}

@@ -64,6 +64,7 @@
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
     <div{{ attributes.addClass(cta_body_classes) }}>
+
         {# Include Video Component  #}
         {% if provider is not empty %}
             {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
@@ -89,7 +90,6 @@
 
         {# Body #}
         {% if body is not empty %}
-            {# Concatenate optional classes with a space #}
             {% set body_classes = [
                 'card-text lead g-0',
                 text_color,
@@ -101,14 +101,12 @@
 
         {# Card Footer Button #}
         {% if link_title is not empty %}
-            {# Set card footer classes #}
             {% set card_footer_classes = [
                 'card-footer',
                 'mb-5',
                 color_background,
                 text_alignment,
             ] | join(' ')|trim %}
-            {# Set card footer link classes #}
             {% set card_footer_link_classes = [
                 'align-self-end',
                 'card-link',
@@ -120,11 +118,14 @@
             ] | join(' ')|trim %}
             {# Add optional variables based on conditions #}
             {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
+
+            {# Button #}
             <div class="{{ card_footer_classes }}">
                 <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}" class="{{ card_footer_link_classes }}">
                     {{ aria_label }}
                 </a>
             </div>
+
         {% endif %}
 
     </div>
