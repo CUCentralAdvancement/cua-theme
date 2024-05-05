@@ -26,9 +26,8 @@
 {% set text_alignment = text_alignment ?? null %}
 {% set text_color = text_color ?? null %}
 
-
 {# Add Classes #}
-{% set classes = [
+{% set counter_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'counter',
@@ -45,7 +44,7 @@
 ] %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(counter_classes) }}>
 
     {# Include Icon Component #}
     {% include '@cua_theme/component/card/_card--icon.html.twig' %}
@@ -88,7 +87,6 @@
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>
-
 
 
 

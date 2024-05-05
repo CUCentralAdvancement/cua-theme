@@ -38,7 +38,7 @@
     'block-' ~ configuration.provider|clean_class,
     'call-to-action',
     'card rounded-0 h-100',
-    'mx-2 mx-sm-0 p-2',
+    'mx-md-2 mx-sm-0 p-2',
     animate_trigger,
     color_background,
     color_border,
@@ -47,11 +47,6 @@
     padding,
     text_alignment,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
-
-{% set cta_body_classes = [
-    color_background,
-    padding,
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
 {# Add unique id to block #}
