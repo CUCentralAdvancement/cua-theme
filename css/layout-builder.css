@@ -450,6 +450,11 @@ form .form-actions {
 #edit-moderation-state-wrapper {
   min-width: 400px;
 }
+
+.contextual {
+  right: 0 !important;
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 991px) {
   .layout--threecol-section--33-34-33 > .layout__region--first,
