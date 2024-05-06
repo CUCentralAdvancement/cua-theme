@@ -616,6 +616,15 @@ p.figcaption.card-header {
     color: var(--cua-black) !important;
 }
 
+/* Force footer btn to bottom */
+.card-body {
+    flex: 1;
+}
+
+.card-footer {
+    margin-top: auto;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {

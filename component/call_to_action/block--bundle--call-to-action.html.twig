@@ -58,23 +58,27 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes, animate_classes) }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    <div{{ attributes.addClass(cta_body_classes) }}>
+    {# Include Video Component  #}
+    {% if provider is not empty %}
+        {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
 
-        {# Include Video Component  #}
-        {% if provider is not empty %}
-            {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+        {# Include Image Component #}
+    {% elseif card_image is not empty %}
+        {% include '@cua_theme/component/card/_card--image.html.twig' %}
 
-            {# Include Image Component #}
-        {% elseif card_image is not empty %}
-            {% include '@cua_theme/component/card/_card--image.html.twig' %}
+        {# Include Icon Component #}
+    {% elseif icon is not empty %}
+        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+    {% endif %}
 
-            {# Include Icon Component #}
-        {% elseif icon is not empty %}
-            {% include '@cua_theme/component/card/_card--icon.html.twig' %}
-        {% endif %}
+    {# Include Title #}
+    {% include '@cua_theme/component/title/_title.html.twig' %}
 
-        {# Include Title/Body/Link Component #}
-        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+    {# Include Body #}
+    {% include '@cua_theme/component/body/_body.html.twig' %}
 
-    </div>
+    {# Include Footer Link #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
 </div>
+

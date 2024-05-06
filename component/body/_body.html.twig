@@ -1,10 +1,11 @@
 {# Body #}
 {% if body is not empty %}
     {% set body_classes = [
-        'card-text lead g-0',
+        'card-body d-flex flex-column card-text lead g-0',
         text_color,
     ] | join(' ')|trim %}
     <div class="{{ body_classes }}">
         {{ body|raw|nl2br }}
     </div>
 {% endif %}
+
