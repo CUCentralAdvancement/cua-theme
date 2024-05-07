@@ -455,6 +455,19 @@ form#node-page-layout-builder-form .nav.nav-pills .nav-item {
   right: 0 !important;
 }
 
+.layout-builder-form .form-actions {
+  display: flex;
+  justify-content: center; /* Horizontally center the contents */
+  align-items: center; /* Vertically center the contents */
+}
+
+#node-article-layout-builder-form {
+  max-width: 1140px; /* Adjust the value as needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 /*** Responsive ***/
 @media only screen and (max-width: 991px) {
   .layout--threecol-section--33-34-33 > .layout__region--first,
@@ -492,3 +505,4 @@ form#node-page-layout-builder-form .nav.nav-pills .nav-item {
   }
 
 }
+
