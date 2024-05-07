@@ -1,4 +1,14 @@
 {# YouTube Video Container #}
 <div class="px-3">
+
+    {# Title \ needed for contextual menu link #}
+    {{ title_prefix ?? '' }}
+    <div class="visually-hidden">
+        {{ label }}
+    </div>
+    {{ title_suffix ?? '' }}
+
+    {# Video #}
     {{ content.field_video_youtube.0 }}
+
 </div>
