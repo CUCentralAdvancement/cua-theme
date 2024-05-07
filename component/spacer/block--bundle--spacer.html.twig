@@ -30,9 +30,10 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(spacer_classes) }}>
-    <div class="spacer {{ size }}">
+    <div class="spacer {{ size }} g-0">
         {{ title_prefix }}
-        <div class="small text-align-center"> {{ 'Blank space size:'|t ~ ' ' ~ size ~ ' ' ~ '(Only visible for logged in ADMIN)'|t }}</div>
+        <div class="small text-align-center">{{ label ~ ': ' ~ 'Blank space size:'|t ~ ' ' ~ size ~ ' ' ~ '(Only visible for logged-in admins)'|t }}</div>
         {{ title_suffix }}
     </div>
 </div>
+
