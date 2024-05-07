@@ -14,8 +14,22 @@
 */
 #}
 
+{# Add Classes #}
+{% set spacer_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'spacer',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+
+{# Add unique id to block #}
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+] %}
+
 {# Render content #}
-<div{{ attributes }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(spacer_classes) }}>
     <div class="spacer {{ size }}">
         {{ title_prefix }}
         <div class="small text-align-center"> {{ 'Blank space size:'|t ~ ' ' ~ size ~ ' ' ~ '(Only visible for logged in ADMIN)'|t }}</div>
