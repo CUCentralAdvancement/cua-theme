@@ -126,7 +126,7 @@ div#block-cua-theme-page-title {
     z-index: -100;
 }
 
-h2, .h2 {
+h2, .h2, h2.title {
     font-size: 2rem;
 }
 
@@ -148,19 +148,19 @@ aside h2::after {
     font-size: 1.75rem;
 }
 
-h3, .h3 {
+h3, .h3, h3.title {
     font-size: 1.875rem;
 }
 
-h4, .h4 {
+h4, .h4, h4.title {
     font-size: 1.625rem;
 }
 
-h5, .h5 {
+h5, .h5, h5.title {
     font-size: 1.3rem;
 }
 
-h6, .h6 {
+h6, .h6, h6.title {
     font-size: 1.125rem;
 }
 
@@ -181,6 +181,36 @@ h2.title {
     color: var(--cua-blue-hover);
     text-decoration: underline;
     transition: color 0.5s ease, text-decoration 0.5s ease; /* Transition for color and text-decoration */
+}
+
+p.intro {
+    font-size: 1.2rem;
+    color: var(--cua-gray-800);
+}
+
+p.h2.title {
+    font-size: 2rem;
+    color: var(--cua-gray-800);
+}
+
+p.h3.title {
+    font-size: 1.85rem;
+    color: var(--cua-gray-800);
+}
+
+p.h4.title {
+    font-size: 1.625rem;
+    color: var(--cua-gray-800);
+}
+
+p.h5.title {
+    font-size: 1.3rem;
+    color: var(--cua-gray-800);
+}
+
+p.h6.title {
+    font-size: 1.125rem;
+    color: var(--cua-gray-800);
 }
 
 /* Body */
@@ -768,11 +798,6 @@ div#block-cua-theme-breadcrumbs {
     padding: 0 .5rem 0;
     display: flex;
     justify-content: end;
-}
-
-p.intro {
-    font-size: 1.2rem;
-    color: var(--cua-gray-800);
 }
 
 .cu-text-white p.intro {
