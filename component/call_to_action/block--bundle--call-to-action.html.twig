@@ -1,17 +1,17 @@
 {#
 /**
-* @file
-* Template for the Call to Action component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Call to Action component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
 {# Add optional classes based on conditions #}
@@ -19,8 +19,8 @@
 {% set color_border = color_border is not empty ? color_border : '' %}
 {% set container_size = container_size is not empty ? container_size : '' %}
 {% set margins = margins is not empty ? margins : '' %}
-{% set padding =  padding is not empty ?  padding : '' %}
-{% set page_title_visibility =  page_title_visibility is not empty ?  page_title_visibility : '' %}
+{% set padding = padding is not empty ? padding : '' %}
+{% set page_title_visibility = page_title_visibility is not empty ? page_title_visibility : '' %}
 {% set text_alignment = text_alignment is not empty ? text_alignment : '' %}
 {% set text_color = text_color is not empty ? text_color : '' %}
 
@@ -29,7 +29,7 @@
 {% if animation or animation_speed or animation_delay %}
     {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
 {% endif %}
-{% set data_animation_classes = animation_classes | join(' ')|trim %}
+{% set data_animation_classes = animation_classes | join(' ') | trim %}
 {% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
 
 {# Add CTA classes #}
@@ -47,7 +47,7 @@
     padding,
     text_alignment,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+] | merge(utility_classes ? utility_classes : []) | join(' ') | trim %}
 
 {# Add unique id to block #}
 {% set unique_id = [
@@ -55,24 +55,36 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes, animate_classes) }}
-        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    {# Include Video Component  #}
-    {% if provider is not empty %}
-        {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
-
-        {# Include Image Component #}
-    {% elseif card_image is not empty %}
-        {% include '@cua_theme/component/card/_card--image.html.twig' %}
-
-        {# Include Icon Component #}
-    {% elseif icon is not empty %}
-        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+{# If container size is active #}
+{% if text_alignment is not empty %}
+<div class="{{ text_alignment }} g-0">
     {% endif %}
 
-    {# Include Title/Body/Link #}
-    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+    <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes, animate_classes) }}
+            {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
+        {# Include Video Component  #}
+        {% if provider is not empty %}
+            {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+
+            {# Include Image Component #}
+        {% elseif card_image is not empty %}
+            {% include '@cua_theme/component/card/_card--image.html.twig' %}
+
+            {# Include Icon Component #}
+        {% elseif icon is not empty %}
+            {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+        {% endif %}
+
+        {# Include Title/Body #}
+        {% include '@cua_theme/component/card/_card--title-body.html.twig' %}
+
+        {# Include Link #}
+        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
+    </div>
+
+    {% if text_alignment is not empty %}
 </div>
-
+{% endif %}

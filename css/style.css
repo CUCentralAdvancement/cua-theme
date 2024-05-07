@@ -222,19 +222,6 @@ body, p, a, li {
     text-decoration: none;
 }
 
-#edit-actions .btn.btn-primary {
-    background: var(--cua-gray-800) !important;
-    color: var(--cua-white)!important;
-    border: 1px solid var(--cua-gray-800)!important;
-}
-
-#edit-actions .btn.btn-primary:hover {
-    background: var(--cua-white) !important;
-    color: var(--cua-gray-800)!important;
-    border: 1px solid var(--cua-gray-800)!important;
-    border-left-color: transparent !important;
-}
-
 .form-control {
     padding: .45rem .75rem;
     border: var(--bs-border-width) solid var(--cua-gray-800) ;
