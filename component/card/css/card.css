@@ -24,6 +24,10 @@
     padding: 1.5rem !important;
 }
 
+.call-to-action.card .add-padding {
+    padding: 0 .75rem !important;
+}
+
 .parallax .add-padding {
     padding: 10rem 0 !important;
 }
@@ -39,7 +43,7 @@
     font-size: .95rem;
     font-weight: 500;
     border-radius: 0 !important;
-    padding: 0.75rem 2rem !important;
+    padding: 0.75rem 1.25rem !important;
 }
 
 /* Heading alignment variations for cards */
@@ -362,10 +366,12 @@ a.align-self-end.card-link.btn.nobtn-cu-bg-gold.text-decoration-none:hover {
     border: 2px solid var(--cua-white);
     color: var(--cua-white);
     background: inherit;
-    position: relative; /* Ensure z-index works */
+    font-size: .9rem;
+    position: relative;
     overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
+    transition: width 0.5s ease;
     z-index: 1;
+    line-height: 1.3;
 }
 
 .align-self-end.card-link.btn.nobtn-cu-bg-white.text-decoration-none {
