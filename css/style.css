@@ -185,32 +185,32 @@ h2.title {
 
 p.intro {
     font-size: 1.2rem;
-    color: var(--cua-gray-800);
+    color: inherit;
 }
 
 p.h2.title {
     font-size: 2rem;
-    color: var(--cua-gray-800);
+    color: inherit;
 }
 
 p.h3.title {
     font-size: 1.85rem;
-    color: var(--cua-gray-800);
+    color: inherit;
 }
 
 p.h4.title {
     font-size: 1.625rem;
-    color: var(--cua-gray-800);
+    color: inherit;
 }
 
 p.h5.title {
     font-size: 1.3rem;
-    color: var(--cua-gray-800);
+    color: inherit;
 }
 
 p.h6.title {
     font-size: 1.125rem;
-    color: var(--cua-gray-800);
+    color: inherit;
 }
 
 /* Body */
@@ -254,7 +254,7 @@ body, p, a, li {
 
 .form-control {
     padding: .45rem .75rem;
-    border: var(--bs-border-width) solid var(--cua-gray-800) ;
+    border: var(--bs-border-width) solid var(--cua-gray-800);
 }
 
 a#edit-delete {
@@ -1405,7 +1405,7 @@ span.views-summary.views-summary-unformatted {
     margin: 0 .25rem 0;
 }
 
-.attachment.attachment-before .view-content.row>* {
+.attachment.attachment-before .view-content.row > * {
     width: inherit;
 }
 
@@ -1426,7 +1426,7 @@ span.views-summary.views-summary-unformatted {
     background: var(--cua-gray-700);
     color: var(--cua-white);
     border: 1px solid var(--cua-gray-700);
-    padding: .35rem  1rem;
+    padding: .35rem 1rem;
 }
 
 /*** Responsive ***/
@@ -1460,8 +1460,6 @@ span.views-summary.views-summary-unformatted {
     }
 
     .video-mobile-copy *,
-        /* .banner *, */
-        /* .banner .display-4.card-text, */
     .video-mobile-copy .display-4.card-text {
         color: var(--cua-black) !important;
     }
