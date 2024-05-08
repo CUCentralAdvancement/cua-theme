@@ -1,14 +1,8 @@
 {# Include Title, Body, and Link Components #}
-
 {# Include Title Component #}
 {% include '@cua_theme/component/title/_title.html.twig'%}
-
 {# Include Body Component #}
-{% if body is defined and body is not empty %}
-    {% include '@cua_theme/component/body/_body.html.twig' %}
-{% endif %}
-
+{% include '@cua_theme/component/body/_body.html.twig' %}
 {# Include Link/Button Component #}
-{% if link_title is defined and link_title is not empty %}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-{% endif %}
+{% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
