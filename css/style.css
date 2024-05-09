@@ -1464,6 +1464,11 @@ span.views-summary.views-summary-unformatted {
     margin-bottom: 0;
 }
 
+.block-field-blocknodecontact-ustitle span.field.field--name-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
