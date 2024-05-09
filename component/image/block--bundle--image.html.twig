@@ -15,6 +15,7 @@
 #}
 {% set margins = margins is not empty ? margins : '' %}
 {% set padding = padding is not empty ? padding : '' %}
+{% set text_alignment = text_alignment is not empty ? text_alignment : '' %}
 
 {% set image_bundle_classes = [
     'block',
@@ -36,17 +37,22 @@
     {# Include Image Component #}
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
 
-    {# Title #}
-    {{ title_prefix ?? '' }}
-    <div class="display-4">
-        {{ label }}
+
+    <div class="container px-5 py-4">
+
+        {# Title #}
+        {{ title_prefix ?? '' }}
+        <div class="display-4 {{ text_alignment }} mb-2">
+            {{ label }}
+        </div>
+        {{ title_suffix ?? '' }}
+
+        {# Include Body Component #}
+        {% include '@cua_theme/component/body/_body.html.twig' %}
+
+        {# Include Link/Button Component #}
+        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
     </div>
-    {{ title_suffix ?? '' }}
-
-    {# Include Body Component #}
-    {% include '@cua_theme/component/body/_body.html.twig' %}
-
-    {# Include Link/Button Component #}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>
