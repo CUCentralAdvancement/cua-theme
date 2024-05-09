@@ -13,13 +13,16 @@
 * - cua_theme.theme
 */
 #}
+{% set margins = margins is not empty ? margins : '' %}
+{% set padding = padding is not empty ? padding : '' %}
 
 {% set image_bundle_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'cu-image',
-    'm-3',
+    margins,
+    padding,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
@@ -30,6 +33,9 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(image_bundle_classes) }}>
 
+    {# Include Image Component #}
+    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+
     {# Title #}
     {{ title_prefix ?? '' }}
     <div class="display-4">
@@ -37,7 +43,10 @@
     </div>
     {{ title_suffix ?? '' }}
 
-    {# Include Image Component #}
-    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+    {# Include Body Component #}
+    {% include '@cua_theme/component/body/_body.html.twig' %}
+
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>
