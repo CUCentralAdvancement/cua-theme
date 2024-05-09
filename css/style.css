@@ -1469,6 +1469,12 @@ span.views-summary.views-summary-unformatted {
     font-size: 1.1rem;
 }
 
+.field--name-field-campus  .field__item {
+    display: inline;
+    margin-right: 10px; /* Optional: Add some space between links */
+}
+
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
