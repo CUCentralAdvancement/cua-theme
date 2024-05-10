@@ -1474,6 +1474,28 @@ span.views-summary.views-summary-unformatted {
     margin-right: 10px; /* Optional: Add some space between links */
 }
 
+/* Sidebar right menu */
+.layout__region.layout__region--second .navigation h2 {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}
+
+.layout__region.layout__region--second .navigation .nav-item {
+    border: 1px solid var(--cua-black);
+    margin-bottom: .25rem;
+    width: 100%;
+}
+
+.layout__region.layout__region--second .navigation .nav-item a {
+    color: var(--cua-black);
+    font-size: .9rem;
+}
+.layout__region.layout__region--second .navigation .nav-item a:hover {
+    background: var(--cua-black);
+    color: var(--cua-white);
+    font-size: .9rem;
+    text-decoration: none;
+}
 
 /*** Responsive ***/
 
