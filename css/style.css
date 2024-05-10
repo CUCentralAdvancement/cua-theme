@@ -1497,6 +1497,9 @@ span.views-summary.views-summary-unformatted {
     text-decoration: none;
 }
 
+.block.block-menu.navigation.menu--more-essential-ideas {
+    padding: 0 0 0 4rem;
+}
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
