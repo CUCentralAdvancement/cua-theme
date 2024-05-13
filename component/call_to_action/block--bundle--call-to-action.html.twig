@@ -15,14 +15,14 @@
 #}
 
 {# Add optional classes based on conditions #}
-{% set color_background = color_background is not empty ? color_background : '' %}
-{% set color_border = color_border is not empty ? color_border : '' %}
-{% set container_size = container_size is not empty ? container_size : '' %}
-{% set margins = margins is not empty ? margins : '' %}
-{% set padding = padding is not empty ? padding : '' %}
-{% set page_title_visibility = page_title_visibility is not empty ? page_title_visibility : '' %}
-{% set text_alignment = text_alignment is not empty ? text_alignment : '' %}
-{% set text_color = text_color is not empty ? text_color : '' %}
+{% set color_background = color_background ?? '' %}
+{% set color_border = color_border ?? '' %}
+{% set container_size = container_size ?? '' %}
+{% set margins = margins ?? '' %}
+{% set padding = padding ?? '' %}
+{% set page_title_visibility = page_title_visibility ?? '' %}
+{% set text_alignment = text_alignment ?? '' %}
+{% set text_color = text_color ?? '' %}
 
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
