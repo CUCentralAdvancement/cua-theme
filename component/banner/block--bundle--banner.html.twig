@@ -18,7 +18,7 @@
 {{ attach_library('cua_theme/banner') }}
 
 {# Preload background image #}
-{% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) | escape('url') %}
+{% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
 <div style="background-image: url('{{ bg_image_url }}');"></div>
 
 
