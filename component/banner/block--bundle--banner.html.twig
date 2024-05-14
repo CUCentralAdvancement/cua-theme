@@ -18,15 +18,18 @@
 {{ attach_library('cua_theme/banner') }}
 
 {# Preload background image #}
-{% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
-<link rel="preload" href="{{ bg_image_url }}" as="image">
+{% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) | escape('url') %}
+<div style="background-image: url('{{ bg_image_url }}');"></div>
+
 
 {# Add optional variables based on conditions #}
-{% set color_background = color_background is not empty ? color_background : '' %}
+
+{# Add optional classes based on conditions #}
+{% set color_background = color_background ?? '' %}
 {% set effect_copy = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
-{% set text_color = text_color is not empty ? text_color|clean_class : '' %}
-{% set margins = margins is not empty ? margins|clean_class : '' %}
-{% set padding = padding is not empty ? padding|clean_class : '' %}
+{% set margins = margins ?? '' %}
+{% set padding = padding ?? '' %}
+{% set text_color = text_color ?? '' %}
 
 {# Set container classes #}
 {% set container_classes = [
