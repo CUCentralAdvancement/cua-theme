@@ -1256,7 +1256,7 @@ div#block-cua-theme-page-title {
 }
 
 .featured-top {
-    margin: 1rem 0 0;
+    margin: 0;
 }
 
 .node__content {
@@ -1402,7 +1402,8 @@ ol.list-group.node_search-results a {
 /* Glossary for Trustees */
 span.views-summary.views-summary-unformatted {
     border: 1px solid var(--cua-gray-300);
-    margin: 0 .25rem 0;
+    margin: 0 0 2rem .75rem;
+    width: auto;
 }
 
 .attachment.attachment-before .view-content.row > * {
