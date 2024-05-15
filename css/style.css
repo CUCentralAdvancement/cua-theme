@@ -108,8 +108,12 @@ h1.title {
 
 div#block-cua-theme-page-title {
     color: var(--cua-gray-700);
-    margin: 0 0 0 1.7rem;
+    margin: 2rem 0 0 1.5rem;
     position: relative;
+}
+
+.path-frontpage div#block-cua-theme-page-title {
+    display: none;
 }
 
 .base-heading-square__accent {
@@ -804,10 +808,6 @@ div#block-cua-theme-breadcrumbs {
     color: var(--cua-white);
 }
 
-.path-frontpage div#block-cua-theme-page-title {
-    display: none;
-}
-
 /* FAQ Styles */
 .faq .js-views-accordion-group-header {
     padding: 0;
@@ -1192,11 +1192,6 @@ div#block-cua-theme-breadcrumbs {
 
 div#block-cua-theme-viewsexposedfilterblock {
     margin: 1rem 0 0;
-}
-
-div#block-cua-theme-page-title {
-    margin: 0.5rem 0 0 1.5rem;
-    position: relative;
 }
 
 /* Spotlight */
