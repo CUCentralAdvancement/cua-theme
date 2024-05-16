@@ -1,11 +1,19 @@
 {# Card Footer Button #}
 {% if link_title is not empty %}
 
+    {# If class is active #}
+    {% set text_alignment = text_alignment is not empty ? text_alignment|clean_class : '' %}
+    {% set size = container_size is not empty ? container_size|clean_class : '' %}
+    {% set position_container_on = position_container is not empty ? 'd-flex' ~ ' ' ~ position_container|clean_class : '' %}
+    {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
+
     {# Set card footer classes #}
     {% set card_footer_classes = [
         'card-footer d-flex',
         'mb-5',
+        container_size,
         color_background,
+        position_container,
         text_alignment,
     ] | join(' ')|trim %}
 
@@ -17,7 +25,7 @@
         (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
         (outline is empty) ? ('btn-' ~ button_color) : null,
         'text-decoration-none',
-        'p-2 mt-2'
+        'p-2 mt-3'
     ] | join(' ')|trim %}
 
     {# Add optional variables based on conditions #}
