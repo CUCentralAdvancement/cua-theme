@@ -552,15 +552,9 @@ span.nav-link.dropdown-toggle.nav-link- {
     --bs-dropdown-padding-y:0 !important;
 }
 
-a.active.nav-link--about-us.is-active {
-    color: var(--cua-white);
+.dropdown-menu a.active.is-active {
+    color: var(--cua-white) !important;
 }
-
-/* first child main nav home button overrides
-header .nav-item:first-child:hover {
-    background: transparent !important;
-}
-*/
 
 /* Responsive */
 @media only screen and (max-width: 991px) {
