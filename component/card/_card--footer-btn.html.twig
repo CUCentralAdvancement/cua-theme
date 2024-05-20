@@ -1,11 +1,13 @@
 {# Card Footer Button #}
 {% if link_title is not empty %}
 
-    {# If class is active #}
-    {% set text_alignment = text_alignment is not empty ? text_alignment|clean_class : '' %}
-    {% set size = container_size is not empty ? container_size|clean_class : '' %}
-    {% set position_container_on = position_container is not empty ? 'd-flex' ~ ' ' ~ position_container|clean_class : '' %}
-    {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
+    {# Add optional classes based on conditions #}
+    {% set color_background = color_background ?? '' %}
+    {% set color_border = color_border ?? '' %}
+    {% set container_size = container_size ?? '' %}
+    {% set position_container = position_container ?? '' %}
+    {% set text_alignment = text_alignment ?? ' ' %}
+    {% set text_color = text_color ?? '' %}
 
     {# Set card footer classes #}
     {% set card_footer_classes = [
