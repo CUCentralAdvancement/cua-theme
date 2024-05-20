@@ -1401,10 +1401,6 @@ span.views-summary.views-summary-unformatted {
     width: auto;
 }
 
-.attachment.attachment-before .view-content.row > * {
-    width: inherit;
-}
-
 .view-id-trustees .views-element-container .view-content.row {
     white-space: nowrap /* Prevents wrapping */;
     margin: 0 0 1rem;
@@ -1422,7 +1418,7 @@ span.views-summary.views-summary-unformatted {
     background: var(--cua-gray-700);
     color: var(--cua-white);
     border: 1px solid var(--cua-gray-700);
-    padding: .35rem 1rem;
+    padding: .45rem 1rem;
 }
 
 .stories .taxonomy {
