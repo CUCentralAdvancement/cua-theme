@@ -1518,9 +1518,14 @@ a.simplesamlphp-auth-login-link:hover  {
     text-decoration: none;
 }
 
-a.nav-link.active.is-active {
-    background: var(--cua-black) !important;
+.layout__region.layout__region--second a.nav-link.active.is-active {
+    background: var(--cua-black);
     color: var(--cua-white) !important;
+}
+
+.layout .navbar a.nav-link.is-active {
+    background: var(--cua-white);
+    color: var(--cua-black);
 }
 
 /*** Responsive ***/

@@ -89,9 +89,10 @@ nav#navbar-main.sticky {
 }
 
 /* Navbar Padding and Links */
-.nav-link.active.dropdown-toggle {
-    background-color: var(--cua-white);
-    color: var(--cua-gold-hover);
+.nav-link.active.dropdown-toggle,
+.navbar-expand-lg a.nav-link.is-active {
+    background-color: var(--cua-black);
+    color: var(--cua-white) !important;
 }
 
 /* Custom CSS to move the last link to the right */
