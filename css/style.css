@@ -1518,6 +1518,11 @@ a.simplesamlphp-auth-login-link:hover  {
     text-decoration: none;
 }
 
+a.nav-link.active.is-active {
+    background: var(--cua-black) !important;
+    color: var(--cua-white) !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
