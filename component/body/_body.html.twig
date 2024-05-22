@@ -5,7 +5,7 @@
         text_color,
     ] | join(' ')|trim %}
     <div class="{{ body_classes }}">
-        {{ body|raw|nl2br }}
+        {{ content.body|render }}
     </div>
 {% endif %}
 
