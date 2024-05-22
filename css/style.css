@@ -1424,9 +1424,11 @@ span.views-summary.views-summary-unformatted {
 .stories .taxonomy {
     color: var(--cua-gold-hover);
     font-weight: bold;
-    font-size: .9rem;
-    padding: .25rem .5rem;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
     border: 1px solid #5d4915;
+    line-height: 2.5;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .stories .taxonomy:hover {
