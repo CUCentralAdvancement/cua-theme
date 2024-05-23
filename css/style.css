@@ -1115,7 +1115,8 @@ div#block-cua-theme-breadcrumbs {
     background-color: var(--cua-white);
     border: 1px solid var(--cua-gold-hover);
     padding: .35rem 1rem;
-    margin-top: 1rem;
+    display: inline-block;
+    margin: 0 0 .5rem;
 }
 
 .field--type-entity-reference a:hover {
@@ -1429,6 +1430,7 @@ span.views-summary.views-summary-unformatted {
     border: 1px solid #5d4915;
     line-height: 2.5;
     white-space: nowrap; /* Prevent text from wrapping */
+    margin: 0 .25rem 0;
 }
 
 .stories .taxonomy:hover {
