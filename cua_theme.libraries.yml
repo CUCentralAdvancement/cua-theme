@@ -17,7 +17,6 @@ global-styling:
     theme:
       //fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,700,900&display=swap: { type: external }
       //fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap: { type: external }
-      //fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap: { type: external }
 
   js:
     js/global.js: {}

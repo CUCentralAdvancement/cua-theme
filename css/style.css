@@ -1262,7 +1262,7 @@ div#block-cua-theme-viewsexposedfilterblock {
 
 .display-4 {
     font-size: 2rem;
-    font-family:'Roboto Condensed' !important;
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.1;
 }
 

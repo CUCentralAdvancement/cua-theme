@@ -4,13 +4,6 @@ h1.site-slogan {
     padding: 0;
 }
 
-/* Banner */
-.banner h2,
-.banner .h2 {
-    font: 700 50px/1.1 'Arvo', serif; /* Arvo font, bold, size 50px, line-height 1.1 */
-    text-transform: uppercase;
-}
-
 /* Site Name Wrapper */
 .site-name-wrapper {
     width: 100%;
