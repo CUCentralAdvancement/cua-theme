@@ -41,7 +41,7 @@
 
     /* Typography */
     --cua-body-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --cua-arvo: 'Arvo', sans-serif;
+    --cua-arvo: 'Roboto Condensed', sans-serif;
     --cua-body-font-size: 1rem;
     --cua-body-font-weight: 400;
     --cua-body-line-height: 1.5;
@@ -1262,6 +1262,7 @@ div#block-cua-theme-viewsexposedfilterblock {
 
 .display-4 {
     font-size: 2rem;
+    font-family:'Roboto Condensed' !important;
     line-height: 1.1;
 }
 
