@@ -1533,6 +1533,25 @@ a.simplesamlphp-auth-login-link:hover  {
     color: var(--cua-black);
 }
 
+/*** Add Line under text ***/
+.contact.main-contact .view-grouping-header {
+    color: var(--cua-gray-700);
+    font-family: var(--font-roboto);
+    font-size: 1.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 1rem 0 0;
+}
+
+.contact.main-contact .view-grouping-header::after {
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    background-color: var(--cua-gold);
+    margin: 0.4em 0;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
