@@ -1552,6 +1552,10 @@ a.simplesamlphp-auth-login-link:hover  {
     margin: 0.4em 0;
 }
 
+a.bef-link--selected {
+    color: var(--cua-gold) !important
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
