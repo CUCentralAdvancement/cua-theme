@@ -98,11 +98,11 @@
 
             {# CU Logo #}
             <div class="col-sm-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
-                <a href="https://www.cu.edu/" rel="{{ 'University of Colorado home'|t }}" class="footer-site-branding__logo">
+                <a href="{{ url('<front>') }}" rel="{{ 'University of Colorado home'|t }}" class="footer-site-branding__logo">
                     <picture>
-                        <source media="(max-width: 499px)" srcset="/{{ directory ~ '/images/cua-logo-white-small.png' }}" width=250 height=50.5/>
-                        <source media="(min-width: 500px)" srcset="/{{ directory ~ '/images/cua-logo-white.png' }}" width=500 height=101.5/>
-                        <img src="/{{ directory ~ '/images/cua-logo-white.png' }}" alt="{{ 'University of Colorado Logo'|t }}" width=500 height=101.5/>
+                        <source media="(max-width: 499px)" srcset="{{ '/' ~ directory ~ '/images/cua-logo-white-small.png' }}" width=250 height=50.5/>
+                        <source media="(min-width: 500px)" srcset="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}" width=500 height=101.5/>
+                        <img src="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}" alt="{{ 'University of Colorado Logo'|t }}" width=500 height=101.5/>
                     </picture>
                 </a>
             </div>
@@ -125,7 +125,7 @@
                        aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">{{ 'Regents of the University of Colorado'|t }}</a>
                     {# Link to Admin #}
                     <a href="/saml_login?destination=user" rel="noopener" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Admin Login'|t }}">
-                        <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Admin Login'|t }}</a>
+                        <i class="px-2 fas fa-sign-in-alt"></i>{{ 'LOGIN'|t }}</a>
                 </p>
             </div>
 
