@@ -1558,6 +1558,10 @@ a.bef-link--selected {
     color: var(--cua-blue) !important;
 }
 
+.use-ajax.js-layout-builder-block-link {
+    color: white !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
