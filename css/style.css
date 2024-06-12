@@ -827,6 +827,7 @@ div#block-cua-theme-breadcrumbs {
     color: var(--cua-gray-800);
     font-size: 100%;
     font-weight: normal;
+    transition: font-size 0.4s ease, font-weight 0.4s ease;
 }
 
 .faq .ui-state-active,
@@ -834,8 +835,6 @@ div#block-cua-theme-breadcrumbs {
     background: var(--cua-gray-300);
     border: 1px solid var(--cua-gray-300);
     color: var(--cua-black);
-    font-size: 105%;
-    transition: font-size 0.4s ease, font-weight 0.4s ease;
     font-weight: 700;
 }
 
@@ -1556,6 +1555,10 @@ a.bef-link--selected {
     color: var(--cua-gold) !important
 }
 
+.ui-widget-content a {
+    color: var(--cua-blue) !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
@@ -1591,4 +1594,3 @@ a.bef-link--selected {
         color: var(--cua-black) !important;
     }
 }
-
