@@ -832,10 +832,9 @@ div#block-cua-theme-breadcrumbs {
 
 .faq .ui-state-active,
 .faq .ui-state-default:hover {
-    background: var(--cua-gray-300);
-    border: 1px solid var(--cua-gray-300);
+    background: var(--cua-gray-400);
+    border: 1px solid var(--cua-gray-400);
     color: var(--cua-black);
-    font-weight: 700;
 }
 
 .faq h3, .faq h3 a {
