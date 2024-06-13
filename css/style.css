@@ -1564,6 +1564,10 @@ a.bef-link--selected {
     color: white !important;
 }
 
+.fa-solid.fa-file-pdf.red {
+    color: #b90404 !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
