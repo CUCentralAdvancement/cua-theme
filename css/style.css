@@ -1558,7 +1558,9 @@ a.bef-link--selected {
     color: var(--cua-blue) !important;
 }
 
-.use-ajax.js-layout-builder-block-link {
+.use-ajax.js-layout-builder-block-link,
+#drupal-off-canvas-wrapper .layout-selection a,
+#drupal-off-canvas-wrapper :where(:not(svg, svg *, .ck-reset *, [data-drupal-ck-style-fence] *, .ui-resizable-handle)) {
     color: white !important;
 }
 
