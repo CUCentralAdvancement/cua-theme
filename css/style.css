@@ -1560,12 +1560,21 @@ a.bef-link--selected {
 
 .use-ajax.js-layout-builder-block-link,
 #drupal-off-canvas-wrapper .layout-selection a,
-#drupal-off-canvas-wrapper :where(:not(svg, svg *, .ck-reset *, [data-drupal-ck-style-fence] *, .ui-resizable-handle)) {
+#drupal-off-canvas-wrapper :where(:not(svg, svg *,
+.ck-reset *,
+[data-drupal-ck-style-fence] *,
+.ui-resizable-handle)) {
     color: white !important;
 }
 
 .fa-solid.fa-file-pdf.red {
     color: #b90404 !important;
+}
+#drupal-off-canvas-wrapper input:where(:not([type="submit"],
+[type="checkbox"], [type="radio"],
+[type="file"])),
+#drupal-off-canvas-wrapper select, #drupal-off-canvas-wrapper textarea {
+    color: black !important;
 }
 
 /*** Responsive ***/
