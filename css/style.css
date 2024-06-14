@@ -1586,6 +1586,17 @@ a.bef-link--selected {
     color: black !important;
 }
 
+/* Lets make the Foundation President standout */
+.view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light,
+.view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light {
+    background-color: #757575 !important;
+    color: var(--cua-white) !important;
+}
+
+.view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light .h5.title.headshot,
+.view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light .cu-line-sm a {
+    color: var(--cua-white) !important;
+}
 
 /*** Responsive ***/
 
