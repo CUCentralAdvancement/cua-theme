@@ -1590,14 +1590,25 @@ a.bef-link--selected {
 .view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light,
 .view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light a,
 .view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light {
-    background-color: #757575 !important;
-    color: var(--cua-white) !important;
+    background-color: var(--cua-gold) !important;
+    color: var(--cua-black) !important;
 }
 
 .view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light .h5.title.headshot,
 .view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light .cu-line-sm a {
-    color: var(--cua-white) !important;
+    color: var(--cua-black) !important;
 }
+
+.view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light .cu-line-sm::after,
+.view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light .cu-line-sm::after {
+    background-color: var(--cua-white);
+}
+
+.contact .view-content > .col-md-6:first-child .fa-phone::before,
+.contact .view-content > .col-md-6:first-child .fa-envelope::before {
+    color: var(--cua-white);
+}
+
 
 /*** Responsive ***/
 
