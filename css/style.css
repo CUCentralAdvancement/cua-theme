@@ -646,6 +646,18 @@ input#edit-submit-contact--2 {
     color: green !important;
 }
 
+.green:hover,
+.fa-solid.fa-file-pdf.red:hover {
+    color: var(--cua-blue) !important;
+    text-decoration: none;
+}
+
+.fa-solid.fa-file-pdf.red {
+    color: #b90404 !important;
+}
+
+
+
 /*background */
 .cu-bg-pure-black {
     background-color: var(--cua-black-pure) !important;
@@ -1567,15 +1579,13 @@ a.bef-link--selected {
     color: white !important;
 }
 
-.fa-solid.fa-file-pdf.red {
-    color: #b90404 !important;
-}
 #drupal-off-canvas-wrapper input:where(:not([type="submit"],
 [type="checkbox"], [type="radio"],
 [type="file"])),
 #drupal-off-canvas-wrapper select, #drupal-off-canvas-wrapper textarea {
     color: black !important;
 }
+
 
 /*** Responsive ***/
 
