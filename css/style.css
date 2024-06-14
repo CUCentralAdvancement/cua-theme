@@ -1588,6 +1588,7 @@ a.bef-link--selected {
 
 /* Lets make the Foundation President standout */
 .view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light,
+.view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light a,
 .view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light {
     background-color: #757575 !important;
     color: var(--cua-white) !important;
