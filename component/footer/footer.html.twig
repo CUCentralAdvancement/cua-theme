@@ -29,7 +29,8 @@
                         {# CU Name/Department #}
                         <div class="cua-name-title g-0">
                             <h2 class="g-0 mb-1">{{ 'University of Colorado'|t }}
-                                <br>{{ 'CU Advancement | CU Foundation'|t }}</h2>
+                                <br>{{ 'CU Advancement | CU Foundation'|t }}
+                            </h2>
                         </div>
 
                         {# Address and Contact Information #}
@@ -44,7 +45,8 @@
 
                         {# Phone Number #}
                         <div class="cua-phone g-0 mb-2">
-                            <a class="link-cua" href="tel:+13035411290" itemprop="telephone"
+                            <a class="link-cua" href="tel:+13035411290"
+                               itemprop="telephone"
                                aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '+1 303.541.1290'|t }}</a>
                         </div>
 
@@ -52,7 +54,8 @@
                         {% set email = 'giving@cu.edu' %}
                         {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
                         <div class="cua-email g-0 mb-2">
-                            <a class="link-cua" aria-label="{{ 'email address'|t }}"
+                            <a class="link-cua"
+                               aria-label="{{ 'email address'|t }}"
                                href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
                         </div>
 
@@ -98,11 +101,19 @@
 
             {# CU Logo #}
             <div class="col-sm-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
-                <a href="{{ url('<front>') }}" rel="{{ 'University of Colorado home'|t }}" class="footer-site-branding__logo">
+                <a href="{{ url('<front>') }}"
+                   rel="{{ 'University of Colorado home'|t }}"
+                   class="footer-site-branding__logo">
                     <picture>
-                        <source media="(max-width: 499px)" srcset="{{ '/' ~ directory ~ '/images/cua-logo-white-small.png' }}" width=250 height=50.5/>
-                        <source media="(min-width: 500px)" srcset="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}" width=500 height=101.5/>
-                        <img src="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}" alt="{{ 'University of Colorado Logo'|t }}" width=500 height=101.5/>
+                        <source media="(max-width: 499px)"
+                                srcset="{{ '/' ~ directory ~ '/images/cua-logo-white-small.png' }}"
+                                width=250 height=50.5/>
+                        <source media="(min-width: 500px)"
+                                srcset="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}"
+                                width=500 height=101.5/>
+                        <img src="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}"
+                             alt="{{ 'University of Colorado Logo'|t }}"
+                             width=500 height=101.5/>
                     </picture>
                 </a>
             </div>
@@ -116,16 +127,35 @@
 
             {# Copyright/Regents Information #}
             <div class="copyright col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center">
-                <p class="mt-2 mb-3 strong text-light" aria-label="{{ 'Copyright and University of Colorado Regents website'|t }}">
+                <p class="mt-2 mb-3 strong text-light"
+                   aria-label="{{ 'Copyright and University of Colorado Regents website'|t }}">
                     {# Copyright  #}
                     {{ '©'|t }} {{ 'now' | date('Y') }}
                     {# Link to the University of Colorado Regents website #}
-                    <a href="https://regents.cu.edu" rel="noopener" target="_blank"
+                    <a href="https://regents.cu.edu" rel="noopener"
+                       target="_blank"
                        class="link-light link-underline-opacity-0 px-2"
                        aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">{{ 'Regents of the University of Colorado'|t }}</a>
-                    {# Link to Admin #}
-                    <a href="/saml_login?destination=user" rel="noopener" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Admin Login'|t }}">
-                        <i class="px-2 fas fa-sign-in-alt"></i>{{ 'LOGIN'|t }}</a>
+                    {# Check if user is logged in #}
+                    {% if not logged_in %}
+                        {# Admin Login #}
+                        <span class="admin-login">
+                    <a href="/saml_login?destination=user" rel="noopener"
+                       class="link-light link-underline-opacity-0 px-2"
+                       aria-label="{{ 'Login'|t }}">
+                        <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Login'|t }}
+                    </a>
+                </span>
+                    {% else %}
+                        {# Admin Logout #}
+                        <span class="user-logged-in">
+                        <a href="/user/logout" rel="noopener"
+                           class="link-light link-underline-opacity-0 px-2"
+                           aria-label="{{ 'Logout'|t }}">
+                            <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Logout'|t }}
+                        </a>
+                    </span>
+                    {% endif %}
                 </p>
             </div>
 
