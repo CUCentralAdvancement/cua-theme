@@ -317,6 +317,7 @@ header #search-block-form {
 
 .secondary-menu .nav-item:last-child .nav-link:hover {
     color: var(--cua-white) !important;
+    text-decoration: none !important;
 }
 
 .secondary-menu .nav-item:last-child .nav-link::after {
