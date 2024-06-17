@@ -1609,6 +1609,10 @@ a.bef-link--selected {
     color: var(--cua-white);
 }
 
+.page-view-main-contacts  .contact .view-content > .col-md-6:first-child .fa-phone::before,
+.page-view-main-contacts  .contact .view-content > .col-md-6:first-child .fa-envelope::before {
+    color: var(--cua-gold) !important;
+}
 
 /*** Responsive ***/
 
