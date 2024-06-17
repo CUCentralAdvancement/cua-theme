@@ -69,7 +69,21 @@
             {% if page.secondary_menu %}
                 <div class="col-md-5 secondary-menu d-none d-lg-block g-0 ">
                     <div class="d-flex justify-content-end">
+
+                        {# Check if user is logged in #}
+                        {% if logged_in %}
+                            <span class="user-logged-in">
+                                <a href="/user/logout" rel="noopener"
+                                   class="btn btn-logout"
+                                   aria-label="{{ 'Logout'|t }}">
+                                    <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Logout'|t }}
+                                </a>
+                            </span>
+                        {% endif %}
+
+                        {# Secondary menu #}
                         {{ page.secondary_menu }}
+
                     </div>
                 </div>
             {% endif %}

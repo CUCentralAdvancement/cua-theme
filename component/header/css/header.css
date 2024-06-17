@@ -551,6 +551,26 @@ span.nav-link.dropdown-toggle.nav-link- {
     color: var(--cua-white) !important;
 }
 
+.btn.btn-logout {
+    background: var(--cua-black);
+    color: var(--cua-white);
+    border: 1px solid var(--cua-black);
+    padding: .45rem .9rem;
+    font-weight: normal;
+    display: inline-block;
+    border-radius: 0;
+    transition: background-color 0.7s ease;
+    width: auto;
+    font-size: .85rem;
+}
+
+.btn.btn-logout:hover {
+    background: var(--cua-white);
+    color: var(--cua-black);
+    border: 1px solid var(--cua-black);
+    text-decoration: none;
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
