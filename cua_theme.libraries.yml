@@ -12,6 +12,7 @@ global-styling:
       component/call_to_action/css/call-to-action.css: {}
       component/half_and_half/css/half-and-half.css: {}
       component/spacer/css/spacer.css: {}
+      css/backgrounds.css: {}
       css/layout-builder.css: {}
       //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css: { type: external, minified: true }
     theme:

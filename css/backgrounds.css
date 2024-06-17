@@ -1,0 +1,78 @@
+/* Backgrounds */
+
+/* Greys */
+.bg-light-grey {
+    background: var(--cua-light-grey) !important
+}
+
+.bg-gray {
+    background: var(--cua-gray) !important
+}
+
+.bg--dark-gray {
+    background: var(--cua-dark-gray) !important
+}
+
+.bg-gray-10 {
+    background: var(--cua-gray-100) !important
+}
+
+.bg-gray-20 {
+    background: var(--cua-gray-200) !important
+}
+
+.bg-gray-30 {
+    background: var(--cua-gray-300) !important
+}
+
+.bg-gray-40 {
+    background: var(--cua-gray-400) !important
+}
+
+.bg-gray-50 {
+    background: var(--cua-gray-600) !important
+}
+
+.bg-gray-60 {
+    background: var(--cua-gray-600) !important
+}
+
+.bg-gray-70 {
+    background: var(--cua-gray-700) !important
+}
+
+.bg-gray-80 {
+    background: var(--cua-gray-800) !important
+}
+
+.bg-gray-90 {
+    background: var(--cua-gray-900) !important
+}
+
+/* Black */
+.bg-black {
+    background: var(--cua-black) !important
+}
+
+.bg-pure-black {
+    background: var(--cua-black-pure) !important
+}
+
+/* Blue */
+.bg-blue {
+    background: var(--cua-blue) !important
+}
+
+.bg-dark-blue {
+    background: var(--cua-blue-dark) !important
+}
+
+/* Gold */
+
+.bg-gold {
+    background: var(--cua-gold) !important
+}
+
+.bg-dark-gold {
+    background: var(--cua-gold-hover) !important
+}
