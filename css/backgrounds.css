@@ -63,6 +63,10 @@
     background: var(--cua-blue) !important
 }
 
+.bg-light-blue {
+    background: #c3dcff !important;
+}
+
 .bg-dark-blue {
     background: var(--cua-blue-dark) !important
 }
@@ -75,4 +79,9 @@
 
 .bg-dark-gold {
     background: var(--cua-gold-hover) !important
+}
+
+/* Make card bg transparent */
+.card {
+    --bs-card-bg: transparent;
 }
