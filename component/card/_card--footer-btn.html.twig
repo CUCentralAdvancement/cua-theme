@@ -31,13 +31,13 @@
     ] | join(' ')|trim %}
 
     {# Add optional variables based on conditions #}
-    {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-
+    {#  {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
+    #}
     <div class="{{ card_footer_classes }}">
-        <a href="{{ link_url }}" title="{{ aria_label }}"
-           aria-label="{{ aria_label }}"
+        <a href="{{ link_url }}" title="{{ link_title }}"
+           aria-label="{{ link_title }}"
            class="{{ card_footer_link_classes }}">
-            {{ aria_label }}
+            {{ link_title }}
         </a>
     </div>
 
