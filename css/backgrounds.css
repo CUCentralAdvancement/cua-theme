@@ -81,7 +81,7 @@
     background: var(--cua-gold-hover) !important
 }
 
-/* Make card bg transparent */
+/** Make card bg transparent **/
 .card {
     --bs-card-bg: transparent;
 }
