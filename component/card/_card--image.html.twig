@@ -16,16 +16,9 @@
     {% set presentation_classes = [
         'card-img',
         image_size is not empty ? image_size : '',
-        link_title is not empty ? 'img-hover-effect' : '',
     ] | join(' ')|trim %}
 
     {# Content #}
-
-    {# Render link wrapper if active #}
-    {% if link_title is not empty %}
-        {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-        <a href="{{ link_url }}" title="{{ aria_label }}" aria-label="{{ aria_label }}">
-    {% endif %}
 
     {# Card Image #}
     <div class="{{ card_image_classes }}">
@@ -47,10 +40,5 @@
 
         </div>
     </div>
-
-    {# Link wrapper if active #}
-    {% if link_title is not empty %}
-        </a>
-    {% endif %}
 
 {% endif %}
