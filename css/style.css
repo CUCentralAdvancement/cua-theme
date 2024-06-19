@@ -189,37 +189,39 @@ h2.title {
 
 p.intro {
     font-size: 1.2rem;
+    line-height: 1.5 !important;
     color: inherit;
 }
 
 p.h2.title {
-    font-size: 2rem;
+    font-size: 2.25rem !important;
     color: inherit;
 }
 
 p.h2.title-lg {
-    font-size: 3rem;
+    font-size: 3rem !important;;
     color: inherit;
     margin: 1rem 0 .25rem 0;
 }
 
 p.h3.title {
-    font-size: 1.85rem;
+    font-size: 2rem !important;
     color: inherit;
 }
 
 p.h4.title {
-    font-size: 1.625rem;
+    font-size: 1.65rem !important;
     color: inherit;
 }
 
 p.h5.title {
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
+    line-height: 1.4 !important;
     color: inherit;
 }
 
 p.h6.title {
-    font-size: 1.125rem;
+    font-size: 1.125rem !important;
     color: inherit;
 }
 
