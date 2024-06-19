@@ -398,7 +398,7 @@
 .banner .display-4 {
     font-weight: 700 !important;
     font-size: 3rem !important;
-    font-family: 'Arvo', serif !important;
+    font-family: var(--font-roboto-condensed);
 }
 
 @media (max-width: 768px) {

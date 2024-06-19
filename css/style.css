@@ -197,6 +197,12 @@ p.h2.title {
     color: inherit;
 }
 
+p.h2.title-lg {
+    font-size: 3rem;
+    color: inherit;
+    margin: 1rem 0 .25rem 0;
+}
+
 p.h3.title {
     font-size: 1.85rem;
     color: inherit;
