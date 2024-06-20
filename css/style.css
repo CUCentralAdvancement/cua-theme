@@ -1623,11 +1623,19 @@ a.bef-link--selected {
 }
 
 .full-padding, .fp {
-    padding: 0 5rem;
+    padding: 3rem 7rem !important;
 }
 
 .highcharts-legend-item {
     font-size: 120%;
+}
+
+.highcharts-label.highcharts-data-label {
+    font-size: 110%;
+}
+
+.highcharts-legend {
+    background: white !important; /* Change this to your desired color */
 }
 
 /*** Responsive ***/
@@ -1638,7 +1646,7 @@ a.bef-link--selected {
     }
 
     .full-padding, .fp {
-        padding: 0 2rem;
+        padding: 1rem 3rem !important;
     }
 
     aside .block.block-menu.navigation {
