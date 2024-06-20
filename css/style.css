@@ -1626,6 +1626,10 @@ a.bef-link--selected {
     padding: 0 5rem;
 }
 
+.highcharts-legend-item {
+    font-size: 120%;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
