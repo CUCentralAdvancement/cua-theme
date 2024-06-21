@@ -1626,16 +1626,16 @@ a.bef-link--selected {
     padding: 3rem 7rem !important;
 }
 
-.highcharts-legend-item {
-    font-size: 120%;
-}
-
-.highcharts-label.highcharts-data-label {
-    font-size: 110%;
-}
-
+/* Style Charts */
 .highcharts-legend {
     background: white !important; /* Change this to your desired color */
+}
+
+.highcharts-legend-item,
+.highcharts-label.highcharts-data-label,
+.highcharts-axis-labels.highcharts-xaxis-labels {
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 /*** Responsive ***/
@@ -1677,3 +1677,4 @@ a.bef-link--selected {
         color: var(--cua-black) !important;
     }
 }
+
