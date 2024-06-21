@@ -199,27 +199,37 @@ function cua_theme_preprocess_block(array &$variables): void {
             $link_field_items = $block_content->get('field_link')->getValue();
 
             if (!empty($link_field_items)) {
-                $link_field_value = reset($link_field_items);
+                // Initialize arrays to store multiple links.
+                $links = [];
 
-                // Get the URL and title from the link field.
-                $uri = $link_field_value['uri'];
-                $title = $link_field_value['title'];
+                foreach ($link_field_items as $item) {
+                    // Get the URL and title from each link item.
+                    $uri = $item['uri'];
+                    $title = $item['title'];
 
-                // Convert the URI to a URL object.
-                $url_object = Url::fromUri($uri);
+                    // Convert the URI to a URL object.
+                    $url_object = Url::fromUri($uri);
 
-                // Check if the link is internal or external.
-                if ($url_object->isExternal()) {
-                    $variables['link_url'] = $uri;
+                    // Check if the link is external or internal.
+                    if ($url_object->isExternal()) {
+                        $url = $uri;
+                    } else {
+                        // If it's an internal link, convert to the correct format.
+                        $url = $url_object->toString();
+                    }
+
+                    // Store link URL and title in an array.
+                    $links[] = [
+                        'url' => $url,
+                        'title' => $title,
+                    ];
                 }
-                else {
-                    // If it's an internal link, convert to the correct format.
-                    $variables['link_url'] = $url_object->toString();
-                }
 
-                $variables['link_title'] = $title;
+                // Pass the array of links to the Twig template.
+                $variables['links'] = $links;
             }
         }
+
 
         // Check if the node has the 'field_image' field.
         if (!empty($variables['content']['field_image'][0])) {

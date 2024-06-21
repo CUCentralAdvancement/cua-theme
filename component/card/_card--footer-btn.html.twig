@@ -1,5 +1,5 @@
 {# Card Footer Button #}
-{% if link_title is not empty %}
+{% if links is not empty %}
 
     {# Add optional classes based on conditions #}
     {% set color_background = color_background ?? '' %}
@@ -21,7 +21,6 @@
 
     {# Set card footer link classes #}
     {% set card_footer_link_classes = [
-        'align-self-end',
         'card-link',
         'btn',
         (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
@@ -30,16 +29,14 @@
         'p-2 mt-3'
     ] | join(' ')|trim %}
 
-    {# Add optional variables based on conditions #}
-    {#  {% set aria_label = link_title is not empty ? (label is not empty and link_title in ['Learn More', 'Read More', 'More Information'] ? link_title|title ~ ' About ' ~ label|title : link_title) : '' %}
-    #}
     <div class="{{ card_footer_classes }}">
-        <a href="{{ link_url }}" title="{{ link_title }}"
-           aria-label="{{ link_title }}"
-           class="{{ card_footer_link_classes }}">
-            {{ link_title }}
-        </a>
+        {% for link in links %}
+            <a href="{{ link.url }}" title="{{ link.title }}"
+               aria-label="{{ link.title }}"
+               class="{{ card_footer_link_classes }}">
+                {{ link.title }}
+            </a>
+        {% endfor %}
     </div>
 
 {% endif %}
-

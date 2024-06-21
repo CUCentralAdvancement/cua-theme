@@ -44,6 +44,8 @@
     font-weight: 500;
     border-radius: 0 !important;
     padding: 0.75rem 1.25rem !important;
+    width: fit-content;
+    min-width: 10rem;
 }
 
 /* Heading alignment variations for cards */
@@ -630,6 +632,16 @@ p.figcaption.card-header {
 
 .card-footer {
     margin-top: auto;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+}
+
+.card-link {
+    text-align: left;
+}
+
+.card-link + .card-link {
+    margin-left: 0;
 }
 
 /*** Responsive ***/
@@ -640,4 +652,3 @@ p.figcaption.card-header {
     }
 
 }
-
