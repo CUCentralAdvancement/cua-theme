@@ -70,7 +70,21 @@
 
             {# Include Image Component #}
         {% elseif card_image is not empty %}
-            {% include '@cua_theme/component/card/_card--image.html.twig' %}
+
+            {% if links|length > 0 %}
+                {# Render only the first link if active #}
+                {% set firstLink = links[0] %}
+                <a class="img-hover-effect" href="{{ firstLink.url }}" title=""
+                aria-label="">
+            {% endif %}
+
+            {# Include image with a null alt attribute #}
+            {% include '@cua_theme/component/card/_card--image.html.twig' with {'alt': ''} %}
+
+            {% if links|length > 0 %}
+                {% set firstLink = links[0] %}
+                </a>
+            {% endif %}
 
             {# Include Icon Component #}
         {% elseif icon is not empty %}
