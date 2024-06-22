@@ -638,6 +638,7 @@ p.figcaption.card-header {
 
 .card-link {
     text-align: left;
+    max-width: max-content !important;
 }
 
 .card-link + .card-link {
