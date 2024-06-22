@@ -666,10 +666,15 @@ input#edit-submit-contact--2 {
     text-decoration: none;
 }
 
-.fa-solid.fa-file-pdf.red {
+.fa-solid.fa-file-pdf.red,
+.red {
     color: #b90404 !important;
 }
 
+.fa-solid.fa-file-pdf.red:hover,
+.red:hover {
+    color: darkgreen !important;
+}
 
 
 /*background */
