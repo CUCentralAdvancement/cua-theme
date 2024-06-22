@@ -199,9 +199,9 @@ p.h2.title {
 }
 
 p.h2.title-lg {
-    font-size: 3rem !important;;
+    font-size: 3.5rem !important;
     color: inherit;
-    margin: 1rem 0 .25rem 0;
+    margin: 1.3rem 0 .3rem 0;
 }
 
 p.h3.title {
@@ -224,6 +224,12 @@ p.h6.title {
     font-size: 1.125rem !important;
     color: inherit;
 }
+
+.light-font-weight {
+    font-weight: 100 !important;
+    font-size: 80% !important;
+}
+
 
 /* Body */
 a {
