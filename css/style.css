@@ -1702,5 +1702,11 @@ a.bef-link--selected {
     .video-mobile-copy .display-4.card-text {
         color: var(--cua-black) !important;
     }
+
+    .parallax-main-content {
+        background: rgba(255, 255, 255, 0.8) !important;
+        margin: 20px !important;
+        color: black !important;
+    }
 }
 
