@@ -1634,7 +1634,7 @@ a.bef-link--selected {
 }
 
 .full-padding, .fp {
-    padding: 3rem 7rem !important;
+    padding: 0 7rem !important;
 }
 
 /* Style Charts */
@@ -1657,7 +1657,7 @@ a.bef-link--selected {
     }
 
     .full-padding, .fp {
-        padding: 1rem 3rem !important;
+        padding: 0 3rem !important;
     }
 
     aside .block.block-menu.navigation {
