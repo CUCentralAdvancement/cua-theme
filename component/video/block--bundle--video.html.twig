@@ -49,7 +49,7 @@
                 {# Set data attributes for animation #}
                 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
                 {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
-                <div class="col-sm-4 {{ color_background }} p-4 mt-5 mx-5 {% if animation_classes %}{{ animation_classes }}{% endif %}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
+                <div class="col-sm-5 {{ color_background }} px-5 py-4 m-5 {% if animation_classes %}{{ animation_classes }}{% endif %}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
                     {# Include all components #}
                     {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
                 </div>
