@@ -167,6 +167,7 @@ function cua_theme_preprocess_block(array &$variables): void {
             'field_parallax',
             'field_position_container',
             'field_provider',
+            'field_parallax_video',
             'field_size',
             'field_text_alignment',
             'field_text_color',

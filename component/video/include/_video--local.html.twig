@@ -8,6 +8,16 @@
 {{ title_suffix ?? '' }}
 
 {# Video #}
-<video autoplay="autoplay" loop="loop" muted="muted" width="100%" height="auto" tabindex="-1">
-    <source src="{{ content.field_video_mp4.0 }}" type="video/mp4">
-</video>
+{% if parallax_video is not empty %}
+    <div class="parallax-video video g-0">
+        <video autoplay="autoplay" loop="loop" muted="muted" width="100%"
+               height="auto" tabindex="-1">
+            <source src="{{ content.field_video_mp4.0 }}" type="video/mp4">
+        </video>
+    </div>
+{% else %}
+    <video autoplay="autoplay" loop="loop" muted="muted" width="100%"
+           height="auto" tabindex="-1">
+        <source src="{{ content.field_video_mp4.0 }}" type="video/mp4">
+    </video>
+{% endif %}

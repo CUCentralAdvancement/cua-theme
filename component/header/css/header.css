@@ -1,4 +1,9 @@
 /* Header styling */
+
+header#header {
+    background: var(--cua-white) !important;
+}
+
 /* Site Slogan */
 h1.site-slogan {
     padding: 0;

@@ -1649,6 +1649,21 @@ a.bef-link--selected {
     font-weight: bold;
 }
 
+.parallax-video video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.parallax-main-content {
+    position: relative;
+    height: 100%;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {

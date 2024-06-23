@@ -27,6 +27,7 @@
     animate-trigger,
     'card',
     'g-0',
+    'clearfix',
     margins,
     container_size,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
@@ -45,7 +46,7 @@
     {# Desktop component #}
     {% if label or body %}
         <div class="video-desktop-copy d-none d-md-block g-0">
-            <div class="container-fluid mx-auto position-absolute d-flex {{ position_container }}">
+            <div class="container-fluid mx-auto {% if parallax_video is not empty %}parallax-main-content {% else %}position-absolute{% endif%} d-flex {{ position_container }}">
                 {# Set data attributes for animation #}
                 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
                 {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
