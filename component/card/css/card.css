@@ -632,8 +632,11 @@ p.figcaption.card-header {
 
 .card-footer {
     margin-top: auto;
+}
+
+.card-footer.multiple-links {
     display: flex;
-    flex-direction: column; /* Align items vertically */
+    flex-direction: column;
 }
 
 .card-link {

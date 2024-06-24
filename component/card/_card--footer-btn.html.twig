@@ -6,18 +6,23 @@
     {% set color_border = color_border ?? '' %}
     {% set container_size = container_size ?? '' %}
     {% set position_container = position_container ?? '' %}
-    {% set text_alignment = text_alignment ?? ' ' %}
+    {% set text_alignment = text_alignment ?? '' %}
     {% set text_color = text_color ?? '' %}
+
+    {# Determine if multiple links exist #}
+    {% set multiple_links = links|length > 1 %}
 
     {# Set card footer classes #}
     {% set card_footer_classes = [
-        'card-footer d-flex',
-        'mb-5',
+        'card-footer',
+        'd-flex',
+        multiple_links ? 'multiple-links' : '',
         container_size,
         color_background,
         position_container,
         text_alignment,
         padding is not empty ? padding : null,
+        'mb-5',
     ] | join(' ')|trim %}
 
     {# Set card footer link classes #}
@@ -27,14 +32,15 @@
         (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
         (outline is empty) ? ('btn-' ~ button_color) : null,
         'text-decoration-none',
-        'p-2 mt-3'
+        position_container,
+        text_alignment,
+        'p-2',
+        'mt-3',
     ] | join(' ')|trim %}
 
     <div class="{{ card_footer_classes }}">
         {% for link in links %}
-            <a href="{{ link.url }}" title="{{ link.title }}"
-               aria-label="{{ link.title }}"
-               class="{{ card_footer_link_classes }}">
+            <a href="{{ link.url }}" title="{{ link.title }}" aria-label="{{ link.title }}" class="{{ card_footer_link_classes }}">
                 {{ link.title }}
             </a>
         {% endfor %}

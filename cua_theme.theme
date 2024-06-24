@@ -228,6 +228,11 @@ function cua_theme_preprocess_block(array &$variables): void {
 
                 // Pass the array of links to the Twig template.
                 $variables['links'] = $links;
+
+                // Add a CSS class if there is more than one link.
+                if (count($links) > 1) {
+                    $variables['attributes']['class'][] = 'multiple-links';
+                }
             }
         }
 
