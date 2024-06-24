@@ -74,8 +74,8 @@
             {% if links|length > 0 %}
                 {# Render only the first link if active #}
                 {% set firstLink = links[0] %}
-                <a class="img-hover-effect" href="{{ firstLink.url }}" title=""
-                aria-label="">
+                <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}"
+                aria-label="{{ firstLink.title }}">
             {% endif %}
 
             {# Include image with a null alt attribute #}
