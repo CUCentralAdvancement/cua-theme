@@ -1649,6 +1649,12 @@ a.bef-link--selected {
     font-weight: bold;
 }
 
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
 .parallax-video video {
     object-fit: cover;
     width: 100vw;
