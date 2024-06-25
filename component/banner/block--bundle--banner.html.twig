@@ -45,6 +45,7 @@
 
 {# Set image classes #}
 {% set image_container_classes = [
+    'banner-image-container',
     parallax is not empty ? parallax : null,
     effect is not empty ? 'px-5 mx-5 px-sm-2 mx-sm-2 kenburns-' ~ effect : null,
     position_container is not empty ? 'd-flex' ~ ' ' ~ position_container|clean_class : null,
@@ -53,9 +54,9 @@
 
 {# Set banner-body classes #}
 {% set banner_body_classes = [
-    'col-md-7',
+    'col-md-5',
     'col-sm-12',
-    'banner-body',
+    'banner-body mx-5',
     color_background,
     text_color,
     effect_copy,
