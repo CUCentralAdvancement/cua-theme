@@ -1661,9 +1661,16 @@ a.bef-link--selected {
     color: var(--cua-gold) !important;
 }
 
-.full-padding, .fp {
-    padding: 0 7rem !important;
+.full-padding {
+    padding-left: 7rem;
+    padding-right: 7rem;
 }
+
+.full-padding-top {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
 
 /* Style Charts */
 .highcharts-legend {
@@ -1705,9 +1712,16 @@ video {
         border-right: 1px solid var(--cua-white) !important;
     }
 
-    .full-padding, .fp {
-        padding: 0 3rem !important;
+    .full-padding {
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
+
+    .full-padding-top {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
 
     aside .node__content .block.block-menu.navigation {
         border-right: 1px solid var(--cua-white);
