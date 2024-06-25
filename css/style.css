@@ -1586,6 +1586,10 @@ a.simplesamlphp-auth-login-link:hover  {
     color: var(--cua-black);
 }
 
+a.nav-link.active.is-active {
+    color: #b19a5e !important;
+}
+
 /*** Add Line under text ***/
 .contact.main-contact .view-grouping-header {
     color: var(--cua-gray-700);
@@ -1739,4 +1743,3 @@ video {
         color: black !important;
     }
 }
-
