@@ -41,3 +41,27 @@
 .counter .figcaption.cu-text-gold {
   color: var(--cua-gold) !important;
 }
+
+.fa-2xl {
+  font-size: 3rem;
+  line-height: .03125em;
+  vertical-align: -.1875em;
+}
+
+.fa-3xl {
+  font-size: 4rem;
+  line-height: .03125em;
+  vertical-align: -.1875em;
+}
+
+.fa-4xl {
+  font-size: 5rem;
+  line-height: .03125em;
+  vertical-align: -.1875em;
+}
+
+.fa-5xl {
+  font-size: 6rem;
+  line-height: .03125em;
+  vertical-align: -.1875em;
+}
