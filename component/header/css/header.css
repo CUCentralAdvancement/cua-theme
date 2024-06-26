@@ -298,7 +298,6 @@ header #search-block-form {
 .secondary-menu a.nav-link {
     color: var(--cua-gray-700);
     font-size: .95rem;
-    font-weight: 700;
     text-transform: none !important;
     padding: 0.5rem;
 }
@@ -560,7 +559,7 @@ span.nav-link.dropdown-toggle.nav-link- {
     background: var(--cua-black);
     color: var(--cua-white);
     border: 1px solid var(--cua-black);
-    padding: .45rem .9rem;
+    padding: .46rem .9rem;
     font-weight: normal;
     display: inline-block;
     border-radius: 0;

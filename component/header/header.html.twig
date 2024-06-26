@@ -70,9 +70,12 @@
                 <div class="col-md-5 secondary-menu d-none d-lg-block g-0 ">
                     <div class="d-flex justify-content-end">
 
+                        {# Secondary menu #}
+                        {{ page.secondary_menu }}
+
                         {# Check if user is logged in #}
                         {% if logged_in %}
-                            <span class="user-logged-in">
+                            <span class="user-logged-in mx-2">
                                 <a href="/user/logout" rel="noopener"
                                    class="btn btn-logout"
                                    aria-label="{{ 'Logout'|t }}">
@@ -80,9 +83,6 @@
                                 </a>
                             </span>
                         {% endif %}
-
-                        {# Secondary menu #}
-                        {{ page.secondary_menu }}
 
                     </div>
                 </div>
