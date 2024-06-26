@@ -322,3 +322,10 @@ function cua_theme_theme_suggestions_form_alter(array &$suggestions, array $vari
     // Add a theme suggestion based on the modified form ID.
     $suggestions[] = 'form__' . $form_id;
 }
+
+
+function cua_theme_preprocess_spacer(&$variables): void {
+    // Check if the current user has the 'administrator' role.
+    $user = \Drupal::currentUser();
+    $variables['is_admin'] = $user->hasRole('administrator');
+}

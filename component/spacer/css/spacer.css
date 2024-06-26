@@ -1,6 +1,6 @@
 /* Spacer styling  */
 .user-administrator .spacer {
-    background: var(--cua-gray-200);
+    background: inherit;
 }
 
 .user-administrator .small.text-align-center {

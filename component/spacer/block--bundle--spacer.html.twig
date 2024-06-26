@@ -1,39 +1,51 @@
 {#
 /**
-* @file
-* Template for the Spacer component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Spacer component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
-{# Add Classes #}
-{% set spacer_classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'spacer',
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+{# Check if the current user is an administrator #}
+{% if is_admin %}
+    {# Add Classes #}
+    {% set spacer_classes = [
+        'block',
+        'block-' ~ configuration.provider|clean_class,
+        'block-' ~ plugin_id|clean_class,
+        'spacer',
+        id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+    ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
-{# Add unique id to block #}
-{% set unique_id = [
-    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
-] %}
+    {# Add unique id to block #}
+    {% set unique_id = [
+        plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+    ] %}
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(spacer_classes) }}>
-    <div class="spacer {{ size }} g-0">
-        {{ title_prefix }}
-        <div class="small text-align-center">{{ label ~ ': ' ~ 'Blank space size:'|t ~ ' ' ~ size ~ ' ' ~ '(Only visible for logged-in admins)'|t }}</div>
-        {{ title_suffix }}
+    {# Render content #}
+    <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(spacer_classes) }}>
+        <div class="spacer {{ size }} g-0">
+            {{ title_prefix }}
+            <div class="small text-align-center">{{ label ~ ': ' ~ 'Blank space size:'|t ~ ' ' ~ size ~ ' ' ~ '(Only visible for logged-in admins)'|t }}</div>
+            {{ title_suffix }}
+        </div>
     </div>
-</div>
+{% else %}
+    {# Render an empty string for non-administrators #}
+    <div{{ attributes }}>
+        <div class="spacer {{ size }} g-0">
+            {{ title_prefix }}
+            <div class="small text-align-center"></div>
+            {{ title_suffix }}
+        </div>
+    </div>
+{% endif %}
 
