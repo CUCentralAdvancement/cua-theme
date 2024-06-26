@@ -1661,16 +1661,21 @@ a.bef-link--selected {
     color: var(--cua-gold) !important;
 }
 
-.full-padding {
+.full-padding, fp {
     padding-left: 7rem;
     padding-right: 7rem;
 }
 
-.full-padding-top {
+.full-padding-top,
+.full-padding-top-bottom,
+.fptb {
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
 
+.node--unpublished {
+    background: #fce0e0;
+}
 
 /* Style Charts */
 .highcharts-legend {
