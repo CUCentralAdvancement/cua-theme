@@ -300,6 +300,7 @@ a#edit-delete:hover {
 .bg-light {
     background: var(--bg-light) !important;
 }
+
 /* Text Styles */
 
 .text-small, .small {
@@ -335,6 +336,7 @@ li.breadcrumb-item.active {
 ol.breadcrumb li:first-child a {
     font-size: 0;
 }
+
 ol.breadcrumb li:first-child a::before {
     display: inline-block;
     content: "";
@@ -1519,7 +1521,7 @@ span.views-summary.views-summary-unformatted {
     font-size: 1.1rem;
 }
 
-.field--name-field-campus  .field__item {
+.field--name-field-campus .field__item {
     display: inline;
     margin-right: 10px; /* Optional: Add some space between links */
 }
@@ -1540,6 +1542,7 @@ span.views-summary.views-summary-unformatted {
     color: var(--cua-black);
     font-size: .9rem;
 }
+
 .layout__region.layout__region--second .navigation .nav-item a:hover {
     background: var(--cua-black);
     color: var(--cua-white);
@@ -1557,7 +1560,7 @@ span.views-summary.views-summary-unformatted {
     margin: 0 0 3rem !important;
 }
 
-a.simplesamlphp-auth-login-link  {
+a.simplesamlphp-auth-login-link {
     background: var(--cua-gold);
     color: var(--cua-black);
     padding: .75rem;
@@ -1570,7 +1573,7 @@ a.simplesamlphp-auth-login-link  {
     font-weight: bold;
 }
 
-a.simplesamlphp-auth-login-link:hover  {
+a.simplesamlphp-auth-login-link:hover {
     background: var(--cua-black);
     color: var(--cua-gold);
     text-decoration: none;
@@ -1656,8 +1659,8 @@ a.bef-link--selected {
     color: var(--cua-white);
 }
 
-.page-view-main-contacts  .contact .view-content > .col-md-6:first-child .fa-phone::before,
-.page-view-main-contacts  .contact .view-content > .col-md-6:first-child .fa-envelope::before {
+.page-view-main-contacts .contact .view-content > .col-md-6:first-child .fa-phone::before,
+.page-view-main-contacts .contact .view-content > .col-md-6:first-child .fa-envelope::before {
     color: var(--cua-gold) !important;
 }
 
