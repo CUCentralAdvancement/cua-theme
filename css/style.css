@@ -1661,7 +1661,7 @@ a.bef-link--selected {
     color: var(--cua-gold) !important;
 }
 
-.full-padding, fp {
+.full-padding, .fp {
     padding-left: 7rem;
     padding-right: 7rem;
 }
