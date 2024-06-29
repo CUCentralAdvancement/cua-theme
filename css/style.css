@@ -1713,6 +1713,19 @@ video {
     height: 100%;
 }
 
+/* Display BOD count inline */
+.view-id-board_of_directors .view-display-id-attachment_4,
+.view-id-board_of_directors .view-display-id-attachment_5,
+.view-id-board_of_directors .view-display-id-attachment_6 {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.contact .view-board-of-directors .field-content {
+    margin: 0 !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
