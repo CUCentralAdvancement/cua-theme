@@ -1745,7 +1745,7 @@ video {
     margin-right: 1rem !important;
 }
 
-.block-menu {
+#main-wrapper .block-menu {
     margin-bottom: 2rem !important;
 }
 aside .nav {
