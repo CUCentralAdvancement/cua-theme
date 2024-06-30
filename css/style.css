@@ -1454,7 +1454,7 @@ ol.list-group.node_search-results a {
 /* Glossary for Trustees */
 span.views-summary.views-summary-unformatted {
     border: 1px solid var(--cua-gray-300);
-    margin: 0 0 2rem .75rem;
+    margin: 0 0 0 .75rem;
     width: auto;
 }
 
@@ -1725,6 +1725,26 @@ video {
 .contact .view-board-of-directors .field-content {
     margin: 0 !important;
 }
+
+.form-item-items-per-page label {
+    font-size: .85rem;
+}
+
+.form-item-items-per-page {
+    margin-left: 1rem !important;
+    margin-right: 1rem  !important;
+}
+
+#views-exposed-form-trustees-page-1 #edit-combine {
+    margin-top: 1.4rem !important;
+}
+
+.view-id-trustees .view-filters {
+    background: #f4f4f5;
+    padding: 0 1rem;
+    margin: 0 0 1rem;
+}
+
 
 /*** Responsive ***/
 
