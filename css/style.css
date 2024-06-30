@@ -1478,6 +1478,16 @@ span.views-summary.views-summary-unformatted {
     padding: .45rem 1rem;
 }
 
+#views-exposed-form-trustees-page-1 #edit-combine {
+    margin-top: 1.4rem !important;
+}
+
+.view-id-trustees .view-filters {
+    background: #f4f4f5;
+    padding: 0 1rem;
+    margin: 0 0 1rem;
+}
+
 .stories .taxonomy {
     color: var(--cua-gold-hover);
     font-weight: bold;
@@ -1733,16 +1743,6 @@ video {
 .form-item-items-per-page {
     margin-left: 1rem !important;
     margin-right: 1rem !important;
-}
-
-#views-exposed-form-trustees-page-1 #edit-combine {
-    margin-top: 1.4rem !important;
-}
-
-.view-id-trustees .view-filters {
-    background: #f4f4f5;
-    padding: 0 1rem;
-    margin: 0 0 1rem;
 }
 
 
