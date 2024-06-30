@@ -1745,6 +1745,12 @@ video {
     margin-right: 1rem !important;
 }
 
+.block-menu {
+    margin-bottom: 2rem !important;
+}
+aside .nav {
+    border-right: 1px solid var(--cua-gray-500) !important;
+}
 
 /*** Responsive starts here ***/
 
