@@ -1122,6 +1122,9 @@ div#block-cua-theme-breadcrumbs {
 .pagination.js-pager__items {
     display: flex;
     justify-content: center;
+    margin-top: 2rem;
+    background: var(--cua-gray-100);
+    border: 1px solid var(--cua-gray-500);
 }
 
 .page-link {
