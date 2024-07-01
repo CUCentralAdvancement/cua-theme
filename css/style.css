@@ -1123,33 +1123,67 @@ div#block-cua-theme-breadcrumbs {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    background: var(--cua-gray-100);
-    border: 1px solid var(--cua-gray-500);
 }
 
 .page-link {
     background-color: transparent;
     border-color: transparent;
-    color: var(--cua-gold-hover);
+    color: var(--cua-gold);
     font-size: 1rem;
     font-weight: 700;
 }
 
 .active > .page-link, .page-link.active {
     background-color: transparent;
-    border-color: transparent;
-    color: var(--cua-gold-hover);
-}
-
-.page-item:not(:first-child) .page-link {
-    color: var(--cua-gold-hover);
+    border-color: transparent
 }
 
 .page-link:hover {
     z-index: 2;
     background-color: transparent;
     border-color: transparent;
+    text-decoration: none !important;
     color: var(--cua-gold);
+}
+
+.page-item {
+    background: var(--cua-black);
+    margin: 0 .5rem;
+    border-radius: 50%;
+    padding: .5rem;
+    width: 2.75rem; /* Set the width to a fixed size */
+    height: 2.75rem; /* Set the height to the same fixed size */
+    display: flex; /* Use flexbox to center the content */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+.page-item:hover {
+    background: var(--cua-gold);
+    text-decoration: none;
+}
+
+.page-item.active {
+    background: var(--cua-gold);
+    text-decoration: none;
+}
+
+.page-item.active a {
+    color: var(--cua-black);
+    text-decoration: none;
+}
+
+.page-item a {
+    color: var(--cua-gold);
+    text-decoration: none;
+}
+
+.page-item a:hover {
+    color: var(--cua-black);
+}
+
+.page-item.active:hover {
+    color: var(--cua-black);
 }
 
 .view-footer {
