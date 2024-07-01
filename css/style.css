@@ -1515,8 +1515,8 @@ span.views-summary.views-summary-unformatted {
     padding: .45rem 1rem;
 }
 
-#views-exposed-form-trustees-page-1 #edit-combine {
-    margin-top: 1.4rem !important;
+.view-trustees .form-control {
+    margin-top: 1.4rem;
 }
 
 .view-id-trustees .view-filters {
