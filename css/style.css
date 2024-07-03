@@ -196,33 +196,39 @@ p.intro {
 p.h2.title {
     font-size: 2.25rem !important;
     color: inherit;
+    line-height: 1.1;
 }
 
 p.h2.title-lg {
     font-size: 3.5rem !important;
     color: inherit;
     margin: 1.3rem 0 .3rem 0;
+    line-height: 1.1;
 }
 
 p.h3.title {
     font-size: 2rem !important;
     color: inherit;
+    line-height: 1.1;
 }
 
 p.h4.title {
     font-size: 1.65rem !important;
     color: inherit;
+    line-height: 1.1;
 }
 
 p.h5.title {
     font-size: 1.3rem !important;
     line-height: 1.4 !important;
     color: inherit;
+    line-height: 1.1;
 }
 
 p.h6.title {
     font-size: 1.125rem !important;
     color: inherit;
+    line-height: 1.1;
 }
 
 .light-font-weight {
@@ -1840,4 +1846,13 @@ aside .nav {
         margin: 20px !important;
         color: black !important;
     }
+}
+
+.title  {
+    font-size: 2rem;
+    line-height: 1.5;
+}
+
+.title.visible .d-flex.justify-content-center {
+    text-align: center !important;
 }
