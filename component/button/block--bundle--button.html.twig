@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Template for the Call to Action component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
+#}
+
+{# Add optional classes based on conditions #}
+{% set color_border = color_border ?? '' %}
+{% set text_alignment = text_alignment ?? '' %}
+{% set text_color = text_color ?? '' %}
+
+{# Add button classes #}
+{% set button_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'button card',
+    color_border,
+    text_alignment,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') | trim %}
+
+{# Add unique id to block #}
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+] %}
+
+{# Render content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(button_classes) }}>
+    {# Include Title, Body, and Link Components #}
+    {# Include Title Component #}
+    {% include '@cua_theme/component/title/_title.html.twig'%}
+    {# Include Body Component #}
+    {% include '@cua_theme/component/body/_body.html.twig' %}
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+</div>
