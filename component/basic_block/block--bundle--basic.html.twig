@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Template for the Call to Action component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
+#}
+
+{# Add CTA classes #}
+{% set basic_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'basic-block',
+    'card',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ') | trim %}
+
+{# Add unique id to block #}
+{% set unique_id = [
+    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
+] %}
+
+{# Contwnt #}
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(basic_classes ) }}>
+
+    {# Include Image Component #}
+    {% if card_image is not empty %}
+        <div class="mb-3">
+            {% include '@cua_theme/component/card/_card--image.html.twig' %}
+        </div>
+    {% endif %}
+
+    {# Title #}
+    {{ title_prefix ?? '' }}
+    <div class="display-4 my-2">
+        {{ label }}
+    </div>
+    {{ title_suffix ?? '' }}
+
+    {# Include Body Component #}
+    {% include '@cua_theme/component/body/_body.html.twig' %}
+
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
+</div>
+
