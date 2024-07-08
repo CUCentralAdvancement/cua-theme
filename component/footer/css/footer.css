@@ -6,7 +6,7 @@ footer h2 {
 footer h2,
 footer #site-footer-top .clearfix.nav {
     font-size: 1.3em;
-    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--font-roboto-condensed);
     font-weight: 700;
     margin-bottom: .5rem;
     padding-bottom: 5px;

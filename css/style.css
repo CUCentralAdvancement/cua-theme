@@ -60,7 +60,7 @@
     --font-awesome: "FontAwesome";
     --fa-style-family-classic: "FontAwesome";
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --font-roboto-condensed: 'Roboto Condensed','Helvetica Neue', Helvetica,Arial,sans-serif;
+    --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
     /* Background Colors */
     --bg-light: #f4f4f5;
@@ -130,6 +130,28 @@ div#block-cua-theme-page-title {
     z-index: -100;
 }
 
+/* Headings */
+
+h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
+    font-family: var(--font-roboto-condensed);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h1, .h1 {
+    font-size: 2.5rem;
+}
+
+h1.title {
+    margin: .75rem 0 2rem !important;
+    background: var(--cua-white);
+    color: var(--cua-gray-700);
+    font-size: 2.25rem;
+    font-family: var(--font-roboto-condensed);
+    font-weight: 600;
+    position: relative;
+}
+
 h2, .h2, h2.title {
     font-size: 2rem;
 }
@@ -195,6 +217,8 @@ p.intro {
     line-height: 1.5 !important;
     color: inherit;
 }
+
+/* CK Editor styling */
 
 p.h2.title {
     font-family: var(--font-roboto-condensed);
@@ -827,13 +851,6 @@ div#edit-bod--2 {
     border: 1px solid white;
 }
 
-/*
-a.bef-link.bef-link--selected {
-    border-bottom: 2px solid var(--cua-gold) !important;
-}
-*/
-
-
 #main-wrapper-landing-page .row {
     --bs-gutter-x: 0 !important;
     --bs-gutter-y: 0 !important;
@@ -982,13 +999,6 @@ div#block-cua-theme-breadcrumbs {
     margin: 0;
     padding-right: 5px;
 }
-
-/*
-.path-node.node--type-contact-us h1 {
-    font-size: 1.75rem;
-    margin: 2rem 0 !important;
-}
-*/
 
 .path-node.node--type-contact-us .layout {
     margin: 0;
@@ -1368,7 +1378,7 @@ div#block-cua-theme-viewsexposedfilterblock {
 
 .display-4 {
     font-size: 2rem;
-    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--font-roboto-condensed);
     line-height: 1.1;
 }
 
@@ -1804,7 +1814,7 @@ aside .nav {
     border-right: 1px solid var(--cua-gray-500) !important;
 }
 
-.title  {
+.title {
     font-size: 2rem;
     line-height: 1.5;
 }

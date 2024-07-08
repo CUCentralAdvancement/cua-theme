@@ -21,7 +21,7 @@
 /* Banner */
 .banner h2,
 .banner .h2 {
-    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--font-roboto-condensed);
     font-weight: 700;
     text-transform: uppercase;
 }
