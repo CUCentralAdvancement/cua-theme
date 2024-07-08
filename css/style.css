@@ -1805,6 +1805,13 @@ aside .nav {
     text-align: center !important;
 }
 
+/* Fix issue for CK editor modal links behind window */
+.ck.ck-balloon-panel.ck-balloon-panel_visible,
+#drupal-off-canvas [data-drupal-ck-style-fence] .ck.ck-balloon-panel.ck-balloon-panel_visible {
+    display: block !important;
+    z-index: 9999999 !important;
+}
+
 /*** Responsive starts here ***/
 
 @media only screen and (max-width: 991px) {
