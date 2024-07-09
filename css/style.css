@@ -900,7 +900,6 @@ div#block-cua-theme-breadcrumbs {
 /* FAQ Styles */
 .faq .js-views-accordion-group-header {
     padding: 0;
-    text-transform: uppercase;
     font-size: 1.5rem;
 }
 
