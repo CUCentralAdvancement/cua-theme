@@ -58,7 +58,7 @@
 
 {# If container size is active #}
 {% if text_alignment is not empty %}
-<div class="{{ text_alignment }} g-0">
+<div class="{{ text_alignment }} g-0 h-100">
     {% endif %}
 
     <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes, animate_classes) }}
