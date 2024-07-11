@@ -1829,6 +1829,16 @@ aside .nav {
     z-index: 9999999 !important;
 }
 
+/* Crypto background */
+.page-node-55 .modal-content {
+    width: 400px;
+    background-color: transparent;
+}
+
+.page-node-55 .modal-header {
+    border: none !important;
+}
+
 /*** Responsive starts here ***/
 
 @media only screen and (max-width: 991px) {
