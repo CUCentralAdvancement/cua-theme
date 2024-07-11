@@ -33,3 +33,7 @@
   border-color: transparent !important;
 }
 
+.call-to-action .card-link.d-flex.justify-content-center {
+  text-align: center !important;
+}
+

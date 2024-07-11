@@ -575,6 +575,11 @@ span.nav-link.dropdown-toggle.nav-link- {
     text-decoration: none;
 }
 
+/* Remove header for scroll to action correction */
+.path-faq .sticky {
+    position: relative !important;
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
