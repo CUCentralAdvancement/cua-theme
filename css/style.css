@@ -1844,6 +1844,10 @@ aside .nav {
     display: none !important;
 }
 
+.node--type-landing-page #main-wrapper-landing-page {
+    margin: 0 1rem;
+}
+
 /*** Responsive starts here ***/
 
 @media only screen and (max-width: 991px) {
