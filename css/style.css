@@ -1839,6 +1839,11 @@ aside .nav {
     border: none !important;
 }
 
+.user-administrator .aioa-widget-wrapper,
+.user-logged-in.aioa-widget-wrapper {
+    display: none !important;
+}
+
 /*** Responsive starts here ***/
 
 @media only screen and (max-width: 991px) {
