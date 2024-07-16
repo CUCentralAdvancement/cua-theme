@@ -519,7 +519,7 @@ a.align-self-end.card-link.btn.nobtn-cu-bg-light-grey.text-decoration-none:hover
 /* Image hover effect styles */
 .img-hover-effect {
     position: relative;
-    margin: auto;
+    /* margin: auto;*/
     overflow: hidden;
     width: inherit;
 }
