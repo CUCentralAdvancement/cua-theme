@@ -39,16 +39,18 @@
 
 .call-to-action .display-4.card-text.lead.h3.title {
   font-family: var(--font-roboto-condensed);
-  font-size: 2.5rem !important;
+  font-size: 2.25rem !important;
   font-weight: 700 !important;
-  margin: 0 .5rem;
+  line-height: 1.1 !important;
+  margin: .5rem 0 0!important;
 }
 
 .call-to-action p.h3.title {
   font-family: var(--font-roboto-condensed);
-  font-size: 2.5rem !important;
+  font-size: 2.25rem !important;
   font-weight: 700 !important;
-  margin: .5rem 0 0;
+  line-height: 1.1 !important;
+  margin: .5rem 0 0 !important;
 }
 
 .call-to-action.card p span {
