@@ -1850,7 +1850,6 @@ aside .nav {
 }
 
 /*** Responsive starts here ***/
-
 @media only screen and (max-width: 991px) {
     div#edit-contacts--2, div#edit-bod--2 {
         border-right: 1px solid var(--cua-white) !important;
