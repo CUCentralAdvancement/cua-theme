@@ -1,0 +1,16 @@
+{# Add a wrapper div for the slider component, e.g., using Bootstrap 5 classes #}
+
+
+{# Loop through each item in the paragraph content #}
+{% for item in items %}
+    {# Determine active class for the first item #}
+    {% set active_class = loop.first ? ' active' : '' %}
+    {# Add classes to the slide item #}
+    <div class="carousel-item{{ active_class }}" data-bs-interval="5000">
+        {# Render each item's content within the paragraph container #}
+        <div{{ attributes.addClass(classes) }}>
+            {{ item.content }}
+        </div>
+    </div>
+{% endfor %}
+
