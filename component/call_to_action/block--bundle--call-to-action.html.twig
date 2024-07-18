@@ -39,7 +39,6 @@
     'block-' ~ plugin_id|clean_class,
     'call-to-action',
     'card rounded-0 h-100',
-    'mx-md-2 mx-sm-0 p-2',
     animate_trigger,
     color_background,
     color_border,
@@ -93,7 +92,8 @@
         <div class="display-4 card-text lead h3 title {{ [
             center_content is not empty ? ' ' ~ center_content,
             text_alignment is not empty ? ' ' ~ text_alignment,
-            text_color is not empty ? ' ' ~ text_color
+            text_color is not empty ? ' ' ~ text_color,
+            padding is not empty ? ' ' ~ padding,
         ]|join }}">
             {{ label }}
         </div>
