@@ -1849,6 +1849,11 @@ aside .nav {
     margin: 0 1rem;
 }
 
+.slider blockquote {
+    border-left: 0 solid var(--cua-gold) !important;
+    width: 70% !important;
+}
+
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
     div#edit-contacts--2, div#edit-bod--2 {

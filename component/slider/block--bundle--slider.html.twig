@@ -29,29 +29,50 @@
  * @ingroup themeable
  */
 #}
-<style>
-  blockquote {
-    border-left: 0 solid var(--cua-gold) !important;
-    width: 70% !important;
-  }
-</style>
 
-<div class="container">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+{# Add CTA classes #}
+{% set slider_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'container',
+    'slider',
+] %}
 
+{# Generate unique ID #}
+{% set unique_id = 'block--node-' ~ '-slider' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+
+{# Content #}
+
+<div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>
+
+    {# Include Title #}
+    {{ title_prefix ?? '' }}
+    {{ label }}
+    {{ title_suffix ?? '' }}
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide"
+         data-bs-ride="carousel">
+
+        {# SLider Content  #}
         <div class="carousel-inner text-align-center">
             {{ content }}
         </div>
 
-        <button class="carousel-control-prev {{ content.field_visibility_arrows.0 }}" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
+        {# Include Arrows Component #}
+        {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
+            <button class="carousel-control-prev" type="button"
+                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
 
-        <button class="carousel-control-next {{ content.field_visibility_arrows.0 }}" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+            <button class="carousel-control-next" type="button"
+                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        {% endif %}
 
     </div>
 </div>
