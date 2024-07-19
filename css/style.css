@@ -1854,6 +1854,12 @@ aside .nav {
     width: 70% !important;
 }
 
+.slider blockquote p {
+    color: var(--cua-gray-600);
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
     div#edit-contacts--2, div#edit-bod--2 {
