@@ -67,3 +67,7 @@
 .call-to-action  p {
     margin-top: 1rem !important;
 }
+
+.call-to-action .fa-solid {
+    margin-bottom: 1rem !important;
+}
