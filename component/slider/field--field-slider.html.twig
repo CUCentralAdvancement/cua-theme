@@ -14,3 +14,16 @@
     </div>
 {% endfor %}
 
+
+<div class="carousel-indicators">
+    {% for item in items %}
+        {% set index = loop.index0 %}
+        <button type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="{{ index }}"
+                class="{{ loop.first ? 'active' }}"
+                aria-current="{{ loop.first ? 'true' : 'false' }}"
+                aria-label="Slide {{ loop.index }}"></button>
+    {% endfor %}
+</div>
+
