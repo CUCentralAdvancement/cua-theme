@@ -411,10 +411,10 @@ blockquote {
 blockquote::before {
     color: var(--cua-gold);
     content: "\201C";
-    font-size: 4em;
-    left: 10px;
+    font-size: 6em;
+    left: -20px;
     position: absolute;
-    top: -10px;
+    top: -30px;
 }
 
 blockquote span {
@@ -423,6 +423,17 @@ blockquote span {
     font-style: normal;
     font-weight: 700;
     margin-top: 1em;
+}
+
+.slider blockquote {
+    border-left: 0 solid var(--cua-gold) !important;
+    width: 70% !important;
+}
+
+.slider blockquote p {
+    color: var(--cua-gray-600);
+    font-size: 1.2rem;
+    line-height: 1.2;
 }
 
 /* Button Styles */
@@ -1849,16 +1860,6 @@ aside .nav {
     margin: 0 1rem;
 }
 
-.slider blockquote {
-    border-left: 0 solid var(--cua-gold) !important;
-    width: 70% !important;
-}
-
-.slider blockquote p {
-    color: var(--cua-gray-600);
-    font-size: 1.2rem;
-    line-height: 1.2;
-}
 
 .display-4.card-text.lead.h3.title.d-flex.justify-content-center {
     text-align: center !important;
@@ -1879,7 +1880,6 @@ aside .nav {
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
-
 
     aside .node__content .block.block-menu.navigation {
         border-right: 1px solid var(--cua-white);
@@ -1913,6 +1913,52 @@ aside .nav {
         background: rgba(255, 255, 255, 0.8) !important;
         margin: 20px !important;
         color: black !important;
+    }
+
+    blockquote {
+        border-left: 4px solid var(--cua-gold);
+        font-size: 1em;
+        font-style: italic;
+        line-height: 1.6;
+        margin: 10px auto;
+        padding: .5em 10px .5em 25px;
+        position: relative;
+        width: 100%;
+    }
+
+    blockquote::before {
+        font-size: 5em;
+        left: -50px;
+        top: -30px;
+    }
+
+    blockquote span {
+        color: var(--cua-gray-800);
+        display: block;
+        font-style: normal;
+        font-weight: 700;
+        margin-top: 1em;
+    }
+
+    .slider blockquote {
+        border-left: 0 solid var(--cua-gold);
+        padding: 0;
+        margin-bottom: 5rem;
+        width: 100%;
+    }
+
+    .slider blockquote p {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+
+    .card-header.d-flex.justify-content-center {
+        text-align: center !important;
     }
 }
 

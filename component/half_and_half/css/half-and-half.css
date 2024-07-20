@@ -101,12 +101,4 @@
         padding: 1rem 1rem !important;
     }
 
-    /* Styling for blockquote on small screens */
-    blockquote {
-        font-size: 1em !important;
-        width: 95% !important;
-        margin: 30px auto !important;
-        padding: 1.2em 30px 1.2em 55px !important;
-        border-left: 4px solid var(--cua-gold) !important;
-    }
 }
