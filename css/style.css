@@ -1960,5 +1960,35 @@ aside .nav {
     .card-header.d-flex.justify-content-center {
         text-align: center !important;
     }
+
+
+
 }
 
+/*** Responsive starts here ***/
+@media only screen and (max-width: 545px) {
+    div#block--node--call-to-action--775 {
+        display: block;
+        margin: 15px 10px !important;
+    }
+
+    .view.view-trustees .views-col.col-1,
+    .view.view-trustees .views-col.col-2,
+    .view.view-trustees .views-col.col-3 {
+        min-width: 400px !important;
+    }
+
+    .full-padding {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .banner-body {
+        padding: 1rem !important;
+    }
+
+    .full-padding, .fp {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
