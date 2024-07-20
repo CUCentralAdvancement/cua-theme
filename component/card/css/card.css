@@ -666,6 +666,13 @@ p.figcaption.card-header {
     text-align: center !important;
 }
 
+.card-link.btn.nobtn-cu-bg-light-grey {
+    color: var(--cua-light-grey);
+}
+
+.card-link.btn.nobtn-cu-bg-white {
+    color: var(--cua-white);
+}
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
