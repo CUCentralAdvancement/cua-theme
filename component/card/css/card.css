@@ -48,6 +48,20 @@
     min-width: 16rem;
 }
 
+.card-link.btn.nobtn-cu-bg-white,
+.card-link.btn.nobtn-cu-bg-black,
+.card-link.btn.nobtn-cu-bg-gold,
+.card-link.btn.nobtn-cu-bg-light-grey{
+    padding: 0 .5rem !important;
+}
+
+.card-link.btn.nobtn-cu-bg-white:hover,
+.card-link.btn.nobtn-cu-bg-black:hover,
+.card-link.btn.nobtn-cu-bg-gold:hover,
+.card-link.btn.nobtn-cu-bg-light-grey:hover {
+    text-decoration: underline !important;
+}
+
 /* Heading alignment variations for cards */
 .card h3.justify-content-end,
 .card .justify-content-end p {
@@ -660,3 +674,5 @@ p.figcaption.card-header {
     }
 
 }
+
+
