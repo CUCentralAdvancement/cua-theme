@@ -174,6 +174,7 @@ function cua_theme_preprocess_block(array &$variables): void {
             'field_outline',
             'field_video',
             'field_visibility',
+            'field_visibility_numbers',
         ];
 
         // Loop through the fields and preprocess each one.
