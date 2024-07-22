@@ -1,8 +1,8 @@
-{# Add a wrapper div for the slider component, e.g., using Bootstrap 5 classes #}
+{# Carousel based on Bootstrap 5 #}
 
-
-{# Loop through each item in the paragraph content #}
+{# Loop through each item #}
 {% for item in items %}
+
     {# Determine active class for the first item #}
     {% set active_class = loop.first ? ' active' : '' %}
     {# Add classes to the slide item #}
@@ -12,18 +12,22 @@
             {{ item.content }}
         </div>
     </div>
+
+    {# Loop through each item in the slider indicators #}
+    <div class="carousel-indicators">
+        {% for item in items %}
+            {% set index = loop.index0 %}
+            <button type="button"
+                    data-bs-target="#carousel"
+                    data-bs-slide-to="{{ index }}"
+                    class="{{ loop.first ? 'active' }}"
+                    aria-current="{{ loop.first ? 'true' : 'false' }}"
+                    aria-label="Slide {{ loop.index }}"></button>
+        {% endfor %}
+    </div>
+
 {% endfor %}
 
 
-<div class="carousel-indicators">
-    {% for item in items %}
-        {% set index = loop.index0 %}
-        <button type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to="{{ index }}"
-                class="{{ loop.first ? 'active' }}"
-                aria-current="{{ loop.first ? 'true' : 'false' }}"
-                aria-label="Slide {{ loop.index }}"></button>
-    {% endfor %}
-</div>
+
 

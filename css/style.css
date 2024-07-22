@@ -1865,6 +1865,10 @@ aside .nav {
     text-align: center !important;
 }
 
+.contact-menu h3 {
+    display: none !important;
+}
+
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
     div#edit-contacts--2, div#edit-bod--2 {
@@ -1960,8 +1964,6 @@ aside .nav {
     .card-header.d-flex.justify-content-center {
         text-align: center !important;
     }
-
-
 
 }
 

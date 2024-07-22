@@ -44,29 +44,33 @@
 
 {# Content #}
 <div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>
+
     {# Include Title #}
     {{ title_prefix ?? '' }}
     {{ label }}
     {{ title_suffix ?? '' }}
-    <div id="carouselExampleDark" class="carousel carousel-dark slide"
+
+    <div id="carousel" class="carousel carousel-dark slide"
          data-bs-ride="carousel">
         {# SLider Content  #}
         <div class="carousel-inner text-align-center">
             {{ content }}
         </div>
+
         {# Include Arrows Component #}
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
             <button class="carousel-control-prev" type="button"
-                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    data-bs-target="#carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">{{ 'Previous'|t }}</span>
             </button>
 
             <button class="carousel-control-next" type="button"
-                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    data-bs-target="#carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">{{ 'Nex'|t }}t</span>
             </button>
         {% endif %}
+
     </div>
 </div>
