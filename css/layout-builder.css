@@ -294,6 +294,14 @@ form#node-page-layout-builder-form #edit-actions {
   background-color: var(--cua-white);
 }
 
+.contextual .trigger {
+  width: 50px !important;
+  height: 50px !important;
+  background-size: 25px 25px;
+  /* Add shadow properties */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Change the values as needed */
+}
+
 .block.block-layout-builder.block-inline-blockbasic {
   margin: 0 0 2rem;
 }
