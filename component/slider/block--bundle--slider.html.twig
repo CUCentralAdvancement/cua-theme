@@ -29,8 +29,9 @@
  * @ingroup themeable
  */
 #}
+{# Carousel based on Bootstrap 5 #}
 
-{# Add CTA classes #}
+{# Add Slider classes #}
 {% set slider_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -52,6 +53,8 @@
 
     <div id="carousel" class="carousel carousel-dark slide"
          data-bs-ride="carousel">
+
+
         {# SLider Content  #}
         <div class="carousel-inner text-align-center">
             {{ content }}
