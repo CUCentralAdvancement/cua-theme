@@ -440,6 +440,7 @@ blockquote span {
 .slider blockquote {
     border-left: 0 solid var(--cua-gold) !important;
     width: 70% !important;
+    margin: 1rem auto !important;
 }
 
 .slider blockquote p {
