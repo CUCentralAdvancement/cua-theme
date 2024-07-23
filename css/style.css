@@ -444,9 +444,9 @@ blockquote span {
 }
 
 .slider blockquote p {
-    color: var(--cua-gray-600);
+    color: var(--cua-gray-700);
     font-size: 1.2rem;
-    line-height: 1.2;
+    line-height: 1.4;
 }
 
 /* Button Styles */
