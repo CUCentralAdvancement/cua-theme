@@ -267,6 +267,18 @@ p.h6.title {
     font-size: 80% !important;
 }
 
+.text-gold {
+    color: var(--cua-gold) !important;
+}
+
+.text-white {
+    color: var(--cua-white) !important;
+}
+
+.text-black {
+    color: var(--cua-black) !important;
+}
+
 
 /* Body */
 a {
