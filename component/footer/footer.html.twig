@@ -58,9 +58,16 @@
                                href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
                         </div>
 
+                        {# Footer Region 1: #}
+                        {% if page.footer_first %}
+                            <div class="g-0">
+                                {{ page.footer_first }}
+                            </div>
+                        {% endif %}
+
                         {# Footer Region 5 #}
                         {% if page.footer_fifth %}
-                            <div class="make-a-gift g-0 my-3">
+                            <div class="make-a-gift g-0 my-2">
                                 {{ page.footer_fifth }}
                             </div>
                         {% endif %}
