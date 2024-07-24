@@ -18,61 +18,17 @@
     {# Site Footer Top Section #}
     <div id="site-footer-top" class="container pt-3">
         {# Check if any footer regions are present #}
-        {% if page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
+        {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
             <div class="row g-0">
 
-                {# Footer Region 1: University Information #}
+                {# Footer Region 1 and 5: University Information #}
                 <div class="col-md-4 col-sm-6 px-2">
-                    <section class="row region region-footer-first">
-
-                        {# CU Name/Department #}
-                        <div class="cua-name-title g-0">
-                            <h2 class="g-0 mb-1">{{ 'University of Colorado'|t }}
-                                <br>{{ 'CU Advancement | CU Foundation'|t }}
-                            </h2>
+                    {# Footer Region 1: #}
+                    {% if page.footer_first %}
+                        <div class="first-col-footer g-0">
+                            {{ page.footer_first }}
                         </div>
-
-                        {# Address and Contact Information #}
-                        <div class="cua-address g-0 mb-2">
-                            <a class="cua-map link-cua g-0 mb-2"
-                               aria-label="{{ 'Map to Colorado University System Advancement'|t }}"
-                               href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A">
-                                {{ '1800 Grant Street, Suite 215'|t }}<br>
-                                {{ 'Denver, CO 80203'|t }}
-                            </a>
-                        </div>
-
-                        {# Phone Number #}
-                        <div class="cua-phone g-0 mb-2">
-                            <a class="link-cua" href="tel:+13035411290"
-                               itemprop="telephone"
-                               aria-label="{{ 'Call +1 303.541.1290'|t }}">{{ '303-541-1290'|t }}</a>
-                        </div>
-
-                        {# Email Address #}
-                        {% set email = 'giving@cu.edu' %}
-                        {% set obfuscatedEmail = email|replace({'@': '&#64;', '.': '&#46;'}) %}
-                        <div class="cua-email g-0 mb-2">
-                            <a class="link-cua"
-                               aria-label="{{ 'email address'|t }}"
-                               href="mailto:{{ obfuscatedEmail|raw }}">{{ obfuscatedEmail|raw }}</a>
-                        </div>
-
-                        {# Footer Region 1: #}
-                        {% if page.footer_first %}
-                            <div class="g-0">
-                                {{ page.footer_first }}
-                            </div>
-                        {% endif %}
-
-                        {# Footer Region 5 #}
-                        {% if page.footer_fifth %}
-                            <div class="make-a-gift g-0 my-2">
-                                {{ page.footer_fifth }}
-                            </div>
-                        {% endif %}
-
-                    </section>
+                    {% endif %}
                 </div>
 
                 {# Additional Footer Regions #}
@@ -94,6 +50,13 @@
                 {% if page.footer_fourth %}
                     <div class="col-md-2 col-sm-6 mt-2 px-2">
                         {{ page.footer_fourth }}
+                    </div>
+                {% endif %}
+
+                {# Footer Region 5 #}
+                {% if page.footer_fifth %}
+                    <div class="make-a-gift g-0 my-2">
+                        {{ page.footer_fifth }}
                     </div>
                 {% endif %}
 

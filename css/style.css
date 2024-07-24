@@ -476,12 +476,6 @@ blockquote span {
     margin: 0 .2rem;
 }
 
-/* Section Styles */
-
-section.row.region.region-footer-first {
-    margin: 1.4rem 0 0;
-}
-
 /* Table Styles */
 
 .table > thead {
@@ -1728,14 +1722,6 @@ a.bef-link--selected {
 [type="file"])),
 #drupal-off-canvas-wrapper select, #drupal-off-canvas-wrapper textarea {
     color: black !important;
-}
-
-/* Lets make the Foundation President standout */
-.view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light,
-.view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light a,
-.view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light {
-    background-color: var(--cua-gold) !important;
-    color: var(--cua-black) !important;
 }
 
 .view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light .h5.title.headshot,

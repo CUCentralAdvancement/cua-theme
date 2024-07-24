@@ -28,13 +28,7 @@ footer #site-footer-top .clearfix.nav {
 /* Additional Block Styling */
 .site-footer .block {
     border: none;
-    margin: 2rem 0;
 }
-
-.cua-address {
-    margin-top: .5rem;
-}
-
 
 /* Site Footer Bottom */
 footer #site-footer-bottom .clearfix.nav {
@@ -183,7 +177,7 @@ div#site-footer-bottom {
     left: 0;
     width: 0;
     height: 100%;
-    background: var(--cua-gold) !important;/* Change to semi-transparent black background */
+    background: var(--cua-gold) !important; /* Change to semi-transparent black background */
     transition: width 0.5s ease; /* Transition width property */
     z-index: -1;
 }
@@ -220,7 +214,20 @@ div#site-footer-bottom {
 }
 
 .site-footer .block {
+    margin: 26px 0;
+}
+
+.first-col-footer .site-footer .block {
     padding: 0;
+}
+
+section.row.region.region-footer-first,
+.site-footer .region.region-footer-first .block {
+    margin: 0;
+}
+
+div#site-footer-top {
+    padding: 0 0 3rem;
 }
 
 /*** Responsive ***/
@@ -229,6 +236,7 @@ div#site-footer-bottom {
         border: none;
         margin: 0;
     }
+
     .copyright a,
     .copyright p {
         font-size: .7rem !important;
