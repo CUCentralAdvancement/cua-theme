@@ -1729,19 +1729,13 @@ a.bef-link--selected {
     color: var(--cua-black) !important;
 }
 
-.view-contact.view-id-contact .view-content > .col-md-6:first-child .bg-light .cu-line-sm::after,
-.view-id-board_of_directors.view-display-id-attachment_2 .view-content > .col-md-6:first-child .bg-light .cu-line-sm::after {
-    background-color: var(--cua-white);
-}
-
-.contact .view-content > .col-md-6:first-child .fa-phone::before,
-.contact .view-content > .col-md-6:first-child .fa-envelope::before {
-    color: var(--cua-white);
-}
-
 .page-view-main-contacts .contact .view-content > .col-md-6:first-child .fa-phone::before,
 .page-view-main-contacts .contact .view-content > .col-md-6:first-child .fa-envelope::before {
     color: var(--cua-gold) !important;
+}
+
+.node--type-contact-us .field.field--name-title.field--type-string.field--label-hidden {
+    font-size: 2rem;
 }
 
 .full-padding, .fp {
