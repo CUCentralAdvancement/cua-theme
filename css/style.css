@@ -1969,6 +1969,10 @@ aside .nav {
         padding: 0 0 15px;
     }
 
+    .card-img.xsmall {
+        width: 90% !important;
+    }
+
 }
 
 /*** Responsive starts here ***/
