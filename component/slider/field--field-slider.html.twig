@@ -18,7 +18,7 @@
     {# Determine active class for the first item #}
     {% set active_class = loop.first ? ' active' : '' %}
     {# Add classes to the slide item #}
-    <div class="carousel-item{{ active_class }}" data-bs-interval="5000">
+    <div class="carousel-item{{ active_class }}" data-bs-interval="10000">
         {# Render each item's content within the paragraph container #}
         <div{{ attributes.addClass(classes) }}>
             {{ item.content }}
