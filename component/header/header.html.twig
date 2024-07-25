@@ -88,14 +88,16 @@
                 </div>
             {% endif %}
 
-            {# Search Icon #}
+            {# Search Icon
             <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
                 {% include '@cua_theme/component/header/_search-icon.html.twig' %}
             </div>
+            #}
+
         </div>
     </div>
 
-    {# Search Form #}
+    {# Search Form
     {% if page.search %}
         <div class="container-fluid main-search bg-light border-top border-grey">
             <div class="container">
@@ -107,6 +109,7 @@
             </div>
         </div>
     {% endif %}
+    #}
 
     {# Site Name / Desktop #}
     {% if site_name %}
