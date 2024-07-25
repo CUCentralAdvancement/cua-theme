@@ -770,13 +770,13 @@ aside .form-select a,
 aside a.nav-link,
 aside a.bef-link {
     box-sizing: border-box;
-    color: var(--cua-black);
+    color: var(--cua-gray-700);
     display: block;
     font-size: 1.2rem;
     font-weight: 600;
     text-decoration: none;
     line-height: 1.1;
-    margin: 0 0 .25rem;
+    margin: .5rem;
     padding: .25rem 0;
     position: relative;
     width: 100%;
@@ -786,7 +786,7 @@ aside a.bef-link {
 .node__content .block.block-menu.navigation a.link-cua,
 aside a.link-cua {
     color: var(--cua-black);
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
 }
 
@@ -1616,30 +1616,22 @@ span.views-summary.views-summary-unformatted {
 
 /* Sidebar right menu */
 .layout__region.layout__region--second .navigation h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-top: 1rem;
+    font-weight: 600;
+    margin-left: 1rem;
 }
 
-.layout__region.layout__region--second .navigation .nav-item {
-    border: 1px solid var(--cua-black);
-    margin-bottom: .25rem;
-    width: 100%;
+.layout__region.layout__region--second {
+    padding: 0 0 0 1rem;
+}
+
+.layout__region--second .block.block-menu.navigation {
+    border-left: 1px solid var(--cua-gray-400);
 }
 
 .layout__region.layout__region--second .navigation .nav-item a {
     color: var(--cua-black);
-    font-size: .9rem;
-}
-
-.layout__region.layout__region--second .navigation .nav-item a:hover {
-    background: var(--cua-black);
-    color: var(--cua-white);
-    font-size: .9rem;
-    text-decoration: none;
-}
-
-.node__content .block.block-menu.navigation.menu--more-essential-ideas {
-    padding: 0 0 0 4rem;
 }
 
 .webform-type-fieldset {
@@ -1668,8 +1660,7 @@ a.simplesamlphp-auth-login-link:hover {
 }
 
 .layout__region.layout__region--second a.nav-link.active.is-active {
-    background: var(--cua-black);
-    color: var(--cua-white) !important;
+    color: var(--cua-gold);
 }
 
 .layout .navbar a.nav-link.is-active {

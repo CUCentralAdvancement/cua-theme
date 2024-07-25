@@ -303,7 +303,7 @@ header #search-block-form {
 }
 
 .secondary-menu a.nav-link:hover {
-    color: var(--cua-gold-hover);
+    color: var(--cua-gold);
 }
 
 /* Style the last .nav-link element */
@@ -311,8 +311,8 @@ header #search-block-form {
     position: relative;
     z-index: 1;
     background: var(--cua-white);
-    border: 1px solid var(--cua-gold-hover);
-    color: var(--cua-gold-hover) !important;
+    border: 1px solid var(--cua-black);
+    color: var(--cua-black) !important;
     font-size: .8rem;
     overflow: hidden;
     padding: .5rem 1rem;
