@@ -38,18 +38,8 @@
     'block-' ~ plugin_id|clean_class,
     'container',
     'slider',
+    'pb-5',
 ] %}
-
-<style>
-    .slide-numbers-visible .carousel-indicators {
-        display: compact;
-    }
-
-    .slide-numbers-invisible .carousel-indicators,
-    .slide-numbers- .carousel-indicators {
-        display: none;
-    }
-</style>
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node-' ~ '-slider' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
