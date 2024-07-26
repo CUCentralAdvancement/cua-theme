@@ -88,7 +88,7 @@ body {
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
     font-family: var(--font-roboto-condensed);
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.2;
 }
 
@@ -134,7 +134,7 @@ div#block-cua-theme-page-title {
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
     font-family: var(--font-roboto-condensed);
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.2;
 }
 
@@ -1285,8 +1285,8 @@ div#block-cua-theme-breadcrumbs {
 
 /*** Add Line under text ***/
 .cu-line {
-    color: var(--cua-gray-700);
-    font-family: var(--font-roboto-condensed);
+    color: var(--cua-gray-800) !important;
+    font-family: var(--font-roboto-condensed) !important;
     font-size: 2rem;
     font-weight: 600;
     line-height: 1.2;
@@ -1298,7 +1298,7 @@ div#block-cua-theme-breadcrumbs {
     width: 1.5em;
     height: 0.1em;
     background-color: var(--cua-gold);
-    margin: 0.4em 0;
+    margin: 0.2em 0 1rem 0;
 }
 
 .cu-line-sm,
