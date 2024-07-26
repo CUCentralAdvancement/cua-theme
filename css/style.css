@@ -1622,10 +1622,6 @@ span.views-summary.views-summary-unformatted {
     margin-left: 1rem;
 }
 
-.layout__region.layout__region--second {
-    padding: 0 0 0 1rem;
-}
-
 .layout__region--second .block.block-menu.navigation {
     border-left: 1px solid var(--cua-gray-400);
 }
