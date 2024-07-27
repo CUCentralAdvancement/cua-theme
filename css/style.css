@@ -2033,8 +2033,13 @@ aside .nav {
     .video-container {
         min-height: 5rem !important;
     }
+
     .video-mobile-copy {
         margin-bottom: 4rem !important;
+    }
+
+    .faq .ui-accordion .ui-accordion-content {
+        padding: 0 !important;
     }
 
 }
