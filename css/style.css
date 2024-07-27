@@ -2020,11 +2020,21 @@ aside .nav {
         padding-right: 15px;
     }
 
+    .page-node-914 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.py-5,
+    .page-node-914 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.pb-5,
+    .page-node-914 .layout.layout--threecol-section.layout--threecol-section--33-34-33 .pb-5,
     .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.py-5,
     .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.pb-5,
     .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33 .pb-5 {
         padding-bottom: 0 !important;
         padding-top: 0 !important;
+    }
+
+    .video-container {
+        min-height: 5rem !important;
+    }
+    .video-mobile-copy {
+        margin-bottom: 4rem !important;
     }
 
 }
