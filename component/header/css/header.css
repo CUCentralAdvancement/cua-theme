@@ -580,6 +580,53 @@ span.nav-link.dropdown-toggle.nav-link- {
     position: relative !important;
 }
 
+/* Sticky give now */
+.header .secondary-menu-sticky .nav-link {
+    font-size: .75rem !important;
+    background: var(--cua-white);
+    color: var(--cua-black) !important;
+    padding: .4rem 1rem;
+}
+
+.secondary-menu-sticky li.nav-item:last-child {
+    border: 1px solid white !important;
+}
+
+.secondary-menu-sticky li.nav-item:last-child:hover {
+    border: 1px solid var(--cua-gold) !important;
+}
+
+.header .secondary-menu-sticky .nav-link:hover {
+    color: var(--cua-gold) !important;
+    background: var(--cua-black) !important;
+    text-decoration: none !important;
+}
+
+.secondary-menu-sticky li.nav-item:last-child .nav-link::before {
+    font-family: var(--font-awesome);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: var(--cua-white);
+    z-index: -1;
+    transition: left 0.5s ease;
+}
+
+.secondary-menu-sticky li.nav-item:last-child  .nav-link::after {
+    font-family: var(--font-awesome);
+    font-size: .8rem;
+    content: "\f06b";
+    margin: 0 0 0 0.5rem;
+}
+
+.secondary-menu-sticky:last-child {
+    margin: .1rem 6.5rem 0 0 !important;
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
@@ -777,4 +824,5 @@ span.nav-link.dropdown-toggle.nav-link- {
         margin: .3rem 0 0;
     }
 }
+
 
