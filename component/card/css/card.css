@@ -267,6 +267,10 @@ a.align-self-end.card-link.btn.nobtn-cu-bg-gold.text-decoration-none:hover {
     background: var(--cua-black);
 }
 
+.cu-bg-black-trans {
+    background: rgba(0,0,0,0.8);
+}
+
 .cu-bd-black, .card.cu-bd-black {
     border: 2px solid var(--cua-black);
 }
@@ -629,6 +633,7 @@ p.figcaption.card-header {
 .card-text.cu-text-white,
 .cu-text-white {
     color: var(--cua-white) !important;
+    background: transparent;
 }
 
 /* Black Text */
