@@ -1,17 +1,17 @@
 {#
 /**
- * @file
- * Template for the Call to Action component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Available fields located in:
- * - cua_theme.theme
- */
+* @file
+* Template for the Call to Action component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
+* Available fields located in:
+* - cua_theme.theme
+*/
 #}
 
 {# Add optional classes based on conditions #}
@@ -43,70 +43,62 @@
     color_background,
     color_border,
     container_size,
-    margins,
     padding,
     text_alignment,
-]
-%}
+] %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node-' ~ '-call-to-action' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
-
 {# If container size is active #}
 {% if text_alignment is not empty %}
 <div class="{{ text_alignment }} g-0 h-100">
     {% endif %}
-
-    <div{{ attributes.addClass(cta_classes).setAttribute('id', unique_id) }}>
-
-        {# Include Video Component  #}
-        {% if provider is not empty %}
-            {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
-
-            {# Include Image Component #}
-        {% elseif card_image is not empty %}
-            {% if links|length > 0 %}
-                {# Render only the first link if active #}
-                {% set firstLink = links[0] %}
-                <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}"
-                aria-label="{{ firstLink.title }}">
-            {% endif %}
-
-            {# Include image with a null alt attribute #}
-            {% include '@cua_theme/component/card/_card--image.html.twig' with {'alt': ''} %}
-
-            {% if links|length > 0 %}
-                {% set firstLink = links[0] %}
-                </a>
-            {% endif %}
-
-            {# Include Icon Component #}
-        {% elseif icon is not empty %}
-            {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+    {% if margins is not empty %}
+    <div class="{{ margins }} g-0">
         {% endif %}
-
-        {# Include Title #}
-        {{ title_prefix ?? '' }}
-        <div class="display-4 card-text lead h3 title {{ [
-            center_content is not empty ? ' ' ~ center_content,
-            text_alignment is not empty ? ' ' ~ text_alignment,
-            text_color is not empty ? ' ' ~ text_color,
-            padding is not empty ? ' ' ~ padding,
-        ]|join }}">
-            {{ label }}
+        <div{{ attributes.addClass(cta_classes).setAttribute('id', unique_id) }}>
+            {# Include Video Component  #}
+            {% if provider is not empty %}
+                {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+                {# Include Image Component #}
+            {% elseif card_image is not empty %}
+                {% if links|length > 0 %}
+                    {# Render only the first link if active #}
+                    {% set firstLink = links[0] %}
+                    <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}"
+                    aria-label="{{ firstLink.title }}">
+                {% endif %}
+                {# Include image with a null alt attribute #}
+                {% include '@cua_theme/component/card/_card--image.html.twig' with {'alt': ''} %}
+                {% if links|length > 0 %}
+                    {% set firstLink = links[0] %}
+                    </a>
+                {% endif %}
+                {# Include Icon Component #}
+            {% elseif icon is not empty %}
+                {% include '@cua_theme/component/card/_card--icon.html.twig' %}
+            {% endif %}
+            {# Include Title #}
+            {{ title_prefix ?? '' }}
+            <div class="display-4 card-text lead h3 title {{ [
+                center_content is not empty ? ' ' ~ center_content,
+                text_alignment is not empty ? ' ' ~ text_alignment,
+                text_color is not empty ? ' ' ~ text_color,
+                padding is not empty ? ' ' ~ padding,
+            ]|join }}">
+                {{ label }}
+            </div>
+            {{ title_suffix ?? '' }}
+            {# Include Body #}
+            {% include '@cua_theme/component/body/_body.html.twig' %}
+            {# Include Lik #}
+            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
         </div>
-        {{ title_suffix ?? '' }}
-
-        {# Include Body #}
-        {% include '@cua_theme/component/body/_body.html.twig' %}
-
-        {# Include Link #}
-        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-
+        {% if margins is not empty %}
     </div>
-
+    {% endif %}
     {% if text_alignment is not empty %}
 </div>
 {% endif %}
