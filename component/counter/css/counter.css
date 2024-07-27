@@ -65,3 +65,12 @@
   line-height: .03125em;
   vertical-align: -.1875em;
 }
+
+.counter .small img {
+  scale: 100% !important;
+}
+
+.counter .card-img.small {
+  margin: 0 4rem !important;
+  scale: 100% !important;
+}

@@ -14,6 +14,7 @@ global-styling:
       component/spacer/css/spacer.css: {}
       css/backgrounds.css: {}
       css/layout-builder.css: {}
+      component/counter/css/counter.css: { }
       //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css: { type: external, minified: true }
     theme:
       //fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,700,900&display=swap: { type: external }
@@ -28,9 +29,6 @@ global-styling:
 
 # Counter
 counter:
-  css:
-    component:
-      component/counter/css/counter.css: { }
   js:
     //cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js: { type: external, minified: true }
     //cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js: { type: external, minified: true }

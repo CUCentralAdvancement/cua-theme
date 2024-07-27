@@ -2042,5 +2042,9 @@ aside .nav {
         padding: 0 !important;
     }
 
+    div#block--inline-block--basic-515 {
+        display: none;
+    }
+
 }
 
