@@ -150,6 +150,7 @@ h1.title {
     font-size: 2.25rem;
     font-family: var(--font-roboto-condensed);
     font-weight: 600;
+    line-height: 1.05;
     position: relative;
 }
 
@@ -1980,6 +1981,20 @@ aside .nav {
 
 /*** Responsive starts here ***/
 @media only screen and (max-width: 545px) {
+
+    aside.section {
+        display: none;
+    }
+
+    .faq .ui-widget-content {
+        border: none !important;
+        border-left: none !important;
+        margin: 0;
+    }
+
+    .ui-accordion .ui-accordion-content {
+        padding: 1rem;
+    }
     div#block--node--call-to-action--775 {
         display: block;
         margin: 15px 10px !important;
@@ -2004,5 +2019,13 @@ aside .nav {
         padding-left: 15px;
         padding-right: 15px;
     }
+
+    .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.py-5,
+    .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.pb-5,
+    .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33 .pb-5 {
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+
 }
 

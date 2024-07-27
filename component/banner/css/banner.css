@@ -328,6 +328,10 @@
     padding: 1.5rem 3rem 3.25rem 3rem;
 }
 
+.banner-image-container {
+    padding: 10rem 0;
+}
+
 /* Responsive adjustments for small screens */
 @media (max-width: 680px) {
     .banner-body {
@@ -340,6 +344,22 @@
 
     .banner-image-container {
         padding: 3rem 0;
+    }
+
+    .banner-body.mx-5.my-5.my-sm-3,
+    .banner-body .mx-5 {
+        margin-right: 1rem !important;
+        margin-left: 1rem !important;
+    }
+
+    .banner-body.mx-5.my-5.my-sm-3,
+    .banner-body .my-5 {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .banner-image-container {
+        padding: 5rem 0 !important;
     }
 
 }
@@ -641,6 +661,3 @@
     }
 }
 
-.banner-image-container {
-    padding: 10rem 0;
-}
