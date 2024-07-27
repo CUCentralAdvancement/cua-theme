@@ -33,7 +33,7 @@ a.site-branding__name {
     font-weight: 700;
     line-height: 1.1;
     padding: 0;
-    margin: .7rem 0 0 .5rem;
+    margin: .2rem 0 0 .5rem;
 }
 
 .site-link {
@@ -800,6 +800,10 @@ span.nav-link.dropdown-toggle.nav-link- {
 
     .navbar-expand-lg .navbar-nav .nav-link::before {
         background-color: var(--uci-gray) !important;
+    }
+
+    a.site-branding__name {
+        margin: .7rem 0 0 .5rem;
     }
 }
 
