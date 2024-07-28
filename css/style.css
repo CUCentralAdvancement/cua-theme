@@ -99,10 +99,11 @@ h1, .h1 {
 h1.title {
     margin: .7rem 0 2rem !important;
     background: var(--cua-white);
-    color: var(--cua-gray-700);
+    color: var(--cua-gray-800);
     font-size: 2.25rem;
     font-family: var(--font-roboto-condensed);
     font-weight: 600;
+    line-height: 1.05;
     position: relative;
 }
 
@@ -141,17 +142,6 @@ h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .
 
 h1, .h1 {
     font-size: 2.5rem;
-}
-
-h1.title {
-    margin: .75rem 0 2rem !important;
-    background: var(--cua-white);
-    color: var(--cua-gray-800);
-    font-size: 2.25rem;
-    font-family: var(--font-roboto-condensed);
-    font-weight: 600;
-    line-height: 1.05;
-    position: relative;
 }
 
 h2, .h2, h2.title {
