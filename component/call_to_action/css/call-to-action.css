@@ -75,3 +75,18 @@
 .block .call-to-action {
     margin: 0 8px !important;
 }
+
+/* centering content when padding added */
+.call-to-action .card-footer.d-flex.d-flex.justify-content-center.add-padding a.card-link.d-flex.justify-content-center {
+    margin: 0 !important;
+}
+
+.call-to-action .d-flex.d-flex.justify-content-center.add-padding p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.call-to-action .d-flex.d-flex.justify-content-center.add-padding .h-100 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
