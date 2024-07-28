@@ -76,7 +76,7 @@
     margin: 0 8px !important;
 }
 
-/* centering content when padding added */
+/* centering content when padding added *
 .call-to-action .card-footer.d-flex.d-flex.justify-content-center.add-padding a.card-link.d-flex.justify-content-center {
     margin: 0 !important;
 }
