@@ -75,3 +75,15 @@
 .block .call-to-action {
     margin: 0 8px !important;
 }
+
+.margin_bottom .call-to-action {
+    padding-bottom: 3rem !important;
+}
+
+.call-to-action .margin_top {
+    padding-top: 3rem !important;
+}
+
+.call-to-action .margin_bottom {
+    padding-bottom: 3rem !important;
+}
