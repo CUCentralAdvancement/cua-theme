@@ -785,6 +785,10 @@ aside a.bef-link {
     font-family: var(--font-roboto-condensed);
 }
 
+aside a.nav-link {
+    margin: .2rem;
+}
+
 .node__content .block.block-menu.navigation a.link-cua,
 aside a.link-cua {
     color: var(--cua-black);
@@ -1864,6 +1868,11 @@ aside .nav {
 .parallax-video {
     min-height: 15rem;
 }
+
+#block--inline-block--image-832 .container.px-5.py-4 {
+    display: none;
+}
+
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
     .parallax-video {
@@ -2046,8 +2055,4 @@ aside .nav {
         display: none;
     }
 
-}
-
-#block--inline-block--image-832 .container.px-5.py-4 {
-    display: none;
 }
