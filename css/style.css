@@ -1915,17 +1915,6 @@ aside .nav {
         margin: 1rem 0 0 !important;
     }
 
-    .video-mobile-copy *,
-    .video-mobile-copy .display-4.card-text {
-        color: var(--cua-black) !important;
-    }
-
-    .parallax-main-content {
-        background: rgba(255, 255, 255, 0.8) !important;
-        margin: 20px !important;
-        color: black !important;
-    }
-
     blockquote {
         border-left: 4px solid var(--cua-gold);
         font-size: 1em;
