@@ -97,7 +97,7 @@ h1, .h1 {
 }
 
 h1.title {
-    margin: .75rem 0 2rem !important;
+    margin: .7rem 0 2rem !important;
     background: var(--cua-white);
     color: var(--cua-gray-700);
     font-size: 2.25rem;
