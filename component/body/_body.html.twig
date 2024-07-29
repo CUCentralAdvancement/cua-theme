@@ -1,12 +1,11 @@
 {# Body #}
 {% if body is not empty %}
-    {% set attributes = attributes.addClass('clearfix', 'text-formatted') %}
     {% set body_classes = [
-        'card-body d-flex flex-column card-text lead g-0',
+        'card-body d-flex flex-column card-text lead g-0 clearfix',
         text_color is not empty ? text_color : null,
         text_alignment is not empty ? text_alignment : null,
     ] | join(' ') | trim %}
-    <div {{ attributes_without_id.addClass(body_classes) }}>
-    {{ content.body|render }}
+    <div class="{{ body_classes }}">
+        {{ content.body|render }}
     </div>
 {% endif %}
