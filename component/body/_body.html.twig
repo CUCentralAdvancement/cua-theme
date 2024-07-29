@@ -6,7 +6,7 @@
         text_color is not empty ? text_color : null,
         text_alignment is not empty ? text_alignment : null,
     ] | join(' ') | trim %}
-    <div {{ attributes.addClass(body_classes) }}>
-        {{ content.body|render }}
+    <div {{ attributes_without_id.addClass(body_classes) }}>
+    {{ content.body|render }}
     </div>
 {% endif %}
