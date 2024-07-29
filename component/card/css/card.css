@@ -646,7 +646,7 @@ p.figcaption.card-header {
 /* Force footer btn to bottom */
 .card-body {
     flex: 1;
-    padding: 0 !important;
+    padding: 0;
 }
 
 .card-footer {
@@ -678,6 +678,17 @@ p.figcaption.card-header {
 .card-link.btn.nobtn-cu-bg-white {
     color: var(--cua-white);
 }
+
+.shadow {
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.05),0 1px 5px 0 rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.shadow .card-body,
+.shadow .card-footer {
+    padding: 0 15px !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
