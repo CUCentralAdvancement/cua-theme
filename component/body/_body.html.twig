@@ -2,6 +2,7 @@
 {% if body is not empty %}
     {% set body_classes = [
         'card-body d-flex flex-column card-text lead g-0 clearfix',
+        padding is not empty ? padding : null,
         text_color is not empty ? text_color : null,
         text_alignment is not empty ? text_alignment : null,
     ] | join(' ') | trim %}
