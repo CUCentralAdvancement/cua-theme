@@ -1402,7 +1402,8 @@ div#block-cua-theme-viewsexposedfilterblock {
 .display-4 {
     font-size: 2rem;
     font-family: var(--font-roboto-condensed);
-    line-height: 1.1;
+    line-height: 1 !important;
+    margin-bottom: 1rem !important;
 }
 
 .border-white {
