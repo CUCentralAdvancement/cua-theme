@@ -87,3 +87,42 @@
 .call-to-action .margin_bottom {
     padding-bottom: 3rem !important;
 }
+
+/* Flag */
+.flag {
+    position: absolute;
+    left: -8px;
+    top: 20px;
+    padding: 3px 15px;
+    font-size: .95rem;
+    font-weight: 600;
+    z-index: 9999;
+}
+
+.flag::after {
+    border-color: transparent #000000 transparent transparent;
+}
+
+.flag::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 8px 8px 0;
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    border-color: transparent #000000 transparent transparent;
+}
+
+.flag.cu-bg-white,
+.flag.cu-bg-gold,
+.flag.cu-bg-light-gray {
+    color: var(--cua-black);
+}
+
+
+.flag.cu-bg-black,
+.flag.cu-bg-pure-black{
+    color: var(--cua-white);
+}

@@ -1889,55 +1889,6 @@ aside .nav {
     margin: 2rem 1.5rem 0 1.5rem !important	;
 }
 
-/* Flag */
-
-.field--name-field-news-media.media-type-read::before {
-    content: '\f5da';
-}
-.field--name-field-news-media.media-type-read::after {
-    border-color: transparent #000000 transparent transparent;
-}
-.field--name-field-news-media::after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 8px 8px 0;
-    position: absolute;
-    bottom: -8px;
-    left: 0px;
-    border-color: transparent #000000 transparent transparent;
-}
-
-.field--name-field-news-media.media-type-read {
-    background-color: #3b4878;
-}
-
-.field--name-field-news-media {
-    position: absolute;
-    left: -8px;
-    top: 20px;
-    background-color: #000;
-    padding: 3px 10px;
-    color: #fff;
-    font-size: 1rem;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-@media (min-width: 992px) {
-    .field--name-dynamic-token-fieldnode-newsletter-tag, .field--name-field-news-media {
-        padding: 7px 14px;
-    }
-}
-
-@media (min-width: 768px) {
-    .field--name-dynamic-token-fieldnode-newsletter-tag, .field--name-field-news-media {
-        padding: 6px 12px;
-        font-size: 1.1rem;
-    }
-}
-
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
     .parallax-video {

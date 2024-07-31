@@ -18,6 +18,9 @@
 {% set color_background = color_background ?? '' %}
 {% set color_border = color_border ?? '' %}
 {% set container_size = container_size ?? '' %}
+{% set flag = flag %}
+{% set flag_title = flag_title ?? '' %}
+{% set flag_background = flag_background ?? ''%}
 {% set padding = padding ?? '' %}
 {% set page_title_visibility = page_title_visibility ?? '' %}
 {% set shadow = shadow ?? '' %}
@@ -54,6 +57,17 @@
 {% set unique_id = 'block--node-' ~ '-call-to-action' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes) }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+
+    {# Flag #}
+    {% if flag == 'flag_on' %}
+        <div class="flag {{ flag_background }} pt-2">
+            {% if icon is not empty %}
+                <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
+            {% endif %}
+            {{ flag_title }}
+        </div>
+    {% endif %}
+
     {# Include Video Component  #}
     {% if provider is not empty %}
         {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
@@ -83,5 +97,6 @@
 
     {# Include Title/Body/Link Components #}
     {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
 
 </div>
