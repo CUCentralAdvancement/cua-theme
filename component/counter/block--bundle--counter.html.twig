@@ -46,17 +46,8 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(counter_classes) }}>
 
-    {# Title #}
-    {{ title_prefix ?? '' }}
-    <div class="display-4 {{ [
-        center_content is not empty ? ' ' ~ center_content,
-        page_title_visibility is not empty ? ' ' ~ page_title_visibility,
-        text_alignment is not empty ? ' ' ~ text_alignment,
-        text_color is not empty ? ' ' ~ text_color
-    ]|join }}">
-        {{ label }}
-    </div>
-    {{ title_suffix ?? '' }}
+    {# Include Title #}
+    {% include '@cua_theme/component/title/_title.html.twig' %}
 
     {# Include Icon Component #}
     {% include '@cua_theme/component/card/_card--icon.html.twig' %}
