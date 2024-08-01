@@ -99,7 +99,7 @@
     {{ title_prefix ?? '' }}
     {% if links is not empty and links|length > 0 %}
         {% set firstLink = links[0] %}
-        <a class="display-4 card-text lead title h3 px-3 {{ [
+        <a class="display-4 card-text lead title h3 {{ [
             center_content is not empty ? ' ' ~ center_content,
             text_alignment is not empty ? ' ' ~ text_alignment,
             text_color is not empty ? ' ' ~ text_color,
@@ -109,7 +109,7 @@
             {{ label }}
         </a>
     {% else %}
-        <div class="display-4 card-text lead h3 title px-3 {{ [
+        <div class="display-4 card-text lead h3 title {{ [
             center_content is not empty ? ' ' ~ center_content,
             text_alignment is not empty ? ' ' ~ text_alignment,
             text_color is not empty ? ' ' ~ text_color,
