@@ -89,7 +89,7 @@
 }
 
 .call-to-action.card p span {
-    font-size: 1.9rem !important;
+    font-size: 1.8rem !important;
     margin-left: 1px !important;
 }
 
@@ -100,14 +100,16 @@
 
 /* Flag */
 .flag {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     position: absolute;
     left: -8px;
     top: 20px;
     padding: 3px 15px;
     font-size: .9rem;
     font-weight: 600;
-    z-index: 9999;
+    z-index: 100;
 }
+
 
 .flag::after {
     border-color: transparent #000000 transparent transparent;
@@ -131,8 +133,8 @@
     color: var(--cua-black);
 }
 
-
 .flag.cu-bg-black,
 .flag.cu-bg-pure-black{
     color: var(--cua-white);
 }
+

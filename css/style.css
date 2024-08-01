@@ -221,7 +221,7 @@ p.h2.title {
 
 p.h2.title-lg {
     font-family: var(--font-roboto-condensed);
-    font-size: 3rem !important;
+    font-size: 2.75rem !important;
     color: inherit;
     margin: 1.3rem 0 .3rem 0;
     line-height: 1.1;
@@ -1853,7 +1853,6 @@ aside .nav {
 .user-logged-in .node--type-landing-page #main-wrapper-landing-page {
     margin: 0 1rem;
 }
-
 
 .display-4.card-text.lead.h3.title.d-flex.justify-content-center {
     text-align: center !important;
