@@ -88,6 +88,16 @@
     padding-bottom: 3rem !important;
 }
 
+.call-to-action.card p span {
+    font-size: 1.9rem !important;
+    margin-left: 1px !important;
+}
+
+.call-to-action .title span {
+    display: block;
+    margin-top: 1px; /* Adjust as needed */
+}
+
 /* Flag */
 .flag {
     position: absolute;

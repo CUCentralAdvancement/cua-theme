@@ -10,16 +10,6 @@
     margin: 2rem 1.5rem 0 1.5rem !important;
 }
 
-.call-to-action.card p span {
-    font-size: 1.9rem !important;
-    margin-left: 1px !important;
-}
-
-.call-to-action .title span {
-    display: block;
-    margin-top: 1px; /* Adjust as needed */
-}
-
 #block--inline-block--basic-765 p {
     margin-top: 0;
     margin-bottom: 0;
@@ -31,13 +21,9 @@
 
 .page-node-892 .banner-body {
     padding: 0 !important;
-
 }
 
-.contact-menu h3 {
-    display: none !important;
-}
-
+/* Front page background  */
 .blue-background {
     background: radial-gradient(black 15%, transparent 16%) 0 0,
     radial-gradient(black 15%, transparent 16%) 8px 8px,
