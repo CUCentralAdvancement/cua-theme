@@ -1,26 +1,27 @@
 {#
 /**
- * @file
- * Template for the Call to Action component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Available fields located in:
- * - cua_theme.theme
- */
+* @file
+* Template for the Call to Action component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
+* Available fields located in:
+* - cua_theme.theme
+*/
 #}
 
 {# Add optional classes based on conditions #}
+{% set center_content = center_content ?? '' %}
 {% set color_background = color_background ?? '' %}
 {% set color_border = color_border ?? '' %}
 {% set container_size = container_size ?? '' %}
 {% set flag = flag %}
 {% set flag_title = flag_title ?? '' %}
-{% set flag_background = flag_background ?? ''%}
+{% set flag_background = flag_background ?? '' %}
 {% set padding = padding ?? '' %}
 {% set page_title_visibility = page_title_visibility ?? '' %}
 {% set shadow = shadow ?? '' %}
@@ -51,10 +52,18 @@
     text_alignment,
 ] %}
 
-{# Content #}
+{% set cta_link_classes = [
+    'display-4 card-text lead title h3',
+    center_content,
+    text_alignment,
+    text_color,
+    padding,
+]|join(' ') %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node-' ~ '-call-to-action' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+
+{# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes) }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
@@ -79,7 +88,8 @@
         {% if links|length > 0 %}
             {% set firstLink = links[0] %}
             <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}" aria-hidden="true">
-            <img src="{{ firstLink.image_url }}" alt="{{ firstLink.image_alt }}">
+            <img src="{{ firstLink.image_url }}"
+                 alt="{{ firstLink.image_alt }}">
         {% endif %}
 
         {# Include image with a null alt attribute #}
@@ -99,22 +109,13 @@
     {{ title_prefix ?? '' }}
     {% if links is not empty and links|length > 0 %}
         {% set firstLink = links[0] %}
-        <a class="display-4 card-text lead title h3 {{ [
-            center_content is not empty ? ' ' ~ center_content,
-            text_alignment is not empty ? ' ' ~ text_alignment,
-            text_color is not empty ? ' ' ~ text_color,
-            padding is not empty ? ' ' ~ padding,
-        ]|join }}" href="{{ firstLink.url }}" title="{{ firstLink.title }}"
+        <a class="{{ cta_link_classes }}" href="{{ firstLink.url }}"
+           title="{{ firstLink.title }}"
            aria-label="{{ firstLink.title }}" aria-hidden="true">
             {{ label }}
         </a>
     {% else %}
-        <div class="display-4 card-text lead h3 title {{ [
-            center_content is not empty ? ' ' ~ center_content,
-            text_alignment is not empty ? ' ' ~ text_alignment,
-            text_color is not empty ? ' ' ~ text_color,
-            padding is not empty ? ' ' ~ padding,
-        ]|join }}">
+        <div class="{{ cta_link_classes }}">
             {{ label }}
         </div>
     {% endif %}
@@ -122,7 +123,9 @@
 
     {# Include Body Component #}
     {% include '@cua_theme/component/body/_body.html.twig' %}
+
     {# Include Link/Button Component #}
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>
+

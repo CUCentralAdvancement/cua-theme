@@ -432,7 +432,7 @@ header .sticky .navbar-nav > .nav-item:first-child > .nav-link::before {
 }
 
 .header .sticky nav#block-cua-theme-secondarymenu--2 {
-    margin: 1.1rem 0 0;
+    margin: 0;
 }
 
 .navbar.sticky {
