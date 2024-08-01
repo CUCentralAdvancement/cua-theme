@@ -12,7 +12,7 @@
     border-bottom-left-radius: 0;
 }
 
-.border-light {
+.call-to-action .border-light {
     border-color: transparent !important;
 }
 
@@ -38,15 +38,15 @@
     text-align: center !important;
 }
 
-.call-to-action .display-4.card-text.lead.h3.title {
-    font-family: var(--font-roboto-condensed);
-    font-size: 2rem !important;
-    font-weight: 700 !important;
-    line-height: 1.1 !important;
-    margin: .5rem 0 0 !important;
+.call-to-action .card-header {
+    margin-bottom: .5rem;
 }
 
-.call-to-action p.h3.title {
+.call-to-action p {
+    margin-top: 1rem;
+}
+
+.call-to-action .display-4.card-text.lead.h3.title {
     font-family: var(--font-roboto-condensed);
     font-size: 2.25rem !important;
     font-weight: 700 !important;
@@ -56,16 +56,10 @@
 
 .call-to-action.card p span {
     font-family: var(--font-roboto);
-    font-size: 2rem !important;
+    font-size: 1.9rem !important;
     font-weight: 100 !important;
-}
-
-.call-to-action .card-header {
-    margin-bottom: .5rem;
-}
-
-.call-to-action p {
-    margin-top: 1rem !important;
+    margin: 0 !important;
+    margin-top: 0 !important;
 }
 
 .call-to-action .fa-solid {
@@ -100,7 +94,7 @@
 
 /* Flag */
 .flag {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     position: absolute;
     left: -8px;
     top: 20px;
@@ -108,6 +102,10 @@
     font-size: .9rem;
     font-weight: 600;
     z-index: 100;
+}
+
+.block .call-to-action .add-padding .flag {
+    top: 35px !important;
 }
 
 .flag::after {
@@ -133,7 +131,6 @@
 }
 
 .flag.cu-bg-black,
-.flag.cu-bg-pure-black{
+.flag.cu-bg-pure-black {
     color: var(--cua-white);
 }
-

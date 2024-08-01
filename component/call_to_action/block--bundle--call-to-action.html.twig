@@ -78,8 +78,8 @@
         {# Render only the first link if active #}
         {% if links|length > 0 %}
             {% set firstLink = links[0] %}
-            <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}"
-            aria-label="{{ firstLink.title }}">
+            <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}" aria-hidden="true">
+            <img src="{{ firstLink.image_url }}" alt="{{ firstLink.image_alt }}">
         {% endif %}
 
         {# Include image with a null alt attribute #}
@@ -95,8 +95,34 @@
         {% include '@cua_theme/component/card/_card--icon.html.twig' %}
     {% endif %}
 
-    {# Include Title/Body/Link Components #}
-    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+    {# Include Title #}
+    {{ title_prefix ?? '' }}
+    {% if links is not empty and links|length > 0 %}
+        {% set firstLink = links[0] %}
+        <a class="display-4 card-text lead title h3 px-3 {{ [
+            center_content is not empty ? ' ' ~ center_content,
+            text_alignment is not empty ? ' ' ~ text_alignment,
+            text_color is not empty ? ' ' ~ text_color,
+            padding is not empty ? ' ' ~ padding,
+        ]|join }}" href="{{ firstLink.url }}" title="{{ firstLink.title }}"
+           aria-label="{{ firstLink.title }}" aria-hidden="true">
+            {{ label }}
+        </a>
+    {% else %}
+        <div class="display-4 card-text lead h3 title px-3 {{ [
+            center_content is not empty ? ' ' ~ center_content,
+            text_alignment is not empty ? ' ' ~ text_alignment,
+            text_color is not empty ? ' ' ~ text_color,
+            padding is not empty ? ' ' ~ padding,
+        ]|join }}">
+            {{ label }}
+        </div>
+    {% endif %}
+    {{ title_suffix ?? '' }}
 
+    {# Include Body Component #}
+    {% include '@cua_theme/component/body/_body.html.twig' %}
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>
