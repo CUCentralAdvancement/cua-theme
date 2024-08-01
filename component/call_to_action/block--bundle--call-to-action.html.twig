@@ -83,21 +83,14 @@
 
         {# Include Image Component #}
     {% elseif card_image is not empty %}
-
         {# Render only the first link if active #}
         {% if links|length > 0 %}
             {% set firstLink = links[0] %}
             <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}" aria-hidden="true">
-            <img src="{{ firstLink.image_url }}"
-                 alt="{{ firstLink.image_alt }}">
-        {% endif %}
-
-        {# Include image with a null alt attribute #}
-        {% include '@cua_theme/component/card/_card--image.html.twig' %}
-
-        {% if links|length > 0 %}
-            {% set firstLink = links[0] %}
+                {% include '@cua_theme/component/card/_card--image.html.twig' %}
             </a>
+        {% else %}
+            {% include '@cua_theme/component/card/_card--image.html.twig' %}
         {% endif %}
 
         {# Include Icon Component #}
