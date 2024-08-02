@@ -58,7 +58,8 @@
 
     {# Flag #}
     {% if flag == 'flag_on' %}
-        {% if links|length > 0 %}
+        {% set has_links = links|length > 0 %}
+        {% if has_links %}
             {% set firstLink = links[0] %}
             <a class="flag-link" href="{{ firstLink.url }}"
             title="{{ firstLink.title }}"
@@ -70,16 +71,9 @@
             {% endif %}
             {{ flag_title }}
         </div>
-        {% if links|length > 0 %}
+        {% if has_links %}
             </a>
         {% endif %}
-    {% else %}
-        <div class="flag {{ flag_background }} pt-2">
-            {% if icon %}
-                <i class="{{ icon ~ ' ' ~ icon_size }} px-1"></i>
-            {% endif %}
-            {{ flag_title }}
-        </div>
     {% endif %}
 
     {# Include Video Component  #}
