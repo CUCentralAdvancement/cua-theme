@@ -27,14 +27,14 @@
 
                             {# CU Logo #}
                             <div class="flex-shrink-1">
-                                <a href="{{ url('<front>') }}" rel="{{ 'University of Colorado'|t }}"
+                                <a href="{{ url('<front>') }}" rel="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}"
                                    class="site-branding__logo">
                                     {# Logo for larger screens #}
-                                    <img class="d-none d-lg-block" src="{{ '/' ~ directory ~ '/images/logo.svg' }}"
-                                         alt="{{ 'University of Colorado home'|t }}" width="225" height="24"/>
+                                    <img class="d-none d-lg-block" src="{{ base_path ~ directory ~ '/images/logo.svg' }}"
+                                         alt="{{ 'University of Colorado logo'|t }}" width="225" height="24"/>
                                     {# Logo for smaller screens #}
-                                    <img class="d-lg-none" src="{{ '/' ~ directory ~ '/images/cu-mobile-logo.svg' }}"
-                                         alt="{{ 'University of Colorado home'|t }}" width="29" height="28"/>
+                                    <img class="d-lg-none" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
+                                         alt="{{ 'University of Colorado logo'|t }}" width="29" height="28"/>
                                 </a>
                             </div>
 
@@ -126,7 +126,7 @@
     {# Main Navigation Section #}
     {% if page.primary_menu or page.secondary_menu or page.search %}
         <nav role="navigation" class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 m-0" id="navbar-main"
-             aria-labelledby="{{ 'CUA main menu'|t }}">
+             aria-labelledby="{{ 'main menu'|t }}">
             <div class="container px-3 g-0">
                 <div class="collapse navbar-collapse" id="mainNavbrSupportedContent">
 
@@ -134,8 +134,8 @@
                     <h2 class="visually-hidden" id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
 
                     {# Small logo for sticky menu #}
-                    <img class="sticky-show" src="/{{ directory ~ '/images/cu-mobile-logo.svg' }}"
-                         alt="{{ 'University of Colorado home'|t }}" width="25" height="24"/>
+                    <img class="sticky-show" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
+                         alt="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}" width="25" height="24"/>
 
                     {# Primary menu #}
                     {% if page.primary_menu %}

@@ -72,16 +72,16 @@
             <div class="col-sm-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
                 <a href="https://www.cu.edu/"
                    target="_blank"
-                   rel="{{ 'University of Colorado home'|t }}"
+                   rel="{{ 'University of Colorado'|t }}"
                    class="footer-site-branding__logo">
                     <picture>
                         <source media="(max-width: 499px)"
-                                srcset="{{ '/' ~ directory ~ '/images/cua-logo-white-small.png' }}"
+                                srcset="{{ base_path ~ directory ~ '/images/cua-logo-white-small.png' }}"
                                 width=250 height=50.5/>
                         <source media="(min-width: 500px)"
-                                srcset="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}"
+                                srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.png' }}"
                                 width=500 height=101.5/>
-                        <img src="{{ '/' ~ directory ~ '/images/cua-logo-white.png' }}"
+                        <img src="{{ base_path ~ directory ~ '/images/cua-logo-white.png' }}"
                              alt="{{ 'University of Colorado Logo'|t }}"
                              width=500 height=101.5/>
                     </picture>
