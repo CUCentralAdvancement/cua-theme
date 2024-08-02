@@ -33,8 +33,16 @@
 
             <div class="{{ title_body_col_classes }}">
                 <div class="row m-4">
-                    {# Include Title/Body/Link Component #}
-                    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
+                    {# Include Title Component #}
+                    {% include '@cua_theme/component/partials/_title.html.twig'%}
+
+                    {# Include Body Component #}
+                    {% include '@cua_theme/component/partials/_body.html.twig' %}
+
+                    {# Include Link/Button Component #}
+                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
                 </div>
             </div>
 

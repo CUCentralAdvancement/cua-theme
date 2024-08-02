@@ -25,7 +25,7 @@
                     {# Media Component Logic #}
                     {% if provider is not empty %}
                         {# Include Video Component #}
-                        {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+                        {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                     {% elseif card_image is not empty %}
                         {# Include Image Component #}
                         {% include '@cua_theme/component/card/_card--image.html.twig' %}
@@ -48,8 +48,16 @@
             {% if layout %}
                 <div class="{{ title_body_col_classes }}">
                     <div class="row mx-5 pt-3">
-                        {# Include Title/Body/Link Component #}
-                        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
+                        {# Include Title Component #}
+                        {% include '@cua_theme/component/partials/_title.html.twig'%}
+
+                        {# Include Body Component #}
+                        {% include '@cua_theme/component/partials/_body.html.twig' %}
+
+                        {# Include Link/Button Component #}
+                        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
                     </div>
                 </div>
             {% endif %}

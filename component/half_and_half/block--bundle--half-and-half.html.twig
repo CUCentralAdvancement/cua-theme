@@ -14,6 +14,9 @@
 */
 #}
 
+{# Attach the library #}
+{{ attach_library('cua_theme/half-and-half') }}
+
 {# If class is active #}
 {% set border_style = border_style is not empty ? border_style|clean_class : '' %}
 {% set container_size = container_size is not empty ? container_size|clean_class : '' %}
@@ -46,10 +49,12 @@
 ] %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes) }}
-        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+
     {# Include Desktop Component #}
     {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
+
     {# Include Mobile Component #}
     {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}
+
 </div>

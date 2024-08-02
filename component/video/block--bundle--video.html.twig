@@ -41,7 +41,7 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
 
     {# Video component #}
-    {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+    {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
 
     {# Desktop component #}
     {% if label or body %}
@@ -51,8 +51,16 @@
                 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
                 {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
                 <div class="col-sm-5 {{ color_background }} px-5 py-4 m-5 {% if animation_classes %}{{ animation_classes }}{% endif %}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
-                    {# Include all components #}
-                    {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
+                    {# Include Title Component #}
+                    {% include '@cua_theme/component/partials/_title.html.twig'%}
+
+                    {# Include Body Component #}
+                    {% include '@cua_theme/component/partials/_body.html.twig' %}
+
+                    {# Include Link/Button Component #}
+                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
                 </div>
             </div>
         </div>
@@ -63,8 +71,16 @@
                 <div class="row">
                     {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
                     <div class="col-sm-12 {{ color_background }} p-3 my-5">
-                        {# Include all components #}
-                        {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
+                        {# Include Title Component #}
+                        {% include '@cua_theme/component/partials/_title.html.twig'%}
+
+                        {# Include Body Component #}
+                        {% include '@cua_theme/component/partials/_body.html.twig' %}
+
+                        {# Include Link/Button Component #}
+                        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
                     </div>
                 </div>
             </div>

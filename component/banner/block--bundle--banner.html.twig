@@ -84,8 +84,16 @@
     {# Image Container with variables #}
     <div{{ attributes.addClass(image_container_classes|join(' ')|trim) }} style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
         <div class="{{ banner_body_classes|join(' ')|trim }}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
-            {# Include Title/Body/Link Components #}
-            {% include '@cua_theme/component/content/_title_body_link.html.twig' %}
+
+            {# Include Title Component #}
+            {% include '@cua_theme/component/partials/_title.html.twig'%}
+
+            {# Include Body Component #}
+            {% include '@cua_theme/component/partials/_body.html.twig' %}
+
+            {# Include Link/Button Component #}
+            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
         </div>
     </div>
 </div>

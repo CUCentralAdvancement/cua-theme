@@ -15,8 +15,13 @@
 
     {# Content #}
     <div class="{{ card_classes }}">
-        {# Include Title and Body Component #}
-        {% include '@cua_theme/component/content/_title_body.html.twig' %}
+
+        {# Include Title Component #}
+        {% include '@cua_theme/component/partials/_title.html.twig'%}
+
+        {# Include Body Component #}
+        {% include '@cua_theme/component/partials/_body.html.twig' %}
+
     </div>
 
 {% endif %}

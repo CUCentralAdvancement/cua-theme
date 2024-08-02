@@ -36,11 +36,14 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(button_classes) }}>
-    {# Include Title, Body, and Link Components #}
+
     {# Include Title Component #}
-    {% include '@cua_theme/component/title/_title.html.twig'%}
+    {% include '@cua_theme/component/partials/_title.html.twig'%}
+
     {# Include Body Component #}
-    {% include '@cua_theme/component/body/_body.html.twig' %}
+    {% include '@cua_theme/component/partials/_body.html.twig' %}
+
     {# Include Link/Button Component #}
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+
 </div>
