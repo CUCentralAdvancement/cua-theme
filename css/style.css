@@ -1992,11 +1992,6 @@ aside .nav {
 
 /*** Responsive starts here ***/
 @media only screen and (max-width: 545px) {
-
-    aside.section {
-        display: none;
-    }
-
     .faq .ui-widget-content {
         border: none !important;
         border-left: none !important;
