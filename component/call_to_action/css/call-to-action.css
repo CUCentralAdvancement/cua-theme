@@ -104,12 +104,8 @@
     z-index: 100;
 }
 
-.block .call-to-action .add-padding .flag {
-    top: 35px !important;
-}
-
-.flag::after {
-    border-color: transparent #000000 transparent transparent;
+.flag a:hover {
+    text-decoration: none !important;
 }
 
 .flag::after {
@@ -124,9 +120,20 @@
     border-color: transparent #000000 transparent transparent;
 }
 
+.flag a.display-4.card-text.lead.title.h3 {
+    text-decoration: none !important;
+    font-size: .95rem !important;
+    font-weight: 600 !important;
+}
+
+.block .call-to-action .add-padding .flag {
+    top: 35px !important;
+}
+
 .flag.cu-bg-white,
 .flag.cu-bg-gold,
-.flag.cu-bg-light-gray {
+.flag.cu-bg-light-gray,
+a.flag-link .flag.cu-bg-light-grey {
     color: var(--cua-black);
 }
 
@@ -135,6 +142,20 @@
     color: var(--cua-white);
 }
 
-.display-4.card-text.lead.title.h3.cu-text-black.remove-padding {
+.flag-link:hover .flag.cu-bg-gold,
+.flag-link:hover .flag.cu-bg-white {
+    color: var(--cua-white);
+    background-color: var(--cua-black);
+}
+
+.flag-link:hover .flag.cu-bg-black,
+.flag-link:hover .flag.cu-bg-light-grey {
+    color: var(--cua-black);
+    background-color: var(--cua-white);
+}
+
+.display-4.card-text.lead.title.h3.cu-text-black.remove-padding,
+.display-4.card-text.lead.title.h3.cu-text-gold.remove-padding,
+.display-4.card-text.lead.title.h3.cu-text-white.remove-padding {
     padding: 0 15px !important;
 }

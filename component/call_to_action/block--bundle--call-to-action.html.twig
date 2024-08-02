@@ -17,28 +17,6 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Add optional classes based on conditions #}
-{% set center_content = center_content ?? '' %}
-{% set color_background = color_background ?? '' %}
-{% set color_border = color_border ?? '' %}
-{% set container_size = container_size ?? '' %}
-{% set flag = flag %}
-{% set flag_title = flag_title ?? '' %}
-{% set flag_background = flag_background ?? '' %}
-{% set padding = padding ?? '' %}
-{% set page_title_visibility = page_title_visibility ?? '' %}
-{% set shadow = shadow ?? '' %}
-{% set text_alignment = text_alignment ?? '' %}
-{% set text_color = text_color ?? '' %}
-
-{# Set data attributes for animation #}
-{% set animation_classes = [] %}
-{% if animation or animation_speed or animation_delay %}
-    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
-{% endif %}
-{% set data_animation_classes = animation_classes | join(' ') | trim %}
-{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
-
 {# Add CTA classes #}
 {% set cta_classes = [
     'block',
@@ -63,6 +41,14 @@
     padding,
 ]|join(' ') %}
 
+{# Set data attributes for animation #}
+{% set animation_classes = [] %}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay] %}
+{% endif %}
+{% set data_animation_classes = animation_classes | join(' ') | trim %}
+{% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
+
 {# Generate unique ID #}
 {% set unique_id = 'block--node-' ~ '-call-to-action' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
@@ -72,8 +58,24 @@
 
     {# Flag #}
     {% if flag == 'flag_on' %}
+        {% if links|length > 0 %}
+            {% set firstLink = links[0] %}
+            <a class="flag-link" href="{{ firstLink.url }}"
+            title="{{ firstLink.title }}"
+            aria-label="{{ firstLink.title }}" aria-hidden="true">
+        {% endif %}
+        <div class="flag {{ flag_background }} py-2">
+            {% if icon %}
+                <i class="{{ icon ~ ' ' ~ icon_size }} px-1"></i>
+            {% endif %}
+            {{ flag_title }}
+        </div>
+        {% if links|length > 0 %}
+            </a>
+        {% endif %}
+    {% else %}
         <div class="flag {{ flag_background }} pt-2">
-            {% if icon is not empty %}
+            {% if icon %}
                 <i class="{{ icon ~ ' ' ~ icon_size }} px-1"></i>
             {% endif %}
             {{ flag_title }}
@@ -81,15 +83,16 @@
     {% endif %}
 
     {# Include Video Component  #}
-    {% if provider is not empty %}
-        {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+    {% if provider %}
+        {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
 
         {# Include Image Component #}
-    {% elseif card_image is not empty %}
-        {# Render only the first link if active #}
+    {% elseif card_image %}
         {% if links|length > 0 %}
             {% set firstLink = links[0] %}
-            <a class="img-hover-effect" href="{{ firstLink.url }}" title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}" aria-hidden="true">
+            <a class="img-hover-effect" href="{{ firstLink.url }}"
+               title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}"
+               aria-hidden="true">
                 {% include '@cua_theme/component/card/_card--image.html.twig' %}
             </a>
         {% else %}
@@ -97,13 +100,13 @@
         {% endif %}
 
         {# Include Icon Component #}
-    {% elseif icon is not empty %}
+    {% elseif icon %}
         {% include '@cua_theme/component/card/_card--icon.html.twig' %}
     {% endif %}
 
     {# Include Title #}
     {{ title_prefix ?? '' }}
-    {% if links is not empty and links|length > 0 %}
+    {% if links|length > 0 %}
         {% set firstLink = links[0] %}
         <a class="{{ cta_link_classes }}" href="{{ firstLink.url }}"
            title="{{ firstLink.title }}"
@@ -124,4 +127,3 @@
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>
-
