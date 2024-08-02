@@ -15,7 +15,7 @@
                 {# Media Component Logic #}
                 {% if provider is not empty %}
                     {# Include Video Component if no image or card image is available #}
-                    {% include '@cua_theme/component/video/include/_video--master.html.twig' %}
+                    {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                 {% elseif card_image is not empty %}
                     {# Include Image Component #}
                     {% include '@cua_theme/component/card/_card--image.html.twig' %}
