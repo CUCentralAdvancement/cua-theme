@@ -636,7 +636,7 @@ span.nav-link.dropdown-toggle.nav-link- {
     }
 
     .navbar-nav > li:not(:last-child) {
-        border-right-color: transparent;
+        border-right-color: transparent !important;
     }
 
     nav#block-cua-theme-secondarymenu {
@@ -683,7 +683,7 @@ span.nav-link.dropdown-toggle.nav-link- {
 
     /* Custom Hamburger */
     .navbar-toggler {
-        background-color: var(--cua-black-pure);
+        background-color: transparent !important;
         border: var(--bs-border-width) solid var(--cua-black-pure);
     }
 
