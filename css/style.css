@@ -1883,7 +1883,7 @@ aside .nav {
 }
 
 .node--type-landing-page div#block-cua-theme-page-title {
-    margin: 2rem 1.5rem 0 1.5rem !important	;
+    margin: 2rem 1.5rem 0 1.5rem !important;
 }
 
 /*** Responsive starts here ***/
@@ -1891,6 +1891,7 @@ aside .nav {
     .parallax-video {
         min-height: auto;
     }
+
     div#edit-contacts--2, div#edit-bod--2 {
         border-right: 1px solid var(--cua-white) !important;
     }
@@ -1988,6 +1989,10 @@ aside .nav {
         width: 90% !important;
     }
 
+    .navbar-toggler {
+        background-color: transparent !important;
+    }
+
 }
 
 /*** Responsive starts here ***/
@@ -2001,6 +2006,7 @@ aside .nav {
     .ui-accordion .ui-accordion-content {
         padding: 1rem;
     }
+
     div#block--node--call-to-action--775 {
         display: block;
         margin: 15px 10px !important;
@@ -2050,6 +2056,10 @@ aside .nav {
 
     div#block--inline-block--basic-515 {
         display: none;
+    }
+
+    h1.title {
+        font-size: 1.75rem !important;
     }
 
 }
