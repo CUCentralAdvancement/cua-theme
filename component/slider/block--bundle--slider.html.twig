@@ -41,8 +41,8 @@
     'pb-5',
 ] %}
 
-{# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-slider' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{# Add unique id to block #}
+{% set unique_id = 'block--node-' ~ '-slider' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
 <div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>

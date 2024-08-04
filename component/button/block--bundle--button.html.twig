@@ -30,9 +30,7 @@
 ] | merge(utility_classes ? utility_classes : []) | join(' ') | trim %}
 
 {# Add unique id to block #}
-{% set unique_id = [
-    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
-] %}
+{% set unique_id = 'block--node-' ~ '-button' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(button_classes) }}>

@@ -74,10 +74,8 @@
 {# Set data attributes for animation #}
 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
 
-{# Add unique id to block #}
-{% set unique_id = [
-    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
-] %}
+{# Generate unique ID #}
+{% set unique_id = 'block--node-' ~ '-banner' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes|join(' ')|trim) }}>

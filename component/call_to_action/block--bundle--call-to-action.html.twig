@@ -50,7 +50,7 @@
 {% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
 
 {# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-call-to-action' ~ node.id() ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set unique_id = 'block--node-' ~ '-call-to-action' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes) }}
