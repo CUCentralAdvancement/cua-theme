@@ -114,26 +114,28 @@
             {% endblock %}
         {% endif %}
 
-        {#Main Content #}
+        {# Main Content #}
         <div id="main-wrapper" class="layout-main-wrapper pb-5 clearfix">
             {% block content %}
                 <div id="main" class="{{ container }}">
-                    <div class="row row-offcanvas row-offcanvas-left clearfix">
-                        <main{{ content_attributes }}>
-                            <section class="section">
-                                <a class="visually-hidden-focusable" href="#main-content" id="main-content" tabindex="-1">{{ 'Skip to main content'|t }}</a>
-                                {{ page.content }}
-                            </section>
-                        </main>
+                    <div class="row d-flex flex-column-reverse flex-md-row clearfix">
 
                         {# Left Sidebar #}
                         {% if sidebar_first_exists %}
-                            <div class="col-md-3 col-sm-12 mb-4 ms-2">
+                            <div class="col-md-3 col-sm-12 mb-4 order-1 order-md-2 mobile-padding">
                                 <aside class="section" role="complementary">
                                     {{ page.sidebar_first }}
                                 </aside>
                             </div>
                         {% endif %}
+
+                        {# Page Content #}
+                        <main{{ content_attributes }} class="col-md-9 col-sm-12 mb-4 order-2 order-md-1">
+                            <section class="section">
+                                <a class="visually-hidden-focusable" href="#main-content" id="main-content" tabindex="-1">{{ 'Skip to main content'|t }}</a>
+                                {{ page.content }}
+                            </section>
+                        </main>
 
                         {# Right Sidebar #}
                         {% if sidebar_second_exists %}
@@ -148,7 +150,7 @@
             {% endblock %}
         </div>
 
-        {# Featured Botton One #}
+        {# Featured Bottom One #}
         {% if page.featured_bottom_first %}
             <div class="featured-bottom-first container-fluid g-0">
                 <aside class="clearfix" role="complementary">
@@ -157,7 +159,7 @@
             </div>
         {% endif %}
 
-        {# Featured Botton Second #}
+        {# Featured Bottom Second #}
         {% if page.featured_bottom_second %}
             <div class="featured-bottom-second container g-0">
                 <aside class="clearfix" role="complementary">
@@ -166,7 +168,7 @@
             </div>
         {% endif %}
 
-        {# Featured Botton Third #}
+        {# Featured Bottom Third #}
         {% if page.featured_bottom_third %}
             <div class="featured-bottom-third container-fluid g-0">
                 <aside class="clearfix" role="complementary">

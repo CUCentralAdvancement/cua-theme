@@ -1993,6 +1993,14 @@ aside .nav {
         background-color: transparent !important;
     }
 
+    .mobile-padding {
+        padding-top: 2rem;
+    }
+
+    aside .nav {
+        border-right: 1px solid var(--cua-white) !important;
+    }
+
 }
 
 /*** Responsive starts here ***/
