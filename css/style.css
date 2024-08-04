@@ -2001,9 +2001,13 @@ aside .nav {
         border-right: 1px solid var(--cua-white) !important;
     }
 
-    .node--type-landing-page div#block-cua-theme-page-title {
-        margin: 1rem 0 0 24px !important;
-        max-width: 90%;
+    div#block-cua-theme-page-title {
+        margin: 1rem 0 0 5px !important;
+        max-width: 90% !important;
+    }
+
+    .base-heading-square__accent {
+        display: none;
     }
 
 }
@@ -2073,6 +2077,19 @@ aside .nav {
 
     h1.title {
         font-size: 1.75rem !important;
+    }
+
+    .mobile-padding {
+        padding-top: 2rem;
+    }
+
+    aside .nav {
+        border-right: 1px solid var(--cua-white) !important;
+    }
+
+    .node--type-landing-page div#block-cua-theme-page-title {
+        margin: 1rem 0 0 24px !important;
+        max-width: 90% !important;
     }
 
 }
