@@ -1,35 +1,42 @@
-{# Half and Half -- Desktop code block #}
+{#
+/**
+ * @file
+ * Template for the Half and Half component (Desktop).
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ */
+#}
+
 <div class="{{ container_size|default('') }} d-none d-sm-block g-0">
     <div class="card">
         <div class="row">
 
             {# Determine layout and alignment #}
             {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
-            {% set is_7030_layout = layout == "4" %}
-            {% set is_5050_layout = layout == "50_50" %}
-            {% set alignment = content.field_image_aligment.0 ?? '' %}
+            {% set is_7030_layout = layout == '4' %}
+            {% set is_5050_layout = layout == '50_50' %}
 
             {# Set column classes for image container #}
             {% set image_col_classes = [
                 is_7030_layout ? 'col-md-4',
                 is_5050_layout ? 'col-md-6',
                 'col-sm-12',
-                color_background ? color_background,
-                padding ? padding,
-                image_alignment ? image_alignment
-            ] | join(' ')|trim %}
+                color_background ? color_background : null,
+                padding ? padding : null,
+                image_alignment ? image_alignment : null,
+            ] | filter(v => v) | join(' ') %}
 
             {# Render image container if layout is set #}
             {% if layout %}
                 <div class="{{ image_col_classes }}">
                     {# Media Component Logic #}
-                    {% if provider is not empty %}
+                    {% if provider %}
                         {# Include Video Component #}
                         {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-                    {% elseif card_image is not empty %}
+                    {% elseif card_image %}
                         {# Include Image Component #}
                         {% include '@cua_theme/component/card/_card--image.html.twig' %}
-                    {% else %}
                     {% endif %}
                 </div>
             {% endif %}
@@ -39,10 +46,10 @@
                 is_7030_layout ? 'col-md-8',
                 is_5050_layout ? 'col-md-6',
                 'col-sm-12',
-                color_background ? color_background,
-                text_alignment ? text_alignment,
-                padding ? padding
-            ] | join(' ')|trim %}
+                color_background ? color_background : null,
+                text_alignment ? text_alignment : null,
+                padding ? padding : null,
+            ] | filter(v => v) | join(' ') %}
 
             {# Render title/body container if layout is set #}
             {% if layout %}
@@ -50,7 +57,7 @@
                     <div class="row mx-5 pt-3">
 
                         {# Include Title Component #}
-                        {% include '@cua_theme/component/partials/_title.html.twig'%}
+                        {% include '@cua_theme/component/partials/_title.html.twig' %}
 
                         {# Include Body Component #}
                         {% include '@cua_theme/component/partials/_body.html.twig' %}
