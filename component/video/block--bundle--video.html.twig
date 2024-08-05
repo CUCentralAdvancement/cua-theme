@@ -1,58 +1,58 @@
 {#
 /**
-* @file
-* Template for the Half and Half component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Half and Half component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
-{# If class is active #}
-{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
-{% set margins = margins is not empty ? margins|clean_class : '' %}
+{# Set default class values #}
+{% set container_size = container_size ? container_size|clean_class : '' %}
+{% set margins = margins ? margins|clean_class : '' %}
 {% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
+{% set color_background = color_background ? color_background|clean_class : '' %}
 
-{# Add Classes #}
-{% set classes = [
+{# Define the main block classes #}
+{% set video_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'video',
-    animate-trigger,
-    'card',
-    'g-0',
+    animate_trigger,
+    'card g-0',
     'clearfix',
     margins,
     container_size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : []) %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
+] %}
 
-{# Add unique id to block #}
-{% set unique_id = 'block--node-' ~ '-video' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{# Generate a unique ID for the block #}
+{% set unique_id = 'block--node--video--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
+{# Render the main content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(video_classes) }}>
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(classes) }}>
-
-    {# Video component #}
+    {# Include Video component #}
     {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
 
     {# Desktop component #}
     {% if label or body %}
         <div class="video-desktop-copy d-none d-md-block g-0">
-            <div class="container-fluid mx-auto {% if parallax_video is not empty %}parallax-main-content {% else %}position-absolute{% endif%} d-flex {{ position_container }}">
+            <div class="container-fluid mx-auto {% if parallax_video %}parallax-main-content{% else %}position-absolute{% endif %} d-flex {{ position_container ?? '' }}">
+
                 {# Set data attributes for animation #}
-                {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
-                {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
-                <div class="col-sm-5 {{ color_background }} px-5 py-4 m-5 {% if animation_classes %}{{ animation_classes }}{% endif %}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
+                {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : '' %}
+                <div class="col-sm-5 {{ color_background }} px-5 py-4 m-5 {{ animation_classes }}" {% if animation_classes %}data-animation-classes="{{ animation_classes|trim }}"{% endif %}>
 
                     {# Include Title Component #}
-                    {% include '@cua_theme/component/partials/_title.html.twig'%}
+                    {% include '@cua_theme/component/partials/_title.html.twig' %}
 
                     {# Include Body Component #}
                     {% include '@cua_theme/component/partials/_body.html.twig' %}
@@ -65,14 +65,13 @@
         </div>
 
         {# Video -- Mobile #}
-        <div class="video-mobile-copy {% if parallax_video is not empty %}parallax-main-content{% else %}{% endif%} d-md-none g-0">
+        <div class="video-mobile-copy d-md-none g-0 {% if parallax_video %}parallax-main-content{% endif %}">
             <div class="container mt-0 mt-md-5">
                 <div class="row">
-                    {% set color_background = color_background is not empty ? color_background|clean_class : '' %}
                     <div class="col-sm-12 {{ color_background }} p-3 my-5">
 
                         {# Include Title Component #}
-                        {% include '@cua_theme/component/partials/_title.html.twig'%}
+                        {% include '@cua_theme/component/partials/_title.html.twig' %}
 
                         {# Include Body Component #}
                         {% include '@cua_theme/component/partials/_body.html.twig' %}
@@ -87,4 +86,3 @@
     {% endif %}
 
 </div>
-
