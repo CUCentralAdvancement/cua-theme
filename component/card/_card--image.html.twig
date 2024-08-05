@@ -1,25 +1,24 @@
 {# Card Image #}
 
-{# If active render #}
-{% if card_image is not empty %}
+{# If active, render #}
+{% if card_image %}
 
     {# Set card image classes #}
     {% set card_image_classes = [
         'card-header',
-        position_container is not empty ? 'd-flex' ~ ' ' ~ position_container : '',
-        text_alignment is not empty ? text_alignment : '',
-        text_color is not empty ? text_color : '',
+        position_container ? 'd-flex ' ~ position_container : null,
+        text_alignment ? text_alignment : null,
+        text_color ? text_color : null,
         'g-0',
-    ] | join(' ')|trim %}
+    ] | filter(v => v) | join(' ') %}
 
     {# Set presentation classes based on conditions #}
     {% set presentation_classes = [
         'card-img',
-        image_size is not empty ? image_size : '',
-    ] | join(' ')|trim %}
+        image_size ? image_size : null,
+    ] | filter(v => v) | join(' ') %}
 
     {# Content #}
-    {# Card Image #}
     <div class="{{ card_image_classes }}">
         <div role="presentation" class="{{ presentation_classes }}">
 
@@ -27,11 +26,11 @@
             {{ card_image }}
 
             {# Card Image Caption #}
-            {% if content.field_image is not empty %}
+            {% if visibility == 'visible' and content.field_image is not empty %}
                 {% for item in content.field_image %}
-                    {% if item['#item'].alt is not empty %}
-                        <figcaption class="{{ visibility }}">
-                            <p class="{{ 'figcaption ' ~ card_image_classes }}">{{ item['#item'].alt }}</p>
+                    {% if item['#item'].alt %}
+                        <figcaption class="{{ visibility }} px-3">
+                            <p class="h6 title figcaption {{ text_alignment }} {{ text_color }}">{{ item['#item'].alt }}</p>
                         </figcaption>
                     {% endif %}
                 {% endfor %}

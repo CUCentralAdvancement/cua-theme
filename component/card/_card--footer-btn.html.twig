@@ -1,14 +1,6 @@
 {# Card Footer Button #}
 {% if links is not empty %}
 
-    {# Add optional classes based on conditions #}
-    {% set color_background = color_background ?? '' %}
-    {% set color_border = color_border ?? '' %}
-    {% set container_size = container_size ?? '' %}
-    {% set position_container = position_container ?? '' %}
-    {% set text_alignment = text_alignment ?? '' %}
-    {% set text_color = text_color ?? '' %}
-
     {# Determine if multiple links exist #}
     {% set multiple_links = links|length > 1 %}
 
@@ -21,22 +13,22 @@
         color_background,
         position_container,
         text_alignment,
-        padding is not empty ? padding : null,
+        padding,
         'mb-5',
-    ] | join(' ')|trim %}
+    ] | filter(v => v is not empty) | join(' ') %}
 
     {# Set card footer link classes #}
+    {% set outline_class = outline is not empty ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
     {% set card_footer_link_classes = [
         'card-link',
         'btn',
-        (outline is not empty) ? (outline ~ 'btn-' ~ button_color) : null,
-        (outline is empty) ? ('btn-' ~ button_color) : null,
+        outline_class,
         'text-decoration-none',
         position_container,
         text_alignment,
         'p-2',
         'mt-3',
-    ] | join(' ')|trim %}
+    ] | filter(v => v is not empty) | join(' ') %}
 
     <div class="{{ card_footer_classes }}">
         {% for link in links %}
