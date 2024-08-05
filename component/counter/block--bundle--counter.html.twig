@@ -1,48 +1,39 @@
 {#
 /**
-* @file
-* Template for the Call to Action component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Call to Action component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
 {# Attach the library #}
 {{ attach_library('cua_theme/counter') }}
 
-{# If class is active #}
-{% set background_color = color_background is not empty ? color_background|clean_class : '' %}
-{% set size = container_size is not empty ? container_size|clean_class : '' %}
-{% set border_color = color_border is not empty ? color_border|clean_class : '' %}
-{% set center_content = center_content ?? null %}
-{% set page_title_visibility = page_title_visibility ?? null %}
-{% set text_alignment = text_alignment ?? null %}
-{% set text_color = text_color ?? null %}
-
-{# Add Classes #}
+{# Define classes #}
 {% set counter_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'counter',
     'card rounded-0 mx-2 p-3',
-    background_color,
-    border_color,
-    size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class,]|merge(utility_classes ? utility_classes : [])
-%}
+    color_background ? null,
+    color_border ? null,
+    container_size ? null,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
+] | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-counter' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(counter_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(counter_classes) }}>
 
     {# Include Title #}
     {% include '@cua_theme/component/partials/_title.html.twig' %}
@@ -54,30 +45,25 @@
     {% include '@cua_theme/component/card/_card--image.html.twig' %}
 
     {# Counter #}
-    {% if content.field_number is not empty %}
-        <div class="counter-size{% if text_alignment  %} {{ text_alignment  }}{% endif %}{% if text_color %} {{ text_color }}{% endif %}">
+    {% if content.field_number %}
+        <div class="counter-size {{ text_alignment|default('') }} {{ text_color|default('') }}">
             {# Before number #}
-            {% if content.field_before_number is not empty %}
-                <span class="padding-right{% if text_color %} {{ text_color }}{% endif %}">{{ content.field_before_number.0 }}</span>
+            {% if content.field_before_number %}
+                <span class="padding-right {{ text_color|default('') }}">{{ content.field_before_number.0 }}</span>
             {% endif %}
             {# Counter #}
-            <span class="counter-up{% if text_color %} {{ text_color }}{% endif %}" data-count="{{ content.field_number['#items'].value }}">0</span>
+            <span class="counter-up {{ text_color|default('') }}" data-count="{{ content.field_number['#items'].value }}">0</span>
             {# After number #}
-            {% if content.field_after_number is not empty %}
-                <span class="padding-left{% if text_color %} {{ text_color }}{% endif %}">{{ content.field_after_number.0 }}</span>
+            {% if content.field_after_number %}
+                <span class="padding-left {{ text_color|default('') }}">{{ content.field_after_number.0 }}</span>
             {% endif %}
         </div>
     {% endif %}
 
-    {# Include Link/Button Component #}
+    {# Include Body Component #}
     {% include '@cua_theme/component/partials/_body.html.twig' %}
 
-    {# Include Link/Button Component #}
+    {# Include Footer Button Component #}
     {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>
-
-
-
-
-
