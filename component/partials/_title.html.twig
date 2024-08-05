@@ -9,8 +9,9 @@
     padding ?? null,
 ] | filter(v => v) | join(' ') %}
 
-{{ title_prefix ?? '' }}
+{# Title #}
+{{ title_prefix }}
 <div class="{{ title_classes }}">
     {{ label }}
 </div>
-{{ title_suffix ?? ? '' }}
+{{ title_suffix }}
