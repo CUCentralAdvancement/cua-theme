@@ -12,8 +12,9 @@
     ] | filter(v => v) | join(' ') %}
 
     {# Content #}
-    <div class="{{ icon_classes }}" style="color: {{ icon_color }}">
-        <i class="{{ icon ~ ' ' ~ icon_size }}"></i>
+    <div class="{{ icon_classes }}"
+            {% if icon_color %} style="color:{{ icon_color }}"{% endif %}>
+        <i class="{{ icon }}{{ icon_size ? ' ' ~ icon_size : '' }}"></i>
     </div>
 
 {% endif %}
