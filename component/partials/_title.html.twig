@@ -1,11 +1,16 @@
 {# Include Title #}
+
+{# Define Title Classes #}
+{% set title_classes = [
+    'display-4 card-text lead h3 title',
+    center_content ?? null,
+    text_alignment ?? null,
+    text_color ?? null,
+    padding ?? null,
+] | filter(v => v) | join(' ') %}
+
 {{ title_prefix ?? '' }}
-<div class="display-4 card-text lead h3 title {{ [
-    center_content is not empty ? ' ' ~ center_content,
-    text_alignment is not empty ? ' ' ~ text_alignment,
-    text_color is not empty ? ' ' ~ text_color,
-    padding is not empty ? ' ' ~ padding,
-]|join }}">
+<div class="{{ title_classes }}">
     {{ label }}
 </div>
-{{ title_suffix ?? '' }}
+{{ title_suffix ?? ? '' }}
