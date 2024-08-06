@@ -17,24 +17,19 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/alert') }}
 
-{# Add optional variables based on conditions #}
-{% set color_background = color_background is not empty ? color_background : '' %}
-{% set color_border = color_background is not empty ? color_border : '' %}
-{% set container_size = container_size is not empty ? container_size : '' %}
-
 {# Set id and classes #}
 {% set alert_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'alert alert-dismissible card rounded-0 h-100',
-    color_background,
-    color_border,
-    container_size,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+    color_background ?: null,
+    color_border ?: null,
+    container_size ?: null,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Add unique id to block #}
-{% set unique_id = 'block--node-' ~ '-alert' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set unique_id = 'block--node-alert--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(alert_classes) }}>
@@ -46,11 +41,10 @@
 
             {# Icon #}
             {% if icon %}
-                {% set icon = icon is not empty ? icon : '' %}
-                {% set icon_size = icon_size is not empty ? icon_size : '' %}
-                <div class="col-sm-1 icon-container">
-                    <div class="{% if icon %}d-md-flex justify-content-md-end justify-content-sm-start{% endif %}">
-                        <i class="{{ icon }} {{ icon_size }} mt-5 pt-1" style="color:{{ icon_color }}"></i>
+                <div class="col-sm-1 icon-container pt-4">
+                    <div class="{{ icon ? 'd-md-flex justify-content-md-end justify-content-sm-start' : '' }}">
+                        <i class="{{ icon ?: '' }}{{ icon_size ? ' ' ~ icon_size : '' }}"
+                           style="{{ icon_color ? 'color:' ~ icon_color : '' }}"></i>
                     </div>
                 </div>
             {% endif %}
@@ -59,7 +53,7 @@
             <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
 
                 {# Include Title Component #}
-                {% include '@cua_theme/component/partials/_title.html.twig'%}
+                {% include '@cua_theme/component/partials/_title.html.twig' %}
 
                 {# Include Body Component #}
                 {% include '@cua_theme/component/partials/_body.html.twig' %}

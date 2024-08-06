@@ -1,20 +1,18 @@
-{# Icon #}
-
 {# If icon is active, render #}
 {% if icon %}
 
     {# Concatenate optional classes with a space #}
     {% set icon_classes = [
-        padding ? padding : null,
+        padding ?: null,
         position_container ? 'd-flex ' ~ position_container : null,
-        text_alignment ? text_alignment : null,
+        text_alignment ?: null,
         'pt-5 pb-3',
     ] | filter(v => v) | join(' ') %}
 
     {# Content #}
-    <div class="{{ icon_classes }}"
-            {% if icon_color %} style="color:{{ icon_color }}"{% endif %}>
-        <i class="{{ icon }}{{ icon_size ? ' ' ~ icon_size : '' }}"></i>
+    <div class="{{ icon_classes }}">
+        <i class="{{ icon ?: '' }}{{ icon_size ? ' ' ~ icon_size : '' }}"
+           style="{{ icon_color ? 'color:' ~ icon_color : '' }}"></i>
     </div>
 
 {% endif %}
