@@ -1887,11 +1887,11 @@ aside .nav {
 }
 
 .path-faq .card-footer .btn.outline-btn-cu-bg-black {
-    color: var(--cua-black ) !important;
+    color: var(--cua-black) !important;
 }
 
 .path-faq .card-footer .btn.outline-btn-cu-bg-black:hover {
-    color: var(--cua-white ) !important;
+    color: var(--cua-white) !important;
 }
 
 /*** Responsive starts here ***/
@@ -2016,6 +2016,10 @@ aside .nav {
 
     .base-heading-square__accent {
         display: none;
+    }
+
+    .layout__region--second .block.block-menu.navigation {
+        border-left: none;
     }
 
 }
