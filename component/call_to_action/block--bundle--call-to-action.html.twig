@@ -24,30 +24,30 @@
     'block-' ~ plugin_id|clean_class,
     'call-to-action',
     'card rounded-0 h-100',
-    animate_trigger ? animate_trigger : null,
-    color_background ? color_background : null,
-    color_border ? color_border : null,
-    container_size ? container_size : null,
-    padding ? padding : null,
-    shadow ? shadow : null,
-    text_alignment ? text_alignment : null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
+    animate_trigger ?: null,
+    color_background ?: null,
+    color_border ?: null,
+    container_size ?: null,
+    padding ?: null,
+    shadow ?: null,
+    text_alignment ?: null,
+    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Define CTA link classes #}
 {% set cta_link_classes = [
     'display-4 card-text lead title h3',
-    center_content ? center_content : null,
-    text_alignment ? text_alignment : null,
-    text_color ? text_color : null,
-    padding ? padding : null,
+    center_content ?: null,
+    text_alignment ?: null,
+    text_color ?: null,
+    padding ?: null,
 ] | filter(v => v) | join(' ') %}
 
 {# Define animation classes #}
 {% set animation_classes = [
-    animation ? animation : null,
-    animation_speed ? animation_speed : null,
-    animation_delay ? animation_delay : null,
+    animation ?: null,
+    animation_speed ?: null,
+    animation_delay ?: null,
 ] | filter(v => v) %}
 
 {% set data_animation_classes = animation_classes | length ? ['animate__animated'] | merge(animation_classes) | join(' ') : '' %}
@@ -68,11 +68,11 @@
             title="{{ firstLink.title }}"
             aria-label="{{ firstLink.title }}" aria-hidden="true">
         {% endif %}
-        <div class="flag {{ flag_background }} py-2">
+        <div class="flag {{ flag_background ?: '' }} py-2">
             {% if icon %}
-                <i class="{{ icon ~ ' ' ~ icon_size }} px-1"></i>
+                <i class="{{ icon ?: '' }} {{ icon_size ?: '' }} px-1"></i>
             {% endif %}
-            {{ flag_title }}
+            {{ flag_title ?: '' }}
         </div>
         {% if links %}
             </a>
@@ -98,7 +98,7 @@
     {% endif %}
 
     {# Include Title #}
-    {{ title_prefix ?? '' }}
+    {{ title_prefix ?: '' }}
     {% if links %}
         {% set firstLink = links[0] %}
         <a class="{{ cta_link_classes }}" href="{{ firstLink.url }}"
@@ -111,7 +111,7 @@
             {{ label }}
         </div>
     {% endif %}
-    {{ title_suffix ?? '' }}
+    {{ title_suffix ?: '' }}
 
     {# Include Body Component #}
     {% include '@cua_theme/component/partials/_body.html.twig' %}
