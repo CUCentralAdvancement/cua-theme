@@ -19,9 +19,9 @@
 
 {# Set data attributes for animation #}
 {% set animation_classes = [
-    animation ? animation : null,
-    animation_speed ? animation_speed : null,
-    animation_delay ? animation_delay : null,
+    animation ?: null,
+    animation_speed ?: null,
+    animation_delay ?: null,
 ] | filter(v => v) %}
 
 {% set data_animation_classes = animation_classes | length ? 'animate__animated ' ~ animation_classes | join(' ') : '' %}
@@ -34,11 +34,11 @@
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
     animate_trigger,
-    border_style ? border_style : null,
-    container_size ? container_size : null,
-    margins ? margins : null,
+    border_style ?: null,
+    container_size ?: null,
+    margins ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node--half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
