@@ -31,18 +31,18 @@
     'block-' ~ plugin_id|clean_class,
     'jumbotron jumbotron-fluid banner g-0',
     'container-fluid',
-    color_background ? color_background : null,
-    margins ? margins : null,
+    color_background ?: null,
+    margins ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
 {# Set image classes #}
 {% set image_container_classes = [
     'banner-image-container',
-    parallax ? parallax : null,
+    parallax ?: null,
     effect is not empty ? 'px-5 mx-5 px-sm-2 mx-sm-2 kenburns-' ~ effect|clean_class : null,
     position_container is not empty ? 'd-flex ' ~ position_container|clean_class : null,
-    container_size ? container_size : null,
+    container_size ?: null,
 ] | filter(v => v) | join(' ') %}
 
 {# Set banner-body classes #}
@@ -50,10 +50,10 @@
     'col-md-5',
     'col-sm-12',
     'banner-body mx-5',
-    color_background ? color_background : null,
-    text_color ? text_color : null,
+    color_background ?: null,
+    text_color ?: null,
     effect_copy_class,
-    padding ? padding : null,
+    padding ?: null,
     'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] | filter(v => v) | join(' ') %}
