@@ -26,8 +26,8 @@
     color_background ? null,
     color_border ? null,
     container_size ? null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
-] | filter(v => v) | join(' ') %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}

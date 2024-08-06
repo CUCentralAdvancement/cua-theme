@@ -31,7 +31,8 @@
     padding ? padding : null,
     shadow ? shadow : null,
     text_alignment ? text_alignment : null,
-] | filter(v => v) | join(' ') %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
 {# Define CTA link classes #}
 {% set cta_link_classes = [

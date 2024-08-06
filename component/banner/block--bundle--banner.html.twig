@@ -21,15 +21,8 @@
 {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
 <div style="background-image: url('{{ bg_image_url }}');"></div>
 
-
-{# Add optional variables based on conditions #}
-
 {# Add optional classes based on conditions #}
-{% set color_background = color_background ?? '' %}
-{% set effect_copy = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
-{% set margins = margins ?? '' %}
-{% set padding = padding ?? '' %}
-{% set text_color = text_color ?? '' %}
+{% set effect_copy_class = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
 
 {# Set container classes #}
 {% set container_classes = [
@@ -37,54 +30,48 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'jumbotron jumbotron-fluid banner g-0',
-    'container_fluid',
-    color_background,
-    margins,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-]|merge(utility_classes ? utility_classes : []) %}
+    'container-fluid',
+    color_background ? color_background : null,
+    margins ? margins : null,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
 {# Set image classes #}
 {% set image_container_classes = [
     'banner-image-container',
-    parallax is not empty ? parallax : null,
-    effect is not empty ? 'px-5 mx-5 px-sm-2 mx-sm-2 kenburns-' ~ effect : null,
-    position_container is not empty ? 'd-flex' ~ ' ' ~ position_container|clean_class : null,
-    container_size is not empty ? container_size : null,
-] %}
+    parallax ? parallax : null,
+    effect is not empty ? 'px-5 mx-5 px-sm-2 mx-sm-2 kenburns-' ~ effect|clean_class : null,
+    position_container is not empty ? 'd-flex ' ~ position_container|clean_class : null,
+    container_size ? container_size : null,
+] | filter(v => v) | join(' ') %}
 
 {# Set banner-body classes #}
 {% set banner_body_classes = [
     'col-md-5',
     'col-sm-12',
     'banner-body mx-5',
-    color_background,
-    text_color,
-    effect_copy,
-    padding,
+    color_background ? color_background : null,
+    text_color ? text_color : null,
+    effect_copy_class,
+    padding ? padding : null,
     'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-] %}
-
-{# Combine optional classes and data attributes #}
-{% set banner_body_attributes = {
-    class: banner_body_classes|join(' '),
-    'data-animation-classes': animation_classes is not empty ? animation_classes : null
-} %}
+] | filter(v => v) | join(' ') %}
 
 {# Set data attributes for animation #}
 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
 
 {# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-banner' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(container_classes|join(' ')|trim) }}>
+<div{{ attributes.setAttribute('id', unique_id).addClass(container_classes) }}>
     {# Image Container with variables #}
-    <div{{ attributes.addClass(image_container_classes|join(' ')|trim) }} style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
-        <div class="{{ banner_body_classes|join(' ')|trim }}" {% if animation_classes %}data-animation-classes="{{ animation_classes|join(' ')|trim }}"{% endif %}>
+    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+        <div class="{{ banner_body_classes }}" {% if animation_classes %}data-animation-classes="{{ animation_classes }}"{% endif %}>
 
             {# Include Title Component #}
-            {% include '@cua_theme/component/partials/_title.html.twig'%}
+            {% include '@cua_theme/component/partials/_title.html.twig' %}
 
             {# Include Body Component #}
             {% include '@cua_theme/component/partials/_body.html.twig' %}
