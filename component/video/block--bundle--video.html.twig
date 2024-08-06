@@ -1,4 +1,4 @@
-{#
+\{#
 /**
  * @file
  * Template for the Half and Half component.
@@ -15,10 +15,7 @@
 #}
 
 {# Set default class values #}
-{% set container_size = container_size ? container_size|clean_class : '' %}
-{% set margins = margins ? margins|clean_class : '' %}
 {% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
-{% set color_background = color_background ? color_background|clean_class : '' %}
 
 {# Define the main block classes #}
 {% set video_classes = [
@@ -28,8 +25,8 @@
     animate_trigger,
     'card g-0',
     'clearfix',
-    margins,
-    container_size,
+    margins ?: null,
+    container_size ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
 ] %}
 
@@ -49,7 +46,8 @@
 
                 {# Set data attributes for animation #}
                 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : '' %}
-                <div class="col-sm-5 {{ color_background }} px-5 py-4 m-5 {{ animation_classes }}" {% if animation_classes %}data-animation-classes="{{ animation_classes|trim }}"{% endif %}>
+                <div class="col-sm-5 {{ color_background ?? '' }} px-5 py-4 m-5 {{ animation_classes }}"
+                     {% if animation_classes %}data-animation-classes="{{ animation_classes|trim }}"{% endif %}>
 
                     {# Include Title Component #}
                     {% include '@cua_theme/component/partials/_title.html.twig' %}
@@ -68,7 +66,7 @@
         <div class="video-mobile-copy d-md-none g-0 {% if parallax_video %}parallax-main-content{% endif %}">
             <div class="container mt-0 mt-md-5">
                 <div class="row">
-                    <div class="col-sm-12 {{ color_background }} p-3 my-5">
+                    <div class="col-sm-12 {{ color_background ?? '' }} p-3 my-5">
 
                         {# Include Title Component #}
                         {% include '@cua_theme/component/partials/_title.html.twig' %}
