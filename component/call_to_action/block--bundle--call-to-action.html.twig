@@ -17,6 +17,14 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
+{# Set data attributes for animation #}
+{% set animation_classes = [] %}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay] %}
+{% endif %}
+{% set data_animation_classes = animation_classes | join(' ') | trim %}
+{% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
+
 {# Define CTA classes #}
 {% set cta_classes = [
     'block',
@@ -24,7 +32,7 @@
     'block-' ~ plugin_id|clean_class,
     'call-to-action',
     'card rounded-0 h-100',
-    animate_trigger ?: null,
+    animate_trigger,
     color_background ?: null,
     color_border ?: null,
     container_size ?: null,
@@ -42,16 +50,6 @@
     text_color ?: null,
     padding ?: null,
 ] | filter(v => v) | join(' ') %}
-
-{# Define animation classes #}
-{% set animation_classes = [
-    animation ?: null,
-    animation_speed ?: null,
-    animation_delay ?: null,
-] | filter(v => v) %}
-
-{% set data_animation_classes = animation_classes | length ? ['animate__animated'] | merge(animation_classes) | join(' ') : '' %}
-{% set animate_trigger = animation_classes | length ? 'animate-trigger' : '' %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node--call-to-action--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}

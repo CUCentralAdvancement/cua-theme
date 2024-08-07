@@ -32,7 +32,7 @@ global-styling:
   dependencies:
     - core/popperjs
 
-# Call to Action
+# Alert
 alert:
   version: VERSION
   css:
@@ -40,7 +40,7 @@ alert:
       components/alert/css/alert.css:
         weight: -10
 
-# Call to Action
+# Banner
 banner:
   version: VERSION
   css:
