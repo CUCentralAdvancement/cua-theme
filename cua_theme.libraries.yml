@@ -19,8 +19,6 @@ global-styling:
         weight: -11
       css/layout-builder.css:
         weight: -11
-      //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css:
-        weight: -11
     theme:
       //fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,700,900&display=swap: { type: external }
       //fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap: { type: external }
@@ -47,6 +45,8 @@ banner:
     component:
       component/banner/css/banner.css:
         weight: -10
+      //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css:
+        weight: -10
 
 # Call to Action
 call-to-action:
@@ -54,6 +54,8 @@ call-to-action:
   css:
     component:
       component/call_to_action/css/call-to-action.css:
+        weight: -10
+      //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css:
         weight: -10
 
 # Counter
@@ -74,6 +76,8 @@ half-and-half:
   css:
     component:
       component/half_and_half/css/half-and-half.css:
+        weight: -10
+      //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css:
         weight: -10
 
 # Spacer
