@@ -7,15 +7,15 @@
     {% set card_image_classes = [
         'card-header',
         position_container ? 'd-flex ' ~ position_container : null,
-        text_alignment ? text_alignment : null,
-        text_color ? text_color : null,
+        text_alignment ?: null,
+        text_color ?: null,
         'g-0',
     ] | filter(v => v) | join(' ') %}
 
     {# Set presentation classes based on conditions #}
     {% set presentation_classes = [
         'card-img',
-        image_size ? image_size : null,
+        image_size ?: null,
     ] | filter(v => v) | join(' ') %}
 
     {# Content #}
@@ -30,7 +30,7 @@
                 {% for item in content.field_image %}
                     {% if item['#item'].alt %}
                         <figcaption class="{{ visibility }} px-3">
-                            <p class="h6 title figcaption {{ text_alignment }} {{ text_color }}">{{ item['#item'].alt }}</p>
+                            <p class="h6 title figcaption {{ text_alignment ?: '' }} {{ text_color ?: '' }}">{{ item['#item'].alt }}</p>
                         </figcaption>
                     {% endif %}
                 {% endfor %}
