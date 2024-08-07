@@ -14,18 +14,14 @@
  */
 #}
 
-{# Add optional classes based on conditions #}
-{% set color_border = color_border ?? '' %}
-{% set text_alignment = text_alignment ?? '' %}
-{% set text_color = text_color ?? '' %}
-
 {# Add button classes #}
 {% set button_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'button card',
-    color_border,
-    text_alignment,
+    color_border ?: null,
+    text_alignment ?: null,
+    text_color ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ') | trim %}
 

@@ -46,7 +46,7 @@
 
                 {# Set data attributes for animation #}
                 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : '' %}
-                <div class="col-sm-5 {{ color_background ?? '' }} px-5 py-4 m-5 {{ animation_classes }}"
+                <div class="col-sm-5 {{ color_background  ?: '' }} px-5 py-4 m-5 {{ animation_classes }}"
                      {% if animation_classes %}data-animation-classes="{{ animation_classes|trim }}"{% endif %}>
 
                     {# Include Title Component #}
@@ -66,7 +66,7 @@
         <div class="video-mobile-copy d-md-none g-0 {% if parallax_video %}parallax-main-content{% endif %}">
             <div class="container mt-0 mt-md-5">
                 <div class="row">
-                    <div class="col-sm-12 {{ color_background ?? '' }} p-3 my-5">
+                    <div class="col-sm-12 {{ color_background  ?: '' }} }} p-3 my-5">
 
                         {# Include Title Component #}
                         {% include '@cua_theme/component/partials/_title.html.twig' %}
