@@ -3,10 +3,10 @@
 {# Define Title Classes #}
 {% set title_classes = [
     'display-4 card-text lead h3 title',
-    center_content ? center_content : null,
-    text_alignment ? text_alignment : null,
-    text_color ? text_color : null,
-    padding ? padding : null,
+    center_content ?: null,
+    text_alignment ?: null,
+    text_color ?: null,
+    padding ?: null,
 ] | filter(v => v) | join(' ') %}
 
 {# Title #}

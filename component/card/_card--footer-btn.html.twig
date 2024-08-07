@@ -9,26 +9,26 @@
         'card-footer',
         'd-flex',
         multiple_links ? 'multiple-links' : '',
-        container_size,
-        color_background,
-        position_container,
-        text_alignment,
-        padding,
+        container_size ?: null,
+        color_background ?: null,
+        position_container ?: null,
+        text_alignment ?: null,
+        padding ?: null,
         'mb-5',
-    ] | filter(v => v is not empty) | join(' ') %}
+    ] | filter(v => v) | join(' ') %}
 
     {# Set card footer link classes #}
-    {% set outline_class = outline is not empty ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+    {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
     {% set card_footer_link_classes = [
         'card-link',
         'btn',
-        outline_class,
+        outline_class ?: null,
         'text-decoration-none',
-        position_container,
-        text_alignment,
+        position_container ?: null,
+        text_alignment ?: null,
         'p-2',
         'mt-3',
-    ] | filter(v => v is not empty) | join(' ') %}
+    ] | filter(v => v) | join(' ') %}
 
     <div class="{{ card_footer_classes }}">
         {% for link in links %}
