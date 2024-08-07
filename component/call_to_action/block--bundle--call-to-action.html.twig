@@ -20,10 +20,10 @@
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
 {% if animation or animation_speed or animation_delay %}
-    {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay] %}
+    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
 {% endif %}
-{% set data_animation_classes = animation_classes | join(' ') | trim %}
-{% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
+{% set data_animation_classes = animation_classes | join(' ')|trim %}
+{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
 
 {# Define CTA classes #}
 {% set cta_classes = [
@@ -55,8 +55,8 @@
 {% set unique_id = 'block--node--call-to-action--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
-        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+
 
     {# Flag #}
     {% if flag == 'flag_on' %}

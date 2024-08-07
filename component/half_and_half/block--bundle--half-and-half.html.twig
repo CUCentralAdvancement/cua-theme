@@ -1,51 +1,53 @@
 {#
 /**
- * @file
- * Template for the Half and Half component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Available fields located in:
- * - cua_theme.theme
- */
+* @file
+* Template for the Half and Half component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
+* Available fields located in:
+* - cua_theme.theme
+*/
 #}
 
 {# Attach the library #}
 {{ attach_library('cua_theme/half-and-half') }}
 
+{# If class is active #}
+{% set border_style = border_style is not empty ? border_style|clean_class : '' %}
+{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
+{% set margins = margins is not empty ? margins|clean_class : '' %}
+
 {# Set data attributes for animation #}
-{% set animation_classes = [
-    animation ?: null,
-    animation_speed ?: null,
-    animation_delay ?: null,
-] | filter(v => v) %}
+{% set animation_classes = [] %}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
+{% endif %}
+{% set data_animation_classes = animation_classes | join(' ')|trim %}
+{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
 
-{% set data_animation_classes = animation_classes | length ? 'animate__animated ' ~ animation_classes | join(' ') : '' %}
-{% set animate_trigger = animation_classes | length ? 'animate-trigger' : '' %}
-
-{# Define classes #}
+{# Add Classes #}
 {% set hh_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
     animate_trigger,
-    border_style ?: null,
-    container_size ?: null,
-    margins ?: null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+    border_style,
+    container_size,
+    margins,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
+] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
-{# Generate unique ID #}
-{% set unique_id = 'block--node--half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{# Add unique id to block #}
+{% set unique_id = 'block--node-' ~ '-half-and-half' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }}
-        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+{# Content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
     {# Include Desktop Component #}
     {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
