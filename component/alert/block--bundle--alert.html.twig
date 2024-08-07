@@ -41,8 +41,8 @@
 
             {# Icon #}
             {% if icon %}
-                <div class="col-sm-1 icon-container pt-4">
-                    <div class="{{ icon ? 'd-md-flex justify-content-md-end justify-content-sm-start' : '' }}">
+                <div class="col-sm-1 icon-container">
+                    <div class="{{ icon ? 'd-md-flex justify-content-md-end justify-content-sm-start pt-4' : '' }}">
                         <i class="{{ icon ?: '' }}{{ icon_size ? ' ' ~ icon_size : '' }}"
                            style="{{ icon_color ? 'color:' ~ icon_color : '' }}"></i>
                     </div>
