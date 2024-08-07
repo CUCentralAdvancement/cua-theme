@@ -7,9 +7,9 @@
     {% set card_classes = [
         'd-flex flex-column',
         color_background ? 'text-' ~ color_background : null,
-        text_alignment ? text_alignment : null,
+        text_alignment ?: null,
         position_container ? 'd-flex ' ~ position_container : null,
-        padding ? padding : null,
+        padding ?: null,
         'my-2',
     ] | filter(v => v) | join(' ') %}
 
