@@ -22,9 +22,9 @@
                 is_7030_layout ? 'col-md-4',
                 is_5050_layout ? 'col-md-6',
                 'col-sm-12',
-                color_background ? color_background : null,
-                padding ? padding : null,
-                image_alignment ? image_alignment : null,
+                color_background ?: null,
+                padding ?: null,
+                image_alignment ?: null,
             ] | filter(v => v) | join(' ') %}
 
             {# Render image container if layout is set #}
@@ -46,9 +46,9 @@
                 is_7030_layout ? 'col-md-8',
                 is_5050_layout ? 'col-md-6',
                 'col-sm-12',
-                color_background ? color_background : null,
-                text_alignment ? text_alignment : null,
-                padding ? padding : null,
+                color_background ?: null,
+                text_alignment ?: null,
+                padding ?: null,
             ] | filter(v => v) | join(' ') %}
 
             {# Render title/body container if layout is set #}

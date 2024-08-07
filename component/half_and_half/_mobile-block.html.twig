@@ -15,9 +15,9 @@
             {# Set column classes for Media Component #}
             {% set media_col_classes = [
                 'col-12',
-                color_background ? color_background : null,
-                text_alignment ? text_alignment : null,
-                padding ? padding : null,
+                color_background ?: null,
+                text_alignment ?: null,
+                padding ?: null,
             ] | filter(v => v) | join(' ') %}
 
             <div class="{{ media_col_classes }}">
@@ -34,9 +34,9 @@
             {# Set column classes for Title/Body Component #}
             {% set title_body_col_classes = [
                 'col-12',
-                color_background ? color_background : null,
-                text_alignment ? text_alignment : null,
-                padding ? padding : null,
+                color_background ?: null,
+                text_alignment ?: null,
+                padding ?: null,
             ] | filter(v => v) | join(' ') %}
 
             <div class="{{ title_body_col_classes }}">
