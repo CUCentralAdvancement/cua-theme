@@ -13,17 +13,14 @@
 * - cua_theme.theme
 */
 #}
-{% set margins = margins is not empty ? margins : '' %}
-{% set padding = padding is not empty ? padding : '' %}
-{% set text_alignment = text_alignment is not empty ? text_alignment : '' %}
 
 {% set image_bundle_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'cu-image',
-    margins,
-    padding,
+    margins ?: null,
+    padding ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
@@ -41,11 +38,11 @@
     <div class="container px-5 py-4">
 
         {# Title #}
-        {{ title_prefix ?? '' }}
-        <div class="display-4 {{ text_alignment }} mb-2">
+        {{ title_prefix }}
+        <div class="display-4 {{ text_alignment ?: '' }} mb-2">
             {{ label }}
         </div>
-        {{ title_suffix ?? '' }}
+        {{ title_suffix }}
 
         {# Include Body Component #}
         {% include '@cua_theme/component/partials/_body.html.twig' %}
