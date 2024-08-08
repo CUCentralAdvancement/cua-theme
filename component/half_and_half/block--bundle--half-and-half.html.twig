@@ -17,11 +17,6 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/half-and-half') }}
 
-{# If class is active #}
-{% set border_style = border_style is not empty ? border_style|clean_class : '' %}
-{% set container_size = container_size is not empty ? container_size|clean_class : '' %}
-{% set margins = margins is not empty ? margins|clean_class : '' %}
-
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
 {% if animation or animation_speed or animation_delay %}
@@ -36,10 +31,10 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
-    animate_trigger,
-    border_style,
-    container_size,
-    margins,
+    animate_trigger ?: null,
+    border_style ?: null,
+    container_size ?: null,
+    margins ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
 
