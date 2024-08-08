@@ -23,9 +23,9 @@
     'block-' ~ configuration.provider|clean_class,
     'counter',
     'card rounded-0 mx-2 p-3',
-    color_background ? null,
-    color_border ? null,
-    container_size ? null,
+    color_background ?: null,
+    color_border ?: null,
+    container_size ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
@@ -46,16 +46,16 @@
 
     {# Counter #}
     {% if content.field_number %}
-        <div class="counter-size {{ text_alignment|default('') }} {{ text_color|default('') }}">
+        <div class="counter-size {{ text_alignment ?: null }} {{ text_color ?: null }}">
             {# Before number #}
             {% if content.field_before_number %}
-                <span class="padding-right {{ text_color|default('') }}">{{ content.field_before_number.0 }}</span>
+                <span class="padding-right {{ text_color ?: null }}">{{ content.field_before_number.0 }}</span>
             {% endif %}
             {# Counter #}
-            <span class="counter-up {{ text_color|default('') }}" data-count="{{ content.field_number['#items'].value }}">0</span>
+            <span class="counter-up {{ text_color ?: null }}" data-count="{{ content.field_number['#items'].value }}">0</span>
             {# After number #}
             {% if content.field_after_number %}
-                <span class="padding-left {{ text_color|default('') }}">{{ content.field_after_number.0 }}</span>
+                <span class="padding-left {{ text_color ?: null }}">{{ content.field_after_number.0 }}</span>
             {% endif %}
         </div>
     {% endif %}
