@@ -44,7 +44,9 @@
     <div{{ attributes }}>
         <div class="spacer {{ size }} g-0">
             {{ title_prefix }}
-            <div class="small text-align-center"></div>
+            {% if label is not empty %}
+                <div class="visually-hidden">{{ label }}</div>
+            {% endif %}
             {{ title_suffix }}
         </div>
     </div>
