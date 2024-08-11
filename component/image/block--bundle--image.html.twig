@@ -54,8 +54,8 @@
 
     {# Body #}
     {% if body %}
-        <div class="mx-2 my-3">
-            {% include '@cua_theme/component/partials/_body.html.twig' %}
+        <div class="card-body d-flex flex-column card-text lead g-0 clearfix {{ padding ?: '' }} {{ text_color ?: '' }} {{ text_alignment ?: '' }} mt-3">
+            {{ content.body|render }}
         </div>
     {% endif %}
 
