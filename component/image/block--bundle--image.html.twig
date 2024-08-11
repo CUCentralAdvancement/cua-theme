@@ -31,25 +31,32 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(image_bundle_classes) }}>
 
-    {# Include Image Component #}
-    {% include '@cua_theme/component/card/_card--image.html.twig' %}
-
-
-    <div class="container px-5 py-4">
-
-        {# Title #}
-        {{ title_prefix }}
-        <div class="display-4 {{ text_alignment ?: '' }} mb-2">
-            {{ label }}
-        </div>
-        {{ title_suffix }}
-
-        {# Include Body Component #}
-        {% include '@cua_theme/component/partials/_body.html.twig' %}
-
-        {# Include Link/Button Component #}
-        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
-
+    {# Title #}
+    {{ title_prefix }}
+    <div class="visually-hidden">
+        {{ label }}
     </div>
+    {{ title_suffix }}
+
+    {# Image with/out link #}
+    {% if card_image %}
+        {% if links %}
+            {% set firstLink = links[0] %}
+            <a class="img-hover-effect" href="{{ firstLink.url }}"
+               title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}"
+               aria-hidden="true">
+                {% include '@cua_theme/component/card/_card--image.html.twig' %}
+            </a>
+        {% else %}
+            {% include '@cua_theme/component/card/_card--image.html.twig' %}
+        {% endif %}
+    {% endif %}
+
+    {# Body #}
+    {% if body %}
+        <div class="mx-2 my-3">
+            {% include '@cua_theme/component/partials/_body.html.twig' %}
+        </div>
+    {% endif %}
 
 </div>
