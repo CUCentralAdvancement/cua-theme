@@ -64,8 +64,30 @@
                 <div class="{{ title_body_col_classes }}">
                     <div class="row mx-5 pt-3">
 
-                        {# Include Title Component #}
-                        {% include '@cua_theme/component/partials/_title.html.twig' %}
+                        {# Define CTA link classes #}
+                        {% set hh_link_classes = [
+                            'display-4 card-text lead title h3',
+                            center_content ?: null,
+                            text_alignment ?: null,
+                            text_color ?: null,
+                            padding ?: null,
+                        ] | filter(v => v) | join(' ') %}
+
+                        {# Include Title #}
+                        {{ title_prefix ?: '' }}
+                        {% if links %}
+                            {% set firstLink = links[0] %}
+                            <a class="{{ hh_link_classes }}" href="{{ firstLink.url }}"
+                               title="{{ firstLink.title }}"
+                               aria-label="{{ firstLink.title }}" aria-hidden="true">
+                                {{ label }}
+                            </a>
+                        {% else %}
+                            <div class="{{ hh_link_classes }}">
+                                {{ label }}
+                            </div>
+                        {% endif %}
+                        {{ title_suffix ?: '' }}
 
                         {# Include Body Component #}
                         {% include '@cua_theme/component/partials/_body.html.twig' %}
