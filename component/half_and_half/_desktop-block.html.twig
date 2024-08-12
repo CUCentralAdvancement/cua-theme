@@ -30,13 +30,21 @@
             {# Render image container if layout is set #}
             {% if layout %}
                 <div class="{{ image_col_classes }}">
-                    {# Media Component Logic #}
+
+                    {# Include Video, Image, or Icon Component #}
                     {% if provider %}
-                        {# Include Video Component #}
                         {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                     {% elseif card_image %}
-                        {# Include Image Component #}
-                        {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                        {% if links %}
+                            {% set firstLink = links[0] %}
+                            <a class="img-hover-effect" href="{{ firstLink.url }}"
+                               title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}"
+                               aria-hidden="true">
+                                {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                            </a>
+                        {% else %}
+                            {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                        {% endif %}
                     {% endif %}
                 </div>
             {% endif %}
