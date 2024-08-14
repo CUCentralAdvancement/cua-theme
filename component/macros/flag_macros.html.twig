@@ -1,11 +1,12 @@
-{# Flag Macro --
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %}
-#
-{# Call the macro and pass the necessary variables #}
-{# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }}
-#}
+{# Flag Macro #}
 
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }} #}
+
+{# Content #}
 {% macro render_flag(flag, flag_title, icon = null, icon_size = null, flag_background = null, links = []) %}
     {% if flag == 'flag_on' %}
         {% if links|length %}

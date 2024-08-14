@@ -1,11 +1,12 @@
-{# Icon Macro --
-# Import the macro file
-# {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
-#
-# Call the macro and pass the necessary variables
-# {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
-#}
+{# Icon Macro #}
 
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }} #}
+
+{# Content #}
 {% macro render_icon(icon, icon_size = null, icon_color = null, padding = null, position_container = null, text_alignment = null) %}
     {% if icon %}
         {# Concatenate optional classes with a space #}

@@ -1,11 +1,12 @@
-{# Card Footer Button Macro --
-# Import the macro file where needed:
-# {% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
-#
-# Call the macro and pass the necessary variables:
-# {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color) }}
-#}
+{# Card Footer Button Macro #}
 
+{# Import the macro file where needed: #}
+{# {% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %} #}
+
+{# Call the macro and pass the necessary variables: #}
+{# {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color) }} #}
+
+{# Content #}
 {% macro render_card_footer(links, container_size = null, color_background = null, position_container = null, text_alignment = null, padding = null, outline = null, button_color = null) %}
 
     {% if links is not empty %}

@@ -1,11 +1,12 @@
-{# Title Macro --
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
-#
-{# Call the macro and pass the necessary variables #}
-{# {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding) }}
-#}
+{# Title Macro #}
 
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding) }} #}
+
+{# Content #}
 {% macro render_title(label, title_prefix = '', title_suffix = '', center_content = null, text_alignment = null, text_color = null, padding = null, links = []) %}
     {# Define Title Classes #}
     {% set title_classes = [

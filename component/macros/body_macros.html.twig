@@ -1,12 +1,12 @@
-{# Body Macro --
-# Call the macro
-{# Import the macro file
-{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
-#
-{# Call the macro and pass the necessary variables --
-{{ bodyMacros.render_body(content, body, padding, text_color, text_alignment) }}
-#}
+{# Body Macro #}
 
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ bodyMacros.render_body(content, body, padding, text_color, text_alignment) }} #}
+
+{# Content #}
 {% macro render_body(content, padding = null, text_color = null, text_alignment = null) %}
     {% if content.body is not empty %}
         {# Define Body Classes #}

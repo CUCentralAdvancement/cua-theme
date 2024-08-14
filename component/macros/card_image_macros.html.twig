@@ -1,11 +1,12 @@
-{# Card Image Macro --
-# Import the macro file
-# {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
-#
-# Call the macro and pass the necessary variables
-# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }}
-#}
+{# Card Image Macro #}
 
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }} #}
+
+{# Caontent #}
 {% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, visibility = 'hidden', content = null) %}
     {% if card_image %}
         {# Set card image classes #}
