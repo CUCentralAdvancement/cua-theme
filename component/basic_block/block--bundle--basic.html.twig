@@ -21,6 +21,9 @@
     'block-' ~ plugin_id|clean_class,
     'basic-block',
     'card',
+    text_alignment ?: null,
+    text_color ?: null,
+    color_background ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
@@ -29,6 +32,9 @@
 
 {# Contwnt #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(basic_classes ) }}>
+
+    {# Include Icon #}
+    {% include '@cua_theme/component/card/_card--icon.html.twig' %}
 
     {# Include Image Component #}
     {% if card_image is not empty %}
