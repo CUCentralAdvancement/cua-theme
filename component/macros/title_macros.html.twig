@@ -1,0 +1,43 @@
+{# Title Macro --
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+#
+{# Call the macro and pass the necessary variables #}
+{# {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding) }}
+#}
+
+{% macro render_title(label, title_prefix = '', title_suffix = '', center_content = null, text_alignment = null, text_color = null, padding = null, links = []) %}
+    {# Define Title Classes #}
+    {% set title_classes = [
+        'display-4 card-text lead h3 title',
+        center_content ?: null,
+        text_alignment ?: null,
+        text_color ?: null,
+        padding ?: null,
+    ] | filter(v => v) | join(' ') %}
+
+    {# Define CTA Link Classes #}
+    {% set cta_link_classes = [
+        'cta-link-class',
+        text_color ?: null,
+        padding ?: null,
+    ] | filter(v => v) | join(' ') %}
+
+    {# Render Title with Optional Link #}
+    {{ title_prefix ?: '' }}
+    {% if links|length %}
+        {% set firstLink = links[0] %}
+        <a class="{{ cta_link_classes }}" href="{{ firstLink.url }}"
+           title="{{ firstLink.title }}"
+           aria-label="{{ firstLink.title }}" aria-hidden="true">
+            <div class="{{ title_classes }}">
+                {{ label }}
+            </div>
+        </a>
+    {% else %}
+        <div class="{{ title_classes }}">
+            {{ label }}
+        </div>
+    {% endif %}
+    {{ title_suffix ?: '' }}
+{% endmacro %}

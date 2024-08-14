@@ -57,10 +57,24 @@
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    {# Import the flag macro file #}
-    {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %}
-    {# Call the macro and pass the necessary variables #}
-    {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }}
+    {# Flag #}
+    {% if flag == 'flag_on' %}
+        {% if links %}
+            {% set firstLink = links[0] %}
+            <a class="flag-link" href="{{ firstLink.url }}"
+            title="{{ firstLink.title }}"
+            aria-label="{{ firstLink.title }}" aria-hidden="true">
+        {% endif %}
+        <div class="flag {{ flag_background ?: '' }} py-2">
+            {% if icon %}
+                <i class="{{ icon ?: '' }} {{ icon_size ?: '' }} px-1"></i>
+            {% endif %}
+            {{ flag_title }}
+        </div>
+        {% if links %}
+            </a>
+        {% endif %}
+    {% endif %}
 
     {# Include Video, Image, or Icon Component #}
     {% if provider %}
@@ -71,37 +85,35 @@
             <a class="img-hover-effect" href="{{ firstLink.url }}"
                title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}"
                aria-hidden="true">
-                {# Import the image macro file #}
-                {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
-                {# Call the macro and pass the necessary variables #}
-                {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }}
+                {% include '@cua_theme/component/card/_card--image.html.twig' %}
             </a>
         {% else %}
-            {# Import the image macro file #}
-            {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
-            {# Call the macro and pass the necessary variables #}
-            {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }}
+            {% include '@cua_theme/component/card/_card--image.html.twig' %}
         {% endif %}
     {% elseif icon %}
-        {# Import the icon macro file #}
-        {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
-        {# Call the macro and pass the necessary variables #}
-        {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
+        {% include '@cua_theme/component/card/_card--icon.html.twig' %}
     {% endif %}
 
-    {# Import the title macro file #}
-    {% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
-    {# Call the macro with all necessary variables #}
-    {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding, links) }}
+    {# Include Title #}
+    {{ title_prefix ?: '' }}
+    {% if links %}
+        {% set firstLink = links[0] %}
+        <a class="{{ cta_link_classes }}" href="{{ firstLink.url }}"
+           title="{{ firstLink.title }}"
+           aria-label="{{ firstLink.title }}" aria-hidden="true">
+            {{ label }}
+        </a>
+    {% else %}
+        <div class="{{ cta_link_classes }}">
+            {{ label }}
+        </div>
+    {% endif %}
+    {{ title_suffix ?: '' }}
 
-    {# Import the body macro file #}
-    {% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
-    {# Call the macro and pass the necessary variables #}
-    {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+    {# Include Body Component #}
+    {% include '@cua_theme/component/partials/_body.html.twig' %}
 
-    {# Import the link macro file #}
-    {% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
-    {# Call the macro and pass the necessary variables #}
-    {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color) }}
+    {# Include Link/Button Component #}
+    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
 
 </div>

@@ -1,0 +1,25 @@
+{# Icon Macro --
+# Import the macro file
+# {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
+#
+# Call the macro and pass the necessary variables
+# {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
+#}
+
+{% macro render_icon(icon, icon_size = null, icon_color = null, padding = null, position_container = null, text_alignment = null) %}
+    {% if icon %}
+        {# Concatenate optional classes with a space #}
+        {% set icon_classes = [
+            padding ?: null,
+            position_container ? 'd-flex ' ~ position_container : null,
+            text_alignment ?: null,
+            'pt-5 pb-3',
+        ] | filter(v => v) | join(' ') %}
+
+        {# Content #}
+        <div class="{{ icon_classes }}">
+            <i class="{{ icon }}{{ icon_size ? ' ' ~ icon_size : '' }}"
+               style="{{ icon_color ? 'color:' ~ icon_color : '' }}"></i>
+        </div>
+    {% endif %}
+{% endmacro %}

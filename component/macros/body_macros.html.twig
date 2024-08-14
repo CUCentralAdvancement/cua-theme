@@ -1,0 +1,25 @@
+{# Body Macro --
+# Call the macro
+{# Import the macro file
+{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+#
+{# Call the macro and pass the necessary variables --
+{{ bodyMacros.render_body(content, body, padding, text_color, text_alignment) }}
+#}
+
+{% macro render_body(content, padding = null, text_color = null, text_alignment = null) %}
+    {% if content.body is not empty %}
+        {# Define Body Classes #}
+        {% set body_classes = [
+            'card-body d-flex flex-column card-text lead g-0 clearfix',
+            padding ?: null,
+            text_color ?: null,
+            text_alignment ?: null,
+        ] | filter(v => v) | join(' ') %}
+
+        {# Body #}
+        <div class="{{ body_classes }}">
+            {{ content.body|render }}
+        </div>
+    {% endif %}
+{% endmacro %}

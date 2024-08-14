@@ -1,0 +1,27 @@
+{# Flag Macro --
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %}
+#
+{# Call the macro and pass the necessary variables #}
+{# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }}
+#}
+
+{% macro render_flag(flag, flag_title, icon = null, icon_size = null, flag_background = null, links = []) %}
+    {% if flag == 'flag_on' %}
+        {% if links|length %}
+            {% set firstLink = links[0] %}
+            <a class="flag-link" href="{{ firstLink.url }}"
+            title="{{ firstLink.title }}"
+            aria-label="{{ firstLink.title }}" aria-hidden="true">
+        {% endif %}
+        <div class="flag {{ flag_background ?: '' }} py-2">
+            {% if icon %}
+                <i class="{{ icon ?: '' }} {{ icon_size ?: '' }} px-1"></i>
+            {% endif %}
+            {{ flag_title }}
+        </div>
+        {% if links|length %}
+            </a>
+        {% endif %}
+    {% endif %}
+{% endmacro %}
