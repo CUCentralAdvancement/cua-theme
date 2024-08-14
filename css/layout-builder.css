@@ -442,11 +442,6 @@ form#node-page-layout-builder-form .nav.nav-pills .nav-item {
     margin-top: 1.55rem !important;
 }
 
-.layout--fourcol-section > .layout__region {
-    flex: 0 1 23%;
-    margin: 1%;
-}
-
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front {
     z-index: 99999 !important;
 }
