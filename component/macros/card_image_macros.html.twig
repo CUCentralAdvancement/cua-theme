@@ -6,8 +6,7 @@
 {# Call the macro and pass the necessary variables #}
 {# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }} #}
 
-{# Caontent #}
-{% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, visibility = 'hidden', content = null) %}
+{% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, visibility = 'hidden', content = null, links = null) %}
     {% if card_image %}
         {# Set card image classes #}
         {% set card_image_classes = [
@@ -28,8 +27,19 @@
         <div class="{{ card_image_classes }}">
             <div role="presentation" class="{{ presentation_classes }}">
 
-                {# Card Image #}
-                {{ card_image }}
+                {# Card Image with link #}
+                {% if links is not empty %}
+                    {% set firstLink = links[0] %}
+                    <a class="img-hover-effect" href="{{ firstLink.url }}"
+                       title="{{ firstLink.title }}"
+                       aria-label="{{ firstLink.title }}"
+                       aria-hidden="true">
+                        {{ card_image }}
+                    </a>
+                {% else %}
+                    {# Card Image without link #}
+                    {{ card_image }}
+                {% endif %}
 
                 {# Card Image Caption #}
                 {% if visibility == 'visible' and content.field_image is not empty %}

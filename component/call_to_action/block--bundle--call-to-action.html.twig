@@ -66,22 +66,10 @@
     {% if provider %}
         {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
     {% elseif card_image %}
-        {% if links %}
-            {% set firstLink = links[0] %}
-            <a class="img-hover-effect" href="{{ firstLink.url }}"
-               title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}"
-               aria-hidden="true">
-                {# Import the image macro file #}
-                {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
-                {# Call the macro and pass the necessary variables #}
-                {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }}
-            </a>
-        {% else %}
-            {# Import the image macro file #}
-            {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
-            {# Call the macro and pass the necessary variables #}
-            {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }}
-        {% endif %}
+        {# Import the image macro file #}
+        {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
+        {# Call the macro and pass the necessary variables #}
+        {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, links) }}
     {% elseif icon %}
         {# Import the icon macro file #}
         {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
