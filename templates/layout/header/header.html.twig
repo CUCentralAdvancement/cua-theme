@@ -50,7 +50,7 @@
 
                             {# Navigation toggle buttons for smaller screens
                             <span class="d-lg-none mx-4">
-                                {% include '@cua_theme/component/header/_search-icon.html.twig' %}
+                                {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
                             </span>
                             #}
 
@@ -95,7 +95,7 @@
 
             {# Search Icon
             <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
-                {% include '@cua_theme/component/header/_search-icon.html.twig' %}
+                {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
             </div>
             #}
 
@@ -119,7 +119,7 @@
     {# Site Name / Desktop #}
     {% if site_name %}
         <span class="bg-light border-bottom border-grey d-none d-lg-block">
-            {% include '@cua_theme/component/header/_site-name.html.twig' %}
+            {% include '@cua_theme/templates/layout/header/_site-name.html.twig' %}
         </span>
     {% endif %}
 
@@ -159,7 +159,7 @@
                         {% endif %}
 
                         {# Search Icon
-                        {% include '@cua_theme/component/header/_search-icon.html.twig' %}
+                        {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
                         #}
 
                     </div>
@@ -172,7 +172,7 @@
     {# Site Name / Mobile #}
     {% if site_name %}
         <span class="d-lg-none">
-            {% include '@cua_theme/component/header/_site-name.html.twig' %}
+            {% include '@cua_theme/templates/layout/header/_site-name.html.twig' %}
         </span>
     {% endif %}
 

@@ -5,13 +5,13 @@ global-styling:
     component:
       //cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css:
         weight: -11
-      component/header/css/header.css:
+      templates/layout/header/css/header.css:
         weight: -11
       css/style.css:
         weight: -11
-      component/footer/css/footer.css:
+      templates/layout/footer/css/footer.css:
         weight: -11
-      component/card/css/card.css:
+      css/card.css:
         weight: -11
       css/backgrounds.css:
         weight: -11

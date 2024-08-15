@@ -17,6 +17,13 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/half-and-half') }}
 
+{# Import all macro files at the top #}
+{% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
+{% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
+{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
+
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
 {% if animation or animation_speed or animation_delay %}
@@ -44,10 +51,203 @@
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    {# Include Desktop Component #}
-    {% include '@cua_theme/component/half_and_half/_desktop-block.html.twig' %}
+    {# Desktop Component #}
+    <div class="{{ container_size|default('') }} d-none d-sm-block g-0">
+        <div class="card">
+            <div class="row">
 
-    {# Include Mobile Component #}
-    {% include '@cua_theme/component/half_and_half/_mobile-block.html.twig' %}
+                {# Determine layout and alignment #}
+                {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
+                {% set is_7030_layout = layout == '4' %}
+                {% set is_5050_layout = layout == '50_50' %}
+
+                {# Set column classes for image container #}
+                {% set image_col_classes = [
+                    is_7030_layout ? 'col-md-4',
+                    is_5050_layout ? 'col-md-6',
+                    'col-sm-12',
+                    color_background ?: null,
+                    padding ?: null,
+                    image_alignment ?: null,
+                ] | filter(v => v) | join(' ') %}
+
+                {# Render image container if layout is set #}
+                {% if layout %}
+                    <div class="{{ image_col_classes }}">
+
+                        {# Include Video, Image, or Icon Component #}
+                        {% if provider %}
+                            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+                        {% elseif card_image %}
+                            {{ cardImageMacros.render_card_image (
+                                card_image,
+                                position_container,
+                                text_alignment,
+                                text_color,
+                                image_size,
+                                visibility,
+                                content,
+                                links
+                            ) }}
+                        {% elseif icon %}
+                            {{ iconMacros.render_icon (
+                                icon,
+                                icon_size,
+                                icon_color,
+                                padding,
+                                position_container,
+                                text_alignment
+                            ) }}
+                        {% endif %}
+
+                    </div>
+                {% endif %}
+
+                {# Set column classes for title/body container #}
+                {% set title_body_col_classes = [
+                    is_7030_layout ? 'col-md-8',
+                    is_5050_layout ? 'col-md-6',
+                    'col-sm-12',
+                    color_background ?: null,
+                    text_alignment ?: null,
+                    padding ?: null,
+                ] | filter(v => v) | join(' ') %}
+
+                {# Render title/body container if layout is set #}
+                {% if layout %}
+                    <div class="{{ title_body_col_classes }}">
+                        <div class="row mx-5 pt-3">
+
+                            {# Render the title #}
+                            {{ titleMacros.render_title(
+                                label,
+                                title_prefix,
+                                title_suffix,
+                                center_content,
+                                text_alignment,
+                                text_color,
+                                padding,
+                                links
+                            ) }}
+
+                            {# Render the body #}
+                            {{ bodyMacros.render_body(
+                                content,
+                                padding,
+                                text_color,
+                                text_alignment
+                            ) }}
+
+                            {# Render the footer #}
+                            {{ cardFooterMacros.render_card_footer(
+                                links,
+                                container_size,
+                                color_background,
+                                position_container,
+                                text_alignment,
+                                padding,
+                                outline,
+                                button_color
+                            ) }}
+
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    {# Mobile Component #}
+    <div class="container d-block d-sm-none g-0">
+        <div class="card">
+            <div class="row g-0">
+
+                {# Set column classes for Media Component #}
+                {% set media_col_classes = [
+                    'col-12',
+                    color_background ?: null,
+                    text_alignment ?: null,
+                    padding ?: null,
+                ] | filter(v => v) | join(' ') %}
+
+                <div class="{{ media_col_classes }}">
+
+                    {# Include Video, Image, or Icon Component #}
+                    {% if provider %}
+                        {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+                    {% elseif card_image %}
+                        {{ cardImageMacros.render_card_image (
+                            card_image,
+                            position_container,
+                            text_alignment,
+                            text_color,
+                            image_size,
+                            visibility,
+                            content,
+                            links
+                        ) }}
+                    {% elseif icon %}
+                        {{ iconMacros.render_icon (
+                            icon,
+                            icon_size,
+                            icon_color,
+                            padding,
+                            position_container,
+                            text_alignment
+                        ) }}
+                    {% endif %}
+
+                </div>
+
+                {# Set column classes for Title/Body Component #}
+                {% set title_body_col_classes = [
+                    'col-12',
+                    color_background ?: null,
+                    text_alignment ?: null,
+                    padding ?: null,
+                ] | filter(v => v) | join(' ') %}
+
+                <div class="{{ title_body_col_classes }}">
+                    <div class="row m-4">
+
+                        {# Render the title #}
+                        {{ titleMacros.render_title(
+                            label,
+                            title_prefix,
+                            title_suffix,
+                            center_content,
+                            text_alignment,
+                            text_color,
+                            padding,
+                            links
+                        ) }}
+
+                        {# Render the body #}
+                        {{ bodyMacros.render_body(
+                            content,
+                            padding,
+                            text_color,
+                            text_alignment
+                        ) }}
+
+                        {# Render the footer #}
+                        {{ cardFooterMacros.render_card_footer(
+                            links,
+                            container_size,
+                            color_background,
+                            position_container,
+                            text_alignment,
+                            padding,
+                            outline,
+                            button_color
+                        ) }}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>

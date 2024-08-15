@@ -74,7 +74,7 @@
                 {{ page.alert }}
             {% endblock %}
         {% endif %}
-        {% include '@cua_theme/component/header/header.html.twig' %}
+        {% include '@cua_theme/templates/layout/header/header.html.twig' %}
 
         {# Banner #}
         {% if page.banner %}
@@ -133,6 +133,7 @@
         {% endif %}
 
         {# Footer #}
-        {% include '@cua_theme/component/footer/footer.html.twig' %}
+        {% include '@cua_theme/templates/layout/footer/footer.html.twig' %}
+
     </div>
 </div>

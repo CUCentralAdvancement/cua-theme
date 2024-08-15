@@ -9,11 +9,10 @@
   const sticky = navbar.offsetTop;
 
   function stickyNav() {
-    // Check if viewport width is greater than or equal to 991 pixels (typical tablet portrait breakpoint)
     if (window.innerWidth >= 991) {
       navbar.classList.toggle('sticky', window.scrollY >= sticky);
     } else {
-      navbar.classList.remove('sticky'); // Remove sticky class on smaller viewports
+      navbar.classList.remove('sticky');
     }
   }
 
@@ -31,13 +30,18 @@
 
   // Animations on viewport
   document.addEventListener('DOMContentLoaded', function () {
-    const observer = new IntersectionObserver(handleAnimations, { threshold: 0.1 });
+    // Updated IntersectionObserver settings
+    const observer = new IntersectionObserver(handleAnimations, {
+      threshold: 0.01, // Slightly before fully visible
+      rootMargin: "0px 0px -10% 0px" // Element is 10% in the viewport
+    });
 
-    // Check if there are elements with the class 'animate-trigger'
+    // Query animate-trigger elements
     const animateElements = document.querySelectorAll('.animate-trigger');
     if (animateElements.length > 0) {
-      // Observe each animate-trigger element
       animateElements.forEach(function (element) {
+        // Ensure element is initially hidden
+        element.style.visibility = 'hidden';
         observer.observe(element);
       });
     }
@@ -48,13 +52,12 @@
           // Get animation classes from data-animation-classes attribute
           const animationClasses = entry.target.dataset.animationClasses;
           if (animationClasses && animationClasses.trim() !== '') {
-            // Delay the addition of animation classes
             setTimeout(function () {
-              // Add animation classes to the element's classList
+              // Make the element visible and add animation classes
+              entry.target.style.visibility = 'visible';
               entry.target.classList.add(...animationClasses.split(' '));
-            }, 1); // Adjust the delay time as needed
+            }, 1);
           }
-          // Stop observing the element to avoid redundant animations
           observer.unobserve(entry.target);
         }
       });
