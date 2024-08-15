@@ -843,7 +843,7 @@ aside .form-select {
     --bs-form-select-bg-img: none !important;
 }
 
-.node__content .block.block-menu.navigation .form-select ul li ul.
+.node__content .block.block-menu.navigation .form-select ul li ul,
 aside .form-select ul li ul {
     margin-left: 1rem;
 }
@@ -1412,8 +1412,6 @@ div#block-cua-theme-viewsexposedfilterblock {
 .animate__animated.animate__delay-1s {
     -webkit-animation-delay: 0.5s !important;
     animation-delay: 0.5s !important;
-    -webkit-animation-delay: 0.5s !important;
-    animation-delay: 0.5s !important;
 }
 
 /* Margins */
@@ -1475,8 +1473,7 @@ nav.tabs {
 }
 
 .nav-pills .nav-link {
-    border-radius: var(--bs-nav-pills-border-radius);
-    border-radius: 0;
+    border-radius: 0 !important;
     padding: .75rem 3rem;
     font-size: 1.1rem;
 }
