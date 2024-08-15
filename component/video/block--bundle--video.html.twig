@@ -13,10 +13,11 @@
  * - cua_theme.theme
  */
 #}
-{# Import all macro files at the top #}
-{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
+
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {# Set default class values #}
 {% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}

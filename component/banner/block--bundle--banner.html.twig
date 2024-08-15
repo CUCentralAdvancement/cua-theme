@@ -21,10 +21,10 @@
 {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
 <div style="background-image: url('{{ bg_image_url }}');"></div>
 
-{# Import all macro files at the top #}
-{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {# Add optional classes based on conditions #}
 {% set effect_copy_class = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}

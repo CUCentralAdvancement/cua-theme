@@ -17,12 +17,12 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/half-and-half') }}
 
-{# Import all macro files at the top #}
-{% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
-{% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
-{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+{% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
