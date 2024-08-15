@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Template for the Image Bundle component.
+ * Template for the Banner component.
  *
  * Bootstrap Documentation
  * https://getbootstrap.com/docs/5.3
@@ -14,57 +14,104 @@
  */
 #}
 
+{# Preload background image #}
+{% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
+<div style="background-image: url('{{ bg_image_url }}');"></div>
+
 {# Attach the library #}
-{{ attach_library('cua_theme/image-bundle') }}
+{{ attach_library('cua_theme/banner') }}
 
 {# Import macros #}
-{% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Define classes #}
-{% set image_bundle_classes = [
+{# Set container classes #}
+{% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'image-bundle',
-    'card rounded-0 mx-2 p-3',
+    'block-' ~ plugin_id|clean_class,
+    'jumbotron jumbotron-fluid banner g-0',
+    'container-fluid',
     color_background ?: null,
-    color_border ?: null,
-    container_size ?: null,
+    margins ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
+{# Set image classes #}
+{% set image_container_classes = [
+    'banner-image-container',
+    parallax ?: null,
+    effect is not empty ? 'px-5 mx-5 px-sm-2 mx-sm-2 kenburns-' ~ effect|clean_class : null,
+    position_container is not empty ? 'd-flex ' ~ position_container|clean_class : null,
+    container_size ?: null,
+] | filter(v => v) | join(' ') %}
+
+{# Set banner-body classes #}
+{% set banner_body_classes = [
+    'col-md-5',
+    'col-sm-12',
+    'banner-body mx-5',
+    color_background ?: null,
+    text_color ?: null,
+    effect_copy_class,
+    padding ?: null,
+    'my-5 my-sm-3',
+    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
+] | filter(v => v) | join(' ') %}
+
+{# Set data attributes for animation #}
+{% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
+
+{# Add optional classes based on conditions #}
+{% set effect_copy_class = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
+
 {# Generate unique ID #}
-{% set unique_id = 'block--node--image-bundle--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes) }}>
+{# Content #}
+<div{{ attributes.setAttribute('id', unique_id).addClass(container_classes) }}>
 
-    {# Render the title with visually hidden class * need title to render contextual link #}
-    {{ title_prefix }}
-    <div class="visually-hidden g-0 m-0 p-0">
-        {{ label }}
+    {# Image container with variables #}
+    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+
+        {# Title, body ,link container with variables #}
+        <div class="{{ banner_body_classes }}" {% if animation_classes %}data-animation-classes="{{ animation_classes }}"{% endif %}>
+
+            {# Render the title #}
+            {{ titleMacros.render_title(
+                label,
+                title_prefix,
+                title_suffix,
+                center_content,
+                text_alignment,
+                text_color,
+                padding,
+                links
+            ) }}
+
+            {# Render the body #}
+            {{ bodyMacros.render_body(
+                content,
+                padding,
+                text_color,
+                text_alignment
+            ) }}
+
+            {# Render the footer #}
+            {{ cardFooterMacros.render_card_footer(
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color
+            ) }}
+
+        </div>
+
     </div>
-    {{ title_suffix }}
-
-    {# Render the card image #}
-    {{ cardImageMacros.render_card_image(
-        card_image,
-        position_container,
-        text_alignment,
-        text_color,
-        image_size,
-        visibility,
-        content,
-        links
-    ) }}
-
-    {# Render the body #}
-    {{ bodyMacros.render_body(
-        content,
-        padding,
-        text_color,
-        text_alignment
-    ) }}
 
 </div>

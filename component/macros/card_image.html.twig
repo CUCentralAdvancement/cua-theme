@@ -45,7 +45,7 @@
                 {% if visibility == 'visible' and content.field_image is not empty %}
                     {% for item in content.field_image %}
                         {% if item['#item'].alt %}
-                            <figcaption class="{{ visibility }} px-3">
+                            <figcaption class="{{ visibility }} px-3 py-2">
                                 <p class="h6 title figcaption {{ text_alignment ?: '' }} {{ text_color ?: '' }}">{{ item['#item'].alt }}</p>
                             </figcaption>
                         {% endif %}

@@ -19,7 +19,6 @@
 
 {# Import macros #}
 {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
@@ -41,14 +40,12 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes) }}>
 
-    {# Render the title with visually hidden class #}
-    <div class="visually-hidden">
-        {{ titleMacros.render_title(
-            label,
-            title_prefix,
-            title_suffix
-        ) }}
+    {# Render the title with visually hidden class * need title to render contextual link #}
+    {{ title_prefix }}
+    <div class="visually-hidden g-0 m-0 p-0">
+        {{ label }}
     </div>
+    {{ title_suffix }}
 
     {# Render the card image #}
     {{ cardImageMacros.render_card_image(
