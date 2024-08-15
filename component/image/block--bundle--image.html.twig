@@ -1,62 +1,72 @@
 {#
 /**
-* @file
-* Template for the Image component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Image Bundle component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
+{# Attach the library #}
+{{ attach_library('cua_theme/image-bundle') }}
+
+{# Import all macro files at the top #}
+{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
+{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+
+{# Define classes #}
 {% set image_bundle_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'cu-image',
-    margins ?: null,
-    padding ?: null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+    'image-bundle',
+    'card rounded-0 mx-2 p-3',
+    color_background ?: null,
+    color_border ?: null,
+    container_size ?: null,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
-{% set unique_id = [
-    plugin_id ? 'block--' ~ plugin_id|replace({"_": "-", ":": "--"}) ~ '-' ~ elements.content['#block_content'].id()
-] %}
+{# Generate unique ID #}
+{% set unique_id = 'block--node--image-bundle--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(image_bundle_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes) }}>
 
-    {# Title #}
-    {{ title_prefix }}
+    {# Render the title with visually hidden class #}
     <div class="visually-hidden">
-        {{ label }}
+        {{ titleMacros.render_title(
+            label,
+            title_prefix,
+            title_suffix
+        ) }}
     </div>
-    {{ title_suffix }}
 
-    {# Image with/out link #}
-    {% if card_image %}
-        {% if links %}
-            {% set firstLink = links[0] %}
-            <a class="img-hover-effect" href="{{ firstLink.url }}"
-               title="{{ firstLink.title }}" aria-label="{{ firstLink.title }}"
-               aria-hidden="true">
-                {% include '@cua_theme/component/card/_card--image.html.twig' %}
-            </a>
-        {% else %}
-            {% include '@cua_theme/component/card/_card--image.html.twig' %}
-        {% endif %}
-    {% endif %}
+    {# Render the card image #}
+    {{ cardImageMacros.render_card_image(
+        card_image,
+        position_container,
+        text_alignment,
+        text_color,
+        image_size,
+        visibility,
+        content,
+        links
+    ) }}
 
-    {# Body #}
-    {% if body %}
-        <div class="card-body d-flex flex-column card-text lead g-0 clearfix {{ padding ?: '' }} {{ text_color ?: '' }} {{ text_alignment ?: '' }} mt-3">
-            {{ content.body|render }}
-        </div>
-    {% endif %}
+    {# Render the body #}
+    {{ bodyMacros.render_body(
+        content,
+        padding,
+        text_color,
+        text_alignment
+    ) }}
 
 </div>

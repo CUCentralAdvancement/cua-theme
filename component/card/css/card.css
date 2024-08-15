@@ -554,7 +554,7 @@ a.align-self-end.card-link.btn.nobtn-cu-bg-light-grey.text-decoration-none:hover
 
 /* Image scaling on hover effect */
 .img-hover-effect:hover img {
-    transform: scale(1.1);
+    transform: scale(0.95);
 }
 
 /* Figure captions */
@@ -689,6 +689,11 @@ p.figcaption.card-header {
     padding: 0 15px !important;
 }
 
+.image-bundle  {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 /*** Responsive ***/
 
 @media only screen and (max-width: 991px) {
@@ -697,5 +702,3 @@ p.figcaption.card-header {
     }
 
 }
-
-

@@ -1,17 +1,17 @@
 {#
 /**
-* @file
-* Template for the Banner component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Banner component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
 {# Attach the library #}
@@ -20,6 +20,11 @@
 {# Preload background image #}
 {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
 <div style="background-image: url('{{ bg_image_url }}');"></div>
+
+{# Import all macro files at the top #}
+{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
 
 {# Add optional classes based on conditions #}
 {% set effect_copy_class = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
@@ -70,14 +75,37 @@
     <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
         <div class="{{ banner_body_classes }}" {% if animation_classes %}data-animation-classes="{{ animation_classes }}"{% endif %}>
 
-            {# Include Title Component #}
-            {% include '@cua_theme/component/partials/_title.html.twig' %}
+            {# Render the title #}
+            {{ titleMacros.render_title(
+                label,
+                title_prefix,
+                title_suffix,
+                center_content,
+                text_alignment,
+                text_color,
+                padding,
+                links
+            ) }}
 
-            {# Include Body Component #}
-            {% include '@cua_theme/component/partials/_body.html.twig' %}
+            {# Render the body #}
+            {{ bodyMacros.render_body(
+                content,
+                padding,
+                text_color,
+                text_alignment
+            ) }}
 
-            {# Include Link/Button Component #}
-            {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+            {# Render the footer #}
+            {{ cardFooterMacros.render_card_footer(
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color
+            ) }}
 
         </div>
     </div>

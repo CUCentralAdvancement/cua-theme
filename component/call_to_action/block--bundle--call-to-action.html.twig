@@ -17,13 +17,21 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
+{# Import all macro files at the top #}
+{% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %}
+{% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
+{% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
+{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
+
 {# Set data attributes for animation #}
 {% set animation_classes = [] %}
 {% if animation or animation_speed or animation_delay %}
-    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
+    {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay] %}
 {% endif %}
-{% set data_animation_classes = animation_classes | join(' ')|trim %}
-{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
+{% set data_animation_classes = animation_classes | join(' ') | trim %}
+{% set animate_trigger = data_animation_classes ? 'animate-trigger' : '' %}
 
 {# Define CTA classes #}
 {% set cta_classes = [
@@ -55,41 +63,74 @@
 {% set unique_id = 'block--node--call-to-action--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
 {# Content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id ).addClass(cta_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
+        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    {# Import the flag macro file #}
-    {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %}
-    {# Call the macro and pass the necessary variables #}
-    {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }}
+    {# Render the flag #}
+    {{ flagMacros.render_flag (
+        flag,
+        flag_title,
+        icon,
+        icon_size,
+        flag_background,
+        links
+    ) }}
 
     {# Include Video, Image, or Icon Component #}
     {% if provider %}
         {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
     {% elseif card_image %}
-        {# Import the image macro file #}
-        {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
-        {# Call the macro and pass the necessary variables #}
-        {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, links) }}
+        {{ cardImageMacros.render_card_image (
+            card_image,
+            position_container,
+            text_alignment,
+            text_color,
+            image_size,
+            visibility,
+            content,
+            links
+        ) }}
     {% elseif icon %}
-        {# Import the icon macro file #}
-        {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
-        {# Call the macro and pass the necessary variables #}
-        {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
+        {{ iconMacros.render_icon (
+            icon,
+            icon_size,
+            icon_color,
+            padding,
+            position_container,
+            text_alignment
+        ) }}
     {% endif %}
 
-    {# Import the title macro file #}
-    {% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
-    {# Call the macro with all necessary variables #}
-    {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding, links) }}
+    {# Render the title #}
+    {{ titleMacros.render_title (
+        label,
+        title_prefix,
+        title_suffix,
+        center_content,
+        text_alignment,
+        text_color,
+        padding,
+        links
+    ) }}
 
-    {# Import the body macro file #}
-    {% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
-    {# Call the macro and pass the necessary variables #}
-    {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+    {# Render the body #}
+    {{ bodyMacros.render_body (
+        content,
+        padding,
+        text_color,
+        text_alignment
+    ) }}
 
-    {# Import the link macro file #}
-    {% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
-    {# Call the macro and pass the necessary variables #}
-    {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color) }}
+    {# Render the footer #}
+    {{ cardFooterMacros.render_card_footer (
+        links,
+        container_size,
+        color_background,
+        position_container,
+        text_alignment,
+        padding,
+        outline,
+        button_color
+    ) }}
 
 </div>

@@ -13,6 +13,10 @@
  * - cua_theme.theme
  */
 #}
+{# Import all macro files at the top #}
+{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
 
 {# Set default class values #}
 {% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
@@ -41,6 +45,7 @@
 
     {# Desktop component #}
     {% if label or body %}
+
         <div class="video-desktop-copy d-none d-md-block g-0">
             <div class="container-fluid mx-auto {% if parallax_video %}parallax-main-content{% else %}position-absolute{% endif %} d-flex {{ position_container ?? '' }}">
 
@@ -49,14 +54,37 @@
                 <div class="col-sm-5 {{ color_background  ?: '' }} px-5 py-4 m-5 {{ animation_classes }}"
                      {% if animation_classes %}data-animation-classes="{{ animation_classes|trim }}"{% endif %}>
 
-                    {# Include Title Component #}
-                    {% include '@cua_theme/component/partials/_title.html.twig' %}
+                    {# Render the title #}
+                    {{ titleMacros.render_title(
+                        label,
+                        title_prefix,
+                        title_suffix,
+                        center_content,
+                        text_alignment,
+                        text_color,
+                        padding,
+                        links
+                    ) }}
 
-                    {# Include Body Component #}
-                    {% include '@cua_theme/component/partials/_body.html.twig' %}
+                    {# Render the body #}
+                    {{ bodyMacros.render_body(
+                        content,
+                        padding,
+                        text_color,
+                        text_alignment
+                    ) }}
 
-                    {# Include Link/Button Component #}
-                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                    {# Render the footer #}
+                    {{ cardFooterMacros.render_card_footer(
+                        links,
+                        container_size,
+                        color_background,
+                        position_container,
+                        text_alignment,
+                        padding,
+                        outline,
+                        button_color
+                    ) }}
 
                 </div>
             </div>
@@ -68,19 +96,43 @@
                 <div class="row">
                     <div class="col-sm-12 {{ color_background  ?: '' }} }} p-3 my-5">
 
-                        {# Include Title Component #}
-                        {% include '@cua_theme/component/partials/_title.html.twig' %}
+                        {# Render the title #}
+                        {{ titleMacros.render_title(
+                            label,
+                            title_prefix,
+                            title_suffix,
+                            center_content,
+                            text_alignment,
+                            text_color,
+                            padding,
+                            links
+                        ) }}
 
-                        {# Include Body Component #}
-                        {% include '@cua_theme/component/partials/_body.html.twig' %}
+                        {# Render the body #}
+                        {{ bodyMacros.render_body(
+                            content,
+                            padding,
+                            text_color,
+                            text_alignment
+                        ) }}
 
-                        {# Include Link/Button Component #}
-                        {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                        {# Render the footer #}
+                        {{ cardFooterMacros.render_card_footer(
+                            links,
+                            container_size,
+                            color_background,
+                            position_container,
+                            text_alignment,
+                            padding,
+                            outline,
+                            button_color
+                        ) }}
 
                     </div>
                 </div>
             </div>
         </div>
+
     {% endif %}
 
 </div>

@@ -1,16 +1,9 @@
-{# Card Footer Button Macro #}
-
-{# Import the macro file where needed: #}
-{# {% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %} #}
-
-{# Call the macro and pass the necessary variables: #}
-{# {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color) }} #}
-
-{# Content #}
 {% macro render_card_footer(links, container_size = null, color_background = null, position_container = null, text_alignment = null, padding = null, outline = null, button_color = null) %}
+    {# Ensure links is always an array #}
+    {% set links = links|default([]) %}
 
-    {% if links is not empty %}
-
+    {# Check if there are links to render #}
+    {% if links|length > 0 %}
         {# Determine if multiple links exist #}
         {% set multiple_links = links|length > 1 %}
 
@@ -19,11 +12,11 @@
             'card-footer',
             'd-flex',
             multiple_links ? 'multiple-links' : '',
-            container_size ?: null,
-            color_background ?: null,
-            position_container ?: null,
-            text_alignment ?: null,
-            padding ?: null,
+            container_size,
+            color_background,
+            position_container,
+            text_alignment,
+            padding,
             'mb-5',
         ] | filter(v => v) | join(' ') %}
 
@@ -32,22 +25,23 @@
         {% set card_footer_link_classes = [
             'card-link',
             'btn',
-            outline_class ?: null,
+            outline_class,
             'text-decoration-none',
-            position_container ?: null,
-            text_alignment ?: null,
+            position_container,
+            text_alignment,
             'p-2',
             'mt-3',
         ] | filter(v => v) | join(' ') %}
 
         <div class="{{ card_footer_classes }}">
             {% for link in links %}
-                <a href="{{ link.url }}" title="{{ link.title }}" aria-label="{{ link.title }}" class="{{ card_footer_link_classes }}">
-                    {{ link.title }}
-                </a>
+                {# Ensure each link has the required properties #}
+                {% if link.url and link.title %}
+                    <a href="{{ link.url }}" title="{{ link.title }}" aria-label="{{ link.title }}" class="{{ card_footer_link_classes }}">
+                        {{ link.title }}
+                    </a>
+                {% endif %}
             {% endfor %}
         </div>
-
     {% endif %}
-
 {% endmacro %}

@@ -17,6 +17,13 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/counter') }}
 
+{# Import all macro files at the top #}
+{% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
+{% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
+{% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
+
 {# Define classes #}
 {% set counter_classes = [
     'block',
@@ -35,14 +42,42 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(counter_classes) }}>
 
-    {# Include Title #}
-    {% include '@cua_theme/component/partials/_title.html.twig' %}
+    {# Render the title #}
+    {{ titleMacros.render_title(
+        label,
+        title_prefix,
+        title_suffix,
+        center_content,
+        text_alignment,
+        text_color,
+        padding,
+        links
+    ) }}
 
-    {# Include Icon Component #}
-    {% include '@cua_theme/component/card/_card--icon.html.twig' %}
-
-    {# Include Image Component #}
-    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+    {# Include image or icon macros #}
+    {% if card_image %}
+        {# Render the image #}
+        {{ cardImageMacros.render_card_image(
+            card_image,
+            position_container,
+            text_alignment,
+            text_color,
+            image_size,
+            visibility,
+            content,
+            links
+        ) }}
+    {% elseif icon %}
+        {# Render the icon #}
+        {{ iconMacros.render_icon(
+            icon,
+            icon_size,
+            icon_color,
+            padding,
+            position_container,
+            text_alignment
+        ) }}
+    {% endif %}
 
     {# Counter #}
     {% if content.field_number %}
@@ -60,10 +95,24 @@
         </div>
     {% endif %}
 
-    {# Include Body Component #}
-    {% include '@cua_theme/component/partials/_body.html.twig' %}
+    {# Render the body #}
+    {{ bodyMacros.render_body(
+        content,
+        padding,
+        text_color,
+        text_alignment
+    ) }}
 
-    {# Include Footer Button Component #}
-    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+    {# Render the footer #}
+    {{ cardFooterMacros.render_card_footer(
+        links,
+        container_size,
+        color_background,
+        position_container,
+        text_alignment,
+        padding,
+        outline,
+        button_color
+    ) }}
 
 </div>
