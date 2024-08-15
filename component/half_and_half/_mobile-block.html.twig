@@ -8,48 +8,62 @@
  */
 #}
 
+{# Set column classes for Media Component #}
+{% set media_col_classes = [
+    'col-12',
+    color_background ?: null,
+    text_alignment ?: null,
+    padding ?: null,
+] | filter(v => v) | join(' ') %}
+
+{# Set column classes for Title/Body Component #}
+{% set title_body_col_classes = [
+    'col-12',
+    color_background ?: null,
+    text_alignment ?: null,
+    padding ?: null,
+] | filter(v => v) | join(' ') %}
+
 <div class="container d-block d-sm-none g-0">
     <div class="card">
         <div class="row g-0">
 
-            {# Set column classes for Media Component #}
-            {% set media_col_classes = [
-                'col-12',
-                color_background ?: null,
-                text_alignment ?: null,
-                padding ?: null,
-            ] | filter(v => v) | join(' ') %}
-
             <div class="{{ media_col_classes }}">
-                {# Media Component Logic #}
+
+                {# Include Video, Image, or Icon Component #}
                 {% if provider %}
-                    {# Include Video Component #}
                     {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                 {% elseif card_image %}
-                    {# Include Image Component #}
-                    {% include '@cua_theme/component/card/_card--image.html.twig' %}
+                    {# Import the image macro file #}
+                    {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %}
+                    {# Call the macro and pass the necessary variables #}
+                    {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, links) }}
+                {% elseif icon %}
+                    {# Import the icon macro file #}
+                    {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %}
+                    {# Call the macro and pass the necessary variables #}
+                    {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
                 {% endif %}
-            </div>
 
-            {# Set column classes for Title/Body Component #}
-            {% set title_body_col_classes = [
-                'col-12',
-                color_background ?: null,
-                text_alignment ?: null,
-                padding ?: null,
-            ] | filter(v => v) | join(' ') %}
+            </div>
 
             <div class="{{ title_body_col_classes }}">
                 <div class="row m-4">
 
-                    {# Include Title Component #}
-                    {% include '@cua_theme/component/partials/_title.html.twig' %}
+                    {# Import the title macro file #}
+                    {% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %}
+                    {# Call the macro with all necessary variables #}
+                    {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding, links) }}
 
-                    {# Include Body Component #}
-                    {% include '@cua_theme/component/partials/_body.html.twig' %}
+                    {# Import the body macro file #}
+                    {% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %}
+                    {# Call the macro and pass the necessary variables #}
+                    {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
 
-                    {# Include Link/Button Component #}
-                    {% include '@cua_theme/component/card/_card--footer-btn.html.twig' %}
+                    {# Import the link macro file #}
+                    {% import '@cua_theme/component/macros/card_footer_macros.html.twig' as cardFooterMacros %}
+                    {# Call the macro and pass the necessary variables #}
+                    {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color) }}
 
                 </div>
             </div>
