@@ -578,11 +578,19 @@ a figure {
 }
 
 .medium img {
-    scale: 80%;
+    width: 80%; /* Scale the width to 80% of the container */
+    height: auto; /* Maintain the original aspect ratio */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    display: block; /* Remove any inline spacing if the image is inline */
+    margin: 0 auto; /* Center the image horizontally, optional */
 }
 
 .small img {
-    scale: 60%;
+    width: 60%; /* Scale the width to 80% of the container */
+    height: auto; /* Maintain the original aspect ratio */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    display: block; /* Remove any inline spacing if the image is inline */
+    margin: 0 auto; /* Center the image horizontally, optional */
 }
 
 .card-img.xsmall {
@@ -690,8 +698,8 @@ p.figcaption.card-header {
 }
 
 .image-bundle  {
-  padding: 0 !important;
-  margin: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 /*** Responsive ***/
