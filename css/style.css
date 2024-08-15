@@ -1894,6 +1894,23 @@ aside .nav {
     color: var(--cua-white) !important;
 }
 
+.modal-body {
+    z-index: 9999 !important;
+}
+
+.modal-backdrop {
+    z-index: -9999 !important;
+    background-color: transparent !important;
+}
+
+.modal-content {
+    color: black;
+    pointer-events: auto;
+    background-color: white;
+    background-clip: padding-box;
+    border: 0 solid white;
+}
+
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
     .parallax-video {
