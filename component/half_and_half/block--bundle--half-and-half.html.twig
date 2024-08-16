@@ -24,14 +24,6 @@
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Set data attributes for animation #}
-{% set animation_classes = [] %}
-{% if animation or animation_speed or animation_delay %}
-    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
-{% endif %}
-{% set data_animation_classes = animation_classes | join(' ')|trim %}
-{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
-
 {# Add Classes #}
 {% set hh_classes = [
     'block',
@@ -42,8 +34,16 @@
     border_style ?: null,
     container_size ?: null,
     margins ?: null,
+    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | join(' ')|trim %}
+
+{# Set data attributes for animation #}
+{% set animation_classes = [] %}
+{% if animation or animation_speed or animation_delay %}
+    {% set animation_classes = (animation or animation_speed or animation_delay) ? ['animate__animated', animation, animation_speed, animation_delay] : [] %}
+{% endif %}
+{% set data_animation_classes = animation_classes | join(' ')|trim %}
 
 {# Add unique id to block #}
 {% set unique_id = 'block--node-' ~ '-half-and-half' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
