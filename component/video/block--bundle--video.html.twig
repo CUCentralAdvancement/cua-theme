@@ -19,15 +19,11 @@
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Set default class values #}
-{% set animate_trigger = (animation or animation_speed or animation_delay) ? 'animate-trigger' : '' %}
-
 {# Define the main block classes #}
 {% set video_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'video',
-    animate_trigger,
     'card g-0',
     'clearfix',
     margins ?: null,
@@ -49,11 +45,7 @@
 
         <div class="video-desktop-copy d-none d-md-block g-0">
             <div class="container-fluid mx-auto {% if parallax_video %}parallax-main-content{% else %}position-absolute{% endif %} d-flex {{ position_container ?? '' }}">
-
-                {# Set data attributes for animation #}
-                {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : '' %}
-                <div class="col-sm-5 {{ color_background  ?: '' }} px-5 py-4 m-5 {{ animation_classes }}"
-                     {% if animation_classes %}data-animation-classes="{{ animation_classes|trim }}"{% endif %}>
+                <div class="col-sm-5 {{ color_background  ?: '' }} px-5 py-4 m-5">
 
                     {# Render the title #}
                     {{ titleMacros.render_title(
