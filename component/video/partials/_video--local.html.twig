@@ -1,12 +1,5 @@
 {# Local Video Container #}
 
-{# Title \ needed for contextual menu link #}
- {{ title_prefix ?? '' }}
-<div class="visually-hidden">
-    {{ label }}
-</div>
-{{ title_suffix ?? '' }}
-
 {# Video #}
 <div class="{% if parallax_video is not empty %}parallax-video {% endif %}video g-0">
     <video autoplay="autoplay" loop="loop" muted="muted" width="100%"

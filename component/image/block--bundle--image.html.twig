@@ -40,12 +40,9 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes) }}>
 
-    {# Render the title with visually hidden class * need title to render contextual link #}
-    {{ title_prefix }}
-    <div class="visually-hidden g-0 m-0 p-0">
-        {{ label }}
-    </div>
-    {{ title_suffix }}
+    {# Import title macro #}
+    {% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
+    {{ titleMacros.render_card_basic_title(title_prefix, label, title_suffix) }}
 
     {# Render the card image #}
     {{ cardImageMacros.render_card_image(
