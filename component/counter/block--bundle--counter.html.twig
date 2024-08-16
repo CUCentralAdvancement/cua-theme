@@ -1,17 +1,17 @@
 {#
 /**
- * @file
- * Template for the Call to Action component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Available fields located in:
- * - cua_theme.theme
- */
+* @file
+* Template for the Call to Action component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
+* Available fields located in:
+* - cua_theme.theme
+*/
 #}
 
 {# Attach the library #}
@@ -87,7 +87,8 @@
                 <span class="padding-right {{ text_color ?: null }}">{{ content.field_before_number.0 }}</span>
             {% endif %}
             {# Counter #}
-            <span class="counter-up {{ text_color ?: null }}" data-count="{{ content.field_number['#items'].value }}">0</span>
+            <span class="counter-up {{ text_color ?: null }}"
+                  data-count="{{ content.field_number['#items'].value }}">0</span>
             {# After number #}
             {% if content.field_after_number %}
                 <span class="padding-left {{ text_color ?: null }}">{{ content.field_after_number.0 }}</span>

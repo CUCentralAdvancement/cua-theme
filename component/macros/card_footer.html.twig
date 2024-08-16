@@ -37,7 +37,8 @@
             {% for link in links %}
                 {# Ensure each link has the required properties #}
                 {% if link.url and link.title %}
-                    <a href="{{ link.url }}" title="{{ link.title }}" aria-label="{{ link.title }}" class="{{ card_footer_link_classes }}">
+                    <a href="{{ link.url }}" title="{{ link.title }}" aria-label="{{ link.title }}"
+                       class="{{ card_footer_link_classes }}">
                         {{ link.title }}
                     </a>
                 {% endif %}
