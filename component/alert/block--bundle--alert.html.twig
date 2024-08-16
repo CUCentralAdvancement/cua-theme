@@ -18,6 +18,7 @@
 {{ attach_library('cua_theme/alert') }}
 
 {# Import macros #}
+{% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
@@ -48,10 +49,14 @@
             {# Icon #}
             {% if icon %}
                 <div class="col-sm-1 icon-container">
-                    <div class="{{ icon ? 'd-md-flex justify-content-md-end justify-content-sm-start pt-4' : '' }}">
-                        <i class="{{ icon ?: '' }}{{ icon_size ? ' ' ~ icon_size : '' }}"
-                           style="{{ icon_color ? 'color:' ~ icon_color : '' }}"></i>
-                    </div>
+                    {{ iconMacros.render_icon (
+                        icon,
+                        icon_size,
+                        icon_color,
+                        padding,
+                        position_container,
+                        text_alignment
+                    ) }}
                 </div>
             {% endif %}
 
