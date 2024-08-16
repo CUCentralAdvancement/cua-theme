@@ -43,21 +43,13 @@
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Define CTA link classes #}
-{% set cta_link_classes = [
-    'display-4 card-text lead title h3',
-    center_content ?: null,
-    text_alignment ?: null,
-    text_color ?: null,
-    padding ?: null,
-] | filter(v => v) | join(' ') %}
-
 {# Set data attributes for animation #}
-{% set animation_classes = [] %}
-{% if animation or animation_speed or animation_delay %}
-    {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay] %}
-{% endif %}
-{% set data_animation_classes = animation_classes | join(' ') | trim %}
+{% set data_animation_classes = [
+    'animate__animated',
+    animation,
+    animation_speed,
+    animation_delay
+] | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node--call-to-action--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}

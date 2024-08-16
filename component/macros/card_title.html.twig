@@ -17,9 +17,9 @@
         padding ?: null,
     ] | filter(v => v) | join(' ') %}
 
-    {# Define CTA Link Classes #}
-    {% set cta_link_classes = [
-        'cta-link-class',
+    {# Define Title Link Classes #}
+    {% set title_link_classes = [
+        'title-link',
         text_color ?: null,
         padding ?: null,
     ] | filter(v => v) | join(' ') %}
@@ -28,7 +28,7 @@
     {{ title_prefix ?: '' }}
     {% if links|length %}
         {% set firstLink = links[0] %}
-        <a class="{{ cta_link_classes }}" href="{{ firstLink.url }}"
+        <a class="{{ title_link_classes }}" href="{{ firstLink.url }}"
            title="{{ firstLink.title }}"
            aria-label="{{ firstLink.title }}" aria-hidden="true">
             <div class="{{ title_classes }}">
