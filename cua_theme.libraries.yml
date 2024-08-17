@@ -11,13 +11,13 @@ global-styling:
         weight: -11
       css/style.css:
         weight: -11
-      css/card.css:
+      component/macros/css/card.css:
         weight: -11
       templates/layout/footer/css/footer.css:
         weight: -11
       css/custom.css:
         weight: -11
-      css/layout-builder.css:
+      layouts/css/layout-builder.css:
         weight: -11
     theme:
       //fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,700,900&display=swap: { type: external }
