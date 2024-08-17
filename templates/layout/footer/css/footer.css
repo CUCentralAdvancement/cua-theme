@@ -239,6 +239,14 @@ div#site-footer-top {
   margin-top: 16px !important;
 }
 
+.view-footer {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 .75rem;
+  font-size: .9rem;
+  color: var(--cua-gray-600);
+}
+
 /*** Responsive ***/
 @media only screen and (max-width: 576px) {
   .site-footer .block {

@@ -1,663 +1,700 @@
 /* Banner styling */
 
 /* Customize image styling */
+
 .banner .card-img-top.img-fluid.w-100.image-style-webp {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 /* Adjust card footer styling */
+
 .banner .card-footer.px-4.pb-4 {
-    padding: 0;
+  padding: 0;
 }
 
 .banner p, .banner li {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .banner h2::after {
-    display: none !important;
+  display: none !important;
 }
 
 /* Banner */
-.banner h2,
-.banner .h2 {
-    font-family: var(--font-roboto-condensed);
-    font-weight: 700;
-    text-transform: uppercase;
+
+.banner h2, .banner .h2 {
+  font-family: var(--font-roboto-condensed);
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* Color Background */
 
-/* Gold background with opacity */
 .banner .cu-bg-gold {
-    background: var(--cua-gold);
+  background: var(--cua-gold);
 }
 
 .banner .banner-body.cu-bg-gold {
-    background: var(--cua-gold);
-    opacity: 0.75 !important;
+  background: var(--cua-gold);
+  opacity: 0.75 !important;
 }
 
 /* Black background with opacity */
+
 .banner .cu-bg-black {
-    background: var(--cua-black);
+  background: var(--cua-black);
 }
 
 .banner .banner-body.cu-bg-black {
-    background: var(--cua-black);
-    opacity: 0.75 !important;
+  background: var(--cua-black);
+  opacity: 0.75 !important;
 }
 
 /* White background with opacity */
+
 .banner .cu-bg-white {
-    background: var(--cua-white);
+  background: var(--cua-white);
 }
 
 .banner .banner-body.cu-bg-white {
-    background: var(--cua-white);
-    opacity: 0.75 !important;
+  background: var(--cua-white);
+  opacity: 0.75 !important;
 }
 
 /* Color text */
 
 /* Gold text color */
+
 .banner .cu-text-gold, .cu-text-gold {
-    color: var(--cua-gold);
+  color: var(--cua-gold);
 }
 
 /* White text color */
+
 .banner .cu-text-white {
-    color: var(--cua-white);
+  color: var(--cua-white);
 }
 
 /* Black text color */
+
 .banner .cu-text-black {
-    color: var(--cua-black);
+  color: var(--cua-black);
 }
 
 /* Color Buttons */
 
 .banner .btn {
-    font-weight: 700;
-    padding: .65rem 4rem !important;
-    border-radius: 0 !important;
+  font-weight: 700;
+  padding: .65rem 4rem !important;
+  border-radius: 0 !important;
 }
 
 .banner .btn:hover {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 /* Black buttons */
+
 .banner .btn.btn-cu-bg-black {
-    background: rgba(0, 0, 0, 1); /* Change to black background */
-    border: 3px solid var(--cua-black); /* Change to black border */
-    color: var(--cua-white); /* Change to white text color */
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: rgba(0, 0, 0, 1);
+  /* Change to black background */
+  border: 3px solid var(--cua-black);
+  /* Change to black border */
+  color: var(--cua-white);
+  /* Change to white text color */
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for black buttons */
+
 .banner .btn.btn-cu-bg-black:hover {
-    background: rgba(255, 255, 255, 0.1); /* Change to light gray background */
-    border-color: var(--cua-black); /* Keep black border */
-    color: var(--cua-black); /* Change to black text color */
+  background: rgba(255, 255, 255, 0.1);
+  /* Change to light gray background */
+  border-color: var(--cua-black);
+  /* Keep black border */
+  color: var(--cua-black);
+  /* Change to black text color */
 }
 
 /* Outline black buttons */
+
 .banner .btn.outline-btn-cu-bg-black {
-    background: transparent;
-    border: 3px solid var(--cua-black); /* Change to black border */
-    color: var(--cua-black); /* Change to black text color */
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: transparent;
+  border: 3px solid var(--cua-black);
+  /* Change to black border */
+  color: var(--cua-black);
+  /* Change to black text color */
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for outline black buttons */
-.banner .btn.outline-btn-cu-bg-black::before,
-.banner .btn.btn-cu-bg-black::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Change to semi-transparent black background */
-    transition: width 0.3s ease;
-    z-index: -1;
+
+.banner .btn.outline-btn-cu-bg-black::before, .banner .btn.btn-cu-bg-black::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Change to semi-transparent black background */
+  transition: width 0.3s ease;
+  z-index: -1;
 }
 
-.banner .btn.outline-btn-cu-bg-black:hover::before,
-.banner .btn.btn-cu-bg-black:hover::before {
-    width: 100%;
+.banner .btn.outline-btn-cu-bg-black:hover::before, .banner .btn.btn-cu-bg-black:hover::before {
+  width: 100%;
 }
 
-.banner .btn.outline-btn-cu-bg-black:hover,
-.banner .btn.btn-cu-bg-black:hover {
-    border-color: var(--cua-black); /* Keep black border */
-    color: var(--cua-white); /* Change to white text color */
-    z-index: 1; /* Ensure button text appears above the background */
+.banner .btn.outline-btn-cu-bg-black:hover, .banner .btn.btn-cu-bg-black:hover {
+  border-color: var(--cua-black);
+  /* Keep black border */
+  color: var(--cua-white);
+  /* Change to white text color */
+  z-index: 1;
+  /* Ensure button text appears above the background */
 }
 
 /* Gold buttons */
+
 .banner .btn.btn-cu-bg-gold {
-    background: rgba(207, 184, 124, 1); /* Change to gold background */
-    border: 3px solid var(--cua-gold); /* Change to gold border */
-    color: var(--cua-black); /* Change to black text color */
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: rgba(207, 184, 124, 1);
+  /* Change to gold background */
+  border: 3px solid var(--cua-gold);
+  /* Change to gold border */
+  color: var(--cua-black);
+  /* Change to black text color */
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for gold buttons */
+
 .banner .btn.btn-cu-bg-gold:hover {
-    background: rgba(207, 184, 124, 0.5); /* Change to light gray background */
-    border: 3px solid var(--cua-gold); /* Keep gold border */
-    color: var(--cua-black); /* Change to black text color */
+  background: rgba(207, 184, 124, 0.5);
+  /* Change to light gray background */
+  border: 3px solid var(--cua-gold);
+  /* Keep gold border */
+  color: var(--cua-black);
+  /* Change to black text color */
 }
 
 /* Outline gold buttons */
+
 .banner .btn.outline-btn-cu-bg-gold {
-    background: transparent;
-    border: 3px solid var(--cua-gold); /* Change to gold border */
-    color: rgba(207, 184, 124, 1); /* Change to gold text color */
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: transparent;
+  border: 3px solid var(--cua-gold);
+  /* Change to gold border */
+  color: rgba(207, 184, 124, 1);
+  /* Change to gold text color */
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for outline gold buttons */
-.banner .btn.outline-btn-cu-bg-gold::before,
-.banner .btn.btn-cu-bg-gold::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: rgba(207, 184, 124, .5); /* Change to semi-transparent gold background */
-    transition: width 0.3s ease;
-    z-index: -1;
+
+.banner .btn.outline-btn-cu-bg-gold::before, .banner .btn.btn-cu-bg-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(207, 184, 124, .5);
+  /* Change to semi-transparent gold background */
+  transition: width 0.3s ease;
+  z-index: -1;
 }
 
-.banner .btn.outline-btn-cu-bg-gold:hover::before,
-.banner .btn.btn-cu-bg-gold:hover::before {
-    width: 100%;
+.banner .btn.outline-btn-cu-bg-gold:hover::before, .banner .btn.btn-cu-bg-gold:hover::before {
+  width: 100%;
 }
 
-.banner .btn.outline-btn-cu-bg-gold:hover,
-.banner .btn.btn-cu-bg-gold:hover {
-    border: 3px solid var(--cua-gold); /* Keep gold border */
-    color: var(--cua-black); /* Change to black text color */
-    z-index: 1; /* Ensure button text appears above the background */
+.banner .btn.outline-btn-cu-bg-gold:hover, .banner .btn.btn-cu-bg-gold:hover {
+  border: 3px solid var(--cua-gold);
+  /* Keep gold border */
+  color: var(--cua-black);
+  /* Change to black text color */
+  z-index: 1;
+  /* Ensure button text appears above the background */
 }
 
 /* White buttons */
+
 .banner .btn.btn-cu-bg-white {
-    background: rgba(255, 255, 255, 1);
-    border: 3px solid var(--cua-white);
-    color: var(--cua-black);
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: rgba(255, 255, 255, 1);
+  border: 3px solid var(--cua-white);
+  color: var(--cua-black);
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for white buttons */
+
 .banner .btn.btn-cu-bg-white:hover {
-    background: rgba(0, 0, 0, 0.1);
-    border-color: var(--cua-white);
-    color: var(--cua-white);
+  background: rgba(0, 0, 0, 0.1);
+  border-color: var(--cua-white);
+  color: var(--cua-white);
 }
 
 /* Outline white buttons */
+
 .banner .btn.outline-btn-cu-bg-white {
-    background: transparent;
-    border: 3px solid var(--cua-white);
-    color: var(--cua-white);
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: transparent;
+  border: 3px solid var(--cua-white);
+  color: var(--cua-white);
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for outline white buttons */
-.banner .btn.outline-btn-cu-bg-white::before,
-.banner .btn.btn-cu-bg-white::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.5); /* Match the button's background color */
-    transition: width 0.3s ease;
-    z-index: -1;
+
+.banner .btn.outline-btn-cu-bg-white::before, .banner .btn.btn-cu-bg-white::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  /* Match the button's background color */
+  transition: width 0.3s ease;
+  z-index: -1;
 }
 
-.banner .btn.outline-btn-cu-bg-white:hover::before,
-.banner .btn.btn-cu-bg-white:hover::before {
-    width: 100%;
+.banner .btn.outline-btn-cu-bg-white:hover::before, .banner .btn.btn-cu-bg-white:hover::before {
+  width: 100%;
 }
 
-.banner .btn.outline-btn-cu-bg-white:hover,
-.banner .btn.btn-cu-bg-white:hover {
-    border-color: var(--cua-white);
-    color: var(--cua-black);
-    z-index: 1; /* Ensure button text appears above the background */
+.banner .btn.outline-btn-cu-bg-white:hover, .banner .btn.btn-cu-bg-white:hover {
+  border-color: var(--cua-white);
+  color: var(--cua-black);
+  z-index: 1;
+  /* Ensure button text appears above the background */
 }
 
 /* light-grey buttons */
+
 .banner .btn.btn-cu-bg-light-grey {
-    background: var(--cua-light-grey);
-    border: 3px solid var(--cua-light-grey);
-    color: var(--cua-black);
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: var(--cua-light-grey);
+  border: 3px solid var(--cua-light-grey);
+  color: var(--cua-black);
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for light-grey buttons */
+
 .banner .btn.btn-cu-bg-light-grey:hover {
-    background: rgba(0, 0, 0, 0.1);
-    border-color: var(--cua-light-grey);
-    color: var(--cua-light-grey);
+  background: rgba(0, 0, 0, 0.1);
+  border-color: var(--cua-light-grey);
+  color: var(--cua-light-grey);
 }
 
 /* Outline light-grey buttons */
+
 .banner .btn.outline-btn-cu-bg-light-grey {
-    background: transparent;
-    border: 3px solid var(--cua-light-grey);
-    color: var(--cua-light-grey);
-    font-weight: 700;
-    position: relative; /* Ensure z-index works */
-    overflow: hidden;
-    transition: width 0.5s ease; /* Transition width property */
-    z-index: 1;
+  background: transparent;
+  border: 3px solid var(--cua-light-grey);
+  color: var(--cua-light-grey);
+  font-weight: 700;
+  position: relative;
+  /* Ensure z-index works */
+  overflow: hidden;
+  transition: width 0.5s ease;
+  /* Transition width property */
+  z-index: 1;
 }
 
 /* Hover effect for outline light-grey buttons */
-.banner .btn.outline-btn-cu-bg-light-grey::before,
-.banner .btn.btn-cu-bg-light-grey::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.3); /* Match the button's background color */
-    transition: width 0.3s ease;
-    z-index: -1;
+
+.banner .btn.outline-btn-cu-bg-light-grey::before, .banner .btn.btn-cu-bg-light-grey::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  /* Match the button's background color */
+  transition: width 0.3s ease;
+  z-index: -1;
 }
 
-.banner .btn.outline-btn-cu-bg-light-grey:hover::before,
-.banner .btn.btn-cu-bg-light-grey:hover::before {
-    width: 100%;
+.banner .btn.outline-btn-cu-bg-light-grey:hover::before, .banner .btn.btn-cu-bg-light-grey:hover::before {
+  width: 100%;
 }
 
-.banner .btn.outline-btn-cu-bg-light-grey:hover,
-.banner .btn.btn-cu-bg-light-grey:hover {
-    border-color: var(--cua-light-grey);
-    color: var(--cua-black);
-    z-index: 1; /* Ensure button text appears above the background */
+.banner .btn.outline-btn-cu-bg-light-grey:hover, .banner .btn.btn-cu-bg-light-grey:hover {
+  border-color: var(--cua-light-grey);
+  color: var(--cua-black);
+  z-index: 1;
+  /* Ensure button text appears above the background */
 }
 
 .banner-image-container {
-    padding: 10rem 0;
+  padding: 10rem 0;
 }
 
 /* Adjust card header padding */
+
 .banner .card-header {
-    padding: 0;
+  padding: 0;
 }
 
 .banner-body {
-    padding: 1.5rem 3rem 3.25rem 3rem;
+  padding: 1.5rem 3rem 3.25rem 3rem;
 }
 
 .banner-image-container {
-    padding: 10rem 0;
+  padding: 10rem 0;
+}
+
+.block-inline-blockbanner .card-img-top {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }
 
 /* Responsive adjustments for small screens */
+
 @media (max-width: 680px) {
-    .banner-body {
-        padding: 3rem;
-    }
-
-    .banner h2, .banner .h2 {
-        font-size: 2rem;
-    }
-
-    .banner-image-container {
-        padding: 3rem 0;
-    }
-
-    .banner-body.mx-5.my-5.my-sm-3,
-    .banner-body .mx-5 {
-        margin-right: 1rem !important;
-        margin-left: 1rem !important;
-    }
-
-    .banner-body.mx-5.my-5.my-sm-3,
-    .banner-body .my-5 {
-        margin-top: 1rem !important;
-        margin-bottom: 1rem !important;
-    }
-
-    .banner-image-container {
-        padding: 5rem 0 !important;
-    }
-
+  .banner-body {
+    padding: 3rem;
+  }
+  .banner h2, .banner .h2 {
+    font-size: 2rem;
+  }
+  .banner-image-container {
+    padding: 3rem 0;
+  }
+  .banner-body.mx-5.my-5.my-sm-3, .banner-body .mx-5 {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+  .banner-body.mx-5.my-5.my-sm-3, .banner-body .my-5 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .banner-image-container {
+    padding: 5rem 0 !important;
+  }
 }
 
-/* ----------------------------------------------
- * Generated by Animista on 2024-2-21 14:18:44
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info.
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
+/* ----------------------------------------------* Generated by Animista on 2024-2-21 14:18:44* Licensed under FreeBSD License.* See http://animista.net/license for more info.* w: http://animista.net, t: @cssanimista* ---------------------------------------------- */
 
 .kenburns-top {
-    -webkit-animation: kenburns-top 5s ease-out both;
-    animation: kenburns-top 5s ease-out both;
+  -webkit-animation: kenburns-top 5s ease-out both;
+  animation: kenburns-top 5s ease-out both;
 }
 
 .kenburns-top-right {
-    -webkit-animation: kenburns-top-right 5s ease-out both;
-    animation: kenburns-top-right 5s ease-out both;
+  -webkit-animation: kenburns-top-right 5s ease-out both;
+  animation: kenburns-top-right 5s ease-out both;
 }
 
 .kenburns-right {
-    -webkit-animation: kenburns-right 5s ease-out both;
-    animation: kenburns-right 5s ease-out both;
+  -webkit-animation: kenburns-right 5s ease-out both;
+  animation: kenburns-right 5s ease-out both;
 }
 
 .kenburns-bottom {
-    -webkit-animation: kenburns-bottom 5s ease-out both;
-    animation: kenburns-bottom 5s ease-out both;
+  -webkit-animation: kenburns-bottom 5s ease-out both;
+  animation: kenburns-bottom 5s ease-out both;
 }
 
 .kenburns-bottom-left {
-    -webkit-animation: kenburns-bottom-left 5s ease-out both;
-    animation: kenburns-bottom-left 5s ease-out both;
+  -webkit-animation: kenburns-bottom-left 5s ease-out both;
+  animation: kenburns-bottom-left 5s ease-out both;
 }
 
 .kenburns-bottom-right {
-    -webkit-animation: kenburns-bottom-right 5s ease-out both;
-    animation: kenburns-bottom-right 5s ease-out both;
+  -webkit-animation: kenburns-bottom-right 5s ease-out both;
+  animation: kenburns-bottom-right 5s ease-out both;
 }
 
 .container-fluid .kenburns-top {
-    height: 100vh; /* Set height to 100% of viewport height */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    max-width: 100%; /* Limit maximum width */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
-    overflow: hidden;
+  height: 100vh;
+  /* Set height to 100% of viewport height */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  /* Limit maximum width */
+  margin-left: auto;
+  /* Center horizontally */
+  margin-right: auto;
+  /* Center horizontally */
+  overflow: hidden;
 }
 
 .container-fluid {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .ken.kenburns- {
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    width: 100vw; /* Set width to 100% of viewport width */
-    min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  width: 100vw;
+  /* Set width to 100% of viewport width */
+  min-height: 500px;
 }
 
 .banner .display-4 {
-    font-weight: 700 !important;
-    font-size: 3rem !important;
-    font-family: var(--font-roboto-condensed);
+  font-weight: 700 !important;
+  font-size: 3rem !important;
+  font-family: var(--font-roboto-condensed);
 }
 
 @media (max-width: 768px) {
-    /* Adjust the max-width value as needed */
-    .container-fluid .kenburns-top {
-        height: auto; /* Reset height */
-        background-size: auto; /* Reset background size */
-        background-position: top; /* Reset background position */
-        background-repeat: repeat; /* Reset background repeat */
-        max-width: none; /* Reset maximum width */
-        margin-left: 0; /* Reset margin left */
-        margin-right: 0; /* Reset margin right */
-        overflow: visible; /* Reset overflow */
-    }
+  /* Adjust the max-width value as needed */
+  .container-fluid .kenburns-top {
+    height: auto;
+    /* Reset height */
+    background-size: auto;
+    /* Reset background size */
+    background-position: top;
+    /* Reset background position */
+    background-repeat: repeat;
+    /* Reset background repeat */
+    max-width: none;
+    /* Reset maximum width */
+    margin-left: 0;
+    /* Reset margin left */
+    margin-right: 0;
+    /* Reset margin right */
+    overflow: visible;
+    /* Reset overflow */
+  }
 }
 
-/**
- * ----------------------------------------
- * animation kenburns-top
- * ----------------------------------------
- */
+/*** ----------------------------------------* animation kenburns-top* ----------------------------------------*/
+
 @-webkit-keyframes kenburns-top {
-    0% {
-        -webkit-transform: scale(1) translateY(0);
-        transform: scale(1) translateY(0);
-        -webkit-transform-origin: 50% 16%;
-        transform-origin: 50% 16%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translateY(-15px);
-        transform: scale(1.1) translateY(-15px);
-        -webkit-transform-origin: top;
-        transform-origin: top;
-    }
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translateY(-15px);
+    transform: scale(1.1) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
 }
 
 @keyframes kenburns-top {
-    0% {
-        -webkit-transform: scale(1) translateY(0);
-        transform: scale(1) translateY(0);
-        -webkit-transform-origin: 50% 16%;
-        transform-origin: 50% 16%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translateY(-15px);
-        transform: scale(1.1) translateY(-15px);
-        -webkit-transform-origin: top;
-        transform-origin: top;
-    }
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translateY(-15px);
+    transform: scale(1.1) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
 }
 
-/**
- * ----------------------------------------
- * animation kenburns-bottom-left
- * ----------------------------------------
- */
+/*** ----------------------------------------* animation kenburns-bottom-left* ----------------------------------------*/
+
 @-webkit-keyframes kenburns-bottom-left {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 16% 84%;
-        transform-origin: 16% 84%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translate(-20px, 15px);
-        transform: scale(1.1) translate(-20px, 15px);
-        -webkit-transform-origin: left bottom;
-        transform-origin: left bottom;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 16% 84%;
+    transform-origin: 16% 84%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translate(-20px, 15px);
+    transform: scale(1.1) translate(-20px, 15px);
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+  }
 }
 
 @keyframes kenburns-bottom-left {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 16% 84%;
-        transform-origin: 16% 84%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translate(-20px, 15px);
-        transform: scale(1.1) translate(-20px, 15px);
-        -webkit-transform-origin: left bottom;
-        transform-origin: left bottom;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 16% 84%;
+    transform-origin: 16% 84%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translate(-20px, 15px);
+    transform: scale(1.1) translate(-20px, 15px);
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+  }
 }
 
-/**
- * ----------------------------------------
- * animation kenburns-bottom-right
- * ----------------------------------------
- */
+/*** ----------------------------------------* animation kenburns-bottom-right* ----------------------------------------*/
+
 @-webkit-keyframes kenburns-bottom-right {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 84% 84%;
-        transform-origin: 84% 84%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translate(20px, 15px);
-        transform: scale(1.1) translate(20px, 15px);
-        -webkit-transform-origin: right bottom;
-        transform-origin: right bottom;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 84% 84%;
+    transform-origin: 84% 84%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translate(20px, 15px);
+    transform: scale(1.1) translate(20px, 15px);
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+  }
 }
 
 @keyframes kenburns-bottom-right {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 84% 84%;
-        transform-origin: 84% 84%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translate(20px, 15px);
-        transform: scale(1.1) translate(20px, 15px);
-        -webkit-transform-origin: right bottom;
-        transform-origin: right bottom;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 84% 84%;
+    transform-origin: 84% 84%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translate(20px, 15px);
+    transform: scale(1.1) translate(20px, 15px);
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+  }
 }
 
-/**
- * ----------------------------------------
- * animation kenburns-right
- * ----------------------------------------
- */
+/*** ----------------------------------------* animation kenburns-right* ----------------------------------------*/
+
 @-webkit-keyframes kenburns-right {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 84% 50%;
-        transform-origin: 84% 50%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translateX(20px);
-        transform: scale(1.1) translateX(20px);
-        -webkit-transform-origin: right;
-        transform-origin: right;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 84% 50%;
+    transform-origin: 84% 50%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translateX(20px);
+    transform: scale(1.1) translateX(20px);
+    -webkit-transform-origin: right;
+    transform-origin: right;
+  }
 }
 
 @keyframes kenburns-right {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 84% 50%;
-        transform-origin: 84% 50%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translateX(20px);
-        transform: scale(1.1) translateX(20px);
-        -webkit-transform-origin: right;
-        transform-origin: right;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 84% 50%;
+    transform-origin: 84% 50%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translateX(20px);
+    transform: scale(1.1) translateX(20px);
+    -webkit-transform-origin: right;
+    transform-origin: right;
+  }
 }
 
-/**
- * ----------------------------------------
- * animation kenburns-bottom
- * ----------------------------------------
- */
+/*** ----------------------------------------* animation kenburns-bottom* ----------------------------------------*/
+
 @-webkit-keyframes kenburns-bottom {
-    0% {
-        -webkit-transform: scale(1) translateY(0);
-        transform: scale(1) translateY(0);
-        -webkit-transform-origin: 50% 84%;
-        transform-origin: 50% 84%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translateY(15px);
-        transform: scale(1.1) translateY(15px);
-        -webkit-transform-origin: bottom;
-        transform-origin: bottom;
-    }
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 84%;
+    transform-origin: 50% 84%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translateY(15px);
+    transform: scale(1.1) translateY(15px);
+    -webkit-transform-origin: bottom;
+    transform-origin: bottom;
+  }
 }
 
 @keyframes kenburns-bottom {
-    0% {
-        -webkit-transform: scale(1) translateY(0);
-        transform: scale(1) translateY(0);
-        -webkit-transform-origin: 50% 84%;
-        transform-origin: 50% 84%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translateY(15px);
-        transform: scale(1.1) translateY(15px);
-        -webkit-transform-origin: bottom;
-        transform-origin: bottom;
-    }
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 84%;
+    transform-origin: 50% 84%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translateY(15px);
+    transform: scale(1.1) translateY(15px);
+    -webkit-transform-origin: bottom;
+    transform-origin: bottom;
+  }
 }
 
-/* ----------------------------------------------
- * Generated by Animista on 2024-2-21 17:17:52
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info.
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
+/* ----------------------------------------------* Generated by Animista on 2024-2-21 17:17:52* Licensed under FreeBSD License.* See http://animista.net/license for more info.* w: http://animista.net, t: @cssanimista* ---------------------------------------------- */
 
-/**
- * ----------------------------------------
- * animation kenburns-top-right
- * ----------------------------------------
- */
+/*** ----------------------------------------* animation kenburns-top-right* ----------------------------------------*/
+
 @-webkit-keyframes kenburns-top-right {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 84% 16%;
-        transform-origin: 84% 16%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translate(20px, -15px);
-        transform: scale(1.1) translate(20px, -15px);
-        -webkit-transform-origin: right top;
-        transform-origin: right top;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 84% 16%;
+    transform-origin: 84% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translate(20px, -15px);
+    transform: scale(1.1) translate(20px, -15px);
+    -webkit-transform-origin: right top;
+    transform-origin: right top;
+  }
 }
 
 @keyframes kenburns-top-right {
-    0% {
-        -webkit-transform: scale(1) translate(0, 0);
-        transform: scale(1) translate(0, 0);
-        -webkit-transform-origin: 84% 16%;
-        transform-origin: 84% 16%;
-    }
-    100% {
-        -webkit-transform: scale(1.1) translate(20px, -15px);
-        transform: scale(1.1) translate(20px, -15px);
-        -webkit-transform-origin: right top;
-        transform-origin: right top;
-    }
+  0% {
+    -webkit-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+    -webkit-transform-origin: 84% 16%;
+    transform-origin: 84% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.1) translate(20px, -15px);
+    transform: scale(1.1) translate(20px, -15px);
+    -webkit-transform-origin: right top;
+    transform-origin: right top;
+  }
 }
-

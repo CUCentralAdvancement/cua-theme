@@ -7,15 +7,15 @@ global-styling:
         weight: -11
       templates/layout/header/css/header.css:
         weight: -11
-      css/style.css:
+      templates/layout/header/css/navigation.css:
         weight: -11
-      templates/layout/footer/css/footer.css:
+      css/style.css:
         weight: -11
       css/card.css:
         weight: -11
-      css/backgrounds.css:
+      templates/layout/footer/css/footer.css:
         weight: -11
-      css/override.css:
+      css/custom.css:
         weight: -11
       css/layout-builder.css:
         weight: -11
@@ -81,6 +81,14 @@ half-and-half:
         weight: -10
 
 # Spacer
+slider:
+  version: VERSION
+  css:
+    component:
+      component/slider/css/slider.css:
+        weight: -10
+
+# Spacer
 spacer:
   version: VERSION
   css:
@@ -90,6 +98,11 @@ spacer:
 
 # Video
 video:
+  version: VERSION
+  css:
+    component:
+      component/video/css/video.css:
+        weight: -10
   js:
     //player.vimeo.com/api/player.js: { type: external, minified: true }
 

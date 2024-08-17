@@ -596,10 +596,13 @@ a figure {
 .card-img.xsmall {
     width: 25%;
 }
+
 .card {
     display: flex;
     flex-direction: column;
     height: 100%;
+    border-radius: 0 !important;
+    --bs-card-bg: transparent;
 }
 
 .card-body {

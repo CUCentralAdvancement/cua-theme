@@ -1,0 +1,86 @@
+/* Video Component */
+.video .cu-bg-white {
+  background: rgba(255, 255, 255, 0.75) !important;
+}
+
+.video .cu-bg-black {
+  background: rgba(0, 0, 0, 0.75) !important;
+}
+
+.video .card-footer .cu-bg-black,
+.video .card-footer .cu-bg-white {
+  background: transparent !important;
+}
+
+.video .card-footer.cu-bg-black,
+.video .card-footer.cu-bg-white {
+  background: transparent !important;
+}
+
+.block.block-layout-builder.video .container-fluid.mx-auto.position-absolute {
+  bottom: 20%;
+}
+
+.video .cu-text-white {
+  color: var(--cua-white);
+}
+
+.mobile-video-wrapper .cu-text-gold,
+.mobile-video-wrapper .cu-text-white {
+  color: var(--cua-black);
+}
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.video-container {
+  min-height: 5rem !important;
+}
+
+.video-mobile-copy {
+  margin-bottom: 4rem !important;
+}
+
+/* Parallax */
+.parallax {
+  min-height: max-content;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-video video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.parallax-main-content {
+  position: relative;
+  height: 100%;
+}
+
+.parallax-video {
+  min-height: 15rem;
+}
+
+/*** Responsive starts here ***/
+@media only screen and (max-width: 991px) {
+
+  .parallax-video {
+    min-height: auto;
+  }
+
+  .parallax {
+    min-height: auto;
+    background-attachment: scroll;
+  }
+}
