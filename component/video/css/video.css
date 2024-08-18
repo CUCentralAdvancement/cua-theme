@@ -45,14 +45,6 @@ video {
 }
 
 /* Parallax */
-.parallax {
-  min-height: max-content;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .parallax-video video {
   object-fit: cover;
   width: 100vw;
@@ -61,11 +53,6 @@ video {
   top: 0;
   left: 0;
   z-index: -1;
-}
-
-.parallax-main-content {
-  position: relative;
-  height: 100%;
 }
 
 .parallax-video {
@@ -77,10 +64,5 @@ video {
 
   .parallax-video {
     min-height: auto;
-  }
-
-  .parallax {
-    min-height: auto;
-    background-attachment: scroll;
   }
 }

@@ -1,7 +1,4 @@
-/* Global Variables */
-
 :root {
-  /* Colors */
   --cua-black-pure: #000;
   --cua-black: #262626;
   --cua-blue: #0854bb;
@@ -10,10 +7,8 @@
   --cua-blue-dark: #03306c;
   --cua-body-bg: #fff;
   --cua-body-color: #262626;
-  /* Golds*/
   --cua-gold: #cfb87c;
   --cua-gold-hover: #5d4916;
-  /* Grays */
   --cua-light-grey: #f3f3f3;
   --cua-gray: #6c757d;
   --cua-dark-gray: #595955;
@@ -27,61 +22,51 @@
   --cua-gray-700: #495057;
   --cua-gray-800: #343a40;
   --cua-gray-900: #212529;
-  /* Additional Colors */
   --cua-green: #198754;
   --cua-warning: #ba0c2f;
   --cua-white: #fff;
   --cua-white-darker: #ddd;
   --cua-white-light: #f5f5f5;
-  /* Typography */
   --cua-body-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --cua-arvo: 'Roboto Condensed', sans-serif;
   --cua-body-font-size: 1rem;
   --cua-body-font-weight: 400;
   --cua-body-line-height: 1.5;
-  /* Bootstrap Typography */
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  /* Bootstrap5 colors */
   --bs-link-color: #0854bb;
   --cua-link-color: #0854bb;
-  /* Font Awesome and Typography */
   --fa-font-solid: "FontAwesome";
   --font-awesome: "FontAwesome";
   --fa-style-family-classic: "FontAwesome";
   --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* Background Colors */
   --bg-light: #f4f4f5;
-  --uci-gray: #595955;
+  --uci-gray: #595955
 }
 
-/* HTML and Body----------------------- */
-
 html:focus-within {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth
 }
 
 html {
   font-size: 1rem;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth
 }
 
 html, body {
-  height: 100%;
+  height: 100%
 }
-
-/* Headings */
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
   font-family: var(--font-roboto-condensed);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.2
 }
 
 h1, .h1 {
-  font-size: 2.5rem;
+  font-size: 2.5rem
 }
 
 h1.title {
@@ -92,45 +77,43 @@ h1.title {
   font-family: var(--font-roboto-condensed);
   font-weight: 600;
   line-height: 1.05;
-  position: relative;
+  position: relative
 }
-
-/* Headings */
 
 h1, .h1, h2, .h2, h1 a, .h1 a, h2 a, .h2 a, h3, .h3, h3 a, .h3 a, h4, .h4, h5, .h5, h6, .h6 {
   color: var(--cua-gray-800);
   font-family: var(--font-roboto-condensed);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.2
 }
 
 h1, .h1 {
-  font-size: 2.5rem;
+  font-size: 2.5rem
 }
 
 h2, .h2, h2.title {
-  font-size: 2rem;
+  font-size: 2rem
 }
 
 h3, .h3, h3.title {
-  font-size: 1.875rem;
+  font-size: 1.875rem
 }
 
 h4, .h4, h4.title {
-  font-size: 1.625rem;
+  font-size: 1.625rem
 }
 
 h5, .h5, h5.title {
-  font-size: 1.3rem;
+  font-size: 1.3rem
 }
 
 h6, .h6, h6.title {
-  font-size: 1.125rem;
+  font-size: 1.125rem
 }
 
 h2.title {
   font-size: 1.2rem;
-  color: var(--cua-gray-800);
+  color: var(--cua-gray-800)
 }
 
 .h4.title a {
@@ -138,21 +121,20 @@ h2.title {
   line-height: 1.2;
   font-weight: 600;
   display: block;
-  margin: 0 0 .25rem;
+  margin: 0 0 .25rem
 }
 
 .h4.title a:hover {
   color: var(--cua-blue-hover);
   text-decoration: underline;
-  transition: color 0.5s ease, text-decoration 0.5s ease;
-  /* Transition for color and text-decoration */
+  transition: color 0.5s ease, text-decoration 0.5s ease
 }
 
 aside h2, aside.h2 {
   color: var(--cua-gray-800);
   font-family: var(--font-roboto-condensed);
   font-size: 1.5rem !important;
-  font-weight: 600;
+  font-weight: 600
 }
 
 aside h2::after {
@@ -161,30 +143,30 @@ aside h2::after {
   width: 1.5em;
   height: 0.1em;
   background-color: var(--cua-gold);
-  margin: 0.4em 0;
+  margin: 0.4em 0
 }
 
 .block-layout-builder aside h2, .block-layout-builder aside .h2 {
-  font-size: 1.75rem;
+  font-size: 1.75rem
 }
 
 div#block-cua-theme-page-title {
   color: var(--cua-gray-700);
   margin: 2rem 1.5rem 1rem 1.5rem;
-  position: relative;
+  position: relative
 }
 
 .path-frontpage div#block-cua-theme-page-title {
-  display: none;
+  display: none
 }
 
 .title {
   font-size: 2rem;
-  line-height: 1.5;
+  line-height: 1.5
 }
 
 .title.visible .d-flex.justify-content-center {
-  text-align: center !important;
+  text-align: center !important
 }
 
 .base-heading-square__accent {
@@ -198,22 +180,21 @@ div#block-cua-theme-page-title {
   border-style: solid;
   border-color: var(--cua-gold);
   pointer-events: none;
-  z-index: -100;
+  z-index: -100
 }
 
 p.intro {
   font-family: var(--font-roboto-condensed);
   font-size: 1.2rem;
   line-height: 1.5 !important;
-  color: inherit;
+  color: inherit
 }
 
-/* CK Editor styling */
 p.h2.title {
   font-family: var(--font-roboto-condensed);
   font-size: 2.25rem !important;
   color: inherit;
-  line-height: 1.1;
+  line-height: 1.1
 }
 
 p.h2.title-lg {
@@ -221,42 +202,41 @@ p.h2.title-lg {
   font-size: 2.75rem !important;
   color: inherit;
   margin: 1.3rem 0 .3rem 0;
-  line-height: 1.1;
+  line-height: 1.1
 }
 
 p.h3.title {
   font-family: var(--font-roboto-condensed);
   font-size: 2rem !important;
   color: inherit;
-  line-height: 1.1;
+  line-height: 1.1
 }
 
 p.h4.title {
   font-family: var(--font-roboto-condensed);
   font-size: 1.65rem !important;
   color: inherit;
-  line-height: 1.1;
+  line-height: 1.1
 }
 
 p.h5.title {
   font-family: var(--font-roboto-condensed);
   font-size: 1.3rem !important;
   line-height: 1.4 !important;
-  color: inherit;
+  color: inherit
 }
 
 p.h6.title {
   font-size: 1.125rem !important;
   color: inherit;
-  line-height: 1.1;
+  line-height: 1.1
 }
 
-/* Body */
 body, p, a, li {
   font-family: var(--font-roboto);
   font-size: 17px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.5
 }
 
 a#edit-delete {
@@ -267,81 +247,78 @@ a#edit-delete {
   display: inline-block;
   border-radius: 0;
   transition: background-color 0.7s ease;
-  width: auto;
+  width: auto
 }
 
 a#edit-delete:hover {
   color: red;
   background: black;
-  text-decoration: none !important;
+  text-decoration: none !important
 }
 
-/* Font style */
 .light-font-weight {
   font-weight: 100 !important;
-  font-size: 80% !important;
+  font-size: 80% !important
 }
 
 .text-small, .small {
-  font-size: 0.875rem;
+  font-size: 0.875rem
 }
 
 .bold, strong, .strong-text {
-  font-weight: 700;
+  font-weight: 700
 }
 
-/* Color */
 .text-gold {
-  color: var(--cua-gold) !important;
+  color: var(--cua-gold) !important
 }
 
 .text-white {
-  color: var(--cua-white) !important;
+  color: var(--cua-white) !important
 }
 
 .text-black {
-  color: var(--cua-black) !important;
+  color: var(--cua-black) !important
 }
 
 .bg-light {
-  background: var(--bg-light) !important;
+  background: var(--bg-light) !important
 }
 
 .cu-bg-pure-black {
-  background-color: var(--cua-black-pure) !important;
+  background-color: var(--cua-black-pure) !important
 }
 
 .cu-text-white p.intro {
-  color: var(--cua-white);
+  color: var(--cua-white)
 }
 
 .green {
-  color: green !important;
+  color: green !important
 }
 
 .green:hover, .fa-solid.fa-file-pdf.red:hover {
   color: var(--cua-blue) !important;
-  text-decoration: none;
+  text-decoration: none
 }
 
 .fa-solid.fa-file-pdf.red, .red {
-  color: #b90404 !important;
+  color: #b90404 !important
 }
 
 .fa-solid.fa-file-pdf.red:hover, .red:hover {
-  color: darkgreen !important;
+  color: darkgreen !important
 }
 
 .border-light {
-  border-color: transparent !important;
+  border-color: transparent !important
 }
 
 .border-white {
   --bs-border-opacity: 0;
-  border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
+  border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important
 }
 
-/* Blockquote */
 blockquote {
   border-left: 8px solid var(--cua-gold);
   color: var(--cua-gray-700);
@@ -351,7 +328,7 @@ blockquote {
   margin: 50px auto;
   padding: 1.2em 30px 1.2em 75px;
   position: relative;
-  width: 85%;
+  width: 85%
 }
 
 blockquote::before {
@@ -360,7 +337,7 @@ blockquote::before {
   font-size: 6em;
   left: -20px;
   position: absolute;
-  top: -30px;
+  top: -30px
 }
 
 blockquote span {
@@ -368,31 +345,29 @@ blockquote span {
   display: block;
   font-style: normal;
   font-weight: 700;
-  margin-top: 1em;
+  margin-top: 1em
 }
 
-/* Table Styles */
 .table > thead {
-  background: var(--cua-gold);
+  background: var(--cua-gold)
 }
 
 table tr th, table tr th a, table tr th a:hover, table tr th a:focus {
-  color: var(--cua-black);
+  color: var(--cua-black)
 }
 
 thead > tr {
-  font-size: 120%;
+  font-size: 120%
 }
 
-/* Views */
 .views-element-container h2, .views-exposed-form h2, .views-element-container h2 {
   padding: 0;
   font-size: 2.25rem !important;
-  color: var(--cua-gray-700);
+  color: var(--cua-gray-700)
 }
 
 aside .h3, aside .views-element-container h2, aside .views-exposed-form h2, aside .views-element-container h2 {
-  font-size: 1.5rem !important;
+  font-size: 1.5rem !important
 }
 
 .views-exposed-form h2::after, .js-views-accordion-group-header::after, .views-element-container h2::after {
@@ -401,7 +376,7 @@ aside .h3, aside .views-element-container h2, aside .views-exposed-form h2, asid
   width: 1.5em;
   height: 0.1em;
   background-color: var(--cua-gold);
-  margin: 0.4em 0;
+  margin: 0.4em 0
 }
 
 h2.text-align-center::after {
@@ -410,70 +385,68 @@ h2.text-align-center::after {
   width: 1.5em;
   height: 0.1em;
   background-color: var(--cua-gold);
-  margin: 0.4em auto;
+  margin: 0.4em auto
 }
 
 .views-view-responsive-grid__item {
   padding: 1rem;
-  background-color: var(--cua-white-light);
+  background-color: var(--cua-white-light)
 }
 
 .views-exposed-form {
   padding: 0.1rem 1rem 0 .3rem;
   color: var(--cua-black);
   border-radius: 0;
-  margin: 2rem 0 0;
+  margin: 2rem 0 0
 }
 
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
   margin-bottom: 3rem;
-  margin-top: 0;
+  margin-top: 0
 }
 
 .views-view-responsive-grid__item {
   padding: 1rem;
-  background-color: var(--cua-white-light);
+  background-color: var(--cua-white-light)
 }
 
 .views-element-container {
-  margin: 0 0.3em;
+  margin: 0 0.3em
 }
 
-/* Landing Page */
 #main-wrapper-landing-page .row {
   --bs-gutter-x: 0 !important;
   --bs-gutter-y: 0 !important;
   padding-right: 0 !important;
   padding-left: 0 !important;
-  margin-top: 0 !important;
+  margin-top: 0 !important
 }
 
 #main-wrapper-landing-page h1 {
-  margin: 1rem 7.5rem;
+  margin: 1rem 7.5rem
 }
 
 .full-padding, .fp {
   padding-left: 7rem;
-  padding-right: 7rem;
+  padding-right: 7rem
 }
 
 .full-padding-top, .full-padding-top-bottom, .fptb {
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3rem
 }
 
 .container-fluid {
   --bs-gutter-x: 0 !important;
-  --bs-gutter-y: 0 !important;
+  --bs-gutter-y: 0 !important
 }
 
-/*** Add Line under text ***/
 .cu-line {
   color: var(--cua-gray-800) !important;
   font-family: var(--font-roboto-condensed) !important;
   font-size: 2rem;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.2
 }
 
 .cu-line::after {
@@ -482,7 +455,7 @@ h2.text-align-center::after {
   width: 1.5em;
   height: 0.1em;
   background-color: var(--cua-gold);
-  margin: 0.2em 0 1rem 0;
+  margin: 0.2em 0 1rem 0
 }
 
 .cu-line-sm, .cu-line-sm a {
@@ -491,7 +464,7 @@ h2.text-align-center::after {
   font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.2;
-  margin: .75rem 0 0;
+  margin: .75rem 0 0
 }
 
 .cu-line-sm a:hover {
@@ -504,41 +477,40 @@ h2.text-align-center::after {
   width: 1.5em;
   height: 0.1em;
   background-color: var(--cua-gold);
-  margin: 0.4em 0;
+  margin: 0.4em 0
 }
 
-/* Spinner */
 .ajax-progress {
   width: 100px;
   height: 100px;
   background-color: black;
-  background-image: url(../images/loading.gif);
+  background-image: url(../images/loading.gif)
 }
 
 .featured-top {
-  margin: 0;
+  margin: 0
 }
 
 .display-4 {
   font-size: 2rem;
   font-family: var(--font-roboto-condensed);
   line-height: 1 !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 1rem !important
 }
 
 .animate__animated.animate__delay-1s {
   -webkit-animation-delay: 0.5s !important;
-  animation-delay: 0.5s !important;
+  animation-delay: 0.5s !important
 }
 
 .path-taxonomy .node--view-node-teaser.node--sticky {
-  padding: 2rem;
+  padding: 2rem
 }
 
 .webform-type-fieldset {
   background: var(--cua-gray-200);
   padding: 2rem;
-  margin: 0 0 3rem !important;
+  margin: 0 0 3rem !important
 }
 
 a.bef-link--selected {
@@ -546,18 +518,17 @@ a.bef-link--selected {
 }
 
 .ui-widget-content a {
-  color: var(--cua-blue) !important;
+  color: var(--cua-blue) !important
 }
 
 .use-ajax.js-layout-builder-block-link, #drupal-off-canvas-wrapper .layout-selection a, #drupal-off-canvas-wrapper :where(:not(svg, svg *, .ck-reset *, [data-drupal-ck-style-fence] *, .ui-resizable-handle)) {
-  color: white !important;
+  color: white !important
 }
 
 #drupal-off-canvas-wrapper input:where(:not([type="submit"], [type="checkbox"], [type="radio"], [type="file"])), #drupal-off-canvas-wrapper select, #drupal-off-canvas-wrapper textarea {
-  color: black !important;
+  color: black !important
 }
 
-/* Back to Top module */
 #backtotop {
   display: none;
   position: fixed;
@@ -570,108 +541,102 @@ a.bef-link--selected {
   border: 3px solid var(--cua-gold);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-  z-index: 100000;
+  z-index: 100000
 }
 
-/* Field */
 .field--name-field-email.field--label-inline .field__label {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem
 }
 
 .field--label-inline .field__label {
   font-weight: bold !important;
   margin: 0;
-  padding-right: 5px;
+  padding-right: 5px
 }
 
 .field.field--name-field-tags .field__label {
-  display: none;
+  display: none
 }
 
-/* Form */
 .block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper {
-  display: none !important;
+  display: none !important
 }
 
 .form-control {
   padding: .45rem .75rem;
   border: var(--bs-border-width) solid var(--cua-gray-800);
-  border-radius: 0;
+  border-radius: 0
 }
 
 .form-control:focus {
   border-color: var(--cua-gray-200);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1);
+  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1)
 }
 
 .form-item-items-per-page label {
-  font-size: .85rem;
+  font-size: .85rem
 }
 
 .form-item-items-per-page {
   margin-left: 1rem !important;
-  margin-right: 1rem !important;
+  margin-right: 1rem !important
 }
-
-/* Fix issue for CK editor modal links behind window */
 
 .ck.ck-balloon-panel.ck-balloon-panel_visible, #drupal-off-canvas [data-drupal-ck-style-fence] .ck.ck-balloon-panel.ck-balloon-panel_visible {
   display: block !important;
-  z-index: 9999999 !important;
+  z-index: 9999999 !important
 }
 
 .user-administrator .aioa-widget-wrapper, .user-logged-in.aioa-widget-wrapper {
-  display: none !important;
+  display: none !important
 }
 
 .user-administrator .node--type-landing-page #main-wrapper-landing-page, .user-logged-in .node--type-landing-page #main-wrapper-landing-page {
-  margin: 0 1rem;
+  margin: 0 1rem
 }
 
 .display-4.card-text.lead.h3.title.d-flex.justify-content-center {
-  text-align: center !important;
+  text-align: center !important
 }
 
-/* Node */
 .node--type-landing-page h1.title {
-  margin: .7rem 0 0 !important;
+  margin: .7rem 0 0 !important
 }
 
 .node--type-landing-page div#block-cua-theme-page-title {
-  margin: 2rem 1.5rem 0 1.5rem !important;
+  margin: 2rem 1.5rem 0 1.5rem !important
 }
 
 .node--type-landing-page .node__content {
   font-size: inherit;
-  margin-top: 0;
+  margin-top: 0
 }
 
 .node__content {
   font-size: 1rem;
-  margin-top: 0;
+  margin-top: 0
 }
 
 .node--unpublished {
-  background: #fce0e0;
+  background: #fce0e0
 }
 
 .node--type-landing-page h1.title {
-  margin: .7rem 0 0 !important;
+  margin: .7rem 0 0 !important
 }
 
 .node--type-landing-page div#block-cua-theme-page-title {
-  margin: 2rem 1.5rem 1rem 1.5rem !important;
+  margin: 2rem 1.5rem 1rem 1.5rem !important
 }
 
-/* Modal */
 .modal-body {
-  z-index: 9999 !important;
+  z-index: 9999 !important
 }
 
 .modal-backdrop {
   z-index: -9999 !important;
-  background-color: transparent !important;
+  background-color: transparent !important
 }
 
 .modal-content {
@@ -679,10 +644,8 @@ a.bef-link--selected {
   pointer-events: auto;
   background-color: white;
   background-clip: padding-box;
-  border: 0 solid white;
+  border: 0 solid white
 }
-
-/* Backgrounds */
 
 .bg-white {
   background: var(--cua-white) !important
@@ -708,7 +671,6 @@ a.bef-link--selected {
   background: rgba(255, 255, 255, 0.9) !important
 }
 
-/* Greys */
 .bg-light-grey {
   background: var(--cua-light-grey) !important
 }
@@ -757,7 +719,6 @@ a.bef-link--selected {
   background: var(--cua-gray-900) !important
 }
 
-/* Black */
 .bg-black {
   background: var(--cua-black) !important
 }
@@ -766,20 +727,17 @@ a.bef-link--selected {
   background: var(--cua-black-pure) !important
 }
 
-/* Blue */
 .bg-blue {
   background: var(--cua-blue) !important
 }
 
 .bg-light-blue {
-  background: #c3dcff !important;
+  background: #c3dcff !important
 }
 
 .bg-dark-blue {
   background: var(--cua-blue-dark) !important
 }
-
-/* Gold */
 
 .bg-gold {
   background: var(--cua-gold) !important
@@ -789,24 +747,45 @@ a.bef-link--selected {
   background: var(--cua-gold-hover) !important
 }
 
-/*** Responsive starts here ***/
+.parallax {
+  min-height: max-content;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover
+}
+
+.parallax-main-content {
+  position: relative;
+  height: 100%
+}
+
 @media only screen and (max-width: 991px) {
+  .parallax {
+    min-height: auto;
+    background-attachment: scroll
+  }
+
   .full-padding {
     padding-left: 3rem;
-    padding-right: 3rem;
+    padding-right: 3rem
   }
+
   .full-padding-top {
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 1rem
   }
+
   aside .node__content .block.block-menu.navigation {
     border-right: 1px solid var(--cua-white);
-    border-bottom: 1px solid var(--cua-gray-400);
+    border-bottom: 1px solid var(--cua-gray-400)
   }
+
   .content-type-label {
     left: -8px;
-    top: 15px;
+    top: 15px
   }
+
   blockquote {
     border-left: 4px solid var(--cua-gold);
     font-size: 1em;
@@ -815,82 +794,99 @@ a.bef-link--selected {
     margin: 10px auto;
     padding: .5em 10px .5em 25px;
     position: relative;
-    width: 100%;
+    width: 100%
   }
+
   blockquote::before {
     font-size: 5em;
     left: -50px;
-    top: -30px;
+    top: -30px
   }
+
   blockquote span {
     color: var(--cua-gray-800);
     display: block;
     font-style: normal;
     font-weight: 700;
-    margin-top: 1em;
+    margin-top: 1em
   }
+
   .px-5 {
     padding-right: 1rem !important;
-    padding-left: 1rem !important;
+    padding-left: 1rem !important
   }
+
   .card-header.d-flex.justify-content-center {
-    text-align: center !important;
+    text-align: center !important
   }
+
   .carousel-indicators {
-    bottom: -25px;
+    bottom: -25px
   }
+
   .card-img.xsmall {
-    width: 90% !important;
+    width: 90% !important
   }
+
   .navbar-toggler {
-    background-color: transparent !important;
+    background-color: transparent !important
   }
+
   .mobile-padding {
-    padding-top: 2rem;
+    padding-top: 2rem
   }
+
   aside .nav {
-    border-right: 1px solid var(--cua-white) !important;
+    border-right: 1px solid var(--cua-white) !important
   }
+
   div#block-cua-theme-page-title {
     margin: 1rem 0 0 5px !important;
-    max-width: 90% !important;
+    max-width: 90% !important
   }
+
   .base-heading-square__accent {
-    display: none;
+    display: none
   }
+
   .layout__region--second .block.block-menu.navigation {
-    border-left: none;
+    border-left: none
   }
 }
 
-/*** Responsive starts here ***/
-
 @media only screen and (max-width: 545px) {
   .ui-accordion .ui-accordion-content {
-    padding: 1rem;
+    padding: 1rem
   }
+
   .full-padding {
     padding-left: 1rem;
-    padding-right: 1rem;
+    padding-right: 1rem
   }
+
   .banner-body {
-    padding: 1rem !important;
+    padding: 1rem !important
   }
+
   .full-padding, .fp {
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 15px
   }
+
   h1.title {
-    font-size: 1.75rem !important;
+    font-size: 1.75rem !important
   }
+
   .mobile-padding {
-    padding-top: 2rem;
+    padding-top: 2rem
   }
+
   aside .nav {
-    border-right: 1px solid var(--cua-white) !important;
+    border-right: 1px solid var(--cua-white) !important
   }
+
   .node--type-landing-page div#block-cua-theme-page-title {
     margin: 1rem 0 0 24px !important;
-    max-width: 90% !important;
+    max-width: 90% !important
   }
 }
