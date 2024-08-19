@@ -106,26 +106,28 @@
                        target="_blank"
                        class="link-light link-underline-opacity-0 px-2"
                        aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">{{ 'Regents of the University of Colorado'|t }}</a>
+
                     {# Check if user is logged in #}
                     {% if not logged_in %}
                         {# Admin Login #}
                         <span class="admin-login">
-                    <a href="/saml_login?destination=user" rel="noopener"
-                       class="link-light link-underline-opacity-0 px-2"
-                       aria-label="{{ 'Login'|t }}">
-                        <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Login'|t }}
-                    </a>
-                </span>
+                            <a href="/saml_login?destination=user" rel="noopener"
+                               class="link-light link-underline-opacity-0 px-2"
+                               aria-label="{{ 'Login'|t }}">
+                                <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Login'|t }}
+                            </a>
+                        </span>
                     {% else %}
                         {# Admin Logout #}
                         <span class="user-logged-in">
-                        <a href="/user/logout" rel="noopener"
-                           class="link-light link-underline-opacity-0 px-2"
-                           aria-label="{{ 'Logout'|t }}">
-                            <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Logout'|t }}
-                        </a>
-                    </span>
+                            <a href="/user/logout" rel="noopener"
+                               class="link-light link-underline-opacity-0 px-2"
+                               aria-label="{{ 'Logout'|t }}">
+                                <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Logout'|t }}
+                            </a>
+                        </span>
                     {% endif %}
+
                 </p>
             </div>
 

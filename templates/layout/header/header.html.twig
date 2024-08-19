@@ -15,44 +15,54 @@
 #}
 
 {# Render content #}
-<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
+<header id="header" class="header" role="banner"
+        aria-label="{{ 'Site header'|t }}">
     <div class="container top-bar">
         <div class="row clearfix g-0">
             <div class="col g-0">
 
                 {# Top Header Navigation #}
-                <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white p-0 m-0" id="navbar-top">
+                <nav class="navbar l-header-top navbar-light navbar-expand-lg bg-white p-0 m-0"
+                     id="navbar-top">
                     <div class="container-fluid site-name-logo mt-3 mb-3 g-0">
                         <div class="container d-flex g-0">
 
                             {# CU Logo #}
                             <div class="flex-shrink-1">
-                                <a href="{{ url('<front>') }}" rel="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}"
+                                <a href="{{ url('<front>') }}"
+                                   rel="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}"
                                    class="site-branding__logo">
                                     {# Logo for larger screens #}
-                                    <img class="d-none d-lg-block" src="{{ base_path ~ directory ~ '/images/logo.svg' }}"
-                                         alt="{{ 'University of Colorado logo'|t }}" width="225" height="24"/>
+                                    <img class="d-none d-lg-block"
+                                         src="{{ base_path ~ directory ~ '/images/logo.svg' }}"
+                                         alt="{{ 'University of Colorado logo'|t }}"
+                                         width="225" height="24"/>
                                     {# Logo for smaller screens #}
-                                    <img class="d-lg-none" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
-                                         alt="{{ 'University of Colorado logo'|t }}" width="29" height="28"/>
+                                    <img class="d-lg-none"
+                                         src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
+                                         alt="{{ 'University of Colorado logo'|t }}"
+                                         width="29" height="28"/>
                                 </a>
                             </div>
 
                             {# Site name #}
                             {% if site_slogan %}
                                 <div class="w-100 align-items-baseline">
-                                    <a href="{{ url('<front>') }}" title="{{ site_slogan }}" rel="home"
+                                    <a href="{{ url('<front>') }}"
+                                       title="{{ site_slogan }}" rel="home"
                                        class="site-branding__name site-name">
                                         {{ site_slogan }}
                                     </a>
                                 </div>
                             {% endif %}
 
-                            {# Navigation toggle buttons for smaller screens
-                            <span class="d-lg-none mx-4">
+                            {# Navigation toggle buttons for smaller screens #}
+                            {% if page.search %}
+                                <span class="d-lg-none mx-4">
                                 {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
                             </span>
-                            #}
+                            {% endif %}
+
 
                             {# Hamburger #}
                             <button class="navbar-toggler collapsed"
@@ -93,20 +103,24 @@
                 </div>
             {% endif %}
 
-            {# Search Icon
-            <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
-                {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
-            </div>
-            #}
+            {# Search Icon #}
+            {% if page.search %}
+                <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
+                    {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
+                </div>
+            {% endif %}
+
 
         </div>
     </div>
 
-    {# Search Form
+    {# Search Form #}
     {% if page.search %}
         <div class="container-fluid main-search bg-light border-top border-grey">
             <div class="container">
-                <div class="collapse" id="CollapseSearch" data-bs-parent=".site-name-wrapper" aria-labelledby="search-icon">
+                <div class="collapse" id="CollapseSearch"
+                     data-bs-parent=".site-name-wrapper"
+                     aria-labelledby="search-icon">
                     <div class="cua-search">
                         {{ page.search }}
                     </div>
@@ -114,7 +128,7 @@
             </div>
         </div>
     {% endif %}
-    #}
+
 
     {# Site Name / Desktop #}
     {% if site_name %}
@@ -125,17 +139,23 @@
 
     {# Main Navigation Section #}
     {% if page.primary_menu or page.secondary_menu or page.search %}
-        <nav role="navigation" class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 m-0" id="navbar-main"
+        <nav role="navigation"
+             class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 m-0"
+             id="navbar-main"
              aria-labelledby="{{ 'main menu'|t }}">
             <div class="container px-3 g-0">
-                <div class="collapse navbar-collapse" id="mainNavbrSupportedContent">
+                <div class="collapse navbar-collapse"
+                     id="mainNavbrSupportedContent">
 
                     {# Screen reader Link #}
-                    <h2 class="visually-hidden" id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
+                    <h2 class="visually-hidden"
+                        id="cua-main-menu">{{ 'Main navigation'|t }}</h2>
 
                     {# Small logo for sticky menu #}
-                    <img class="sticky-show" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
-                         alt="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}" width="25" height="24"/>
+                    <img class="sticky-show"
+                         src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
+                         alt="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}"
+                         width="25" height="24"/>
 
                     {# Primary menu #}
                     {% if page.primary_menu %}
@@ -158,9 +178,10 @@
                             </div>
                         {% endif %}
 
-                        {# Search Icon
-                        {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
-                        #}
+                        {% if page.search %}
+                            {# Search Icon  #}
+                            {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
+                        {% endif %}
 
                     </div>
 
