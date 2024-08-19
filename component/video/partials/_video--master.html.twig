@@ -1,10 +1,20 @@
 {# Video Containers #}
+
+{# Import macros #}
 {% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
+
+{# Title #}
 {% if provider|default(false) %}
-    {{ titleMacros.render_card_basic_title(title_prefix, label, title_suffix) }}
+    {{ titleMacros.render_card_basic_title(
+        title_prefix,
+        label,
+        title_suffix) }}
+
+    {# Video container #}
     <div class="video-container g-0 m-0 p-0 position-relative">
         {% include '@cua_theme/component/video/partials/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
     </div>
+
 {% else %}
     <p>{{ 'No video provider specified.'|t }}</p>
 {% endif %}

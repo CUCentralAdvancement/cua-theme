@@ -69,12 +69,15 @@
 #}
 <div id="page-wrapper">
     <div id="page">
+
         {% if page.alert %}
             {% block alert %}
                 {{ page.alert }}
             {% endblock %}
         {% endif %}
+
         {% include '@cua_theme/templates/layout/header/header.html.twig' %}
+
         {% if page.banner %}
             {% block banner %}
                 {{ page.banner }}
@@ -115,6 +118,7 @@
                 </aside>
             </div>
         {% endif %}
+
         {% if page.featured_bottom_second %}
             <div class="featured-bottom-second container g-0">
                 <aside class="clearfix" role="complementary">
@@ -122,6 +126,7 @@
                 </aside>
             </div>
         {% endif %}
+
         {% if page.featured_bottom_third %}
             <div class="featured-bottom-third container-fluid g-0">
                 <aside class="clearfix" role="complementary">
@@ -129,7 +134,9 @@
                 </aside>
             </div>
         {% endif %}
+
         {# Footer #}
         {% include '@cua_theme/templates/layout/footer/footer.html.twig' %}
+
     </div>
 </div>

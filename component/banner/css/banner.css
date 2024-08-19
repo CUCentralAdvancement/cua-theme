@@ -17,7 +17,7 @@
 
 .banner h2, .banner .h2 {
   font-family: var(--font-roboto-condensed);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase
 }
 
@@ -61,9 +61,9 @@
 }
 
 .banner .btn {
-  font-weight: 700;
-  padding: .65rem 4rem !important;
-  border-radius: 0 !important
+  border-radius: 0 !important;
+  font-weight: var(--font-weight-bold);
+  padding: .65rem 4rem !important
 }
 
 .banner .btn:hover {
@@ -74,7 +74,7 @@
   background: rgba(0, 0, 0, 1);
   border: 3px solid var(--cua-black);
   color: var(--cua-white);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -91,7 +91,7 @@
   background: transparent;
   border: 3px solid var(--cua-black);
   color: var(--cua-black);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -124,7 +124,7 @@
   background: rgba(207, 184, 124, 1);
   border: 3px solid var(--cua-gold);
   color: var(--cua-black);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -141,7 +141,7 @@
   background: transparent;
   border: 3px solid var(--cua-gold);
   color: rgba(207, 184, 124, 1);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -149,13 +149,13 @@
 }
 
 .banner .btn.outline-btn-cu-bg-gold::before, .banner .btn.btn-cu-bg-gold::before {
+  background: rgba(207, 184, 124, .5);
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 100%;
-  background: rgba(207, 184, 124, .5);
   transition: width 0.3s ease;
   z-index: -1
 }
@@ -174,7 +174,7 @@
   background: rgba(255, 255, 255, 1);
   border: 3px solid var(--cua-white);
   color: var(--cua-black);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -191,7 +191,7 @@
   background: transparent;
   border: 3px solid var(--cua-white);
   color: var(--cua-white);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -199,13 +199,13 @@
 }
 
 .banner .btn.outline-btn-cu-bg-white::before, .banner .btn.btn-cu-bg-white::before {
+  background: rgba(255, 255, 255, 0.5);
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 100%;
-  background: rgba(255, 255, 255, 0.5);
   transition: width 0.3s ease;
   z-index: -1
 }
@@ -224,7 +224,7 @@
   background: var(--cua-light-grey);
   border: 3px solid var(--cua-light-grey);
   color: var(--cua-black);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -241,7 +241,7 @@
   background: transparent;
   border: 3px solid var(--cua-light-grey);
   color: var(--cua-light-grey);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
@@ -249,13 +249,13 @@
 }
 
 .banner .btn.outline-btn-cu-bg-light-grey::before, .banner .btn.btn-cu-bg-light-grey::before {
+  background: rgba(255, 255, 255, 0.3);
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 100%;
-  background: rgba(255, 255, 255, 0.3);
   transition: width 0.3s ease;
   z-index: -1
 }
@@ -350,10 +350,10 @@
 }
 
 .container-fluid .kenburns-top {
-  height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  height: 100vh;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -367,24 +367,24 @@
 .ken.kenburns- {
   background-size: cover;
   background-position: center;
+  min-height: 500px;
   overflow: hidden;
-  width: 100vw;
-  min-height: 500px
+  width: 100vw
 }
 
 .banner .display-4 {
-  font-weight: 700 !important;
   font-size: 3rem !important;
-  font-family: var(--font-roboto-condensed)
+  font-family: var(--font-roboto-condensed);
+  font-weight: var(--font-weight-bold)
 }
 
 @media (max-width: 768px) {
 
   .container-fluid .kenburns-top {
-    height: auto;
     background-size: auto;
     background-position: top;
     background-repeat: repeat;
+    height: auto;
     max-width: none;
     margin-left: 0;
     margin-right: 0;

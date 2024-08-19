@@ -14,9 +14,6 @@
 */
 #}
 
-{# Attach the library #}
-{{ attach_library('cua_theme/call-to-action') }}
-
 {# Import macros #}
 {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
 {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
@@ -24,6 +21,9 @@
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+
+{# Attach the library #}
+{{ attach_library('cua_theme/call-to-action') }}
 
 {# Define CTA classes #}
 {% set cta_classes = [

@@ -14,10 +14,8 @@
 */
 #}
 
-{# Attach the library #}
-{{ attach_library('cua_theme/image-bundle') }}
-
 {# Import macros #}
+{% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
@@ -27,10 +25,11 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'image-bundle',
-    'card rounded-0 mx-2 p-3',
+    'card rounded-0',
     color_background ?: null,
     color_border ?: null,
     container_size ?: null,
+    margins ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
@@ -41,8 +40,11 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes) }}>
 
     {# Import title macro #}
-    {% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
-    {{ titleMacros.render_card_basic_title(title_prefix, label, title_suffix) }}
+    {{ titleMacros.render_card_basic_title(
+        title_prefix,
+        label,
+        title_suffix)
+    }}
 
     {# Render the card image #}
     {{ cardImageMacros.render_card_image(

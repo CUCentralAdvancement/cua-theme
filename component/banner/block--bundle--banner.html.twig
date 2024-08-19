@@ -13,6 +13,10 @@
 * - cua_theme.theme
 */
 #}
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {# Preload background image #}
 {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
@@ -20,11 +24,6 @@
 
 {# Attach the library #}
 {{ attach_library('cua_theme/banner') }}
-
-{# Import macros #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {# Set container classes #}
 {% set container_classes = [

@@ -2,24 +2,24 @@
 a {
   color: var(--cua-link-color);
   text-decoration: none;
-  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transition for color and text-decoration */
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 a:hover {
   color: var(--cua-link-color);
-  text-decoration: underline;
+  text-decoration: underline
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
   background-color: var(--cua-gold);
   color: var(--cua-black);
-  margin: 0 .2rem;
+  margin: 0 .2rem
 }
 
 .nav-pills .nav-link:hover {
   background-color: var(--cua-black);
   color: var(--cua-gold);
-  margin: 0 .2rem;
+  margin: 0 .2rem
 }
 
 /* Button Styles */
@@ -27,37 +27,37 @@ a:hover {
 .btn-primary {
   background: var(--cua-gold);
   border-color: transparent;
-  color: var(--cua-black);
+  color: var(--cua-black)
 }
 
 .btn-primary:hover {
   background: var(--cua-black);
-  text-decoration: none;
+  text-decoration: none
 }
 
 .path-search .btn.btn-primary {
   padding: 0.5rem;
-  width: 100px;
+  width: 100px
 }
 
 .btn.btn-primary {
   background: var(--cua-white);
-  color: var(--cua-black);
   border: 1px solid var(--cua-black);
-  padding: .45rem 1.5rem;
-  font-weight: bold;
-  display: inline-block;
   border-radius: 0;
+  color: var(--cua-black);
+  display: inline-block;
+  font-weight: var(--font-weight-bold);
+  padding: .45rem 1.5rem;
   transition: background-color 0.7s ease;
-  width: auto;
+  width: auto
 }
 
 .btn.btn-primary:hover {
   background: var(--cua-black);
-  color: var(--cua-white);
   border: 1px solid var(--cua-black);
+  color: var(--cua-white);
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: none
 }
 
 
@@ -66,13 +66,13 @@ a:hover {
 .block-link {
   color: inherit;
   font-size: .9rem;
-  font-weight: 700;
-  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  text-decoration: none
 }
 
 a.block-link figcaption {
   text-align: center;
-  text-decoration: none;
+  text-decoration: none
 }
 
 /* Side column links */
@@ -80,17 +80,15 @@ a.block-link figcaption {
 .node__content .block.block-menu.navigation ul,
 aside .form-select ul,
 aside ul {
-  /* Remove bullet points and padding for list items */
   list-style-type: none;
-  padding: 0;
+  padding: 0
 }
 
 .node__content .block.block-menu.navigation .form-select li,
 .node__content .block.block-menu.navigation li,
 aside .form-select li,
 aside li {
-  /* Ensure full width for list items */
-  width: 100%;
+  width: 100%
 }
 
 .node__content .block.block-menu.navigation .nav-item,
@@ -107,26 +105,26 @@ aside a.bef-link {
   box-sizing: border-box;
   color: var(--cua-gray-700);
   display: block;
+  font-family: var(--font-roboto-condensed);
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   text-decoration: none;
   line-height: 1.1;
   margin: .5rem;
   padding: .25rem 0;
   position: relative;
-  width: 100%;
-  font-family: var(--font-roboto-condensed);
+  width: 100%
 }
 
 aside a.nav-link {
-  margin: .2rem;
+  margin: .2rem
 }
 
 .node__content .block.block-menu.navigation a.link-cua,
 aside a.link-cua {
   color: var(--cua-black);
-  font-weight: 500;
-  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none
 }
 
 .node__content .block.block-menu.navigation a.link-cua:hover,
@@ -134,7 +132,7 @@ aside a.link-cua {
 aside a.link-cua:hover,
 aside a.bef-link:hover {
   color: var(--cua-gold-hover);
-  text-decoration: underline !important;
+  text-decoration: underline !important
 }
 
 .node__content .block.block-menu.navigation a:hover,
@@ -143,9 +141,8 @@ aside a.bef-link:hover {
 aside .form-select a:hover,
 aside a.nav-link:hover,
 aside a.bef-link:hover {
-  /* Adjust link styles on hover */
   color: var(--cua-black);
-  text-decoration: none !important;
+  text-decoration: none !important
 }
 
 .node__content .block.block-menu.navigation a::before,
@@ -154,14 +151,14 @@ aside a.bef-link:hover {
 aside .form-select a::before,
 aside a.nav-link::before,
 aside a.bef-link::before {
+  background-color: var(--cua-white);
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--cua-white);
-  transition: width 0.5s ease;
+  transition: width 0.5s ease
 }
 
 .node__content .block.block-menu.navigation a:hover::before,
@@ -170,51 +167,50 @@ aside a.bef-link::before {
 aside .form-select a:hover::before,
 aside a.nav-link:hover::before,
 aside a.bef-link:hover::before {
-  /* Expand underline on hover */
-  width: 100%;
   background-color: var(--cua-gold);
+  width: 100%
 }
 
 .node__content .block.block-menu.navigation .form-select .node__content .block.block-menu.navigation,
 .node__content .block.block-menu.navigation .node__content .block.block-menu.navigation,
 aside .form-select .node__content .block.block-menu.navigation,
 aside .node__content .block.block-menu.navigation {
-  border-right: 1px solid var(--cua-gray-400);
+  border-right: 1px solid var(--cua-gray-400)
 }
 
 .node__content .block.block-menu.navigation .form-select,
 aside .form-select {
   border: 1px solid var(--cua-white) !important;
-  --bs-form-select-bg-img: none !important;
+  --bs-form-select-bg-img: none !important
 }
 
 .node__content .block.block-menu.navigation .form-select ul li ul,
 aside .form-select ul li ul {
-  margin-left: 1rem;
+  margin-left: 1rem
 }
 
 .bef-link .bef-link--selected {
-  color: var(--cua-gold-hover);
+  color: var(--cua-gold-hover)
 }
 
 a#edit-contacts-all:first-child,
 a#edit-bod-all:first-child {
-  display: none !important;
+  display: none !important
 }
 
 /* Pagination */
 .pagination.js-pager__items {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 2rem
 }
 
 .page-link {
   background-color: transparent;
   border-color: transparent;
   color: var(--cua-gold);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: var(--base-font-size);
+  font-weight: var(--font-weight-bold)
 }
 
 .active > .page-link, .page-link.active {
@@ -223,138 +219,136 @@ a#edit-bod-all:first-child {
 }
 
 .page-link:hover {
-  z-index: 2;
   background-color: transparent;
   border-color: transparent;
-  text-decoration: none !important;
   color: var(--cua-gold);
+  text-decoration: none !important;
+  z-index: 2
 }
 
 .page-item {
+  align-items: center;
   background: var(--cua-black);
-  margin: 0 .5rem;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 0 .5rem;
   padding: .5rem;
-  width: 2.75rem; /* Set the width to a fixed size */
-  height: 2.75rem; /* Set the height to the same fixed size */
-  display: flex; /* Use flexbox to center the content */
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
+  height: 2.75rem;
+  width: 2.75rem;
 }
 
 .page-item:hover {
   background: var(--cua-gold);
-  text-decoration: none;
+  text-decoration: none
 }
 
 .page-item.active {
   background: var(--cua-gold);
-  text-decoration: none;
+  text-decoration: none
 }
 
 .page-item.active a {
   color: var(--cua-black);
-  text-decoration: none;
+  text-decoration: none
 }
 
 .page-item a {
   color: var(--cua-gold);
-  text-decoration: none;
+  text-decoration: none
 }
 
 .page-item a:hover {
-  color: var(--cua-black);
+  color: var(--cua-black)
 }
 
 .page-item.active:hover {
-  color: var(--cua-black);
+  color: var(--cua-black)
 }
 
 .field--type-entity-reference a {
-  color: var(--cua-gold-hover);
-  font-size: .85rem;
-  font-weight: 700;
   background-color: var(--cua-white);
   border: 1px solid var(--cua-gold-hover);
+  color: var(--cua-gold-hover);
+  font-size: .85rem;
+  font-weight: var(--font-weight-bold);
   padding: .35rem 1rem;
   display: inline-block;
-  margin: 0 0 .5rem;
+  margin: 0 0 .5rem
 }
 
 .field--type-entity-reference a:hover {
-  color: var(--cua-white);
   background-color: var(--cua-gold-hover);
-  text-decoration: none;
+  color: var(--cua-white);
+  text-decoration: none
 }
 
 .page-view-taxonomy-term article .nav-link {
-  display: block;
-  color: var(--cua-gold-hover);
-  font-size: .85rem;
-  font-weight: 700;
   background-color: var(--cua-white);
   border: none;
+  color: var(--cua-gold-hover);
+  display: block;
+  font-size: .85rem;
+  font-weight: var(--font-weight-bold);
   padding: 0;
-  margin-top: 2rem;
+  margin-top: 2rem
 }
 
 nav.tabs {
-  padding: 1rem 0 2rem 0;
+  padding: 1rem 0 2rem 0
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
   background-color: var(--cua-blue);
   color: white;
-  margin: 0 .2rem;
+  margin: 0 .2rem
 }
 
 .nav-pills .show > .nav-link, .nav-pills .nav-link:hover {
   background: green;
   color: white;
-  text-decoration: none;
+  text-decoration: none
 }
 
 .nav-pills .nav-link {
   border-radius: 0 !important;
   padding: .75rem 3rem;
-  font-size: 1.1rem;
+  font-size: 1.1rem
 }
 
 .container.mx-auto.nav.primary.nav-pills {
-  display: flex !important;
-  justify-content: center !important;
   align-items: center !important;
+  display: flex !important;
+  justify-content: center !important
 }
 
 .nav.primary.nav-pills li a::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900; /* Ensure correct font weight for solid icons */
   display: inline-block;
-  margin-right: 10px;
+  font-family: var(--font-awesome-free);
+  font-weight: var(--font-weight-xbold);margin-right: 10px
 }
 
 .nav.primary.nav-pills li:first-child a::before {
-  content: "\f06e"; /* Content for Font Awesome eye icon */
-}
+  content: "\f06e";}
 
 .nav.primary.nav-pills li:nth-child(2) a::before {
-  content: "\f044"; /* Content for Font Awesome edit icon */
+  content: "\f044";
 }
 
 .nav.primary.nav-pills li:nth-child(3) a::before {
-  content: "\f014"; /* Content for Font Awesome delete icon */
+  content: "\f014";
 }
 
 .nav.primary.nav-pills li:nth-child(4) a::before {
-  content: "\f013"; /* Content for Font Awesome gear icon */
+  content: "\f013";
 }
 
 .nav.primary.nav-pills li:nth-child(5) a::before {
-  content: "\f1da"; /* Content for Font Awesome history icon */
+  content: "\f1da";
 }
 
 ol.list-group.node_search-results a {
-  font-size: 1.5rem !important;
+  font-size: 1.5rem !important
 }
 
 .bef-nested ul li ul li a {
@@ -363,69 +357,69 @@ ol.list-group.node_search-results a {
 }
 
 .bef-nested ul li a {
-  margin: 0 .5rem 0 0 !important;
   line-height: 1.5;
+  margin: 0 .5rem 0 0 !important
 }
 
 /* Sidebar right menu */
 .layout__region.layout__region--second .navigation h2 {
   font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
   margin-top: 1rem;
-  font-weight: 600;
-  margin-left: 1rem;
+  margin-left: 1rem
 }
 
 .layout__region--second .block.block-menu.navigation {
-  border-left: 1px solid var(--cua-gray-400);
+  border-left: 1px solid var(--cua-gray-400)
 }
 
 .layout__region.layout__region--second .navigation .nav-item a {
-  color: var(--cua-black);
+  color: var(--cua-black)
 }
 
 a.simplesamlphp-auth-login-link {
   background: green;
   color: white;
-  padding: .8rem;
   display: block;
-  width: 200px;
-  text-align: center;
+  font-weight: var(--font-weight-medium);
+  padding: .8rem;
   position: absolute;
+  text-align: center;
   top: 337px;
-  font-weight: 500;
+  width: 200px
 }
 
 a.simplesamlphp-auth-login-link::before {
   content: "\f06e";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
   display: inline-block;
-  margin-right: 10px;
+  font-family: var(--font-awesome-free);
+  font-weight: var(--font-weight-xbold);
+  margin-right: 10px
 }
 
 a.simplesamlphp-auth-login-link:hover {
   background: var(--cua-black);
   color: var(--cua-gold);
-  text-decoration: none;
+  text-decoration: none
 }
 
 .layout__region.layout__region--second a.nav-link.active.is-active {
-  color: var(--cua-gold);
+  color: var(--cua-gold)
 }
 
 .layout .navbar a.nav-link.is-active {
   background: var(--cua-white);
-  color: var(--cua-black);
+  color: var(--cua-black)
 }
 
 a.nav-link.active.is-active {
-  color: #b19a5e !important;
+  color: #b19a5e !important
 }
 
 #main-wrapper .block-menu {
-  margin-bottom: 2rem !important;
+  margin-bottom: 2rem !important
 }
 
 aside .nav {
-  border-right: 1px solid var(--cua-gray-500) !important;
+  border-right: 1px solid var(--cua-gray-500) !important
 }

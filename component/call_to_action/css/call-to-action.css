@@ -2,165 +2,107 @@
 
 .call-to-action .card-img, .call-to-action .card-img-top {
   border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-right-radius: 0
 }
 
 .call-to-action .card-img, .call-to-action .card-img-bottom {
   border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0
 }
 
 .call-to-action .border-light {
-  border-color: transparent !important;
+  border-color: transparent !important
 }
 
 .call-to-action .card-img, .call-to-action .card-img-top {
   border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-right-radius: 0
 }
 
 .call-to-action .card-img, .call-to-action .card-img-bottom {
   border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0
 }
 
 .call-to-action .card-link.d-flex.justify-content-center {
-  text-align: center !important;
+  text-align: center !important
 }
 
 .call-to-action .card-header {
-  margin-bottom: .5rem;
+  margin-bottom: .5rem
 }
 
 .call-to-action p {
-  margin-top: 1rem;
+  margin-top: 1rem
 }
 
 .call-to-action .display-4.card-text.lead.h3.title {
   font-family: var(--font-roboto-condensed);
   font-size: 2rem !important;
-  font-weight: 700 !important;
+  font-weight: var(--font-weight-bold) !important;
   line-height: 1.1 !important;
-  margin: .5rem 0 0 !important;
+  margin: .5rem 0 0 !important
 }
 
 .call-to-action.card p span {
   font-family: var(--font-roboto);
   font-size: 1.85rem !important;
-  font-weight: 100 !important;
-  margin: 0 !important;
+  font-weight: var(--font-weight-xlight) !important;
+  margin: 0 !important
 }
 
 .call-to-action .fa-solid {
-  margin-bottom: 1rem !important;
+  margin-bottom: 1rem !important
 }
 
 .block .call-to-action {
-  margin: 15px !important;
+  margin: 15px !important
 }
 
 .margin_bottom .call-to-action {
-  padding-bottom: 3rem !important;
+  padding-bottom: 3rem !important
 }
 
 .call-to-action .margin_top {
-  padding-top: 3rem !important;
+  padding-top: 3rem !important
 }
 
 .call-to-action .margin_bottom {
-  padding-bottom: 3rem !important;
+  padding-bottom: 3rem !important
 }
 
 .call-to-action.card p span {
   font-size: 1.8rem !important;
-  margin-left: 1px !important;
+  margin-left: 1px !important
 }
 
 .call-to-action .title span {
   display: block;
-  margin-top: 1px;
+  margin-top: 1px
 }
 
-/* Flag */
-.flag {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  position: absolute;
-  left: -8px;
-  top: 20px;
-  padding: 1px 20px 1px 7px;
-  font-size: .9rem;
-  font-weight: 600;
-  z-index: 100;
-}
-
-.flag a:hover {
-  text-decoration: none !important;
-}
-
-.flag::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 8px 8px 0;
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  border-color: transparent #000000 transparent transparent;
-}
-
-.flag a.display-4.card-text.lead.title.h3 {
-  text-decoration: none !important;
-  font-size: .95rem !important;
-  font-weight: 600 !important;
-}
-
-.block .call-to-action .add-padding .flag {
-  top: 35px !important;
-}
-
-.flag.cu-bg-white,
-.flag.cu-bg-gold,
-.flag.cu-bg-light-gray,
-a.flag-link .flag.cu-bg-light-grey {
-  color: var(--cua-black);
-}
-
-.flag.cu-bg-black,
-.flag.cu-bg-pure-black {
-  color: var(--cua-white);
-}
-
-.flag-link:hover .flag.cu-bg-gold,
-.flag-link:hover .flag.cu-bg-white {
-  color: var(--cua-white);
-  background-color: var(--cua-black);
-}
-
-.flag-link:hover .flag.cu-bg-black,
-.flag-link:hover .flag.cu-bg-light-grey {
-  color: var(--cua-black);
-  background-color: var(--cua-white);
+.call-to-action.card .add-padding {
+  padding: 0 .75rem !important
 }
 
 .call-to-action .flag .fa-solid {
-  margin-bottom: 0 !important;
+  margin-bottom: 0 !important
 }
 
 .margin-top-and-bottom {
-  margin: 3rem 0;
+  margin: 3rem 0
 }
 
 .margin-bottom {
-  margin: 0 0 3rem 0;
+  margin: 0 0 3rem 0
 }
 
 .margin-top {
-  margin: 3rem 0 0 0;
+  margin: 3rem 0 0 0
 }
 
 .display-4.card-text.lead.title.h3.cu-text-black.remove-padding,
 .display-4.card-text.lead.title.h3.cu-text-gold.remove-padding,
 .display-4.card-text.lead.title.h3.cu-text-white.remove-padding {
-  padding: 0 15px !important;
+  padding: 0 15px !important
 }
