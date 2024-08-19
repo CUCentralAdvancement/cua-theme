@@ -819,7 +819,20 @@ svg *,
 }
 
 .parallax .add-padding {
-  padding: 10rem 0 !important
+  padding: 10rem 0
+}
+
+.banner .parallax .display-4.add-padding,
+.banner .parallax .card-body.add-padding {
+  padding: 0 1.5rem !important
+}
+
+.video .parallax-main-content .display-4 {
+  padding-top: 1rem !important;
+}
+
+.video .parallax-main-content .card-body {
+  padding-bottom: 1.5rem !important;
 }
 
 /* Flag */

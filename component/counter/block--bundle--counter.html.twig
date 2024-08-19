@@ -18,6 +18,7 @@
 {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
 {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
@@ -79,22 +80,14 @@
         ) }}
     {% endif %}
 
-    {# Counter #}
-    {% if content.field_number %}
-        <div class="counter-size {{ text_alignment ?: null }} {{ text_color ?: null }}">
-            {# Before number #}
-            {% if content.field_before_number %}
-                <span class="padding-right {{ text_color ?: null }}">{{ content.field_before_number.0 }}</span>
-            {% endif %}
-            {# Counter #}
-            <span class="counter-up {{ text_color ?: null }}"
-                  data-count="{{ content.field_number['#items'].value }}">0</span>
-            {# After number #}
-            {% if content.field_after_number %}
-                <span class="padding-left {{ text_color ?: null }}">{{ content.field_after_number.0 }}</span>
-            {% endif %}
-        </div>
-    {% endif %}
+    {# Render the counter #}
+    {{ counterMacros.render_counter(
+        number,
+        text_alignment,
+        text_color,
+        before_number,
+        after_number)
+    }}
 
     {# Render the body #}
     {{ bodyMacros.render_body(

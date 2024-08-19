@@ -1,0 +1,26 @@
+{# Counter Title Macro #}
+
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
+{# Call the macro and pass the necessary variables #}
+{# {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }} #}
+
+{# Counter Macro #}
+
+{% macro render_counter(number, text_alignment, text_color, before_number, after_number) %}
+    {% if number %}
+        <div class="counter-size {{ text_alignment ?: '' }} {{ text_color ?: '' }}">
+            {# Before number #}
+            {% if before_number %}
+                <span class="padding-right {{ text_color ?: '' }}">{{ before_number }}</span>
+            {% endif %}
+            {# Counter #}
+            <span class="counter-up {{ text_color ?: '' }}"
+                  data-count="{{ number }}">0</span>
+            {# After number #}
+            {% if after_number %}
+                <span class="padding-left {{ text_color ?: '' }}">{{ after_number }}</span>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}
