@@ -198,8 +198,12 @@ div#block-cua-theme-page-title {
   position: relative
 }
 
+.user-administrator .aioa-widget-wrapper,
+.user-logged-in.aioa-widget-wrapper,
+.field.field--name-field-tags .field__label,
+.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper,
 .path-frontpage div#block-cua-theme-page-title {
-  display: none
+  display: none !important
 }
 
 /* square wrapper on title */
@@ -529,7 +533,7 @@ h2.text-align-center::after {
 }
 
 .display-4 {
-  font-size: var(--font-size-h2);
+  font-size: var(--h2-size);
   font-family: var(--font-roboto-condensed);
   line-height: 1 !important;
   margin-bottom: 1rem !important
@@ -558,9 +562,6 @@ a.bef-link--selected {
   color: var(--cua-blue) !important
 }
 
-/*
-svg *,
-.ck-reset *,
 .use-ajax.js-layout-builder-block-link,
 #drupal-off-canvas-wrapper .layout-selection a,
 #drupal-off-canvas-wrapper :where(:not(svg,
@@ -568,7 +569,6 @@ svg *,
 .ui-resizable-handle)) {
   color: var(--cua-white) !important
 }
-*/
 
 #drupal-off-canvas-wrapper input:where(:not([type="submit"],
 [type="checkbox"],
@@ -584,7 +584,6 @@ svg *,
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   color: var(--cua-black-pure);
-  display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -602,14 +601,6 @@ svg *,
   font-weight: var(--font-weight-bold) !important;
   margin: 0;
   padding-right: 5px
-}
-
-.field.field--name-field-tags .field__label {
-  display: none
-}
-
-.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper {
-  display: none !important
 }
 
 /* form */
@@ -634,15 +625,11 @@ svg *,
   margin-right: 1rem !important
 }
 
+/* user */
 .ck.ck-balloon-panel.ck-balloon-panel_visible,
 #drupal-off-canvas [data-drupal-ck-style-fence] .ck.ck-balloon-panel.ck-balloon-panel_visible {
   display: block !important;
   z-index: 9999999 !important
-}
-
-.user-administrator .aioa-widget-wrapper,
-.user-logged-in.aioa-widget-wrapper {
-  display: none !important
 }
 
 .user-administrator .node--type-landing-page #main-wrapper-landing-page,
@@ -805,6 +792,7 @@ svg *,
   background: var(--cua-gold-hover) !important
 }
 
+/* parallax */
 .parallax {
   background-attachment: fixed;
   background-position: center;
@@ -1026,3 +1014,4 @@ a.flag-link .flag.cu-bg-light-grey {
     max-width: 90% !important
   }
 }
+
