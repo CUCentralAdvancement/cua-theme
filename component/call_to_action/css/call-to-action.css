@@ -56,7 +56,7 @@
 }
 
 .block .call-to-action {
-  margin: 15px !important
+  margin: 15px
 }
 
 .margin_bottom .call-to-action {
@@ -105,4 +105,12 @@
 .display-4.card-text.lead.title.h3.cu-text-gold.remove-padding,
 .display-4.card-text.lead.title.h3.cu-text-white.remove-padding {
   padding: 0 15px !important
+}
+
+/*** Responsive ***/
+/* Media query for screens below 991px */
+@media (max-width: 991px) {
+  .block .call-to-action {
+    margin: 0
+  }
 }
