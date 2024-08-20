@@ -9,13 +9,13 @@ footer #site-footer-top .clearfix.nav {
   flex-direction: column;
   font-size: var(--h5-size);
   font-family: var(--font-roboto-condensed);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   margin-bottom: .5rem;
   padding-bottom: 5px
 }
 
 .site-footer h2 {
-  color: var(--cua-white)
+  color: var(--cua-white) !important
 }
 
 /* Site Footer */
