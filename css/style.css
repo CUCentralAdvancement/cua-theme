@@ -887,6 +887,18 @@ a.flag-link .flag.cu-bg-light-grey {
   background-color: var(--cua-white)
 }
 
+.margin-top-and-bottom {
+  margin: 3rem 0
+}
+
+.margin-bottom {
+  margin: 0 0 3rem 0
+}
+
+.margin-top {
+  margin: 3rem 0 0 0
+}
+
 @media only screen and (max-width: 991px) {
   .parallax {
     background-attachment: scroll;

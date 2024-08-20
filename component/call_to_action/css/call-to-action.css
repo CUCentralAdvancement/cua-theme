@@ -89,15 +89,15 @@
   margin-bottom: 0 !important
 }
 
-.margin-top-and-bottom {
+.call-to-action .margin-top-and-bottom {
   margin: 3rem 0
 }
 
-.margin-bottom {
+.call-to-action .margin-bottom {
   margin: 0 0 3rem 0
 }
 
-.margin-top {
+.call-to-action .margin-top {
   margin: 3rem 0 0 0
 }
 
