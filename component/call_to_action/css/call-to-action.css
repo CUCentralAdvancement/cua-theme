@@ -111,6 +111,6 @@
 /* Media query for screens below 991px */
 @media (max-width: 991px) {
   .block .call-to-action {
-    margin: 0
+    margin: 0 !important
   }
 }
