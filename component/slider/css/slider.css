@@ -20,3 +20,44 @@
 .slide-numbers-invisible .carousel-indicators, .slide-numbers- .carousel-indicators {
   display: none
 }
+
+/* Slider */
+
+.slider blockquote {
+  border-left: 0 solid var(--cua-gold) !important;
+  width: 70% !important;
+  margin: 1rem auto !important
+}
+
+.slider blockquote p {
+  color: var(--cua-gray-700);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  padding: 0 0 15px
+}
+
+.slide-numbers-visible .carousel-indicators {
+  display: compact
+}
+
+.slide-numbers-invisible .carousel-indicators, .slide-numbers- .carousel-indicators {
+  display: none
+}
+
+@media only screen and (max-width: 991px) {
+
+  .slider blockquote p {
+    font-size: var(--base-font-size) !important;
+    line-height: 1.2 !important;
+  }
+
+  .slider blockquote {
+    border-left: none !important;
+    padding: 1rem !important;
+    width: 90% !important;
+  }
+
+  .slider blockquote::before {
+    left: -20px !important;
+  }
+}

@@ -56,6 +56,8 @@
   --h4-size: calc(var(--base-font-size) * 1.5);
   --h5-size: calc(var(--base-font-size) * var(--scale-factor));
   --h6-size: calc(var(--base-font-size) * 1);
+  --font-small: .9rem;
+  --font-xsmall: .8rem;
   /* Font Weights */
   --font-weight-xlight: 100;
   --font-weight-light: 300;
