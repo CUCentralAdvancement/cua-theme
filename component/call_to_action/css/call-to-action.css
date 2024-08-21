@@ -1,116 +1,116 @@
 /* Call to Action styling */
 
 .call-to-action .card-img, .call-to-action .card-img-top {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0
+    border-top-left-radius: 0;
+    border-top-right-radius: 0
 }
 
 .call-to-action .card-img, .call-to-action .card-img-bottom {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0
 }
 
 .call-to-action .border-light {
-  border-color: transparent !important
+    border-color: transparent !important
 }
 
 .call-to-action .card-img, .call-to-action .card-img-top {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0
+    border-top-left-radius: 0;
+    border-top-right-radius: 0
 }
 
 .call-to-action .card-img, .call-to-action .card-img-bottom {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0
 }
 
 .call-to-action .card-link.d-flex.justify-content-center {
-  text-align: center !important
+    text-align: center !important
 }
 
 .call-to-action .card-header {
-  margin-bottom: .5rem
+    margin-bottom: .5rem
 }
 
 .call-to-action p {
-  margin-top: 1rem
+    margin-top: 1rem
 }
 
 .call-to-action .display-4.card-text.lead.h3.title {
-  font-family: var(--font-roboto-condensed);
-  font-size: 2rem !important;
-  font-weight: var(--font-weight-bold) !important;
-  line-height: 1.1 !important;
-  margin: .5rem 0 0 !important
+    font-family: var(--font-roboto-condensed);
+    font-size: 2rem !important;
+    font-weight: var(--font-weight-bold) !important;
+    line-height: 1.1 !important;
+    margin: .5rem 0 0 !important
 }
 
 .call-to-action.card p span {
-  font-family: var(--font-roboto);
-  font-size: 1.85rem !important;
-  font-weight: var(--font-weight-xlight) !important;
-  margin: 0 !important
+    font-family: var(--font-roboto);
+    font-size: 1.85rem !important;
+    font-weight: var(--font-weight-xlight) !important;
+    margin: 0 !important
 }
 
 .call-to-action .fa-solid {
-  margin-bottom: 1rem !important
+    margin-bottom: 1rem !important
 }
 
 .block .call-to-action {
-  margin: 15px
+    margin: 15px
 }
 
 .margin_bottom .call-to-action {
-  padding-bottom: 3rem !important
+    padding-bottom: 3rem !important
 }
 
 .call-to-action .margin_top {
-  padding-top: 3rem !important
+    padding-top: 3rem !important
 }
 
 .call-to-action .margin_bottom {
-  padding-bottom: 3rem !important
+    padding-bottom: 3rem !important
 }
 
 .call-to-action.card p span {
-  font-size: 1.8rem !important;
-  margin-left: 1px !important
+    font-size: 1.8rem !important;
+    margin-left: 1px !important
 }
 
 .call-to-action .title span {
-  display: block;
-  margin-top: 1px
+    display: block;
+    margin-top: 1px
 }
 
 .call-to-action.card .add-padding {
-  padding: 0 .75rem !important
+    padding: 0 .75rem !important
 }
 
 .call-to-action .flag .fa-solid {
-  margin-bottom: 0 !important
+    margin-bottom: 0 !important
 }
 
 .call-to-action .margin-top-and-bottom {
-  margin: 3rem 0
+    margin: 3rem 0
 }
 
 .call-to-action .margin-bottom {
-  margin: 0 0 3rem 0
+    margin: 0 0 3rem 0
 }
 
 .call-to-action .margin-top {
-  margin: 3rem 0 0 0
+    margin: 3rem 0 0 0
 }
 
 .display-4.card-text.lead.title.h3.cu-text-black.remove-padding,
 .display-4.card-text.lead.title.h3.cu-text-gold.remove-padding,
 .display-4.card-text.lead.title.h3.cu-text-white.remove-padding {
-  padding: 0 15px !important
+    padding: 0 15px !important
 }
 
 /*** Responsive ***/
 /* Media query for screens below 991px */
 @media (max-width: 991px) {
-  .block .call-to-action {
-    margin: 0 !important
-  }
+    .block .call-to-action {
+        margin: 0 !important
+    }
 }
