@@ -4,13 +4,14 @@ use Drupal\block_content\Entity\BlockContentType;
 use Drupal\Component\Utility\SortArray;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Cache\Cache;
 
 /**
  * Implements hook_form_FORM_ID_alter() for the search form.
  */
 function cua_theme_form_search_block_form_alter(array &$form, FormStateInterface $form_state, $form_id): void {
-  // Change the label of the submit button to "Submit".
-  $form['actions']['submit']['#value'] = t('Submit');
+    // Change the label of the submit button to "Submit".
+    $form['actions']['submit']['#value'] = t('Submit');
 }
 
 /**
@@ -22,17 +23,17 @@ function cua_theme_form_search_block_form_alter(array &$form, FormStateInterface
  *   An associative array of variables passed to the theme hook.
  */
 function cua_theme_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
-  // Add a suggestion based on the field name and view mode if it exists.
-  if (isset($variables['element']['#field_name'])) {
-    $suggestions[] = 'field__' .
-      $variables['element']['#field_name'] . '__' .
-      $variables['element']['#view_mode'];
-  }
+    // Add a suggestion based on the field name and view mode if it exists.
+    if (isset($variables['element']['#field_name'])) {
+        $suggestions[] = 'field__' .
+            $variables['element']['#field_name'] . '__' .
+            $variables['element']['#view_mode'];
+    }
 
-  // Block suggestions for custom block bundles.
-  if (isset($variables['elements']['content']['#block_content'])) {
-    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
-  }
+    // Block suggestions for custom block bundles.
+    if (isset($variables['elements']['content']['#block_content'])) {
+        array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+    }
 }
 
 /**
@@ -46,9 +47,9 @@ function cua_theme_theme_suggestions_block_alter(array &$suggestions, array $var
  *   An array of variables passed to the theme hook.
  */
 function cua_theme_theme_suggestions_field_alter(array &$suggestions, array $variables): void {
-  $suggestions[] = 'field__' .
-    $variables['element']['#field_name'] . '__' .
-    $variables['element']['#view_mode'];
+    $suggestions[] = 'field__' .
+        $variables['element']['#field_name'] . '__' .
+        $variables['element']['#view_mode'];
 }
 
 /**
@@ -67,14 +68,14 @@ function cua_theme_theme_suggestions_field_alter(array &$suggestions, array $var
  * Implements hook_form_alter().
  */
 function cua_theme_form_alter(&$form, &$form_state, $form_id): void {
-  // Check if the form is the search form.
-  if ($form_id == 'search_block_form') {
-    // Change the text on the search button.
-    $form['actions']['submit']['#value'] = t('Search');
+    // Check if the form is the search form.
+    if ($form_id == 'search_block_form') {
+        // Change the text on the search button.
+        $form['actions']['submit']['#value'] = t('Search');
 
-    // Add a placeholder text to the search input field.
-    $form['keys']['#attributes']['placeholder'] = t('Search');
-  }
+        // Add a placeholder text to the search input field.
+        $form['keys']['#attributes']['placeholder'] = t('Search');
+    }
 }
 
 /**
@@ -86,9 +87,9 @@ function cua_theme_form_alter(&$form, &$form_state, $form_id): void {
  *   An associative array of variables to pass to the theme template.
  */
 function cua_theme_preprocess_page(array &$variables): void {
-  $site_config = \Drupal::config('system.site');
-  $variables['site_name'] = $site_config->get('name');
-  $variables['site_slogan'] = $site_config->get('slogan');
+    $site_config = \Drupal::config('system.site');
+    $variables['site_name'] = $site_config->get('name');
+    $variables['site_slogan'] = $site_config->get('slogan');
 }
 
 /**
@@ -100,26 +101,26 @@ function cua_theme_preprocess_page(array &$variables): void {
  *   An array of additional data, typically the current state.
  */
 function cua_theme_plugin_filter_block__layout_builder_alter(array &$definitions, array $extra): void {
-  // Load all custom block types.
-  $block_types = BlockContentType::loadMultiple();
-  $block_prefix = "inline_block";
+    // Load all custom block types.
+    $block_types = BlockContentType::loadMultiple();
+    $block_prefix = "inline_block";
 
-  // Sort alphabetically by label.
-  uasort($block_types, function($a, $b) {
-    return SortArray::sortByKeyString($a, $b, 'label');
-  });
+    // Sort alphabetically by label.
+    uasort($block_types, function($a, $b) {
+        return SortArray::sortByKeyString($a, $b, 'label');
+    });
 
-  // Add suggestions for each block type.
-  foreach ($block_types as $block_type => $block) {
-    // Append prefix to the block type.
-    $definition = &$definitions["$block_prefix:$block_type"];
+    // Add suggestions for each block type.
+    foreach ($block_types as $block_type => $block) {
+        // Append prefix to the block type.
+        $definition = &$definitions["$block_prefix:$block_type"];
 
-    // Add category 'Add CU Blocks'.
-    $definition['category'] = t('Add CU Blocks');
+        // Add category 'Add CU Blocks'.
+        $definition['category'] = t('Add CU Blocks');
 
-    // Sync block->label with definition.
-    $definition['admin_label'] = $block->label();
-  }
+        // Sync block->label with definition.
+        $definition['admin_label'] = $block->label();
+    }
 }
 
 /**
@@ -136,153 +137,154 @@ function cua_theme_plugin_filter_block__layout_builder_alter(array &$definitions
  *   template.
  */
 function cua_theme_preprocess_block(array &$variables): void {
-  // Check if the block content is available in the variables array.
-  // This ensures that there is actual block content to work with.
-  if (!empty($variables['content']['#block_content'])) {
+    // Check if the block content is available in the variables array.
+    // This ensures that there is actual block content to work with.
+    if (!empty($variables['content']['#block_content'])) {
 
-    // Retrieve the block content object from the variables array.
-    $block_content = $variables['content']['#block_content'];
+        // Retrieve the block content object from the variables array.
+        $block_content = $variables['content']['#block_content'];
 
-    // Get the Drupal renderer service to render render arrays.
-    $renderer = \Drupal::service('renderer');
+        // Get the Drupal renderer service to render render arrays.
+        $renderer = \Drupal::service('renderer');
 
-    // Define an array of field names that we want to preprocess.
-    // These are the fields that we expect to be present in the block content.
-    $fields_to_preprocess = [
-      'body',
-      'field_animation',
-      'field_animation_delay',
-      'field_animation_speed',
-      'field_autoplay',
-      'field_border_style',
-      'field_button_color',
-      'field_campus',
-      'field_category',
-      'field_center_content',
-      'field_container_size',
-      'field_color_background',
-      'field_color_border',
-      'field_text_color',
-      'field_effect',
-      'field_effect_copy',
-      'field_flag',
-      'field_flag_title',
-      'field_flag_background',
-      'field_icon',
-      'field_icon_color',
-      'field_icon_size',
-      'field_image_alignment',
-      'field_image_size',
-      'field_margins',
-      'field_padding',
-      'field_page_title_visibility',
-      'field_parallax',
-      'field_position_container',
-      'field_provider',
-      'field_parallax_video',
-      'field_shadow',
-      'field_size',
-      'field_text_alignment',
-      'field_text_color',
-      'field_outline',
-      'field_video',
-      'field_visibility',
-      'field_visibility_numbers',
-      'field_number',
-      'field_before_number',
-      'field_after_number',
-    ];
+        // Define an array of field names that we want to preprocess.
+        // These are the fields that we expect to be present in the block content.
+        $fields_to_preprocess = [
+            'body',
+            'field_animation',
+            'field_animation_delay',
+            'field_animation_speed',
+            'field_autoplay',
+            'field_border_style',
+            'field_button_color',
+            'field_campus',
+            'field_category',
+            'field_center_content',
+            'field_container_size',
+            'field_color_background',
+            'field_color_border',
+            'field_text_color',
+            'field_effect',
+            'field_effect_copy',
+            'field_flag',
+            'field_flag_title',
+            'field_flag_background',
+            'field_icon',
+            'field_icon_color',
+            'field_icon_size',
+            'field_image_alignment',
+            'field_image_size',
+            'field_margins',
+            'field_padding',
+            'field_page_title_visibility',
+            'field_parallax',
+            'field_position_container',
+            'field_provider',
+            'field_parallax_video',
+            'field_shadow',
+            'field_size',
+            'field_text_alignment',
+            'field_text_color',
+            'field_outline',
+            'field_video',
+            'field_visibility',
+            'field_visibility_numbers',
+            'field_number',
+            'field_before_number',
+            'field_after_number',
+        ];
 
-    // Iterate through each field name in the array.
-    foreach ($fields_to_preprocess as $field_name) {
+        // Iterate through each field name in the array.
+        foreach ($fields_to_preprocess as $field_name) {
 
-      // Check if the block content has the current field.
-      if ($block_content->hasField($field_name)) {
+            // Check if the block content has the current field.
+            if ($block_content->hasField($field_name)) {
 
-        // Get the field's value as an array.
-        $field_items = $block_content->get($field_name)->getValue();
+                // Get the field's value as an array.
+                $field_items = $block_content->get($field_name)->getValue();
 
-        // Check if the field items array is not empty and is an array.
-        if (!empty($field_items) && is_array($field_items)) {
+                // Check if the field items array is not empty and is an array.
+                if (!empty($field_items) && is_array($field_items)) {
 
-          // Retrieve the first item of the field's value if it exists.
-          $field_value = reset($field_items);
+                    // Retrieve the first item of the field's value if it exists.
+                    $field_value = reset($field_items);
 
-          // Ensure that the field value is an array and contains a 'value' key.
-          if (is_array($field_value) && isset($field_value['value'])) {
+                    // Ensure that the field value is an array and contains a 'value' key.
+                    if (is_array($field_value) && isset($field_value['value'])) {
 
-            // Remove the "field_" prefix from the field name and assign the value
-            // to the variables array with the new name.
-            $variables[str_replace('field_', '', $field_name)] = $field_value['value'];
-          }
+                        // Remove the "field_" prefix from the field name and assign the value
+                        // to the variables array with the new name.
+                        $variables[str_replace('field_', '', $field_name)] = $field_value['value'];
+                    }
+                }
+            }
         }
-      }
+
+        // Special handling for the 'field_link' field to preprocess link data.
+        if ($block_content->hasField('field_link')) {
+
+            // Retrieve the link field items.
+            $link_field_items = $block_content->get('field_link')->getValue();
+
+            // Check if the link field items array is not empty.
+            if (!empty($link_field_items)) {
+                $links = [];
+
+                // Iterate through each link item in the field.
+                foreach ($link_field_items as $item) {
+
+                    // Convert the URI to a URL object and determine if it's external or internal.
+                    $url_object = Url::fromUri($item['uri']);
+                    $url = $url_object->isExternal() ? $item['uri'] : $url_object->toString();
+
+                    // Add the link's URL and title to the links array.
+                    $links[] = ['url' => $url, 'title' => $item['title']];
+                }
+
+                // Assign the links array to the variables array for use in the template.
+                $variables['links'] = $links;
+
+                // Add a class to the block attributes if multiple links are present.
+                if (count($links) > 1) {
+                    $variables['attributes']['class'][] = 'multiple-links';
+                }
+            }
+        }
+
+        // Special handling for the 'field_image' field to preprocess image data.
+        if ($block_content->hasField('field_image')) {
+
+            // Retrieve the image field items.
+            $image_field_items = $block_content->get('field_image')->getValue();
+
+            // Check if the image field items array is not empty and is an array.
+            if (!empty($image_field_items) && is_array($image_field_items)) {
+
+                // Retrieve the first item of the image field's value if it exists.
+                $image_field_value = reset($image_field_items);
+
+                // Ensure that the image field value is an array.
+                if (is_array($image_field_value)) {
+                    // Render the image field to ensure proper HTML output.
+                    $image_render_array = $block_content->get('field_image')
+                        ->view(['type' => 'default']);
+
+                    // Assign the rendered image HTML, URL, and other attributes to variables.
+                    $variables['card_image'] = $renderer->render($image_render_array);
+                    $variables['image'] = $image_field_value['image'] ?? NULL;
+                    $variables['image_url'] = $image_field_value['uri'] ?? NULL;
+                    $variables['image_alt'] = $image_field_value['alt'] ?? NULL;
+                    $variables['image_title'] = $image_field_value['title'] ?? NULL;
+                }
+            }
+        }
+
+        // Set cache context and tags to optimize caching.
+        // This ensures that cache is correctly invalidated when block content changes.
+        $variables['#cache']['contexts'][] = 'url';
+        $variables['#cache']['tags'][] = 'block_content:' . $block_content->id();
+        $variables['#cache']['max-age'] = Cache::PERMANENT;
     }
-
-    // Special handling for the 'field_link' field to preprocess link data.
-    if ($block_content->hasField('field_link')) {
-
-      // Retrieve the link field items.
-      $link_field_items = $block_content->get('field_link')->getValue();
-
-      // Check if the link field items array is not empty.
-      if (!empty($link_field_items)) {
-        $links = [];
-
-        // Iterate through each link item in the field.
-        foreach ($link_field_items as $item) {
-
-          // Convert the URI to a URL object and determine if it's external or internal.
-          $url_object = Url::fromUri($item['uri']);
-          $url = $url_object->isExternal() ? $item['uri'] : $url_object->toString();
-
-          // Add the link's URL and title to the links array.
-          $links[] = ['url' => $url, 'title' => $item['title']];
-        }
-
-        // Assign the links array to the variables array for use in the template.
-        $variables['links'] = $links;
-
-        // Add a class to the block attributes if multiple links are present.
-        if (count($links) > 1) {
-          $variables['attributes']['class'][] = 'multiple-links';
-        }
-      }
-    }
-
-    // Special handling for the 'field_image' field to preprocess image data.
-    if ($block_content->hasField('field_image')) {
-
-      // Retrieve the image field items.
-      $image_field_items = $block_content->get('field_image')->getValue();
-
-      // Check if the image field items array is not empty and is an array.
-      if (!empty($image_field_items) && is_array($image_field_items)) {
-
-        // Retrieve the first item of the image field's value if it exists.
-        $image_field_value = reset($image_field_items);
-
-        // Ensure that the image field value is an array.
-        if (is_array($image_field_value)) {
-          // Render the image field to ensure proper HTML output.
-          $image_render_array = $block_content->get('field_image')
-            ->view(['type' => 'default']);
-
-          // Assign the rendered image HTML, URL, and other attributes to variables.
-          $variables['card_image'] = $renderer->render($image_render_array);
-          $variables['image'] = $image_field_value['image'] ?? NULL;
-          $variables['image_url'] = $image_field_value['uri'] ?? NULL;
-          $variables['image_alt'] = $image_field_value['alt'] ?? NULL;
-          $variables['image_title'] = $image_field_value['title'] ?? NULL;
-        }
-      }
-    }
-
-    // Set cache context and tags to optimize caching.
-    // This ensures that cache is correctly invalidated when block content changes.
-    $variables['#cache']['contexts'][] = 'url';
-    $variables['#cache']['tags'][] = 'block_content:' . $block_content->id();
-  }
 }
 
 /**
@@ -296,14 +298,14 @@ function cua_theme_preprocess_block(array &$variables): void {
  *   An associative array of variables passed to the theme hook.
  */
 function cua_theme_theme_suggestions_html_alter(array &$suggestions, array $variables): void {
-  // Get the current route match.
-  $route_match = \Drupal::routeMatch();
+    // Get the current route match.
+    $route_match = \Drupal::routeMatch();
 
-  // Get the name of the current route.
-  $route_name = $route_match->getRouteName();
+    // Get the name of the current route.
+    $route_name = $route_match->getRouteName();
 
-  // Add a suggestion based on the route name.
-  $suggestions[] = 'html__' . str_replace('.', '__', $route_name);
+    // Add a suggestion based on the route name.
+    $suggestions[] = 'html__' . str_replace('.', '__', $route_name);
 }
 
 /**
@@ -315,14 +317,14 @@ function cua_theme_theme_suggestions_html_alter(array &$suggestions, array $vari
  *   An associative array of variables to pass to the theme template.
  */
 function cua_theme_preprocess_html(array &$variables): void {
-  // Get the current user object.
-  $user = \Drupal::currentUser();
+    // Get the current user object.
+    $user = \Drupal::currentUser();
 
-  // Check if the user has the 'administrator' role.
-  if ($user->hasRole('administrator')) {
-    // Add a class to body_classes.
-    $variables['attributes']['class'][] = 'user-administrator';
-  }
+    // Check if the user has the 'administrator' role.
+    if ($user->hasRole('administrator')) {
+        // Add a class to body_classes.
+        $variables['attributes']['class'][] = 'user-administrator';
+    }
 }
 
 /**
@@ -330,20 +332,20 @@ function cua_theme_preprocess_html(array &$variables): void {
  * suggestions for forms.
  */
 function cua_theme_theme_suggestions_form_alter(array &$suggestions, array $variables): void {
-  // Get the form ID.
-  $form_id = $variables['element']['#form_id'];
+    // Get the form ID.
+    $form_id = $variables['element']['#form_id'];
 
-  // Replace dashes with underscores in the form ID.
-  $form_id = str_replace('--', '_', $form_id);
+    // Replace dashes with underscores in the form ID.
+    $form_id = str_replace('--', '_', $form_id);
 
-  // Add a theme suggestion based on the modified form ID.
-  $suggestions[] = 'form__' . $form_id;
+    // Add a theme suggestion based on the modified form ID.
+    $suggestions[] = 'form__' . $form_id;
 }
 
 function cua_theme_preprocess_spacer(&$variables): void {
-  // Get the current user object.
-  $user = \Drupal::currentUser();
+    // Get the current user object.
+    $user = \Drupal::currentUser();
 
-  // Check if the current user has either the 'administrator' or 'advancement_admin' role.
-  $variables['is_admin'] = $user->hasRole('administrator') || $user->hasRole('advancement_admin');
+    // Check if the current user has either the 'administrator' or 'advancement_admin' role.
+    $variables['is_admin'] = $user->hasRole('administrator') || $user->hasRole('advancement_admin');
 }
