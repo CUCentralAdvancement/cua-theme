@@ -30,6 +30,15 @@ global-styling:
   dependencies:
     - core/popperjs
 
+# Barba
+barba:
+  js:
+    js/barba.min.js: {}
+    js/barba-init.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
 # Alert
 alert:
   version: VERSION

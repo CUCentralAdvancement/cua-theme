@@ -316,7 +316,13 @@ function cua_theme_theme_suggestions_html_alter(array &$suggestions, array $vari
  * @param array $variables
  *   An associative array of variables to pass to the theme template.
  */
+/**
+ * Implements hook_preprocess_Html().
+ */
 function cua_theme_preprocess_html(array &$variables): void {
+    // Attach the Barba library to every page.
+    $variables['#attached']['library'][] = 'cua_theme/barba';
+
     // Get the current user object.
     $user = \Drupal::currentUser();
 
