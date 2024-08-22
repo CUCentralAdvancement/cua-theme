@@ -39,7 +39,6 @@ barba:
   dependencies:
     - core/jquery
     - core/drupal
-    - core/drupalSettings
 
 # Alert
 alert:
