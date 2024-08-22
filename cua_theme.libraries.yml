@@ -33,11 +33,13 @@ global-styling:
 # Barba
 barba:
   js:
+    js/gsap.min.js: {}
     js/barba.min.js: {}
     js/barba-init.js: {}
   dependencies:
     - core/jquery
     - core/drupal
+    - core/drupalSettings
 
 # Alert
 alert:
