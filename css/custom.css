@@ -5,7 +5,6 @@
     border: 1px solid var(--cua-dark-gray);
     border-radius: 15px;
     margin: 0.15rem;
-    /* Standardized unit with 0 instead of . */
     padding: 1rem
 }
 
@@ -302,13 +301,10 @@ div#edit-bod--2 {
     font-weight: var(--font-weight-bold);
     font-size: 0.9rem;
     padding: 0.25rem 0.5rem;
-    /* Adjusted for consistency with other elements */
     border: 1px solid #5d4915;
     line-height: 2.5;
     white-space: nowrap;
-    /* Prevent text from wrapping */
     margin: 0 0.25rem;
-    /* Consistent margin value */
 }
 
 .stories .taxonomy a {
@@ -356,7 +352,6 @@ div#edit-bod--2 {
 
 .path-frontpage .stories {
     border-bottom: none;
-    /* Simplified border removal */
 }
 
 .stories form#views-exposed-form-stories-page-1 {
@@ -375,7 +370,6 @@ div#edit-bod--2 {
 
 .stories .js-form-item {
     margin: 0 0.5rem;
-    /* Adjusted for consistency */
 }
 
 .stories .js-form-item label {
@@ -389,7 +383,6 @@ div#edit-bod--2 {
 .stories #edit-actions .btn.btn-primary {
     background: var(--cua-gray-400);
     border: 1px solid var(--cua-gray-400);
-    /* Simplified border properties */
     box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, 0.1);
     color: var(--cua-black);
     cursor: pointer;
@@ -448,24 +441,20 @@ div#edit-bod--2 {
 span.views-summary.views-summary-unformatted {
     border: 1px solid var(--cua-gray-300);
     margin: 0 0 0 0.75rem;
-    /* Consistent spacing */
     width: auto
 }
 
 .view-id-trustees .views-element-container .view-content.row {
     white-space: nowrap;
-    /* Prevents text wrapping */
     margin: 0 0 1rem
 }
 
 .view-id-trustees .views-element-container .view-content.row .views-summary {
     display: inline-block;
-    /* Aligns spans horizontally */
 }
 
 .views-exposed-form .bef-exposed-form #block-cua-theme-content form .form-actions {
     margin-top: 0 !important;
-    /* Removes margin to align actions */
 }
 
 .view-id-trustees .btn.btn-primary {
@@ -473,7 +462,6 @@ span.views-summary.views-summary-unformatted {
     color: var(--cua-white);
     border: 1px solid var(--cua-gray-700);
     padding: 0.45rem 1rem;
-    /* Consistent padding */
 }
 
 .view-trustees .form-control {
@@ -483,14 +471,12 @@ span.views-summary.views-summary-unformatted {
 .view-id-trustees .view-filters {
     background: #f4f4f5;
     padding: 0 1rem;
-    /* Consistent padding */
     margin: 0 0 1rem
 }
 
 .field--name-field-campus .field__item {
     display: inline;
     margin-right: 10px;
-    /* Optional: Adds space between items */
 }
 
 #edit-submit-trustees {
@@ -518,16 +504,13 @@ span.views-summary.views-summary-unformatted {
     color: var(--cua-black);
     font-weight: var(--font-weight-bold);
     padding: 0.75rem 2rem;
-    /* Consistent spacing */
     text-decoration: none;
-    /* Ensures consistent styling */
 }
 
 .page-view-taxonomy-term .node__content .nav-link a:hover {
     color: var(--cua-white);
     background: var(--cua-gold-hover);
     text-decoration: none;
-    /* Ensures consistency with default state */
 }
 
 .page-view-taxonomy-term .field.field--name-title {
@@ -536,10 +519,8 @@ span.views-summary.views-summary-unformatted {
 
 .page-view-taxonomy-term .field--type-image img {
     margin: 0 0 1em;
-    /* Consistent spacing */
     max-width: 400px;
     height: auto;
-    /* Maintains aspect ratio */
 }
 
 ed11y-element-panel {
@@ -550,8 +531,7 @@ ed11y-element-panel {
 
 /* Style Charts */
 .highcharts-legend {
-    background: white !important;
-    /* Change this to your desired color */
+    background: white !important
 }
 
 .highcharts-legend-item,

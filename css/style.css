@@ -27,24 +27,18 @@
     --cua-white: #fff;
     --cua-white-darker: #ddd;
     --cua-white-light: #f5f5f5;
-    --cua-body-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --cua-arvo: 'Roboto Condensed', sans-serif;
-    --cua-body-font-size: var(--base-font-size);
-    --cua-body-font-weight: 400;
-    --cua-body-line-height: 1.5;
-    --bs-body-font-size: var(--base-font-size);
-    --bs-body-font-weight: 400;
-    --bs-body-line-height: 1.5;
     --bs-link-color: #0854bb;
     --cua-link-color: #0854bb;
-    --fa-font-solid: "FontAwesome";
-    --font-awesome: "FontAwesome";
-    --font-awesome-free: "Font Awesome 5 Free";
-    --fa-style-family-classic: "FontAwesome";
-    --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --bg-light: #f4f4f5;
     --uci-gray: #595955;
+    /* Fonts */
+    --font-awesome: "FontAwesome";
+    --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --cua-body-font-size: 16px;
+    --bs-body-font-size: 16px;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
     /* Base font size for the body */
     --base-font-size: 16px;
     /* Scale for headings */

@@ -642,10 +642,6 @@ ol li.breadcrumb-item:nth-of-type(1) a {
     color: var(--cua-gold-hover)
 }
 
-li.breadcrumb-item.active {
-    margin: 0.1rem 0 0
-}
-
 .breadcrumb-item + .breadcrumb-item::before {
     color: var(--cua-gray-400);
     content: var(--bs-breadcrumb-divider, ">")
@@ -743,6 +739,7 @@ div#block-cua-theme-breadcrumbs {
         display: none
     }
 
+    /* Custom Hamburger */
     .navbar-toggler {
         background-color: transparent !important;
         border: var(--bs-border-width) solid var(--cua-black-pure)

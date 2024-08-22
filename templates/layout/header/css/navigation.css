@@ -324,7 +324,7 @@ nav.tabs {
 
 .nav.primary.nav-pills li a::before {
   display: inline-block;
-  font-family: var(--font-awesome-free);
+  font-family: var(--font-awesome);
   font-weight: var(--font-weight-xbold);margin-right: 10px
 }
 
@@ -392,7 +392,7 @@ a.simplesamlphp-auth-login-link {
 a.simplesamlphp-auth-login-link::before {
   content: "\f06e";
   display: inline-block;
-  font-family: var(--font-awesome-free);
+  font-family: var(--font-awesome);
   font-weight: var(--font-weight-xbold);
   margin-right: 10px
 }
