@@ -413,7 +413,7 @@ a.simplesamlphp-auth-login-link:hover {
 }
 
 a.nav-link.active.is-active {
-  color: #b19a5e !important
+  color: var(--cua-gold) !important;
 }
 
 #main-wrapper .block-menu {
