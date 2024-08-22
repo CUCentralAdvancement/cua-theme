@@ -743,7 +743,6 @@ div#block-cua-theme-breadcrumbs {
         display: none
     }
 
-    /* Custom Hamburger */
     .navbar-toggler {
         background-color: transparent !important;
         border: var(--bs-border-width) solid var(--cua-black-pure)
