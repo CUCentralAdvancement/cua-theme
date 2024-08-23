@@ -14,6 +14,11 @@
 */
 #}
 
+{# Preload the video resource if applicable #}
+{% if provider == 'local' and content.field_video_mp4.0 %}
+    <link rel="preload" href="{{ content.field_video_mp4.0 }}" as="video">
+{% endif %}
+
 {# Import macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
