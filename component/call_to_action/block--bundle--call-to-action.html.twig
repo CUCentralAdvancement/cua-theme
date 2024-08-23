@@ -31,7 +31,7 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'call-to-action',
-    'card rounded-0 h-100 mb-sm-5',
+    'card rounded-0 h-100',
     animate_trigger,
     color_background ?: null,
     color_border ?: null,
@@ -57,7 +57,7 @@
 
 {# Content #}
 {% if margins %}
-<div class="{{ margins }}">
+<div class="{{ margins }} h-100">
     {% endif %}
     <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
             {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
