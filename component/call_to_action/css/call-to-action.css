@@ -107,6 +107,17 @@
     padding: 0 15px !important
 }
 
+.cta-margin_top {
+    padding: 20px 0 0;
+}
+
+.cta-margin_bottom {
+    padding: 0 0 20px;
+}
+
+.cta-margin_top_and_bottom {
+    padding: 15px 0;
+}
 /*** Responsive ***/
 /* Media query for screens below 991px */
 @media (max-width: 991px) {

@@ -57,7 +57,7 @@
 
 {# Content #}
 {% if margins %}
-<div class="{{ margins }} h-100">
+<div class="cta-{{ margins }}">
     {% endif %}
     <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
             {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
