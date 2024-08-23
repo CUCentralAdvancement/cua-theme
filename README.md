@@ -21,7 +21,7 @@ The theme is manage via composer inside the Drupal composer.json file.
 ],
 
 "require": {
-"cu/cua_theme": "^1.0",
+"cu/cua_theme": "^2.0",
 }
 
 # Theme issues are assigned and handle via the Github Issue Q.
