@@ -499,7 +499,7 @@ h2.text-align-center::after {
     color: var(--cua-gray-700);
     font-family: var(--font-roboto-condensed);
     font-size: 1.35rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold) !important;
     line-height: 1.2;
     margin: .75rem 0 0
 }
