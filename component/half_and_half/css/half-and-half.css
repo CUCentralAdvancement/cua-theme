@@ -47,6 +47,21 @@
   float: left !important
 }
 
+.half-and-half .card-img.large {
+  width: 80% !important; /* Set the image width to 50% of its original size */
+  height: auto !important; /* Maintain the aspect ratio */
+}
+
+.half-and-half .card-img.medium {
+  width: 60% !important; /* Set the image width to 50% of its original size */
+  height: auto !important; /* Maintain the aspect ratio */
+}
+
+.half-and-half .card-img.small img {
+  width: 50% !important; /* Set the image width to 50% of its original size */
+  height: auto !important; /* Maintain the aspect ratio */
+}
+
 /* Horizontal rule styling */
 .hr-top,
 .hr-bottom,
