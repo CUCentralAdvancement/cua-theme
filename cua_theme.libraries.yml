@@ -30,6 +30,14 @@ global-styling:
   dependencies:
     - core/popperjs
 
+# Accordion
+accordion:
+  version: VERSION
+  css:
+    component:
+      component/accordion/css/accordion.css:
+        weight: -10
+
 # Barba
 barba:
   js:

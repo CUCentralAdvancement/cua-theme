@@ -1,0 +1,13 @@
+
+.accordion-button:not(.collapsed) {
+    color: var(--cua-black) !important;
+    background-color: var(--cua-gold) !important;
+}
+
+.accordion-button {
+    padding: .5rem 1rem 0 1rem;
+}
+
+.accordion-button {
+    background-color: var(--cua-gray-100) !important;
+}
