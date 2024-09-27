@@ -88,6 +88,16 @@ counter:
     //cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js: { type: external, minified: true }
     component/counter/js/counter.js: {}
 
+# Fontawesome:
+fontawesome:
+  version: 6.5.1
+  css:
+    theme:
+      dist/fontawesome/css/fontawesome.min.css: {}
+      dist/fontawesome/css/brands.min.css: {}
+      dist/fontawesome/css/regular.min.css: {}
+      dist/fontawesome/css/solid.min.css: {}
+
 # Half and Half
 half-and-half:
   version: VERSION

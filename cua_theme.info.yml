@@ -37,6 +37,7 @@ regions:
 
 libraries:
   - cua_theme/global-styling
+  - cua_theme/fontawesome
   - cua_theme/alert
   - cua_theme/banner
   - cua_theme/call-to-action
