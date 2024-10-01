@@ -59,6 +59,10 @@
   padding-top: 10px; /* Optional: Add padding for spacing */
 }
 
+.paragraph--type--carousel .field--type-entity-reference {
+  margin: 0;
+}
+
 @media only screen and (max-width: 991px) {
 
   .slider blockquote p {

@@ -40,7 +40,6 @@
     'block-' ~ plugin_id|clean_class,
     'container',
     'slider',
-    'pb-5',
 ] %}
 
 {# Add unique id to block #}
@@ -49,7 +48,7 @@
 {# Content #}
 <div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>
 
-    <div class="slider-title visually-hidden">
+    <div class="position-absolute top-50% start-0 text-center w-100">
         {# Include Title #}
         {{ title_prefix ?? '' }}
         {{ label }}
