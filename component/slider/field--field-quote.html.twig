@@ -38,8 +38,10 @@
  */
 #}
 
-  {% for item in items %}
-      <div class="carousel-caption d-none d-md-block w-50 bg-pure-black text-white p-3">
-          {{ item.content }}
-      </div>
-  {% endfor %}
+{# Loop through each item #}
+{% for item in items %}
+    <div{{ attributes.addClass(classes, 'carousel-caption d-none d-md-block w-50 bg-white opacity-75 text black p-3') }}>
+        {{ item.content }}
+    </div>
+{% endfor %}
+
