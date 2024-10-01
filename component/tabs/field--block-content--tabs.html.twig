@@ -1,0 +1,38 @@
+{# Tabs Fields #}
+
+{% set unique_id = random() %}
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab-{{ unique_id }}" role="tablist">
+        {% for item in items %}
+            <button class="nav-link {% if loop.first %}active{% endif %}"
+                    id="nav-tab-{{ unique_id }}-{{ loop.index }}"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-pane-{{ unique_id }}-{{ loop.index }}"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-pane-{{ unique_id }}-{{ loop.index }}"
+                    aria-selected="{{ loop.first ? 'true' : 'false' }}">
+                {# Render the paragraph's title field #}
+                {% if item.content['#paragraph'].field_title %}
+                    {{ item.content['#paragraph'].field_title.value }}
+                {% endif %}
+            </button>
+        {% endfor %}
+    </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent-{{ unique_id }}">
+    {% for item in items %}
+        <div class="tab-pane fade {% if loop.first %}show active{% endif %}"
+             id="nav-pane-{{ unique_id }}-{{ loop.index }}"
+             role="tabpanel"
+             aria-labelledby="nav-tab-{{ unique_id }}-{{ loop.index }}"
+             tabindex="0">
+            {# Render the paragraph's body field with HTML #}
+            {% if item.content['#paragraph'].field_body %}
+                {{ item.content['#paragraph'].field_body.processed|raw }}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
