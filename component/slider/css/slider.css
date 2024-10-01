@@ -63,6 +63,63 @@
   margin: 0;
 }
 
+/* Slider content background colors */
+
+/* white background */
+.cu-bg-white-slider .carousel-caption  {
+  background: var(--cua-white-opacity-75) !important;
+}
+
+/* light-gray background */
+.cu-bg-light-grey-slider .carousel-caption {
+  background: var(--cua-white-opacity-75) !important;
+}
+
+/* pure black background */
+.cu-bg-pure-black-slider .carousel-caption {
+  background: var(--cua-black) !important;
+}
+
+/* black background */
+.cu-bg-black-slider .carousel-caption  {
+  background: var(--cua-black-opacity-75) !important;
+}
+
+/* gold background */
+.cu-bg-gold-slider .carousel-caption  {
+  background: var(--cua-gold-opacity-75) !important;
+}
+
+/* white text */
+.cu-text-white-slider .carousel-caption  p.text-align-center.h2.title-lg,
+.cu-text-white-slider .carousel-caption {
+  color: var(--cua-white-opacity-75) !important;
+}
+
+/* light-gray background */
+.cu-bg-light-grey-slider .carousel-caption. p.text-align-center.h2.title-lg,
+.cu-bg-light-grey-slider .carousel-caption {
+  background: var(--cua-white-opacity-75) !important;
+}
+
+/* pure black text */
+.cu-bg-pure-black-slider .carousel-caption. p.text-align-center.h2.title-lg,
+.cu-bg-pure-black-slider .carousel-caption {
+  color: var(--cua-black) !important;
+}
+
+/* black text */
+.cu-text-black-slider .carousel-caption  p.text-align-center.h2.title-lg,
+.cu-text-black-slider .carousel-caption {
+  color: var(--cua-black-opacity-75) !important;
+}
+
+/* gold text */
+.cu-text-gold-slider .carousel-caption  p.text-align-center.h2.title-lg,
+.cu-text-gold-slider .carousel-caption  {
+  color: var(--cua-gold-opacity-75) !important;
+}
+
 @media only screen and (max-width: 991px) {
 
   .slider blockquote p {
