@@ -38,8 +38,7 @@
  */
 #}
 
+{# Remove unneeded classes" #}
   {% for item in items %}
-      <div class="carousel-caption d-none d-md-block">
-          {{ item.content }}
-      </div>
+	  {{ item.content }}
   {% endfor %}

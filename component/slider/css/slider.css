@@ -44,6 +44,21 @@
   display: none
 }
 
+.carousel-item {
+  position: relative;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom:10%; /* Move the caption to the top */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure it's above the image */
+  width: 100%;
+  text-align: center;
+  padding-top: 10px; /* Optional: Add padding for spacing */
+}
+
 @media only screen and (max-width: 991px) {
 
   .slider blockquote p {
