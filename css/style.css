@@ -967,6 +967,10 @@ a.flag-link .flag.cu-bg-light-grey {
     padding-top: 2rem
 }
 
+.node--type-landing-page .container-fluid {
+    margin: 0 !important;
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
