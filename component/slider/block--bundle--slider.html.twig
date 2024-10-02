@@ -10,13 +10,7 @@
     'block-' ~ plugin_id|clean_class,
     'container',
     'slider',
-	'clearfix',
-] %}
-
-{# Define slider classes #}
-{% set slider_colors = [
-	color_background  ~ '-',
-	text_color ~ '-',
+    'clearfix',
 ] %}
 
 {# Add unique id to block #}
@@ -24,19 +18,20 @@
 
 {# Content #}
 <div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>
-	
-	{# Include Title #}
-	<div class="text-align-center">
-		{{ title_prefix ?? '' }}
-		<p class="h2 title">{{ label }}</p>
-		{{ title_suffix ?? '' }}
-	</div>
-	
-	<div id="carousel" class="carousel slide slide-numbers-{{ visibility_numbers }}"
+
+    {# Include Title #}
+    <div class="text-align-center">
+        {{ title_prefix ?? '' }}
+        <p class="h2 title my-3">{{ label }}</p>
+        {{ title_suffix ?? '' }}
+    </div>
+
+    <div id="carousel"
+         class="carousel slide slide-numbers-{{ visibility_numbers }}"
          data-bs-ride="carousel">
 
         {# SLider Content  #}
-		<div class="carousel-inner text-align-center {% if color_background %}{{color_background }}-slider {% endif %}{% if color_background %}{{text_color}}-slider{% endif %}">
+        <div class="carousel-inner text-align-center {% if container_size %}{{ container_size }}-size {% endif %}{% if color_background %}{{ color_background }}-slider {% endif %}{% if text_color %}{{ text_color }}-slider{% endif %}">
             {{ content }}
         </div>
 
@@ -44,13 +39,15 @@
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
             <button class="carousel-control-prev" type="button"
                     data-bs-target="#carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="carousel-control-prev-icon"
+                      aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Previous'|t }}</span>
             </button>
 
             <button class="carousel-control-next" type="button"
                     data-bs-target="#carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="carousel-control-next-icon"
+                      aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Nex'|t }}t</span>
             </button>
         {% endif %}

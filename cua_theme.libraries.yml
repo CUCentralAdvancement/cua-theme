@@ -38,14 +38,6 @@ accordion:
       component/accordion/css/accordion.css:
         weight: -10
 
-# Alert
-alert:
-  version: VERSION
-  css:
-    component:
-      components/alert/css/alert.css:
-        weight: -10
-
 # Barba
 barba:
   js:

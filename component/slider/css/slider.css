@@ -120,6 +120,27 @@
   color: var(--cua-gold-opacity-75) !important;
 }
 
+/* copy block width */
+.container-size .carousel-caption,
+.container-fluid-size .carousel-caption,
+.container-xxl-size .carousel-caption,
+.container-xl-size .carousel-caption,
+.container-lg-size .carousel-caption {
+  width:100% !important;
+}
+
+.container-md-size .carousel-caption {
+  width: 75% !important;
+}
+
+.container-md-size .carousel-caption {
+  width: 50% !important;
+}
+
+.container-sm-size .carousel-caption {
+  width: 30% !important;
+}
+
 @media only screen and (max-width: 991px) {
 
   .slider blockquote p {
@@ -137,3 +158,4 @@
     left: -20px !important;
   }
 }
+
