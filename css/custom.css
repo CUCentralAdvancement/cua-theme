@@ -221,7 +221,7 @@ div#edit-bod--2 {
 .faq .ui-widget-content {
     border: 2px solid var(--cua-white);
     border-left-color: var(--cua-gray-400);
-    margin: 1rem
+    margin: 1rem !important
 }
 
 .faq .ui-state-default {
@@ -280,10 +280,6 @@ div#edit-bod--2 {
 
 .path-faq .card-footer .btn.outline-btn-cu-bg-black:hover {
     color: var(--cua-white) !important
-}
-
-.faq .ui-accordion .ui-accordion-content {
-    padding: 0 !important
 }
 
 .node--type-faqs main#content {
@@ -655,10 +651,6 @@ div#block--block-content--9f3104d8-4eb3-45b0-bb46-2462e6defff1-808 {
     .view.view-trustees .views-col.col-2,
     .view.view-trustees .views-col.col-3 {
         min-width: 400px !important
-    }
-
-    .faq .ui-accordion .ui-accordion-content {
-        padding: 0 !important
     }
 
     div#block--inline-block--basic-515 {
