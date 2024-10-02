@@ -302,10 +302,6 @@ form#node-page-layout-builder-form #edit-actions {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Change the values as needed */
 }
 
-.block.block-layout-builder.block-inline-blockbasic {
-    margin: 0 0 2rem;
-}
-
 #layout-builder-modal form {
     color: #000 !important;
     font-family: inherit;
