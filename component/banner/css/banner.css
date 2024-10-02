@@ -360,7 +360,7 @@
   overflow: hidden
 }
 
-.container-fluid {
+.container-fluid.banner {
   overflow: hidden
 }
 
