@@ -7,10 +7,14 @@
     not paragraph.isPublished() ? 'paragraph--unpublished'
 ]
 %}
+
 {% block paragraph %}
     <div{{ attributes.addClass(classes) }}>
         {% block content %}
-            {{ content }}
+	        <div class="position-relative">
+		        {{ content }}
+	        </div>
         {% endblock %}
     </div>
 {% endblock paragraph %}
+

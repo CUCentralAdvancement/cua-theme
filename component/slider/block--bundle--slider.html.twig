@@ -40,32 +40,35 @@
     'block-' ~ plugin_id|clean_class,
     'container',
     'slider',
+	'clearfix',
 ] %}
 
-{# Define CTA classes #}
+{# Define slider classes #}
 {% set slider_colors = [
-    color_background  ~ '-',
-    text_color ~ '-',
+	color_background  ~ '-',
+	text_color ~ '-',
 ] %}
+
 
 {# Add unique id to block #}
 {% set unique_id = 'block--node-' ~ '-slider' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
 <div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>
-
-    <div class="position-absolute top-50% start-0 text-center w-100">
-        {# Include Title #}
-        {{ title_prefix ?? '' }}
-        {{ label }}
-        {{ title_suffix ?? '' }}
-    </div>
-
-    <div id="carousel" class="carousel carousel-dark slide slide-numbers-{{ visibility_numbers }}"
+	
+	{# Include Title #}
+	<div class="text-align-center">
+		{{ title_prefix ?? '' }}
+		<p class="h2 title">{{ label }}</p>
+		{{ title_suffix ?? '' }}
+	</div>
+	
+	
+	<div id="carousel" class="carousel slide slide-numbers-{{ visibility_numbers }}"
          data-bs-ride="carousel">
 
         {# SLider Content  #}
-        <div class="carousel-inner text-align-center {% if color_background %}{{color_background }}-slider {% endif %}{% if color_background %}{{text_color}}-slider{% endif %}">
+		<div class="carousel-inner text-align-center {% if color_background %}{{color_background }}-slider {% endif %}{% if color_background %}{{text_color}}-slider{% endif %}">
             {{ content }}
         </div>
 
