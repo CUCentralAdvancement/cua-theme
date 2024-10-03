@@ -2,28 +2,28 @@
 
  {# Loop through each item in the carosel indicators #}
 <div class="carousel-indicators">
-    {% for item in items %}
-        {% set index = loop.index0 %}
-        <button type="button"
-                data-bs-target="#carousel"
-                data-bs-slide-to="{{ index }}"
-                class="{{ loop.first ? 'active' : '' }}"
-                aria-current="{{ loop.first ? 'true' : 'false' }}"
-                aria-label="Slide {{ loop.index }}"></button>
-    {% endfor %}
+	{% for item in items %}
+		{% set index = loop.index0 %}
+		<button type="button"
+		        data-bs-target="#carousel"
+		        data-bs-slide-to="{{ index }}"
+		        class="{{ loop.first ? 'active' : '' }}"
+		        aria-current="{{ loop.first ? 'true' : 'false' }}"
+		        aria-label="Slide {{ loop.index }}"></button>
+	{% endfor %}
 </div>
 
-{# Loop through each carosel items #}
+{# Loop through each carosel  item #}
 {% for item in items %}
-    {# Determine active class for the first item #}
-    {% set active_class = loop.first ? ' active' : '' %}
-    {# Add classes to the slide item #}
-    <div class="carousel-item{{ active_class }}" data-bs-interval="10000">
-        {# Render each item's content within the paragraph container #}
-        <div{{ attributes.addClass(classes) }}>
-            {{ item.content }}
-        </div>
-    </div>
+	{# Determine active class for the first item #}
+	{% set active_class = loop.first ? ' active' : '' %}
+	{# Add classes to the slide item #}
+	<div class="carousel-item{{ active_class }}" data-bs-interval="7000">
+		{# Render each item's content within the paragraph container #}
+		<div{{ attributes.addClass(classes) }}>
+			{{ item.content }}
+		</div>
+	</div>
 {% endfor %}
 
 
