@@ -85,7 +85,7 @@
         text_alignment
     ) }}
 
-    {# Render the footer #}
+    {# Render the footer and pass button_layout #}
     {{ cardFooterMacros.render_card_footer(
         links,
         container_size,
@@ -94,7 +94,8 @@
         text_alignment,
         padding,
         outline,
-        button_color
+        button_color,
+        button_layout
     ) }}
 
 </div>

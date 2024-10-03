@@ -1,5 +1,4 @@
-{% macro render_card_footer(links, container_size = null, color_background = null, position_container = null, text_alignment = null, padding = null, outline = null, button_color = null) %}
-    {# Ensure links is always an array #}
+{% macro render_card_footer(links, container_size = null, color_background = null, position_container = null, text_alignment = null, padding = null, outline = null, button_color = null, button_layout = null) %}    {# Ensure links is always an array #}
     {% set links = links|default([]) %}
 
     {# Check if there are links to render #}
@@ -11,6 +10,7 @@
         {% set card_footer_classes = [
             'card-footer',
             'd-flex',
+            button_layout,
             multiple_links ? 'multiple-links' : '',
             container_size,
             color_background,
@@ -32,7 +32,6 @@
             'p-2',
             'mt-3',
         ] | filter(v => v) | join(' ') %}
-
         <div class="{{ card_footer_classes }}">
             {% for link in links %}
                 {# Ensure each link has the required properties #}
