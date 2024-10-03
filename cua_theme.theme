@@ -157,6 +157,7 @@ function cua_theme_preprocess_block(array &$variables): void {
             'field_autoplay',
             'field_border_style',
             'field_button_color',
+            'field_button_layout',
             'field_campus',
             'field_category',
             'field_center_content',
