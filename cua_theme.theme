@@ -136,141 +136,74 @@ function cua_theme_plugin_filter_block__layout_builder_alter(array &$definitions
  *   array includes the data that will be available to the block's Twig
  *   template.
  */
+
+/**
+ * Implements hook_preprocess_block().
+ */
 function cua_theme_preprocess_block(array &$variables): void {
     // Check if the block content is available in the variables array.
-    // This ensures that there is actual block content to work with.
     if (!empty($variables['content']['#block_content'])) {
-
-        // Retrieve the block content object from the variables array.
         $block_content = $variables['content']['#block_content'];
-
-        // Get the Drupal renderer service to render render arrays.
         $renderer = \Drupal::service('renderer');
 
-        // Define an array of field names that we want to preprocess.
-        // These are the fields that we expect to be present in the block content.
-        $fields_to_preprocess = [
-            'body',
-            'field_animation',
-            'field_animation_delay',
-            'field_animation_speed',
-            'field_autoplay',
-            'field_border_style',
-            'field_button_color',
-            'field_button_layout',
-            'field_campus',
-            'field_category',
-            'field_center_content',
-            'field_container_size',
-            'field_color_background',
-            'field_color_border',
-            'field_text_color',
-            'field_effect',
-            'field_effect_copy',
-            'field_flag',
-            'field_flag_title',
-            'field_flag_background',
-            'field_icon',
-            'field_icon_color',
-            'field_icon_size',
-            'field_image_alignment',
-            'field_image_size',
-            'field_margins',
-            'field_padding',
-            'field_page_title_visibility',
-            'field_parallax',
-            'field_position_container',
-            'field_provider',
-            'field_parallax_video',
-            'field_shadow',
-            'field_size',
-            'field_text_alignment',
-            'field_text_color',
-            'field_outline',
-            'field_video',
-            'field_visibility',
-            'field_visibility_numbers',
-            'field_number',
-            'field_before_number',
-            'field_after_number',
+        // Define an array of field names to exclude from preprocessing.
+        $excluded_fields = [
+            'field_visibility_arrows',
+            'field_video_mp4',
+            'field_video_youtube',
+            // Add other fields you want to exclude here.
         ];
 
-        // Iterate through each field name in the array.
-        foreach ($fields_to_preprocess as $field_name) {
+        // Preprocess all fields dynamically, excluding specified fields.
+        foreach ($block_content->getFieldDefinitions() as $field_name => $field_definition) {
+            // Skip excluded fields.
+            if (in_array($field_name, $excluded_fields)) {
+                continue;
+            }
 
             // Check if the block content has the current field.
             if ($block_content->hasField($field_name)) {
-
                 // Get the field's value as an array.
                 $field_items = $block_content->get($field_name)->getValue();
 
-                // Check if the field items array is not empty and is an array.
                 if (!empty($field_items) && is_array($field_items)) {
-
                     // Retrieve the first item of the field's value if it exists.
                     $field_value = reset($field_items);
 
-                    // Ensure that the field value is an array and contains a 'value' key.
+                    // Check if the field value is an array and contains a 'value' key.
                     if (is_array($field_value) && isset($field_value['value'])) {
-
-                        // Remove the "field_" prefix from the field name and assign the value
-                        // to the variables array with the new name.
+                        // Assign the value to the variables array without the "field_" prefix.
                         $variables[str_replace('field_', '', $field_name)] = $field_value['value'];
                     }
                 }
             }
         }
 
-        // Special handling for the 'field_link' field to preprocess link data.
+        // Special handling for specific fields like links and images.
         if ($block_content->hasField('field_link')) {
-
-            // Retrieve the link field items.
+            // Handle the link field.
             $link_field_items = $block_content->get('field_link')->getValue();
-
-            // Check if the link field items array is not empty.
             if (!empty($link_field_items)) {
                 $links = [];
-
-                // Iterate through each link item in the field.
                 foreach ($link_field_items as $item) {
-
-                    // Convert the URI to a URL object and determine if it's external or internal.
                     $url_object = Url::fromUri($item['uri']);
                     $url = $url_object->isExternal() ? $item['uri'] : $url_object->toString();
-
-                    // Add the link's URL and title to the links array.
                     $links[] = ['url' => $url, 'title' => $item['title']];
                 }
-
-                // Assign the links array to the variables array for use in the template.
                 $variables['links'] = $links;
-
-                // Add a class to the block attributes if multiple links are present.
                 if (count($links) > 1) {
                     $variables['attributes']['class'][] = 'multiple-links';
                 }
             }
         }
 
-        // Special handling for the 'field_image' field to preprocess image data.
         if ($block_content->hasField('field_image')) {
-
-            // Retrieve the image field items.
+            // Handle the image field.
             $image_field_items = $block_content->get('field_image')->getValue();
-
-            // Check if the image field items array is not empty and is an array.
-            if (!empty($image_field_items) && is_array($image_field_items)) {
-
-                // Retrieve the first item of the image field's value if it exists.
+            if (!empty($image_field_items)) {
                 $image_field_value = reset($image_field_items);
-
-                // Ensure that the image field value is an array.
                 if (is_array($image_field_value)) {
-                    // Render the image field to ensure proper HTML output.
-                    $image_render_array = $block_content->get('field_image')
-                        ->view(['type' => 'default']);
-
-                    // Assign the rendered image HTML, URL, and other attributes to variables.
+                    $image_render_array = $block_content->get('field_image')->view(['type' => 'default']);
                     $variables['card_image'] = $renderer->render($image_render_array);
                     $variables['image'] = $image_field_value['image'] ?? NULL;
                     $variables['image_url'] = $image_field_value['uri'] ?? NULL;
@@ -281,13 +214,11 @@ function cua_theme_preprocess_block(array &$variables): void {
         }
 
         // Set cache context and tags to optimize caching.
-        // This ensures that cache is correctly invalidated when block content changes.
         $variables['#cache']['contexts'][] = 'url';
         $variables['#cache']['tags'][] = 'block_content:' . $block_content->id();
         $variables['#cache']['max-age'] = Cache::PERMANENT;
     }
 }
-
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for HTML templates.
  *
