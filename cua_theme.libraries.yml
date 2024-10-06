@@ -41,9 +41,9 @@ accordion:
 # Barba
 barba:
   js:
-    js/barba/barbagsap.min.js: {}
-    js/barba/barba.min.js: {}
-    js/barba/barba-init.js: {}
+    js/barbagsap.min.js: {}
+    js/barba.min.js: {}
+    js/barba-init.js: {}
   dependencies:
     - core/jquery
     - core/drupal
