@@ -256,11 +256,13 @@ p.h6.title {
     line-height: 1.1
 }
 
-.text-larger {
+.text-larger,
+span.text-larger {
     font-size: 120% !important;
 }
 
-.text-smaller {
+.text-smaller,
+span.text-smaller {
     font-size: 80% !important;
 }
 
