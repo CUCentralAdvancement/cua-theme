@@ -5,11 +5,11 @@
 	{% for item in items %}
 		{% set index = loop.index0 %}
 		<button type="button"
-		        data-bs-target="#carousel"
-		        data-bs-slide-to="{{ index }}"
-		        class="{{ loop.first ? 'active' : '' }}"
-		        aria-current="{{ loop.first ? 'true' : 'false' }}"
-		        aria-label="Slide {{ loop.index }}"></button>
+				data-bs-target="#carousel"
+				data-bs-slide-to="{{ index }}"
+				class="{{ loop.first ? 'active' : '' }}"
+				aria-current="{{ loop.first ? 'true' : 'false' }}"
+				aria-label="Slide {{ loop.index }}"></button>
 	{% endfor %}
 </div>
 

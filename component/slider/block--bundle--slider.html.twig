@@ -12,9 +12,12 @@
     color_background ?: null,
     text_color ?: null,
 ] %}
-
 {# Add unique id to block #}
 {% set unique_id = 'block--node-' ~ '-slider' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+
+
+{# Add unique id to block #}
+{% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
 <div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>
@@ -24,7 +27,7 @@
     <p class="text-align-center h2 title">{{ label }}</p>
     {{ title_suffix ?? '' }}
 
-    <div id="carousel" class="carousel carousel-dark slide slide-numbers-{{ visibility_numbers }}"
+    <div id="{{ carousel_id }}" class="carousel carousel-dark slide slide-numbers-{{ visibility_numbers }}"
          data-bs-ride="carousel">
 
         {# SLider Content  #}
@@ -35,17 +38,21 @@
         {# Include Arrows Component #}
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
             <button class="carousel-control-prev" type="button"
-                    data-bs-target="#carousel" data-bs-slide="prev">
+                    data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Previous'|t }}</span>
             </button>
 
             <button class="carousel-control-next" type="button"
-                    data-bs-target="#carousel" data-bs-slide="next">
+                    data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Next'|t }}t</span>
             </button>
         {% endif %}
 
     </div>
+
+
+
 </div>
+
