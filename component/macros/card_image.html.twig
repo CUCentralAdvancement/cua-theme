@@ -6,13 +6,14 @@
 {# Call the macro and pass the necessary variables #}
 {# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }} #}
 
-{% macro render_card_image(card_image, text_alignment = null, text_color = null, image_size = null, visibility = 'hidden', content = null, links = null) %}
+{% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, visibility = 'hidden', content = null, links = null) %}
     {% if card_image %}
         {# Preload the card image #}
         <link rel="preload" href="{{ card_image['#item'].entity.fileuri }}" as="image">
         {# Set card image classes #}
         {% set card_image_classes = [
             'card-header',
+            position_container ? 'd-flex ' ~ position_container : null,
             text_alignment ?: null,
             text_color ?: null,
             'g-0',
@@ -22,7 +23,6 @@
         {% set presentation_classes = [
             'card-img',
             image_size ?: null,
-            text_alignment ?: null,
         ] | filter(v => v) | join(' ') %}
 
         {# Content #}
