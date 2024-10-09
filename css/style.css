@@ -1001,7 +1001,7 @@ a.flag-link .flag.cu-bg-light-grey {
 .js-layout-builder-block .ck .btn.btn-secondary,
 .ck.btn.btn-secondary {
     color: var(--cua-black) !important;
-    border: 1px solid var(--cua-gold) !important;
+    border: 2px solid var(--cua-gold) !important;
     background-color: var(--cua-gold) !important;
     text-decoration: none !important;
     margin: 1rem 0 !important;
@@ -1010,7 +1010,7 @@ a.flag-link .flag.cu-bg-light-grey {
 .js-layout-builder-block .ck.btn.btn-secondary:hover,
 .ck.btn.btn-secondary:hover {
     color: var(--cua-white) !important;
-    border: 1px solid var(--cua-white) !important;
+    border: 2px solid var(--cua-white) !important;
     background-color: var(--cua-black) !important;
 }
 
