@@ -17,6 +17,8 @@
 {# Attach the library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+
 {# Define CTA classes #}
 {% set cta_classes = [
     'block',
@@ -31,7 +33,6 @@
     padding ?: null,
     margin ?: null,
     shadow ?: null,
-    text_alignment ?: null,
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
@@ -110,19 +111,16 @@
         {% endif %}
 
         {# Render Title #}
-        {% if label %}
-            {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-            {{ titleMacros.render_title (
-                label,
-                title_prefix,
-                title_suffix,
-                center_content,
-                text_alignment,
-                text_color,
-                padding,
-                links
-            ) }}
-        {% endif %}
+        {{ titleMacros.render_title (
+            label,
+            title_prefix,
+            title_suffix,
+            center_content,
+            text_alignment,
+            text_color,
+            padding,
+            links
+        ) }}
 
         {# Render Body #}
         {% if content %}
