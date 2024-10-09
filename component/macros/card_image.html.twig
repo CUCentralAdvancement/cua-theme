@@ -1,60 +1,31 @@
-{# Card Image Macro #}
-
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }} #}
-
-{% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, visibility = 'hidden', content = null, links = null) %}
+{% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, image_text = null, content = null, links = null) %}
     {% if card_image %}
-        {# Preload the card image #}
-        <link rel="preload" href="{{ card_image['#item'].entity.fileuri }}" as="image">
-        {# Set card image classes #}
+        <link rel="preload" href="{{ card_image_field['#item'].entity.fileuri }}" as="image">
         {% set card_image_classes = [
             'card-header',
+            'card-img',
             position_container ? 'd-flex ' ~ position_container : null,
             text_alignment ?: null,
             text_color ?: null,
             'g-0',
         ] | filter(v => v) | join(' ') %}
 
-        {# Set presentation classes based on conditions #}
-        {% set presentation_classes = [
-            'card-img',
-            image_size ?: null,
-        ] | filter(v => v) | join(' ') %}
+        <div role="presentation" class="{{ card_image_classes }}">
 
-        {# Content #}
-        <div class="{{ card_image_classes }}">
-            <div role="presentation" class="{{ presentation_classes }}">
-
-                {# Card Image with link #}
-                {% if links is not empty %}
-                    {% set firstLink = links[0] %}
-                    <a class="img-hover-effect" href="{{ firstLink.url }}"
-                       title="{{ firstLink.title }}"
-                       aria-label="{{ firstLink.title }}"
-                       aria-hidden="true">
-                        {{ card_image }}
-                    </a>
-                {% else %}
-                    {# Card Image without link #}
+            {# Rendered image with link #}
+            {% if links is not empty %}
+                {% set firstLink = links[0] %}
+                <a class="img-hover-effect" href="{{ firstLink.url }}"
+                   title="{{ firstLink.title }}"
+                   aria-label="{{ firstLink.title }}"
+                   aria-hidden="true">
                     {{ card_image }}
-                {% endif %}
-
-                {# Card Image Caption #}
-                {% if visibility == 'visible' and content.field_image is not empty %}
-                    {% for item in content.field_image %}
-                        {% if item['#item'].alt %}
-                            <figcaption class="{{ visibility }} px-3 py-2">
-                                <p class="h6 title figcaption {{ text_alignment ?: '' }} {{ text_color ?: '' }}">{{ item['#item'].alt }}</p>
-                            </figcaption>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-
-            </div>
+                </a>
+            {% else %}
+                {# Rendered image w/o link #}
+                {{ card_image }}
+            {% endif %}
         </div>
+
     {% endif %}
 {% endmacro %}
