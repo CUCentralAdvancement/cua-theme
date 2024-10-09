@@ -8,7 +8,8 @@
 
 {# Content #}
 {% macro render_body(content, padding = null, text_color = null, text_alignment = null) %}
-    {% if content.body is not empty %}
+
+    {% if content.body|render|trim %}
         {# Define Body Classes #}
         {% set body_classes = [
             'card-body d-flex flex-column card-text lead g-0 clearfix',
@@ -21,5 +22,6 @@
         <div class="{{ body_classes }}">
             {{ content.body|render }}
         </div>
+
     {% endif %}
 {% endmacro %}
