@@ -981,6 +981,39 @@ a.flag-link .flag.cu-bg-light-grey {
     margin: 0 !important;
 }
 
+/* Ckeditor Links */
+.js-layout-builder-block .btn.btn-primary,
+.ck.btn.btn-primary {
+    color: var(--cua-black) !important;
+    border: 2px solid var(--cua-black) !important;
+    background-color: var(--cua-white) !important;
+    text-decoration: none !important;
+    margin: 1rem 0 !important;
+}
+
+.js-layout-builder-block .ck.btn.btn-primary:hover,
+.ck.btn.btn-primary:hover {
+    color: var(--cua-white) !important;
+    border: 2px solid var(--cua-black) !important;
+    background-color: var(--cua-black) !important;
+}
+
+.js-layout-builder-block .ck .btn.btn-secondary,
+.ck.btn.btn-secondary {
+    color: var(--cua-black) !important;
+    border: 1px solid var(--cua-gold) !important;
+    background-color: var(--cua-gold) !important;
+    text-decoration: none !important;
+    margin: 1rem 0 !important;
+}
+
+.js-layout-builder-block .ck.btn.btn-secondary:hover,
+.ck.btn.btn-secondary:hover {
+    color: var(--cua-white) !important;
+    border: 1px solid var(--cua-white) !important;
+    background-color: var(--cua-black) !important;
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
