@@ -44,7 +44,9 @@
   display: none
 }
 
-.slider  p, .slider  a, .slider  li {
+.slider  p,
+.slider  a,
+.slider  li {
   font-size: .95rem !important;
   line-height: 1.25 !important;
 }
