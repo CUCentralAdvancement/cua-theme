@@ -1,0 +1,26 @@
+{# caption Macro #}
+
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ captionMacros.render_caption(content, caption, padding, text_color, text_alignment) }} #}
+
+{# Content #}
+{% macro render_caption(caption, padding = null, text_color = null, text_alignment = null) %}
+	{% if caption|trim %}
+		{# Define caption classes #}
+		{% set caption_classes = [
+			'card-caption h6 clearfix',
+			padding ?: null,
+			text_color ?: null,
+			text_alignment ?: null,
+		] | filter(v => v) | join(' ') %}
+		
+		{# Render the caption #}
+		<div class="{{ caption_classes }}">
+			{{ caption }}
+		</div>
+		
+	{% endif %}
+{% endmacro %}
