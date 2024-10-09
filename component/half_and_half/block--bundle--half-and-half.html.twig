@@ -14,15 +14,11 @@
 */
 #}
 
-{# Import macros #}
-{% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-{% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-
 {# Attach the library #}
 {{ attach_library('cua_theme/half-and-half') }}
+
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {# Add Classes #}
 {% set hh_classes = [
@@ -80,6 +76,7 @@
                         {% if provider %}
                             {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                         {% elseif card_image %}
+                            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
                             {{ cardImageMacros.render_card_image (
                                 card_image,
                                 position_container,
@@ -91,12 +88,24 @@
                                 links
                             ) }}
                         {% elseif icon %}
+                            {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
                             {{ iconMacros.render_icon (
                                 icon,
                                 icon_size,
                                 icon_color,
                                 padding,
                                 position_container,
+                                text_alignment
+                            ) }}
+                        {% endif %}
+
+                        {# Render Caption #}
+                        {% if caption %}
+                            {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
+                            {{ captionMacros.render_caption(
+                                caption,
+                                padding,
+                                text_color,
                                 text_alignment
                             ) }}
                         {% endif %}
@@ -119,7 +128,7 @@
                     <div class="{{ title_body_col_classes }}">
                         <div class="row g-0 mx-5 pt-3">
 
-                            {# Render the title #}
+                            {# Render the title -- must render to all editing #}
                             {{ titleMacros.render_title(
                                 label,
                                 title_prefix,
@@ -131,26 +140,32 @@
                                 links
                             ) }}
 
-                            {# Render the body #}
-                            {{ bodyMacros.render_body(
-                                content,
-                                padding,
-                                text_color,
-                                text_alignment
-                            ) }}
+                            {# Render Body #}
+                            {% if content %}
+                                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+                                {{ bodyMacros.render_body(
+                                    content,
+                                    padding,
+                                    text_color,
+                                    text_alignment
+                                ) }}
+                            {% endif %}
 
-                            {# Render the footer #}
-                            {{ cardFooterMacros.render_card_footer(
-                                links,
-                                container_size,
-                                color_background,
-                                position_container,
-                                text_alignment,
-                                padding,
-                                outline,
-                                button_color,
-                                button_layout
-                            ) }}
+                            {# Render Footer #}
+                            {% if links %}
+                                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+                                {{ cardFooterMacros.render_card_footer(
+                                    links,
+                                    container_size,
+                                    color_background,
+                                    position_container,
+                                    text_alignment,
+                                    padding,
+                                    outline,
+                                    button_color,
+                                    button_layout
+                                ) }}
+                            {% endif %}
 
                         </div>
                     </div>
@@ -213,7 +228,7 @@
                 <div class="{{ title_body_col_classes }}">
                     <div class="row g-0 m-4">
 
-                        {# Render the title #}
+                        {# Render the title -- must render to all editing #}
                         {{ titleMacros.render_title(
                             label,
                             title_prefix,
@@ -225,25 +240,32 @@
                             links
                         ) }}
 
-                        {# Render the body #}
-                        {{ bodyMacros.render_body(
-                            content,
-                            padding,
-                            text_color,
-                            text_alignment
-                        ) }}
+                        {# Render Body #}
+                        {% if content %}
+                            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+                            {{ bodyMacros.render_body(
+                                content,
+                                padding,
+                                text_color,
+                                text_alignment
+                            ) }}
+                        {% endif %}
 
-                        {# Render the footer #}
-                        {{ cardFooterMacros.render_card_footer(
-                            links,
-                            container_size,
-                            color_background,
-                            position_container,
-                            text_alignment,
-                            padding,
-                            outline,
-                            button_color
-                        ) }}
+                        {# Render Footer #}
+                        {% if links %}
+                            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+                            {{ cardFooterMacros.render_card_footer(
+                                links,
+                                container_size,
+                                color_background,
+                                position_container,
+                                text_alignment,
+                                padding,
+                                outline,
+                                button_color,
+                                button_layout
+                            ) }}
+                        {% endif %}
 
                     </div>
                 </div>
