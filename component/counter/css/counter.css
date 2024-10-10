@@ -74,3 +74,7 @@
   margin: 0 4rem !important;
   scale: 100% !important
 }
+
+.counter .card-body {
+  padding: 1rem 0;
+}
