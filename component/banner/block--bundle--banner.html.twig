@@ -13,17 +13,12 @@
 * - cua_theme.theme
 */
 #}
-{# Import macros #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-
-{# Preload background image #}
-{% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
-<div style="background-image: url('{{ bg_image_url }}');"></div>
 
 {# Attach the library #}
 {{ attach_library('cua_theme/banner') }}
+
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {# Set container classes #}
 {% set container_classes = [
@@ -91,26 +86,32 @@
                 links
             ) }}
 
-            {# Render the body #}
-            {{ bodyMacros.render_body(
-                content,
-                padding,
-                text_color,
-                text_alignment
-            ) }}
+            {# Render Body #}
+            {% if content %}
+                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+                {{ bodyMacros.render_body(
+                    content,
+                    padding,
+                    text_color,
+                    text_alignment
+                ) }}
+            {% endif %}
 
-            {# Render the footer #}
-            {{ cardFooterMacros.render_card_footer(
-                links,
-                container_size,
-                color_background,
-                position_container,
-                text_alignment,
-                padding,
-                outline,
-                button_color,
-                button_layout
-            ) }}
+            {# Render Footer #}
+            {% if links %}
+                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+                {{ cardFooterMacros.render_card_footer(
+                    links,
+                    container_size,
+                    color_background,
+                    position_container,
+                    text_alignment,
+                    padding,
+                    outline,
+                    button_color,
+                    button_layout
+                ) }}
+            {% endif %}
 
         </div>
 
