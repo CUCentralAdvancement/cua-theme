@@ -205,6 +205,7 @@
                             links
                         ) }}
                     {% elseif icon %}
+                        {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
                         {{ iconMacros.render_icon (
                             icon,
                             icon_size,
