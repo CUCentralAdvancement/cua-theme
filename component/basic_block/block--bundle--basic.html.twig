@@ -15,11 +15,7 @@
 #}
 
 {# Import macros #}
-{% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-{% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {# Define CTA classes #}
 {% set basic_classes = [
@@ -43,6 +39,7 @@
     {# Include image or icon #}
     {% if card_image %}
         {# Render the card image #}
+        {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
         {{ cardImageMacros.render_card_image(
             card_image,
             position_container,
@@ -55,6 +52,7 @@
         ) }}
     {% elseif icon %}
         {# Render the icon #}
+        {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
         {{ iconMacros.render_icon(
             icon,
             icon_size,
@@ -77,25 +75,31 @@
         links
     ) }}
 
-    {# Render the body #}
-    {{ bodyMacros.render_body(
-        content,
-        padding,
-        text_color,
-        text_alignment
-    ) }}
+    {# Render Body #}
+    {% if content %}
+        {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+        {{ bodyMacros.render_body (
+            content,
+            padding,
+            text_color,
+            text_alignment
+        ) }}
+    {% endif %}
 
-    {# Render the footer and pass button_layout #}
-    {{ cardFooterMacros.render_card_footer(
-        links,
-        container_size,
-        color_background,
-        position_container,
-        text_alignment,
-        padding,
-        outline,
-        button_color,
-        button_layout
-    ) }}
+    {# Render Footer #}
+    {% if links %}
+        {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+        {{ cardFooterMacros.render_card_footer (
+            links,
+            container_size,
+            color_background,
+            position_container,
+            text_alignment,
+            padding,
+            outline,
+            button_color,
+            button_layout
+        ) }}
+    {% endif %}
 
 </div>
