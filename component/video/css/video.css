@@ -1,64 +1,76 @@
 /* Video Component */
 video {
   object-fit: cover;
-  width: 100vw;
-  height: 100vh
+  width: 100%; /* Use 100% of the container width for non-parallax */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .video-container {
-  min-height: 5rem !important
+  min-height: 5rem !important;
+  position: relative; /* Ensure container positioning works with video */
+  overflow: hidden; /* Prevent the video from escaping the container */
 }
 
 .video-mobile-copy {
-  margin-bottom: 4rem !important
+  margin-bottom: 4rem !important;
 }
 
 .video .cu-bg-white {
-  background: rgba(255, 255, 255, 0.75) !important
+  background: rgba(255, 255, 255, 0.75) !important;
 }
 
 .video .cu-bg-black {
-  background: rgba(0, 0, 0, 0.75) !important
+  background: rgba(0, 0, 0, 0.75) !important;
 }
 
 .video .card-footer.cu-bg-black,
 .video .card-footer.cu-bg-white,
 .video .card-footer .cu-bg-black,
 .video .card-footer .cu-bg-white {
-  background: transparent !important
+  background: transparent !important;
 }
 
 .block.block-layout-builder.video .container-fluid.mx-auto.position-absolute {
-  bottom: 25%
+  bottom: 25%;
 }
 
 .video .cu-text-white {
-  color: var(--cua-white)
+  color: var(--cua-white);
 }
 
 .mobile-video-wrapper .cu-text-gold,
 .mobile-video-wrapper .cu-text-white {
-  color: var(--cua-black)
+  color: var(--cua-black);
 }
 
-/* Parallax */
+/* Parallax Video */
 .parallax-video video {
   object-fit: cover;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw; /* Full viewport width for parallax */
+  height: 100vh; /* Full viewport height for parallax */
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1
+  z-index: -1;
 }
 
 .parallax-video {
-  min-height: 15rem
+  min-height: 15rem;
+  overflow: hidden; /* Ensure no overflow */
 }
 
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
+  /* Reset the parallax video to behave normally on mobile */
   .parallax-video {
-    min-height: auto
+    min-height: auto;
+  }
+
+  .parallax-video video {
+    width: 100%; /* Ensure video fits container width */
+    height: auto; /* Maintain aspect ratio */
+    position: relative; /* Let video scroll with content */
+    top: unset;
+    left: unset;
   }
 }
