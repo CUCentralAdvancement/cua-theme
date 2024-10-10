@@ -67,8 +67,8 @@
 <div{{ attributes.setAttribute('id', unique_id).addClass(container_classes) }}>
 
     {# Image container with variables #}
-    <div class="{{ image_container_classes }}"
-         style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+    {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
+    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
 
         {# Title, body ,link container with variables #}
         <div class="{{ banner_body_classes }}"
