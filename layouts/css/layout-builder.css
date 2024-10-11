@@ -155,7 +155,7 @@ form#node-page-layout-builder-form #edit-actions {
     color: var(--cua-white);
     background: var(--cua-warning);
     content: '\F00D';
-    font-family: "Font Awesome 5 Free";
+    font-family: var(--font-awesome);
     font-weight: 900; /* Ensure correct font weight for solid icons */
     padding: 8px 10px;
     margin: 0;
