@@ -30,10 +30,10 @@
 }
 
 .slider blockquote p {
-  color: var(--cua-gray-700);
-  font-size: 1.2rem;
-  line-height: 1.4;
-  padding: 0 0 15px
+  color: var(--cua-gray-700) !important;
+  font-size: 1.2rem !important;
+  line-height: 1.4 !important;
+  padding: 0 0 15px !important;
 }
 
 .slide-numbers-visible .carousel-indicators {
