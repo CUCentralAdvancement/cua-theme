@@ -1,8 +1,16 @@
+{# Card Image Macro #}
+
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }} #}
+
 {% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, image_text = null, content = null, links = null) %}
     {% if card_image %}
+        {# Set card image classes #}
         {% set card_image_classes = [
             'card-header',
-            'card-img',
             position_container ? 'd-flex ' ~ position_container : null,
             text_alignment ?: null,
             text_color ?: null,
@@ -10,22 +18,31 @@
             'g-0',
         ] | filter(v => v) | join(' ') %}
 
-        <div role="presentation" class="{{ card_image_classes }}">
+        {# Set presentation classes based on conditions #}
+        {% set presentation_classes = [
+            'card-img',
+            image_size ?: null,
+        ] | filter(v => v) | join(' ') %}
 
-            {# Rendered image with link #}
-            {% if links is not empty %}
-                {% set firstLink = links[0] %}
-                <a class="img-hover-effect" href="{{ firstLink.url }}"
-                   title="{{ firstLink.title }}"
-                   aria-label="{{ firstLink.title }}"
-                   aria-hidden="true">
+        {# Content #}
+        <div class="{{ card_image_classes }}">
+            <div role="presentation" class="{{ presentation_classes }}">
+
+                {# Card Image with link #}
+                {% if links is not empty %}
+                    {% set firstLink = links[0] %}
+                    <a class="img-hover-effect" href="{{ firstLink.url }}"
+                       title="{{ firstLink.title }}"
+                       aria-label="{{ firstLink.title }}"
+                       aria-hidden="true">
+                        {{ card_image }}
+                    </a>
+                {% else %}
+                    {# Card Image without link #}
                     {{ card_image }}
-                </a>
-            {% else %}
-                {# Rendered image w/o link #}
-                {{ card_image }}
-            {% endif %}
-        </div>
+                {% endif %}
 
+            </div>
+        </div>
     {% endif %}
 {% endmacro %}
