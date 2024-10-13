@@ -1,6 +1,5 @@
 {% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, image_text = null, content = null, links = null) %}
     {% if card_image %}
-        <link rel="preload" href="{{ card_image_field['#item'].entity.fileuri }}" as="image">
         {% set card_image_classes = [
             'card-header',
             'card-img',
