@@ -1014,6 +1014,67 @@ a.flag-link .flag.cu-bg-light-grey {
     background-color: var(--cua-black) !important;
 }
 
+blockquote {
+    border-left: none;
+    color: var(--cua-gray-700);
+    font-size: 1.25em;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 10px auto;
+    padding: 1rem 2rem;
+    position: relative;
+    width: 85%;
+}
+
+blockquote p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.p-half-rem {
+    padding: .5rem !important	;
+}
+
+.p-1rem {
+    padding: 1rem !important;
+}
+
+.p-2rem {
+    padding: 2rem !important;
+}
+
+.p-3rem {
+    padding: 3rem !important;
+}
+
+.p-4rem {
+    padding: 4rem !important;
+}
+
+.p-5rem {
+    padding: 5rem !important;
+}
+
+.p-6rem {
+    padding: 6rem !important;
+}
+
+.p-7rem {
+    padding: 7rem !important;
+}
+
+.p-8rem {
+    padding: 8rem !important;
+}
+
+.p-9rem {
+    padding: 9rem !important;
+}
+
+.p-10rem {
+    padding: 10rem !important;
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
