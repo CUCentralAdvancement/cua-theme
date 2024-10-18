@@ -39,6 +39,32 @@
         title_suffix)
     }}
 
+    {# Include Image #}
+    {% if card_image %}
+        {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+        {{ cardImageMacros.render_card_image (
+            card_image,
+            position_container,
+            text_alignment,
+            text_color,
+            image_size,
+            visibility,
+            content,
+            links
+        ) }}
+    {% endif %}
+
+    {# Render Caption #}
+    {% if caption %}
+        {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
+        {{ captionMacros.render_caption(
+            caption,
+            padding,
+            text_color,
+            text_alignment
+        ) }}
+    {% endif %}
+
     {# Render Body #}
     {% if content %}
         {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
