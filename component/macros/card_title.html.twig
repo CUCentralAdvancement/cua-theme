@@ -9,13 +9,18 @@
 {# Content #}
 {% macro render_title(label, title_prefix = '', title_suffix = '', center_content = null, text_alignment = null, text_color = null, padding = null, links = []) %}
     {# Define Title Classes #}
-    {% set title_classes = [
-        'display-4 card-text lead h3 title',
+    {% set title_classes = [] %}
+
+    {% if center_content or text_alignment or text_color or padding %}
+        {% set title_classes = title_classes|merge(['display-4 card-text lead h3 title']) %}
+    {% endif %}
+
+    {% set title_classes = title_classes|merge([
         center_content ?: null,
         text_alignment ?: null,
         text_color ?: null,
         padding ?: null,
-    ] | filter(v => v) | join(' ') %}
+    ]) | filter(v => v) | join(' ') %}
 
     {# Define Title Link Classes #}
     {% set title_link_classes = [
