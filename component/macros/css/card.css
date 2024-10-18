@@ -71,6 +71,10 @@
   padding: 1.5rem !important
 }
 
+.card-header.d-flex.justify-content-center  {
+  margin: 0 auto !important;
+}
+
 /* links */
 .card-link {
   text-align: left;
