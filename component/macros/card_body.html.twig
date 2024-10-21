@@ -8,18 +8,27 @@
 
 {# Content #}
 {% macro render_body(content, padding = null, text_color = null, text_alignment = null) %}
-
     {% if content.body|render|trim %}
-        {# Define Body Classes #}
+
+        {# Allowed values for padding, text color, and alignment #}
+        {% set allowed_padding = ['remove-padding', 'add-padding', 'p-0'] %}
+        {% set allowed_text_colors = ['cu-text-gold', 'cu-text-black', 'cu-text-white'] %}
+        {% set allowed_text_alignments = ['d-flex justify-content-start', 'd-flex justify-content-center', 'd-flex justify-content-end'] %}
+
+        {# Validate and sanitize the class values #}
+        {% set padding = padding in allowed_padding ? padding : null %}
+        {% set text_color = text_color in allowed_text_colors ? text_color : null %}
+        {% set text_alignment = text_alignment in allowed_text_alignments ? text_alignment : null %}
+
         {% set body_classes = [
             'card-body d-flex flex-column card-text lead g-0 clearfix',
-            padding ?: null,
-            text_color ?: null,
-            text_alignment ?: null,
+            padding,
+            text_color,
+            text_alignment
         ] | filter(v => v) | join(' ') %}
 
         {# Body #}
-        <div class="{{ body_classes }}">
+        <div class="{{ body_classes|trim }}">
             {{ content.body|render }}
         </div>
 
