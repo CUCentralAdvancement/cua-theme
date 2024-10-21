@@ -1,7 +1,7 @@
 name: CU Theme
 type: theme
 description: 'CU Advancement | CU Foundation'
-core_version_requirement: ^10
+core_version_requirement: ^10 | ^11
 version: '2.2.1'
 project: 'drupal'
 base theme: bootstrap_barrio
