@@ -224,7 +224,7 @@ div#block-cua-theme-page-title {
 /* CK editor title */
 p.h2.title, p.h3.title, p.h4.title, p.h5.title {
     color: inherit;
-    font-family: var(--font-roboto-condensed);
+    font-family: var(--font-roboto-condensed), sans-serif;
     font-weight: var(--font-weight-bold);
     line-height: 1.1
 }
@@ -256,26 +256,24 @@ p.h6.title {
     line-height: 1.1
 }
 
-.text-larger,
-span.text-larger {
+.text-larger, span.text-larger {
     font-size: 120% !important;
 }
 
-.text-smaller,
-span.text-smaller {
+.text-smaller, span.text-smaller {
     font-size: 80% !important;
 }
 
 p.intro {
     color: inherit;
-    font-family: var(--font-roboto-condensed);
+    font-family: var(--font-roboto-condensed), sans-serif;
     font-size: 1.2rem;
     font-weight: var(--font-weight-normal);
     line-height: 1.5 !important
 }
 
 body, p, a, li {
-    font-family: var(--font-roboto);
+    font-family: var(--font-roboto), sans-serif;
     font-size: var(--base-font-size);
     font-weight: var(--font-weight-normal);
     line-height: 1.5
@@ -311,16 +309,211 @@ a#edit-delete:hover {
     font-weight: var(--font-weight-bold)
 }
 
-.text-gold {
-    color: var(--cua-gold) !important
+/* Text Weight */
+.text-xbold {
+    font-weight: var(--font-weight-xbold) !important
 }
 
-.text-white {
-    color: var(--cua-white) !important
+.text-bold {
+    font-weight: var(--font-weight-bold) !important
 }
 
-.text-black {
-    color: var(--cua-black) !important
+.text-medium {
+    font-weight: var(--font-weight-medium) !important
+}
+
+.text-normal {
+    font-weight: var(--font-weight-normal) !important
+}
+
+.text-light {
+    font-weight: var(--font-weight-light) !important
+}
+
+.text-xlight {
+    font-weight: var(--font-weight-xlight) !important
+}
+
+/* text colors */
+.text-yellow {
+    color: #fcb040;
+}
+
+.text-yellow-light {
+    color: #ffdc6c;
+}
+
+.text-yellow-lightest {
+    color: #feeebf;
+}
+
+.text-yellow-text {
+    color: #fcb040;
+}
+
+.text-yellow-light-text {
+    color: #ffdc6c;
+}
+
+.text-yellow-lightest-text {
+    color: #feeebf;
+}
+
+.text-purple {
+    color: #544181;
+}
+
+.text-purple-light {
+    color: #8b72ce;
+}
+
+.text-purple-lightest {
+    color: #c7bde3;
+}
+
+.text-pink {
+    color: #ac355f;
+}
+
+.text-pink-light {
+    color: #dd3f70;
+}
+
+.text-pink-lightest {
+    color: #e29eb3;
+}
+
+.text-orange {
+    color: #d94f2a;
+}
+
+.text-orange-light {
+    color: #e06843;
+}
+
+.text-orange-lightest {
+    color: #ffb69f;
+}
+
+.text-agua {
+    color: #065e62;
+}
+
+.text-agua-light {
+    color: #4bb6ae
+}
+
+.text-agua-lightest {
+    color: #bceae7
+}
+
+.text-lime {
+    color: #adcc3b
+}
+
+.text-lime-light {
+    color: #e5ff70
+}
+
+.text-lime-lightest {
+    color: #f6ffbc
+}
+
+.text-blue {
+    color: #5c7a82
+}
+
+.text-blue-light {
+    color: #86c0ce
+}
+
+.text-blue-lightest {
+    color: #cdf2fb
+}
+
+/* background color */
+.bg-yellow {
+    background-color: #fcb040;
+}
+
+.bg-yellow-light {
+    background-color: #ffdc6c;
+}
+
+.bg-yellow-lightest {
+    background-color: #feeebf;
+}
+
+.bg-purple {
+    background-color: #544181;
+}
+
+.bg-purple-light {
+    background-color: #8b72ce;
+}
+
+.bg-purple-lightest {
+    background-color: #c7bde3;
+}
+
+.bg-pink {
+    background-color: #ac355f;
+}
+
+.bg-pink-light {
+    background-color: #dd3f70;
+}
+
+.bg-pink-lightest {
+    background-color: #e29eb3;
+}
+
+.bg-orange {
+    background-color: #d94f2a;
+}
+
+.bg-orange-light {
+    background-color: #e06843;
+}
+
+.bg-orange-lightest {
+    background-color: #ffb69f;
+}
+
+.bg-agua{
+    background-color: #065e62;
+}
+
+.bg-agua-light {
+    background-color: #4bb6ae
+}
+
+.bg-agua-lightest {
+    background-color: #bceae7
+}
+
+.bg-lime {
+    background-color: #adcc3b
+}
+
+.bg-lime-light {
+    background-color: #e5ff70
+}
+
+.bg-lime-lightest {
+    background-color: #f6ffbc
+}
+
+.bg-blue {
+    background-color: #5c7a82
+}
+
+.bg-blue-light {
+    background-color: #86c0ce
+}
+
+.bg-blue-lightest {
+    background-color: #cdf2fb
 }
 
 .bg-light {
