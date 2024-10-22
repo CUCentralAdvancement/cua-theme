@@ -335,6 +335,18 @@ a#edit-delete:hover {
 }
 
 /* text colors */
+
+.text-gold {
+    color: var(--cua-gold) !important
+}
+
+.text-white {
+    color: var(--cua-white) !important
+}
+
+.text-black {
+    color: var(--cua-black) !important;}
+
 .text-yellow {
     color: #fcb040;
 }
