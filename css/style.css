@@ -1283,6 +1283,7 @@ blockquote p {
 
 .sub-title {
     font-size: 1.25rem;
+    line-height: 1.6;
     color: var(--cua-black);
     position: absolute;
     top: 3rem;
