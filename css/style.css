@@ -1261,24 +1261,32 @@ blockquote p {
     padding: 5rem !important;
 }
 
-.p-6rem {
+.p-6{
     padding: 6rem !important;
 }
 
-.p-7rem {
+.p-7 {
     padding: 7rem !important;
 }
 
-.p-8rem {
+.p-8 {
     padding: 8rem !important;
 }
 
-.p-9rem {
+.p-9 {
     padding: 9rem !important;
 }
 
-.p-10rem {
+.p-10 {
     padding: 10rem !important;
+}
+
+.sub-title {
+    font-size: 1.25rem;
+    color: var(--cua-black);
+    position: absolute;
+    top: 3rem;
+    left: 4rem;
 }
 
 @media only screen and (max-width: 991px) {
