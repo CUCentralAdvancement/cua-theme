@@ -345,7 +345,8 @@ a#edit-delete:hover {
 }
 
 .text-black {
-    color: var(--cua-black) !important;}
+    color: var(--cua-black) !important
+}
 
 .text-yellow {
     color: #fcb040;
