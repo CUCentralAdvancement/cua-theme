@@ -1,0 +1,47 @@
+{#
+/**
+* @file
+* Template for the Heading component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
+#}
+
+{# Attach the library #}
+{{ attach_library('cua_theme/heading') }}
+
+{# Define CTA classes #}
+{% set basic_classes = [
+	'container',
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'heading-block',
+	'px-2 clearfix',
+    text_color ?: null,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+
+{# Generate unique ID #}
+{% set unique_id = 'block--node-' ~ '-heading-block' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+
+{# Render content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes) }}>
+	
+	<div class="row">
+	    {# Render the title #}
+		{% if heading %}
+			<h1{{ title_attributes.addClass('title') }}>{{ heading }}</h1>
+			<span aria-hidden="true" class="heading-square__accent"></span>
+		{% endif %}
+		
+		{% if subtitle %}
+			<p{{ title_attributes.addClass('h5 pb-5') }}>{{ subtitle }}</p>
+		{% endif %}
+	</div>
+	
+</div>

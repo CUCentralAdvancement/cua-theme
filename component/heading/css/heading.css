@@ -1,0 +1,28 @@
+/* Heading styling */
+
+.heading-block h1.title {
+  margin-left: 17px !important;
+  margin-bottom: 5px !important;
+  margin-top: 2px !important;
+}
+
+.heading-block .heading-square__accent {
+  border-width: 3px;
+  border-style: solid;
+  border-color: var(--cua-gold);
+  position: absolute;
+  pointer-events: none;
+  top: 307px;
+  left: 112px;
+  display: block;
+  width: 52px;
+  height: 52px;
+  z-index: -100;
+}
+
+.heading-block p.h5.title {
+  color: var(--cua-black);
+  font-family: var(--font-roboto), sans-serif;
+  font-weight: var(--font-weight-normal);
+  margin: 2px 0 0 70px;
+}
