@@ -1,6 +1,9 @@
-/* Heading styling */
+.heading-block {
+  position: relative; /* This ensures the accent is positioned relative to the block */
+}
 
 .heading-block h1.title {
+  position: relative;
   margin-left: 17px !important;
   margin-bottom: 5px !important;
   margin-top: 2px !important;
@@ -11,13 +14,14 @@
   border-style: solid;
   border-color: var(--cua-gold);
   position: absolute;
-  pointer-events: none;
-  top: 307px;
-  left: 112px;
+  top: 32%; /* Center the accent relative to the height of the h1 */
+  left: 6px; /* Adjust the horizontal positioning to the left of the h1 */
+  transform: translateY(-50%); /* Vertically center it relative to the h1 */
   display: block;
   width: 52px;
   height: 52px;
-  z-index: -100;
+  z-index: -1; /* Ensure it stays behind the h1 */
+  pointer-events: none;
 }
 
 .heading-block p.h5.title {

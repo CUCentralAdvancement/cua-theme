@@ -17,13 +17,13 @@
 {# Define CTA classes #}
 {% set basic_classes = [
 	'container',
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'heading-block',
-	'px-2 clearfix',
-    text_color ?: null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+	'block',
+	'block-' ~ configuration.provider|clean_class,
+	'block-' ~ plugin_id|clean_class,
+	'heading-block',
+	'px-2 pt-4 clearfix',
+	text_color ?: null,
+	id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
@@ -31,17 +31,17 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes) }}>
-	
-	<div class="row">
-	    {# Render the title #}
+
+	<div class="row pt-2">
+		{# Render the title #}
 		{% if heading %}
 			<h1{{ title_attributes.addClass('title') }}>{{ heading }}</h1>
 			<span aria-hidden="true" class="heading-square__accent"></span>
 		{% endif %}
-		
+
 		{% if subtitle %}
 			<p{{ title_attributes.addClass('h5 pb-5') }}>{{ subtitle }}</p>
 		{% endif %}
 	</div>
-	
+
 </div>
