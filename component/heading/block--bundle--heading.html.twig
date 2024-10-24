@@ -11,6 +11,9 @@
 *
 #}
 
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+
 {# Attach the library #}
 {{ attach_library('cua_theme/heading') }}
 
@@ -33,7 +36,15 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes) }}>
 
 	<div class="row pt-2">
-		{# Render the title #}
+
+		{# Render the title so we ca nedit #}
+		{{ titleMacros.render_title(
+			label,
+			title_prefix,
+			title_suffix,
+		) }}
+
+		{# Render the new title #}
 		{% if heading %}
 			<h1{{ title_attributes.addClass('title') }}>{{ heading }}</h1>
 			<span aria-hidden="true" class="heading-square__accent"></span>
