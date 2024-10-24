@@ -617,6 +617,10 @@ div#block--block-content--9f3104d8-4eb3-45b0-bb46-2462e6defff1-808 {
     background-color: #171e2f /* Fallback color */
 }
 
+div#block--node--basic-block--819 {
+    margin: 23px 0 0;
+}
+
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
 
