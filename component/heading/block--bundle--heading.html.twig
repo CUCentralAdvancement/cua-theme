@@ -35,14 +35,14 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes) }}>
 
-	<div class="row pt-2">
+	<span class="row pt-2">
 
-		{# Render the title so we ca nedit #}
-		{{ titleMacros.render_title(
-			label,
-			title_prefix,
-			title_suffix,
-		) }}
+		{# Render the titleto allow editing #}
+		{{ title_prefix ?? '' }}
+		<span class="visually-hidden" aria-hidden="true" >
+			{{ label }}
+		</span>
+		{{ title_suffix ?? '' }}
 
 		{# Render the new title #}
 		{% if heading %}
