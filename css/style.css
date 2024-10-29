@@ -1056,7 +1056,7 @@ a.bef-link--selected {
 }
 
 .flag::after {
-    border-color: transparent #000000 transparent transparent;
+    border-color: transparent #000 transparent transparent;
     border-style: solid;
     border-width: 0 8px 8px 0;
     content: "";
@@ -1281,6 +1281,38 @@ blockquote p {
     padding: 10rem !important;
 }
 
+.video-container {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.youtube-container--responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+.youtube-container--responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container-fluid {
+    overflow-x: hidden;
+}
+
+#block--node--half-and-half--964,
+#block--node--slider--902 {
+    max-width: 100%; /* Or set a specific width, like 1200px */
+    margin: auto; /* Centers the carousel */
+    overflow: hidden; /* Prevents content from escaping */
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
@@ -1382,9 +1414,14 @@ blockquote p {
     .layout__region--second .block.block-menu.navigation {
         border-left: none
     }
+
+    .video-container, .parallax-video {
+        width: 100%;
+        height: auto;
+    }
 }
 
-@media only screen and (max-width: 545px) {
+@media only screen and (max-width: 576px) {
     .ui-accordion .ui-accordion-content {
         padding: 1rem
     }
@@ -1419,5 +1456,18 @@ blockquote p {
         margin: 1rem 0 0 24px !important;
         max-width: 90% !important
     }
-}
 
+    .video-container {
+        max-width: 100%;
+        padding: 0;
+    }
+    .col-12 {
+        padding: 0;
+    }
+
+    .video-container, .parallax-video {
+        width: 100%;
+        height: auto;
+    }
+
+}
