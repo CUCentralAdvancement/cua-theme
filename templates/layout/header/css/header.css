@@ -860,6 +860,11 @@ div#block-cua-theme-breadcrumbs {
     a.site-branding__name {
         margin: .7rem 0 0 .5rem
     }
+
+    .container.top-bar {
+        padding-bottom: 1rem;
+    }
+
 }
 
 /* iphone > 12 */
