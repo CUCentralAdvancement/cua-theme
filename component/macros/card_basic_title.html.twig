@@ -8,7 +8,7 @@
 
 {% macro render_card_basic_title(title_prefix, label, title_suffix) %}
     {{ title_prefix ?? '' }}
-    <div class="visually-hidden" aria-hidden="true" >
+    <div class="visually-hidden" aria-hidden="false">
         {{ label }}
     </div>
     {{ title_suffix ?? '' }}

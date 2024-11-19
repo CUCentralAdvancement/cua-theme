@@ -13,7 +13,7 @@
             {% set firstLink = links[0] %}
             <a class="flag-link" href="{{ firstLink.url }}"
             title="{{ firstLink.title }}"
-            aria-label="{{ firstLink.title }}" aria-hidden="true">
+            aria-label="{{ firstLink.title }}" aria-hidden="false">
         {% endif %}
         <div class="flag {{ flag_background ?: '' }} py-2 animate-trigger animate__animated animate__fadeIn animate__slow animate__delay-1s" data-animation-classes="animate__animated animate__fadeIn animate__slow animate__delay-1s" style="visibility: visible;">
             {% if icon %}
