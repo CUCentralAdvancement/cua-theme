@@ -3,7 +3,7 @@
     --cua-black-opacity-75: rgba(0, 0, 0, 0.75);
     --cua-black: #262626;
     --cua-blue: #0854bb;
-    --cua-blue-hover: #0854bb;
+    --cua-blue-hover: #03306f;
     --cua-blue-visited: #0854bb;
     --cua-blue-dark: #03306c;
     --cua-body-bg: #fff;
@@ -11,6 +11,7 @@
     --cua-gold: #cfb87c;
     --cua-gold-opacity-75: rgba(207, 184, 124, 0.75);
     --cua-gold-hover: #5d4916;
+    --cua-gold-hover-active: #f3d78f;
     --cua-light-grey: #f3f3f3;
     --cua-light-grey-opacity-75: rgba(243, 243, 243, 0.75);
     --cua-gray: #6c757d;
