@@ -253,6 +253,10 @@ div#site-footer-top {
     width: 100%;
 }
 
+#site-footer-top .link-cua {
+    text-decoration: none;
+}
+
 /*** Responsive ***/
 /* Media query for screens below 991px */
 @media (max-width: 991px) {

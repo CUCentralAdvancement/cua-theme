@@ -10,6 +10,14 @@ a:hover {
   text-decoration: none
 }
 
+a.title-link {
+  text-decoration: none;
+}
+
+a.title-link:hover {
+  text-decoration: underline;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
   background-color: var(--cua-gold);
   color: var(--cua-black);
