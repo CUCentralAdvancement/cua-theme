@@ -424,6 +424,10 @@ a.nav-link.active.is-active {
   color: var(--cua-gold-hover-active) !important;
 }
 
+#main-wrapper a.nav-link.active.is-active {
+  color: #ac9046 !important
+}
+
 #main-wrapper .block-menu {
   margin-bottom: 2rem !important
 }
@@ -431,3 +435,4 @@ a.nav-link.active.is-active {
 aside .nav {
   border-right: 1px solid var(--cua-gray-500) !important
 }
+
