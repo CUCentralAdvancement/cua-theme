@@ -36,7 +36,7 @@
 }
 
 .call-to-action .display-4.card-text.lead.h3.title {
-    font-family: var(--font-roboto-condensed);
+     font-family: var(--font-roboto-condensed) sans-serif;
     font-size: 2rem !important;
     font-weight: var(--font-weight-bold) !important;
     line-height: 1.1 !important;
@@ -44,7 +44,7 @@
 }
 
 .call-to-action.card p span {
-    font-family: var(--font-roboto);
+    font-family: var(--font-roboto) sans-serif;
     font-size: 1.85rem !important;
     font-weight: var(--font-weight-xlight) !important;
     margin: 0 !important
