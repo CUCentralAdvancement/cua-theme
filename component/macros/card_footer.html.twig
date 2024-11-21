@@ -32,6 +32,7 @@
             'p-2',
             'mt-3',
         ] | filter(v => v) | join(' ') %}
+
         <div class="{{ card_footer_classes }}">
             {% for link in links %}
                 {# Ensure each link has the required properties #}
@@ -43,5 +44,6 @@
                 {% endif %}
             {% endfor %}
         </div>
+
     {% endif %}
 {% endmacro %}

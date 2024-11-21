@@ -8,6 +8,7 @@
 
 {# Content #}
 {% macro render_title(label, title_prefix = '', title_suffix = '', center_content = null, text_alignment = null, text_color = null, padding = null, links = []) %}
+
     {# Define Title Classes #}
     {% set title_classes = [] %}
 
@@ -45,4 +46,5 @@
         </div>
     {% endif %}
     {{ title_suffix ?: '' }}
+
 {% endmacro %}

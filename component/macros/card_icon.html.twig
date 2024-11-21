@@ -9,6 +9,7 @@
 {# Content #}
 {% macro render_icon(icon, icon_size = null, icon_color = null, padding = null, position_container = null, text_alignment = null) %}
     {% if icon %}
+
         {# Concatenate optional classes with a space #}
         {% set icon_classes = [
             padding ?: null,
@@ -23,5 +24,6 @@
                style="{{ icon_color ? 'color:' ~ icon_color : '' }}">
             </i>
         </div>
+
     {% endif %}
 {% endmacro %}
