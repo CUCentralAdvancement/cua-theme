@@ -75,15 +75,24 @@
                    rel="noopener noreferrer"
                    class="footer-site-branding__logo">
                     <picture>
-                        <source media="(max-width: 499px)"
+                        <source
+                                media="(max-width: 499px)"
                                 srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                                width=250 height=auto/>
-                        <source media="(min-width: 500px)"
+                                width="250"
+                                height="70"
+                        />
+                        <source
+                                media="(min-width: 500px)"
                                 srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                                width=500 height=auto/>
-                        <img src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                             alt="{{ 'University of Colorado Logo'|t }}"
-                             width=500 height=auto/>
+                                width="500"
+                                height="140"
+                        />
+                        <img
+                                src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
+                                alt="{{ 'University of Colorado Logo'|t }}"
+                                width="500"
+                                height="140"
+                        />
                     </picture>
                 </a>
             </div>
