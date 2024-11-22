@@ -56,7 +56,7 @@ banner:
     component:
       component/banner/css/banner.css:
         weight: -10
-      //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css:
+      css/animate.min.css:
         weight: -10
 
 # Call to Action
@@ -66,7 +66,7 @@ call-to-action:
     component:
       component/call_to_action/css/call-to-action.css:
         weight: -10
-      //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css:
+      css/animate.min.css:
         weight: -10
 
 # Counter
@@ -77,8 +77,8 @@ counter:
       component/counter/css/counter.css:
         weight: -10
   js:
-    //cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js: { type: external, minified: true }
-    //cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js: { type: external, minified: true }
+    component/counter/js/jquery.counterup.min.js: { minified: true }
+    component/counter/js/jquery.waypoints.min.js: { minified: true }
     component/counter/js/counter.js: {}
 
 # Fontawesome:
@@ -98,7 +98,7 @@ half-and-half:
     component:
       component/half_and_half/css/half-and-half.css:
         weight: -10
-      //cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css:
+      css/animate.min.css:
         weight: -10
 
 # Heading
@@ -133,5 +133,5 @@ video:
       component/video/css/video.css:
         weight: -10
   js:
-    //player.vimeo.com/api/player.js: { type: external, minified: true }
+    component/video/js/player.js: { minified: true }
 
