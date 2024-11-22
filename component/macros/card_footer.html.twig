@@ -1,3 +1,12 @@
+{# Footer Macro #}
+
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/card_footer.html.twig' as FooterMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{#  {{ cardFooterMacros.render_card_footer(links = links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout) }}
+#}
+
 {% macro render_card_footer(links, container_size = null, color_background = null, position_container = null, text_alignment = null, padding = null, outline = null, button_color = null, button_layout = null) %}    {# Ensure links is always an array #}
     {% set links = links|default([]) %}
 
