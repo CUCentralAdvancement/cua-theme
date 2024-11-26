@@ -8,23 +8,32 @@
 
 {# Content #}
 {% macro render_flag(flag, flag_title, icon = null, icon_size = null, flag_background = null, links = []) %}
-    {% if flag == 'flag_on' %}
 
-        {% if links|length %}
-            {% set firstLink = links[0] %}
+    {% if flag == 'flag_on' %}
+        {% set firstLink = links[0] ?? null %}
+
+        {# Open the link tag if there are links #}
+        {% if firstLink %}
             <a class="flag-link" href="{{ firstLink.url }}"
             title="{{ firstLink.title }}"
             aria-label="{{ firstLink.title }}" aria-hidden="false">
         {% endif %}
 
-        <div class="flag {{ flag_background ?: '' }} py-2 animate-trigger animate__animated animate__fadeIn animate__slow animate__delay-1s" data-animation-classes="animate__animated animate__fadeIn animate__slow animate__delay-1s" style="visibility: visible;">
+        <div class="flag {{ flag_background ?: '' }} py-2 animate-trigger animate__animated animate__fadeIn animate__slow animate__delay-1s"
+             data-animation-classes="animate__animated animate__fadeIn animate__slow animate__delay-1s"
+             style="visibility: visible;">
+
+            {# Render the icon if it exists #}
             {% if icon %}
-                <i class="{{ icon ?: '' }} {{ icon_size ?: '' }} px-1"></i>
+                <i class="{{ [icon, icon_size, 'px-1']|filter(v => v is not empty)|join(' ') }}"></i>
             {% endif %}
+
             {{ flag_title }}
+
         </div>
 
-        {% if links|length %}
+        {# Close the link tag if there are links #}
+        {% if firstLink %}
             </a>
         {% endif %}
 
