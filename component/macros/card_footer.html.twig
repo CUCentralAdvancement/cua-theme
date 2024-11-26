@@ -7,11 +7,24 @@
 {#  {{ cardFooterMacros.render_card_footer(links = links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout) }}
 #}
 
-{% macro render_card_footer(links, container_size = null, color_background = null, position_container = null, text_alignment = null, padding = null, outline = null, button_color = null, button_layout = null) %}    {# Ensure links is always an array #}
+{% macro render_card_footer(
+    links,
+    container_size = null,
+    color_background = null,
+    position_container = null,
+    text_alignment = null,
+    padding = null,
+    outline = null,
+    button_color = null,
+    button_layout = null
+    ) %}
+
+    {# Ensure links is always an array #}
     {% set links = links|default([]) %}
 
     {# Check if there are links to render #}
     {% if links|length > 0 %}
+
         {# Determine if multiple links exist #}
         {% set multiple_links = links|length > 1 %}
 
@@ -19,7 +32,6 @@
         {% set card_footer_classes = [
             'card-footer',
             'd-flex',
-            button_layout,
             multiple_links ? 'multiple-links' : '',
             container_size,
             color_background,
@@ -42,16 +54,23 @@
             'mt-3',
         ] | filter(v => v) | join(' ') %}
 
-        <div class="{{ card_footer_classes }}">
+        <div class="{{ card_footer_classes }}"
+
+                {% if multiple_links %}
+            role="group" aria-label="Related links"
+                {% endif %}>
+
             {% for link in links %}
-                {# Ensure each link has the required properties #}
                 {% if link.url and link.title %}
-                    <a href="{{ link.url }}" title="{{ link.title }}" aria-label="{{ link.title }}"
+                    <a href="{{ link.url }}"
+                       title="{{ link.title }}"
                        class="{{ card_footer_link_classes }}">
+                        {# Render title #}
                         {{ link.title }}
                     </a>
                 {% endif %}
             {% endfor %}
+
         </div>
 
     {% endif %}
