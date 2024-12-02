@@ -39,16 +39,6 @@ accordion:
       component/accordion/css/accordion.css:
         weight: -10
 
-# Barba
-barba:
-  js:
-    js/barba.min.js: {}
-    js/barba-init.js: {}
-    js/gsap.min.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
-
 # Banner
 banner:
   version: VERSION
