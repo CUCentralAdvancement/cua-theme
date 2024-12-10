@@ -80,4 +80,28 @@
     }
   });
 
+  // A/B Testing for Boulder
+  document.addEventListener("DOMContentLoaded", function () {
+    // Block IDs
+    const blockA = document.getElementById("block--node--call-to-action--1051");
+    const blockB = document.getElementById("block--node--call-to-action--401");
+
+    // Check if blocks exist on the page
+    if (blockA && blockB) {
+      // Retrieve the current variant from localStorage (or use 'A' as default)
+      const currentVariant = localStorage.getItem("abTestingVariant") || "A";
+
+      // Toggle visibility based on the current variant
+      if (currentVariant === "A") {
+        blockA.style.display = "block";
+        blockB.style.display = "none";
+        localStorage.setItem("abTestingVariant", "B"); // Set the next variant
+      } else {
+        blockA.style.display = "none";
+        blockB.style.display = "block";
+        localStorage.setItem("abTestingVariant", "A"); // Set the next variant
+      }
+    }
+  });
+
 })(Drupal, IntersectionObserver);
