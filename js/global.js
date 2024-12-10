@@ -80,7 +80,7 @@
     }
   });
 
-  // A/B Testing for Boulder
+  // A/B Testing for CU Boulder Funds
   document.addEventListener("DOMContentLoaded", function () {
     // Block IDs
     const blockA = document.getElementById("block--node--call-to-action--1051");
