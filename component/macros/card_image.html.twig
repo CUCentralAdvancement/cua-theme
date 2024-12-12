@@ -27,14 +27,13 @@
 
         {# Content #}
         <div class="{{ card_image_classes }}">
-            <div role="presentation" class="{{ presentation_classes }}">
+            <div class="{{ presentation_classes }}">
 
                 {# Card Image with link #}
                 {% if links is not empty %}
                     {% set firstLink = links[0] %}
                     <a class="img-hover-effect" href="{{ firstLink.url }}"
                        title="{{ firstLink.title }}"
-                       aria-label="{{ firstLink.title }}"
                        aria-hidden="false">
                         {{ card_image }}
                     </a>
