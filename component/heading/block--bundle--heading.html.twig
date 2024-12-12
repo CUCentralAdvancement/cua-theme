@@ -35,7 +35,7 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes) }}>
 
-	<span class="row pt-2">
+	<div class="row pt-2">
 
 		{# Render the titleto allow editing #}
 		{{ title_prefix ?? '' }}
@@ -51,7 +51,7 @@
 		{% endif %}
 
 		{% if subtitle %}
-			<p{{ title_attributes.addClass('h5 pb-5') }}>{{ subtitle }}</p>
+			<h5{{ title_attributes.addClass('pb-5') }}>{{ subtitle }}</h5>
 		{% endif %}
 	</div>
 
