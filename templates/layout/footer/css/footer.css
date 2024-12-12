@@ -94,6 +94,12 @@ footer .link-cua {
     /* Transition for color and text-decoration */
 }
 
+/* Visited Link Styling */
+footer .nav-link:visited,
+footer .link-cua:visited {
+    color: var(--cua-gold);
+}
+
 footer #site-footer-bottom .nav-link {
     color: var(--cua-white)
 }
