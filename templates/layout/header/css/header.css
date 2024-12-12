@@ -80,6 +80,11 @@ nav#navbar-main.sticky {
     text-decoration: none
 }
 
+.view-content.row .nav-link.is-active {
+    text-decoration: underline !important;
+    color: #ac9046 !important;
+}
+
 .navbar-expand-lg .navbar-nav .nav-link ul li a:first-child,
 .navbar-expand-lg .navbar-nav .nav-link ul li:first-child {
     padding: .75rem 1.5rem
@@ -93,8 +98,16 @@ nav#navbar-main.sticky {
 }
 
 .navbar-expand-lg a.nav-link:first-child.is-active {
-    background-color: transparent !important
+    background-color: transparent !important;
+    color: var(--cua-white) !important;
 }
+
+/* Add hover effect */
+.navbar-expand-lg a.nav-link:first-child.is-active:hover {
+    background-color: var(--cua-white) !important;
+    color:  var(--cua-black) !important;
+}
+
 
 /* Custom CSS to move the last link to the right */
 #block-cua-theme-main-menu {
