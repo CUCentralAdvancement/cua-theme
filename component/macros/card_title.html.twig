@@ -35,15 +35,15 @@
         {% set firstLink = links[0] %}
         <a class="{{ title_link_classes }}" href="{{ firstLink.url }}"
            title="{{ firstLink.title }}"
-           aria-label="{{ firstLink.title }}" aria-hidden="false">
-            <div class="{{ title_classes }}">
+           aria-label="{{ firstLink.title }}">
+            <h3 class="{{ title_classes }}">
                 {{ label }}
-            </div>
+            </h3>
         </a>
     {% else %}
-        <div class="{{ title_classes }}">
+        <h3 class="{{ title_classes }}">
             {{ label }}
-        </div>
+        </h3>
     {% endif %}
     {{ title_suffix ?: '' }}
 

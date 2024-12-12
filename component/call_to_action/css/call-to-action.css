@@ -35,8 +35,8 @@
     margin-top: 1rem
 }
 
-.call-to-action .display-4.card-text.lead.h3.title {
-     font-family: var(--font-roboto-condensed) sans-serif;
+.call-to-action .display-4.card-text.lead.title {
+    font-family: var(--font-roboto-condensed) sans-serif;
     font-size: 2rem !important;
     font-weight: var(--font-weight-bold) !important;
     line-height: 1.1 !important;
