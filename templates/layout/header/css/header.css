@@ -80,7 +80,7 @@ nav#navbar-main.sticky {
     text-decoration: none
 }
 
-.view-content.row .nav-link.is-active {
+.layout-main-wrapper .nav-link.is-active {
     text-decoration: underline !important;
     color: #ac9046 !important;
 }
