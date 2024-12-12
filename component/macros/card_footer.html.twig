@@ -61,10 +61,7 @@
 
             {% for link in links %}
                 {% if link.url and link.title %}
-                    <a href="{{ link.url }}"
-                       title="{{ link.title }}"
-                       class="{{ card_footer_link_classes }}">
-                        {# Render title #}
+                    <a href="{{ link.url }}" class="{{ card_footer_link_classes }}">
                         {{ link.title }}
                     </a>
                 {% endif %}
