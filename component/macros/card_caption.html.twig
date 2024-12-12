@@ -12,16 +12,16 @@
 
 		{# Define caption classes #}
 		{% set caption_classes = [
-			'card-caption h6 py-3 clearfix',
+			'card-caption py-3 clearfix',
 			padding ?: null,
 			text_color ?: null,
 			text_alignment ?: null,
 		] | filter(v => v) | join(' ') %}
 		
 		{# Render the caption #}
-		<div class="{{ caption_classes }}">
+		<h6 class="{{ caption_classes }}">
 			{{ caption }}
-		</div>
+		</h6>
 		
 	{% endif %}
 {% endmacro %}

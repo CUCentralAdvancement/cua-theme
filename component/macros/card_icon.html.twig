@@ -20,7 +20,8 @@
         {# Content #}
         <div class="{{ icon_classes }}">
             <i class="{{ icon }}{{ icon_size ? ' ' ~ icon_size : '' }}"
-               {% if icon_color %}style="color: {{ icon_color }}"{% endif %}>
+               {% if icon_color %}style="color: {{ icon_color }}"{% endif %}
+               aria-hidden="true">
             </i>
         </div>
 
