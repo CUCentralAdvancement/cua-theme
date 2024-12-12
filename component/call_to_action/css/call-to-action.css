@@ -43,6 +43,10 @@
     margin: .5rem 0 0 !important
 }
 
+h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
+    padding: 0 1rem !important;
+}
+
 .call-to-action.card p span {
     font-family: var(--font-roboto) sans-serif;
     font-size: 1.85rem !important;
@@ -117,6 +121,7 @@
 .cta-margin_top_and_bottom {
     padding: 15px 0;
 }
+
 /*** Responsive ***/
 /* Media query for screens below 991px */
 @media (max-width: 991px) {
