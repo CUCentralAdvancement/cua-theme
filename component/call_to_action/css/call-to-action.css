@@ -100,9 +100,9 @@
     margin: 3rem 0 0 0
 }
 
-.display-4.card-text.lead.title.h3.cu-text-black.remove-padding,
-.display-4.card-text.lead.title.h3.cu-text-gold.remove-padding,
-.display-4.card-text.lead.title.h3.cu-text-white.remove-padding {
+.display-4.card-text.lead.title .cu-text-black.remove-padding,
+.display-4.card-text.lead.title .cu-text-gold.remove-padding,
+.display-4.card-text.lead.title .cu-text-white.remove-padding {
     padding: 0 15px !important
 }
 

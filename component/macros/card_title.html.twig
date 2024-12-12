@@ -13,7 +13,7 @@
     {% set title_classes = [] %}
 
     {% if center_content or text_alignment or text_color or padding %}
-        {% set title_classes = title_classes|merge(['display-4 card-text lead h3 title']) %}
+        {% set title_classes = title_classes|merge(['display-4 card-text lead title']) %}
     {% endif %}
 
     {% set title_classes = title_classes|merge([
