@@ -80,7 +80,6 @@
     }
   });
 
-  // A/B Testing for CU Boulder Funds
   document.addEventListener("DOMContentLoaded", function () {
     // Block IDs
     const blockA = document.getElementById("block--node--call-to-action--1051");
@@ -88,19 +87,38 @@
 
     // Check if blocks exist on the page
     if (blockA && blockB) {
-      // Retrieve the current variant from localStorage (or use 'A' as default)
-      const currentVariant = localStorage.getItem("abTestingVariant") || "A";
+      // Check the last assigned variant from a cookie
+      let lastVariant = getCookie("lastABTestingVariant");
+
+      // Determine the current variant based on the last one
+      const currentVariant = lastVariant === "A" ? "B" : "A";
+
+      // Save the current variant for the next visitor
+      setCookie("lastABTestingVariant", currentVariant, 120); // Store in a cookie for 120 days
 
       // Toggle visibility based on the current variant
       if (currentVariant === "A") {
         blockA.style.display = "block";
         blockB.style.display = "none";
-        localStorage.setItem("abTestingVariant", "B"); // Set the next variant
       } else {
         blockA.style.display = "none";
         blockB.style.display = "block";
-        localStorage.setItem("abTestingVariant", "A"); // Set the next variant
       }
+    }
+
+    // Utility: Set a cookie
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+    }
+
+    // Utility: Get a cookie
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return null;
     }
   });
 
