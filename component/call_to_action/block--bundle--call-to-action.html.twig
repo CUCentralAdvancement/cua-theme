@@ -67,7 +67,7 @@
         {% if provider %}
             {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
 
-         {# Render Image #}
+            {# Render Image #}
         {% elseif card_image %}
             {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
             {{ cardImageMacros.render_card_image (
@@ -78,9 +78,10 @@
                 image_size,
                 visibility,
                 content,
+                links
             ) }}
 
-        {# Render Icon #}
+            {# Render Icon #}
         {% elseif icon %}
             {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
             {{ iconMacros.render_icon (
@@ -113,6 +114,7 @@
             text_alignment,
             text_color,
             padding,
+            links
         ) }}
 
         {# Render Body #}
@@ -122,7 +124,8 @@
                 content,
                 padding,
                 text_color,
-                text_alignment
+                text_alignment,
+                links
             ) }}
         {% endif %}
 
