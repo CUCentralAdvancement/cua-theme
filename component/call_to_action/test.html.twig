@@ -1,0 +1,277 @@
+{# Attach the library #}
+{{ attach_library('cua_theme/call-to-action') }}
+
+<style>
+    /* Remove underline from all links within the call-to-action block */
+    .contextual-region.block-content-call_to_action a {
+        text-decoration: none;
+    }
+
+    /* Ensure hover styles don't add an underline */
+    .contextual-region.block-content-call_to_action a:hover {
+        text-decoration: none;
+    }
+
+    .contextual-region.block-content-call_to_action:hover img {
+        transform: scale(0.95);
+    }
+
+</style>
+
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+
+{# Define CTA classes #}
+{% set cta_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'call-to-action',
+    'card rounded-0 h-100',
+    animate_trigger,
+    color_background ?: null,
+    color_border ?: null,
+    container_size ?: null,
+    padding ?: null,
+    margin ?: null,
+    shadow ?: null,
+    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
+    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+
+{# Set data attributes for animation #}
+{% set data_animation_classes = [
+    'animate__animated',
+    animation,
+    animation_speed,
+    animation_delay
+] | filter(v => v) | join(' ') %}
+
+{# Generate unique ID #}
+{% set unique_id = 'block--node--call-to-action--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+
+{% if links|length == 1 %}
+    {# Content #}
+
+
+    {% for link in links %}
+        {% if link.url and link.title %}
+            <a href="{{ link.url }}" class="{{ card_footer_link_classes }}" title="{{ link.title }}">
+        {% endif %}
+    {% endfor %}
+
+{% if margins %}
+    <div class="cta-{{ margins }} h-100">
+{% endif %}
+
+    <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
+            {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+
+        {# Render Flag #}
+        {% if flag %}
+            {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
+            {{ flagMacros.render_flag (
+                flag,
+                flag_title,
+                icon,
+                icon_size,
+                flag_background,
+            ) }}
+        {% endif %}
+
+        {# Render Video #}
+        {% if provider %}
+            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+
+            {# Render Image #}
+        {% elseif card_image %}
+            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+            {{ cardImageMacros.render_card_image (
+                card_image,
+                position_container,
+                text_alignment,
+                text_color,
+                image_size,
+                visibility,
+                content,
+            ) }}
+
+            {# Render Icon #}
+        {% elseif icon %}
+            {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+            {{ iconMacros.render_icon (
+                icon,
+                icon_size,
+                icon_color,
+                padding,
+                position_container,
+                text_alignment
+            ) }}
+        {% endif %}
+
+        {# Render Caption #}
+        {% if caption %}
+            {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
+            {{ captionMacros.render_caption(
+                caption,
+                padding,
+                text_color,
+                text_alignment
+            ) }}
+        {% endif %}
+
+        {# Render Title #}
+        {{ titleMacros.render_title (
+            label,
+            title_prefix,
+            title_suffix,
+            center_content,
+            text_alignment,
+            text_color,
+            padding,
+        ) }}
+
+        {# Render Body #}
+        {% if content %}
+            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+            {{ bodyMacros.render_body (
+                content,
+                padding,
+                text_color,
+                text_alignment,
+            ) }}
+        {% endif %}
+
+        {# Render Footer #}
+        {% if links %}
+            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+            {{ cardFooterMacros.render_card_footer (
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color,
+                button_layout
+            ) }}
+        {% endif %}
+
+    </div>
+{% if margins %}
+    </div>
+{% endif %}
+    {% for link in links %}
+        {% if link.url and link.title %}
+            </a>
+        {% endif %}
+    {% endfor %}
+
+{% else %}
+
+    {% if margins %}
+        <div class="cta-{{ margins }} h-100">
+    {% endif %}
+
+    <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
+            {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+
+        {# Render Flag #}
+        {% if flag %}
+            {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
+            {{ flagMacros.render_flag (
+                flag,
+                flag_title,
+                icon,
+                icon_size,
+                flag_background,
+            ) }}
+        {% endif %}
+
+        {# Render Video #}
+        {% if provider %}
+            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+
+            {# Render Image #}
+        {% elseif card_image %}
+            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+            {{ cardImageMacros.render_card_image (
+                card_image,
+                position_container,
+                text_alignment,
+                text_color,
+                image_size,
+                visibility,
+                content,
+                links
+            ) }}
+
+            {# Render Icon #}
+        {% elseif icon %}
+            {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+            {{ iconMacros.render_icon (
+                icon,
+                icon_size,
+                icon_color,
+                padding,
+                position_container,
+                text_alignment
+            ) }}
+        {% endif %}
+
+        {# Render Caption #}
+        {% if caption %}
+            {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
+            {{ captionMacros.render_caption(
+                caption,
+                padding,
+                text_color,
+                text_alignment
+            ) }}
+        {% endif %}
+
+        {# Render Title #}
+        {{ titleMacros.render_title (
+            label,
+            title_prefix,
+            title_suffix,
+            center_content,
+            text_alignment,
+            text_color,
+            padding,
+            links
+        ) }}
+
+        {# Render Body #}
+        {% if content %}
+            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+            {{ bodyMacros.render_body (
+                content,
+                padding,
+                text_color,
+                text_alignment,
+                links
+            ) }}
+        {% endif %}
+
+        {# Render Footer #}
+        {% if links %}
+            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+            {{ cardFooterMacros.render_card_footer (
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color,
+                button_layout
+            ) }}
+        {% endif %}
+
+    </div>
+    {% if margins %}
+        </div>
+    {% endif %}
+{% endif %}
