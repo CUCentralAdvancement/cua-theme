@@ -122,6 +122,73 @@ h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
     padding: 15px 0;
 }
 
+/* Remove underline from all links within the call-to-action block */
+.block-content-call_to_action a,
+.block-content-call_to_action a:hover,
+.block-content-call_to_action a:visited,
+.block-content-call_to_action a:active{
+    text-decoration: none !important;
+}
+.block-content-call_to_action:hover img {
+    transform: scale(0.95);
+}
+
+/* Remove underline from links wrapping the h3 element */
+.block-content-call_to_action a h3.display-4{
+    text-decoration: none !important; /* Remove underline */
+}
+
+/* Ensure links wrapping the h3 element don't show underlines on hover */
+.block-content-call_to_action a h3.display-4:hover {
+    text-decoration: none !important;
+}
+
+/* General rule to apply to all links wrapping the content inside */
+.block-content-call_to_action a {
+    text-decoration: none !important; /* Remove underline from all links */
+}
+
+/* Ensure hover styles don't add underline for all links */
+.block-content-call_to_action a:hover {
+    text-decoration: none!important;
+}
+/* Remove underline for links wrapping the entire div */
+.block-content-call_to_action .card-body a {
+    text-decoration: none !important;
+}
+
+/* Ensure no underline on hover for links wrapping the div */
+.block-content-call_to_action .card-body a:hover {
+    text-decoration: none !important;
+}
+
+/* Remove underline for any links inside the div */
+.block-content-call_to_action .card-body a span,
+.block-content-call_to_action .card-body a p,
+.block-content-call_to_action .card-body a * {
+    text-decoration: none !important;
+}
+
+/* Ensure hover styles for links inside the div don't add underline */
+.block-content-call_to_action .card-body a:hover span,
+.block-content-call_to_action .card-body a:hover p,
+.block-content-call_to_action .card-body a:hover * {
+    text-decoration: none !important;
+}
+
+.block-content-call_to_action a .display-4,
+.block-content-call_to_action a .display-4.a {
+    text-decoration: none !important;
+}
+
+.block-content-call_to_action body,
+.block-content-call_to_action p,
+.block-content-call_to_action a,
+.block-content-call_to_action a:hover,
+.block-content-call_to_action li {
+    text-decoration: none !important;
+}
+
 /*** Responsive ***/
 /* Media query for screens below 991px */
 @media (max-width: 991px) {
