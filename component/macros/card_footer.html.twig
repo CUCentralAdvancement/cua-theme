@@ -16,7 +16,8 @@
     padding = null,
     outline = null,
     button_color = null,
-    button_layout = null
+    button_layout = null,
+    hide_from_screen_readers = false
     ) %}
 
     {# Ensure links is always an array #}
@@ -61,7 +62,7 @@
 
             {% for link in links %}
                 {% if link.url and link.title %}
-                    <a href="{{ link.url }}" class="{{ card_footer_link_classes }}">
+                    <a href="{{ link.url }}" class="{{ card_footer_link_classes }}" {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
                         {{ link.title }}
                     </a>
                 {% endif %}
