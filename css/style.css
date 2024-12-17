@@ -1315,6 +1315,11 @@ blockquote p {
     overflow: hidden; /* Prevents content from escaping */
 }
 
+.site-footer .nav-link:focus,
+.site-footer .nav-link:hover {
+    color: var(--cua-white ) !important;
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
