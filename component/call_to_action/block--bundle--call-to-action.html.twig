@@ -20,7 +20,7 @@
     margin ?: null,
     shadow ?: null,
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
+    id ? 'block--class--call-to-action' ~ id|replace({'-': '-'})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Set data attributes for animation #}
@@ -43,113 +43,107 @@
     {# Open the link tag if single_link exists #}
     {% if single_link %}
 
-    {# Open the wrapper div for the entire block #}
-    <div class="cta-block-wrapper g-0">
+    {# Visually Hidden Title for Screen Readers (at the top) #}
+    <h3 class="sr-only">{{ label }}</h3>
 
-        {# Visually Hidden Title for Screen Readers (at the top) #}
-        <h3 class="sr-only">{{ label }}</h3>
+    <a href="{{ single_link.url ?: '#' }}"
+       class="cta-link"
+       {% if single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
+        {% endif %}
 
-        <a href="{{ single_link.url ?: '#' }}"
-           class="cta-link"
-           {% if single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
-            {% endif %}
+        {# Render Flag #}
+        {% if flag %}
+            {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
+            {{ flagMacros.render_flag(
+                flag,
+                flag_title,
+                icon,
+                icon_size,
+                flag_background
+            ) }}
+        {% endif %}
 
-
-            {# Render Flag #}
-            {% if flag %}
-                {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
-                {{ flagMacros.render_flag(
-                    flag,
-                    flag_title,
-                    icon,
-                    icon_size,
-                    flag_background
-                ) }}
-            {% endif %}
-
-            {# Render Image or Icon #}
-            {% if provider %}
-                {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-            {% elseif card_image %}
-                {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-                {{ cardImageMacros.render_card_image(
-                    card_image,
-                    position_container,
-                    text_alignment,
-                    text_color,
-                    image_size,
-                    visibility,
-                    content,
-                    true
-                ) }}
-            {% elseif icon %}
-                {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-                {{ iconMacros.render_icon(
-                    icon,
-                    icon_size,
-                    icon_color,
-                    padding,
-                    position_container,
-                    text_alignment
-                ) }}
-            {% endif %}
-
-            {# Render Caption #}
-            {% if caption %}
-                {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
-                {{ captionMacros.render_caption(
-                    caption,
-                    padding,
-                    text_color,
-                    text_alignment
-                ) }}
-            {% endif %}
-
-            {# Render Title (Wrapped in H3) #}
-            {{ titleMacros.render_title(
-                label,
-                title_prefix,
-                title_suffix,
-                center_content,
+        {# Render Image or Icon #}
+        {% if provider %}
+            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+        {% elseif card_image %}
+            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+            {{ cardImageMacros.render_card_image(
+                card_image,
+                position_container,
                 text_alignment,
                 text_color,
-                padding
+                image_size,
+                visibility,
+                content,
+                true
             ) }}
+        {% elseif icon %}
+            {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+            {{ iconMacros.render_icon(
+                icon,
+                icon_size,
+                icon_color,
+                padding,
+                position_container,
+                text_alignment
+            ) }}
+        {% endif %}
 
-            {# Render Content #}
-            {% if content %}
-                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                {{ bodyMacros.render_body(
-                    content,
-                    padding,
-                    text_color,
-                    text_alignment
-                ) }}
-            {% endif %}
+        {# Render Caption #}
+        {% if caption %}
+            {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
+            {{ captionMacros.render_caption(
+                caption,
+                padding,
+                text_color,
+                text_alignment
+            ) }}
+        {% endif %}
 
-            {# Render Footer #}
-            {% if links %}
-                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                {{ cardFooterMacros.render_card_footer(
-                    links,
-                    container_size,
-                    color_background,
-                    position_container,
-                    text_alignment,
-                    padding,
-                    outline,
-                    button_color,
-                    button_layout,
-                    false,
-                    single_link ? true : false
-                ) }}
-            {% endif %}
+        {# Render Title (Wrapped in H3) #}
+        {{ titleMacros.render_title(
+            label,
+            title_prefix,
+            title_suffix,
+            center_content,
+            text_alignment,
+            text_color,
+            padding
+        ) }}
 
+        {# Render Content #}
+        {% if content %}
+            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+            {{ bodyMacros.render_body(
+                content,
+                padding,
+                text_color,
+                text_alignment
+            ) }}
+        {% endif %}
 
-            {# Close the link tag if single_link exists #}
-            {% if single_link %}
-        </a>
-    </div>
+        {# Render Footer #}
+        {% if links %}
+            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+            {{ cardFooterMacros.render_card_footer(
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color,
+                button_layout,
+                false,
+                single_link ? true : false
+            ) }}
+        {% endif %}
+
+        {# Close the link tag if single_link exists #}
+        {% if single_link %}
+    </a>
     {% endif %}
 
 </div>
