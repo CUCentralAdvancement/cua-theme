@@ -6,7 +6,18 @@
 {# Call the macro and pass the necessary variables #}
 {# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }} #}
 
-{% macro render_card_image(card_image, position_container = null, text_alignment = null, text_color = null, image_size = null, image_text = null, content = null, links = null) %}
+{% macro render_card_image(
+    card_image,
+    position_container = null,
+    text_alignment = null,
+    text_color = null,
+    image_size = null,
+    image_text = null,
+    content = null,
+    hide_from_screen_readers = false,
+    links = null
+    ) %}
+
     {% if card_image %}
 
         {# Set card image classes #}
@@ -34,7 +45,8 @@
                     {% set firstLink = links[0] %}
                     <a class="img-hover-effect" href="{{ firstLink.url }}"
                        title="{{ firstLink.title }}"
-                       aria-hidden="true">
+                            {% if hide_from_screen_readers %} aria-hidden="true"
+                            {% endif %}>
                         {{ card_image }}
                     </a>
                 {% else %}

@@ -7,7 +7,7 @@
 {# {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding) }} #}
 
 {# Content #}
-{% macro render_title(label, title_prefix = '', title_suffix = '', center_content = null, text_alignment = null, text_color = null, padding = null, links = []) %}
+{% macro render_title(label, title_prefix = '', title_suffix = '', center_content = null, text_alignment = null, text_color = null, padding = null,  hide_from_screen_readers = false, links = []) %}
 
     {# Define Title Classes #}
     {% set title_classes = [] %}
@@ -34,14 +34,13 @@
     {% if links|length %}
         {% set firstLink = links[0] %}
         <a class="{{ title_link_classes }}" href="{{ firstLink.url }}"
-           title="{{ firstLink.title }}"
-           aria-label="{{ firstLink.title }}">
+           title="{{ firstLink.title }}"{% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
             <h3 class="{{ title_classes }}">
                 {{ label }}
             </h3>
         </a>
     {% else %}
-        <h3 class="{{ title_classes }}">
+        <h3 class="{{ title_classes }}"{% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
             {{ label }}
         </h3>
     {% endif %}

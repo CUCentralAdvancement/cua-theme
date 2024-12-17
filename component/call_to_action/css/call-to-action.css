@@ -189,6 +189,10 @@ h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
     text-decoration: none !important;
 }
 
+a.cta-link {
+    text-decoration: none !important;
+}
+
 /*** Responsive ***/
 /* Media query for screens below 991px */
 @media (max-width: 991px) {

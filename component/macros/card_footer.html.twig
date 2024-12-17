@@ -1,12 +1,3 @@
-{# Footer Macro #}
-
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/card_footer.html.twig' as FooterMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{#  {{ cardFooterMacros.render_card_footer(links = links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout) }}
-#}
-
 {% macro render_card_footer(
     links,
     container_size = null,
@@ -17,19 +8,13 @@
     outline = null,
     button_color = null,
     button_layout = null,
-    hide_from_screen_readers = false
+    hide_from_screen_readers = false,
+    render_as_span = false
     ) %}
 
-    {# Ensure links is always an array #}
     {% set links = links|default([]) %}
-
-    {# Check if there are links to render #}
     {% if links|length > 0 %}
-
-        {# Determine if multiple links exist #}
         {% set multiple_links = links|length > 1 %}
-
-        {# Set card footer classes #}
         {% set card_footer_classes = [
             'card-footer',
             'd-flex',
@@ -41,7 +26,6 @@
             'mb-5',
         ] | filter(v => v) | join(' ') %}
 
-        {# Set card footer link classes #}
         {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
         {% set card_footer_link_classes = [
             'card-link',
@@ -55,20 +39,23 @@
         ] | filter(v => v) | join(' ') %}
 
         <div class="{{ card_footer_classes }}"
-
                 {% if multiple_links %}
             role="group" aria-label="Related links"
                 {% endif %}>
 
             {% for link in links %}
                 {% if link.url and link.title %}
-                    <a href="{{ link.url }}" class="{{ card_footer_link_classes }}" {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
-                        {{ link.title }}
-                    </a>
+                    {% if render_as_span %}
+                        <span class="{{ card_footer_link_classes }}">{{ link.title }}</span>
+                    {% else %}
+                        <a href="{{ link.url }}" class="{{ card_footer_link_classes }}"
+                                {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
+                            {{ link.title }}
+                        </a>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
 
         </div>
-
     {% endif %}
 {% endmacro %}
