@@ -38,8 +38,10 @@
 
 {# Start Wrapper #}
 {% if single_link %}
-<a href="{{ single_link.url ?: '#' }}" title="{{ single_link.title ?: '' }}"
-   class="cta-link">
+<a href="{{ single_link.url ?: '#' }}"
+   title="{{ single_link.title ?: '' }}"
+   class="cta-link"
+   {% if single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
     {% endif %}
 
     <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
