@@ -36,6 +36,7 @@
 {# Check for single link #}
 {% set single_link = links|length == 1 ? links|first : null %}
 
+{# Open the link tag if single_link exists #}
 {% if single_link %}
 <a href="{{ single_link.url ?: '#' }}"
    class="cta-link"
@@ -95,7 +96,7 @@
             ) }}
         {% endif %}
 
-        {# Must always render Title #}
+        {# Render Title (Wrapped in H3) #}
         {{ titleMacros.render_title(
             label,
             title_prefix,
@@ -134,9 +135,9 @@
                 single_link ? true : false
             ) }}
         {% endif %}
-
     </div>
 
+    {# Close the link tag if single_link exists #}
     {% if single_link %}
 </a>
 {% endif %}
