@@ -9,7 +9,7 @@
     button_color = null,
     button_layout = null,
     hide_from_screen_readers = false,
-    render_as_span = false
+    is_single_link = false
     ) %}
 
     {% set links = links|default([]) %}
@@ -44,15 +44,15 @@
                 {% endif %}>
 
             {% for link in links %}
-                {% if link.url and link.title %}
-                    {% if render_as_span %}
-                        <span class="{{ card_footer_link_classes }}">{{ link.title }}</span>
-                    {% else %}
-                        <a href="{{ link.url }}" class="{{ card_footer_link_classes }}"
-                                {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
-                            {{ link.title }}
-                        </a>
-                    {% endif %}
+                {% if is_single_link %}
+                    {# Single link case: render as <span> #}
+                    <span class="{{ card_footer_link_classes }}">{{ link.title }}</span>
+                {% else %}
+                    {# Multiple links case: render as <a> #}
+                    <a href="{{ link.url }}" class="{{ card_footer_link_classes }}"
+                            {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
+                        {{ link.title }}
+                    </a>
                 {% endif %}
             {% endfor %}
 

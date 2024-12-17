@@ -36,10 +36,8 @@
 {# Check for single link #}
 {% set single_link = links|length == 1 ? links|first : null %}
 
-{# Start Wrapper #}
 {% if single_link %}
 <a href="{{ single_link.url ?: '#' }}"
-   title="{{ single_link.title ?: '' }}"
    class="cta-link"
    {% if single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
     {% endif %}
@@ -120,10 +118,6 @@
         {% endif %}
 
         {# Render Footer #}
-        {# Check if the card has a single wrapper link #}
-        {% set is_wrapper_link = links|length == 1 %}
-
-        {# Render Footer #}
         {% if links %}
             {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
             {{ cardFooterMacros.render_card_footer(
@@ -137,7 +131,7 @@
                 button_color,
                 button_layout,
                 false,
-                true
+                single_link ? true : false
             ) }}
         {% endif %}
 
