@@ -10,7 +10,8 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'call-to-action',
-    'card rounded-0 h-100',
+    'card rounded-0',
+    'h-100',
     animate_trigger,
     color_background ?: null,
     color_border ?: null,
@@ -25,9 +26,9 @@
 {# Set data attributes for animation #}
 {% set data_animation_classes = [
     'animate__animated',
-    animation : null,
-    animation_speed ? animation_speed : null,
-    animation_delay ? animation_delay : null
+    animation ?: null,
+    animation_speed ?: null,
+    animation_delay ?: null,
 ] | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
@@ -52,6 +53,7 @@
            class="cta-link"
            {% if single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
             {% endif %}
+
 
             {# Render Flag #}
             {% if flag %}
@@ -90,8 +92,6 @@
                     position_container,
                     text_alignment
                 ) }}
-            {% else %}
-                <p>Image, Video or icon missing</p>
             {% endif %}
 
             {# Render Caption #}
@@ -144,6 +144,7 @@
                     single_link ? true : false
                 ) }}
             {% endif %}
+
 
             {# Close the link tag if single_link exists #}
             {% if single_link %}
