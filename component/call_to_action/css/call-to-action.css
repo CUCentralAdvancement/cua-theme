@@ -129,9 +129,6 @@ h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
 .block-content-call_to_action a:active{
     text-decoration: none !important;
 }
-.block-content-call_to_action:hover img {
-    transform: scale(0.95);
-}
 
 /* Remove underline from links wrapping the h3 element */
 .block-content-call_to_action a h3.display-4{
