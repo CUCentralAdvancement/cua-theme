@@ -1322,6 +1322,19 @@ blockquote p {
     color: var(--cua-white ) !important;
 }
 
+.contextual {
+    position: relative;
+    z-index: 9999 !important; /* Ensure it is above the link */
+}
+
+.contextual a {
+    pointer-events: none !important; /* Prevent the link from interfering */
+}
+
+.contextual .contextual-links a {
+    pointer-events: auto !important; /* Allow interaction with contextual links */
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
