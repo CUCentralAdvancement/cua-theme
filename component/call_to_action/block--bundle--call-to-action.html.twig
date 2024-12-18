@@ -37,15 +37,11 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes) }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    {# Check for single link #}
-    {% set single_link = links|length == 1 ? links|first : null %}
-
-    {# Open the link tag if single_link exists #}
-    {% if single_link %}
-
     {# Visually Hidden Title for Screen Readers (at the top) #}
     <h3 class="sr-only">{{ label }}</h3>
 
+    {# Render the clickable link content #}
+    {% if single_link %}
     <a href="{{ single_link.url ?: '#' }}"
        class="cta-link"
        {% if single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
@@ -141,12 +137,7 @@
             ) }}
         {% endif %}
 
-        {# Close the link tag if single_link exists #}
         {% if single_link %}
     </a>
     {% endif %}
-
 </div>
-
-
-
