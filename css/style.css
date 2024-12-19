@@ -1335,6 +1335,15 @@ blockquote p {
     pointer-events: auto !important; /* Allow interaction with contextual links */
 }
 
+/* Remove underline specifically for active links */
+.nav-link.nav-link--guide-givingone-time-gift.is-active,
+.nav-link.nav-link--guide-giving.is-active,
+.nav-link.nav-link--guide-givingplanned-gift.is-active,
+.nav-link.nav-link--guide-givingsecurities.is-active,
+.nav-link.nav-link--guide-givingcrypto.is-active {
+    text-decoration: none !important; /* Force the removal of underline */
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
