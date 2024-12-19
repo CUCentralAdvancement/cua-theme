@@ -85,6 +85,25 @@
   padding: .25rem 0 !important
 }
 
+/* Ensure the link wrapper behaves like a block element and removes underlines */
+.hh-link-wrapper {
+  text-decoration: none; /* Remove underline */
+  display: block; /* Ensure the link behaves like a block container */
+  position: relative; /* Required for positioning child elements */
+  overflow: hidden; /* Ensure no content overflows the container */
+  transition: transform 0.3s ease; /* Smooth transition for moving the container */
+}
+
+/* Move the entire container up by 5px on hover */
+.hh-link-wrapper:hover {
+  transform: translateY(-1rem); /* Move the entire container up by 5px */
+}
+
+/* Prevent underline for the link on hover */
+.hh-link-wrapper:hover {
+  text-decoration: none; /* Prevent underline on hover for the container */
+}
+
 /* Media query for small screens */
 @media only screen and (max-width: 576px) {
   /* Reset image float and width for small screens */
