@@ -55,15 +55,18 @@
 {# Check for single link #}
 {% set single_link = links|length == 1 ? links|first : null %}
 
-{# Open the link tag if single_link exists #}
-{% if single_link %}
-<a href="{{ single_link.url ?: '#' }}"
-   class="hh-link-wrapper"
-   {% if single_link.title is defined and single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
-    {% endif %}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }}
+        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }}
-            {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+    {# Visually Hidden Title for Screen Readers (at the top) #}
+    <h3 class="sr-only">{{ label }}</h3>
+
+    {# Open the link tag if single_link exists #}
+    {% if single_link %}
+    <a href="{{ single_link.url ?: '#' }}"
+       class="hh-link-wrapper"
+       {% if single_link.title is defined and single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
+        {% endif %}
 
         {# Desktop Component #}
         <div class="{{ container_size }} d-none d-sm-block g-0">
@@ -224,9 +227,10 @@
             </div>
         </div>
 
-    </div>
+        {# Close the link tag if single_link exists #}
+        {% if single_link %}
+    </a>
+    {% endif %}
 
-    {# Close the link tag if single_link exists #}
-    {% if single_link %}
-</a>
-{% endif %}
+</div>
+
