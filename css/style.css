@@ -1335,6 +1335,37 @@ blockquote p {
     pointer-events: auto !important; /* Allow interaction with contextual links */
 }
 
+/* Ensure contextual link trigger is visible and interactive */
+.js-layout-builder-block.layout-builder-block.contextual-region .contextual {
+    position: relative !important;
+    z-index: 9999 !important; /* Make sure it's above other content */
+}
+
+.js-layout-builder-block.layout-builder-block.contextual-region .contextual .trigger {
+    pointer-events: auto !important; /* Allow interaction with the trigger button */
+    visibility: visible !important; /* Make sure it’s visible */
+    opacity: 1 !important; /* Ensure it’s fully opaque */
+}
+
+/* Ensure the contextual menu (links) is accessible and clickable */
+.js-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links {
+    position: absolute !important;
+    z-index: 10000 !important; /* Ensure the links are on top */
+    visibility: visible !important; /* Ensure links are visible */
+    opacity: 1 !important;
+    display: block !important; /* Make sure it’s not hidden */
+}
+
+/* Optional: Style the contextual links for clarity */
+.js-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links li a {
+    pointer-events: auto !important; /* Allow interaction with the links */
+}
+
+.contextual-links {
+    background: green !important;
+    padding: .5rem 1em !important;
+}
+
 /* Remove underline specifically for active links */
 .nav-link.nav-link--guide-givingone-time-gift.is-active,
 .nav-link.nav-link--guide-giving.is-active,

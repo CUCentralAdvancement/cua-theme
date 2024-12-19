@@ -1,13 +1,14 @@
 {#
 /**
-* @file
-* Template for the Half and Half component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ * @file
+ * Template for the Half and Half component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ */
 #}
 
 {# Attach the library #}
@@ -26,11 +27,11 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'half-and-half',
-    animate_trigger ?: null,
-    border_style ?: null,
-    container_size ?: null,
-    margins ?: null,
-    color_background ?: null,
+    (animate_trigger ?: null),
+    (border_style ?: null),
+    (container_size ?: 'container'),
+    (margins ?: null),
+    (color_background ?: null),
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v)|join(' ') %}
@@ -38,9 +39,9 @@
 {# Set data attributes for animation #}
 {% set data_animation_classes = [
     'animate__animated',
-    animation,
-    animation_speed,
-    animation_delay
+    animation ?: null,
+    animation_speed ?: null,
+    animation_delay ?: null,
 ] | filter(v => v) | join(' ') %}
 
 {# Add unique id to block #}
@@ -233,4 +234,3 @@
     {% endif %}
 
 </div>
-
