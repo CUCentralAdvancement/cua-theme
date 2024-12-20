@@ -1348,7 +1348,7 @@ blockquote p {
 }
 
 /* Ensure the contextual menu (links) is accessible and clickable */
-.js-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links {
+.xjs-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links {
     position: absolute !important;
     z-index: 10000 !important; /* Ensure the links are on top */
     visibility: visible !important; /* Ensure links are visible */
