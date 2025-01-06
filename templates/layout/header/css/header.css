@@ -712,6 +712,11 @@ span.site-slogan.text-nowrap {
     margin-top: .1rem;
 }
 
+.col-auto.site-slogan {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
