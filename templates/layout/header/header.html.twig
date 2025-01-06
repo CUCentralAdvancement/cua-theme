@@ -28,53 +28,46 @@
                         <div class="container d-flex g-0">
 
                             {# CU Logo #}
-                            <div class="flex-shrink-1">
+                            <div class="flex-shrink-1 d-flex align-items-center">
                                 <a href="{{ url('<front>') }}"
                                    rel="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}"
-                                   class="site-branding__logo">
+                                   class="site-branding__logo d-flex align-items-center text-decoration-none">
                                     {# Logo for larger screens #}
-                                    <img class="d-none d-lg-block"
+                                    <img class="d-none d-lg-block me-2"
                                          src="{{ base_path ~ directory ~ '/images/logo.svg' }}"
                                          alt="{{ 'University of Colorado logo'|t }}"
                                          width="225" height="24"/>
                                     {# Logo for smaller screens #}
-                                    <img class="d-lg-none"
+                                    <img class="d-lg-none me-2"
                                          src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
                                          alt="{{ 'University of Colorado logo'|t }}"
                                          width="29" height="28"/>
+                                    {# Site slogan positioned to the right #}
+                                    <span class="site-slogan text-nowrap">
+                                         {{ site_slogan }}
+                                    </span>
                                 </a>
                             </div>
-
-                            {# Site name #}
-                            {% if site_slogan %}
-                                <div class="w-100 align-items-baseline">
-                                    <a href="{{ url('<front>') }}"
-                                       title="{{ site_slogan }}" rel="home"
-                                       class="site-branding__name site-name">
-                                        {{ site_slogan }}
-                                    </a>
-                                </div>
-                            {% endif %}
 
                             {# Navigation toggle buttons for smaller screens #}
                             {% if page.search %}
                                 <span class="d-lg-none mx-4">
-                                {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
-                            </span>
+                                    {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
+                                </span>
                             {% endif %}
 
-
-                            {# Hamburger #}
-                            <button class="navbar-toggler collapsed"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#mainNavbrSupportedContent"
-                                    aria-controls="CollapsingNavbar"
-                                    aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-
+                            {# Hamburger Menu Button #}
+                            <div class="d-lg-none ms-auto">
+                                <button class="navbar-toggler collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#mainNavbrSupportedContent"
+                                        aria-controls="CollapsingNavbar"
+                                        aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -110,7 +103,6 @@
                 </div>
             {% endif %}
 
-
         </div>
     </div>
 
@@ -128,7 +120,6 @@
             </div>
         </div>
     {% endif %}
-
 
     {# Site Name / Desktop #}
     {% if site_name %}

@@ -105,7 +105,7 @@ nav#navbar-main.sticky {
 /* Add hover effect */
 .navbar-expand-lg a.nav-link:first-child.is-active:hover {
     background-color: var(--cua-white) !important;
-    color:  var(--cua-black) !important;
+    color: var(--cua-black) !important;
 }
 
 
@@ -703,6 +703,13 @@ div#block-cua-theme-breadcrumbs {
 
 .secondary-menu {
     margin-bottom: 0 !important;
+}
+
+span.site-slogan.text-nowrap {
+    color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: .1rem;
 }
 
 /* Responsive */
