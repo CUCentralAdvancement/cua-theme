@@ -621,6 +621,18 @@ div#block--node--basic-block--819 {
     margin: 23px 0 0;
 }
 
+.funds {
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 0 0 0 .2rem !important;
+    margin: 0 !important;
+    width: 100% !important
+}
+
+#funds .call-to-action p {
+    margin-top: 0 !important;
+}
+
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
 
