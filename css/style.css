@@ -207,19 +207,22 @@ div#block-cua-theme-page-title {
     display: none !important
 }
 
-/* square wrapper on title */
 .base-heading-square__accent {
     border-width: 3px;
     border-style: solid;
     border-color: var(--cua-gold);
     position: absolute;
     pointer-events: none;
-    top: 0;
-    left: -8px;
+    top: -0.2rem;
+    left: -4px;
     display: block;
-    width: 52px;
-    height: 52px;
-    z-index: -100
+    width: 60px;
+    height: 60px;
+    z-index: -100;
+}
+
+.field.field--name-title.field--type-string.field--label-hidden {
+    background: var(--cua-white);
 }
 
 /* CK editor title */
@@ -1533,3 +1536,4 @@ blockquote p {
     }
 
 }
+
