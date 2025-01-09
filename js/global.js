@@ -79,7 +79,8 @@
       });
     }
   });
-
+/*
+  // Switch blocks based on load
   document.addEventListener("DOMContentLoaded", function () {
     // Block IDs
     const blockA = document.getElementById("block--node--call-to-action--1051");
@@ -121,5 +122,6 @@
       return null;
     }
   });
+*/
 
 })(Drupal, IntersectionObserver);
