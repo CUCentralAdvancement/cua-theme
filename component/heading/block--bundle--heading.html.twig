@@ -37,11 +37,9 @@
 
 	<div class="row pt-2">
 
-		{# Render the titleto allow editing #}
+		{# Render the title to allow editing #}
 		{{ title_prefix ?? '' }}
-		<span class="visually-hidden" aria-hidden="true" >
-			{{ label }}
-		</span>
+		<p class="visually-hidden">{{ label }}</p>
 		{{ title_suffix ?? '' }}
 
 		{# Render the new title #}
