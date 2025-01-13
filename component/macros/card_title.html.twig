@@ -39,6 +39,8 @@
                 {{ label }}
             </h3>
         </a>
+    {% elseif label is empty %}
+        {# Do nothing #}
     {% else %}
         <h3 class="{{ title_classes }}"{% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
             {{ label }}
