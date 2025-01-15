@@ -39,17 +39,17 @@
 
 		{# Render the title to allow editing #}
 		{{ title_prefix ?? '' }}
-		<p class="visually-hidden">{{ label }}</p>
+		<h1 class="visually-hidden" aria-hidden="true">{{ label }}</h1>
 		{{ title_suffix ?? '' }}
 
 		{# Render the new title #}
 		{% if heading %}
 			<h1{{ title_attributes.addClass('title') }}>{{ heading }}</h1>
-			<span aria-hidden="true" class="heading-square__accent"></span>
+			{#<span aria-hidden="true" class="heading-square__accent"></span>  #}
 		{% endif %}
 
 		{% if subtitle %}
-			<h5{{ title_attributes.addClass('pb-5') }}>{{ subtitle }}</h5>
+			<h2{{ title_attributes.addClass('title px-3 pb-4') }}>{{ subtitle }}</h2>
 		{% endif %}
 	</div>
 
