@@ -1,13 +1,13 @@
 {# Site name and breadcrumb #}
 <div class="container-fluid site-name-wrapper g-0">
-    <div class="container px-3 my-2">
+    <div class="container px-3 mt-2">
         <div class="row">
             <div class="col-auto site-slogan mx-1">
                 {{ site_name }}
             </div>
             {% if page.breadcrumb %}
                 {% block breadcrumb %}
-                    <div class="col d-none d-lg-block mt-3 mx-3">
+                    <div class="col d-none d-lg-block mt-1">
                         {{ page.breadcrumb }}
                     </div>
                 {% endblock %}
