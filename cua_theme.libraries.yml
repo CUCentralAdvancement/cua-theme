@@ -125,3 +125,9 @@ video:
   js:
     component/video/js/player.js: { minified: true }
 
+# Google Tag manager
+google_tag_manager:
+  js:
+    https://www.googletagmanager.com/gtm.js: { type: external, minified: true }
+  dependencies:
+    - core/drupalSettings

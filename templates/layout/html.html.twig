@@ -22,14 +22,16 @@
  *   placeholders.
  *
  * @see template_preprocess_html()
+ */
 #}
-{# Set body clesses #}
+
+{# Set body classes #}
 {% set body_classes = [
     logged_in ? 'user-logged-in',
-    not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
-    node_type ? 'node--type-' ~ node_type|clean_class,
+    root_path is defined and not root_path ? 'path-frontpage' : 'path-' ~ (root_path|default(''))|clean_class,
+    node_type is defined ? 'node--type-' ~ node_type|clean_class : '',
     db_offline ? 'db-offline',
-    current_user.hasRole('administrator') ? 'user-administrator',
+    current_user is defined and current_user.hasRole('administrator') ? 'user-administrator',
 ] %}
 
 <!DOCTYPE html>
@@ -41,38 +43,12 @@
 
         <css-placeholder token="{{ placeholder_token|raw }}">
             <js-placeholder token="{{ placeholder_token|raw }}">
-
-                <!-- Google Tag Manager -->
-                <script>(function (w, d, s, l, i) {
-                        w[l] = w[l] || [];
-                        w[l].push({
-                            'gtm.start':
-                                new Date().getTime(), event: 'gtm.js'
-                        });
-                        var f = d.getElementsByTagName(s)[0],
-                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                        j.async = true;
-                        j.src =
-                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                        f.parentNode.insertBefore(j, f);
-                    })(window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB');</script>
-
-                {# Clarity
-                <script type="text/javascript">
-                    (function(c,l,a,r,i,t,y){
-                        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-                    })(window, document, "clarity", "script", "oddn0qded1");
-                </script>
-                #}
-
 </head>
 
 <body{{ attributes.addClass(body_classes) }}>
 
 <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
+    <iframe src="https://www.googletagmanager.com/ns.html?id={{ drupal_settings.googleTagManager.id }}"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 
@@ -80,6 +56,7 @@
 {{ page_top }}
 {{ page }}
 {{ page_bottom }}
+
 <js-bottom-placeholder token="{{ placeholder_token|raw }}">
 </body>
 
