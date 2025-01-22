@@ -65,7 +65,8 @@
     </div>
 
     {# Site Footer Bottom Section #}
-    <div id="site-footer-bottom" class="container-fluid bg-pure-black px-5 pb-2">
+    <div id="site-footer-bottom"
+         class="container-fluid bg-pure-black px-5 pb-2">
         <div class="row">
 
             {# CU Logo #}
@@ -107,26 +108,33 @@
 
             {# Copyright/Regents Information #}
             <div class="copyright col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center">
-                <p class="mt-2 mb-3 strong text-light" aria-label="{{ 'Copyright and University of Colorado Regents website'|t }}">
+                <p class="mt-2 mb-3 strong text-light"
+                   aria-label="{{ 'Copyright and University of Colorado Regents website'|t }}">
                     {{ '©'|t }} {{ 'now' | date('Y') }}
-                    <a href="https://regents.cu.edu" rel="noopener" target="_blank" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">
+                    <a href="https://regents.cu.edu" rel="noopener"
+                       target="_blank"
+                       class="link-light link-underline-opacity-0 px-2"
+                       aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">
                         {{ 'Regents of the University of Colorado'|t }}
                     </a>
 
                     {% if not logged_in %}
                         <span class="admin-login">
-                <a href="{{ path('user.login') }}" rel="noopener" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Login'|t }}">
+                <a href="{{ path('user.login') }}" rel="noopener"
+                   class="link-light link-underline-opacity-0 px-2"
+                   aria-label="{{ 'Login'|t }}">
                     <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
                     {{ 'Login'|t }}
                 </a>
             </span>
                     {% else %}
-                        <span class="user-logged-in">
-                <a href="{{ path('user.logout', { token: csrf_token('user.logout') }) }}" rel="noopener" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Logout'|t }}">
-                    <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
-                    {{ 'Logout'|t }}
-                </a>
-            </span>
+                        <span class="user-logged-in mx-2">
+                                <a href="/user/logout" rel="noopener"
+                                   class="btn btn-logout" aria-label="Logout"
+                                   tabindex="-1">
+                                    <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>{{ 'Logout'|t }}
+                                </a>
+                            </span>
                     {% endif %}
                 </p>
             </div>
