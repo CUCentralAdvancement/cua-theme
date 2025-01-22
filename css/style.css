@@ -788,23 +788,6 @@ a.bef-link--selected {
     color: var(--cua-blue) !important
 }
 
-.use-ajax.js-layout-builder-block-link,
-#drupal-off-canvas-wrapper .layout-selection a,
-#drupal-off-canvas-wrapper :where(:not(svg,
-[data-drupal-ck-style-fence] *,
-.ui-resizable-handle)) {
-    color: var(--cua-white) !important
-}
-
-#drupal-off-canvas-wrapper input:where(:not([type="submit"],
-[type="checkbox"],
-[type="radio"],
-[type="file"])),
-#drupal-off-canvas-wrapper select,
-#drupal-off-canvas-wrapper textarea {
-    color: var(--cua-black-pure) !important
-}
-
 #backtotop {
     border: 3px solid var(--cua-gold);
     border-radius: 50%;
@@ -852,12 +835,6 @@ a.bef-link--selected {
 }
 
 /* user */
-.ck.ck-balloon-panel.ck-balloon-panel_visible,
-#drupal-off-canvas [data-drupal-ck-style-fence] .ck.ck-balloon-panel.ck-balloon-panel_visible {
-    display: block !important;
-    z-index: 9999999 !important
-}
-
 .user-administrator .node--type-landing-page #main-wrapper-landing-page,
 .user-logged-in .node--type-landing-page #main-wrapper-landing-page {
     margin: 0 1rem
