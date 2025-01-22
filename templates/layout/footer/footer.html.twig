@@ -120,22 +120,15 @@
 
                     {% if not logged_in %}
                         <span class="admin-login">
-                <a href="{{ path('user.login') }}" rel="noopener"
-                   class="link-light link-underline-opacity-0 px-2"
-                   aria-label="{{ 'Login'|t }}">
-                    <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
-                    {{ 'Login'|t }}
-                </a>
-            </span>
-                    {% else %}
-                        <span class="user-logged-in mx-2">
-                                <a href="/user/logout" rel="noopener"
-                                   class="btn btn-logout" aria-label="Logout"
-                                   tabindex="-1">
-                                    <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>{{ 'Logout'|t }}
-                                </a>
-                            </span>
+							<a href="{{ path('user.login') }}" rel="noopener"
+                               class="link-light link-underline-opacity-0 px-2"
+                               aria-label="{{ 'Login'|t }}">
+							<i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
+							{{ 'Login'|t }}
+							</a>
+						</span>
                     {% endif %}
+
                 </p>
             </div>
 
