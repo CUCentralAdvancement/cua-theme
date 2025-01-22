@@ -30,17 +30,17 @@
                             {# CU Logo #}
                             <div class="flex-shrink-1 d-flex align-items-center">
                                 <a href="{{ url('<front>') }}"
-                                   rel="{{ 'University of Colorado'|t ~ ' • ' ~ site_slogan }}"
+                                   rel="{{ ('University of Colorado'|t ~ ' • ' ~ site_slogan)|e }}"
                                    class="site-branding__logo d-flex align-items-center text-decoration-none">
                                     {# Logo for larger screens #}
                                     <img class="d-none d-lg-block me-2"
                                          src="{{ base_path ~ directory ~ '/images/logo.svg' }}"
-                                         alt="{{ 'University of Colorado logo'|t }}"
+                                         alt="{{ 'University of Colorado offical logo'|t }}"
                                          width="225" height="24"/>
                                     {# Logo for smaller screens #}
                                     <img class="d-lg-none me-2"
                                          src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
-                                         alt="{{ 'University of Colorado logo'|t }}"
+                                         alt="{{ 'University of Colorado offical logo'|t }}"
                                          width="29" height="28"/>
                                     {# Site slogan positioned to the right #}
                                     <span class="site-slogan text-nowrap">
@@ -77,21 +77,8 @@
             {% if page.secondary_menu %}
                 <div class="col-md-5 secondary-menu d-none d-lg-block g-0 ">
                     <div class="d-flex justify-content-end">
-
                         {# Secondary menu #}
                         {{ page.secondary_menu }}
-
-                        {# Check if user is logged in #}
-                        {% if logged_in %}
-                            <span class="user-logged-in mx-2">
-                                <a href="/user/logout" rel="noopener"
-                                   class="btn btn-logout"
-                                   aria-label="{{ 'Logout'|t }}">
-                                    <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Logout'|t }}
-                                </a>
-                            </span>
-                        {% endif %}
-
                     </div>
                 </div>
             {% endif %}
