@@ -115,6 +115,14 @@ spacer:
       component/spacer/css/spacer.css:
         weight: -10
 
+# Tabs
+tabs:
+  version: VERSION
+  css:
+    component:
+      component/tabs/css/tabs.css:
+        weight: -10
+
 # Video
 video:
   version: VERSION

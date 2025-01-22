@@ -44,4 +44,5 @@ libraries:
   - cua_theme/counter
   - cua_theme/half-and-half
   - cua_theme/spacer
+  - cua_theme/tabs
   - cua_theme/video
