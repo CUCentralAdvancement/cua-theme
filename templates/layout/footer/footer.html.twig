@@ -89,9 +89,10 @@
                         />
                         <img
                                 src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                                alt="{{ 'University of Colorado Logo'|t }}"
+                                alt="{{ 'University of Colorado official logo'|t }}"
                                 width="500"
                                 height="140"
+                                loading="lazy"
                         />
                     </picture>
                 </a>
@@ -106,40 +107,31 @@
 
             {# Copyright/Regents Information #}
             <div class="copyright col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center">
-                <p class="mt-2 mb-3 strong text-light"
-                   aria-label="{{ 'Copyright and University of Colorado Regents website'|t }}">
-                    {# Copyright  #}
+                <p class="mt-2 mb-3 strong text-light" aria-label="{{ 'Copyright and University of Colorado Regents website'|t }}">
                     {{ '©'|t }} {{ 'now' | date('Y') }}
-                    {# Link to the University of Colorado Regents website #}
-                    <a href="https://regents.cu.edu" rel="noopener"
-                       target="_blank"
-                       class="link-light link-underline-opacity-0 px-2"
-                       aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">{{ 'Regents of the University of Colorado'|t }}</a>
+                    <a href="https://regents.cu.edu" rel="noopener" target="_blank" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">
+                        {{ 'Regents of the University of Colorado'|t }}
+                    </a>
 
-                    {# Check if user is logged in #}
                     {% if not logged_in %}
-                        {# Admin Login #}
                         <span class="admin-login">
-                            <a href="/saml_login" rel="noopener"
-                               class="link-light link-underline-opacity-0 px-2"
-                               aria-label="{{ 'Login'|t }}">
-                                <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Login'|t }}
-                            </a>
-                        </span>
+                <a href="{{ path('user.login') }}" rel="noopener" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Login'|t }}">
+                    <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
+                    {{ 'Login'|t }}
+                </a>
+            </span>
                     {% else %}
-                        {# Admin Logout #}
                         <span class="user-logged-in">
-                            <a href="/user/logout" rel="noopener"
-                               class="link-light link-underline-opacity-0 px-2"
-                               aria-label="{{ 'Logout'|t }}">
-                                <i class="px-2 fas fa-sign-in-alt"></i>{{ 'Logout'|t }}
-                            </a>
-                        </span>
+                <a href="{{ path('user.logout', { token: csrf_token('user.logout') }) }}" rel="noopener" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Logout'|t }}">
+                    <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
+                    {{ 'Logout'|t }}
+                </a>
+            </span>
                     {% endif %}
-
                 </p>
             </div>
 
         </div>
+
     </div>
 </footer>
