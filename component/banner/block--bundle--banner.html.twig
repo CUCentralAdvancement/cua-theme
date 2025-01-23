@@ -3,21 +3,22 @@
 * @file
 * Template for the Banner component.
 *
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
+* This template renders a banner with dynamic classes, background images, and content.
 *
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
+* Bootstrap Documentation: https://getbootstrap.com/docs/5.3
+* Full List of Utility Classes: https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*/
 #}
 
-{# Attach the library #}
+{# Attach the banner-specific theme library #}
 {{ attach_library('cua_theme/banner') }}
 
-{# Import macros #}
+{# Import macros for title, body, and footer rendering #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Set container classes #}
+{# Set container classes dynamically based on configuration #}
 {% set container_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -29,7 +30,7 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
-{# Set image classes #}
+{# Set image container classes, including optional parallax effect and image styles #}
 {% set image_container_classes = [
     'banner-image-container',
     parallax ?: null,
@@ -38,7 +39,7 @@
     container_size ?: null,
 ] | filter(v => v) | join(' ') %}
 
-{# Set banner-body classes #}
+{# Set banner-body classes, including optional animation classes #}
 {% set banner_body_classes = [
     'col-md-5',
     'col-sm-12',
@@ -51,27 +52,27 @@
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] | filter(v => v) | join(' ') %}
 
-{# Set data attributes for animation #}
+{# Set animation classes for dynamic animations if any are specified #}
 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
 
-{# Add optional classes based on conditions #}
+{# Add effect-specific class for banner copy animation, if specified #}
 {% set effect_copy_class = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
 
-{# Generate unique ID #}
+{# Generate unique ID based on content ID for accessibility and uniqueness #}
 {% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Content #}
+{# Content Section - Start with unique ID and dynamic container classes #}
 <div{{ attributes.setAttribute('id', unique_id).addClass(container_classes) }}>
 
-    {# Image container with variables #}
+    {# Image container with dynamic background image and other styling classes #}
     {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
-    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+    <div class="{{ image_container_classes }}"
+         style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
 
-        {# Title, body ,link container with variables #}
-        <div class="{{ banner_body_classes }}"
-             {% if animation_classes %}data-animation-classes="{{ animation_classes }}"{% endif %}>
+        {# Banner Body (Title, Content, Links) #}
+        <div class="{{ banner_body_classes }}"{% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
 
-            {# Render the title #}
+            {# Render Banner Title using imported macros for consistency #}
             {{ titleMacros.render_title(
                 label,
                 title_prefix,
@@ -83,9 +84,8 @@
                 links
             ) }}
 
-            {# Render Body #}
+            {# Render Banner Body Content (if available) #}
             {% if content %}
-                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                 {{ bodyMacros.render_body(
                     content,
                     padding,
@@ -94,9 +94,8 @@
                 ) }}
             {% endif %}
 
-            {# Render Footer #}
+            {# Render Footer Links (if provided) #}
             {% if links %}
-                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                 {{ cardFooterMacros.render_card_footer(
                     links,
                     container_size,
@@ -110,8 +109,8 @@
                 ) }}
             {% endif %}
 
-        </div>
+        </div> <!-- /.banner-body -->
 
-    </div>
+    </div> <!-- /.banner-image-container -->
 
-</div>
+</div> <!-- /.container -->
