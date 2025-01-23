@@ -14,10 +14,10 @@
 */
 #}
 
-{# Attach the library #}
+{# Attach the library for the alert component #}
 {{ attach_library('cua_theme/alert') }}
 
-{# Import macros #}
+{# Import macros for reusable components like title, icon, body, footer #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {# Define alert classes #}
@@ -31,18 +31,18 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Generate unique ID #}
+{# Generate a unique ID for the alert based on block content ID #}
 {% set unique_id = 'block--node-alert--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Render content #}
+{# Begin the alert component's HTML structure #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(alert_classes) }}>
     <div class="container">
         <div class="row">
 
-            {# Close Button #}
+            {# Close button for dismissing the alert, accessible with aria-label #}
             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 
-            {# Icon #}
+            {# Icon rendering section, if an icon is provided #}
             {% if icon %}
                 {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
                 <div class="col-sm-1 icon-container">
@@ -57,10 +57,10 @@
                 </div>
             {% endif %}
 
-            {# Content Area #}
+            {# Content area with dynamic column size based on presence of an icon #}
             <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
 
-                {# Render the title #}
+                {# Render the title using the title macro, with various optional parameters #}
                 {{ titleMacros.render_title(
                     label,
                     title_prefix,
@@ -72,7 +72,7 @@
                     links
                 ) }}
 
-                {# Render the Body #}
+                {# Render the body content, if present #}
                 {% if content %}
                     {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                     {{ bodyMacros.render_body(
@@ -83,7 +83,7 @@
                     ) }}
                 {% endif %}
 
-                {# Render the Footer #}
+                {# Render footer content, if links are provided #}
                 {% if links %}
                     {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                     {{ cardFooterMacros.render_card_footer(
