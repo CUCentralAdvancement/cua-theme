@@ -12,7 +12,7 @@
  *   - provider: The module or other provider that provided this block plugin.
  *   - Block plugin specific settings will also be stored here.
  * - content: The content of this block.
- * - attributes: array of HTML attributes populated by modules, intended to
+ * - attributes: Array of HTML attributes populated by modules, intended to
  *   be added to the main container tag of this template.
  *   - id: A valid HTML ID and guaranteed unique.
  * - title_attributes: Same as attributes, except applied to the main title
@@ -29,6 +29,8 @@
  * @ingroup themeable
  */
 #}
+
+{# Define CSS classes for the block container. #}
 {%
     set classes = [
     'block',
@@ -37,19 +39,27 @@
 ]
 %}
 
-{# Attach the library #}
+{# Attach the required library for the accordion functionality. #}
 {{ attach_library('cua_theme/accordion') }}
 
 <div{{ attributes.addClass(classes) }}>
+
+    {# Render any additional content before the title. #}
     {{ title_prefix }}
+
+    {# Render the block's label if it's available. #}
     {% if label %}
         <h2{{ title_attributes }}>{{ label }}</h2>
     {% endif %}
+
+    {# Render any additional content after the title. #}
     {{ title_suffix }}
+
+    {# Main content block. This can be overridden in child templates. #}
     {% block content %}
         <div{{ content_attributes.addClass('content') }}>
             {{ content }}
         </div>
     {% endblock %}
-</div>
 
+</div>
