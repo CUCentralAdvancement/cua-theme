@@ -11,3 +11,9 @@
 .accordion-button {
     background-color: var(--cua-gray-100) !important;
 }
+
+.accordion h3 {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+
+}

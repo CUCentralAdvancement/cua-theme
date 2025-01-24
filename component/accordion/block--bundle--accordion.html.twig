@@ -30,32 +30,32 @@
  */
 #}
 
-{# Define CSS classes for the block container. #}
-{%
-    set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-]
-%}
-
 {# Attach the required library for the accordion functionality. #}
 {{ attach_library('cua_theme/accordion') }}
 
-<div{{ attributes.addClass(classes) }}>
+{# Set container classes dynamically based on configuration #}
+{% set accordion_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'accordion',
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
-    {# Render any additional content before the title. #}
-    {{ title_prefix }}
+{# Generate unique ID #}
+{% set unique_id = 'block--node-' ~ '-accordion' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-    {# Render the block's label if it's available. #}
-    {% if label %}
-        <h2{{ title_attributes }}>{{ label }}</h2>
-    {% endif %}
+{# Render content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes).setAttribute('role', 'region') }}>
 
-    {# Render any additional content after the title. #}
-    {{ title_suffix }}
+    {# Render Title (Wrapped in H3) #}
+    {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+    {{ titleMacros.render_title(
+        label,
+        title_prefix,
+        title_suffix,
+    ) }}
 
-    {# Main content block. This can be overridden in child templates. #}
     {% block content %}
         <div{{ content_attributes.addClass('content') }}>
             {{ content }}
