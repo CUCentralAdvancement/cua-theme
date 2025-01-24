@@ -27,6 +27,7 @@
 {% set unique_id = 'block--node-' ~ '-accordion' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
+
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(accordion_classes).setAttribute('role', 'region') }}>
 
     {# Render Title #}

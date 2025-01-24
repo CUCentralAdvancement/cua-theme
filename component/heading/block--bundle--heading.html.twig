@@ -33,7 +33,7 @@
 {% set unique_id = 'block--node-' ~ '-heading-block' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes).setAttribute('role', 'region') }}>
 
 	<div class="row pt-2">
 

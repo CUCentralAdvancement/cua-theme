@@ -56,7 +56,7 @@
 {# Check for single link #}
 {% set single_link = links|length == 1 ? links|first : null %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes).setAttribute('role', 'region') }}>
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
     {# Visually Hidden Title for Screen Readers (at the top) #}

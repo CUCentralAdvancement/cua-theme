@@ -35,7 +35,7 @@
 {% set unique_id = 'block--node-alert--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Begin the alert component's HTML structure #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(alert_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(alert_classes).setAttribute('role', 'region') }}>
     <div class="container">
         <div class="row">
 

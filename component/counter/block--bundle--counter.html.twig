@@ -33,7 +33,7 @@
 {% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(counter_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(counter_classes).setAttribute('role', 'region') }}>
 
     {# Render the title #}
     {{ titleMacros.render_title(

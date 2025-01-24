@@ -37,7 +37,7 @@
 {% set unique_id = 'block--node--video--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render the main content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(video_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(video_classes).setAttribute('role', 'region') }}>
 
     {# Include Video component #}
     {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}

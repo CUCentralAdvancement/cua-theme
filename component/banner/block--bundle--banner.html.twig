@@ -62,7 +62,7 @@
 {% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content Section - Start with unique ID and dynamic container classes #}
-<div{{ attributes.setAttribute('id', unique_id).addClass(container_classes) }}>
+<div{{ attributes.setAttribute('id', unique_id).addClass(container_classes).setAttribute('role', 'region') }}>
 
     {# Image container with dynamic background image and other styling classes #}
     {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}

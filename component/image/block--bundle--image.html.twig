@@ -30,7 +30,7 @@
 {% set unique_id = 'block--node--image-bundle--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes).setAttribute('role', 'region') }}>
 
     {# Import title macro #}
     {{ titleMacros.render_card_basic_title(

@@ -20,7 +20,7 @@
 {% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Content #}
-<div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id) }}>
+<div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id).setAttribute('role', 'region') }}>
 
     {# Include Title #}
     {{ title_prefix ?? '' }}
