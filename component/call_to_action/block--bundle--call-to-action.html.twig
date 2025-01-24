@@ -47,7 +47,8 @@
 {# Generate unique ID #}
 {% set unique_id = 'block--node--call-to-action--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region').setAttribute('data-animation-classes', data_animation_classes ?: null) }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region') }}
+        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
     {# Check for single link #}
     {% set single_link = links|length == 1 ? links|first : null %}
