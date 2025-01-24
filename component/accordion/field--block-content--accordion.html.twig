@@ -16,7 +16,7 @@ Variables:
         <div class="accordion-item">
 
             {# Accordion header section with a unique ID for accessibility and functionality. #}
-            <h2 class="accordion-header" id="heading{{ loop.index }}">
+            <div class="accordion-header" id="heading{{ loop.index }}">
                 <button class="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse" {# Bootstrap's toggle attribute for collapsing content. #}
@@ -25,13 +25,13 @@ Variables:
                         aria-controls="collapse{{ loop.index }}"> {# Accessibility: Links header to the collapsible content. #}
 
                     {# Check if the paragraph's title field is available. #}
-                    {% if item.content['#paragraph'].field_title %}
+                    {% if item.content['#paragraph'].field_title is not empty %}
                         <h3>{{ item.content['#paragraph'].field_title.value }}</h3>
                     {% else %}
                         <p>No Title Available</p> {# Provide a fallback in case the title is missing. #}
                     {% endif %}
                 </button>
-            </h2>
+            </div>
 
             {# Accordion collapsible content section with a unique ID. #}
             <div id="collapse{{ loop.index }}"
