@@ -28,7 +28,7 @@
 
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(accordion_classes).setAttribute('role', 'region') }}>
-    x
+
     {# Render Title #}
     {% if label is not empty %}
         {{ title_prefix ?: '' }}
