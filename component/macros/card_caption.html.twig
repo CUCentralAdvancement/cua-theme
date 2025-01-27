@@ -1,4 +1,4 @@
-{# caption Macro #}
+{# Caption Macro #}
 
 {# Import the macro file #}
 {# {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %} #}
@@ -17,11 +17,11 @@
 			text_color ?: null,
 			text_alignment ?: null,
 		] | filter(v => v) | join(' ') %}
-		
+
 		{# Render the caption #}
-		<h6 class="{{ caption_classes }}">
+		<p class="fw-bold {{ caption_classes }} px-2">
 			{{ caption }}
-		</h6>
-		
+		</p>
+
 	{% endif %}
 {% endmacro %}
