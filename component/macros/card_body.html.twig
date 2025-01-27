@@ -28,9 +28,12 @@
         ] | filter(v => v) | join(' ') %}
 
         {# Body #}
-        <div class="{{ body_classes|trim }}">
-            {{ content.body|render }}
-        </div>
+        {% set rendered_body = content.body|render|trim %}
+        {% if rendered_body %}
+            <div class="{{ body_classes|trim }}">
+                {{ rendered_body }}
+            </div>
+        {% endif %}
 
     {% endif %}
 {% endmacro %}
