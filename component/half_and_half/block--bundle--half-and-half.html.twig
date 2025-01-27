@@ -37,7 +37,7 @@
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v)|join(' ') %}
 
 {# Set data attributes for animation #}
-{% set data_animation_classes = [
+{% set data_animation_classes = prefers_reduced_motion ? [] : [
     'animate__animated',
     animation ?: null,
     animation_speed ?: null,

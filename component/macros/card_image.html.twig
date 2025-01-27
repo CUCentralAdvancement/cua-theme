@@ -43,10 +43,10 @@
                 {# Card Image with link #}
                 {% if links is not empty %}
                     {% set firstLink = links[0] %}
-                    <a class="img-hover-effect" href="{{ firstLink.url }}"
-                       title="{{ firstLink.title }}"
-                            {% if hide_from_screen_readers %} aria-hidden="true"
-                            {% endif %}>
+                    <a class="img-hover-effect" href="{{ firstLink.url|escape('html_attr') }}"
+                       title="{{ firstLink.title|escape('html_attr') }}"
+                            {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}
+                       aria-label="{{ firstLink.title|escape('html_attr') }}">
                         {{ card_image }}
                     </a>
                 {% else %}
