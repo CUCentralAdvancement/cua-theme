@@ -1,23 +1,44 @@
 {#
 /**
-* @file
-* Template for the Call to Action component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
+ * @file
+ * Template for the Call to Action (CTA) component.
+ *
+ * This template is designed for flexibility and supports a variety of content types and configurations.
+ * It leverages Bootstrap 5 utility classes and includes custom animations and styles.
+ *
+ * Bootstrap Documentation:
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List of Bootstrap Utility Classes:
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Custom animations use the Animate.css library:
+ * https://animate.style/
+ *
+ * Variables:
+ * - configuration: Provides configuration details for the block.
+ * - plugin_id: The unique plugin ID for this block.
+ * - animate_trigger: Class applied to trigger animations.
+ * - color_background, color_border, container_size, padding, margin, shadow: Custom styles for the block.
+ * - animation, animation_speed, animation_delay: Define animation styles and timing.
+ * - prefers_reduced_motion: Determines if animations should be disabled for accessibility.
+ * - links: A collection of links for the CTA; typically includes a primary call to action.
+ * - flag: An optional flag element, such as a label or badge.
+ * - provider: Indicates if a video provider (e.g., YouTube) is used.
+ * - card_image: The main image for the card.
+ * - icon: An optional icon for the CTA.
+ * - caption: Caption text for the card.
+ * - content: The body content of the card.
+ * - label: The title of the card or block.
+ */
 #}
 
-{# Attach the library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Import macros #}
+{# Import macros for reusable template logic. #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Define CTA classes #}
+{# Define the block's CSS classes, merging utility classes and conditional styles. #}
 {% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -33,10 +54,10 @@
     margin ?: null,
     shadow ?: null,
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-    id ? 'block--class--call-to-action' ~ id|replace({'-': '-'})|clean_class : null,
+    id ? 'block--class--call-to-action-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Set data attributes for animation #}
+{# Define animation classes based on accessibility settings. #}
 {% set data_animation_classes = prefers_reduced_motion ? [] : [
     'animate__animated',
     animation ?: null,
@@ -44,27 +65,25 @@
     animation_delay ?: null,
 ] | filter(v => v) | join(' ') %}
 
-{# Generate unique ID #}
-{% set unique_id = 'block--node--call-to-action--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{# Generate a unique ID for the block. #}
+{% set unique_id = 'block-call-to-action-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'})|clean_class %}
 
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region') }}
-        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}" {% endif %}>
 
-    {# Check for single link #}
-    {% set single_link = links|length == 1 ? links|first : null %}
-
-    {# Open the link tag if single_link exists #}
-    {% if single_link %}
-
-    {# Visually Hidden Title for Screen Readers (at the top) #}
+    {# Screen reader-only title for accessibility. #}
     <h3 class="sr-only">{{ label }}</h3>
 
+    {# Handle single link configuration for the entire CTA block. #}
+    {% set single_link = links|length == 1 ? links|first : null %}
+
+    {% if single_link %}
     <a href="{{ single_link.url ?: '#' }}"
        class="cta-link"
-       {% if single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
+            {% if single_link.title %} aria-label="{{ single_link.title }}" {% endif %}>
         {% endif %}
 
-        {# Render Flag #}
+        {# Render optional flag, if provided. #}
         {% if flag %}
             {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
             {{ flagMacros.render_flag(
@@ -76,7 +95,7 @@
             ) }}
         {% endif %}
 
-        {# Render Image or Icon #}
+        {# Render provider content, image, or icon as applicable. #}
         {% if provider %}
             {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
         {% elseif card_image %}
@@ -103,7 +122,7 @@
             ) }}
         {% endif %}
 
-        {# Render Caption #}
+        {# Render caption if available. #}
         {% if caption %}
             {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
             {{ captionMacros.render_caption(
@@ -114,7 +133,7 @@
             ) }}
         {% endif %}
 
-        {# Render Title (Wrapped in H3) #}
+        {# Render the title using the imported macro. #}
         {{ titleMacros.render_title(
             label,
             title_prefix,
@@ -125,7 +144,7 @@
             padding
         ) }}
 
-        {# Render Content #}
+        {# Render body content if provided. #}
         {% if content %}
             {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
             {{ bodyMacros.render_body(
@@ -136,7 +155,7 @@
             ) }}
         {% endif %}
 
-        {# Render Footer #}
+        {# Render footer links or buttons, if available. #}
         {% if links %}
             {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
             {{ cardFooterMacros.render_card_footer(
@@ -154,7 +173,7 @@
             ) }}
         {% endif %}
 
-        {# Close the link tag if single_link exists #}
+        {# Close the single link if applicable. #}
         {% if single_link %}
     </a>
     {% endif %}
