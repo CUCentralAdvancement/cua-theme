@@ -29,9 +29,9 @@
 
         {# Body #}
         {% set rendered_body = content.body|render|trim %}
-        {% if rendered_body %}
+        {% if rendered_body is not empty %}
             <div class="{{ body_classes|trim }}">
-                {{ rendered_body }}
+                {{ rendered_body|raw }}
             </div>
         {% endif %}
 
