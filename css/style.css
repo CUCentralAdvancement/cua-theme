@@ -784,10 +784,6 @@ a.bef-link--selected {
     color: var(--cua-gold) !important
 }
 
-.ui-widget-content a {
-    color: var(--cua-blue) !important
-}
-
 #backtotop {
     border: 3px solid var(--cua-gold);
     border-radius: 50%;
@@ -1357,10 +1353,6 @@ blockquote p {
 .nav-link.nav-link--guide-givingsecurities.is-active,
 .nav-link.nav-link--guide-givingcrypto.is-active {
     text-decoration: none !important; /* Force the removal of underline */
-}
-
-.use-ajax.js-layout-builder-block-link {
-    color: white !important;
 }
 
 @media only screen and (max-width: 991px) {
