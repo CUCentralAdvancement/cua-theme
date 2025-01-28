@@ -78,11 +78,6 @@ footer .nav {
     --bs-nav-link-padding-x: 0
 }
 
-footer .nav-link.active.is-active {
-    background: transparent;
-    color: var(--cua-gray-300)
-}
-
 /* Nav Link Styling */
 footer .nav-link,
 footer .nav-link a,
@@ -129,11 +124,6 @@ footer .social-media li.list-inline-item {
 
 .social-media .list-inline-item:not(:last-child) {
     margin-right: 0
-}
-
-.fa-brands::before {
-    color: var(--cua-white);
-    font-size: 2rem
 }
 
 /* Copyright and Secondary Link Styling */
