@@ -253,18 +253,6 @@ function cua_theme_theme_suggestions_html_alter(array &$suggestions, array $vari
  */
 function cua_theme_preprocess_html(array &$variables): void {
 
-    // Load the Google Tag Manager ID from configuration.
-    $gtm_id = \Drupal::config('cua_theme.settings')->get('google_tag_manager.id');
-
-    // Attach the library for Google Tag Manager.
-    $variables['#attached']['library'][] = 'cua_theme/google_tag_manager';
-
-    // Add GTM ID and dataLayer to drupalSettings.
-    $variables['#attached']['drupalSettings']['googleTagManager'] = [
-        'id' => $gtm_id,
-        'dataLayer' => [],
-    ];
-
     // Get the current user object.
     $user = \Drupal::currentUser();
 

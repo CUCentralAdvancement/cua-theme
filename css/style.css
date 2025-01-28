@@ -1359,6 +1359,10 @@ blockquote p {
     text-decoration: none !important; /* Force the removal of underline */
 }
 
+.use-ajax.js-layout-builder-block-link {
+    color: white !important;
+}
+
 @media only screen and (max-width: 991px) {
     .block-content-alert {
         justify-content: flex-start !important
