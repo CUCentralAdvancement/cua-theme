@@ -7,20 +7,29 @@
 {# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }} #}
 
 {# Content #}
+{# Flag Macro #}
+
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }} #}
+
+{# Content #}
+
 {% macro render_flag(flag, flag_title, icon = null, icon_size = null, flag_background = null, links = []) %}
 
-    <div class="flag {{ flag_background ?: '' }} py-2 animate-trigger animate__animated animate__fadeIn animate__slow animate__delay-1s"
-         data-animation-classes="animate__animated animate__fadeIn animate__slow animate__delay-1s"
+    <div class="flag {{ flag_background|e }} py-2"
+         aria-hidden="true"
          style="visibility: visible;">
 
         {# Render the icon if it exists #}
         {% if icon %}
-            <i class="{{ [icon, icon_size, 'px-1']|filter(v => v is not empty)|join(' ') }}" aria-hidden="true"></i>
+            <i class="{{ [icon|escape, icon_size|e, 'px-1']|filter(v => v is not empty)|join(' ') }}"></i>
         {% endif %}
 
-        {# Render title #}
-        {{ flag_title }}
-
+        {# Render title in a semantic wrapper #}
+        <span class="flag-title">{{ flag_title|e }}</span>
     </div>
 
 {% endmacro %}
