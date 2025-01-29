@@ -6,30 +6,36 @@
 {# Call the macro and pass the necessary variables #}
 {# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }} #}
 
-{# Content #}
-{# Flag Macro #}
-
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }} #}
-
-{# Content #}
-
 {% macro render_flag(flag, flag_title, icon = null, icon_size = null, flag_background = null, links = []) %}
 
-    <div class="flag {{ flag_background|e }} py-2"
+    {# Define classes for the flag container dynamically #}
+    {% set flag_classes = [
+        'flag',
+        'py-2',
+        flag_background ?: '',
+    ] | filter(v => v) %}
+
+    <div class="{{ flag_classes|join(' ')|trim }}"
          aria-hidden="true"
          style="visibility: visible;">
 
         {# Render the icon if it exists #}
         {% if icon %}
-            <i class="{{ [icon|e, icon_size|e, 'px-1']|filter(v => v is not empty)|join(' ') }}"></i>
+            {% set icon_classes = [
+                icon ?: '',
+                icon_size ?: '',
+                'px-1',
+            ] | filter(v => v) %}
+            <i class="{{ icon_classes|join(' ')|trim }}"></i>
         {% endif %}
 
         {# Render title in a semantic wrapper #}
-        <span class="flag-title">{{ flag_title|e }}</span>
+        {% set flag_title_classes = [
+            'flag-title'
+        ] | filter(v => v) %}
+
+        <span class="{{ flag_title_classes|join(' ')|trim }}">{{ flag_title|e }}</span>
+
     </div>
 
 {% endmacro %}
