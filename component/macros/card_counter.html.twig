@@ -6,24 +6,58 @@
 {# {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }} #}
 
 {# Counter Macro #}
-
 {% macro render_counter(number, text_alignment, text_color, before_number, after_number) %}
     {% if number %}
 
-        <div class="counter-size {{ text_alignment ?: '' }} {{ text_color ?: '' }}">
+        {# Set default classes for the container #}
+        {% set container_classes = [
+            text_alignment ?: 'left',
+            text_color ?: '',
+        ] | filter(v => v) %}
+
+        <div class="counter-size {{ container_classes|join(' ')|trim }}">
 
             {# Before number #}
             {% if before_number %}
-                <span class="padding-right {{ text_color ?: '' }}">{{ before_number }}</span>
+                {% set before_classes = [
+                    'padding-right',
+                    text_color ?: '',
+                ] | filter(v => v) %}
+                <span class="{{ before_classes|join(' ')|trim }}">
+                    {{ before_number|e }}
+                </span>
             {% endif %}
 
             {# Counter #}
-            <span class="counter-up {{ text_color ?: '' }}"
-                  data-count="{{ number }}">0</span>
+            {% if number %}
+                {% set counter_classes = [
+                    'counter-up',
+                    text_color ?: '',
+                ] | filter(v => v) %}
+                <span class="{{ counter_classes|join(' ')|trim }}"
+                      aria-label="{{ 'Counter: @number'|t({'@number': number}) }}"
+                      aria-live="polite"
+                      role="status"
+                      data-count="{{ number }}">
+                    0
+                </span>
+
+                {# Accessibility fallback for screen readers #}
+                <span class="visually-hidden" data-counter-announcer>
+                    {{ number }}
+                </span>
+            {% endif %}
 
             {# After number #}
             {% if after_number %}
-                <span class="padding-left {{ text_color ?: '' }}">{{ after_number }}</span>
+                {% set after_classes = [
+                    'padding-left',
+                    text_color ?: '',
+                ] | filter(v => v) %}
+
+                <span class="{{ after_classes|join(' ')|trim }}">
+                    {{ after_number|e }}
+                </span>
             {% endif %}
 
         </div>
