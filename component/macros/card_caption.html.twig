@@ -7,21 +7,44 @@
 {# {{ captionMacros.render_caption(content, caption, padding, text_color, text_alignment) }} #}
 
 {# Content #}
-{% macro render_caption(caption, padding = null, text_color = null, text_alignment = null) %}
+{% macro render_caption(caption, padding = 'p-3', text_color = null, text_alignment = null) %}
 	{% if caption|trim %}
+		{# Validation Constants #}
+		{% set _allowed = {
+			padding: ['remove-padding', 'add-padding', 'p-0', 'p-3'],
+			colors: ['cu-text-gold', 'cu-text-black', 'cu-text-white'],
+			align: ['text-start', 'text-center', 'text-end']
+		} %}
 
-		{# Define caption classes #}
+		{# Sanitization #}
+		{% set padding = padding in _allowed.padding ? padding : 'p-3' %}
+		{% set text_color = text_color in _allowed.colors ? text_color : null %}
+		{% set text_alignment = text_alignment in _allowed.align ? text_alignment : null %}
+
+		{# Content Truncation #}
+		{% set max_length = 200 %}
+		{% set processed_caption = caption|t|trim|e %}
+		{% if processed_caption|length > max_length %}
+			{% set processed_caption = processed_caption|slice(0, max_length)|split(' ')|slice(0, -1)|join(' ') ~ '…' %}
+		{% endif %}
+
+		{# Class Construction #}
 		{% set caption_classes = [
-			'card-caption py-3 clearfix',
-			padding ?: null,
-			text_color ?: null,
-			text_alignment ?: null,
-		] | filter(v => v) | join(' ') %}
+			'card-caption',
+			'px-3 py-2',
+			'clearfix',
+			padding,
+			text_color,
+			text_alignment
+		] %}
 
-		{# Render the caption #}
-		<p class="fw-bold {{ caption_classes }} px-2">
-			{{ caption }}
-		</p>
+		{# Remove empty class values #}
+		{% set caption_classes = caption_classes|filter(v => v != null and v != '') %}
 
+		{# Semantic Output #}
+		<figcaption class="{{ caption_classes|join(' ') }}">
+			<span class="visually-hidden">{{ 'Caption for image'|t }}</span>
+			{{ processed_caption|e }}
+		</figcaption>
 	{% endif %}
 {% endmacro %}
