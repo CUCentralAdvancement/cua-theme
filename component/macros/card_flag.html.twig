@@ -25,7 +25,7 @@
 
         {# Render the icon if it exists #}
         {% if icon %}
-            <i class="{{ [icon|escape, icon_size|e, 'px-1']|filter(v => v is not empty)|join(' ') }}"></i>
+            <i class="{{ [icon|e, icon_size|e, 'px-1']|filter(v => v is not empty)|join(' ') }}"></i>
         {% endif %}
 
         {# Render title in a semantic wrapper #}

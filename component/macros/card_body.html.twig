@@ -6,34 +6,46 @@
 {# Call the macro and pass the necessary variables #}
 {# {{ bodyMacros.render_body(content, body, padding, text_color, text_alignment) }} #}
 
-{# Content #}
-{% macro render_body(content, padding = null, text_color = null, text_alignment = null) %}
-    {% if content.body|render|trim %}
+{#
+Params:
+  - content: Must contain 'body' field with processed text
+  - padding: null|'remove-padding'|'add-padding'|'p-0'
+  - text_color: null|'cu-text-gold'|'cu-text-black'|'cu-text-white'
+  - text_alignment: null|'justify-content-{start/center/end}'
+#}
 
-        {# Allowed values for padding, text color, and alignment #}
+{# Content #}
+
+{% macro render_body(content, padding = null, text_color = null, text_alignment = null) %}
+    {% if content.body is defined and content.body %}
+        {# Move allowed values to constants #}
         {% set allowed_padding = ['remove-padding', 'add-padding', 'p-0'] %}
         {% set allowed_text_colors = ['cu-text-gold', 'cu-text-black', 'cu-text-white'] %}
-        {% set allowed_text_alignments = ['d-flex justify-content-start', 'd-flex justify-content-center', 'd-flex justify-content-end'] %}
+        {% set allowed_text_alignments = ['justify-content-start', 'justify-content-center', 'justify-content-end'] %}
 
-        {# Validate and sanitize the class values #}
+        {# Validation #}
         {% set padding = padding in allowed_padding ? padding : null %}
         {% set text_color = text_color in allowed_text_colors ? text_color : null %}
-        {% set text_alignment = text_alignment in allowed_text_alignments ? text_alignment : null %}
+        {% set text_alignment = text_alignment in allowed_text_alignments ? 'd-flex ' ~ text_alignment : null %}
 
+        {# Class construction #}
         {% set body_classes = [
-            'card-body d-flex flex-column card-text lead g-0 clearfix',
+            'card-body',
+            'd-flex',
+            'flex-column',
+            'card-text',
+            'lead',
+            'g-0',
+            'clearfix',
             padding,
             text_color,
             text_alignment
-        ] | filter(v => v) | join(' ') %}
+        ] | filter(v => v) %}
 
-        {# Body #}
-        {% set rendered_body = content.body|render|trim %}
-        {% if rendered_body is not empty %}
-            <div class="{{ body_classes|trim }}">
-                {{ rendered_body|raw }}
-            </div>
-        {% endif %}
+        {# Output #}
+        <div class="{{ body_classes|join(' ')|trim }}">
+            {{ content.body }}
+        </div>
 
     {% endif %}
 {% endmacro %}

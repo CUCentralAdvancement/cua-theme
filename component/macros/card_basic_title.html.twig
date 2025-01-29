@@ -10,7 +10,7 @@
 
     {{ title_prefix ?? '' }}
     <h3 class="visually-hidden" aria-hidden="false">
-        {{ label }}
+        {{ label|e }}
     </h3>
     {{ title_suffix ?? '' }}
 
