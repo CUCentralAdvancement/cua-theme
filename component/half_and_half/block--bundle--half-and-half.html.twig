@@ -1,16 +1,3 @@
-{#
-/**
- * @file
- * Template for the Half and Half component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- */
-#}
-
 {# Attach the library #}
 {{ attach_library('cua_theme/half-and-half') }}
 
@@ -69,13 +56,13 @@
        {% if single_link.title is defined and single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
         {% endif %}
 
-        {# Desktop Component #}
-        <div class="{{ container_size }} d-none d-sm-block g-0">
+        {# Combined Desktop and Mobile Component #}
+        <div class="{{ container_size }}">
             <div class="card">
                 <div class="row g-0">
 
                     {# Media/Image/Video/Icon Section #}
-                    <div class="{{ image_col_classes }}">
+                    <div class="{{ image_col_classes }} {{ media_col_classes }}">
                         {% if provider %}
                             {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                         {% elseif card_image %}
@@ -106,84 +93,6 @@
                         <div class="row g-0 mx-5 pt-3">
 
                             {# Render Title #}
-                            {{ titleMacros.render_title(
-                                label,
-                                title_prefix,
-                                title_suffix,
-                                center_content,
-                                text_alignment,
-                                text_color,
-                                padding
-                            ) }}
-
-                            {# Render Body Content #}
-                            {% if content %}
-                                {{ bodyMacros.render_body(
-                                    content,
-                                    padding,
-                                    text_color,
-                                    text_alignment
-                                ) }}
-                            {% endif %}
-
-                            {# Render Footer/Links (Button) #}
-                            {% if links %}
-                                {{ cardFooterMacros.render_card_footer(
-                                    links,
-                                    container_size,
-                                    color_background,
-                                    position_container,
-                                    text_alignment,
-                                    padding,
-                                    outline,
-                                    button_color,
-                                    button_layout,
-                                    false,
-                                    single_link ? true : false
-                                ) }}
-                            {% endif %}
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        {# Mobile Component (Similar to Desktop but stacked layout) #}
-        <div class="{{ container_size }} d-block d-sm-none g-0">
-            <div class="card">
-                <div class="row g-0">
-                    <div class="{{ media_col_classes }}">
-                        {% if provider %}
-                            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-                        {% elseif card_image %}
-                            {{ cardImageMacros.render_card_image(
-                                card_image,
-                                position_container,
-                                text_alignment,
-                                text_color,
-                                image_size,
-                                visibility,
-                                content,
-                                true
-                            ) }}
-                        {% elseif icon %}
-                            {{ cardIconMacros.render_icon(
-                                icon,
-                                icon_size,
-                                icon_color,
-                                padding,
-                                position_container,
-                                text_alignment
-                            ) }}
-                        {% endif %}
-                    </div>
-
-                    <div class="{{ title_body_col_classes }}">
-                        <div class="row g-0 m-4">
-
-                            {# Render Title (h3) #}
                             {{ titleMacros.render_title(
                                 label,
                                 title_prefix,
