@@ -1355,6 +1355,11 @@ blockquote p {
     text-decoration: none !important; /* Force the removal of underline */
 }
 
+h3.sr-only {
+    color: #000000; /* Darker text color */
+    background-color: #ffffff; /* Light background color */
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
