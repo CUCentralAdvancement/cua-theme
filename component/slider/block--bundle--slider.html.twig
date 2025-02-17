@@ -1,6 +1,9 @@
 {# Carousel based on Bootstrap 5 #}
+
 {# Attach the library #}
 {{ attach_library('cua_theme/slider') }}
+
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {# Add Slider classes #}
 {% set slider_classes = [
@@ -12,9 +15,9 @@
     color_background ?: null,
     text_color ?: null,
 ] %}
+
 {# Add unique id to block #}
 {% set unique_id = 'block--node-' ~ '-slider' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
-
 
 {# Add unique id to block #}
 {% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
@@ -22,10 +25,12 @@
 {# Content #}
 <div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id).setAttribute('role', 'region') }}>
 
-    {# Include Title #}
-    {{ title_prefix ?? '' }}
-    <h3 class="text-align-center h2-title">{{ label }}</h3>
-    {{ title_suffix ?? '' }}
+    {# Render Title #}
+    {{ titleMacros.render_title(
+        label,
+        title_prefix,
+        title_suffix,
+    ) }}
 
     <div id="{{ carousel_id }}" class="carousel carousel-dark slide slide-numbers-{{ visibility_numbers }}"
          data-bs-ride="carousel">
