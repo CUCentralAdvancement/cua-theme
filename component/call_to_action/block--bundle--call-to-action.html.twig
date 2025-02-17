@@ -72,7 +72,11 @@
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}" {% endif %}>
 
     {# Screen reader-only title for accessibility. #}
-    <h3 class="sr-only">{{ label }}</h3>
+    {% if label %}
+        {{ title_prefix ?? '' }}
+        <h3 class="sr-only">{{ label|e }}</h3>
+        {{ title_suffix ?? '' }}
+    {% endif %}
 
     {# Handle single link configuration for the entire CTA block. #}
     {% set single_link = links|length == 1 ? links|first : null %}
