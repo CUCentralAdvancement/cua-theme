@@ -13,6 +13,7 @@
 * - cua_theme.theme
 */
 #}
+
 {# Render content #}
 <footer class="site-footer mt-auto">
     {# Site Footer Top Section #}
@@ -71,32 +72,27 @@
 
             {# CU Logo #}
             <div class="col-sm-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
-                <a href="https://www.cu.edu/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="footer-site-branding__logo">
-                    <picture>
-                        <source
-                                media="(max-width: 499px)"
-                                srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                                width="250"
-                                height="70"
-                        />
-                        <source
-                                media="(min-width: 500px)"
-                                srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                                width="500"
-                                height="140"
-                        />
-                        <img
-                                src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                                alt="{{ 'University of Colorado official logo'|t }}"
-                                width="500"
-                                height="140"
-                                loading="lazy"
-                        />
-                    </picture>
-                </a>
+                <picture>
+                    <source
+                            media="(max-width: 499px)"
+                            srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
+                            width="250"
+                            height="70"
+                    />
+                    <source
+                            media="(min-width: 500px)"
+                            srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
+                            width="500"
+                            height="140"
+                    />
+                    <img
+                            src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
+                            alt="{{ 'University of Colorado official logo'|t }}"
+                            width="500"
+                            height="140"
+                            loading="lazy"
+                    />
+                </picture>
             </div>
 
             {# Footer Region 6 #}
