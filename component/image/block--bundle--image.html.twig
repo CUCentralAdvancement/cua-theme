@@ -10,8 +10,8 @@
 * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
 #}
 
-{# Import macros #}
-{% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
+{# Import macros for reusable template logic. #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {# Define classes #}
 {% set image_bundle_classes = [
@@ -32,12 +32,12 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(image_bundle_classes).setAttribute('role', 'region') }}>
 
-    {# Import title macro #}
-    {{ titleMacros.render_card_basic_title(
-        title_prefix,
+    {# Render the title using the imported macro. #}
+    {{ titleMacros.render_title(
         label,
-        title_suffix)
-    }}
+        title_prefix,
+        title_suffix,
+    ) }}
 
     {# Include Image #}
     {% if card_image %}
