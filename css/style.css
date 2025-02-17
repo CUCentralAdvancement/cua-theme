@@ -1360,6 +1360,10 @@ h3.sr-only {
     background-color: #ffffff; /* Light background color */
 }
 
+h2#block-cua-theme-main-menu-menu {
+    background: white !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
