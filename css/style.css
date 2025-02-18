@@ -1364,6 +1364,10 @@ h2#block-cua-theme-main-menu-menu {
     background: white !important;
 }
 
+.node--type-article .node__content {
+    margin-top: 0 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;

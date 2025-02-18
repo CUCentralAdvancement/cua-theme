@@ -85,11 +85,10 @@
         {% endif %}
 
         {# Featured Top #}
-        {% if page.featured_top %}
+        {% if page.featured_top|render|trim is not same as('') %}
             {% block featured %}
                 <div class="featured-top">
-                    <aside class="featured-top__inner section {{ container }} clearfix"
-                           role="complementary">
+                    <aside class="featured-top__inner section {{ container }} clearfix" role="complementary">
                         {{ page.featured_top }}
                     </aside>
                 </div>
