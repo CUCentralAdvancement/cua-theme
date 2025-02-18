@@ -1,22 +1,21 @@
 {#
 /**
-* @file
-* Template for the Call to Action component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Call to Action component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
 {# Render content #}
-<header id="header" class="header" role="banner"
-        aria-label="{{ 'Site header'|t }}">
+<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
     <div class="container top-bar mb-2">
         <div class="row clearfix g-0">
             <div class="col mt-3 g-0">
@@ -35,12 +34,12 @@
                                     {# Logo for larger screens #}
                                     <img class="d-none d-lg-block me-2"
                                          src="{{ base_path ~ directory ~ '/images/logo.svg' }}"
-                                         alt="{{ 'University of Colorado offical logo'|t }}"
+                                         alt="{{ 'University of Colorado official logo'|t }}"
                                          width="225" height="24"/>
                                     {# Logo for smaller screens #}
                                     <img class="d-lg-none me-2"
                                          src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}"
-                                         alt="{{ 'University of Colorado offical logo'|t }}"
+                                         alt="{{ 'University of Colorado official logo'|t }}"
                                          width="29" height="28"/>
                                     {# Site slogan positioned to the right #}
                                     <span class="site-slogan text-nowrap">
@@ -61,8 +60,8 @@
                                 <button class="navbar-toggler collapsed"
                                         type="button"
                                         data-bs-toggle="collapse"
-                                        data-bs-target="#mainNavbrSupportedContent"
-                                        aria-controls="CollapsingNavbar"
+                                        data-bs-target="#mainNavbarSupportedContent"
+                                        aria-controls="mainNavbarSupportedContent"
                                         aria-expanded="false"
                                         aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
@@ -73,11 +72,10 @@
                 </nav>
             </div>
 
-            {# Secondary menu  / desktop  #}
+            {# Secondary menu (desktop) #}
             {% if page.secondary_menu %}
                 <div class="col-md-5 secondary-menu d-none d-lg-block g-0">
                     <div class="d-flex justify-content-end">
-                        {# Secondary menu #}
                         {{ page.secondary_menu }}
                     </div>
                 </div>
@@ -89,7 +87,6 @@
                     {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
                 </div>
             {% endif %}
-
         </div>
     </div>
 
@@ -97,9 +94,10 @@
     {% if page.search %}
         <div class="container-fluid main-search bg-light border-top border-grey">
             <div class="container">
+                <h2 id="search-heading" class="visually-hidden">{{ 'Search'|t }}</h2>
                 <div class="collapse" id="CollapseSearch"
                      data-bs-parent=".site-name-wrapper"
-                     aria-labelledby="search-icon">
+                     aria-labelledby="search-heading">
                     <div class="cua-search">
                         {{ page.search }}
                     </div>
@@ -120,10 +118,11 @@
         <nav role="navigation"
              class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 m-0"
              id="navbar-main"
-             aria-labelledby="{{ 'main menu'|t }}">
+             aria-labelledby="main-menu-label">
             <div class="container px-3 g-0">
+                <h2 id="main-menu-label" class="visually-hidden">{{ 'Main Menu'|t }}</h2>
                 <div class="collapse navbar-collapse"
-                     id="mainNavbrSupportedContent">
+                     id="mainNavbarSupportedContent">
 
                     {# Small logo for sticky menu #}
                     <img class="sticky-show"
@@ -136,7 +135,7 @@
                         {{ page.primary_menu }}
                     {% endif %}
 
-                    {# Secondary menu / mobile  #}
+                    {# Secondary menu (mobile) #}
                     {% if page.secondary_menu %}
                         <div class="secondary-menu-mobile d-lg-none">
                             {{ page.secondary_menu }}
@@ -145,7 +144,6 @@
 
                     {# Sticky menu bar  #}
                     <div class="flex-shrink-1 g-0 d-lg-none sticky-search">
-                        {# Secondary menu / sticky  #}
                         {% if page.secondary_menu %}
                             <div class="secondary-menu-sticky d-flex justify-content-end">
                                 {{ page.secondary_menu }}
@@ -156,9 +154,7 @@
                             {# Search Icon  #}
                             {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
                         {% endif %}
-
                     </div>
-
                 </div>
             </div>
         </nav>
@@ -170,5 +166,4 @@
             {% include '@cua_theme/templates/layout/header/_site-name.html.twig' %}
         </span>
     {% endif %}
-
 </header>

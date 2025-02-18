@@ -1368,6 +1368,13 @@ h2#block-cua-theme-main-menu-menu {
     margin-top: 0 !important;
 }
 
+#main-menu-label {
+    opacity: 1;
+    color: #ffffff; /* High contrast */
+    background-color: #343a40;
+    padding: 5px; /* Optional: Improves readability */
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
