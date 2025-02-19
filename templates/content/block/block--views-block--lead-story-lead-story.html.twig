@@ -1,0 +1,109 @@
+{#
+/**
+ * @file
+ * Template for the Call to Action (CTA) component.
+ *
+ * This template is designed for flexibility and supports a variety of content types and configurations.
+ * It leverages Bootstrap 5 utility classes and includes custom animations and styles.
+ *
+ * Bootstrap Documentation:
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List of Bootstrap Utility Classes:
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Custom animations use the Animate.css library:
+ * https://animate.style/
+ *
+ * Variables:
+ * - configuration: Provides configuration details for the block.
+ * - plugin_id: The unique plugin ID for this block.
+ * - animate_trigger: Class applied to trigger animations.
+ * - color_background, color_border, container_size, padding, margin, shadow: Custom styles for the block.
+ * - animation, animation_speed, animation_delay: Define animation styles and timing.
+ * - prefers_reduced_motion: Determines if animations should be disabled for accessibility.
+ * - links: A collection of links for the CTA; typically includes a primary call to action.
+ * - flag: An optional flag element, such as a label or badge.
+ * - provider: Indicates if a video provider (e.g., YouTube) is used.
+ * - card_image: The main image for the card.
+ * - icon: An optional icon for the CTA.
+ * - caption: Caption text for the card.
+ * - content: The body content of the card.
+ * - label: The title of the card or block.
+ */
+#}
+
+{# Define the block's CSS classes, merging utility classes and conditional styles. #}
+{% set lead_classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'lead-story-block',
+    'card rounded-0',
+    'h-100',
+    'd-flex flex-wrap justify-content-between py-3',
+    id ? 'block--class--lead-story-' ~ id|clean_class : null,
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+
+{# Generate a unique ID for the block. #}
+{% set unique_id = 'block-lead-story-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'})|clean_class %}
+
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(lead_classes).setAttribute('role', 'region') }}>
+    {# Check if content['#view'] exists and has results. #}
+    {% if content['#view'] is not empty %}
+        {% set view = content['#view'] %}
+        {% if view.result is not empty %}
+            {# Loop through the view results. #}
+            <div class="row">
+                {% for row in view.result %}
+                    {# Check if row has an entity (node). #}
+                    {% if row._entity is not empty %}
+                        {% set node = row._entity %}
+
+                        <div class="lead-story-item col-12 col-md-6 col-lg-3 p-3">
+                            <a href="{{ node.field_link.uri ?? '#' }}"
+                               class="cta-link"
+                               aria-label="Read {{ node.label }}">
+
+                                {# Render the Image Field if it exists. #}
+                                {% if node.field_image.entity.uri.value is not empty %}
+                                    <div class="card-header mb-2">
+                                        <img src="{{ file_url(node.field_image.entity.uri.value) }}"
+                                             alt="{{ node.field_image.alt }}"
+                                             class="img-fluid">
+                                    </div>
+                                {% endif %}
+
+                                {# Render the Title as a Link (if field_link exists). #}
+                                <h3 class="lead-story-title display-4 text-white mb-2">{{ node.label }}</h3>
+
+                                {# Render the Body Field if it exists. #}
+                                {% if node.body.value is not empty %}
+                                    <div class="lead-story-body text-white mb-2">
+                                        <p>{{ node.body.value|raw }}</p>
+                                    </div>
+                                {% endif %}
+
+                                {# Call to Action Button - use text from field_link (if available). #}
+                                <div class="card-footer d-flex p-0 mb-5">
+                  <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
+                    {% if node.field_link.title is not empty %}
+                        {{ node.field_link.title }}
+                    {% else %}
+                        {{ node.label }}
+                    {% endif %}
+                  </span>
+                                </div>
+
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-content-message">No content available.</p>
+        {% endif %}
+    {% else %}
+        <p class="no-view-message">View data not available.</p>
+    {% endif %}
+</div>
