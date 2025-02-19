@@ -1375,6 +1375,10 @@ h2#block-cua-theme-main-menu-menu {
     padding: 5px; /* Optional: Improves readability */
 }
 
+.card-footer.card-story .btn.outline-btn-cu-bg-light-grey:hover {
+    color: var(--cua-black) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;

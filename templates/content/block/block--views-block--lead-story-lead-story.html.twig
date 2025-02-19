@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Template for the Call to Action (CTA) component.
+ * Template for the Lead Story.
  *
  * This template is designed for flexibility and supports a variety of content types and configurations.
  * It leverages Bootstrap 5 utility classes and includes custom animations and styles.
@@ -32,27 +32,33 @@
  * - label: The title of the card or block.
  */
 #}
-
+<style>
+    .card-footer.card-story .btn.outline-btn-cu-bg-light-grey:hover {
+        color: var(--cua-black) !important;
+    }
+</style>
 {# Define the block's CSS classes, merging utility classes and conditional styles. #}
 {% set lead_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
+    'contextual-region',
     'lead-story-block',
     'card rounded-0',
     'h-100',
     'd-flex flex-wrap justify-content-between py-3',
-    id ? 'block--class--lead-story-' ~ id|clean_class : null,
-] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+]
+%}
 
-{# Generate a unique ID for the block. #}
-{% set unique_id = 'block-lead-story-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'})|clean_class %}
+{% set unique_id = 'lead-story-' ~ plugin_id|clean_id %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(lead_classes).setAttribute('role', 'region') }}>
+<div{{ attributes.addClass(lead_classes).setAttribute('id', unique_id) }}>
+
     {# Check if content['#view'] exists and has results. #}
     {% if content['#view'] is not empty %}
         {% set view = content['#view'] %}
         {% if view.result is not empty %}
+
             {# Loop through the view results. #}
             <div class="row">
                 {% for row in view.result %}
@@ -62,7 +68,6 @@
 
                         <div class="lead-story-item col-12 col-md-6 col-lg-3 p-3">
                             <a href="{{ node.field_link.uri ?? '#' }}"
-                               class="cta-link"
                                aria-label="Read {{ node.label }}">
 
                                 {# Render the Image Field if it exists. #}
@@ -85,14 +90,14 @@
                                 {% endif %}
 
                                 {# Call to Action Button - use text from field_link (if available). #}
-                                <div class="card-footer d-flex p-0 mb-5">
-                  <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
-                    {% if node.field_link.title is not empty %}
-                        {{ node.field_link.title }}
-                    {% else %}
-                        {{ node.label }}
-                    {% endif %}
-                  </span>
+                                <div class="card-footer card-story d-flex p-0 mb-5">
+					                  <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
+					                    {% if node.field_link.title is not empty %}
+                                            {{ node.field_link.title }}
+                                        {% else %}
+                                            {{ node.label }}
+                                        {% endif %}
+					                  </span>
                                 </div>
 
                             </a>
