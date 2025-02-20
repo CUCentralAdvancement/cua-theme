@@ -2,53 +2,21 @@
 /**
  * @file
  * Template for the Lead Story.
- *
- * This template is designed for flexibility and supports a variety of content types and configurations.
- * It leverages Bootstrap 5 utility classes and includes custom animations and styles.
- *
- * Bootstrap Documentation:
- * https://getbootstrap.com/docs/5.3
- *
- * Full List of Bootstrap Utility Classes:
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Custom animations use the Animate.css library:
- * https://animate.style/
- *
- * Variables:
- * - configuration: Provides configuration details for the block.
- * - plugin_id: The unique plugin ID for this block.
- * - animate_trigger: Class applied to trigger animations.
- * - color_background, color_border, container_size, padding, margin, shadow: Custom styles for the block.
- * - animation, animation_speed, animation_delay: Define animation styles and timing.
- * - prefers_reduced_motion: Determines if animations should be disabled for accessibility.
- * - links: A collection of links for the CTA; typically includes a primary call to action.
- * - flag: An optional flag element, such as a label or badge.
- * - provider: Indicates if a video provider (e.g., YouTube) is used.
- * - card_image: The main image for the card.
- * - icon: An optional icon for the CTA.
- * - caption: Caption text for the card.
- * - content: The body content of the card.
- * - label: The title of the card or block.
  */
 #}
 
-
-{# Define the block's CSS classes, merging utility classes and conditional styles. #}
 {% set lead_classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'contextual-region',
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
     'lead-story-block',
     'card rounded-0',
     'h-100',
     'd-flex flex-wrap justify-content-between py-3',
 ]
 %}
-
-{% set unique_id = 'lead-story-' ~ plugin_id|clean_id %}
-
 
 {# Add edit button for admins #}
 {% if user.hasPermission('administer site configuration') %}
@@ -58,7 +26,7 @@
     </div>
 {% endif %}
 
-<div{{ attributes.addClass(lead_classes).setAttribute('id', unique_id) }}>
+<div{{ attributes.addClass(lead_classes) }}>
 
     {# Check if content['#view'] exists and has results. #}
     {% if content['#view'] is not empty %}
