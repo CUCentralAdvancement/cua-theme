@@ -32,11 +32,8 @@
  * - label: The title of the card or block.
  */
 #}
-<style>
-    .card-footer.card-story .btn.outline-btn-cu-bg-light-grey:hover {
-        color: var(--cua-black) !important;
-    }
-</style>
+
+
 {# Define the block's CSS classes, merging utility classes and conditional styles. #}
 {% set lead_classes = [
     'block',
@@ -51,6 +48,15 @@
 %}
 
 {% set unique_id = 'lead-story-' ~ plugin_id|clean_id %}
+
+
+{# Add edit button for admins #}
+{% if user.hasPermission('administer site configuration') %}
+    <div class="col m-2">
+        <a href="/lead-story/sort" class="btn btn-primary">Sort and manage lead stories</a>
+        <a href="/node/add/lead_story" class="btn btn-primary">Add new lead story</a>
+    </div>
+{% endif %}
 
 <div{{ attributes.addClass(lead_classes).setAttribute('id', unique_id) }}>
 
