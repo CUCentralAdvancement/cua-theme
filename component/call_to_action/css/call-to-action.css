@@ -1,208 +1,178 @@
-/* Call to Action styling  */
-.call-to-action .card-img, .call-to-action .card-img-top {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0
-}
+/* =====================================
+   Call to Action Component Styling
+   ===================================== */
 
-.call-to-action .card-img, .call-to-action .card-img-bottom {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0
-}
-
-.call-to-action .border-light {
-    border-color: transparent !important
-}
-
-.call-to-action .card-img, .call-to-action .card-img-top {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0
-}
-
-.call-to-action .card-img, .call-to-action .card-img-bottom {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0
-}
-
-.call-to-action .card-link.d-flex.justify-content-center {
-    text-align: center !important
-}
-
-.call-to-action .card-header {
-    margin-bottom: .5rem
-}
-
-.call-to-action p {
-    margin-top: 1rem
-}
-
-.call-to-action .display-4.card-text.lead.title {
-    font-family: var(--font-roboto-condensed) sans-serif;
-    font-size: 2rem !important;
-    font-weight: var(--font-weight-bold) !important;
-    line-height: 1.1 !important;
-    margin: .5rem 0 0 !important
-}
-
-h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
-    padding: 0 1rem !important;
-}
-
-.call-to-action.card p span {
-    font-family: var(--font-roboto) sans-serif;
-    font-size: 1.85rem !important;
-    font-weight: var(--font-weight-xlight) !important;
-    margin: 0 !important
-}
-
-.call-to-action .fa-solid {
-    margin-bottom: 1rem !important
-}
-
-.block .call-to-action {
-    margin: 15px
-}
-
-.margin_bottom .call-to-action {
-    padding-bottom: 3rem !important
-}
-
-.call-to-action .margin_top {
-    padding-top: 3rem !important
-}
-
-.call-to-action .margin_bottom {
-    padding-bottom: 3rem !important
-}
-
-.call-to-action.card p span {
-    font-size: 1.8rem !important;
-    margin-left: 1px !important
-}
-
-.call-to-action .title span {
-    display: block;
-    margin-top: 1px
-}
-
-.call-to-action.card .add-padding {
-    padding: 0 .75rem !important
-}
-
-.call-to-action .flag .fa-solid {
-    margin-bottom: 0 !important
-}
-
-.call-to-action .margin-top-and-bottom {
-    margin: 3rem 0
-}
-
-.call-to-action .margin-bottom {
-    margin: 0 0 3rem 0
-}
-
-.call-to-action .margin-top {
-    margin: 3rem 0 0 0
-}
-
-.display-4.card-text.lead.title .cu-text-black.remove-padding,
-.display-4.card-text.lead.title .cu-text-gold.remove-padding,
-.display-4.card-text.lead.title .cu-text-white.remove-padding {
-    padding: 0 15px !important
-}
-
-.cta-margin_top {
-    padding: 20px 0 0;
-}
-
-.cta-margin_bottom {
-    padding: 0 0 20px;
-}
-
-.cta-margin_top_and_bottom {
-    padding: 15px 0;
-}
-
-/* Remove underline from all links within the call-to-action block */
-.block-content-call_to_action a,
-.block-content-call_to_action a:hover,
-.block-content-call_to_action a:visited,
-.block-content-call_to_action a:active{
-    text-decoration: none !important;
-}
-
-/* Remove underline from links wrapping the h3 element */
-.block-content-call_to_action a h3.display-4{
-    text-decoration: none !important; /* Remove underline */
-}
-
-/* Ensure links wrapping the h3 element don't show underlines on hover */
-.block-content-call_to_action a h3.display-4:hover {
-    text-decoration: none !important;
-}
-
-/* General rule to apply to all links wrapping the content inside */
-.block-content-call_to_action a {
-    text-decoration: none !important; /* Remove underline from all links */
-}
-
-/* Ensure hover styles don't add underline for all links */
-.block-content-call_to_action a:hover {
-    text-decoration: none!important;
-}
-/* Remove underline for links wrapping the entire div */
-.block-content-call_to_action .card-body a {
-    text-decoration: none !important;
-}
-
-/* Ensure no underline on hover for links wrapping the div */
-.block-content-call_to_action .card-body a:hover {
-    text-decoration: none !important;
-}
-
-/* Remove underline for any links inside the div */
-.block-content-call_to_action .card-body a span,
-.block-content-call_to_action .card-body a p,
-.block-content-call_to_action .card-body a * {
-    text-decoration: none !important;
-}
-
-/* Ensure hover styles for links inside the div don't add underline */
-.block-content-call_to_action .card-body a:hover span,
-.block-content-call_to_action .card-body a:hover p,
-.block-content-call_to_action .card-body a:hover * {
-    text-decoration: none !important;
-}
-
-.block-content-call_to_action a .display-4,
-.block-content-call_to_action a .display-4.a {
-    text-decoration: none !important;
-}
-
-.block-content-call_to_action body,
-.block-content-call_to_action p,
-.block-content-call_to_action a,
-.block-content-call_to_action a:hover,
-.block-content-call_to_action li {
-    text-decoration: none !important;
-}
-
-a.cta-link {
-    text-decoration: none !important;
-}
-
+/* Hover effect on call-to-action card */
 .call-to-action.card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition on hover */
 }
 
 .call-to-action.card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slight white glow */
-    transform: translateY(-3px); /* Subtle lift */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds a subtle shadow effect */
+    transform: translateY(-3px); /* Lift effect for hover */
 }
 
-/*** Responsive ***/
+/* Remove border radius from card image elements (top corners) */
+.call-to-action .card-img,
+.call-to-action .card-img-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; /* Ensures no rounding on top corners */
+}
+
+/* Remove border radius from card image elements (bottom corners) */
+.call-to-action .card-img,
+.call-to-action .card-img-bottom {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; /* Ensures no rounding on bottom corners */
+}
+
+/* Removes borders for light borders on call-to-action cards */
+.call-to-action .border-light {
+    border-color: transparent !important; /* Hide border */
+}
+
+/* Center card links inside flex container */
+.call-to-action .card-link.d-flex.justify-content-center {
+    text-align: center !important; /* Centers content inside the card link */
+}
+
+/* Adjust margin below the card header */
+.call-to-action .card-header {
+    margin-bottom: .5rem; /* Adds spacing below card header */
+}
+
+/* Adds margin to the top of paragraphs in the card */
+.call-to-action p {
+    margin-top: 1rem; /* Adds top margin for paragraphs */
+}
+
+/* Styling for the main title inside the call-to-action */
+.call-to-action .display-4.card-text.lead.title {
+    font-family: var(--font-roboto-condensed) sans-serif; /* Font style for the title */
+    font-size: 2rem !important; /* Large font size */
+    font-weight: var(--font-weight-bold) !important; /* Bold text */
+    line-height: 1.1 !important; /* Tight line height for readability */
+    margin: .5rem 0 0 !important; /* Margin to create space above */
+}
+
+/* Additional styling for the display-4 title */
+h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
+    padding: 0 1rem !important; /* Removes padding and adds custom horizontal padding */
+}
+
+/* Span inside paragraphs with special font styles */
+.call-to-action.card p span {
+    font-family: var(--font-roboto) sans-serif; /* Uses a different font family for the span */
+    font-size: 1.85rem !important; /* Slightly smaller font size for the span */
+    font-weight: var(--font-weight-xlight) !important; /* Lighter font weight */
+    margin: 0 !important; /* Removes any margin */
+}
+
+/* Margin adjustment for FontAwesome icons */
+.call-to-action .fa-solid {
+    margin-bottom: 1rem !important; /* Adds space below icons */
+}
+
+/* Spacing for call-to-action blocks */
+.block .call-to-action {
+    margin: 15px; /* Adds margin around the block */
+}
+
+/* Add bottom padding to call-to-action block */
+.margin_bottom .call-to-action {
+    padding-bottom: 3rem !important; /* Adds padding to the bottom */
+}
+
+/* Add top padding to call-to-action block */
+.call-to-action .margin_top {
+    padding-top: 3rem !important; /* Adds padding to the top */
+}
+
+/* Add both top and bottom padding to call-to-action block */
+.call-to-action .margin_bottom {
+    padding-bottom: 3rem !important; /* Adds padding to the bottom */
+}
+
+/* Specific margin styling for call-to-action block text */
+.call-to-action.card p span {
+    font-size: 1.8rem !important; /* Sets font size */
+    margin-left: 1px !important; /* Adjusts left margin */
+}
+
+/* Title span adjustments */
+.call-to-action .title span {
+    display: block; /* Forces the span to be a block element */
+    margin-top: 1px; /* Adjusts the top margin */
+}
+
+/* Padding adjustments for additional padding classes */
+.call-to-action.card .add-padding {
+    padding: 0 .75rem !important; /* Adds padding to the sides */
+}
+
+/* Removes margin from icons within the flag */
+.call-to-action .flag .fa-solid {
+    margin-bottom: 0 !important; /* Removes bottom margin for icons */
+}
+
+/* Adds margin to the top and bottom of the block */
+.call-to-action .margin-top-and-bottom {
+    margin: 3rem 0; /* Adds equal margin to top and bottom */
+}
+
+/* Adds specific bottom margin */
+.call-to-action .margin-bottom {
+    margin: 0 0 3rem 0; /* Adds margin to the bottom */
+}
+
+/* Adds specific top margin */
+.call-to-action .margin-top {
+    margin: 3rem 0 0 0; /* Adds margin to the top */
+}
+
+/* Removes padding from specific title classes with different text colors */
+.display-4.card-text.lead.title .cu-text-black.remove-padding,
+.display-4.card-text.lead.title .cu-text-gold.remove-padding,
+.display-4.card-text.lead.title .cu-text-white.remove-padding {
+    padding: 0 15px !important; /* Padding for color-based title classes */
+}
+
+/* Spacing utility classes for call-to-action */
+.cta-margin_top {
+    padding: 20px 0 0; /* Adds top margin */
+}
+
+.cta-margin_bottom {
+    padding: 0 0 20px; /* Adds bottom margin */
+}
+
+.cta-margin_top_and_bottom {
+    padding: 15px 0; /* Adds top and bottom padding */
+}
+
+/* =====================================
+   Link Styling within Call to Action
+   ===================================== */
+
+/* Remove underline from all links within the call-to-action block */
+.block-content-call_to_action a,
+.block-content-call_to_action .card-body a,
+.block-content-call_to_action a h3.display-4,
+.block-content-call_to_action a .display-4,
+.block-content-call_to_action body,
+.block-content-call_to_action p,
+.block-content-call_to_action li,
+a.cta-link {
+    text-decoration: none !important; /* Ensures links do not have underlines */
+}
+
+/* =====================================
+   Responsive Adjustments
+   ===================================== */
+
 /* Media query for screens below 991px */
 @media (max-width: 991px) {
     .block .call-to-action {
-        margin: 0 !important
+        margin: 0 !important; /* Resets margin for smaller screens */
     }
 }
