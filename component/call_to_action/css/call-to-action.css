@@ -190,6 +190,15 @@ a.cta-link {
     text-decoration: none !important;
 }
 
+.call-to-action.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.call-to-action.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slight white glow */
+    transform: translateY(-3px); /* Subtle lift */
+}
+
 /*** Responsive ***/
 /* Media query for screens below 991px */
 @media (max-width: 991px) {
