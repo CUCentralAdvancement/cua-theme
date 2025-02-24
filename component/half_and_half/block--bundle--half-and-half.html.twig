@@ -1,14 +1,41 @@
-{# Attach the library #}
+{#
+/**
+ * @file
+ * Template for the Half and Half component.
+ *
+ * This template is designed for flexibility and supports a variety of content types and configurations.
+ * It leverages Bootstrap 5 utility classes and includes custom animations and styles.
+ *
+ * Bootstrap Documentation:
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List of Bootstrap Utility Classes:
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Custom animations use the Animate.css library:
+ * https://animate.style/
+ *
+ * Variables:
+ * - configuration: Provides configuration details for the block.
+ * - plugin_id: The unique plugin ID for this block.
+ * - animate_trigger: Class applied to trigger animations.
+ * - color_background, color_border, container_size, padding, margin, shadow: Custom styles for the block.
+ * - animation, animation_speed, animation_delay: Define animation styles and timing.
+ * - prefers_reduced_motion: Determines if animations should be disabled for accessibility.
+ * - links: A collection of links for the CTA; typically includes a primary call to action.
+ * - provider: Indicates if a video provider (e.g., YouTube) is used.
+ * - card_image: The main image for the card.
+ * - icon: An optional icon.
+ * - caption: Caption text for the card.
+ * - content: The body content of the card.
+ * - label: The title of the card or block.
+ */
+#}
+
+{# Attach the custom Half and Half library for this component #}
 {{ attach_library('cua_theme/half-and-half') }}
 
-{# Import macros #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-{% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-{% import '@cua_theme/component/macros/card_icon.html.twig' as cardIconMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-
-{# Add Classes #}
+{# Set up the classes for the block element #}
 {% set hh_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -23,7 +50,7 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ] | merge(utility_classes ? utility_classes : []) | filter(v => v)|join(' ') %}
 
-{# Set data attributes for animation #}
+{# Set up animation data attributes if animations are enabled and motion reduction is not preferred #}
 {% set data_animation_classes = prefers_reduced_motion ? [] : [
     'animate__animated',
     animation ?: null,
@@ -31,41 +58,44 @@
     animation_delay ?: null,
 ] | filter(v => v) | join(' ') %}
 
-{# Add unique id to block #}
+{# Generate a unique ID for the block, used for tracking #}
 {% set unique_id = 'block--node-' ~ '-half-and-half' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Set defaults for column classes and container size #}
+{# Default values for column classes if not set by the user #}
 {% set image_col_classes = image_col_classes ?: 'col-md-6 col-lg-4' %}
 {% set title_body_col_classes = title_body_col_classes ?: 'col-md-6 col-lg-8' %}
 {% set media_col_classes = media_col_classes ?: 'col-12' %}
 {% set container_size = container_size ?: 'container' %}
 
-{# Check for single link #}
+{# Check if there's only one link provided; set it as a single link if applicable #}
 {% set single_link = links|length == 1 ? links|first : null %}
 
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes).setAttribute('role', 'region') }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
-    {# Visually Hidden Title for Screen Readers (at the top) #}
+    {# Visually Hidden Title for Screen Readers (hidden but still accessible) #}
     <h3 class="sr-only">{{ label }}</h3>
 
-    {# Open the link tag if single_link exists #}
+    {# Open the link tag if a single link is present #}
     {% if single_link %}
     <a href="{{ single_link.url ?: '#' }}"
        class="hh-link-wrapper"
        {% if single_link.title is defined and single_link.title %}aria-label="{{ single_link.title }}"{% endif %}>
         {% endif %}
 
-        {# Combined Desktop and Mobile Component #}
+        {# Container for the half-and-half layout, combining both media and title/content columns #}
         <div class="{{ container_size }}">
             <div class="card">
                 <div class="row g-0">
 
-                    {# Media/Image/Video/Icon Section #}
+                    {# Media/Image/Video/Icon Section - Conditionally include media based on provider or selected image/icon #}
                     <div class="{{ image_col_classes }} {{ media_col_classes }}">
                         {% if provider %}
+                            {# Include video partial if provider is set (e.g., YouTube, Vimeo) #}
                             {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                         {% elseif card_image %}
+                            {# Render image if card_image is set #}
+                            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
                             {{ cardImageMacros.render_card_image(
                                 card_image,
                                 position_container,
@@ -77,6 +107,8 @@
                                 true
                             ) }}
                         {% elseif icon %}
+                            {# Render icon if icon is set #}
+                            {% import '@cua_theme/component/macros/card_icon.html.twig' as cardIconMacros %}
                             {{ cardIconMacros.render_icon(
                                 icon,
                                 icon_size,
@@ -88,11 +120,12 @@
                         {% endif %}
                     </div>
 
-                    {# Title/Body Section #}
+                    {# Title/Body Section - Contains the title and body content #}
                     <div class="{{ title_body_col_classes }}">
                         <div class="row g-0 mx-5 pt-3">
 
-                            {# Render Title #}
+                            {# Render the Title #}
+                            {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
                             {{ titleMacros.render_title(
                                 label,
                                 title_prefix,
@@ -103,8 +136,9 @@
                                 padding
                             ) }}
 
-                            {# Render Body Content #}
+                            {# Render Body Content if available #}
                             {% if content %}
+                                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                                 {{ bodyMacros.render_body(
                                     content,
                                     padding,
@@ -113,8 +147,9 @@
                                 ) }}
                             {% endif %}
 
-                            {# Render Footer/Links (Button) #}
+                            {# Render Footer/Links (Button) if available #}
                             {% if links %}
+                                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                                 {{ cardFooterMacros.render_card_footer(
                                     links,
                                     container_size,
@@ -137,7 +172,7 @@
             </div>
         </div>
 
-        {# Close the link tag if single_link exists #}
+        {# Close the link tag if a single link was used #}
         {% if single_link %}
     </a>
     {% endif %}
