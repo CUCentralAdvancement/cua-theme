@@ -13,11 +13,6 @@
 {# Attach the banner-specific theme library #}
 {{ attach_library('cua_theme/banner') }}
 
-{# Import macros for title, body, and footer rendering #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-
 {# Set container classes dynamically based on configuration #}
 {% set container_classes = [
     'block',
@@ -34,12 +29,12 @@
 {% set image_container_classes = [
     'banner-image-container',
     parallax ?: null,
-    effect is not empty ? 'px-5 mx-5 px-sm-2 mx-sm-2 kenburns-' ~ effect|clean_class : null,
     position_container is not empty ? 'd-flex ' ~ position_container|clean_class : null,
     container_size ?: null,
+    'background-size-cover',
 ] | filter(v => v) | join(' ') %}
 
-{# Set banner-body classes, including optional animation classes #}
+{# Set banner-body classes, including optional animation classes and customizable padding #}
 {% set banner_body_classes = [
     'col-md-5',
     'col-sm-12',
@@ -55,9 +50,6 @@
 {# Set animation classes for dynamic animations if any are specified #}
 {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
 
-{# Add effect-specific class for banner copy animation, if specified #}
-{% set effect_copy_class = effect_copy is not empty ? 'px-5 mx-5 kenburns-' ~ effect_copy|clean_class : '' %}
-
 {# Generate unique ID based on content ID for accessibility and uniqueness #}
 {% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
@@ -65,7 +57,7 @@
 <div{{ attributes.setAttribute('id', unique_id).addClass(container_classes).setAttribute('role', 'region') }}>
 
     {# Image container with dynamic background image and other styling classes #}
-    {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
+    {% set bg_image_url = content.field_image is not empty ? file_url(content.field_image['#items'].entity.uri.value) : '' %}
     <div class="{{ image_container_classes }}"
          style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
 
@@ -73,6 +65,7 @@
         <div class="{{ banner_body_classes }}"{% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
 
             {# Render Banner Title using imported macros for consistency #}
+            {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
             {{ titleMacros.render_title(
                 label,
                 title_prefix,
@@ -86,6 +79,7 @@
 
             {# Render Banner Body Content (if available) #}
             {% if content %}
+                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                 {{ bodyMacros.render_body(
                     content,
                     padding,
@@ -96,6 +90,7 @@
 
             {# Render Footer Links (if provided) #}
             {% if links %}
+                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                 {{ cardFooterMacros.render_card_footer(
                     links,
                     container_size,

@@ -1,585 +1,264 @@
-/* banner */
+/* ------------------------------
+    Banner Section Styles
+------------------------------ */
+
+/* General Styles for Banner */
 .banner .card-img-top.img-fluid.w-100.image-style-webp {
-  border-radius: 0
+  border-radius: 0; /* Remove border radius for full-width images */
 }
 
 .banner .card-footer.px-4.pb-4 {
-  padding: 0
+  padding: 0; /* Remove padding from footer */
 }
 
-.banner p, .banner li {
-  font-size: 1.2rem
+/* Paragraph and List Style within Banner */
+.banner p,
+.banner li {
+  font-size: 1.2rem; /* Increase font size for readability */
 }
 
+/* Hide pseudo-element for h2 headings */
 .banner h2::after {
-  display: none !important
+  display: none !important;
 }
 
-.banner h2, .banner .h2 {
+/* Header Styles - H2 */
+.banner h2,
+.banner .h2 {
   font-family: var(--font-roboto-condensed);
   font-weight: var(--font-weight-bold);
-  text-transform: uppercase
+  text-transform: uppercase; /* Uppercase text for emphasis */
 }
 
+/* Background Color Styles for Banner */
 .banner .cu-bg-gold {
-  background: var(--cua-gold)
+  background: var(--cua-gold); /* Banner background set to CU gold */
 }
 
 .banner .banner-body.cu-bg-gold {
   background: var(--cua-gold);
-  opacity: 0.75 !important
+  opacity: 0.75 !important; /* Add transparency for banner background */
 }
 
 .banner .cu-bg-black {
-  background: var(--cua-black)
+  background: var(--cua-black); /* Banner background set to CU black */
 }
 
 .banner .banner-body.cu-bg-black {
   background: var(--cua-black);
-  opacity: 0.75 !important
+  opacity: 0.75 !important;
 }
 
 .banner .cu-bg-white {
-  background: var(--cua-white)
+  background: var(--cua-white); /* Banner background set to CU white */
 }
 
 .banner .banner-body.cu-bg-white {
   background: var(--cua-white);
-  opacity: 0.75 !important
+  opacity: 0.75 !important;
 }
 
-.banner .cu-text-gold, .cu-text-gold {
-  color: var(--cua-gold)
+/* Text Color Styles for Banner */
+.banner .cu-text-gold,
+.cu-text-gold {
+  color: var(--cua-gold); /* Text color set to CU gold */
 }
 
 .banner .cu-text-white {
-  color: var(--cua-white)
+  color: var(--cua-white); /* Text color set to CU white */
 }
 
 .banner .cu-text-black {
-  color: var(--cua-black)
+  color: var(--cua-black); /* Text color set to CU black */
 }
 
+/* Button Styles */
 .banner .btn {
-  border-radius: 0 !important;
-  font-weight: var(--font-weight-bold);
-  padding: .65rem 4rem !important
+  border-radius: 0 !important; /* Remove border radius for square buttons */
+  font-weight: var(--font-weight-bold); /* Bold button text */
+  padding: .65rem 4rem !important; /* Padding for buttons */
 }
 
 .banner .btn:hover {
-  text-decoration: none !important
+  text-decoration: none !important; /* Remove underline on hover */
 }
 
+/* Button Custom Styles for Black Background */
 .banner .btn.btn-cu-bg-black {
-  background: rgba(0, 0, 0, 1);
-  border: 3px solid var(--cua-black);
-  color: var(--cua-white);
-  font-weight: var(--font-weight-bold);
+  background: rgba(0, 0, 0, 1); /* Black button background */
+  border: 3px solid var(--cua-black); /* Black border for the button */
+  color: var(--cua-white); /* White text color */
+  font-weight: var(--font-weight-bold); /* Bold font */
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Button Hover Effect for Black Button */
 .banner .btn.btn-cu-bg-black:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--cua-black);
-  color: var(--cua-black)
+  background: rgba(255, 255, 255, 0.1); /* Lighten background on hover */
+  border-color: var(--cua-black); /* Maintain black border on hover */
+  color: var(--cua-black); /* Change text color to black */
 }
 
-.banner .btn.outline-btn-cu-bg-black {
-  background: transparent;
-  border: 3px solid var(--cua-black);
-  color: var(--cua-black);
-  font-weight: var(--font-weight-bold);
-  position: relative;
-  overflow: hidden;
-  transition: width 0.5s ease;
-  z-index: 1
-}
-
-.banner .btn.outline-btn-cu-bg-black::before, .banner .btn.btn-cu-bg-black::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  transition: width 0.3s ease;
-  z-index: -1
-}
-
-.banner .btn.outline-btn-cu-bg-black:hover::before, .banner .btn.btn-cu-bg-black:hover::before {
-  width: 100%
-}
-
-.banner .btn.outline-btn-cu-bg-black:hover, .banner .btn.btn-cu-bg-black:hover {
-  border-color: var(--cua-black);
-  color: var(--cua-white);
-  z-index: 1
-}
-
+/* Button Custom Styles for Gold Background */
 .banner .btn.btn-cu-bg-gold {
-  background: rgba(207, 184, 124, 1);
-  border: 3px solid var(--cua-gold);
-  color: var(--cua-black);
-  font-weight: var(--font-weight-bold);
+  background: rgba(207, 184, 124, 1); /* Gold button background */
+  border: 3px solid var(--cua-gold); /* Gold border for the button */
+  color: var(--cua-black); /* Black text color */
+  font-weight: var(--font-weight-bold); /* Bold font */
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Button Hover Effect for Gold Button */
 .banner .btn.btn-cu-bg-gold:hover {
-  background: rgba(207, 184, 124, 0.5);
-  border: 3px solid var(--cua-gold);
-  color: var(--cua-black)
+  background: rgba(207, 184, 124, 0.5); /* Lighten gold background on hover */
+  border: 3px solid var(--cua-gold); /* Maintain gold border on hover */
+  color: var(--cua-black); /* Black text color */
 }
 
-.banner .btn.outline-btn-cu-bg-gold {
-  background: transparent;
-  border: 3px solid var(--cua-gold);
-  color: rgba(207, 184, 124, 1);
-  font-weight: var(--font-weight-bold);
+/* Outline Button Styles */
+.banner .btn.outline-btn-cu-bg-black {
+  background: transparent; /* Transparent background */
+  border: 3px solid var(--cua-black); /* Black border for outline button */
+  color: var(--cua-black); /* Black text color */
+  font-weight: var(--font-weight-bold); /* Bold font */
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
-.banner .btn.outline-btn-cu-bg-gold::before, .banner .btn.btn-cu-bg-gold::before {
-  background: rgba(207, 184, 124, .5);
+.banner .btn.outline-btn-cu-bg-black::before,
+.banner .btn.btn-cu-bg-black::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay effect */
   transition: width 0.3s ease;
-  z-index: -1
+  z-index: -1;
 }
 
-.banner .btn.outline-btn-cu-bg-gold:hover::before, .banner .btn.btn-cu-bg-gold:hover::before {
-  width: 100%
+.banner .btn.outline-btn-cu-bg-black:hover::before,
+.banner .btn.btn-cu-bg-black:hover::before {
+  width: 100%; /* Expand overlay effect on hover */
 }
 
-.banner .btn.outline-btn-cu-bg-gold:hover, .banner .btn.btn-cu-bg-gold:hover {
-  border: 3px solid var(--cua-gold);
-  color: var(--cua-black);
-  z-index: 1
+.banner .btn.outline-btn-cu-bg-black:hover,
+.banner .btn.btn-cu-bg-black:hover {
+  border-color: var(--cua-black); /* Maintain black border on hover */
+  color: var(--cua-white); /* Change text color to white */
+  z-index: 1;
 }
 
-.banner .btn.btn-cu-bg-white {
-  background: rgba(255, 255, 255, 1);
-  border: 3px solid var(--cua-white);
-  color: var(--cua-black);
+/* General Container Styling */
+.container-fluid.banner {
+  overflow: hidden; /* Prevent overflow for container */
+}
+
+/* Display Styling for Banner Headings */
+.banner .display-4 {
+  font-size: 3rem !important; /* Increase heading size */
+  font-family: var(--font-roboto-condensed);
   font-weight: var(--font-weight-bold);
-  position: relative;
-  overflow: hidden;
-  transition: width 0.5s ease;
-  z-index: 1
 }
 
-.banner .btn.btn-cu-bg-white:hover {
-  background: rgba(0, 0, 0, 0.1);
-  border-color: var(--cua-white);
-  color: var(--cua-white)
+/* ------------------------------
+    Responsive Media Queries
+------------------------------ */
+
+/* Styles for Screen Widths below 1200px */
+@media (max-width: 1200px) {
+  .banner-body {
+    padding: 1.5rem 2rem 2.5rem 2rem; /* Adjust padding for medium screens */
+  }
+
+  .banner .btn {
+    padding: .5rem 3rem !important; /* Adjust button padding */
+  }
 }
 
-.banner .btn.outline-btn-cu-bg-white {
-  background: transparent;
-  border: 3px solid var(--cua-white);
-  color: var(--cua-white);
-  font-weight: var(--font-weight-bold);
-  position: relative;
-  overflow: hidden;
-  transition: width 0.5s ease;
-  z-index: 1
+/* Styles for Screen Widths below 768px */
+@media (max-width: 768px) {
+  .banner p,
+  .banner li {
+    font-size: 1rem; /* Reduce font size for small screens */
+  }
+
+  .banner .btn {
+    padding: .5rem 2.5rem !important; /* Adjust button padding */
+  }
+
+  .banner-image-container {
+    padding: 8rem 0; /* Adjust padding for image container */
+  }
+
+  .banner-body {
+    padding: 1.5rem 1.5rem 2.25rem 1.5rem; /* Adjust body padding */
+  }
+
+  .banner .card-img-top {
+    width: 100%; /* Ensure image covers full width */
+    height: auto;
+  }
 }
 
-.banner .btn.outline-btn-cu-bg-white::before, .banner .btn.btn-cu-bg-white::before {
-  background: rgba(255, 255, 255, 0.5);
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  transition: width 0.3s ease;
-  z-index: -1
-}
-
-.banner .btn.outline-btn-cu-bg-white:hover::before, .banner .btn.btn-cu-bg-white:hover::before {
-  width: 100%
-}
-
-.banner .btn.outline-btn-cu-bg-white:hover, .banner .btn.btn-cu-bg-white:hover {
-  border-color: var(--cua-white);
-  color: var(--cua-black);
-  z-index: 1
-}
-
-.banner .btn.btn-cu-bg-light-grey {
-  background: var(--cua-light-grey);
-  border: 3px solid var(--cua-light-grey);
-  color: var(--cua-black);
-  font-weight: var(--font-weight-bold);
-  position: relative;
-  overflow: hidden;
-  transition: width 0.5s ease;
-  z-index: 1
-}
-
-.banner .btn.btn-cu-bg-light-grey:hover {
-  background: rgba(0, 0, 0, 0.1);
-  border-color: var(--cua-light-grey);
-  color: var(--cua-light-grey)
-}
-
-.banner .btn.outline-btn-cu-bg-light-grey {
-  background: transparent;
-  border: 3px solid var(--cua-light-grey);
-  color: var(--cua-light-grey);
-  font-weight: var(--font-weight-bold);
-  position: relative;
-  overflow: hidden;
-  transition: width 0.5s ease;
-  z-index: 1
-}
-
-.banner .btn.outline-btn-cu-bg-light-grey::before, .banner .btn.btn-cu-bg-light-grey::before {
-  background: rgba(255, 255, 255, 0.3);
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  transition: width 0.3s ease;
-  z-index: -1
-}
-
-.banner .btn.outline-btn-cu-bg-light-grey:hover::before, .banner .btn.btn-cu-bg-light-grey:hover::before {
-  width: 100%
-}
-
-.banner .btn.outline-btn-cu-bg-light-grey:hover, .banner .btn.btn-cu-bg-light-grey:hover {
-  border-color: var(--cua-light-grey);
-  color: var(--cua-black);
-  z-index: 1
-}
-
-.banner-image-container {
-  padding: 10rem 0
-}
-
-.banner .card-header {
-  padding: 0
-}
-
-.banner-body {
-  padding: 1.5rem 3rem 3.25rem 3rem
-}
-
-.banner-image-container {
-  padding: 10rem 0
-}
-
-.block-inline-blockbanner .card-img-top {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important
-}
-
+/* Styles for Screen Widths below 680px */
 @media (max-width: 680px) {
   .banner-body {
-    padding: 3rem
+    padding: 3rem; /* Adjust padding */
   }
 
-  .banner h2, .banner .h2 {
-    font-size: 2rem
-  }
-
-  .banner-image-container {
-    padding: 3rem 0
-  }
-
-  .banner-body.mx-5.my-5.my-sm-3, .banner-body .mx-5 {
-    margin-right: 1rem !important;
-    margin-left: 1rem !important
-  }
-
-  .banner-body.mx-5.my-5.my-sm-3, .banner-body .my-5 {
-    margin-top: 1rem !important;
-    margin-bottom: 1rem !important
+  .banner h2,
+  .banner .h2 {
+    font-size: 2rem; /* Adjust heading size */
   }
 
   .banner-image-container {
-    padding: 5rem 0 !important
+    padding: 3rem 0; /* Adjust image container padding */
+  }
+
+  .banner-body.mx-5.my-5.my-sm-3,
+  .banner-body .mx-5 {
+    margin-right: 1rem !important; /* Adjust margins */
+    margin-left: 1rem !important;
+  }
+
+  .banner-body.mx-5.my-5.my-sm-3,
+  .banner-body .my-5 {
+    margin-top: 1rem !important; /* Adjust vertical margins */
+    margin-bottom: 1rem !important;
+  }
+
+  .banner-image-container {
+    padding: 5rem 0 !important; /* Adjust image container padding */
   }
 }
 
-.kenburns-top {
-  -webkit-animation: kenburns-top 5s ease-out both;
-  animation: kenburns-top 5s ease-out both
-}
-
-.kenburns-top-right {
-  -webkit-animation: kenburns-top-right 5s ease-out both;
-  animation: kenburns-top-right 5s ease-out both
-}
-
-.kenburns-right {
-  -webkit-animation: kenburns-right 5s ease-out both;
-  animation: kenburns-right 5s ease-out both
-}
-
-.kenburns-bottom {
-  -webkit-animation: kenburns-bottom 5s ease-out both;
-  animation: kenburns-bottom 5s ease-out both
-}
-
-.kenburns-bottom-left {
-  -webkit-animation: kenburns-bottom-left 5s ease-out both;
-  animation: kenburns-bottom-left 5s ease-out both
-}
-
-.kenburns-bottom-right {
-  -webkit-animation: kenburns-bottom-right 5s ease-out both;
-  animation: kenburns-bottom-right 5s ease-out both
-}
-
-.container-fluid .kenburns-top {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden
-}
-
-.container-fluid.banner {
-  overflow: hidden
-}
-
-.ken.kenburns- {
-  background-size: cover;
-  background-position: center;
-  min-height: 500px;
-  overflow: hidden;
-  width: 100vw
-}
-
-.banner .display-4 {
-  font-size: 3rem !important;
-  font-family: var(--font-roboto-condensed);
-  font-weight: var(--font-weight-bold)
-}
-
-@media (max-width: 768px) {
-
-  .container-fluid .kenburns-top {
-    background-size: auto;
-    background-position: top;
-    background-repeat: repeat;
-    height: auto;
-    max-width: none;
-    margin-left: 0;
-    margin-right: 0;
-    overflow: visible
-  }
-}
-
-@-webkit-keyframes kenburns-top {
-  0% {
-    -webkit-transform: scale(1) translateY(0);
-    transform: scale(1) translateY(0);
-    -webkit-transform-origin: 50% 16%;
-    transform-origin: 50% 16%
+/* Styles for Screen Widths below 576px */
+@media (max-width: 576px) {
+  .banner .btn {
+    padding: .5rem 2rem !important; /* Adjust button padding */
   }
 
-  100% {
-    -webkit-transform: scale(1.1) translateY(-15px);
-    transform: scale(1.1) translateY(-15px);
-    -webkit-transform-origin: top;
-    transform-origin: top
-  }
-}
-
-@keyframes kenburns-top {
-  0% {
-    -webkit-transform: scale(1) translateY(0);
-    transform: scale(1) translateY(0);
-    -webkit-transform-origin: 50% 16%;
-    transform-origin: 50% 16%
+  .banner-image-container {
+    padding: 6rem 0; /* Adjust padding for small screens */
   }
 
-  100% {
-    -webkit-transform: scale(1.1) translateY(-15px);
-    transform: scale(1.1) translateY(-15px);
-    -webkit-transform-origin: top;
-    transform-origin: top
-  }
-}
-
-@-webkit-keyframes kenburns-bottom-left {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 16% 84%;
-    transform-origin: 16% 84%
+  .banner-body {
+    padding: 1.5rem 1rem 2rem 1rem; /* Adjust body padding */
   }
 
-  100% {
-    -webkit-transform: scale(1.1) translate(-20px, 15px);
-    transform: scale(1.1) translate(-20px, 15px);
-    -webkit-transform-origin: left bottom;
-    transform-origin: left bottom
-  }
-}
-
-@keyframes kenburns-bottom-left {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 16% 84%;
-    transform-origin: 16% 84%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translate(-20px, 15px);
-    transform: scale(1.1) translate(-20px, 15px);
-    -webkit-transform-origin: left bottom;
-    transform-origin: left bottom
-  }
-}
-
-@-webkit-keyframes kenburns-bottom-right {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 84% 84%;
-    transform-origin: 84% 84%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translate(20px, 15px);
-    transform: scale(1.1) translate(20px, 15px);
-    -webkit-transform-origin: right bottom;
-    transform-origin: right bottom
-  }
-}
-
-@keyframes kenburns-bottom-right {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 84% 84%;
-    transform-origin: 84% 84%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translate(20px, 15px);
-    transform: scale(1.1) translate(20px, 15px);
-    -webkit-transform-origin: right bottom;
-    transform-origin: right bottom
-  }
-}
-
-@-webkit-keyframes kenburns-right {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 84% 50%;
-    transform-origin: 84% 50%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translateX(20px);
-    transform: scale(1.1) translateX(20px);
-    -webkit-transform-origin: right;
-    transform-origin: right
-  }
-}
-
-@keyframes kenburns-right {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 84% 50%;
-    transform-origin: 84% 50%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translateX(20px);
-    transform: scale(1.1) translateX(20px);
-    -webkit-transform-origin: right;
-    transform-origin: right
-  }
-}
-
-@-webkit-keyframes kenburns-bottom {
-  0% {
-    -webkit-transform: scale(1) translateY(0);
-    transform: scale(1) translateY(0);
-    -webkit-transform-origin: 50% 84%;
-    transform-origin: 50% 84%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translateY(15px);
-    transform: scale(1.1) translateY(15px);
-    -webkit-transform-origin: bottom;
-    transform-origin: bottom
-  }
-}
-
-@keyframes kenburns-bottom {
-  0% {
-    -webkit-transform: scale(1) translateY(0);
-    transform: scale(1) translateY(0);
-    -webkit-transform-origin: 50% 84%;
-    transform-origin: 50% 84%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translateY(15px);
-    transform: scale(1.1) translateY(15px);
-    -webkit-transform-origin: bottom;
-    transform-origin: bottom
-  }
-}
-
-@-webkit-keyframes kenburns-top-right {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 84% 16%;
-    transform-origin: 84% 16%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translate(20px, -15px);
-    transform: scale(1.1) translate(20px, -15px);
-    -webkit-transform-origin: right top;
-    transform-origin: right top
-  }
-}
-
-@keyframes kenburns-top-right {
-  0% {
-    -webkit-transform: scale(1) translate(0, 0);
-    transform: scale(1) translate(0, 0);
-    -webkit-transform-origin: 84% 16%;
-    transform-origin: 84% 16%
-  }
-
-  100% {
-    -webkit-transform: scale(1.1) translate(20px, -15px);
-    transform: scale(1.1) translate(20px, -15px);
-    -webkit-transform-origin: right top;
-    transform-origin: right top
+  .banner .btn.btn-cu-bg-black,
+  .banner .btn.btn-cu-bg-gold,
+  .banner .btn.btn-cu-bg-white {
+    font-size: 0.875rem; /* Adjust button font size */
   }
 }
