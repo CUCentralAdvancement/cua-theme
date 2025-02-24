@@ -1379,6 +1379,17 @@ h2#block-cua-theme-main-menu-menu {
     color: var(--cua-black) !important;
 }
 
+.lead-story-item {
+    position: relative;
+    transition: background 0.2s ease-in-out;
+    background: var(--cua-black);
+    color: var(--cua-white);
+}
+
+.lead-story-item:hover {
+    background: rgba(255, 255, 255, 0.1); /* Slightly lighter black */
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
