@@ -1,80 +1,79 @@
-/* Counter */
+/* ------------------------------
+         Counter Section Styles
+     ------------------------------ */
+
+/* Font size and style for counter */
 .counter .counter-size {
-  font-size: 3rem;
-  font-family: var(--font-roboto-condensed);
-  font-weight: var(--font-weight-bold)
+    font-size: 3rem;
+    font-family: var(--font-roboto-condensed);
+    font-weight: var(--font-weight-bold);
 }
 
+/* Padding adjustments for counter elements */
 .counter .padding-left {
-  padding-left: .4rem !important
+    padding-left: .4rem !important;
 }
 
 .counter .padding-right {
-  padding-right: .2rem !important
+    padding-right: .2rem !important;
 }
 
+/* Center alignment for card titles */
 .counter .card-title {
-  text-align: center !important
+    text-align: center !important;
 }
 
+/* Maximum height for card images */
 .counter .card-img-top {
-  max-height: 175px
+    max-height: 175px;
 }
 
-.counter .counter-up.cu-text-white,
-.counter .padding-left.cu-text-white,
-.counter .padding-right.cu-text-white,
-.counter .figcaption.cu-text-white {
-  color: var(--cua-white) !important
+/* Text color adjustments for different classes */
+.counter .cu-text-white {
+    color: var(--cua-white) !important;
 }
 
-.counter .counter-up.cu-text-black,
-.counter .padding-left.cu-text-black,
-.counter .padding-right.cu-text-black,
-.counter .figcaption.cu-text-black {
-  color: var(--cua-black) !important
+.counter .cu-text-black {
+    color: var(--cua-black) !important;
 }
 
-.counter .counter-up.cu-text-gold,
-.counter .padding-left.cu-text-gold,
-.counter .padding-right.cu-text-gold,
-.counter .figcaption.cu-text-gold {
-  color: var(--cua-gold) !important
+.counter .cu-text-gold {
+    color: var(--cua-gold) !important;
+}
+
+/* Font size and alignment for different icon sizes */
+.fa-2xl, .fa-3xl, .fa-4xl, .fa-5xl {
+    line-height: .03125em;
+    vertical-align: -.1875em;
 }
 
 .fa-2xl {
-  font-size: 3rem;
-  line-height: .03125em;
-  vertical-align: -.1875em
+    font-size: 3rem;
 }
 
 .fa-3xl {
-  font-size: 4rem;
-  line-height: .03125em;
-  vertical-align: -.1875em
+    font-size: 4rem;
 }
 
 .fa-4xl {
-  font-size: 5rem;
-  line-height: .03125em;
-  vertical-align: -.1875em
+    font-size: 5rem;
 }
 
 .fa-5xl {
-  font-size: 6rem;
-  line-height: .03125em;
-  vertical-align: -.1875em
+    font-size: 6rem;
 }
 
+/* Scaling and margin adjustments for small images */
 .counter .small img {
-  scale: 100% !important
+    scale: 100% !important;
 }
 
 .counter .card-img.small {
-  margin: 0 4rem !important;
-  scale: 100% !important
+    margin: 0 4rem !important;
+    scale: 100% !important;
 }
 
+/* Padding for card body */
 .counter .card-body {
-  padding: 1rem 0;
+    padding: 1rem 0;
 }

@@ -1,19 +1,21 @@
+/* ------------------------------
+    Accordion Section Styles
+------------------------------ */
 
+/* Styles for the accordion button when it is expanded */
 .accordion-button:not(.collapsed) {
     color: var(--cua-black) !important;
     background-color: var(--cua-gold) !important;
 }
 
+/* General styles for the accordion button */
 .accordion-button {
     padding: .5rem 1rem 0 1rem;
-}
-
-.accordion-button {
     background-color: var(--cua-gray-100) !important;
 }
 
+/* Styles for the accordion header */
 .accordion h3 {
     font-size: 1.25rem !important;
     font-weight: 700 !important;
-
 }

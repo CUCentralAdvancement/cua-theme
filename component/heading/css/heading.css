@@ -1,32 +1,36 @@
+/* ===================================================
+        Heading Styling - General Layout and Elements
+        =================================================== */
+
+/* General styles for the heading block */
 .heading-block {
-  position: relative; /* This ensures the accent is positioned relative to the block */
+    position: relative; /* This ensures the accent is positioned relative to the block */
 }
 
+/* Styles for the main title (h1) */
 .heading-block h1.title {
-  position: relative;
-  margin-left: 17px !important;
-  margin-bottom: 5px !important;
-  margin-top: 2px !important;
+    position: relative;
+    margin: 2px 0 5px 17px !important; /* Combined margin properties */
 }
 
+/* Styles for the accent square */
 .heading-block .heading-square__accent {
-  border-width: 3px;
-  border-style: solid;
-  border-color: var(--cua-gold);
-  position: absolute;
-  top: 32%; /* Center the accent relative to the height of the h1 */
-  left: 6px; /* Adjust the horizontal positioning to the left of the h1 */
-  transform: translateY(-50%); /* Vertically center it relative to the h1 */
-  display: block;
-  width: 52px;
-  height: 52px;
-  z-index: -1; /* Ensure it stays behind the h1 */
-  pointer-events: none;
+    border: 3px solid var(--cua-gold);
+    position: absolute;
+    top: 32%; /* Center the accent relative to the height of the h1 */
+    left: 6px; /* Adjust the horizontal positioning to the left of the h1 */
+    transform: translateY(-50%); /* Vertically center it relative to the h1 */
+    display: block;
+    width: 52px;
+    height: 52px;
+    z-index: -1; /* Ensure it stays behind the h1 */
+    pointer-events: none;
 }
 
+/* Styles for the subtitle (p.h5) */
 .heading-block p.h5.title {
-  color: var(--cua-black);
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: var(--font-weight-normal);
-  margin: 2px 0 0 70px;
+    color: var(--cua-black);
+    font-family: var(--font-roboto), sans-serif;
+    font-weight: var(--font-weight-normal);
+    margin: 2px 0 0 70px;
 }
