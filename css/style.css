@@ -477,18 +477,23 @@ a#edit-delete:hover {
 .text-yellow {
     color: #fcb040;
 }
+
 .text-yellow-light {
     color: #ffdc6c;
 }
+
 .text-yellow-lightest {
     color: #feeebf;
 }
+
 .text-yellow-text {
     color: #fcb040;
 }
+
 .text-yellow-light-text {
     color: #ffdc6c;
 }
+
 .text-yellow-lightest-text {
     color: #feeebf;
 }
@@ -497,9 +502,11 @@ a#edit-delete:hover {
 .text-purple {
     color: #544181;
 }
+
 .text-purple-light {
     color: #8b72ce;
 }
+
 .text-purple-lightest {
     color: #c7bde3;
 }
@@ -508,9 +515,11 @@ a#edit-delete:hover {
 .text-pink {
     color: #ac355f;
 }
+
 .text-pink-light {
     color: #dd3f70;
 }
+
 .text-pink-lightest {
     color: #e29eb3;
 }
@@ -519,9 +528,11 @@ a#edit-delete:hover {
 .text-orange {
     color: #d94f2a;
 }
+
 .text-orange-light {
     color: #e06843;
 }
+
 .text-orange-lightest {
     color: #ffb69f;
 }
@@ -530,9 +541,11 @@ a#edit-delete:hover {
 .text-agua {
     color: #065e62;
 }
+
 .text-agua-light {
     color: #4bb6ae;
 }
+
 .text-agua-lightest {
     color: #bceae7;
 }
@@ -541,9 +554,11 @@ a#edit-delete:hover {
 .text-lime {
     color: #adcc3b;
 }
+
 .text-lime-light {
     color: #e5ff70;
 }
+
 .text-lime-lightest {
     color: #f6ffbc;
 }
@@ -552,9 +567,11 @@ a#edit-delete:hover {
 .text-blue {
     color: #5c7a82;
 }
+
 .text-blue-light {
     color: #86c0ce;
 }
+
 .text-blue-lightest {
     color: #cdf2fb;
 }
@@ -567,9 +584,11 @@ a#edit-delete:hover {
 .bg-yellow {
     background-color: #fcb040;
 }
+
 .bg-yellow-light {
     background-color: #ffdc6c;
 }
+
 .bg-yellow-lightest {
     background-color: #feeebf;
 }
@@ -578,9 +597,11 @@ a#edit-delete:hover {
 .bg-purple {
     background-color: #544181;
 }
+
 .bg-purple-light {
     background-color: #8b72ce;
 }
+
 .bg-purple-lightest {
     background-color: #c7bde3;
 }
@@ -589,9 +610,11 @@ a#edit-delete:hover {
 .bg-pink {
     background-color: #ac355f;
 }
+
 .bg-pink-light {
     background-color: #dd3f70;
 }
+
 .bg-pink-lightest {
     background-color: #e29eb3;
 }
@@ -600,9 +623,11 @@ a#edit-delete:hover {
 .bg-orange {
     background-color: #d94f2a;
 }
+
 .bg-orange-light {
     background-color: #e06843;
 }
+
 .bg-orange-lightest {
     background-color: #ffb69f;
 }
@@ -611,9 +636,11 @@ a#edit-delete:hover {
 .bg-agua {
     background-color: #065e62;
 }
+
 .bg-agua-light {
     background-color: #4bb6ae;
 }
+
 .bg-agua-lightest {
     background-color: #bceae7;
 }
@@ -622,9 +649,11 @@ a#edit-delete:hover {
 .bg-lime {
     background-color: #adcc3b;
 }
+
 .bg-lime-light {
     background-color: #e5ff70;
 }
+
 .bg-lime-lightest {
     background-color: #f6ffbc;
 }
@@ -633,9 +662,11 @@ a#edit-delete:hover {
 .bg-blue {
     background-color: #5c7a82;
 }
+
 .bg-blue-light {
     background-color: #86c0ce;
 }
+
 .bg-blue-lightest {
     background-color: #cdf2fb;
 }
@@ -694,6 +725,7 @@ a#edit-delete:hover {
     --bs-border-opacity: 0;
     border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
 }
+
 /* Blockquote styling */
 blockquote {
     border-left: 8px solid var(--cua-gold); /* Gold-colored left border */
