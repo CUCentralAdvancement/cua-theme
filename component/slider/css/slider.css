@@ -1,64 +1,18 @@
 /* ===================================================
-   Slider Styling - General Layout and Elements
+   Spacer Styling - Layout Adjustments for Spacer Elements
    =================================================== */
 
-/* Show slide numbers in carousel when visible */
-.slide-numbers-visible .carousel-indicators {
-  display: compact; /* Adjusts the carousel indicators visibility */
+/* Ensure the background for the spacer is inherited for user administrators */
+.user-administrator .spacer {
+  background: inherit; /* Inherits background from parent elements */
 }
 
-/* Hide slide numbers in carousel when invisible or if no specific class is set */
-.slide-numbers-invisible .carousel-indicators,
-.slide-numbers- .carousel-indicators {
-  display: none; /* Ensures carousel indicators are not visible */
+/* Show the spacer element with center alignment for user administrators */
+.user-administrator .small.text-align-center {
+  display: block; /* Makes the element visible */
 }
 
-/* Style for blockquote in slider */
-.slider blockquote {
-  border-left: 0 solid var(--cua-gold) !important; /* Removes left border */
-  width: 70% !important; /* Adjusts width of blockquote */
-  margin: 1rem auto !important; /* Centers the blockquote with margin */
-}
-
-/* Style for text inside the blockquote */
-.slider blockquote p {
-  color: var(--cua-gray-700); /* Sets text color */
-  font-size: 1.1rem; /* Sets font size */
-  line-height: 1.4; /* Sets line height for readability */
-  padding: 10px 15px 5px 15px; /* Adds padding around the text */
-}
-
-/* General styling for paragraph, link, and list items within slider */
-.slider p, .slider a, .slider li {
-  font-size: 1rem; /* Sets font size */
-  line-height: 1.4; /* Sets line height for readability */
-}
-
-/* Custom styling for carousel navigation controls (previous and next) */
-.carousel-control-prev,
-.carousel-control-next {
-  font-size: 50px !important; /* Increases size of navigation arrows */
-  color: #cfb87c !important; /* Changes color of navigation arrows */
-}
-
-/* Media query for responsiveness on smaller screens */
-@media only screen and (max-width: 991px) {
-
-  /* Adjust text styling inside blockquote for smaller screens */
-  .slider blockquote p {
-    font-size: var(--base-font-size) !important; /* Uses base font size for mobile */
-    line-height: 1.2 !important; /* Reduces line height for better readability */
-  }
-
-  /* Adjust blockquote layout for smaller screens */
-  .slider blockquote {
-    border-left: none !important; /* Removes border on mobile */
-    padding: 1rem !important; /* Adds padding */
-    width: 90% !important; /* Increases width for mobile view */
-  }
-
-  /* Adjust position of blockquote pseudo-element on mobile */
-  .slider blockquote::before {
-    left: -20px !important; /* Shifts the pseudo-element to the left */
-  }
+/* Hide the spacer element with center alignment for all other users */
+.small.text-align-center {
+  display: none; /* Hides the element by default */
 }
