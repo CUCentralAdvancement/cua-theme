@@ -1,21 +1,37 @@
+/* =====================================
+   Main site Styling
+   ===================================== */
+
 :root {
+    /* === Colors === */
+    /* Primary black shades */
     --cua-black-pure: #000;
     --cua-black-opacity-75: rgba(0, 0, 0, 0.75);
     --cua-black: #262626;
+
+    /* Primary blue shades */
     --cua-blue: #0854bb;
     --cua-blue-hover: #03306f;
     --cua-blue-visited: #0854bb;
     --cua-blue-dark: #03306c;
+
+    /* Background and body colors */
     --cua-body-bg: #fff;
     --cua-body-color: #262626;
+
+    /* Gold shades */
     --cua-gold: #cfb87c;
     --cua-gold-opacity-75: rgba(207, 184, 124, 0.75);
     --cua-gold-hover: #5d4916;
     --cua-gold-hover-active: #f3d78f;
+
+    /* Grayscale shades */
     --cua-light-grey: #f3f3f3;
     --cua-light-grey-opacity-75: rgba(243, 243, 243, 0.75);
     --cua-gray: #6c757d;
     --cua-dark-gray: #595955;
+
+    /* Bootstrap gray scale */
     --cua-gray-50: #f5f5f5;
     --cua-gray-100: #f8f9fa;
     --cua-gray-200: #e9ecef;
@@ -26,764 +42,889 @@
     --cua-gray-700: #495057;
     --cua-gray-800: #343a40;
     --cua-gray-900: #212529;
-    --cua-green: #198754;
-    --cua-warning: #ba0c2f;
+
+    /* Other colors */
+    --cua-green: #198754; /* Success / Accent */
+    --cua-warning: #ba0c2f; /* Warning / Alert */
     --cua-white: #fff;
     --cua-white-opacity-75: rgba(255, 255, 255, 0.75);
     --cua-white-darker: #ddd;
     --cua-white-light: #f5f5f5;
+
+    /* Link colors */
     --bs-link-color: #0854bb;
     --cua-link-color: #0854bb;
+
+    /* Background colors */
     --bg-light: #f4f4f5;
     --uci-gray: #595955;
-    /* Fonts */
-    --font-awesome: "Font Awesome 6 Free";
+
+    /* === Fonts === */
+    --font-awesome: "Font Awesome 6 Free"; /* Icon font */
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    /* Body text settings */
     --cua-body-font-size: 16px;
     --bs-body-font-size: 16px;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
-    /* Base font size for the body */
-    --base-font-size: 16px;
-    /* Scale for headings */
-    --scale-factor: 1.25;
-    /* Heading sizes */
-    --h1-size: calc(var(--base-font-size) *2.25);
+
+    /* === Typography === */
+    --base-font-size: 16px; /* Base font size for the body */
+    --scale-factor: 1.25; /* Scale factor for headings */
+
+    /* Heading sizes based on the scale factor */
+    --h1-size: calc(var(--base-font-size) * 2.25);
     --h2-size: calc(var(--base-font-size) * 2);
     --h3-size: calc(var(--base-font-size) * 1.75);
     --h4-size: calc(var(--base-font-size) * 1.5);
     --h5-size: calc(var(--base-font-size) * var(--scale-factor));
     --h6-size: calc(var(--base-font-size) * 1);
+
+    /* Small font sizes */
     --font-small: .95rem;
     --font-xsmall: .85rem;
+
     /* Font Weights */
     --font-weight-xlight: 100;
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
-    --font-weight-xbold: 900
+    --font-weight-xbold: 900;
 }
-
+/* Enable smooth scrolling when an element within the page gains focus */
 html:focus-within {
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
 }
 
+/* Set base font size using a CSS variable and enable smooth scrolling */
 html {
     font-size: var(--base-font-size);
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
 }
 
+/* Ensure full height usage for the HTML and body elements */
 html, body {
-    height: 100%
+    height: 100%;
 }
 
+/* =====================================
+   Global Typography Styles
+   ===================================== */
+
+/* Base font styles for body text, links, and list items */
+body, p, a, li {
+    font-family: var(--font-roboto), sans-serif; /* Uses Roboto as the default font */
+    font-size: var(--base-font-size); /* Applies the base font size variable */
+    font-weight: var(--font-weight-normal); /* Keeps normal font weight */
+    line-height: 1.5; /* Ensures consistent spacing */
+}
+
+/* General styles for heading elements (h1-h6) and their corresponding classes */
+/* Sets a consistent font, color, line height, and weight */
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     color: var(--cua-gray-800);
-    font-family: var(--font-roboto-condensed) sans-serif;
+    font-family: var(--font-roboto-condensed), sans-serif;
     line-height: 1.2;
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold);
 }
 
+/* Define font sizes for each heading level using CSS variables */
 h1, .h1 {
-    font-size: var(--h1-size)
+    font-size: var(--h1-size);
 }
 
 h2, .h2 {
-    font-size: var(--h2-size)
+    font-size: var(--h2-size);
 }
 
 h3, .h3 {
-    font-size: var(--h3-size)
+    font-size: var(--h3-size);
 }
 
 h4, .h4 {
-    font-size: var(--h4-size)
+    font-size: var(--h4-size);
 }
 
 h5, .h5 {
-    font-size: var(--h5-size)
+    font-size: var(--h5-size);
 }
 
 h6, .h6 {
-    font-size: var(--h6-size)
+    font-size: var(--h6-size);
 }
 
+/* Special styling for h1.title */
+/* Adjusts background, color, font size, and spacing */
 h1.title {
     background: var(--cua-white);
     color: var(--cua-gray-800);
-    font-size: var(--h2-size);
-    font-family: var(--font-roboto-condensed) sans-serif;
+    font-size: var(--h2-size); /* Uses h2 size for consistency */
+    font-family: var(--font-roboto-condensed), sans-serif;
     font-weight: var(--font-weight-bold);
     line-height: 1.05;
-    margin: .7rem 0 2rem !important;
-    position: relative
+    margin: 0.7rem 0 2rem !important; /* Override default margins */
+    position: relative;
 }
 
+/* Styling for h2.title */
 h2.title {
     color: var(--cua-gray-800);
     font-size: 1.2rem;
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold);
 }
 
+/* Adjust heading styles inside <aside> elements */
 aside .h2, aside h2 {
     color: var(--cua-gray-800);
-    font-family: var(--font-roboto-condensed) sans-serif;
-    font-size: 1.5rem !important;
-    font-weight: var(--font-weight-bold)
+    font-family: var(--font-roboto-condensed), sans-serif;
+    font-size: 1.5rem !important; /* Force a larger size */
+    font-weight: var(--font-weight-bold);
 }
 
+/* Add a decorative underline effect below h2 in <aside> */
 aside h2::after {
     background-color: var(--cua-gold);
     content: " ";
     display: block;
     margin: 0.4em 0;
     width: 1.5em;
-    height: 0.1em
+    height: 0.1em;
 }
 
+/* Larger heading size for h2 inside block-layout-builder */
 .block-layout-builder aside h2,
 .block-layout-builder aside .h2 {
     font-size: 1.75rem;
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold);
 }
 
+/* Define styles for different title classes */
 h3.title {
     font-size: var(--h3-size);
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold);
 }
 
 h4.title {
     font-size: var(--h4-size);
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold);
 }
 
+/* Special styling for links inside .h4.title */
 .h4.title a {
     display: block;
-    font-size: 1.4rem !important;
+    font-size: 1.4rem !important; /* Override any inherited sizes */
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
-    margin: 0 0 .25rem
+    margin: 0 0 0.25rem;
 }
 
+/* Hover effect for links inside .h4.title */
 .h4.title a:hover {
     color: var(--cua-blue-hover);
     text-decoration: underline;
-    transition: color 0.5s ease, text-decoration 0.5s ease
+    transition: color 0.5s ease, text-decoration 0.5s ease;
 }
 
 h5.title {
     font-size: var(--h5-size);
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold);
 }
 
 h6.title {
     font-size: var(--h6-size);
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold);
 }
 
-/* Title */
+/* =====================================
+   Title Styles
+   ===================================== */
+
+/* General title styling */
 .title {
     font-size: 2rem;
-    line-height: 1.5
+    line-height: 1.5;
 }
 
+/* Centers the text inside a flex container when the title has the "visible" class */
 .title.visible .d-flex.justify-content-center {
-    text-align: center !important
+    text-align: center !important;
 }
 
+/* Styles for the page title block */
 div#block-cua-theme-page-title {
-    color: var(--cua-gray-700);
-    margin: 2rem 1.5rem 2rem 1.5rem;
-    position: relative
+    color: var(--cua-gray-700); /* Uses a predefined gray color */
+    margin: 2rem 1.5rem; /* Adds spacing around the title block */
+    position: relative; /* Allows for absolute-positioned children */
 }
 
+/* Ensures the page title always has a 2rem font size */
 h1.page-title.pt-2 {
     font-size: 2rem !important;
 }
 
+/* =====================================
+   Base Heading Accent
+   ===================================== */
+
+/* Creates a small accent square next to headings */
 .base-heading-square__accent {
     border-width: 3px;
     border-style: solid;
-    border-color: var(--cua-gold);
-    position: absolute;
-    pointer-events: none;
+    border-color: var(--cua-gold); /* Uses the defined gold color */
+    position: absolute; /* Positions the accent relative to the heading */
+    pointer-events: none; /* Prevents interaction */
     top: -0.2rem;
     left: -4px;
     display: block;
     width: 60px;
     height: 60px;
-    z-index: -100;
+    z-index: -100; /* Moves it behind other elements */
 }
 
+/* =====================================
+   Visibility and Layout Adjustments
+   ===================================== */
+
+/* Hides specific elements for administrators and logged-in users */
 .user-administrator .aioa-widget-wrapper,
 .user-logged-in.aioa-widget-wrapper,
 .field.field--name-field-tags .field__label,
 .block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper,
 .path-frontpage div#block-cua-theme-page-title {
-    display: none !important
+    display: none !important;
 }
 
+/* Ensures title fields have a white background */
 .field.field--name-title.field--type-string.field--label-hidden {
     background: var(--cua-white);
 }
 
-/* CK editor title */
+/* =====================================
+   CK Editor Title Styles
+   ===================================== */
+
+/* General styling for CKEditor headings inside paragraphs */
 p.h2-title, p.h3-title, p.h4-title, p.h5-title {
-    color: inherit;
-    font-family: var(--font-roboto-condensed), sans-serif;
-    font-weight: var(--font-weight-bold);
-    line-height: 1.1
+    color: inherit; /* Inherits the color from the parent */
+    font-family: var(--font-roboto-condensed), sans-serif; /* Uses a condensed Roboto font */
+    font-weight: var(--font-weight-bold); /* Makes the font bold */
+    line-height: 1.1; /* Reduces line height for compact heading spacing */
 }
 
+/* Large H2 title with specific font size and margin */
 p.h2-title-lg {
-    font-size: 2.75rem !important;
-    margin: 1.3rem 0 .3rem 0
+    font-size: 2.75rem !important; /* Forces a large heading size */
+    margin: 1.3rem 0 0.3rem 0; /* Adds spacing above and below */
 }
 
+/* Specific font size for H2 title */
 p.h2-title {
-    font-size: var(--h2-size) !important
+    font-size: var(--h2-size) !important; /* Uses the predefined H2 size variable */
 }
 
+/* Specific font size and spacing for H3 title */
 p.h3-title {
-    font-size: var(--h3-size) !important;
-    padding: 0 !important;
-    margin: 0 0 .25rem !important;
+    font-size: var(--h3-size) !important; /* Uses the predefined H3 size variable */
+    padding: 0 !important; /* Removes default padding */
+    margin: 0 0 0.25rem !important; /* Adjusts bottom margin */
 }
 
+/* Specific font size for H4 title */
 p.h4-title {
-    font-size: var(--h4-size) !important
+    font-size: var(--h4-size) !important; /* Uses the predefined H4 size variable */
 }
 
+/* Specific font size and line height for H5 title */
 p.h5-title {
-    font-size: var(--h5-size) !important;
-    line-height: 1.4 !important
+    font-size: var(--h5-size) !important; /* Uses the predefined H5 size variable */
+    line-height: 1.4 !important; /* Increases line spacing */
 }
 
+/* Specific font size and line height for H6 title */
 p.h6-title {
-    font-size: var(--h6-size) !important;
-    line-height: 1.1
+    font-size: var(--h6-size) !important; /* Uses the predefined H6 size variable */
+    line-height: 1.1; /* Keeps it compact */
 }
 
+/* =====================================
+   Text Size Adjustments
+   ===================================== */
+
+/* Enlarges text by 20% */
 .text-larger, span.text-larger {
     font-size: 120% !important;
 }
 
+/* Reduces text size by 20% */
 .text-smaller, span.text-smaller {
     font-size: 80% !important;
 }
 
+/* =====================================
+   Intro Paragraph Styling
+   ===================================== */
+
+/* Styles for introductory paragraphs */
 p.intro {
-    color: inherit;
-    font-family: var(--font-roboto-condensed), sans-serif;
-    font-size: 1.2rem;
-    font-weight: var(--font-weight-normal);
-    line-height: 1.5 !important
+    color: inherit; /* Uses the parent color */
+    font-family: var(--font-roboto-condensed), sans-serif; /* Uses the condensed Roboto font */
+    font-size: 1.2rem; /* Slightly larger font for emphasis */
+    font-weight: var(--font-weight-normal); /* Uses normal font weight */
+    line-height: 1.5 !important; /* Ensures better readability */
 }
 
-body, p, a, li {
-    font-family: var(--font-roboto), sans-serif;
-    font-size: var(--base-font-size);
-    font-weight: var(--font-weight-normal);
-    line-height: 1.5
-}
 
+/* =====================================
+   Delete Button Styling
+   ===================================== */
+
+/* Styles for the delete button */
 a#edit-delete {
-    background: red;
-    border-radius: 0;
-    color: var(--cua-white);
-    display: inline-block;
-    font-weight: var(--font-weight-bold);
-    padding: .5rem 1.5rem;
-    transition: background-color 0.7s ease;
-    width: auto
+    background: red; /* Sets the button background color to red */
+    border-radius: 0; /* Removes any rounded corners */
+    color: var(--cua-white); /* Sets text color using the predefined white variable */
+    display: inline-block; /* Ensures it behaves like a button */
+    font-weight: var(--font-weight-bold); /* Uses the bold font weight variable */
+    padding: 0.5rem 1.5rem; /* Adds padding for spacing inside the button */
+    transition: background-color 0.7s ease; /* Smooth transition when background color changes */
+    width: auto; /* Allows button width to adjust dynamically based on content */
 }
 
+/* Hover effect for the delete button */
 a#edit-delete:hover {
-    background: black;
-    color: red;
-    text-decoration: none !important
+    background: black; /* Changes background color to black on hover */
+    color: red; /* Changes text color to red on hover */
+    text-decoration: none !important; /* Forces removal of underline */
 }
 
+/* =====================================
+   Text Weight and Size Adjustments
+   ===================================== */
+
+/* Light font weight styling */
 .light-font-weight {
-    font-size: 80% !important;
-    font-weight: var(--font-weight-xlight) !important
+    font-size: 80% !important; /* Reduces font size to 80% */
+    font-weight: var(--font-weight-xlight) !important; /* Uses extra-light font weight */
 }
 
+/* Smaller text styling */
 .text-small, .small {
-    font-size: 0.875rem
+    font-size: 0.875rem; /* Sets text size to 0.875rem for smaller elements */
 }
 
+/* Bold text styling */
 .bold, strong, .strong-text {
-    font-weight: var(--font-weight-bold)
+    font-weight: var(--font-weight-bold); /* Ensures consistent bold styling */
 }
 
-/* Text Weight */
+/* =====================================
+   Text Weight Classes
+   ===================================== */
+
+/* Extra bold text */
 .text-xbold {
-    font-weight: var(--font-weight-xbold) !important
+    font-weight: var(--font-weight-xbold) !important;
 }
 
+/* Bold text */
 .text-bold {
-    font-weight: var(--font-weight-bold) !important
+    font-weight: var(--font-weight-bold) !important;
 }
 
+/* Medium weight text */
 .text-medium {
-    font-weight: var(--font-weight-medium) !important
+    font-weight: var(--font-weight-medium) !important;
 }
 
+/* Normal weight text */
 .text-normal {
-    font-weight: var(--font-weight-normal) !important
+    font-weight: var(--font-weight-normal) !important;
 }
 
+/* Light weight text */
 .text-light {
-    font-weight: var(--font-weight-light) !important
+    font-weight: var(--font-weight-light) !important;
 }
 
+/* Extra light weight text */
 .text-xlight {
-    font-weight: var(--font-weight-xlight) !important
+    font-weight: var(--font-weight-xlight) !important;
 }
 
-/* text colors */
+/* =====================================
+   Text Color Classes
+   ===================================== */
 
+/* Gold text */
 .text-gold {
-    color: var(--cua-gold) !important
+    color: var(--cua-gold) !important;
 }
 
+/* White text */
 .text-white {
-    color: var(--cua-white) !important
+    color: var(--cua-white) !important;
 }
 
+/* Black text */
 .text-black {
-    color: var(--cua-black) !important
+    color: var(--cua-black) !important;
 }
 
+/* Various shades of yellow */
 .text-yellow {
     color: #fcb040;
 }
-
 .text-yellow-light {
     color: #ffdc6c;
 }
-
 .text-yellow-lightest {
     color: #feeebf;
 }
-
 .text-yellow-text {
     color: #fcb040;
 }
-
 .text-yellow-light-text {
     color: #ffdc6c;
 }
-
 .text-yellow-lightest-text {
     color: #feeebf;
 }
 
+/* Various shades of purple */
 .text-purple {
     color: #544181;
 }
-
 .text-purple-light {
     color: #8b72ce;
 }
-
 .text-purple-lightest {
     color: #c7bde3;
 }
 
+/* Various shades of pink */
 .text-pink {
     color: #ac355f;
 }
-
 .text-pink-light {
     color: #dd3f70;
 }
-
 .text-pink-lightest {
     color: #e29eb3;
 }
 
+/* Various shades of orange */
 .text-orange {
     color: #d94f2a;
 }
-
 .text-orange-light {
     color: #e06843;
 }
-
 .text-orange-lightest {
     color: #ffb69f;
 }
 
+/* Various shades of aqua */
 .text-agua {
     color: #065e62;
 }
-
 .text-agua-light {
-    color: #4bb6ae
+    color: #4bb6ae;
 }
-
 .text-agua-lightest {
-    color: #bceae7
+    color: #bceae7;
 }
 
+/* Various shades of lime */
 .text-lime {
-    color: #adcc3b
+    color: #adcc3b;
 }
-
 .text-lime-light {
-    color: #e5ff70
+    color: #e5ff70;
 }
-
 .text-lime-lightest {
-    color: #f6ffbc
+    color: #f6ffbc;
 }
 
+/* Various shades of blue */
 .text-blue {
-    color: #5c7a82
+    color: #5c7a82;
 }
-
 .text-blue-light {
-    color: #86c0ce
+    color: #86c0ce;
 }
-
 .text-blue-lightest {
-    color: #cdf2fb
+    color: #cdf2fb;
 }
 
-/* background color */
+/* =====================================
+   Background Color Classes
+   ===================================== */
+
+/* Various shades of yellow background */
 .bg-yellow {
     background-color: #fcb040;
 }
-
 .bg-yellow-light {
     background-color: #ffdc6c;
 }
-
 .bg-yellow-lightest {
     background-color: #feeebf;
 }
 
+/* Various shades of purple background */
 .bg-purple {
     background-color: #544181;
 }
-
 .bg-purple-light {
     background-color: #8b72ce;
 }
-
 .bg-purple-lightest {
     background-color: #c7bde3;
 }
 
+/* Various shades of pink background */
 .bg-pink {
     background-color: #ac355f;
 }
-
 .bg-pink-light {
     background-color: #dd3f70;
 }
-
 .bg-pink-lightest {
     background-color: #e29eb3;
 }
 
+/* Various shades of orange background */
 .bg-orange {
     background-color: #d94f2a;
 }
-
 .bg-orange-light {
     background-color: #e06843;
 }
-
 .bg-orange-lightest {
     background-color: #ffb69f;
 }
 
+/* Various shades of aqua background */
 .bg-agua {
     background-color: #065e62;
 }
-
 .bg-agua-light {
-    background-color: #4bb6ae
+    background-color: #4bb6ae;
 }
-
 .bg-agua-lightest {
-    background-color: #bceae7
+    background-color: #bceae7;
 }
 
+/* Various shades of lime background */
 .bg-lime {
-    background-color: #adcc3b
+    background-color: #adcc3b;
 }
-
 .bg-lime-light {
-    background-color: #e5ff70
+    background-color: #e5ff70;
 }
-
 .bg-lime-lightest {
-    background-color: #f6ffbc
+    background-color: #f6ffbc;
 }
 
+/* Various shades of blue background */
 .bg-blue {
-    background-color: #5c7a82
+    background-color: #5c7a82;
 }
-
 .bg-blue-light {
-    background-color: #86c0ce
+    background-color: #86c0ce;
 }
-
 .bg-blue-lightest {
-    background-color: #cdf2fb
+    background-color: #cdf2fb;
 }
 
+/* Light background using a predefined variable */
 .bg-light {
-    background: var(--bg-light) !important
+    background: var(--bg-light) !important;
 }
 
+/* Pure black background */
 .cu-bg-pure-black {
-    background-color: var(--cua-black-pure) !important
+    background-color: var(--cua-black-pure) !important;
 }
 
+/* =====================================
+   Miscellaneous Styling
+   ===================================== */
+
+/* Ensures white text in a specific paragraph class */
 .cu-text-white p.intro {
-    color: var(--cua-white)
+    color: var(--cua-white);
 }
 
+/* Green text */
 .green {
-    color: green !important
+    color: green !important;
 }
 
+/* Green text hover effect and PDF icon hover */
 .green:hover, .fa-solid.fa-file-pdf.red:hover {
     color: var(--cua-blue) !important;
-    text-decoration: none
+    text-decoration: none;
 }
 
+/* Red-colored text and PDF icon */
 .fa-solid.fa-file-pdf.red, .red {
-    color: #b90404 !important
+    color: #b90404 !important;
 }
 
+/* Dark green hover effect for red text and PDF icon */
 .fa-solid.fa-file-pdf.red:hover, .red:hover {
-    color: darkgreen !important
+    color: darkgreen !important;
 }
 
+/* =====================================
+   Border Styles
+   ===================================== */
+
+/* Transparent border */
 .border-light {
-    border-color: transparent !important
+    border-color: transparent !important;
 }
 
+/* White border with opacity control */
 .border-white {
     --bs-border-opacity: 0;
-    border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important
+    border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
 }
-
+/* Blockquote styling */
 blockquote {
-    border-left: 8px solid var(--cua-gold);
-    color: var(--cua-gray-700);
-    font-size: 1.4em;
-    font-style: italic;
-    line-height: 1.6;
-    margin: 50px auto;
-    padding: 1.2em 30px 1.2em 75px;
-    position: relative;
-    width: 85%
+    border-left: 8px solid var(--cua-gold); /* Gold-colored left border */
+    color: var(--cua-gray-700); /* Gray text color */
+    font-size: 1.4em; /* Slightly larger font size */
+    font-style: italic; /* Italicize text */
+    line-height: 1.6; /* Improve readability */
+    margin: 50px auto; /* Center the blockquote with margin */
+    padding: 1.2em 30px 1.2em 75px; /* Space around text */
+    position: relative; /* Positioning for pseudo-elements */
+    width: 85%; /* Set width to 85% of the container */
 }
 
+/* Adds a large opening quotation mark before blockquote content */
 blockquote::before {
-    color: var(--cua-gold);
-    content: "\201C";
-    font-size: 6em;
-    left: -20px;
+    color: var(--cua-gold); /* Gold color for the quotation mark */
+    content: "\201C"; /* Unicode for left double quotation mark */
+    font-size: 6em; /* Large size for visual impact */
+    left: -20px; /* Adjust position */
     position: absolute;
-    top: -30px
+    top: -30px; /* Move above the text */
 }
 
+/* Blockquote author or citation styling */
 blockquote span {
-    color: var(--cua-gray-800);
-    display: block;
-    font-weight: var(--font-weight-normal);
-    margin-top: 1em
+    color: var(--cua-gray-800); /* Slightly darker gray for emphasis */
+    display: block; /* Display as block element */
+    font-weight: var(--font-weight-normal); /* Normal font weight */
+    margin-top: 1em; /* Space above citation */
 }
 
+/* Table styling */
 .table > thead {
-    background: var(--cua-gold)
+    background: var(--cua-gold); /* Gold background for table headers */
 }
 
+/* Table header text styling */
 table tr th,
 table tr th a,
 table tr th a:hover,
 table tr th a:focus {
-    color: var(--cua-black)
+    color: var(--cua-black); /* Ensure table headers and links are black */
 }
 
 thead > tr {
-    font-size: 120%
+    font-size: 120%; /* Slightly increase table header text size */
 }
 
+/* Heading styles within views */
 .views-element-container h2,
-.views-exposed-form h2,
-.views-element-container h2 {
-    color: var(--cua-gray-700);
-    padding: 0;
-    font-size: 2.25rem !important
+.views-exposed-form h2 {
+    color: var(--cua-gray-700); /* Gray heading color */
+    padding: 0; /* Remove default padding */
+    font-size: 2.25rem !important; /* Large heading size */
 }
 
+/* Adjusts heading sizes inside sidebars */
 aside .h3,
 aside .views-element-container h2,
-aside .views-exposed-form h2,
-aside .views-element-container h2 {
-    font-size: 1.5rem !important
+aside .views-exposed-form h2 {
+    font-size: 1.5rem !important; /* Smaller heading size for sidebars */
 }
 
+/* Decorative line under headings */
 .views-exposed-form h2::after,
 .js-views-accordion-group-header::after,
 .views-element-container h2::after {
-    background-color: var(--cua-gold);
-    content: " ";
+    background-color: var(--cua-gold); /* Gold accent line */
+    content: " "; /* Empty content */
     display: block;
-    margin: 0.4em 0;
-    width: 1.5em;
-    height: 0.1em
+    margin: 0.4em 0; /* Space above and below */
+    width: 1.5em; /* Small width */
+    height: 0.1em; /* Thin line */
 }
 
+/* Centered heading with decorative line */
 h2.text-align-center::after {
     background-color: var(--cua-gold);
     content: " ";
     display: block;
     width: 1.5em;
     height: 0.1em;
-    margin: 0.4em auto
+    margin: 0.4em auto; /* Center the line */
 }
 
+/* Responsive grid item styling */
 .views-view-responsive-grid__item {
-    background-color: var(--cua-white-light);
-    padding: 1rem
+    background-color: var(--cua-white-light); /* Light background */
+    padding: 1rem; /* Spacing inside grid items */
 }
 
+/* Exposed form styling */
 .views-exposed-form {
-    border-radius: 0;
-    color: var(--cua-black);
-    margin: 2rem 0 0;
-    padding: 0.1rem 1rem 0 .3rem
+    border-radius: 0; /* No rounded corners */
+    color: var(--cua-black); /* Text color */
+    margin: 2rem 0 0; /* Adjust spacing */
+    padding: 0.1rem 1rem 0 .3rem; /* Add padding */
 }
 
+/* Responsive grid layout adjustments */
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
-    margin-bottom: 3rem;
-    margin-top: 0
+    margin-bottom: 3rem; /* Space below the grid */
+    margin-top: 0; /* No top margin */
 }
 
-.views-view-responsive-grid__item {
-    background-color: var(--cua-white-light);
-    padding: 1rem
-}
-
+/* Margin adjustment for views container */
 .views-element-container {
-    margin: 0 0.3em
+    margin: 0 0.3em; /* Small horizontal margin */
 }
 
+/* Remove extra spacing in the landing page wrapper */
 #main-wrapper-landing-page .row {
-    --bs-gutter-x: 0 !important;
+    --bs-gutter-x: 0 !important; /* Override Bootstrap gutter spacing */
     --bs-gutter-y: 0 !important;
     margin-top: 0 !important;
     padding-right: 0 !important;
-    padding-left: 0 !important
+    padding-left: 0 !important;
 }
 
+/* Adjust main heading spacing on landing pages */
 #main-wrapper-landing-page h1 {
-    margin: 1rem 7.5rem
+    margin: 1rem 7.5rem; /* Center with side margins */
 }
 
+/* Utility class for full padding */
 .full-padding, .fp {
     padding-left: 7rem;
-    padding-right: 7rem
+    padding-right: 7rem;
 }
 
+/* Utility classes for padding adjustments */
 .full-padding-top, .full-padding-top-bottom, .fptb {
     padding-top: 3rem;
-    padding-bottom: 3rem
+    padding-bottom: 3rem;
 }
 
+/* Remove Bootstrap container padding */
 .container-fluid {
     --bs-gutter-x: 0 !important;
-    --bs-gutter-y: 0 !important
+    --bs-gutter-y: 0 !important;
 }
 
+/* Styles the main .cu-line element */
 .cu-line {
     color: var(--cua-gray-800) !important;
-    font-family: var(--font-roboto-condensed) !important;
+    font-family: var(--font-roboto-condensed) sans-serif;
     font-size: 2rem;
     font-weight: var(--font-weight-bold);
-    line-height: 1.2
+    line-height: 1.2;
 }
 
+/* Adds a small gold underline below .cu-line */
 .cu-line::after {
     background-color: var(--cua-gold);
     content: " ";
     display: block;
     width: 1.5em;
     height: 0.1em;
-    margin: 0.2em 0 1rem 0
+    margin: 0.2em 0 1rem 0;
 }
 
+/* Styles for smaller cu-line elements and links */
 .cu-line-sm, .cu-line-sm a {
     color: var(--cua-gray-700);
     font-family: var(--font-roboto-condensed) sans-serif;
     font-size: 1.35rem;
     font-weight: var(--font-weight-bold) !important;
     line-height: 1.2;
-    margin: .75rem 0 0
+    margin: .75rem 0 0;
 }
 
+/* Changes link color on hover within .cu-line-sm */
 .cu-line-sm a:hover {
-    color: var(--cua-gold-hover) !important
+    color: var(--cua-gold-hover) !important;
 }
 
+/* Adds a small gold underline to .cu-line-sm */
 .cu-line-sm::after {
     background-color: var(--cua-gold);
     content: " ";
     display: block;
     width: 1.5em;
     height: 0.1em;
-    margin: 0.4em 0
+    margin: 0.4em 0;
 }
 
+/* Styles the AJAX progress indicator with a loading gif */
 .ajax-progress {
     background-color: black;
     background-image: url(../images/loading.gif);
     width: 100px;
-    height: 100px
+    height: 100px;
 }
 
+/* Removes margin from .featured-top elements */
 .featured-top {
-    margin: 0
+    margin: 0;
 }
 
+/* Styles for large display text */
 .display-4 {
     font-size: var(--h2-size);
     font-family: var(--font-roboto-condensed) sans-serif;
     line-height: 1 !important;
-    margin-bottom: 1rem !important
+    margin-bottom: 1rem !important;
 }
 
+/* Adds a delay to animations using Animate.css */
 .animate__animated.animate__delay-1s {
     -webkit-animation-delay: 0.25s !important;
-    animation-delay: 0.25s !important
+    animation-delay: 0.25s !important;
 }
 
+/* Adds padding to sticky teaser nodes in taxonomy paths */
 .path-taxonomy .node--view-node-teaser.node--sticky {
-    padding: 2rem
+    padding: 2rem;
 }
 
+/* Styles fieldsets in webforms with background and spacing */
 .webform-type-fieldset {
     background: var(--cua-gray-200);
     padding: 2rem;
-    margin: 0 0 3rem !important
+    margin: 0 0 3rem !important;
 }
 
+/* Styles selected filter links */
 a.bef-link--selected {
-    color: var(--cua-gold) !important
+    color: var(--cua-gold) !important;
 }
 
+/* Styles the "Back to Top" button with a circular shape and shadow */
 #backtotop {
     border: 3px solid var(--cua-gold);
     border-radius: 50%;
@@ -795,431 +936,521 @@ a.bef-link--selected {
     width: 60px;
     height: 60px;
     text-decoration: none;
-    z-index: 100000
+    z-index: 100000;
 }
 
+/* Adjusts margin for email field labels */
 .field--name-field-email.field--label-inline .field__label {
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
 }
 
+/* Styles inline field labels with bold text and spacing */
 .field--label-inline .field__label {
     font-weight: var(--font-weight-bold) !important;
     margin: 0;
-    padding-right: 5px
+    padding-right: 5px;
 }
 
-/* form */
+/* ================= FORM STYLES ================= */
+
+/* Styles the main form input fields */
 .form-control {
     border: var(--bs-border-width) solid var(--cua-gray-800);
     border-radius: 0;
-    padding: .45rem .75rem
+    padding: .45rem .75rem;
 }
 
+/* Styles form input fields when focused */
 .form-control:focus {
     border-color: var(--cua-gray-200);
     box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1);
-    outline: 0
+    outline: 0;
 }
 
+/* Adjusts the font size of the label for "items per page" form fields */
 .form-item-items-per-page label {
-    font-size: .85rem
+    font-size: .85rem;
 }
 
+/* Adds horizontal margins to "items per page" form elements */
 .form-item-items-per-page {
     margin-left: 1rem !important;
-    margin-right: 1rem !important
+    margin-right: 1rem !important;
 }
 
-/* user */
+/* ================= USER STYLES ================= */
+
+/* Adds horizontal margins for the main landing page wrapper when viewed by an admin or logged-in user */
 .user-administrator .node--type-landing-page #main-wrapper-landing-page,
 .user-logged-in .node--type-landing-page #main-wrapper-landing-page {
-    margin: 0 1rem
+    margin: 0 1rem;
 }
 
+/* Centers text for specific display elements */
 .display-4.card-text.lead.h3.title.d-flex.justify-content-center {
-    text-align: center !important
+    text-align: center !important;
 }
 
-/* node */
+/* ================= NODE STYLES ================= */
 
+/* Adds a margin to landing page titles */
 .node--type-landing-page h1.title {
-    margin: .7rem 0 0 !important
+    margin: .7rem 0 0 !important;
 }
 
+/* Adjusts margins for the landing page title block */
 .node--type-landing-page div#block-cua-theme-page-title {
-    margin: 2rem 1.5rem 0 1.5rem !important
+    margin: 2rem 1.5rem 0 1.5rem !important;
 }
 
+/* Inherits font size and removes top margin for landing page content */
 .node--type-landing-page .node__content {
     font-size: inherit;
-    margin-top: 0
+    margin-top: 0;
 }
 
+/* Sets default font size and removes top margin for all node content */
 .node__content {
     font-size: var(--base-font-size);
-    margin-top: 0
+    margin-top: 0;
 }
 
+/* Styles unpublished nodes with a light red background */
 .node--unpublished {
-    background: #fce0e0
+    background: #fce0e0;
 }
 
+/* Duplicated styles - margin for landing page titles */
 .node--type-landing-page h1.title {
-    margin: .7rem 0 0 !important
+    margin: .7rem 0 0 !important;
 }
 
+/* Duplicated styles - Adjusts margins for the landing page title block */
 .node--type-landing-page div#block-cua-theme-page-title {
     margin: 2rem 1.5rem 2rem 1.5rem !important;
 }
 
-/* modal */
+/* Modal styles */
+
+/* Style for the modal body, ensures it stays on top of other content */
 .modal-body {
-    z-index: 9999 !important
+    z-index: 9999 !important; /* Bring modal content above other page elements */
 }
 
+/* Style for the modal backdrop, ensures it is transparent and does not interfere with other content */
 .modal-backdrop {
-    background-color: transparent !important;
-    z-index: -9999 !important
+    background-color: transparent !important; /* Make backdrop transparent */
+    z-index: -9999 !important; /* Place backdrop behind the modal content */
 }
 
+/* Style for the modal content, customizing the background and text color */
 .modal-content {
-    background-color: var(--cua-white);
-    background-clip: padding-box;
-    border: 0 solid var(--cua-white);
-    color: var(--cua-black-pure);
-    pointer-events: auto
+    background-color: var(--cua-white); /* Set background color to white */
+    background-clip: padding-box; /* Ensure background does not extend into borders */
+    border: 0 solid var(--cua-white); /* Remove border */
+    color: var(--cua-black-pure); /* Set text color to pure black */
+    pointer-events: auto; /* Allow interaction with modal content */
 }
 
-/* colors */
+/* Colors - Background color utilities */
+
+/* Set background to pure white */
 .bg-white {
-    background: var(--cua-white) !important
+    background: var(--cua-white) !important; /* Apply white background */
 }
 
+/* Set background to 50% opaque white */
 .bg-white-50 {
-    background: rgba(255, 255, 255, 0.5) !important
+    background: rgba(255, 255, 255, 0.5) !important; /* Apply 50% transparent white background */
 }
 
+/* Set background to 60% opaque white */
 .bg-white-60 {
-    background: rgba(255, 255, 255, 0.6) !important
+    background: rgba(255, 255, 255, 0.6) !important; /* Apply 60% transparent white background */
 }
 
+/* Set background to 70% opaque white */
 .bg-white-70 {
-    background: rgba(255, 255, 255, 0.7) !important
+    background: rgba(255, 255, 255, 0.7) !important; /* Apply 70% transparent white background */
 }
 
+/* Set background to 80% opaque white */
 .bg-white-80 {
-    background: rgba(255, 255, 255, 0.8) !important
+    background: rgba(255, 255, 255, 0.8) !important; /* Apply 80% transparent white background */
 }
 
+/* Set background to 90% opaque white */
 .bg-white-89 {
-    background: rgba(255, 255, 255, 0.9) !important
+    background: rgba(255, 255, 255, 0.9) !important; /* Apply 90% transparent white background */
 }
 
+/* Set background to light grey */
 .bg-light-grey {
-    background: var(--cua-light-grey) !important
+    background: var(--cua-light-grey) !important; /* Apply light grey background */
 }
 
+/* Set background to medium grey */
 .bg-gray {
-    background: var(--cua-gray) !important
+    background: var(--cua-gray) !important; /* Apply standard grey background */
 }
 
+/* Set background to dark grey */
 .bg--dark-gray {
-    background: var(--cua-dark-gray) !important
+    background: var(--cua-dark-gray) !important; /* Apply dark grey background */
 }
 
+/* Set background to a light shade of grey (100 level) */
 .bg-gray-10 {
-    background: var(--cua-gray-100) !important
+    background: var(--cua-gray-100) !important; /* Apply very light grey background */
 }
 
+/* Set background to a medium light grey (200 level) */
 .bg-gray-20 {
-    background: var(--cua-gray-200) !important
+    background: var(--cua-gray-200) !important; /* Apply light medium grey background */
 }
 
+/* Set background to a medium grey (300 level) */
 .bg-gray-30 {
-    background: var(--cua-gray-300) !important
+    background: var(--cua-gray-300) !important; /* Apply medium grey background */
 }
 
+/* Set background to a medium dark grey (400 level) */
 .bg-gray-40 {
-    background: var(--cua-gray-400) !important
+    background: var(--cua-gray-400) !important; /* Apply medium dark grey background */
 }
 
+/* Set background to a dark grey (600 level) */
 .bg-gray-50 {
-    background: var(--cua-gray-600) !important
+    background: var(--cua-gray-600) !important; /* Apply dark grey background */
 }
 
+/* Set background to a slightly darker grey (600 level) */
 .bg-gray-60 {
-    background: var(--cua-gray-600) !important
+    background: var(--cua-gray-600) !important; /* Apply slightly darker grey background */
 }
 
+/* Set background to a very dark grey (700 level) */
 .bg-gray-70 {
-    background: var(--cua-gray-700) !important
+    background: var(--cua-gray-700) !important; /* Apply very dark grey background */
 }
 
+/* Set background to an almost black grey (800 level) */
 .bg-gray-80 {
-    background: var(--cua-gray-800) !important
+    background: var(--cua-gray-800) !important; /* Apply almost black grey background */
 }
 
+/* Set background to near black grey (900 level) */
 .bg-gray-90 {
-    background: var(--cua-gray-900) !important
+    background: var(--cua-gray-900) !important; /* Apply near black grey background */
 }
 
+/* Set background to pure black */
 .bg-black {
-    background: var(--cua-black) !important
+    background: var(--cua-black) !important; /* Apply black background */
 }
 
+/* Set background to pure black (stronger black) */
 .bg-pure-black {
-    background: var(--cua-black-pure) !important
+    background: var(--cua-black-pure) !important; /* Apply pure black background */
 }
 
+/* Set background to blue */
 .bg-blue {
-    background: var(--cua-blue) !important
+    background: var(--cua-blue) !important; /* Apply standard blue background */
 }
 
+/* Set background to a light blue */
 .bg-light-blue {
-    background: #c3dcff !important
+    background: #c3dcff !important; /* Apply light blue background */
 }
 
+/* Set background to dark blue */
 .bg-dark-blue {
-    background: var(--cua-blue-dark) !important
+    background: var(--cua-blue-dark) !important; /* Apply dark blue background */
 }
 
+/* Set background to gold */
 .bg-gold {
-    background: var(--cua-gold) !important
+    background: var(--cua-gold) !important; /* Apply gold background */
 }
 
+/* Set background to dark gold (hover effect) */
 .bg-dark-gold {
-    background: var(--cua-gold-hover) !important
+    background: var(--cua-gold-hover) !important; /* Apply dark gold background */
 }
 
-/* parallax */
+/* Parallax - Background styling for parallax effects */
+
+/* General parallax container settings for fixed background and scaling */
 .parallax {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: max-content
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-size: cover; /* Scale the background image to cover the element */
+    min-height: max-content; /* Ensure the element's minimum height is based on its content */
 }
 
+/* Main content container for parallax sections */
 .parallax-main-content {
-    position: relative;
-    height: 100%
+    position: relative; /* Allow for positioning of elements inside */
+    height: 100%; /* Ensure it takes full height of its container */
 }
 
+/* Padding adjustment for parallax sections */
 .parallax .add-padding {
-    padding: 10rem 0
+    padding: 10rem 0; /* Add vertical padding of 10rem */
 }
 
+/* Adjust padding for specific elements inside parallax banner */
 .banner .parallax .display-4.add-padding,
 .banner .parallax .card-body.add-padding {
-    padding: 0 1.5rem !important
+    padding: 0 1.5rem !important; /* Remove top and bottom padding, add horizontal padding */
 }
 
+/* Specific padding adjustment for video elements in parallax */
 .video .parallax-main-content .display-4 {
-    padding-top: 1rem !important;
+    padding-top: 1rem !important; /* Add top padding for video text */
 }
 
 .video .parallax-main-content .card-body {
-    padding-bottom: 1.5rem !important;
+    padding-bottom: 1.5rem !important; /* Add bottom padding for video card */
 }
 
-/* Flag */
+/* Flag - Styling for flags displayed on top of content */
+
+/* General flag styling with shadow, position, and font size */
 .flag {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    font-size: .9rem;
-    font-weight: 600;
-    padding: 1px 20px 1px 7px;
-    position: absolute;
-    left: -8px;
-    top: 20px;
-    z-index: 100
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Add shadow for visual elevation */
+    font-size: .9rem; /* Set font size */
+    font-weight: 600; /* Set font weight to semi-bold */
+    padding: 1px 20px 1px 7px; /* Set padding around the flag */
+    position: absolute; /* Position flag absolutely within parent */
+    left: -8px; /* Position flag slightly to the left */
+    top: 20px; /* Position flag 20px from the top */
+    z-index: 100; /* Ensure flag stays above other elements */
 }
 
+/* Prevent underline on flag links when hovered */
 .flag a:hover {
-    text-decoration: none !important
+    text-decoration: none !important; /* Remove text decoration */
 }
 
+/* Triangle arrow on the flag created using pseudo-element */
 .flag::after {
-    border-color: transparent #000 transparent transparent;
-    border-style: solid;
-    border-width: 0 8px 8px 0;
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    bottom: -8px;
-    left: 0
+    border-color: transparent #000 transparent transparent; /* Define arrow color */
+    border-style: solid; /* Solid border style for the arrow */
+    border-width: 0 8px 8px 0; /* Define size of the triangle */
+    content: ""; /* Empty content to generate the triangle */
+    position: absolute; /* Position the arrow at the bottom of the flag */
+    width: 0; /* Zero width for the arrow */
+    height: 0; /* Zero height for the arrow */
+    bottom: -8px; /* Position arrow 8px below the flag */
+    left: 0; /* Align the arrow to the left of the flag */
 }
 
+/* Styling for flag links within specific heading elements */
 .flag a.display-4.card-text.lead.title.h3 {
-    font-size: .95rem !important;
-    font-weight: var(--font-weight-bold) !important;
-    text-decoration: none !important
+    font-size: .95rem !important; /* Slightly reduce font size */
+    font-weight: var(--font-weight-bold) !important; /* Use bold font weight */
+    text-decoration: none !important; /* Remove text decoration */
 }
 
+/* Position adjustment for flag in call-to-action blocks */
 .block .call-to-action .add-padding .flag {
-    top: 35px !important
+    top: 35px !important; /* Move flag further down (35px from top) */
 }
 
+/* Flag background color variations with specific color schemes */
+
+/* White, Gold, Light Grey flags with black text */
 .flag.cu-bg-white,
 .flag.cu-bg-gold,
 .flag.cu-bg-light-gray,
 a.flag-link .flag.cu-bg-light-grey {
-    color: var(--cua-black)
+    color: var(--cua-black); /* Set text color to black */
 }
 
+/* Black and Pure Black flags with white text */
 .flag.cu-bg-black,
 .flag.cu-bg-pure-black {
-    color: var(--cua-white)
+    color: var(--cua-white); /* Set text color to white */
 }
 
+/* Hover state for flag links with different background and text colors */
 .flag-link:hover .flag.cu-bg-gold,
 .flag-link:hover .flag.cu-bg-white {
-    color: var(--cua-white);
-    background-color: var(--cua-black)
+    color: var(--cua-white); /* Set text color to white */
+    background-color: var(--cua-black); /* Set background to black on hover */
 }
 
 .flag-link:hover .flag.cu-bg-black,
 .flag-link:hover .flag.cu-bg-light-grey {
-    color: var(--cua-black);
-    background-color: var(--cua-white)
+    color: var(--cua-black); /* Set text color to black */
+    background-color: var(--cua-white); /* Set background to white on hover */
 }
 
+/* Margin Utilities */
+
+/* Adds equal margin of 3rem to the top and bottom of an element */
 .margin-top-and-bottom {
-    margin: 3rem 0
+    margin: 3rem 0; /* 3rem margin on top and bottom, 0 on left and right */
 }
 
+/* Adds margin of 3rem to the bottom of an element */
 .margin-bottom {
-    margin: 0 0 3rem 0
+    margin: 0 0 3rem 0; /* 0 margin on top, right, and left, 3rem on bottom */
 }
 
+/* Adds margin of 3rem to the top of an element */
 .margin-top {
-    margin: 3rem 0 0 0
+    margin: 3rem 0 0 0; /* 3rem margin on top, 0 on right, bottom, and left */
 }
 
-/* Alert styling */
-/* Set alert padding-y to 0 */
+/* Alert Styling */
+
+/* Set alert vertical padding (top and bottom) to 0 for compact alerts */
 .alert {
-    --bs-alert-padding-y: 0
+    --bs-alert-padding-y: 0; /* Removes default padding on the top and bottom of the alert */
 }
 
-/* Remove margin and padding for card-body within an alert */
+/* Remove margin and padding for card-body within an alert to ensure compact layout */
 .alert .card-body {
-    margin-bottom: 0;
-    padding: 0
+    margin-bottom: 0; /* Remove bottom margin */
+    padding: 0; /* Remove padding */
 }
 
-/* Remove padding for card-footer within an alert */
+/* Remove padding for card-footer within an alert for a cleaner design */
 .alert .card-footer {
-    padding: 0
+    padding: 0; /* Remove padding from the footer */
 }
 
-/* Adjust styling for close button in dismissible alerts */
+/* Adjust styling for the close button in dismissible alerts, positioning it at the top-right */
 .alert-dismissible .btn-close {
-    top: 10px;
-    right: 20px;
-    padding: .5rem;
-    color: inherit
+    top: 10px; /* Position the close button 10px from the top */
+    right: 20px; /* Position the close button 20px from the right */
+    padding: .5rem; /* Set padding around the close button */
+    color: inherit; /* Ensure the close button inherits the text color */
 }
 
+/* Override alert card-footer padding and margin, ensuring space between elements */
 .alert .card-footer {
-    padding: 0 !important;
-    margin: 0 0 1rem !important
+    padding: 0 !important; /* Remove padding from footer, force this style */
+    margin: 0 0 1rem !important; /* Set margin below the footer for spacing, force this style */
 }
 
+/* Style for buttons inside alert card, making them smaller and with more padding */
 .alert .card .btn {
-    font-size: .8rem;
-    padding: .3rem 1.25rem !important
+    font-size: .8rem; /* Set font size smaller for button text */
+    padding: .3rem 1.25rem !important; /* Add padding inside the button, force this style */
 }
 
-/* Customize close button colors and background */
+/* Customize Close Button Colors and Background */
+
+/* Remove the default background for the close button */
 .btn-close {
-    --bs-btn-close-bg: none !important
+    --bs-btn-close-bg: none !important; /* Ensure no background is applied */
 }
 
-/* Style the close button icon */
+/* Style the close button icon with custom design */
 .btn-close::before {
-    border: transparent;
-    background: transparent;
-    color: inherit;
-    content: "\58";
-    font-size: var(--base-font-size);
-    font-weight: var(--font-weight-bold);
-    padding: .25rem .75rem;
-    position: absolute;
-    top: -3px;
-    left: -15px
+    border: transparent; /* Remove any borders */
+    background: transparent; /* Make the background transparent */
+    color: inherit; /* Inherit the text color */
+    content: "\58"; /* Set the content to a close (×) character */
+    font-size: var(--base-font-size); /* Set the font size based on base font size */
+    font-weight: var(--font-weight-bold); /* Set the font weight to bold */
+    padding: .25rem .75rem; /* Add padding around the icon */
+    position: absolute; /* Position the icon absolutely */
+    top: -3px; /* Move the icon slightly up */
+    left: -15px; /* Move the icon slightly to the left */
 }
 
+/* When the button is inside a black background, style it with white borders and text */
 .cu-bg-black .btn-close::before {
-    border: 1px solid var(--cua-white);
-    color: var(--cua-white)
+    border: 1px solid var(--cua-white); /* Add white border around the close button */
+    color: var(--cua-white); /* Set text color to white */
 }
 
+/* When the button is inside a gold, light grey, or white background, style it with black borders and text */
 .cu-bg-gold .btn-close::before,
 .cu-bg-light-grey .btn-close::before,
 .cu-bg-white .btn-close::before {
-    border: 1px solid var(--cua-black);
-    color: var(--cua-black)
+    border: 1px solid var(--cua-black); /* Add black border */
+    color: var(--cua-black); /* Set text color to black */
 }
 
+/* Add padding to the top of the icon container in smaller columns */
 .col-sm-1.icon-container {
-    padding-top: 2rem
+    padding-top: 2rem; /* Adds padding to the top of the container */
 }
 
+/* Remove margin for containers within landing pages to ensure full-width layout */
 .node--type-landing-page .container-fluid {
-    margin: 0 !important;
+    margin: 0 !important; /* Remove margin to ensure full-width */
 }
 
 /* Ckeditor Links */
+
+/* Primary button styling within CKEditor for layout builder */
 .js-layout-builder-block .btn.btn-primary,
 .ck.btn.btn-primary {
-    color: var(--cua-black) !important;
-    border: 2px solid var(--cua-black) !important;
-    background-color: var(--cua-white) !important;
-    text-decoration: none !important;
-    margin: 1rem 0 !important;
+    color: var(--cua-black) !important; /* Text color */
+    border: 2px solid var(--cua-black) !important; /* Border color */
+    background-color: var(--cua-white) !important; /* Background color */
+    text-decoration: none !important; /* Remove underline */
+    margin: 1rem 0 !important; /* Vertical margin */
 }
 
+/* Primary button hover state within CKEditor for layout builder */
 .js-layout-builder-block .ck.btn.btn-primary:hover,
 .ck.btn.btn-primary:hover {
-    color: var(--cua-white) !important;
-    border: 2px solid var(--cua-black) !important;
-    background-color: var(--cua-black) !important;
+    color: var(--cua-white) !important; /* Text color on hover */
+    border: 2px solid var(--cua-black) !important; /* Border color on hover */
+    background-color: var(--cua-black) !important; /* Background color on hover */
 }
 
+/* Secondary button styling within CKEditor for layout builder */
 .js-layout-builder-block .ck .btn.btn-secondary,
 .ck.btn.btn-secondary {
-    color: var(--cua-black) !important;
-    border: 2px solid var(--cua-gold) !important;
-    background-color: var(--cua-gold) !important;
-    text-decoration: none !important;
-    margin: 1rem 0 !important;
+    color: var(--cua-black) !important; /* Text color */
+    border: 2px solid var(--cua-gold) !important; /* Border color */
+    background-color: var(--cua-gold) !important; /* Background color */
+    text-decoration: none !important; /* Remove underline */
+    margin: 1rem 0 !important; /* Vertical margin */
 }
 
+/* Secondary button hover state within CKEditor for layout builder */
 .js-layout-builder-block .ck.btn.btn-secondary:hover,
 .ck.btn.btn-secondary:hover {
-    color: var(--cua-white) !important;
-    border: 2px solid var(--cua-white) !important;
-    background-color: var(--cua-black) !important;
+    color: var(--cua-white) !important; /* Text color on hover */
+    border: 2px solid var(--cua-white) !important; /* Border color on hover */
+    background-color: var(--cua-black) !important; /* Background color on hover */
 }
 
+/* Blockquote Styling */
+
+/* Style blockquotes with a left border and custom padding */
 blockquote {
-    border-left: none;
-    color: var(--cua-gray-700);
-    font-size: 1.25em;
-    font-style: italic;
-    line-height: 1.6;
-    margin: 10px auto;
-    padding: 1rem 2rem;
-    position: relative;
-    width: 85%;
+    border-left: none; /* Remove default left border */
+    color: var(--cua-gray-700); /* Text color */
+    font-size: 1.25em; /* Font size */
+    font-style: italic; /* Italicize text */
+    line-height: 1.6; /* Line height for readability */
+    margin: 10px auto; /* Center blockquote with vertical margin */
+    padding: 1rem 2rem; /* Padding around text */
+    position: relative; /* Positioning for any additional elements */
+    width: 85%; /* Set width */
 }
 
+/* Style paragraph inside blockquote */
 blockquote p {
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: 1.25rem; /* Font size */
+    line-height: 1.5; /* Line height */
 }
 
+/* Padding Utilities */
+
+/* Different padding classes with 0.5rem increments */
 .p-half-rem {
     padding: .5rem !important;
 }
@@ -1264,12 +1495,16 @@ blockquote p {
     padding: 10rem !important;
 }
 
+/* Video Container */
+
+/* Ensures videos do not overflow */
 .video-container {
-    max-width: 100%;
-    height: auto;
-    overflow: hidden;
+    max-width: 100%; /* Maximum width of video */
+    height: auto; /* Maintain aspect ratio */
+    overflow: hidden; /* Hide overflow */
 }
 
+/* Responsive YouTube container with 16:9 aspect ratio */
 .youtube-container--responsive {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -1278,6 +1513,7 @@ blockquote p {
     max-width: 100%;
 }
 
+/* Style iframe within responsive YouTube container */
 .youtube-container--responsive iframe {
     position: absolute;
     top: 0;
@@ -1286,152 +1522,182 @@ blockquote p {
     height: 100%;
 }
 
+/* Container Fluid Styling */
+
+/* Prevent horizontal overflow for containers */
 .container-fluid {
     overflow-x: hidden;
 }
 
+/* Block styling for specific blocks */
 #block--node--half-and-half--964,
 #block--node--slider--902 {
-    max-width: 100%; /* Or set a specific width, like 1200px */
-    margin: auto; /* Centers the carousel */
-    overflow: hidden; /* Prevents content from escaping */
+    max-width: 100%; /* Full-width */
+    margin: auto; /* Center block */
+    overflow: hidden; /* Prevent content from escaping */
 }
 
+/* Site Footer Navigation */
+
+/* Hover and focus styling for footer navigation links */
 .site-footer .nav-link:focus,
 .site-footer .nav-link:hover {
-    color: var(--cua-white ) !important;
+    color: var(--cua-white) !important; /* Change color on hover/focus */
 }
 
+/* Contextual Menu */
+
+/* Ensure contextual menu is positioned on top */
 .contextual {
     position: relative;
-    z-index: 9999 !important; /* Ensure it is above the link */
+    z-index: 9999 !important; /* Ensure it's above other content */
 }
 
+/* Prevent interference with links inside contextual menu */
 .contextual a {
-    pointer-events: none !important; /* Prevent the link from interfering */
+    pointer-events: none !important; /* Prevent link from interfering */
 }
 
+/* Make contextual links clickable */
 .contextual .contextual-links a {
-    pointer-events: auto !important; /* Allow interaction with contextual links */
+    pointer-events: auto !important; /* Enable interaction with links */
 }
 
-/* Ensure contextual link trigger is visible and interactive */
+/* Ensure contextual region trigger button is visible */
 .js-layout-builder-block.layout-builder-block.contextual-region .contextual {
     position: relative !important;
-    z-index: 9999 !important; /* Make sure it's above other content */
+    z-index: 9999 !important; /* Ensure it's above other content */
 }
 
 .js-layout-builder-block.layout-builder-block.contextual-region .contextual .trigger {
-    pointer-events: auto !important; /* Allow interaction with the trigger button */
-    visibility: visible !important; /* Make sure it’s visible */
-    opacity: 1 !important; /* Ensure it’s fully opaque */
+    pointer-events: auto !important; /* Enable interaction */
+    visibility: visible !important; /* Ensure visibility */
+    opacity: 1 !important; /* Ensure opacity */
 }
 
-/* Ensure the contextual menu (links) is accessible and clickable */
+/* Ensure contextual links are displayed on top */
 .xjs-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links {
     position: absolute !important;
-    z-index: 10000 !important; /* Ensure the links are on top */
-    visibility: visible !important; /* Ensure links are visible */
-    opacity: 1 !important;
-    display: block !important; /* Make sure it’s not hidden */
+    z-index: 10000 !important; /* Ensure links are on top */
+    visibility: visible !important; /* Ensure visibility */
+    opacity: 1 !important; /* Ensure opacity */
+    display: block !important; /* Display links */
 }
 
-/* Optional: Style the contextual links for clarity */
+/* Style individual contextual links for better clarity */
 .js-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links li a {
-    pointer-events: auto !important; /* Allow interaction with the links */
+    pointer-events: auto !important; /* Allow interaction with links */
 }
 
+/* Contextual Link Background Color */
 .contextual-links {
-    background: green !important;
-    padding: .5rem 1em !important;
+    background: green !important; /* Set background color */
+    padding: .5rem 1em !important; /* Padding around links */
 }
 
-/* Remove underline specifically for active links */
+/* Remove underline from active links */
 .nav-link.nav-link--guide-givingone-time-gift.is-active,
 .nav-link.nav-link--guide-giving.is-active,
 .nav-link.nav-link--guide-givingplanned-gift.is-active,
 .nav-link.nav-link--guide-givingsecurities.is-active,
 .nav-link.nav-link--guide-givingcrypto.is-active {
-    text-decoration: none !important; /* Force the removal of underline */
+    text-decoration: none !important; /* Remove underline from active links */
 }
 
+/* Special Heading Styling */
+
+/* Hidden heading for accessibility purposes */
 h3.sr-only {
-    color: #000000; /* Darker text color */
-    background-color: #ffffff; /* Light background color */
+    color: #000; /* Darker text color */
+    background-color: #fff; /* Light background color */
 }
 
+/* Main menu block background */
 h2#block-cua-theme-main-menu-menu {
-    background: white !important;
+    background: white !important; /* White background */
 }
 
+/* Article content styling */
 .node--type-article .node__content {
-    margin-top: 0 !important;
+    margin-top: 0 !important; /* Remove top margin */
 }
 
+/* Main menu label styling */
 #main-menu-label {
-    opacity: 1;
-    color: #ffffff; /* High contrast */
-    background-color: #343a40;
-    padding: 5px; /* Optional: Improves readability */
+    opacity: 1; /* Full opacity */
+    color: #fff; /* White text */
+    background-color: #343a40; /* Dark background */
+    padding: 5px; /* Padding */
 }
 
+/* Card footer button hover state */
 .card-footer.card-story .btn.outline-btn-cu-bg-light-grey:hover {
-    color: var(--cua-black) !important;
+    color: var(--cua-black) !important; /* Change text color on hover */
 }
 
+/* Lead story item styling */
 .lead-story-item {
     position: relative;
-    transition: background 0.2s ease-in-out;
-    background: var(--cua-black);
-    color: var(--cua-white);
+    transition: background 0.2s ease-in-out; /* Smooth background transition */
+    background: var(--cua-black); /* Black background */
+    color: var(--cua-white); /* White text color */
 }
 
+/* Lead story item hover state */
 .lead-story-item:hover {
-    background: rgba(255, 255, 255, 0.1); /* Slightly lighter black */
+    background: rgba(255, 255, 255, 0.1); /* Slightly lighter black on hover */
 }
 
+/* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
     }
 }
 
+/* Media query for screens with a max-width of 991px (tablets and smaller) */
 @media only screen and (max-width: 991px) {
+
+    /* Alert block: Align content to the left */
     .block-content-alert {
-        justify-content: flex-start !important
+        justify-content: flex-start !important;
     }
 
+    /* Icon container: Add padding to the left */
     .icon-container {
-        padding: 0 0 0 1rem
+        padding: 0 0 0 1rem;
     }
-}
 
-@media only screen and (max-width: 991px) {
+    /* Parallax: Disable background attachment and adjust min-height */
     .parallax {
         background-attachment: scroll;
-        min-height: auto
+        min-height: auto;
     }
 
+    /* Padding adjustments for full-width sections */
     .full-padding {
         padding-left: 3rem;
-        padding-right: 3rem
+        padding-right: 3rem;
     }
 
     .full-padding-top {
         padding-top: 1rem;
-        padding-bottom: 1rem
+        padding-bottom: 1rem;
     }
 
+    /* Menu styling: Add borders to menu */
     aside .node__content .block.block-menu.navigation {
         border-right: 1px solid var(--cua-white);
-        border-bottom: 1px solid var(--cua-gray-400)
+        border-bottom: 1px solid var(--cua-gray-400);
     }
 
+    /* Content label: Adjust position */
     .content-type-label {
         left: -8px;
-        top: 15px
+        top: 15px;
     }
 
+    /* Blockquote styling: Adjust borders, font-size, and padding */
     blockquote {
         border-left: 4px solid var(--cua-gold);
         font-size: var(--base-font-size);
@@ -1440,118 +1706,140 @@ h2#block-cua-theme-main-menu-menu {
         margin: 10px auto;
         padding: .5em 10px .5em 25px;
         position: relative;
-        width: 100%
+        width: 100%;
     }
 
     blockquote::before {
         font-size: 5em;
         left: -50px;
-        top: -30px
+        top: -30px;
     }
 
     blockquote span {
         color: var(--cua-gray-800);
         display: block;
         font-weight: var(--font-weight-normal);
-        margin-top: 1em
+        margin-top: 1em;
     }
 
+    /* Padding adjustments for various elements */
     .px-5 {
         padding-right: 1rem !important;
-        padding-left: 1rem !important
+        padding-left: 1rem !important;
     }
 
+    /* Card header styling: Center the text */
     .card-header.d-flex.justify-content-center {
-        text-align: center !important
+        text-align: center !important;
     }
 
+    /* Carousel indicators: Move them down */
     .carousel-indicators {
-        bottom: -25px
+        bottom: -25px;
     }
 
+    /* Image styling: Make small images responsive */
     .card-img.xsmall {
-        width: 90% !important
+        width: 90% !important;
     }
 
+    /* Navbar toggler: Make the background transparent */
     .navbar-toggler {
-        background-color: transparent !important
+        background-color: transparent !important;
     }
 
+    /* Mobile padding adjustments */
     .mobile-padding {
-        padding-top: 2rem
+        padding-top: 2rem;
     }
 
+    /* Border styling for the nav */
     aside .nav {
-        border-right: 1px solid var(--cua-white) !important
+        border-right: 1px solid var(--cua-white) !important;
     }
 
+    /* Page title styling adjustments */
     div#block-cua-theme-page-title {
         margin: 1rem 0 0 5px !important;
-        max-width: 90% !important
+        max-width: 90% !important;
     }
 
+    /* Hide the square accent on headings */
     .base-heading-square__accent {
-        display: none
+        display: none;
     }
 
+    /* Adjust layout of the second column navigation */
     .layout__region--second .block.block-menu.navigation {
-        border-left: none
+        border-left: none;
     }
 
+    /* Video container: Make it full-width */
     .video-container, .parallax-video {
         width: 100%;
         height: auto;
     }
 }
 
+/* Media query for screens with a max-width of 576px (phones) */
 @media only screen and (max-width: 576px) {
+
+    /* Accordion content padding */
     .ui-accordion .ui-accordion-content {
-        padding: 1rem
+        padding: 1rem;
     }
 
+    /* Full padding adjustments for smaller screens */
     .full-padding {
         padding-left: 1rem;
-        padding-right: 1rem
+        padding-right: 1rem;
     }
 
     .banner-body {
-        padding: 1rem !important
+        padding: 1rem !important;
     }
 
+    /* General padding adjustments */
     .full-padding, .fp {
         padding-left: 15px;
-        padding-right: 15px
+        padding-right: 15px;
     }
 
+    /* Title font size adjustments */
     h1.title {
-        font-size: 1.75rem !important
+        font-size: 1.75rem !important;
     }
 
+    /* Mobile padding adjustments */
     .mobile-padding {
-        padding-top: 2rem
+        padding-top: 2rem;
     }
 
+    /* Nav border styling */
     aside .nav {
-        border-right: 1px solid var(--cua-white) !important
+        border-right: 1px solid var(--cua-white) !important;
     }
 
+    /* Landing page title margin adjustments */
     .node--type-landing-page div#block-cua-theme-page-title {
         margin: 1rem 0 0 24px !important;
-        max-width: 90% !important
+        max-width: 90% !important;
     }
 
+    /* Video container: Max-width adjustments for responsiveness */
     .video-container {
         max-width: 100%;
         padding: 0;
     }
+
+    /* Remove padding from columns */
     .col-12 {
         padding: 0;
     }
 
+    /* Video container and parallax video: Full-width and auto height */
     .video-container, .parallax-video {
         width: 100%;
         height: auto;
     }
-
 }
-
