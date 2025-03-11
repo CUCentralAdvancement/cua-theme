@@ -1,3 +1,34 @@
+{#
+/**
+ * @file
+ * Macro for rendering a card footer with dynamic links.
+ *
+ * This macro generates a styled footer section for a card component, supporting
+ * both single and multiple links. Links can include customization options like
+ * colors, padding, and alignment.
+ *
+ * Parameters:
+ * - links: An array of link objects, each containing:
+ *     - url: The destination URL for the link.
+ *     - title: The display text for the link.
+ * - container_size: Optional; specifies the size of the footer container (e.g., 'container', 'container-fluid').
+ * - color_background: Optional; sets a background color for the footer.
+ * - position_container: Optional; adjusts positioning of the links within the container.
+ * - text_alignment: Optional; aligns text within the footer (e.g., 'text-left', 'text-center').
+ * - padding: Optional; sets padding for the footer.
+ * - outline: Optional; enables outline styles for the buttons.
+ * - button_color: Optional; specifies the color of the buttons (e.g., 'primary', 'secondary').
+ * - hide_from_screen_readers: Optional; hides links from assistive technologies if set to true.
+ * - is_single_link: Optional; if true, wraps the entire card content in a single clickable link.
+ * - custom_label: Optional; sets a custom ARIA label for the footer in multiple link scenarios.
+ *
+ * Features:
+ * - Accessible: Includes ARIA attributes for better screen reader compatibility.
+ * - Responsive: Leverages Bootstrap utility classes for responsive design.
+ * - Flexible: Handles multiple customization options for layout and style.
+ */
+#}
+
 {% macro render_card_footer(
     links,
     container_size = null,
@@ -7,14 +38,19 @@
     padding = null,
     outline = null,
     button_color = null,
-    button_layout = null,
     hide_from_screen_readers = false,
-    is_single_link = false
+    is_single_link = false,
+    custom_label = null
     ) %}
 
-    {% set links = links|default([]) %}
+    {# Ensure 'links' is initialized to an empty array if not provided. Filter invalid entries. #}
+    {% set links = links|default([])|filter(link => link.url is not empty and link.title is not empty) %}
+
+    {# Only render the footer if there are valid links. #}
     {% if links|length > 0 %}
         {% set multiple_links = links|length > 1 %}
+
+        {# Define dynamic classes for the footer container. #}
         {% set card_footer_classes = [
             'card-footer',
             'd-flex',
@@ -26,6 +62,7 @@
             'mb-5',
         ] | filter(v => v) | join(' ') %}
 
+        {# Define dynamic classes for the footer links. #}
         {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
         {% set card_footer_link_classes = [
             'card-link',
@@ -40,16 +77,18 @@
 
         <div class="{{ card_footer_classes }}"
                 {% if multiple_links %}
-            role="group" aria-label="Related links"
+            role="group" aria-label="{{ custom_label ?: 'Related links' }}"
                 {% endif %}>
 
+            {# Render each link in the footer. Handle single and multiple links. #}
             {% for link in links %}
                 {% if is_single_link %}
-                    {# Single link case: render as <span> #}
+                    {# Render single link (non-clickable text wrapping the card). #}
                     <span class="{{ card_footer_link_classes }}">{{ link.title }}</span>
                 {% else %}
-                    {# Multiple links case: render as <a> #}
-                    <a href="{{ link.url }}" class="{{ card_footer_link_classes }}"
+                    {# Render multiple links as clickable anchors. #}
+                    <a href="{{ link.url }}"
+                       class="{{ card_footer_link_classes }}"
                             {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
                         {{ link.title }}
                     </a>
