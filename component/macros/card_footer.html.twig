@@ -29,6 +29,12 @@
  */
 #}
 
+{# Import the macro file #}
+{# {% import '@cua_theme/component/macros/footer_macros.html.twig' as footerMacros %} #}
+
+{# Call the macro and pass the necessary variables #}
+{# {{ footerMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, hide_from_screen_readers, is_single_link, custom_label) }} #}
+
 {% macro render_card_footer(
     links,
     container_size = null,
