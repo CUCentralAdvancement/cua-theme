@@ -1,272 +1,327 @@
-/* card styling */
+/* =====================================
+   Card Styling
+   ===================================== */
+
+/* Base card styles */
 .card {
-  border-radius: 0 !important;
-  --bs-card-bg: transparent;
-  --bs-card-border-color: transparent;
-  --bs-card-border-width: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%
+  border-radius: 0 !important; /* Ensures sharp corners by overriding Bootstrap defaults */
+  --bs-card-bg: transparent; /* Makes the card background transparent */
+  --bs-card-border-color: transparent; /* Removes the border color */
+  --bs-card-border-width: 0; /* Ensures no border is applied */
+  display: flex; /* Uses flexbox for layout */
+  flex-direction: column; /* Stacks child elements vertically */
+  height: 100%; /* Ensures the card takes full height of the container */
 }
 
+/* Card body adjustments */
 .card-body {
-  flex: 1;
-  padding: 0
+  flex: 1; /* Allows the body to expand and take up available space */
+  padding: 0; /* Removes default padding */
 }
 
+/* Styles for elements marked as invisible (for accessibility or screen readers) */
 .card .invisible {
   border: 0 !important;
-  clip: rect(0, 0, 0, 0) !important;
+  clip: rect(0, 0, 0, 0) !important; /* Hides the element visually while keeping it accessible */
   padding: 0 !important;
-  margin: -1px !important;
+  margin: -1px !important; /* Moves the element out of the viewport */
   overflow: hidden !important;
   white-space: nowrap !important;
   width: 1px !important;
-  height: 1px !important
+  height: 1px !important;
 }
 
-.card h3, .card .h3, .card h3 a, .card .h3 a {
-  font-size: 1.75rem;
-  margin: 0
+/* Heading styles within cards */
+.card h3,
+.card .h3,
+.card h3 a,
+.card .h3 a {
+  font-size: 1.75rem; /* Adjusts heading font size */
+  margin: 0; /* Removes default margin */
 }
 
+/* Text alignment for headings and paragraphs inside justified content */
 .card h3.justify-content-end,
 .card .justify-content-end p {
-  text-align: right
+  text-align: right; /* Aligns text to the right */
 }
 
 .card h3.justify-content-center,
 .card .justify-content-center p {
-  text-align: center
+  text-align: center; /* Centers text */
 }
 
 .card h3.justify-content-start,
 .card .justify-content-start p {
-  text-align: left
+  text-align: left; /* Aligns text to the left */
 }
 
+/* Ensures text inside elements with 'text-cu-bg-gold' class is black */
 .card .text-cu-bg-gold > * {
-  color: var(--cua-black)
+  color: var(--cua-black);
 }
 
-.cu-bg-gold, .card.cu-bg-gold {
-  background: var(--cua-gold)
+/* Gold background styles */
+.cu-bg-gold,
+.card.cu-bg-gold {
+  background: var(--cua-gold);
 }
 
-.cu-bd-gold, .card.cu-bd-gold {
-  border: 2px solid var(--cua-gold)
+/* Gold border styles */
+.cu-bd-gold,
+.card.cu-bd-gold {
+  border: 2px solid var(--cua-gold);
 }
+/* Card Header */
 
-/* card header */
-
+/* Default styling for the card header */
 .card-header {
-  background-color: transparent;
-  border-bottom: none;
-  color: transparent;
-  margin-bottom: 0;
-  padding: 0
+  background-color: transparent; /* Makes the header background transparent */
+  border-bottom: none; /* Removes the default bottom border */
+  color: transparent; /* Hides the text color (likely for design purposes) */
+  margin-bottom: 0; /* Ensures no extra spacing below the header */
+  padding: 0; /* Removes default padding */
 }
 
-.card-header.add-padding, .add-padding {
-  padding: 1.5rem !important
+/* Adds padding to the card header when 'add-padding' class is applied */
+.card-header.add-padding,
+.add-padding {
+  padding: 1.5rem !important; /* Forces padding for better spacing */
 }
 
-.card-header.d-flex.justify-content-center  {
-  margin: 0 auto !important;
+/* Centers the header content when using flex utilities */
+.card-header.d-flex.justify-content-center {
+  margin: 0 auto !important; /* Centers the header horizontally */
 }
 
-/* links */
+/* Links */
+
+/* Styles for links inside cards */
 .card-link {
-  text-align: left;
-  max-width: max-content !important
+  text-align: left; /* Aligns links to the left */
+  max-width: max-content !important; /* Ensures the link only takes up the necessary width */
 }
 
+/* Ensures multiple card links have no additional left margin */
 .card-link + .card-link {
-  margin-left: 0
+  margin-left: 0;
 }
 
+/* Button styles inside cards */
 .card .btn {
-  border-radius: 0 !important;
-  font-size: .95rem;
-  font-weight: var(--font-weight-medium);
-  padding: 0.75rem 1.25rem !important;
-  width: fit-content;
-  min-width: 16rem
+  border-radius: 0 !important; /* Removes rounded corners */
+  font-size: 0.95rem; /* Sets a slightly smaller font size */
+  font-weight: var(--font-weight-medium); /* Applies a medium font weight */
+  padding: 0.75rem 1.25rem !important; /* Ensures consistent button padding */
+  width: fit-content; /* Adapts the width to content */
+  min-width: 16rem; /* Ensures a minimum button width */
 }
 
+/* Special button styles for 'nobtn' classes, reducing padding */
 .card-link.btn.nobtn-cu-bg-white,
 .card-link.btn.nobtn-cu-bg-black,
 .card-link.btn.nobtn-cu-bg-gold,
 .card-link.btn.nobtn-cu-bg-light-grey {
-  padding: 0 .5rem !important
+  padding: 0 0.5rem !important; /* Reduces horizontal padding */
 }
 
+/* Hover effects for 'nobtn' buttons */
 .card-link.btn.nobtn-cu-bg-white:hover,
 .card-link.btn.nobtn-cu-bg-black:hover,
 .card-link.btn.nobtn-cu-bg-gold:hover,
 .card-link.btn.nobtn-cu-bg-light-grey:hover {
-  text-decoration: underline !important
+  text-decoration: underline !important; /* Adds an underline on hover */
 }
 
-/* card footer */
+/* Card Footer Styles */
 
+/* Base styles for card footer */
 .card-footer {
-  background-color: transparent;
-  border-top: none;
-  padding: 0;
-  width: 100%
+  background-color: transparent; /* Ensures the footer background remains transparent */
+  border-top: none; /* Removes any top border */
+  padding: 0; /* Eliminates default padding */
+  width: 100%; /* Makes the footer span the full width of the card */
 }
 
+/* Flexbox alignment options for footer content */
 .card-footer.justify-content-start,
 .card-footer.justify-content-center,
 .card-footer.justify-content-end {
-  display: flex
+  display: flex; /* Allows flexible alignment of footer content */
 }
 
+/* Layout for multiple links inside the card footer */
 .card-footer.multiple-links {
   display: flex;
-  flex-direction: column
+  flex-direction: column; /* Stacks links vertically */
 }
 
+/* Primary CU Gold Button */
 .card-footer .btn.btn-cu-bg-gold {
-  background: var(--cua-gold);
-  border: 2px solid var(--cua-gold);
-  color: var(--cua-black);
-  position: relative;
-  overflow: hidden;
-  transition: width 0.5s ease;
-  z-index: 1
+  background: var(--cua-gold); /* Sets background to CU Gold */
+  border: 2px solid var(--cua-gold); /* Matches border with background color */
+  color: var(--cua-black); /* Ensures text color contrasts with background */
+  position: relative; /* Required for pseudo-elements */
+  overflow: hidden; /* Prevents overflow from animations */
+  transition: width 0.5s ease; /* Smooth transition effect */
+  z-index: 1; /* Ensures button remains above background animations */
 }
 
+/* Hover effect for CU Gold Button */
 .card-footer .btn.btn-cu-bg-gold:hover {
-  color: var(--cua-gold) !important
+  color: var(--cua-gold) !important; /* Changes text color on hover */
 }
 
+/* Sliding black background effect on hover */
 .card-footer .btn.btn-cu-bg-gold::before {
-  background: var(--cua-black);
-  content: '';
+  background: var(--cua-black); /* Sets hover background */
+  content: ''; /* Required for pseudo-element */
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
+  width: 0; /* Initially hidden */
   height: 100%;
-  transition: width 0.5s ease;
-  z-index: -1
+  transition: width 0.5s ease; /* Expands smoothly on hover */
+  z-index: -1; /* Keeps background behind button text */
 }
 
+/* Outline CU Gold Button */
 .card-footer .btn.outline-btn-cu-bg-gold {
-  background: inherit;
-  border: 2px solid var(--cua-gold-hover);
-  color: var(--cua-gold-hover);
-  position: relative;
+  background: inherit; /* Transparent background */
+  border: 2px solid var(--cua-gold-hover); /* Uses CU Gold Hover for border */
+  color: var(--cua-gold-hover); /* Matches text with border color */
+  position: relative; /* Needed for pseudo-elements */
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Background transition for outline button */
 .card-footer .btn.outline-btn-cu-bg-gold::before {
-  background: var(--cua-gold);
+  background: var(--cua-gold); /* Fills with CU Gold on hover */
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
+  width: 0; /* Initially hidden */
   height: 100%;
   transition: width 0.5s ease;
-  z-index: -1
+  z-index: -1;
 }
 
+/* Expands background on hover for both solid and outline buttons */
 .card-footer .btn.outline-btn-cu-bg-gold:hover::before,
 .card-footer .btn.btn-cu-bg-gold:hover::before {
-  width: 100%
+  width: 100%; /* Expands to cover entire button */
 }
 
+/* Ensures text color changes on hover */
 .card-footer .btn.outline-btn-cu-bg-gold:hover,
 .card-footer .btn.btn-cu-bg-gold:hover {
   color: var(--cua-black);
-  z-index: 1
+  z-index: 1;
 }
 
+/* Alternate CU Gold Hover Button */
 .card-footer .btn.btn-cu-bg-gold-hover {
-  background: var(--cua-gold-hover);
+  background: var(--cua-gold-hover); /* Uses alternate gold color */
   border: 2px solid var(--cua-gold-hover);
-  color: var(--cua-white);
+  color: var(--cua-white); /* White text for contrast */
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Hover effect for CU Gold Hover Button */
 .card-footer .btn.btn-cu-bg-gold-hover:hover {
-  color: var(--cua-gold-hover) !important
+  color: var(--cua-gold-hover) !important;
 }
 
+/* Card Footer Button Styles */
+
+/* Button with gold background and hover effect */
+/* This button has a smooth hover transition where the background expands with a gold color */
 .card-footer .btn.btn-cu-bg-gold-hover::before {
-  background: var(--cua-black);
+  background: var(--cua-black); /* Hover overlay background color */
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
+  width: 0; /* Initially hidden */
   height: 100%;
-  transition: width 0.5s ease;
-  z-index: -1
+  transition: width 0.5s ease; /* Smooth width expansion on hover */
+  z-index: -1; /* Places overlay behind text */
 }
 
+/* Outline button with gold hover effect */
+/* This button has a transparent background with a gold border and text color */
 .card-footer .btn.outline-btn-cu-bg-gold-hover {
-  background: inherit;
-  border: 2px solid var(--cua-gold-hover);
-  color: var(--cua-gold-hover);
+  background: inherit; /* Transparent background */
+  border: 2px solid var(--cua-gold-hover); /* Gold hover border */
+  color: var(--cua-gold-hover); /* Text color matches border */
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Prevents overflow issues */
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Hover effect for gold outline button */
+/* Expands the gold background overlay smoothly when hovering */
 .card-footer .btn.outline-btn-cu-bg-gold-hover::before {
-  background: var(--cua-gold-hover);
+  background: var(--cua-gold-hover); /* Gold background on hover */
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
+  width: 0; /* Initially hidden */
   height: 100%;
-  transition: width 0.5s ease;
-  z-index: -1
+  transition: width 0.5s ease; /* Expands smoothly on hover */
+  z-index: -1;
 }
 
+/* Expands the hover overlay to full width on hover for both gold buttons */
 .card-footer .btn.outline-btn-cu-bg-gold-hover:hover::before,
 .card-footer .btn.btn-cu-bg-gold-hover:hover::before {
-  width: 100%
+  width: 100%;
 }
 
+/* Ensures text color changes to black on hover for both gold buttons */
 .card-footer .btn.outline-btn-cu-bg-gold-hover:hover,
 .card-footer .btn.btn-cu-bg-gold-hover:hover {
   color: var(--cua-black);
-  z-index: 1
+  z-index: 1;
 }
 
+/* Special case for buttons inside a black background card-footer */
+/* Ensures gold outline button maintains correct color when used in a black background */
 .cu-bg-black .card-footer .btn.outline-btn-cu-bg-gold {
   border: 2px solid var(--cua-gold);
-  color: var(--cua-gold)
+  color: var(--cua-gold);
 }
 
+/* Button with black background and white text */
+/* This button has a black background with white text, and a smooth hover effect */
 .card-footer .btn.btn-cu-bg-black {
   background: var(--cua-black);
   border: 2px solid var(--cua-black);
-  color: var(--cua-white);
+  color: var(--cua-white); /* Ensures contrast */
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Hover effect for black button */
+/* Changes text color to black when hovered, overriding other styles */
 .card-footer .btn.btn-cu-bg-black:hover {
-  color: var(--cua-black) !important
+  color: var(--cua-black) !important; /* Overrides other styles */
 }
 
+/* Black button hover overlay effect */
+/* Adds a white overlay effect on hover */
 .card-footer .btn.btn-cu-bg-black::before {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 1); /* White overlay effect */
   content: '';
   position: absolute;
   top: 0;
@@ -274,9 +329,11 @@
   width: 0;
   height: 100%;
   transition: width 0.5s ease;
-  z-index: -1
+  z-index: -1;
 }
 
+/* Outline button with black border and text */
+/* This outline button has a black border and changes color on hover */
 .card-footer .btn.outline-btn-cu-bg-black {
   background: inherit;
   border: 2px solid var(--cua-black);
@@ -284,11 +341,13 @@
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Black outline button hover effect */
+/* Adds a black overlay effect on hover */
 .card-footer .btn.outline-btn-cu-bg-black::before {
-  background: rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 1); /* Black overlay on hover */
   content: '';
   position: absolute;
   top: 0;
@@ -296,20 +355,22 @@
   width: 0;
   height: 100%;
   transition: width 0.5s ease;
-  z-index: -1
+  z-index: -1;
 }
 
+/* Card button hover styles */
 .card-footer .btn.outline-btn-cu-bg-black:hover::before,
 .card-footer .btn.btn-cu-bg-black:hover::before {
-  width: 100%
+  width: 100%;
 }
 
 .card-footer .btn.outline-btn-cu-bg-black:hover,
 .card-footer .btn.btn-cu-bg-black:hover {
   color: var(--cua-white);
-  z-index: 1
+  z-index: 1;
 }
 
+/* White button styles */
 .card-footer .btn.btn-cu-bg-white {
   background: var(--cua-white);
   border: 2px solid var(--cua-white);
@@ -317,11 +378,11 @@
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
 .card-footer .btn.btn-cu-bg-white:hover {
-  color: var(--cua-white) !important
+  color: var(--cua-white) !important;
 }
 
 .card-footer .btn.btn-cu-bg-white::before {
@@ -333,19 +394,20 @@
   width: 0;
   height: 100%;
   transition: width 0.5s ease;
-  z-index: -1
+  z-index: -1;
 }
 
+/* Outline button styles for white */
 .card-footer .btn.outline-btn-cu-bg-white {
   background: inherit;
   border: 2px solid var(--cua-white);
   color: var(--cua-white);
-  font-size: .9rem;
+  font-size: 0.9rem;
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
   z-index: 1;
-  line-height: 1.3
+  line-height: 1.3;
 }
 
 .card-footer .btn.outline-btn-cu-bg-white::before {
@@ -357,24 +419,25 @@
   width: 0;
   height: 100%;
   transition: width 0.5s ease;
-  z-index: -1
+  z-index: -1;
 }
 
 .card-footer .btn.outline-btn-cu-bg-white:hover::before,
 .card-footer .btn.btn-cu-bg-white:hover::before {
-  width: 100%
+  width: 100%;
 }
 
 .card-footer .btn.outline-btn-cu-bg-white:hover {
   color: var(--cua-black);
-  z-index: 1
+  z-index: 1;
 }
 
 .card-footer .btn.btn-cu-bg-white:hover {
   color: var(--cua-white);
-  z-index: 1
+  z-index: 1;
 }
 
+/* Light grey button styles */
 .card-footer .btn.btn-cu-bg-light-grey {
   background: var(--cua-light-grey);
   border: 2px solid var(--cua-light-grey);
@@ -382,11 +445,11 @@
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
 .card-footer .btn.btn-cu-bg-light-grey:hover {
-  color: var(--cua-light-grey) !important
+  color: var(--cua-light-grey) !important;
 }
 
 .card-footer .btn.btn-cu-bg-light-grey::before {
@@ -398,9 +461,10 @@
   width: 0;
   height: 100%;
   transition: width 0.5s ease;
-  z-index: -1
+  z-index: -1;
 }
 
+/* Outline button styles for light grey */
 .card-footer .btn.outline-btn-cu-bg-light-grey {
   background: inherit;
   border: 2px solid var(--cua-light-grey);
@@ -408,7 +472,7 @@
   position: relative;
   overflow: hidden;
   transition: width 0.5s ease;
-  z-index: 1
+  z-index: 1;
 }
 
 .card-footer .btn.outline-btn-cu-bg-light-grey::before {
@@ -420,138 +484,155 @@
   width: 0;
   height: 100%;
   transition: width 0.5s ease;
-  z-index: -1
+  z-index: -1;
 }
 
 .card-footer .btn.outline-btn-cu-bg-light-grey:hover::before,
 .card-footer .btn.btn-cu-bg-light-grey:hover::before {
-  width: 100%
+  width: 100%;
 }
 
 .card-footer .btn.outline-btn-cu-bg-light-grey:hover {
   color: var(--cua-black);
-  z-index: 1
+  z-index: 1;
 }
 
 .card-footer .btn.btn-cu-bg-light-grey:hover {
   color: var(--cua-light-grey);
-  z-index: 1
+  z-index: 1;
 }
 
+/* Gold link button */
 .card-link.btn.nobtn-cu-bg-gold {
   background: transparent;
   border-color: transparent;
-  color: var(--cua-gold)
+  color: var(--cua-gold);
 }
 
 a.align-self-end.card-link.btn.nobtn-cu-bg-gold.text-decoration-none:hover {
-  text-decoration: underline !important
+  text-decoration: underline !important;
 }
 
+/* Card hover effects for gold, black, and white backgrounds */
 .card .text-cu-bg-gold-hover > * {
-  color: var(--cua-black)
+  color: var(--cua-black);
 }
 
-.cu-bg-gold-hover, .card.cu-bg-gold-hover {
-  background: var(--cua-gold-hover)
+.cu-bg-gold-hover,
+.card.cu-bg-gold-hover {
+  background: var(--cua-gold-hover);
 }
 
-.cu-bd-gold-hover, .card.cu-bd-gold-hover {
-  border: 2px solid var(--cua-gold-hover)
+.cu-bd-gold-hover,
+.card.cu-bd-gold-hover {
+  border: 2px solid var(--cua-gold-hover);
 }
 
 .cu-bg-black .card-footer .btn.outline-btn-cu-bg-gold-hover {
   border: 2px solid var(--cua-gold-hover);
-  color: var(--cua-gold-hover)
+  color: var(--cua-gold-hover);
 }
 
+/* Card background color for different themes */
 .card .text-cu-bg-black > * {
-  color: var(--cua-white)
+  color: var(--cua-white);
 }
 
-.cu-bg-black, .card.cu-bg-black {
-  background: var(--cua-black)
+.cu-bg-black,
+.card.cu-bg-black {
+  background: var(--cua-black);
 }
 
 .cu-bg-black-trans {
-  background: rgba(0, 0, 0, 0.8)
+  background: rgba(0, 0, 0, 0.8);
 }
 
-.cu-bd-black, .card.cu-bd-black {
-  border: 2px solid var(--cua-black)
+.cu-bd-black,
+.card.cu-bd-black {
+  border: 2px solid var(--cua-black);
 }
 
+/* Hover effect for black link buttons */
 .align-self-end.card-link.btn.nobtn-cu-bg-black.text-decoration-none:hover {
-  text-decoration: underline !important
+  text-decoration: underline !important;
 }
 
 .card .text-cu-bg-white > * {
-  color: var(--cua-black)
+  color: var(--cua-black);
 }
 
-.cu-bg-white, .card.cu-bg-white {
-  background: var(--cua-white)
+.cu-bg-white,
+.card.cu-bg-white {
+  background: var(--cua-white);
 }
 
-.cu-bd-white, .card.cu-bd-white {
-  border: 2px solid var(--cua-white)
+.cu-bd-white,
+.card.cu-bd-white {
+  border: 2px solid var(--cua-white);
 }
 
+/* Hover effect for white link buttons */
 .align-self-end.card-link.btn.nobtn-cu-bg-white.text-decoration-none {
   color: var(--cua-white);
-  background: transparent
+  background: transparent;
 }
 
 .align-self-end.card-link.btn.nobtn-cu-bg-white.text-decoration-none:hover {
-  text-decoration: underline !important
+  text-decoration: underline !important;
 }
 
+/* Card background color for light grey theme */
 .card .text-cu-bg-light-grey > * {
-  color: var(--cua-black)
+  color: var(--cua-black);
 }
 
-.cu-bg-light-grey, .card.cu-bg-light-grey {
-  background: var(--cua-light-grey)
+.cu-bg-light-grey,
+.card.cu-bg-light-grey {
+  background: var(--cua-light-grey);
 }
 
-.cu-bd-light-grey, .card.cu-bd-light-grey {
-  border: 2px solid var(--cua-light-grey)
+.cu-bd-light-grey,
+.card.cu-bd-light-grey {
+  border: 2px solid var(--cua-light-grey);
 }
 
 a.align-self-end.card-link.btn.nobtn-cu-bg-light-grey.text-decoration-none {
   color: var(--cua-light-grey);
-  background: transparent
+  background: transparent;
 }
 
 a.align-self-end.card-link.btn.nobtn-cu-bg-light-grey.text-decoration-none:hover {
-  text-decoration: underline !important
+  text-decoration: underline !important;
 }
 
-.card h6, .card .h6 {
+/* Font styling for card headers */
+.card h6,
+.card .h6 {
   font-weight: var(--font-weight-bold);
   font-size: 0.95rem;
   text-transform: none;
-  line-height: 1.2
+  line-height: 1.2;
 }
 
+/* Styling for card images and captions */
 .card-header a {
-  text-decoration: none
+  text-decoration: none;
 }
 
 .figcaption {
-  color: initial
+  color: initial;
 }
 
 figure {
-  margin: 0
+  margin: 0;
 }
 
 a figure {
-  text-decoration: none
+  text-decoration: none;
 }
 
 .large img {
-  scale: 100%
+  scale: 100%;
 }
 
 .medium img {
@@ -559,7 +640,7 @@ a figure {
   height: auto;
   object-fit: cover;
   display: block;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 .small img {
@@ -567,48 +648,44 @@ a figure {
   height: auto;
   object-fit: cover;
   display: block;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 .card-img.xsmall {
-  width: 25%
+  width: 25%;
 }
 
-p.figcaption.card-header {
-  margin: 1rem 0 0
-}
-
+/* Text color for different themes */
 .display-4.cu-text-gold,
 .card-text.cu-text-gold,
 .cu-text-gold {
-  color: var(--cua-gold) !important
+  color: var(--cua-gold) !important;
 }
 
 .display-4.cu-text-white,
 .card-text.cu-text-white,
 .cu-text-white {
   background: transparent;
-  color: var(--cua-white) !important
+  color: var(--cua-white) !important;
 }
 
 .display-4.cu-black-black,
 .card-text.cu-black-black,
 .cu-text-black {
-  color: var(--cua-black) !important
+  color: var(--cua-black) !important;
 }
 
+/* Centering card content */
 .display-4.card-text.lead .d-flex.justify-content-center {
-  text-align: center !important
+  text-align: center !important;
 }
 
+/* Card link button for light grey background */
 .card-link.btn.nobtn-cu-bg-light-grey {
-  color: var(--cua-light-grey)
+  color: var(--cua-light-grey);
 }
 
-.card-link.btn.nobtn-cu-bg-white {
-  color: var(--cua-white)
-}
-
+/* Shadow effect for cards */
 .shadow {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05), 0 1px 5px 0 rgba(0, 0, 0, 0.05);
   border: 1px solid #e0e0e0;
@@ -616,36 +693,38 @@ p.figcaption.card-header {
 }
 
 .shadow:hover {
-  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.2), 0 5px 15px 0 rgba(0, 0, 0, 0.15); /* Darker shadow */
-  border: 2px solid #e0e0e0; /* Slightly darker border */
-  transform: translateY(-10px); /* Push the element up */
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.2), 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+  border: 2px solid #e0e0e0;
+  transform: translateY(-10px);
 }
 
 .shadow .card-body,
 .shadow .card-footer {
-  padding: 0 15px !important
+  padding: 0 15px !important;
 }
 
+/* Styling for image bundles and margins */
 .image-bundle {
   padding: 0;
-  margin: 0
+  margin: 0;
 }
 
 .margin_top {
-  margin-top: 3rem
+  margin-top: 3rem;
 }
 
 .margin_bottom {
-  margin-bottom: 3rem
+  margin-bottom: 3rem;
 }
 
 .margin_top_and_bottom {
   margin-top: 3rem;
-  margin-bottom: 3rem
+  margin-bottom: 3rem;
 }
 
+/* Mobile adjustments */
 @media only screen and (max-width: 991px) {
   .add-padding {
-    padding: 0.5rem !important
+    padding: 0.5rem !important;
   }
 }
