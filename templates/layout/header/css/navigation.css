@@ -3,474 +3,535 @@
    ========================= */
 
 /* Default link styles */
-
 a {
-  color: var(--cua-link-color);
-  text-decoration: underline;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+  color: var(--cua-link-color); /* Set link color */
+  text-decoration: underline; /* Underline links by default */
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition for color and text-decoration */
 }
 
+/* Link hover effects */
 a:hover {
-  color: var(--cua-link-color);
-  text-decoration: none
+  color: var(--cua-link-color); /* Maintain link color on hover */
+  text-decoration: none; /* Remove underline on hover */
 }
 
+/* Title link styles - no underline */
 a.title-link {
-  text-decoration: none;
+  text-decoration: none; /* Remove underline */
 }
 
+/* Title link hover - add underline */
 a.title-link:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Add underline on hover */
 }
 
+/* Nav pills active link styles */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
-  background-color: var(--cua-gold);
-  color: var(--cua-black);
-  margin: 0 .2rem
+  background-color: var(--cua-gold); /* Gold background for active link */
+  color: var(--cua-black); /* Black text for active link */
+  margin: 0 .2rem; /* Space between links */
 }
 
+/* Nav pills link hover effects */
 .nav-pills .nav-link:hover {
-  background-color: var(--cua-black);
-  color: var(--cua-gold);
-  margin: 0 .2rem
+  background-color: var(--cua-black); /* Black background on hover */
+  color: var(--cua-gold); /* Gold text on hover */
+  margin: 0 .2rem; /* Space between links on hover */
 }
 
-/* Button Styles */
-
+/* Button Styles - Primary button */
 .btn-primary {
-  background: var(--cua-gold);
-  border-color: transparent;
-  color: var(--cua-black)
+  background: var(--cua-gold); /* Gold background */
+  border-color: transparent; /* Transparent border */
+  color: var(--cua-black); /* Black text */
 }
 
+/* Primary button hover */
 .btn-primary:hover {
-  background: var(--cua-black);
-  text-decoration: none
+  background: var(--cua-black); /* Black background on hover */
+  text-decoration: none; /* No underline on hover */
 }
 
+/* Path search button - custom width */
 .path-search .btn.btn-primary {
-  padding: 0.5rem;
-  width: 100px
+  padding: 0.5rem; /* Padding */
+  width: 100px; /* Fixed width */
 }
 
+/* Default button styles - primary */
 .btn.btn-primary {
-  background: var(--cua-white);
-  border: 1px solid var(--cua-black);
-  border-radius: 0;
-  color: var(--cua-black);
-  display: inline-block;
-  font-weight: var(--font-weight-bold);
-  padding: .45rem 1.5rem;
-  transition: background-color 0.7s ease;
-  width: auto
+  background: var(--cua-white); /* White background */
+  border: 1px solid var(--cua-black); /* Black border */
+  border-radius: 0; /* Square corners */
+  color: var(--cua-black); /* Black text */
+  display: inline-block; /* Inline block display */
+  font-weight: var(--font-weight-bold); /* Bold text */
+  padding: .45rem 1.5rem; /* Padding for size */
+  transition: background-color 0.7s ease; /* Smooth transition */
+  width: auto; /* Auto width */
 }
 
+/* Primary button hover - invert colors */
 .btn.btn-primary:hover {
-  background: var(--cua-black);
-  border: 1px solid var(--cua-black);
-  color: var(--cua-white);
-  cursor: pointer;
-  text-decoration: none
+  background: var(--cua-black); /* Black background */
+  border: 1px solid var(--cua-black); /* Black border */
+  color: var(--cua-white); /* White text */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-decoration: none; /* No underline */
 }
 
-
-/* Block Link Styles */
-
+/* Block Link Styles - Links inside blocks */
 .block-link {
-  color: inherit;
-  font-size: .9rem;
-  font-weight: var(--font-weight-bold);
-  text-decoration: none
+  color: inherit; /* Inherit color from parent */
+  font-size: .9rem; /* Smaller font size */
+  font-weight: var(--font-weight-bold); /* Bold text */
+  text-decoration: none; /* No underline */
 }
 
+/* Block link caption styling */
 a.block-link figcaption {
-  text-align: center;
-  text-decoration: none
+  text-align: center; /* Center text */
+  text-decoration: none; /* No underline */
 }
 
-/* Side column links */
+/* Side column links - remove list styling */
 .node__content .block.block-menu.navigation .form-select ul,
 .node__content .block.block-menu.navigation ul,
 aside .form-select ul,
 aside ul {
-  list-style-type: none;
-  padding: 0
+  list-style-type: none; /* Remove list bullets */
+  padding: 0; /* Remove padding */
 }
 
+/* Side column list items - full width */
 .node__content .block.block-menu.navigation .form-select li,
 .node__content .block.block-menu.navigation li,
 aside .form-select li,
 aside li {
-  width: 100%
+  width: 100%; /* Full width for list items */
 }
 
+/* Padding for navigation items */
 .node__content .block.block-menu.navigation .nav-item,
 aside .nav-item {
-  padding: 0 1.25rem 0 .5rem
+  padding: 0 1.25rem 0 .5rem; /* Padding for navigation items */
 }
 
+/* Styles for links in side column navigation */
 .node__content .block.block-menu.navigation .form-select,
 .node__content .block.block-menu.navigation a.nav-link,
 .node__content .block.block-menu.navigation a.bef-link,
 aside .form-select a,
 aside a.nav-link,
 aside a.bef-link {
-  box-sizing: border-box;
-  color: var(--cua-gray-700);
-  display: block;
-  font-family: var(--font-roboto-condensed) sans-serif;
-  font-size: 1.2rem;
-  font-weight: var(--font-weight-bold);
-  text-decoration: none;
-  line-height: 1.1;
-  margin: .5rem;
-  padding: .25rem 0;
-  position: relative;
-  width: 100%
+  box-sizing: border-box; /* Ensure padding is included in element width */
+  color: var(--cua-gray-700); /* Gray text */
+  display: block; /* Block display for links */
+  font-family: var(--font-roboto-condensed) sans-serif; /* Roboto font */
+  font-size: 1.2rem; /* Larger font size */
+  font-weight: var(--font-weight-bold); /* Bold text */
+  text-decoration: none; /* No underline */
+  line-height: 1.1; /* Line height for readability */
+  margin: .5rem; /* Margin around links */
+  padding: .25rem 0; /* Vertical padding */
+  position: relative; /* Positioning context for pseudo-elements */
+  width: 100%; /* Full width */
 }
 
+/* Additional styles for nav-link */
 aside a.nav-link {
-  margin: .2rem
+  margin: .2rem; /* Smaller margin */
 }
 
+/* Custom link color for special links */
 .node__content .block.block-menu.navigation a.link-cua,
 aside a.link-cua {
-  color: var(--cua-black);
-  font-weight: var(--font-weight-medium);
-  text-decoration: none
+  color: var(--cua-black); /* Black text */
+  font-weight: var(--font-weight-medium); /* Medium weight font */
+  text-decoration: none; /* No underline */
 }
 
+/* Hover effect for special links */
 .node__content .block.block-menu.navigation a.link-cua:hover,
 .node__content .block.block-menu.navigation a.bef-link:hover,
 aside a.link-cua:hover,
 aside a.bef-link:hover {
-  color: var(--cua-gold-hover);
-  text-decoration: underline !important
+  color: var(--cua-gold-hover); /* Gold-hover text */
+  text-decoration: underline !important; /* Underline on hover */
 }
 
+/* Hover effects for all links in navigation */
 .node__content .block.block-menu.navigation a:hover,
 .node__content .block.block-menu.navigation a.nav-link:hover,
 .node__content .block.block-menu.navigation a.bef-link:hover,
 aside .form-select a:hover,
 aside a.nav-link:hover,
 aside a.bef-link:hover {
-  color: var(--cua-black);
-  text-decoration: none !important
+  color: var(--cua-black); /* Black text on hover */
+  text-decoration: none !important; /* No underline on hover */
 }
 
+/* Underline effect on hover for navigation links */
 .node__content .block.block-menu.navigation a::before,
 .node__content .block.block-menu.navigation a.nav-link::before,
 .node__content .block.block-menu.navigation a.bef-link::before,
 aside .form-select a::before,
 aside a.nav-link::before,
 aside a.bef-link::before {
-  background-color: var(--cua-white);
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  transition: width 0.5s ease
+  background-color: var(--cua-white); /* White underline */
+  content: ""; /* Empty content for pseudo-element */
+  position: absolute; /* Positioning for the underline */
+  bottom: 0; /* Align to bottom */
+  left: 0; /* Align to left */
+  width: 0; /* Initially, the width is 0 */
+  height: 2px; /* Height of the underline */
+  transition: width 0.5s ease; /* Smooth transition for underline */
 }
 
+/* Underline effect on hover - expands to full width */
 .node__content .block.block-menu.navigation a:hover::before,
 .node__content .block.block-menu.navigation a.nav-link:hover::before,
 .node__content .block.block-menu.navigation a.bef-link:hover::before,
 aside .form-select a:hover::before,
 aside a.nav-link:hover::before,
 aside a.bef-link:hover::before {
-  background-color: var(--cua-gold);
-  width: 100%
+  background-color: var(--cua-gold); /* Gold underline */
+  width: 100%; /* Full width on hover */
 }
 
+/* Additional menu styling for right-side column */
 .node__content .block.block-menu.navigation .form-select .node__content .block.block-menu.navigation,
 .node__content .block.block-menu.navigation .node__content .block.block-menu.navigation,
 aside .form-select .node__content .block.block-menu.navigation,
 aside .node__content .block.block-menu.navigation {
-  border-right: 1px solid var(--cua-gray-400)
+  border-right: 1px solid var(--cua-gray-400); /* Right border */
 }
 
+/* Styling for form select elements */
 .node__content .block.block-menu.navigation .form-select,
 aside .form-select {
-  border: 1px solid var(--cua-white) !important;
-  --bs-form-select-bg-img: none !important
+  border: 1px solid var(--cua-white) !important; /* White border */
+  --bs-form-select-bg-img: none !important; /* Remove background image */
 }
 
+/* Nested select menus - left margin */
 .node__content .block.block-menu.navigation .form-select ul li ul,
 aside .form-select ul li ul {
-  margin-left: 1rem
+  margin-left: 1rem; /* Indent nested items */
 }
 
+/* Selected item style for BEF links */
 .bef-link .bef-link--selected {
-  color: var(--cua-gold-hover)
+  color: var(--cua-gold-hover); /* Gold-hover color */
 }
 
+/* Hide specific links (contacts and BOD) */
 a#edit-contacts-all:first-child,
 a#edit-bod-all:first-child {
-  display: none !important
+  display: none !important; /* Hide these links */
 }
 
-/* Pagination */
+/* Pagination styles */
 .pagination.js-pager__items {
   display: flex;
-  justify-content: center;
-  margin-top: 2rem
+  justify-content: center; /* Center pagination items */
+  margin-top: 2rem; /* Add space above pagination */
 }
 
+/* Pagination link styles */
 .page-link {
   background-color: transparent;
   border-color: transparent;
-  color: var(--cua-gold);
-  font-size: var(--base-font-size);
-  font-weight: var(--font-weight-bold)
+  color: var(--cua-gold); /* Gold text */
+  font-size: var(--base-font-size); /* Base font size */
+  font-weight: var(--font-weight-bold); /* Bold text */
 }
 
+/* Active pagination link styles */
 .active > .page-link, .page-link.active {
   background-color: transparent;
-  border-color: transparent
+  border-color: transparent;
 }
 
+/* Pagination link hover effects */
 .page-link:hover {
   background-color: transparent;
   border-color: transparent;
-  color: var(--cua-gold);
+  color: var(--cua-gold); /* Gold color on hover */
   text-decoration: none !important;
-  z-index: 2
+  z-index: 2; /* Ensure it appears on top */
 }
 
+/* Pagination item container - circular style */
 .page-item {
   align-items: center;
-  background: var(--cua-black);
-  border-radius: 50%;
+  background: var(--cua-black); /* Black background */
+  border-radius: 50%; /* Circle shape */
   display: flex;
   justify-content: center;
-  margin: 0 .5rem;
-  padding: .5rem;
-  height: 2.75rem;
-  width: 2.75rem;
+  margin: 0 .5rem; /* Spacing between items */
+  padding: .5rem; /* Inner padding */
+  height: 2.75rem; /* Fixed height */
+  width: 2.75rem; /* Fixed width */
 }
 
+/* Pagination item hover effects */
 .page-item:hover {
-  background: var(--cua-gold);
-  text-decoration: none
+  background: var(--cua-gold); /* Gold background on hover */
+  text-decoration: none;
 }
 
+/* Active pagination item styles */
 .page-item.active {
-  background: var(--cua-gold);
-  text-decoration: none
+  background: var(--cua-gold); /* Gold background for active item */
+  text-decoration: none;
 }
 
+/* Active pagination item link styles */
 .page-item.active a {
-  color: var(--cua-black);
-  text-decoration: none
+  color: var(--cua-black); /* Black text for active item link */
+  text-decoration: none;
 }
 
+/* Pagination item link styles */
 .page-item a {
-  color: var(--cua-gold);
-  text-decoration: none
+  color: var(--cua-gold); /* Gold text for links */
+  text-decoration: none; /* No underline */
 }
 
+/* Pagination item link hover effects */
 .page-item a:hover {
-  color: var(--cua-black)
+  color: var(--cua-black); /* Black text on hover */
 }
 
+/* Keep active pagination item black on hover */
 .page-item.active:hover {
-  color: var(--cua-black)
+  color: var(--cua-black); /* Maintain black text */
 }
 
+/* Entity reference field link styles */
 .field--type-entity-reference a {
   background-color: var(--cua-white);
-  border: 1px solid var(--cua-gold-hover);
-  color: var(--cua-gold-hover);
+  border: 1px solid var(--cua-gold-hover); /* Gold-hover border */
+  color: var(--cua-gold-hover); /* Gold-hover text */
   font-size: .85rem;
-  font-weight: var(--font-weight-bold);
-  padding: .35rem 1rem;
-  display: inline-block;
-  margin: 0 0 .5rem
+  font-weight: var(--font-weight-bold); /* Bold text */
+  padding: .35rem 1rem; /* Padding */
+  display: inline-block; /* Inline block display */
+  margin: 0 0 .5rem; /* Margin below */
 }
 
+/* Entity reference link hover effects */
 .field--type-entity-reference a:hover {
-  background-color: var(--cua-gold-hover);
-  color: var(--cua-white);
-  text-decoration: none
+  background-color: var(--cua-gold-hover); /* Gold-hover background on hover */
+  color: var(--cua-white); /* White text on hover */
+  text-decoration: none;
 }
 
+/* Taxonomy term page view navigation link styles */
 .page-view-taxonomy-term article .nav-link {
-  background-color: var(--cua-white);
+  background-color: var(--cua-white); /* White background */
   border: none;
-  color: var(--cua-gold-hover);
+  color: var(--cua-gold-hover); /* Gold-hover text */
   display: block;
   font-size: .85rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold); /* Bold text */
   padding: 0;
-  margin-top: 2rem
+  margin-top: 2rem; /* Margin above */
 }
 
+/* =========================
+   Navigation Styles
+   ========================= */
+
+/* Navigation tab padding */
 nav.tabs {
-  padding: 1rem 0 2rem 0
+  padding: 1rem 0 2rem 0; /* Add vertical padding with more space at the bottom */
 }
 
+/* Active nav pill link styles */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link, .nav-pills .nav-link {
-  background-color: var(--cua-blue);
-  color: white;
-  margin: 0 .2rem
+  background-color: var(--cua-blue); /* Blue background for active pill */
+  color: white; /* White text for active link */
+  margin: 0 .2rem; /* Add small horizontal margin between pills */
 }
 
+/* Hover effects for nav pills */
 .nav-pills .show > .nav-link, .nav-pills .nav-link:hover {
-  background: green;
-  color: white;
-  text-decoration: none
+  background: green; /* Green background on hover */
+  color: white; /* White text on hover */
+  text-decoration: none; /* No underline on hover */
 }
 
+/* Adjustments for nav pill link padding and font size */
 .nav-pills .nav-link {
-  border-radius: 0 !important;
-  padding: .75rem 3rem;
-  font-size: 1.1rem
+  border-radius: 0 !important; /* Remove border radius for square edges */
+  padding: .75rem 3rem; /* Add large horizontal padding */
+  font-size: 1.1rem; /* Larger font size */
 }
 
+/* Center-align the primary nav pills container */
 .container.mx-auto.nav.primary.nav-pills {
-  align-items: center !important;
-  display: flex !important;
-  justify-content: center !important
+  align-items: center !important; /* Vertically center the items */
+  display: flex !important; /* Use flexbox layout */
+  justify-content: center !important; /* Horizontally center the items */
 }
 
+/* Font Awesome icons for primary nav pills */
 .nav.primary.nav-pills li a::before {
-  display: inline-block;
-  font-family: var(--font-awesome);
-  font-weight: var(--font-weight-xbold);margin-right: 10px
+  display: inline-block; /* Display icon inline with the text */
+  font-family: var(--font-awesome); /* Use Font Awesome font */
+  font-weight: var(--font-weight-xbold); /* Extra bold font weight */
+  margin-right: 10px; /* Space between icon and text */
 }
 
+/* Font Awesome icons for specific nav pills */
 .nav.primary.nav-pills li:first-child a::before {
-  content: "\f06e";}
+  content: "\f06e"; /* Eye icon */
+}
 
 .nav.primary.nav-pills li:nth-child(2) a::before {
-  content: "\f044";
+  content: "\f044"; /* Edit icon */
 }
 
 .nav.primary.nav-pills li:nth-child(3) a::before {
-  content: "\f014";
+  content: "\f014"; /* Trash icon */
 }
 
 .nav.primary.nav-pills li:nth-child(4) a::before {
-  content: "\f013";
+  content: "\f013"; /* Gear icon */
 }
 
 .nav.primary.nav-pills li:nth-child(5) a::before {
-  content: "\f1da";
+  content: "\f1da"; /* Chart icon */
 }
 
+/* Search results font size */
 ol.list-group.node_search-results a {
-  font-size: 1.5rem !important
+  font-size: 1.5rem !important; /* Larger font size for search results links */
 }
 
+/* Nested filter list styles */
 .bef-nested ul li ul li a {
-  font-size: 95%;
-  margin: 0 0 0 .5rem !important
+  font-size: 95%; /* Slightly smaller font for nested items */
+  margin: 0 0 0 .5rem !important; /* Indentation for nested items */
 }
 
 .bef-nested ul li a {
-  line-height: 1.5;
-  margin: 0 .5rem 0 0 !important
+  line-height: 1.5; /* Increased line height for readability */
+  margin: 0 .5rem 0 0 !important; /* Add spacing to the right of the items */
 }
 
-/* Sidebar right menu */
+/* Sidebar right menu heading styles */
 .layout__region.layout__region--second .navigation h2 {
-  font-size: 1.5rem;
-  font-weight: var(--font-weight-bold);
-  margin-top: 1rem;
-  margin-left: 1rem
+  font-size: 1.5rem; /* Larger font for the sidebar heading */
+  font-weight: var(--font-weight-bold); /* Bold font weight */
+  margin-top: 1rem; /* Margin above heading */
+  margin-left: 1rem; /* Margin to the left of heading */
 }
 
+/* Sidebar menu border */
 .layout__region--second .block.block-menu.navigation {
-  border-left: 1px solid var(--cua-gray-400)
+  border-left: 1px solid var(--cua-gray-400); /* Left border for sidebar menu */
 }
 
+/* Sidebar menu link color */
 .layout__region.layout__region--second .navigation .nav-item a {
-  color: var(--cua-black)
+  color: var(--cua-black); /* Black text for sidebar menu links */
 }
 
+/* SimpleSAML authentication link styles */
 a.simplesamlphp-auth-login-link {
-  background: green;
-  color: white;
-  display: block;
-  font-weight: var(--font-weight-medium);
-  padding: .8rem;
-  position: absolute;
-  text-align: center;
-  top: 255px;
-  width: 200px
+  background: green; /* Green background */
+  color: white; /* White text */
+  display: block; /* Block-level display */
+  font-weight: var(--font-weight-medium); /* Medium weight font */
+  padding: .8rem; /* Padding inside the link */
+  position: absolute; /* Absolute positioning */
+  text-align: center; /* Center text */
+  top: 255px; /* Position from the top */
+  width: 200px; /* Fixed width */
 }
 
+/* SimpleSAML login link icon */
 a.simplesamlphp-auth-login-link::before {
-  content: "\f06e";
-  display: inline-block;
-  font-family: var(--font-awesome);
-  font-weight: var(--font-weight-xbold);
-  margin-right: 10px
+  content: "\f06e"; /* Eye icon */
+  display: inline-block; /* Inline block for icon */
+  font-family: var(--font-awesome); /* Use Font Awesome */
+  font-weight: var(--font-weight-xbold); /* Extra bold font */
+  margin-right: 10px; /* Space between icon and text */
 }
 
+/* SimpleSAML authentication link hover effects */
 a.simplesamlphp-auth-login-link:hover {
-  background: var(--cua-black);
-  color: var(--cua-gold);
-  text-decoration: none
+  background: var(--cua-black); /* Black background on hover */
+  color: var(--cua-gold); /* Gold text on hover */
+  text-decoration: none; /* Remove underline on hover */
 }
 
+/* Active nav link color in the sidebar */
 .layout__region.layout__region--second a.nav-link.active.is-active {
-  color: var(--cua-gold)
+  color: var(--cua-gold); /* Gold text color for active nav link */
 }
 
+/* Active nav link color in the main navbar */
 .layout .navbar a.nav-link.is-active {
-  background: var(--cua-white);
-  color: var(--cua-black)
+  background: var(--cua-white); /* White background for active nav link */
+  color: var(--cua-black); /* Black text for active link */
 }
 
+/* Active link style for nav links */
 a.nav-link.active.is-active {
-  color: var(--cua-gold-hover-active) !important;
+  color: var(--cua-gold-hover-active) !important; /* Gold-hover active text */
 }
 
+/* Override color for specific active links */
 #main-wrapper a.nav-link.active.is-active {
-  color: #ac9046 !important
+  color: #ac9046 !important; /* Custom gold color for specific active links */
 }
 
+/* Margin for block menu in the main wrapper */
 #main-wrapper .block-menu {
-  margin-bottom: 2rem !important
+  margin-bottom: 2rem !important; /* Bottom margin */
 }
 
+/* Sidebar navigation border */
 aside .nav {
-  border-right: 1px solid var(--cua-gray-500) !important
+  border-right: 1px solid var(--cua-gray-500) !important; /* Right border for sidebar nav */
 }
 
-/* Adjust the cache btn */
+/* Rebuild cache button styling */
 .toolbar-icon.toolbar-icon-rebuild-cache-access.toolbar-item {
-  background: #d9534f !important; /* Red to indicate action */
-  color: white !important;
-  font-weight: bold !important;
-  display: flex;
-  align-items: center;
+  background: #d9534f !important; /* Red background to indicate action */
+  color: white !important; /* White text */
+  font-weight: bold !important; /* Bold text */
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Center items vertically */
   gap: 6px; /* Space between icon and text */
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  padding: 8px 12px; /* Padding for button */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  transition: background 0.2s ease-in-out; /* Smooth background transition */
 }
 
+/* Hover effect for rebuild cache button */
 .toolbar-icon.toolbar-icon-rebuild-cache-access.toolbar-item:hover {
   background: #c9302c !important; /* Darker red on hover */
 }
 
+/* Rebuild cache button icon */
 .toolbar .toolbar-bar .toolbar-icon-rebuild-cache-access::before {
-  --icon: none !important; /* Override the default icon */
-  background-image: none !important; /* Ensure no background image */
+  --icon: none !important; /* Disable default icon */
+  background-image: none !important; /* Remove background image */
   content: "\f2f1"; /* Font Awesome sync icon */
-  font-family: "Font Awesome 6 Free"; /* Ensure correct FA version */
-  font-weight: 900; /* Needed for solid icons */
-  display: inline-block;
-  color: white; /* Ensure icon is white */
-  font-size: 1.1rem; /* Adjust as needed */
+  font-family: "Font Awesome 6 Free"; /* Correct Font Awesome version */
+  font-weight: 900; /* Solid icon weight */
+  display: inline-block; /* Inline-block display */
+  color: white; /* White icon */
+  font-size: 1.1rem; /* Icon size */
 }
 
-/* Remove background color from the rebuild cache icon */
+/* Remove background color from rebuild cache icon */
 .toolbar.toolbar-secondary .toolbar-bar .toolbar-icon-rebuild-cache-access::before {
-  background-color: transparent !important;
+  background-color: transparent !important; /* Transparent background */
 }
