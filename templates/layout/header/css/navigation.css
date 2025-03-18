@@ -1,4 +1,9 @@
-/* Navigation Styles */
+/* =========================
+   Navigation Styles
+   ========================= */
+
+/* Default link styles */
+
 a {
   color: var(--cua-link-color);
   text-decoration: underline;
@@ -436,3 +441,36 @@ aside .nav {
   border-right: 1px solid var(--cua-gray-500) !important
 }
 
+/* Adjust the cache btn */
+.toolbar-icon.toolbar-icon-rebuild-cache-access.toolbar-item {
+  background: #d9534f !important; /* Red to indicate action */
+  color: white !important;
+  font-weight: bold !important;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Space between icon and text */
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.toolbar-icon.toolbar-icon-rebuild-cache-access.toolbar-item:hover {
+  background: #c9302c !important; /* Darker red on hover */
+}
+
+.toolbar .toolbar-bar .toolbar-icon-rebuild-cache-access::before {
+  --icon: none !important; /* Override the default icon */
+  background-image: none !important; /* Ensure no background image */
+  content: "\f2f1"; /* Font Awesome sync icon */
+  font-family: "Font Awesome 6 Free"; /* Ensure correct FA version */
+  font-weight: 900; /* Needed for solid icons */
+  display: inline-block;
+  color: white; /* Ensure icon is white */
+  font-size: 1.1rem; /* Adjust as needed */
+}
+
+/* Remove background color from the rebuild cache icon */
+.toolbar.toolbar-secondary .toolbar-bar .toolbar-icon-rebuild-cache-access::before {
+  background-color: transparent !important;
+}
