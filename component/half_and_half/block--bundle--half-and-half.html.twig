@@ -44,6 +44,7 @@
 {# Content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
     {# Desktop and Mobile Components #}
+    {# Desktop and Mobile Components #}
     {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
         <div class="container {{ visibility_class }} g-0">
             <div class="card">
@@ -58,7 +59,9 @@
                     } %}
 
                     {% if layout %}
-                        <div class="{{ col_classes.img|filter(v => v)|join(' ') }}">
+                        {# Image Column #}
+                        <div class="{{ col_classes.img|filter(v => v)|join(' ') }}
+               {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
                             {# Render provider content, image, or icon as applicable. #}
                             {% if provider %}
                                 {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
@@ -87,7 +90,9 @@
                             {% endif %}
                         </div>
 
-                        <div class="{{ col_classes.content|filter(v => v)|join(' ') }}">
+                        {# Content Column #}
+                        <div class="{{ col_classes.content|filter(v => v)|join(' ') }}
+               {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}">
                             <div class="row mx-5 pt-3">
                                 {# Render title #}
                                 {{ titleMacros.render_title(
