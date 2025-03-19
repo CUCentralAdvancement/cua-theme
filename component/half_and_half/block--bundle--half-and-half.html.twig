@@ -1,23 +1,23 @@
 {#
 /**
-* @file
-* Optimized Template for the Half and Half component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Optimized Template for the Half and Half component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
-{# Attach the library #}
+{# Attach the library for styles and scripts #}
 {{ attach_library('cua_theme/half-and-half') }}
 
-{# Import macros #}
+{# Import macros for rendering title, images, and icons #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {# Set data attributes for animation #}
@@ -25,7 +25,7 @@
 {% set data_animation_classes = animation_classes|join(' ')|trim %}
 {% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
 
-{# Add Classes #}
+{# Define main block classes #}
 {% set hh_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -38,13 +38,13 @@
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class
 ] | filter(v => v) | merge(utility_classes ?: []) | join(' ')|trim %}
 
-{# Add unique id to block #}
+{# Generate a unique ID for this block instance #}
 {% set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
-{# Content #}
+{# Render the main container #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
-    {# Desktop and Mobile Components #}
-    {# Desktop and Mobile Components #}
+
+    {# Loop through two versions: Desktop and Mobile #}
     {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
         <div class="container {{ visibility_class }} g-0">
             <div class="card">
@@ -53,16 +53,17 @@
                     {% set is_7030_layout = layout == '4' %}
                     {% set is_5050_layout = layout == '50_50' %}
 
+                    {# Define column classes dynamically based on layout #}
                     {% set col_classes = {
                         'img': [is_7030_layout ? 'col-md-4' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, padding, image_alignment],
                         'content': [is_7030_layout ? 'col-md-8' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, text_alignment, padding]
                     } %}
 
                     {% if layout %}
-                        {# Image Column #}
+                        {# Image Column - Always appears first on mobile #}
                         <div class="{{ col_classes.img|filter(v => v)|join(' ') }}
                {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
-                            {# Render provider content, image, or icon as applicable. #}
+                            {# Render media: Video, Image, or Icon #}
                             {% if provider %}
                                 {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                             {% elseif card_image %}
@@ -90,7 +91,7 @@
                             {% endif %}
                         </div>
 
-                        {# Content Column #}
+                        {# Content Column - Always appears last on mobile #}
                         <div class="{{ col_classes.content|filter(v => v)|join(' ') }}
                {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}">
                             <div class="row mx-5 pt-3">
@@ -105,7 +106,7 @@
                                     padding,
                                     links) }}
 
-                                {# Render body content if provided. #}
+                                {# Render body content if provided #}
                                 {% if content %}
                                     {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                                     {{ bodyMacros.render_body(
@@ -116,7 +117,7 @@
                                     ) }}
                                 {% endif %}
 
-                                {# Render footer links or buttons, if available. #}
+                                {# Render footer links or buttons, if available #}
                                 {% if links %}
                                     {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                                     {{ cardFooterMacros.render_card_footer(
