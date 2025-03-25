@@ -1,4 +1,4 @@
-\{#
+{#
 /**
  * @file
  * Template for the Give Now blocks.
@@ -21,7 +21,7 @@
 	<div class="col m-2">
 		<a href="/give-now/sort" class="btn btn-primary">Sort and manage give
 			now</a>
-		<a href="/node/add/give-now" class="btn btn-primary">Add new give
+		<a href="/node/add/gi" class="btn btn-primary">Add new give
 			now</a>
 	</div>
 {% endif %}
@@ -31,7 +31,7 @@
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
 
-		<div class="container-fluid">
+		<div class="container-fluid bg-gray-20 py-3">
 			<div class="row">
 				{% for row in view.result %}
 					{% if row._entity is not empty %}
