@@ -5,6 +5,11 @@
  */
 #}
 
+{{ attach_library('cua_theme/call-to-action') }}
+
+{# Import macros for reusable template logic. #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+
 {% set lead_classes = [
 	'view',
 	'view-' ~ id|clean_class,
@@ -41,35 +46,47 @@
 						{# Main cotent wrapper #}
 						<div class="give-now-item col-12 col-md-6 col-lg-3">
 
-							{# Blovk Warpper #}
-							<div class="m-2 h-100 {{ background_color }}">
+							{# Block Warpper #}
+							<div class="m-2 h-100 {{ shadow }} {{ background_color }}">
 
 								{# Link Wrapper  #}
 								<a href="{{ node.field_link.uri ?? '#' }}"
 								   class="text-decoration-none"
 								   aria-label="Read {{ node.label }}">
 
-									{# Render image #}
-									{% if node.field_image.entity.uri.value is not empty %}
-										<div class="card-header mb-2">
-											<img src="{{ file_url(node.field_image.entity.uri.value) }}"
-												 alt="{{ node.field_image.alt }}"
-												 class="img-fluid">
+									{# Container for image and floating Give Now button #}
+									<div class="position-relative">
+										{# "Give Now" button positioned at the top-left over the image, 1rem from the top #}
+										<div class="position-absolute start-0 p-2 cu-bg-white shadow"
+											 style="top: 1rem;">
+											<i class="fas fa-gift fa-lg px-1"></i>
+											<span class="flag-title">Give Now</span>
 										</div>
-									{% endif %}
 
-									{# Render Title #}
-									<h3 class="give-now-title display-4 {{ color_text }} mb-2">{{ node.label }}</h3>
+										{# Render image #}
+										{% if node.field_image.entity.uri.value is not empty %}
+											<div class="card-header mb-2">
+												<img src="{{ file_url(node.field_image.entity.uri.value) }}"
+													 alt="{{ node.field_image.alt }}"
+													 class="img-fluid">
+											</div>
+										{% endif %}
+									</div>
 
-									{# Render Body #}
-									{% if node.body.value is not empty %}
-										<div class="give-now-body {{ color_text }} mb-2">
-											<p>{{ node.body.value|raw }}</p>
-										</div>
-									{% endif %}
+									<div class="px-3 pt-2">
 
-									{# Render Link #}
-									<div class="card-footer card-story d-flex p-0 mb-5">
+										{# Render Title #}
+										<h3 class="give-now-title display-4 {{ color_text }} mb-2">{{ node.label }}</h3>
+
+										{# Render Body #}
+										{% if node.body.value is not empty %}
+											<div class="give-now-body {{ color_text }} mb-2">
+												<p>{{ node.body.value|raw }}</p>
+											</div>
+										{% endif %}
+
+										{# Render Link #}
+										<div class="card-footer card-story d-flex p-0 mb-5">
                                     <span class="card-link btn {{ background_color }} text-decoration-none p-2 mt-3 {{ color_text }}">
                                         {% if node.field_link.title is not empty %}
 											{{ node.field_link.title }}
@@ -77,6 +94,8 @@
 											{{ node.label }}
 										{% endif %}
                                     </span>
+										</div>
+
 									</div>
 
 								</a>
