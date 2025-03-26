@@ -1680,6 +1680,31 @@ h2#block-cua-theme-main-menu-menu {
     background: rgba(255, 255, 255, 0.1); /* Slightly lighter black on hover */
 }
 
+/* Give now on front */
+/* Fix the blue text issue inside paragraphs and spans */
+.give-now-item a,
+.give-now-item p,
+.give-now-item  span,
+.give-now-item  .flag-title,
+.give-now-item  .give-now-body,
+.give-now-item  .position-absolute i,
+.give-now-item  .position-absolute {
+    color: var(--cua-black) !important; /* Force all text to use the inherited color */
+}
+
+/* Ensure the button keeps its correct colors */
+.give-now-item  .card-link.btn {
+    background-color: transparent !important;
+    border: 2px solid var(--cua-black) !important;
+    border-radius: 0 !important;
+    color: var(--cua-black) !important;
+    font-weight: bold !important
+}
+
+.give-now-item  .card-link.btn:hover {
+    color: var(--cua-white) !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
