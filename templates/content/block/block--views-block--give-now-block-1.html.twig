@@ -76,12 +76,12 @@
 									<div class="px-3 pt-2">
 
 										{# Render Title #}
-										<h3 class="give-now-title display-4 {{ color_text }} mb-2">{{ node.label }}</h3>
+										<h3 class="give-now-title {{ color_text }}">{{ node.label }}</h3>
 
 										{# Render Body #}
 										{% if node.body.value is not empty %}
 											<div class="give-now-body {{ color_text }} mb-2">
-												<p>{{ node.body.value|raw }}</p>
+												{{ node.body.value|raw }}
 											</div>
 										{% endif %}
 

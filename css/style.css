@@ -1705,6 +1705,11 @@ h2#block-cua-theme-main-menu-menu {
     color: var(--cua-white) !important;
 }
 
+.give-now-item h3 {
+    margin-bottom: 0;
+    margin-left: 0.2rem
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
