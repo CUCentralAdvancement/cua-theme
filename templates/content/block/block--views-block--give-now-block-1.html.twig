@@ -21,20 +21,11 @@
 	'py-3',
 ] %}
 
-{# Define classes for the flag container dynamically #}
-{% set flag_classes = [
-	'flag',
-	'py-2',
-	flag_background ?: '',
-] | filter(v => v) %}
-
 {# Editing tools #}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="col m-2">
-		<a href="/give-now/sort" class="btn btn-primary">Sort and manage give
-			now</a>
-		<a href="/node/add/gi" class="btn btn-primary">Add new give
-			now</a>
+		<a href="/give-now/sort" class="btn btn-primary">Sort and manage give now</a>
+		<a href="/node/add/gi" class="btn btn-primary">Add new give now</a>
 	</div>
 {% endif %}
 
@@ -43,7 +34,7 @@
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
 
-		<div class="container-fluid bg-gray-20 py-3">
+		<div class="container-fluid bg-gray-20 pt-3 pb-5">
 			<div class="row">
 				{% for row in view.result %}
 					{% if row._entity is not empty %}
@@ -56,6 +47,7 @@
 						{% set icon = node.field_icon.value %}
 						{% set icon_color = node.field_icon_color.value %}
 						{% set icon_size = node.field_icon_size.value %}
+						{% set color_background = node.field_color_background.value %}
 
 						{# Define flag container classes dynamically #}
 						{% set flag_classes = [
@@ -65,7 +57,7 @@
 						] | filter(v => v) %}
 
 						<div class="give-now-item col-12 col-md-6 col-lg-3">
-							<div class="m-2 h-100 {{ shadow }} {{ flag_background }}">
+							<div class="m-2 h-100 shadow {{ color_background }}">
 								<a href="{{ node.field_link.uri ?? '#' }}" class="text-decoration-none" aria-label="Read {{ node.label }}">
 
 									{# Render Flag and Icon #}
@@ -106,9 +98,9 @@
 										{% endif %}
 
 										<div class="card-footer card-story d-flex p-0 mb-5">
-							<span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
-								{{ node.field_link.title ?: node.label }}
-							</span>
+											<span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
+												{{ node.field_link.title ?: node.label }}
+											</span>
 										</div>
 									</div>
 								</a>
