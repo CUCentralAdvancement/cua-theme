@@ -1710,6 +1710,29 @@ h2#block-cua-theme-main-menu-menu {
     margin-left: 0.2rem
 }
 
+/* First 4 rows */
+#draggableviews-table-give-now-page-1-0 tbody tr:nth-child(-n+4) .views-field.views-field-title {
+    background-color: #d1f0d1 !important; /* Light green */
+}
+
+/* Rows 5 and beyond */
+#draggableviews-table-give-now-page-1-0 tbody tr:nth-child(n+5) .views-field.views-field-title {
+    background-color: #f9bfbf !important /* Light red */
+}
+
+/* Style links inside .views-field.views-field-title */
+.views-field.views-field-title a {
+    color: black !important;  /* Make text black */
+    font-weight: bold !important;  /* Make text bold */
+    text-decoration: none !important;  /* Remove underline */
+}
+
+/* Optional: Add hover effect if needed */
+.views-field.views-field-title a:hover {
+    color: #333 !important;  /* Slightly darker on hover */
+    text-decoration: underline !important;  /* Restore underline on hover */
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
