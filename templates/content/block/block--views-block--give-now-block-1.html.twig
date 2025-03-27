@@ -71,19 +71,21 @@
 									{# Render Flag and Icon #}
 									<div class="position-relative">
 										<div class="position-absolute start-0">
-											<div class="{{ flag_classes|join(' ')|trim }}"
-												 aria-hidden="true"
-												 style="visibility: visible; min-width: 150px; display: flex; align-items: center; justify-content: flex-start; padding: 5px 10px;">
+											{% if node.field_flag.value == 'flag_on' %}
+												<div class="{{ flag_classes|join(' ')|trim }}"
+													 aria-hidden="true"
+													 style="visibility: visible; min-width: 150px; display: flex; align-items: center; justify-content: flex-start; padding: 5px 10px;">
 
-												{# Render Icon #}
-												{% if icon %}
-													<i class="{{ icon }} {{ icon_size }} px-1" style="color: {{ icon_color }}"></i>
-												{% endif %}
+													{# Render Icon #}
+													{% if icon %}
+														<i class="{{ icon }} {{ icon_size }} px-1" style="color: {{ icon_color }}"></i>
+													{% endif %}
 
-												{# Render Flag Title #}
-												<span class="flag-title">{{ flag_title }}</span>
+													{# Render Flag Title #}
+													<span class="flag-title">{{ flag_title }}</span>
 
-											</div>
+												</div>
+											{% endif %}
 										</div>
 
 										{# Render Image #}
