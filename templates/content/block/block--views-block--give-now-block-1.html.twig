@@ -30,9 +30,9 @@
 {# Admin tools: Displayed only if user has the necessary permissions #}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="col m-2">
-		<a href="/give-now/sort" class="btn btn-primary">Sort and manage Give
+		<a href="/give-now/sort" class="btn btn-primary">{{ 'Sort and manage Give'|t }}
 			Now</a>
-		<a href="/node/add/gi" class="btn btn-primary">Add new Give Now</a>
+		<a href="/node/add/gi" class="btn btn-primary">{{ 'Add new Give Now'|t }}</a>
 	</div>
 {% endif %}
 
@@ -41,13 +41,12 @@
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
 
-		<div class="container-fluid bg-gray-20 pt-3 pb-5">
+		<div class="container-fluid bg-gray-20 p-1">
 			<div class="row">
+
 				{% for row in view.result %}
 					{% if row._entity is not empty %}
 						{% set node = row._entity %}
-
-						{# Extract field values safely #}
 						{% set flag = node.field_flag.value %}
 						{% set flag_background = node.field_flag_background.value %}
 						{% set flag_title = node.field_flag_title.value %}
@@ -78,12 +77,14 @@
 
 									{# Media Wrapper #}
 									<div class="position-relative">
+
 										{# Render Flag and Icon only if flag is set to "on" #}
 										{% if node.field_flag.value == 'flag_on' %}
 											<div class="position-absolute start-0">
 												<div class="{{ flag_classes|join(' ')|trim }}"
 													 aria-hidden="true"
 													 style="visibility: visible; width: max-content; display: flex; align-items: center; justify-content: flex-start; padding: 5px 10px; white-space: nowrap;">
+
 													{# Render Icon if available #}
 													{% if icon %}
 														<i class="{{ icon }} {{ icon_size }} px-1"
@@ -94,6 +95,7 @@
 													{% if flag_title %}
 														<span class="flag-title">{{ flag_title }}</span>
 													{% endif %}
+
 												</div>
 											</div>
 										{% endif %}
@@ -128,6 +130,7 @@
                                                 {{ node.field_link.title ?: node.label }}
                                             </span>
 										</div>
+
 									</div>
 
 								</a>
@@ -139,8 +142,8 @@
 			</div>
 		</div>
 	{% else %}
-		<p class="no-content-message text-black">No content available.</p>
+		<p class="no-content-message text-black">{{ 'No content available.'|t }}</p>
 	{% endif %}
 {% else %}
-	<p class="no-view-message text-black">View data not available.</p>
+	<p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
 {% endif %}
