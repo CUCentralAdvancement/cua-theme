@@ -2,6 +2,11 @@
 /**
  * @file
  * Template for the Give Now blocks.
+ *
+ * This template renders a grid of "Give Now" items using a Drupal view.
+ * - Includes logic for rendering optional elements (flags, icons, background colors, etc.).
+ * - Implements conditional checks to prevent empty elements.
+ * - Optimized for maintainability and readability.
  */
 #}
 
@@ -10,6 +15,7 @@
 {# Import macros for reusable template logic. #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
+{# Define base classes for the wrapper div #}
 {% set lead_classes = [
 	'view',
 	'view-' ~ id|clean_class,
@@ -21,15 +27,16 @@
 	'py-3',
 ] %}
 
-{# Editing tools #}
+{# Admin tools: Displayed only if user has the necessary permissions #}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="col m-2">
-		<a href="/give-now/sort" class="btn btn-primary">Sort and manage give now</a>
-		<a href="/node/add/gi" class="btn btn-primary">Add new give now</a>
+		<a href="/give-now/sort" class="btn btn-primary">Sort and manage Give
+			Now</a>
+		<a href="/node/add/gi" class="btn btn-primary">Add new Give Now</a>
 	</div>
 {% endif %}
 
-{# Render Content #}
+{# Ensure the view exists before rendering content #}
 {% if content['#view'] is not empty %}
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
@@ -40,7 +47,7 @@
 					{% if row._entity is not empty %}
 						{% set node = row._entity %}
 
-						{# Get field values safely #}
+						{# Extract field values safely #}
 						{% set flag = node.field_flag.value %}
 						{% set flag_background = node.field_flag_background.value %}
 						{% set flag_title = node.field_flag_title.value %}
@@ -49,60 +56,73 @@
 						{% set icon_size = node.field_icon_size.value %}
 						{% set color_background = node.field_color_background.value %}
 
-						{# Define flag container classes dynamically #}
+						{# Dynamically define flag classes, filtering out empty values #}
 						{% set flag_classes = [
 							'flag',
 							'py-2',
 							flag_background ?: '',
 						] | filter(v => v) %}
 
-						<div class="give-now-item col-12 col-md-6 col-lg-3">
-							<div class="m-2 h-100 shadow {{ color_background }}">
-								<a href="{{ node.field_link.uri ?? '#' }}" class="text-decoration-none" aria-label="Read {{ node.label }}">
+						{# Ensure the background class is only applied if the field has a value #}
+						{% set background_class = color_background ? color_background : '' %}
 
-									{# Render Flag and Icon #}
+						<div class="give-now-item col-12 col-md-6 col-lg-3">
+							<div class="m-2 h-100 shadow {{ background_class }}">
+								<a href="{{ node.field_link.uri ?? '#' }}"
+								   class="text-decoration-none"
+								   aria-label="Read {{ node.label }}">
+
 									<div class="position-relative">
-										<div class="position-absolute start-0">
-											{% if node.field_flag.value == 'flag_on' %}
+										{# Render Flag and Icon only if flag is set to "on" #}
+										{% if node.field_flag.value == 'flag_on' %}
+											<div class="position-absolute start-0">
 												<div class="{{ flag_classes|join(' ')|trim }}"
 													 aria-hidden="true"
-													 style="visibility: visible; min-width: 150px; display: flex; align-items: center; justify-content: flex-start; padding: 5px 10px;">
-
-													{# Render Icon #}
+													 style="visibility: visible; width: max-content; display: flex; align-items: center; justify-content: flex-start; padding: 5px 10px; white-space: nowrap;">
+													{# Render Icon if available #}
 													{% if icon %}
-														<i class="{{ icon }} {{ icon_size }} px-1" style="color: {{ icon_color }}"></i>
+														<i class="{{ icon }} {{ icon_size }} px-1"
+														   style="color: {{ icon_color }}"></i>
 													{% endif %}
 
-													{# Render Flag Title #}
-													<span class="flag-title">{{ flag_title }}</span>
-
+													{# Render Flag Title if available #}
+													{% if flag_title %}
+														<span class="flag-title">{{ flag_title }}</span>
+													{% endif %}
 												</div>
-											{% endif %}
-										</div>
-
-										{# Render Image #}
-										{% if node.field_image.entity.uri.value is not empty %}
-											<div class="card-header mb-2">
-												<img src="{{ file_url(node.field_image.entity.uri.value) }}" alt="{{ node.field_image.alt }}" class="img-fluid">
 											</div>
 										{% endif %}
+
+										{# Render Image if available #}
+										{% if node.field_image.entity.uri.value is not empty %}
+											<div class="card-header mb-2">
+												<img src="{{ file_url(node.field_image.entity.uri.value) }}"
+													 alt="{{ node.field_image.alt }}"
+													 class="img-fluid">
+											</div>
+										{% endif %}
+
 									</div>
 
+									{# Render Card Content #}
 									<div class="px-3 pt-2">
 										<h3 class="give-now-title {{ color_text }}">{{ node.label }}</h3>
 
+										{# Render Body content if available #}
 										{% if node.body.value is not empty %}
 											<div class="give-now-body {{ color_text }} mb-2">
 												{{ node.body.value|raw }}
 											</div>
 										{% endif %}
 
+										{# Render "Read More" button #}
 										<div class="card-footer card-story d-flex p-0 mb-5">
-											<span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
-												{{ node.field_link.title ?: node.label }}
-											</span>
+                                            <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
+                                                {{ node.field_link.title ?: node.label }}
+                                            </span>
 										</div>
 									</div>
+
 								</a>
 							</div>
 						</div>
