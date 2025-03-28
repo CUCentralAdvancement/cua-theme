@@ -21,6 +21,14 @@
 	id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
+{# Admin tools: Displayed only if user has the necessary permissions #}
+{% if user.hasPermission('administer site configuration') %}
+	<div class="col m-2">
+		<a href="/give-now/sort" class="btn btn-primary">Sort and manage Give Now</a>
+		<a href="/node/add/gi" class="btn btn-primary">Add new Give Now</a>
+	</div>
+{% endif %}
+
 {# Check if the view contains data #}
 {% if content['#view'] is not empty %}
 	{% set view = content['#view'] %}
