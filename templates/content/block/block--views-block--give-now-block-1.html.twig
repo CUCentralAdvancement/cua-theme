@@ -53,9 +53,9 @@
 
 								{# Main Link Wrapper #}
 								{% if node.field_link is not empty and node.field_link.uri is not empty %}
-								<span href="{{ node.field_link.uri }}"
-									  class="text-decoration-none"
-									  aria-label="Give Now {{ node.label }}">
+								<a href="{{ node.field_link.uri }}"
+								   class="text-decoration-none"
+								   aria-label="Give to {{ node.label }}">
 									{% endif %}
 
 									{# Flag and Inmage  Wrappper #}
@@ -122,8 +122,8 @@
 
 									{# Main Link Wrapper #}
 									{% if node.field_link is not empty and node.field_link.uri is not empty %}
-										</a>
-									{% endif %}
+								</a>
+								{% endif %}
 
 							</div>
 						</div>
