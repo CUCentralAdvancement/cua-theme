@@ -24,8 +24,9 @@
 {# Admin tools: Displayed only if user has the necessary permissions #}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="col m-2">
-		<a href="/give-now/sort" class="btn btn-primary">Sort and manage Give Now</a>
-		<a href="/node/add/gi" class="btn btn-primary">Add new Give Now</a>
+		<a href="/give-now/sort" class="btn btn-primary">{{ 'Sort and manage Give Now'|t }}</a>
+		<a href="/node/add/gi" class="btn btn-primary">{{ 'Add new Give Now'|t }}</a>
+		<a href="/admin/content?title=&type=gi&status=1" class="btn btn-primary">{{ 'Edit give Now Blocks'|t }}</a>
 	</div>
 {% endif %}
 
