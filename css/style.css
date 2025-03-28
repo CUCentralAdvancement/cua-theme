@@ -1738,6 +1738,10 @@ h2#block-cua-theme-main-menu-menu {
     display: none !important;
 }
 
+.give-now-item .card-footer {
+    padding: 0 !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {

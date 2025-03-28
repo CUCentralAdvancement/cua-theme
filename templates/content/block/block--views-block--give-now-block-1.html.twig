@@ -4,157 +4,110 @@
  * Template for the Give Now blocks.
  *
  * This template renders a grid of "Give Now" items using a Drupal view.
- * - Includes logic for rendering optional elements (flags, icons, background colors, etc.).
- * - Implements conditional checks to prevent empty elements.
- * - Optimized for maintainability and readability.
  */
 #}
 
-{{ attach_library('cua_theme/call-to-action') }}
+{{ attach_library('cua_theme/call-to-action') }} {# Attach the required library for styling and scripts #}
 
-{# Import macros for reusable template logic. #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %} {# Import macro for rendering card titles #}
 
-{# Define the block's CSS classes, merging utility classes and conditional styles. #}
+{# Define CSS classes dynamically for the Give Now block #}
 {% set givenow_classes = [
 	'block',
 	'block-' ~ configuration.provider|clean_class,
 	'block-' ~ plugin_id|clean_class,
 	'col',
-	'give-now-item ',
+	'give-now-item',
 	id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Define base classes for the wrapper div #}
-{% set lead_classes = [
-	'view',
-	'view-' ~ id|clean_class,
-	'view-id-' ~ id,
-	'view-display-id-' ~ display_id,
-	dom_id ? 'js-view-dom-id-' ~ dom_id,
-	'give-now-block',
-	'card rounded-0',
-	'py-3',
-] %}
-
-{# Admin tools: Displayed only if user has the necessary permissions #}
-{% if user.hasPermission('administer site configuration') %}
-	<div class="col m-2">
-		<a href="/give-now/sort" class="btn btn-primary">{{ 'Sort and manage Give'|t }}
-			Now</a>
-		<a href="/node/add/gi" class="btn btn-primary">{{ 'Add new Give Now'|t }}</a>
-	</div>
-{% endif %}
-
-{# Ensure the view exists before rendering content #}
+{# Check if the view contains data #}
 {% if content['#view'] is not empty %}
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
 
-		{# Main view content wrapper #}
 		<div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
 			<div class="row">
-
 				{% for row in view.result %}
 					{% if row._entity is not empty %}
 						{% set node = row._entity %}
-						{% set flag = node.field_flag.value %}
-						{% set flag_background = node.field_flag_background.value %}
-						{% set flag_title = node.field_flag_title.value %}
-						{% set icon = node.field_icon.value %}
-						{% set icon_color = node.field_icon_color.value %}
-						{% set icon_size = node.field_icon_size.value %}
-						{% set color_background = node.field_color_background.value %}
-						{% set background_class = color_background ? color_background : '' %}
-						{% set shadow_class = node.field_shadow.value == 'shadow' ? 'shadow' : '' %}
+						{# Generate flag classes dynamically based on field values #}
+						{% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
 
-						{# Dynamically define flag classes, filtering out empty values #}
-						{% set flag_classes = [
-							'flag',
-							'py-2',
-							flag_background ?: '',
-						] | filter(v => v) %}
+						<div{{ attributes|without('id').setAttribute('id', 'give-now-item-' ~ node.id).addClass(givenow_classes).setAttribute('role', 'region') }}>
 
-						{# Content Wrapper #}
-						<div{{ attributes|without('id').setAttribute('id', 'give-now-item-' ~ loop.index).addClass(givenow_classes).setAttribute('role', 'region') }}>
+							<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
 
-							{# Card Wrapper #}
-							<div class="{{ shadow_class ? ' ' ~ shadow_class }}{{ background_class ? ' ' ~ background_class }} m-2 h-100">
-
-								{# Link Wrapper #}
 								<a href="{{ node.field_link.uri ?? '#' }}"
 								   class="text-decoration-none"
 								   aria-label="Read {{ node.label }}">
-
-									{# Media Wrapper #}
 									<div class="position-relative">
 
-										{# Render Flag and Icon only if flag is set to "on" #}
+										{# Display flag if enabled in the node #}
 										{% if node.field_flag.value == 'flag_on' %}
 											<div class="position-absolute start-0">
 												<div class="{{ flag_classes|join(' ')|trim }}"
-													 aria-hidden="true"
-													 style="visibility: visible; width: max-content; display: flex; align-items: center; justify-content: flex-start; padding: 5px 10px; white-space: nowrap;">
-
-													{# Render Icon if available #}
-													{% if icon %}
-														<i class="{{ icon }} {{ icon_size }} px-1"
-														   style="color: {{ icon_color }}"></i>
+													 style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
+													{% if node.field_icon.value %}
+														<i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
+														   style="color: {{ node.field_icon_color.value }}"></i>
 													{% endif %}
-
-													{# Render Flag Title if available #}
-													{% if flag_title %}
-														<span class="flag-title">{{ flag_title }}</span>
+													{% if node.field_flag_title.value %}
+														<span class="flag-title">{{ node.field_flag_title.value }}</span>
 													{% endif %}
-
 												</div>
 											</div>
 										{% endif %}
 
-										{# Render Image if available #}
-										{% if node.field_image.entity.uri.value is not empty %}
+										{# Display image if available #}
+										{% if node.field_image.entity %}
+											{% set image_url = file_url(node.field_image.entity.uri.value) %}
+											{% set alt_text = node.field_image.alt ?: 'Image for ' ~ node.label %}
 											<div class="card-header mb-2">
-												<img src="{{ file_url(node.field_image.entity.uri.value) }}"
-													 alt="{{ node.field_image.alt }}"
+												<img src="{{ image_url }}"
+													 alt="{{ alt_text }}"
 													 class="img-fluid">
 											</div>
 										{% endif %}
-
 									</div>
 
-									{# Render Card Content #}
 									<div class="px-3 pt-2">
 
-										{# Render Title #}
-										<h3 class="give-now-title {{ color_text }}">{{ node.label }}</h3>
+										{# Display the title #}
+										<h3 class="give-now-title">{{ node.label }}</h3>
 
-										{# Render Body content if available #}
+										{# Display body content if available #}
 										{% if node.body.value is not empty %}
-											<div class="give-now-body {{ color_text }} mb-2">
+											<div class="give-now-body mb-2">
 												{{ node.body.value|raw }}
 											</div>
 										{% endif %}
 
-										{# Render button #}
-										<div class="card-footer card-story d-flex p-0 mb-5">
-                                            <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
-                                                {{ node.field_link.title ?: node.label }}
-                                            </span>
-										</div>
+										{# Check if the field_link and its uri are available before rendering the entire card-footer #}
+										{% if node.field_link is not empty and node.field_link.uri is not empty %}
+											<div class="card-footer card-story d-flex p-0 mb-5">
+												<a href="{{ node.field_link.uri }}"
+												   class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
+													{{ node.field_link.title ?: node.label }}
+												</a>
+											</div>
+										{% endif %}
 
 									</div>
-
 								</a>
 							</div>
 						</div>
-
 					{% endif %}
 				{% endfor %}
 			</div>
 		</div>
 	{% else %}
-		<p class="no-content-message text-black">{{ 'No content available.'|t }}</p>
+		{# Display message if no content is available #}
+		<div class="text-center p-4">
+			<p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
+		</div>
 	{% endif %}
 {% else %}
+	{# Display message if the view is empty or not available #}
 	<p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
 {% endif %}
