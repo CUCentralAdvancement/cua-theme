@@ -1733,6 +1733,11 @@ h2#block-cua-theme-main-menu-menu {
     text-decoration: underline !important;  /* Restore underline on hover */
 }
 
+/* Hide 1st for blocks for sample give now */
+.page-node-975 .row .give-now-item:nth-child(-n+4) {
+    display: none !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
