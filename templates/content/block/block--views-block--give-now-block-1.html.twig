@@ -41,7 +41,8 @@
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
 
-		<div class="container-fluid bg-gray-20 p-1">
+		{# Main view content wrapper #}
+		<div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
 			<div class="row">
 
 				{% for row in view.result %}
