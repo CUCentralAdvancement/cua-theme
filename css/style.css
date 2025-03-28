@@ -1738,7 +1738,8 @@ h2#block-cua-theme-main-menu-menu {
     display: none !important;
 }
 
-.give-now-item .card-footer {
+.give-now-item .card-footer,
+.give-now-item .shadow .card-footer {
     padding: 0 !important;
 }
 
