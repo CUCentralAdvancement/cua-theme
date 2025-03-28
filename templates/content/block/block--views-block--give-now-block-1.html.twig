@@ -15,6 +15,16 @@
 {# Import macros for reusable template logic. #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
+{# Define the block's CSS classes, merging utility classes and conditional styles. #}
+{% set givenow_classes = [
+	'block',
+	'block-' ~ configuration.provider|clean_class,
+	'block-' ~ plugin_id|clean_class,
+	'col',
+	'give-now-item ',
+	id ? 'block--class--give-now-' ~ id|clean_class : null,
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+
 {# Define base classes for the wrapper div #}
 {% set lead_classes = [
 	'view',
@@ -66,7 +76,7 @@
 						] | filter(v => v) %}
 
 						{# Content Wrapper #}
-						<div class="give-now-item col-12 col-md-6 col-lg-3">
+						<div{{ attributes|without('id').setAttribute('id', 'give-now-item-' ~ loop.index).addClass(givenow_classes).setAttribute('role', 'region') }}>
 
 							{# Card Wrapper #}
 							<div class="{{ shadow_class ? ' ' ~ shadow_class }}{{ background_class ? ' ' ~ background_class }} m-2 h-100">
