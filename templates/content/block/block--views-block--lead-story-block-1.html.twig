@@ -85,13 +85,13 @@
 
                                         {# Call to Action Button - use text from field_link (if available). #}
                                         <div class="card-footer card-story d-flex p-0 mb-5">
-					                  <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
-					                    {% if node.field_link.title is not empty %}
-                                            {{ node.field_link.title }}
-                                        {% else %}
-                                            {{ node.label }}
-                                        {% endif %}
-					                  </span>
+                                          <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
+                                            {% if node.field_link.title is not empty %}
+                                                {{ node.field_link.title }}
+                                            {% else %}
+                                                {{ node.label }}
+                                            {% endif %}
+                                          </span>
                                         </div>
 
                                     </div>
@@ -110,7 +110,7 @@
     {% else %}
         {# Display message if no content is available #}
         <div class="text-center p-4">
-            <p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
+            <p class="no-content-message text-muted">{{ 'No stories available at the moment. Check back soon!'|t }}</p>
         </div>
     {% endif %}
 {% else %}
