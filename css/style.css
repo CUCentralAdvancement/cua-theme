@@ -1683,6 +1683,7 @@ h2#block-cua-theme-main-menu-menu {
 /* Give now on front */
 /* Fix the blue text issue inside paragraphs and spans */
 .give-now-item a,
+.stories-item a,
 .give-now-item p,
 .give-now-item  span,
 .give-now-item  .flag-title,
@@ -1710,6 +1711,44 @@ h2#block-cua-theme-main-menu-menu {
     margin-left: 0.2rem
 }
 
+/* Styles for Stories Items */
+.stories-item a,
+.stories-item p,
+.stories-item span,
+.stories-item .flag-title,
+.stories-item .give-now-body,
+.stories-item .position-absolute i,
+.stories-item .position-absolute {
+    color: var(--cua-white) !important;
+}
+
+.stories-item .card-link.btn {
+    background-color: transparent !important;
+    border: 2px solid var(--cua-black) !important;
+    border-radius: 0 !important;
+    color: var(--cua-black) !important;
+    font-weight: bold !important;
+}
+
+.stories-item .card-link.btn:hover {
+    color: var(--cua-white) !important;
+}
+
+.stories-item h3 {
+    margin-bottom: 0;
+    margin-left: 0.2rem;
+    color: var(--cua-white) !important;
+}
+
+.stories-item .card-footer .btn.outline-btn-cu-bg-light-grey {
+    background: inherit;
+    border: 2px solid var(--cua-light-grey) !important;
+    color: var(--cua-light-grey) !important;
+}
+
+.block-views-blocklead-story-block-1:hover {
+    background: var(--cua-gray-800) !important;
+}
 /* First 4 rows */
 #draggableviews-table-give-now-page-1-0 tbody tr:nth-child(-n+4) .views-field.views-field-title {
     background-color: #d1f0d1 !important; /* Light green */
