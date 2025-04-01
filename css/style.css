@@ -1771,7 +1771,7 @@ h2#block-cua-theme-main-menu-menu {
     background: black !important;
 }
 
-.views-field.views-field-title a, {
+.views-field.views-field-title a {
     color: black !important;  /* Make text black */
     font-weight: bold !important;  /* Make text bold */
     text-decoration: none !important;  /* Remove underline */
