@@ -23,9 +23,11 @@
 {# Admin tools: Displayed only if user has the necessary permissions #}
 {% if user.hasPermission('administer site configuration') %}
     <div class="col m-2">
-        <a href="/lead-story/sort" class="btn btn-primary">{{ 'Sort and manage lead'|t }}
+        <a href="/lead-story/sort"
+           class="btn btn-primary">{{ 'Sort and manage lead'|t }}
             stories</a>
-        <a href="/node/add/lead_story" class="btn btn-primary">{{ 'Add new lead story'|t }}</a>
+        <a href="/node/add/lead_story"
+           class="btn btn-primary">{{ 'Add new lead story'|t }}</a>
     </div>
 {% endif %}
 
@@ -37,6 +39,7 @@
         {# Main Div Wrappper #}
         <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
             <div class="row">
+
                 {% for row in view.result %}
                     {% if row._entity is not empty %}
                         {% set node = row._entity %}
@@ -81,20 +84,23 @@
                                             </div>
                                         {% endif %}
 
-                                        {# Call to Action Button - use text from field_link (if available). #}
-                                        <div class="card-footer card-story d-flex p-0 mb-5">
-                                          <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
-                                            {% if node.field_link.title is not empty %}
-                                                {{ node.field_link.title }}
-                                            {% else %}
-                                                {{ node.label }}
-                                            {% endif %}
-                                          </span>
-                                        </div>
+
+                                        {# Link Button - use text from field_link (if available). #}
+                                        {% if node.field_link.title or node.label %}
+                                            <div class="card-footer card-story d-flex p-0 mb-5">
+	                                          <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
+	                                            {% if node.field_link.title is not empty %}
+                                                    {{ node.field_link.title }}
+                                                {% else %}
+                                                    {{ node.label }}
+                                                {% endif %}
+	                                          </span>
+                                            </div>
+                                        {% endif %}
 
                                     </div>
 
-                                    {# Main Link Wrapper #}
+                                    {# Main Link Wrapper End #}
                                     {% if node.field_link is not empty and node.field_link.uri is not empty %}
                                 </a>
                                 {% endif %}
