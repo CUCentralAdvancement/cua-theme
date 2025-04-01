@@ -21,13 +21,11 @@
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Admin tools: Displayed only if user has the necessary permissions #}
-{# Add edit button for admins #}
 {% if user.hasPermission('administer site configuration') %}
     <div class="col m-2">
-        <a href="/lead-story/sort" class="btn btn-primary">Sort and manage lead
+        <a href="/lead-story/sort" class="btn btn-primary">{{ 'Sort and manage lead'|t }}
             stories</a>
-        <a href="/node/add/lead_story" class="btn btn-primary">Add new lead
-            story</a>
+        <a href="/node/add/lead_story" class="btn btn-primary">{{ 'Add new lead story'|t }}</a>
     </div>
 {% endif %}
 
@@ -76,10 +74,10 @@
                                             {{ node.label }}
                                         </h3>
 
-                                        {# Display body content if available #}
+                                        {# Render body content if provided. #}
                                         {% if node.body.value is not empty %}
                                             <div class="stories-body mb-2">
-                                                {{ node.body.value|raw }}
+                                                {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
                                             </div>
                                         {% endif %}
 
