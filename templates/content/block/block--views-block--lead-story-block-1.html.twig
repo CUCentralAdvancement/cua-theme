@@ -1,9 +1,8 @@
 {#
 /**
 * @file
-* Template for the Give Now blocks.
+* Template for the Lead Story blocks.
 *
-* This template renders a grid of "Give Now" items using a Drupal view.
 */
 #}
 
@@ -11,11 +10,12 @@
 {{ attach_library('cua_theme/call-to-action') }}
 
 {# Define CSS classes dynamically for the Give Now block #}
-{% set givenow_classes = [
+{% set leadstory_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'col',
+    'm-2 h-100',
     'stories-item',
     id ? 'block--class--stories-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
@@ -45,16 +45,16 @@
                         {% set node = row._entity %}
 
                         {# Main Block Wrappper #}
-                        <div{{ attributes|without('id').setAttribute('id', 'stories-item-' ~ node.id).addClass(givenow_classes).setAttribute('role', 'region') }}>
+                        <div{{ attributes|without('id').setAttribute('id', 'stories-item-' ~ node.id).addClass(leadstory_classes).setAttribute('role', 'region') }}>
 
-                            <div class="{{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }} m-2 h-100">
+                            {# Main Link Wrapper #}
+                            {% if node.field_link is not empty and node.field_link.uri is not empty %}
+                            <a href="{{ node.field_link.uri }}"
+                               class="text-decoration-none"
+                               aria-label="Read more about {{ node.label }}">
+                                {% endif %}
 
-                                {# Main Link Wrapper #}
-                                {% if node.field_link is not empty and node.field_link.uri is not empty %}
-                                <a href="{{ node.field_link.uri }}"
-                                   class="text-decoration-none"
-                                   aria-label="Read more about {{ node.label }}">
-                                    {% endif %}
+                                <div class="p-2">
 
                                     {# Display image if available #}
                                     {% if node.field_image.entity %}
@@ -100,12 +100,13 @@
 
                                     </div>
 
-                                    {# Main Link Wrapper End #}
-                                    {% if node.field_link is not empty and node.field_link.uri is not empty %}
-                                </a>
-                                {% endif %}
+                                </div>
 
-                            </div>
+                                {# Main Link Wrapper End #}
+                                {% if node.field_link is not empty and node.field_link.uri is not empty %}
+                            </a>
+                            {% endif %}
+
                         </div>
                     {% endif %}
                 {% endfor %}
