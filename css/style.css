@@ -1750,17 +1750,28 @@ h2#block-cua-theme-main-menu-menu {
     background: var(--cua-gray-800) !important;
 }
 /* First 4 rows */
-#draggableviews-table-give-now-page-1-0 tbody tr:nth-child(-n+4) .views-field.views-field-title {
+#draggableviews-table-give-now-page-1-0 tbody tr:nth-child(-n+4) .views-field.views-field-title,
+#draggableviews-table-lead-story-page-1-0 tbody tr:nth-child(-n+4) .views-field.views-field-title {
     background-color: #d1f0d1 !important; /* Light green */
 }
 
 /* Rows 5 and beyond */
-#draggableviews-table-give-now-page-1-0 tbody tr:nth-child(n+5) .views-field.views-field-title {
+#draggableviews-table-give-now-page-1-0 tbody tr:nth-child(n+5) .views-field.views-field-title,
+#draggableviews-table-lead-story-page-1-0 tbody tr:nth-child(n+5) .views-field.views-field-title {
     background-color: #f9bfbf !important /* Light red */
 }
 
+#draggableviews-table-lead-story-page-1-0 .lead-story-sort #block-cua-theme-content a {
+    border: none !important;
+}
+
 /* Style links inside .views-field.views-field-title */
-.views-field.views-field-title a {
+
+.views-field.views-field-edit-node {
+    background: black !important;
+}
+
+.views-field.views-field-title a, {
     color: black !important;  /* Make text black */
     font-weight: bold !important;  /* Make text bold */
     text-decoration: none !important;  /* Remove underline */
