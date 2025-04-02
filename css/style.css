@@ -1793,6 +1793,15 @@ h2#block-cua-theme-main-menu-menu {
     padding: 0 !important;
 }
 
+#block--node--basic-block--633 {
+    padding: 0 0 0 0.9rem !important;
+    margin: 0 !important;
+}
+
+#block--node--basic-block--633 h3 {
+    font-size: 2rem !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
