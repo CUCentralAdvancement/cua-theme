@@ -22,7 +22,7 @@
 
 {# Admin tools: Displayed only if user has the necessary permissions #}
 {% if user.hasPermission('administer site configuration') %}
-    <div class="col m-2">
+    <div class="col d-flex justify-content-center mt-2">
         <a href="/lead-story/sort"
            class="btn btn-primary">{{ 'Sort and manage lead'|t }}
             stories</a>
