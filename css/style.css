@@ -1767,18 +1767,18 @@ h2#block-cua-theme-main-menu-menu {
 
 /* Style links inside .views-field.views-field-title */
 
-.views-field.views-field-edit-node {
+#views-form-lead-story-page-1 .views-field.views-field-edit-node {
     background: black !important;
 }
 
-.views-field.views-field-title a {
+#views-form-lead-story-page-1 .views-field.views-field-title a {
     color: black !important;  /* Make text black */
     font-weight: bold !important;  /* Make text bold */
     text-decoration: none !important;  /* Remove underline */
 }
 
 /* Optional: Add hover effect if needed */
-.views-field.views-field-title a:hover {
+#views-form-lead-story-page-1 .views-field.views-field-title a:hover {
     color: #333 !important;  /* Slightly darker on hover */
     text-decoration: underline !important;  /* Restore underline on hover */
 }
