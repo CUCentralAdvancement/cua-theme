@@ -1802,6 +1802,10 @@ h2#block-cua-theme-main-menu-menu {
     font-size: 2rem !important;
 }
 
+.contextual-region .contextual .contextual-links li a {
+    color: white !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {

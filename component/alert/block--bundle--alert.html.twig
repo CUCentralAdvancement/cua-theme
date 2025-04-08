@@ -25,13 +25,22 @@
     color_background ?: null,
     color_border ?: null,
     container_size ?: null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null
-] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+]|merge(utility_classes ? utility_classes : [])|filter(v => v)|join(' ') %}
 
-{% set unique_id = 'block--node-alert--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
-{% set heading_id = unique_id ~ '--label' %}
+{# Generate unique ID and an associated aria-labelledby ID for accessibility. #}
+{% set unique_id = 'block--node-' ~ '-alert' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set labelledby_id = unique_id ~ '--label' %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(alert_classes).setAttribute('role', 'region').setAttribute('aria-labelledby', heading_id) }}>
+{# Render accordion wrapper with role and accessibility bindings. #}
+<div{{ attributes
+|without('id')
+    .setAttribute('id', unique_id)
+    .addClass(alert_classes)
+    .setAttribute('role', 'region')
+    .setAttribute('aria-labelledby', labelledby_id)
+}}>
+
     <div class="container">
         <div class="row">
 
@@ -56,12 +65,13 @@
             {# Dynamic column size if icon exists #}
             <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
 
-                {# Accessible heading, no hidden link wrapper #}
+                {{ title_prefix }}
                 {% if label %}
                     <h3 id="{{ heading_id }}" class="display-4 card-text lead title {{ text_color ?: '' }}">
                         {{ label }}
                     </h3>
                 {% endif %}
+                {{ title_suffix }}
 
                 {# Render the body content #}
                 {% if content %}
