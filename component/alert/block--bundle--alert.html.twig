@@ -1,26 +1,23 @@
 {#
 /**
-* @file
-* Template for the Alert component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Template for the Alert component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ *
+ * Available fields located in:
+ * - cua_theme.theme
+ */
 #}
 
-{# Attach the library for the alert component #}
 {{ attach_library('cua_theme/alert') }}
 
-{# Import macros for reusable components like title, icon, body, footer #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Define alert classes #}
 {% set alert_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -31,16 +28,15 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Generate a unique ID for the alert based on block content ID #}
 {% set unique_id = 'block--node-alert--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set heading_id = unique_id ~ '--label' %}
 
-{# Begin the alert component's HTML structure #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(alert_classes).setAttribute('role', 'region') }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(alert_classes).setAttribute('role', 'region').setAttribute('aria-labelledby', heading_id) }}>
     <div class="container">
         <div class="row">
 
-            {# Close button for dismissing the alert, accessible with aria-label #}
-            <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+            {# Accessible close button #}
+            <button type="button" class="btn-close" aria-label="{{ 'Close alert'|t }}" data-bs-dismiss="alert"></button>
 
             {# Icon rendering section, if an icon is provided #}
             {% if icon %}
@@ -57,22 +53,17 @@
                 </div>
             {% endif %}
 
-            {# Content area with dynamic column size based on presence of an icon #}
+            {# Dynamic column size if icon exists #}
             <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
 
-                {# Render the title using the title macro, with various optional parameters #}
-                {{ titleMacros.render_title(
-                    label,
-                    title_prefix,
-                    title_suffix,
-                    center_content,
-                    text_alignment,
-                    text_color,
-                    padding,
-                    links
-                ) }}
+                {# Accessible heading, no hidden link wrapper #}
+                {% if label %}
+                    <h3 id="{{ heading_id }}" class="display-4 card-text lead title {{ text_color ?: '' }}">
+                        {{ label }}
+                    </h3>
+                {% endif %}
 
-                {# Render the body content, if present #}
+                {# Render the body content #}
                 {% if content %}
                     {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                     {{ bodyMacros.render_body(
@@ -83,7 +74,7 @@
                     ) }}
                 {% endif %}
 
-                {# Render footer content, if links are provided #}
+                {# Footer/links section, if present #}
                 {% if links %}
                     {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                     {{ cardFooterMacros.render_card_footer(
