@@ -53,59 +53,75 @@
 {# Generate unique ID based on content ID for accessibility and uniqueness #}
 {% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Content Section - Start with unique ID and dynamic container classes #}
-<div{{ attributes.setAttribute('id', unique_id).addClass(container_classes).setAttribute('role', 'region') }}>
+{# Render banner section #}
+<section{{ attributes.setAttribute('id', unique_id).addClass(container_classes).setAttribute('role', 'region') }}>
 
-    {# Image container with dynamic background image and other styling classes #}
-    {% set bg_image_url = content.field_image is not empty ? file_url(content.field_image['#items'].entity.uri.value) : '' %}
+    {# Contextual links fallback support for editors #}
+    {{ title_prefix }}
+    {{ title_suffix }}
+
+    {# Background image handling #}
+    {% set bg_image_url = '' %}
+    {% if content.field_image is not empty and content.field_image['#items'].entity is not empty %}
+        {% set bg_image_url = file_url(content.field_image['#items'].entity.uri.value) %}
+    {% endif %}
+
     <div class="{{ image_container_classes }}"
          style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
 
-        {# Banner Body (Title, Content, Links) #}
-        <div class="{{ banner_body_classes }}"{% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
+        <div class="{{ banner_body_classes }}"
+                {% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}
+                {% if animation_delay %} data-animation-delay="{{ animation_delay }}"{% endif %}
+                {% if animation_speed %} data-animation-speed="{{ animation_speed }}"{% endif %}>
 
-            {# Render Banner Title using imported macros for consistency #}
+            {# Render Banner Title #}
             {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-            {{ titleMacros.render_title(
-                label,
-                title_prefix,
-                title_suffix,
-                center_content,
-                text_alignment,
-                text_color,
-                padding,
-                links
-            ) }}
-
-            {# Render Banner Body Content (if available) #}
-            {% if content %}
-                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                {{ bodyMacros.render_body(
-                    content,
-                    padding,
+            {% if titleMacros is defined %}
+                {{ titleMacros.render_title(
+                    label,
+                    title_prefix,
+                    title_suffix,
+                    center_content,
+                    text_alignment,
                     text_color,
-                    text_alignment
+                    padding,
+                    links
                 ) }}
             {% endif %}
 
-            {# Render Footer Links (if provided) #}
+            {# Render Banner Body Content #}
+            {% if content %}
+                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+                {% if bodyMacros is defined %}
+                    {{ bodyMacros.render_body(
+                        content,
+                        padding,
+                        text_color,
+                        text_alignment
+                    ) }}
+                {% endif %}
+            {% endif %}
+
+            {# Render Footer Links #}
             {% if links %}
                 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                {{ cardFooterMacros.render_card_footer(
-                    links,
-                    container_size,
-                    color_background,
-                    position_container,
-                    text_alignment,
-                    padding,
-                    outline,
-                    button_color,
-                    button_layout
-                ) }}
+                {% if cardFooterMacros is defined %}
+                    {{ cardFooterMacros.render_card_footer(
+                        links,
+                        container_size,
+                        color_background,
+                        position_container,
+                        text_alignment,
+                        padding,
+                        outline,
+                        button_color,
+                        button_layout
+                    ) }}
+                {% endif %}
             {% endif %}
 
         </div> <!-- /.banner-body -->
 
     </div> <!-- /.banner-image-container -->
 
-</div> <!-- /.container -->
+</section>
