@@ -10,14 +10,16 @@
 * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
 #}
 
-{# Import macros #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
 
 {# Attach the library #}
 {{ attach_library('cua_theme/counter') }}
 
-{# Define classes #}
+
+{# Import macros #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
+
+{# Define counter classes, use default filter for utility classes #}
 {% set counter_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -27,7 +29,7 @@
     color_border ?: null,
     container_size ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
+] | merge(utility_classes|default([])) | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
@@ -47,9 +49,8 @@
         links
     ) }}
 
-    {# Include image or icon macros #}
+    {# Conditionally import and render image or icon #}
     {% if card_image %}
-        {# Render the image #}
         {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
         {{ cardImageMacros.render_card_image(
             card_image,
@@ -62,7 +63,6 @@
             links
         ) }}
     {% elseif icon %}
-        {# Render the icon #}
         {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
         {{ iconMacros.render_icon(
             icon,
@@ -83,10 +83,10 @@
         after_number
     ) }}
 
-    {# Render Body #}
+    {# Conditionally render body if content exists #}
     {% if content %}
         {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-        {{ bodyMacros.render_body (
+        {{ bodyMacros.render_body(
             content,
             padding,
             text_color,
@@ -94,10 +94,10 @@
         ) }}
     {% endif %}
 
-    {# Render Footer #}
+    {# Conditionally render footer if links exist #}
     {% if links %}
         {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-        {{ cardFooterMacros.render_card_footer (
+        {{ cardFooterMacros.render_card_footer(
             links,
             container_size,
             color_background,
