@@ -18,39 +18,39 @@
 {{ attach_library('cua_theme/heading') }}
 
 {# Define CTA classes #}
-{% set basic_classes = [
+{% set heading_classes = [
 	'container',
 	'block',
 	'block-' ~ configuration.provider|clean_class,
 	'block-' ~ plugin_id|clean_class,
-	'heading-block',
+	'heading',
 	'px-2 pt-4 clearfix',
 	text_color ?: null,
 	id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-heading-block' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set unique_id = 'block--node-' ~ '-heading' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes).setAttribute('role', 'region') }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(heading_classes).setAttribute('role', 'region') }}>
 
 	<div class="row pt-2">
 
 		{# Render the title to allow editing #}
 		{{ title_prefix ?? '' }}
-		<h1 class="visually-hidden" aria-hidden="true">{{ label }}</h1>
+		{# Ensure the title is properly escaped to prevent XSS vulnerabilities #}
+		<h1 class="visually-hidden">{{ label|e }}</h1>
 		{{ title_suffix ?? '' }}
 
 		{# Render the new title #}
 		{% if heading %}
-			<h1{{ title_attributes.addClass('title') }}>{{ heading }}</h1>
-			{#<span aria-hidden="true" class="heading-square__accent"></span>  #}
+			<h1{{ title_attributes.addClass('title') }}>{{ heading|e }}</h1>
 		{% endif %}
 
 		{# Render sub-title #}
 		{% if subtitle %}
-			<h2{{ title_attributes.addClass('title px-3 pb-4') }}>{{ subtitle }}</h2>
+			<h2{{ title_attributes.addClass('title px-3 pb-4') }}>{{ subtitle|e }}</h2>
 		{% endif %}
 	</div>
 
