@@ -13,6 +13,9 @@
 {# Attach the banner-specific theme library #}
 {{ attach_library('cua_theme/banner') }}
 
+{# Render Banner Title using imported macros for consistency #}
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+
 {# Set container classes dynamically based on configuration #}
 {% set container_classes = [
     'block',
@@ -41,14 +44,11 @@
     'banner-body mx-5',
     color_background ?: null,
     text_color ?: null,
-    effect_copy_class,
+    effect_copy_class ?: null,
     padding ?: null,
     'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] | filter(v => v) | join(' ') %}
-
-{# Set animation classes for dynamic animations if any are specified #}
-{% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
 
 {# Generate unique ID based on content ID for accessibility and uniqueness #}
 {% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
@@ -56,16 +56,19 @@
 {# Content Section - Start with unique ID and dynamic container classes #}
 <div{{ attributes.setAttribute('id', unique_id).addClass(container_classes).setAttribute('role', 'region') }}>
 
+    {# Set animation classes for dynamic animations if any are specified #}
+    {% set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null %}
+
     {# Image container with dynamic background image and other styling classes #}
     {% set bg_image_url = content.field_image is not empty ? file_url(content.field_image['#items'].entity.uri.value) : '' %}
-    <div class="{{ image_container_classes }}"
-         style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
+
+    {# Image container #}
+    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-size: cover; background-position: center;">
 
         {# Banner Body (Title, Content, Links) #}
-        <div class="{{ banner_body_classes }}"{% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
+        <div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
 
-            {# Render Banner Title using imported macros for consistency #}
-            {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+            {# Render Title Content (if available) #}
             {{ titleMacros.render_title(
                 label,
                 title_prefix,
