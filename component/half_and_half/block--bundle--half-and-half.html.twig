@@ -24,6 +24,8 @@
 {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay]|filter(v => v) %}
 {% set data_animation_classes = animation_classes|join(' ')|trim %}
 {% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
+{# Generate a unique ID for this block instance #}
+{% set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
 {# Define main block classes #}
 {% set hh_classes = [
@@ -38,9 +40,6 @@
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class
 ] | filter(v => v) | merge(utility_classes ?: []) | join(' ')|trim %}
 
-{# Generate a unique ID for this block instance #}
-{% set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
-
 {# Render the main container #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
@@ -53,7 +52,7 @@
                     {% set is_7030_layout = layout == '4' %}
                     {% set is_5050_layout = layout == '50_50' %}
 
-                    {# Define column classes dynamically based on layout #}
+                    {# Define column classes dynamically based on user selected layout #}
                     {% set col_classes = {
                         'img': [is_7030_layout ? 'col-md-4' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, padding, image_alignment],
                         'content': [is_7030_layout ? 'col-md-8' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, text_alignment, padding]
@@ -61,7 +60,7 @@
 
                     {% if layout %}
                         {# Image Column - Always appears first on mobile #}
-                        <div class="{{ col_classes.img|filter(v => v)|join(' ') }}
+                        <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }}
                {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
                             {# Render media: Video, Image, or Icon #}
                             {% if provider %}
@@ -92,9 +91,10 @@
                         </div>
 
                         {# Content Column - Always appears last on mobile #}
-                        <div class="{{ col_classes.content|filter(v => v)|join(' ') }}
+                        <div class="{{ col_classes.content|filter(v => v)|join(' ')|trim }}
                {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}">
                             <div class="row mx-5 pt-3">
+
                                 {# Render title #}
                                 {{ titleMacros.render_title(
                                     label,
@@ -134,6 +134,7 @@
                                         single_link ? true : false
                                     ) }}
                                 {% endif %}
+
                             </div>
                         </div>
                     {% endif %}
