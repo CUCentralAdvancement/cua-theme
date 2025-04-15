@@ -27,7 +27,7 @@
 	'px-2 pt-4 clearfix',
 	text_color ?: null,
 	id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ')|trim %}
 
 {# Generate unique ID #}
 {% set unique_id = 'block--node-' ~ '-heading' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
@@ -36,7 +36,6 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(heading_classes).setAttribute('role', 'region') }}>
 
 	<div class="row pt-2">
-
 		{# Render the title to allow editing #}
 		{{ title_prefix ?? '' }}
 		{# Ensure the title is properly escaped to prevent XSS vulnerabilities #}
