@@ -1806,6 +1806,22 @@ h2#block-cua-theme-main-menu-menu {
     color: white !important;
 }
 
+.campus-card .card-footer a {
+    display: inline-block;
+    background-color: transparent !important;
+    border: 2px solid var(--cua-black) !important;
+    border-radius: 0 !important;
+    color: var(--cua-black) !important;
+    font-weight: bold !important;
+    padding: 0.5rem 1rem;
+    text-decoration: none !important;
+}
+
+.campus-card .card-footer a:hover {
+    background-color: var(--cua-black) !important;
+    color: var(--cua-white) !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
