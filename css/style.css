@@ -1808,18 +1808,47 @@ h2#block-cua-theme-main-menu-menu {
 
 .campus-card .card-footer a {
     display: inline-block;
-    background-color: transparent !important;
-    border: 2px solid var(--cua-black) !important;
-    border-radius: 0 !important;
-    color: var(--cua-black) !important;
-    font-weight: bold !important;
+    background-color: transparent;
+    border: 2px solid var(--cua-black);
+    border-radius: 0;
+    color: var(--cua-black);
+    font-weight: bold;
     padding: 0.5rem 1rem;
-    text-decoration: none !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.campus-card .card-footer a:hover {
-    background-color: var(--cua-black) !important;
-    color: var(--cua-white) !important;
+.campus-card .card-footer a:hover,
+.campus-card .card-footer a:focus {
+    background-color: var(--cua-black);
+    color: var(--cua-white);
+    text-decoration: none;
+    outline: none;
+}
+
+.campus-card a {
+    color: var(--cua-black);
+    text-decoration: underline;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.campus-card a:hover {
+    text-decoration: none;
+}
+
+/* Text elements */
+.campus-card p,
+.campus-card ul,
+.campus-card ol,
+.campus-card li,
+.campus-card h1,
+.campus-card h2,
+.campus-card h3,
+.campus-card h4,
+.campus-card h5,
+.campus-card h6 {
+    color: var(--cua-black);
+    line-height: 1.6;
 }
 
 /* Reduce animation for users who prefer reduced motion */
