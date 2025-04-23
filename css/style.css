@@ -1809,19 +1809,19 @@ h2#block-cua-theme-main-menu-menu {
 .campus-card .card-footer a {
     display: inline-block;
     background-color: transparent;
-    border: 2px solid var(--cua-black);
+    border: none;
     border-radius: 0;
-    color: var(--cua-black);
-    font-weight: bold;
+    color: rgb(132, 104, 32);
+    font-weight: normal;
     padding: 0.5rem 1rem;
     text-decoration: none;
     transition: all 0.3s ease;
+    font-size: .9rem !important;
 }
 
 .campus-card .card-footer a:hover,
 .campus-card .card-footer a:focus {
-    background-color: var(--cua-black);
-    color: var(--cua-white);
+    color: var(--cua-black);
     text-decoration: none;
     outline: none;
 }
@@ -1834,6 +1834,19 @@ h2#block-cua-theme-main-menu-menu {
 
 .campus-card a:hover {
     text-decoration: none;
+}
+
+.read-more-override {
+    color: var(--cua-blue) !important;
+    text-decoration: none !important;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.read-more-override:hover {
+    color: var(--cua-blue-hover) !important; /* Replace with your theme's highlight color */
+    text-decoration: underline !important;
 }
 
 /* Text elements */
