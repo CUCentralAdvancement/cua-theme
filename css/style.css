@@ -1851,6 +1851,23 @@ h2#block-cua-theme-main-menu-menu {
     line-height: 1.6;
 }
 
+.campus-card h2,
+.campus-card h3,
+.campus-card h4,
+.campus-card h5,
+.campus-card h6 {);
+    line-height: 1.2 !important;
+}
+
+.campus-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campus-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25); /* optional: adds a more elevated shadow */
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
