@@ -736,7 +736,15 @@ div#block--block-content--9f3104d8-4eb3-45b0-bb46-2462e6defff1-808 {
 
 /* Styling for a specific block */
 div#block--node--basic-block--819 {
-    margin: 23px 0 0; /* Margin at the top */
+    margin: 40px 0 0; /* Margin at the top */
+}
+
+div#block--node--basic-block--808 {
+    margin-top: 2rem;
+}
+
+nav#block-cua-theme-campusoffices {
+    margin-top: .85rem;
 }
 
 /* Styling for funds */
