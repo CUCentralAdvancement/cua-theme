@@ -16,8 +16,6 @@ global-styling:
         weight: -11
       component/macros/css/card.css:
         weight: -11
-      css/custom.css:
-        weight: -11
       templates/layout/footer/css/footer.css:
         weight: -11
       layouts/css/layout-builder.css:
