@@ -5,6 +5,7 @@
  */
 #}
 
+{# Attach library. #}
 {{ attach_library('cua_theme/call-to-action') }}
 
 {# Import macros for reusable template logic. #}
@@ -78,8 +79,7 @@
 <div{{ attributes|without('id')
     .setAttribute('id', unique_id)
     .addClass(cta_classes)
-    .setAttribute('role', 'region')
-}}
+    .setAttribute('role', 'region') }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}" {% endif %}>
 
     {# Optional screen reader title for accessibility. #}
