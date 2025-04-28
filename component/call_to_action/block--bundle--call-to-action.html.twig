@@ -2,34 +2,6 @@
 /**
  * @file
  * Template for the Call to Action (CTA) component.
- *
- * This template is designed for flexibility and supports a variety of content types and configurations.
- * It leverages Bootstrap 5 utility classes and includes custom animations and styles.
- *
- * Bootstrap Documentation:
- * https://getbootstrap.com/docs/5.3
- *
- * Full List of Bootstrap Utility Classes:
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Custom animations use the Animate.css library:
- * https://animate.style/
- *
- * Variables:
- * - configuration: Provides configuration details for the block.
- * - plugin_id: The unique plugin ID for this block.
- * - animate_trigger: Class applied to trigger animations.
- * - color_background, color_border, container_size, padding, margin, shadow: Custom styles for the block.
- * - animation, animation_speed, animation_delay: Define animation styles and timing.
- * - prefers_reduced_motion: Determines if animations should be disabled for accessibility.
- * - links: A collection of links for the CTA; typically includes a primary call to action.
- * - flag: An optional flag element, such as a label or badge.
- * - provider: Indicates if a video provider (e.g., YouTube) is used.
- * - card_image: The main image for the card.
- * - icon: An optional icon for the CTA.
- * - caption: Caption text for the card.
- * - content: The body content of the card.
- * - label: The title of the card or block.
  */
 #}
 
@@ -37,8 +9,14 @@
 
 {# Import macros for reusable template logic. #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
+{% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+{% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+{% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Define the block's CSS classes, merging utility classes and conditional styles. #}
+{# Define block CSS classes. #}
 {% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -57,7 +35,7 @@
     id ? 'block--class--call-to-action-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Define animation classes based on accessibility settings. #}
+{# Define animation classes for motion effects. #}
 {% set data_animation_classes = prefers_reduced_motion ? [] : [
     'animate__animated',
     animation ?: null,
@@ -65,121 +43,160 @@
     animation_delay ?: null,
 ] | filter(v => v) | join(' ') %}
 
-{# Generate a unique ID for the block. #}
+{# Unique block ID. #}
 {% set unique_id = 'block-call-to-action-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'})|clean_class %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region') }}
+{# Single link check. #}
+{% set single_link = links|length == 1 ? links|first : null %}
+{% set has_real_link = single_link and single_link.url is not empty %}
+
+{# Build reusable card footer classes (if needed later). #}
+{% set multiple_links = links|length > 1 %}
+{% set card_footer_classes = [
+    'card-footer',
+    'd-flex',
+    multiple_links ? 'multiple-links' : '',
+    container_size,
+    position_container,
+    text_alignment,
+    padding,
+    'mb-5',
+] | filter(v => v) | join(' ') %}
+
+{% set outline_class = outline ? (outline ~ 'btn-' ~ (button_color ?: 'cu-bg-black')) : ('btn-' ~ (button_color ?: 'cu-bg-black')) %}
+{% set card_footer_link_classes = [
+    'card-link',
+    'btn',
+    outline_class,
+    'text-decoration-none',
+    position_container,
+    text_alignment,
+    'p-2',
+    'mt-3',
+] | filter(v => v) | join(' ') %}
+
+<div{{ attributes|without('id')
+    .setAttribute('id', unique_id)
+    .addClass(cta_classes)
+    .setAttribute('role', 'region')
+}}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}" {% endif %}>
 
-    {# Screen reader-only title for accessibility. #}
+    {# Optional screen reader title for accessibility. #}
     {% if label %}
         {{ title_prefix ?? '' }}
         <h3 class="sr-only">{{ label|e }}</h3>
         {{ title_suffix ?? '' }}
     {% endif %}
 
-    {# Handle single link configuration for the entire CTA block. #}
-    {% set single_link = links|length == 1 ? links|first : null %}
-
-    {% if single_link %}
-    <a href="{{ single_link.url ?: '#' }}"
+    {# Open <a> or <div> depending on presence of real link. #}
+    {% if has_real_link %}
+    <a href="{{ single_link.url }}"
        class="cta-link"
             {% if single_link.title %} aria-label="{{ single_link.title }}" {% endif %}>
-        {% endif %}
+        {% else %}
+        <div class="cta-link">
+            {% endif %}
 
-        {# Render optional flag, if provided. #}
-        {% if flag %}
-            {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
-            {{ flagMacros.render_flag(
-                flag,
-                flag_title,
-                icon,
-                icon_size,
-                flag_background
-            ) }}
-        {% endif %}
+            {# Optional Flag #}
+            {% if flag %}
+                {{ flagMacros.render_flag(
+                    flag,
+                    flag_title,
+                    icon,
+                    icon_size,
+                    flag_background
+                ) }}
+            {% endif %}
 
-        {# Render provider content, image, or icon as applicable. #}
-        {% if provider %}
-            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-        {% elseif card_image %}
-            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-            {{ cardImageMacros.render_card_image(
-                card_image,
-                position_container,
+            {# Image / Icon / Video Master #}
+            {% if provider %}
+                {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+            {% elseif card_image %}
+                {{ cardImageMacros.render_card_image(
+                    card_image,
+                    position_container,
+                    text_alignment,
+                    text_color,
+                    image_size,
+                    visibility,
+                    content,
+                    true
+                ) }}
+            {% elseif icon %}
+                {{ iconMacros.render_icon(
+                    icon,
+                    icon_size,
+                    icon_color,
+                    padding,
+                    position_container,
+                    text_alignment
+                ) }}
+            {% endif %}
+
+            {# Optional Caption #}
+            {% if caption %}
+                {{ captionMacros.render_caption(
+                    caption,
+                    padding,
+                    text_color,
+                    text_alignment
+                ) }}
+            {% endif %}
+
+            {# Title #}
+            {{ titleMacros.render_title(
+                label,
+                title_prefix,
+                title_suffix,
+                center_content,
                 text_alignment,
                 text_color,
-                image_size,
-                visibility,
-                content,
-                true
+                padding
             ) }}
-        {% elseif icon %}
-            {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-            {{ iconMacros.render_icon(
-                icon,
-                icon_size,
-                icon_color,
-                padding,
-                position_container,
-                text_alignment
-            ) }}
-        {% endif %}
 
-        {# Render caption if available. #}
-        {% if caption %}
-            {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
-            {{ captionMacros.render_caption(
-                caption,
-                padding,
-                text_color,
-                text_alignment
-            ) }}
-        {% endif %}
+            {# Body Content #}
+            {% if content %}
+                {{ bodyMacros.render_body(
+                    content,
+                    padding,
+                    text_color,
+                    text_alignment
+                ) }}
+            {% endif %}
 
-        {# Render the title using the imported macro. #}
-        {{ titleMacros.render_title(
-            label,
-            title_prefix,
-            title_suffix,
-            center_content,
-            text_alignment,
-            text_color,
-            padding
-        ) }}
+            {# Footer Links #}
+            {% if links %}
+                {% if has_real_link %}
+                    {# Fake Button Rendered When Card is Entire Link #}
+                    <div class="{{ card_footer_classes }}">
+          <span class="{{ card_footer_link_classes }}">
+            {{ single_link.title }}
+          </span>
+                    </div>
+                {% else %}
+                    {# Normal Footer Using Macro #}
+                    {{ cardFooterMacros.render_card_footer(
+                        links,
+                        container_size,
+                        color_background,
+                        position_container,
+                        text_alignment,
+                        padding,
+                        outline,
+                        button_color,
+                        button_layout,
+                        false,
+                        true
+                    ) }}
+                {% endif %}
+            {% endif %}
 
-        {# Render body content if provided. #}
-        {% if content %}
-            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-            {{ bodyMacros.render_body(
-                content,
-                padding,
-                text_color,
-                text_alignment
-            ) }}
-        {% endif %}
-
-        {# Render footer links or buttons, if available. #}
-        {% if links %}
-            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-            {{ cardFooterMacros.render_card_footer(
-                links,
-                container_size,
-                color_background,
-                position_container,
-                text_alignment,
-                padding,
-                outline,
-                button_color,
-                button_layout,
-                false,
-                single_link ? true : false
-            ) }}
-        {% endif %}
-
-        {# Close the single link if applicable. #}
-        {% if single_link %}
+            {# Close <a> or <div> correctly #}
+            {% if has_real_link %}
     </a>
-    {% endif %}
+    {% else %}
+</div>
+{% endif %}
 
 </div>
