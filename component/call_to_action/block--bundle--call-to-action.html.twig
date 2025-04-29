@@ -10,12 +10,6 @@
 
 {# Import macros for reusable template logic. #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
-{% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-{% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-{% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {# Define block CSS classes. #}
 {% set cta_classes = [
@@ -53,6 +47,8 @@
 
 {# Build reusable card footer classes (if needed later). #}
 {% set multiple_links = links|length > 1 %}
+
+{# Footer Links #}
 {% set card_footer_classes = [
     'card-footer',
     'd-flex',
@@ -76,10 +72,7 @@
     'mt-3',
 ] | filter(v => v) | join(' ') %}
 
-<div{{ attributes|without('id')
-    .setAttribute('id', unique_id)
-    .addClass(cta_classes)
-    .setAttribute('role', 'region') }}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region') }}
         {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}" {% endif %}>
 
     {# Optional screen reader title for accessibility. #}
@@ -91,15 +84,14 @@
 
     {# Open <a> or <div> depending on presence of real link. #}
     {% if has_real_link %}
-    <a href="{{ single_link.url }}"
-       class="cta-link"
-            {% if single_link.title %} aria-label="{{ single_link.title }}" {% endif %}>
+    <a href="{{ single_link.url }}" class="cta-link"{% if single_link.title %} aria-label="{{ single_link.title }}" {% endif %}>
         {% else %}
         <div class="cta-link">
             {% endif %}
 
             {# Optional Flag #}
             {% if flag %}
+                {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
                 {{ flagMacros.render_flag(
                     flag,
                     flag_title,
@@ -113,6 +105,7 @@
             {% if provider %}
                 {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
             {% elseif card_image %}
+                {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
                 {{ cardImageMacros.render_card_image(
                     card_image,
                     position_container,
@@ -124,6 +117,7 @@
                     true
                 ) }}
             {% elseif icon %}
+                {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
                 {{ iconMacros.render_icon(
                     icon,
                     icon_size,
@@ -136,6 +130,7 @@
 
             {# Optional Caption #}
             {% if caption %}
+                {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
                 {{ captionMacros.render_caption(
                     caption,
                     padding,
@@ -157,6 +152,7 @@
 
             {# Body Content #}
             {% if content %}
+                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                 {{ bodyMacros.render_body(
                     content,
                     padding,
@@ -167,12 +163,13 @@
 
             {# Footer Links #}
             {% if links %}
+                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                 {% if has_real_link %}
                     {# Fake Button Rendered When Card is Entire Link #}
                     <div class="{{ card_footer_classes }}">
-          <span class="{{ card_footer_link_classes }}">
-            {{ single_link.title }}
-          </span>
+			          <span class="{{ card_footer_link_classes }}">
+			            {{ single_link.title }}
+			          </span>
                     </div>
                 {% else %}
                     {# Normal Footer Using Macro #}
