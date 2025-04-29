@@ -1,199 +1,124 @@
 {#
 /**
- * @file
- * Template for the Call to Action (CTA) component.
- */
+* @file
+* Template for the Lead Story blocks.
+*
+*/
 #}
 
-{# Attach library. #}
+{# Attach the required library for styling and scripts #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Import macros for reusable template logic. #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-
-{# Define block CSS classes. #}
-{% set cta_classes = [
+{# Define CSS classes dynamically for the Give Now block #}
+{% set leadstory_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'call-to-action',
-    'card rounded-0',
-    'h-100',
-    animate_trigger,
-    color_background ?: null,
-    color_border ?: null,
-    container_size ?: null,
-    padding ?: null,
-    margin ?: null,
-    shadow ?: null,
-    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-    id ? 'block--class--call-to-action-' ~ id|clean_class : null,
+    'col',
+    'm-2 h-100',
+    'stories-item',
+    id ? 'block--class--stories-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Define animation classes for motion effects. #}
-{% set data_animation_classes = prefers_reduced_motion ? [] : [
-    'animate__animated',
-    animation ?: null,
-    animation_speed ?: null,
-    animation_delay ?: null,
-] | filter(v => v) | join(' ') %}
-
-{# Unique block ID. #}
-{% set unique_id = 'block-call-to-action-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'})|clean_class %}
-
-{# Single link check. #}
-{% set single_link = links|length == 1 ? links|first : null %}
-{% set has_real_link = single_link and single_link.url is not empty %}
-
-{# Build reusable card footer classes (if needed later). #}
-{% set multiple_links = links|length > 1 %}
-
-{# Footer Links #}
-{% set card_footer_classes = [
-    'card-footer',
-    'd-flex',
-    multiple_links ? 'multiple-links' : '',
-    container_size,
-    position_container,
-    text_alignment,
-    padding,
-    'mb-5',
-] | filter(v => v) | join(' ') %}
-
-{% set outline_class = outline ? (outline ~ 'btn-' ~ (button_color ?: 'cu-bg-black')) : ('btn-' ~ (button_color ?: 'cu-bg-black')) %}
-{% set card_footer_link_classes = [
-    'card-link',
-    'btn',
-    outline_class,
-    'text-decoration-none',
-    position_container,
-    text_alignment,
-    'p-2',
-    'mt-3',
-] | filter(v => v) | join(' ') %}
-
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region') }}
-        {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}" {% endif %}>
-
-    {# Optional screen reader title for accessibility. #}
-    {% if label %}
-        {{ title_prefix ?? '' }}
-        <h3 class="sr-only">{{ label|e }}</h3>
-        {{ title_suffix ?? '' }}
-    {% endif %}
-
-    {# Open <a> or <div> depending on presence of real link. #}
-    {% if has_real_link %}
-    <a href="{{ single_link.url }}" class="cta-link"{% if single_link.title %} aria-label="{{ single_link.title }}" {% endif %}>
-        {% else %}
-        <div class="cta-link">
-            {% endif %}
-
-            {# Optional Flag #}
-            {% if flag %}
-                {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
-                {{ flagMacros.render_flag(
-                    flag,
-                    flag_title,
-                    icon,
-                    icon_size,
-                    flag_background
-                ) }}
-            {% endif %}
-
-            {# Image / Icon / Video Master #}
-            {% if provider %}
-                {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-            {% elseif card_image %}
-                {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-                {{ cardImageMacros.render_card_image(
-                    card_image,
-                    position_container,
-                    text_alignment,
-                    text_color,
-                    image_size,
-                    visibility,
-                    content,
-                    true
-                ) }}
-            {% elseif icon %}
-                {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-                {{ iconMacros.render_icon(
-                    icon,
-                    icon_size,
-                    icon_color,
-                    padding,
-                    position_container,
-                    text_alignment
-                ) }}
-            {% endif %}
-
-            {# Optional Caption #}
-            {% if caption %}
-                {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
-                {{ captionMacros.render_caption(
-                    caption,
-                    padding,
-                    text_color,
-                    text_alignment
-                ) }}
-            {% endif %}
-
-            {# Title #}
-            {{ titleMacros.render_title(
-                label,
-                title_prefix,
-                title_suffix,
-                center_content,
-                text_alignment,
-                text_color,
-                padding
-            ) }}
-
-            {# Body Content #}
-            {% if content %}
-                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                {{ bodyMacros.render_body(
-                    content,
-                    padding,
-                    text_color,
-                    text_alignment
-                ) }}
-            {% endif %}
-
-            {# Footer Links #}
-            {% if links %}
-                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                {% if has_real_link %}
-                    {# Fake Button Rendered When Card is Entire Link #}
-                    <div class="{{ card_footer_classes }}">
-			          <span class="{{ card_footer_link_classes }}">
-			            {{ single_link.title }}
-			          </span>
-                    </div>
-                {% else %}
-                    {# Normal Footer Using Macro #}
-                    {{ cardFooterMacros.render_card_footer(
-                        links,
-                        container_size,
-                        color_background,
-                        position_container,
-                        text_alignment,
-                        padding,
-                        outline,
-                        button_color,
-                        button_layout,
-                        false,
-                        true
-                    ) }}
-                {% endif %}
-            {% endif %}
-
-            {# Close <a> or <div> correctly #}
-            {% if has_real_link %}
-    </a>
-    {% else %}
-</div>
+{# Admin tools: Displayed only if user has the necessary permissions #}
+{% if user.hasPermission('administer site configuration') %}
+    <div class="col d-flex justify-content-center mt-2">
+        <a href="/lead-story/sort"
+           class="btn btn-primary">{{ 'Sort and manage lead'|t }}
+            stories</a>
+        <a href="/node/add/lead_story"
+           class="btn btn-primary">{{ 'Add new lead story'|t }}</a>
+    </div>
 {% endif %}
 
-</div>
+{# Check if the view contains data #}
+{% if content['#view'] is not empty %}
+    {% set view = content['#view'] %}
+    {% if view.result is not empty %}
+
+        {# Main Div Wrappper #}
+        <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
+            <div class="row">
+
+                {% for row in view.result %}
+                    {% if row._entity is not empty %}
+                        {% set node = row._entity %}
+
+                        {# Main Block Wrappper #}
+                        <div{{ attributes|without('id').setAttribute('id', 'stories-item-' ~ node.id).addClass(leadstory_classes).setAttribute('role', 'region') }}>
+
+                            {# Main Link Wrapper #}
+                            {% if node.field_link is not empty and node.field_link.uri is not empty %}
+                            <a href="{{ node.field_link.uri }}"
+                               class="text-decoration-none"
+                               aria-label="Read more about {{ node.label }}">
+                                {% endif %}
+
+                                <div class="lead-story-wrapper p-2">
+
+                                    {# Display image if available #}
+                                    {% if node.field_image.entity %}
+                                        {% set image_url = file_url(node.field_image.entity.uri.value) %}
+                                        {% set alt_text = node.field_image.alt ?: 'Image for ' ~ node.label %}
+                                        <div class="card-header mb-2">
+                                            <img src="{{ image_url }}"
+                                                 alt="{{ alt_text }}"
+                                                 class="img-fluid">
+                                        </div>
+                                    {% endif %}
+
+                                    {# Title, Body Link Wrapper #}
+                                    <div class="stories-content pt-2">
+
+                                        {# Display the title #}
+                                        <h3 class="stories-title">
+                                            {# Import macro for rendering card titles #}
+                                            {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+                                            {{ node.label }}
+                                        </h3>
+
+                                        {# Render body content if provided. #}
+                                        {% if node.body.value is not empty %}
+                                            <div class="stories-body mb-2">
+                                                {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
+                                            </div>
+                                        {% endif %}
+
+
+                                        {# Link Button - use text from field_link (if available). #}
+                                        {% if node.field_link.title or node.label %}
+                                            <div class="card-footer card-story d-flex p-0 mb-5">
+	                                          <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
+	                                            {% if node.field_link.title is not empty %}
+                                                    {{ node.field_link.title }}
+                                                {% else %}
+                                                    {{ node.label }}
+                                                {% endif %}
+	                                          </span>
+                                            </div>
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+                                {# Main Link Wrapper End #}
+                                {% if node.field_link is not empty and node.field_link.uri is not empty %}
+                            </a>
+                            {% endif %}
+
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        {# Display message if no content is available #}
+        <div class="text-center p-4">
+            <p class="no-content-message text-muted">{{ 'No stories available at the moment. Check back soon!'|t }}</p>
+        </div>
+    {% endif %}
+{% else %}
+    {# Display message if the view is empty or not available #}
+    <p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
+{% endif %}
