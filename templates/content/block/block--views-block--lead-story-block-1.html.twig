@@ -21,13 +21,15 @@
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Admin tools: Displayed only if user has the necessary permissions #}
+{# Admin tools: Displayed only if user has the necessary permissions #}
 {% if user.hasPermission('administer site configuration') %}
     <div class="col d-flex justify-content-center mt-2">
         <a href="/lead-story/sort"
-           class="btn btn-primary">{{ 'Sort and manage lead'|t }}
-            stories</a>
+           class="btn btn-primary">{{ 'Sort and manage lead'|t }}</a>
         <a href="/node/add/lead_story"
            class="btn btn-primary">{{ 'Add new lead story'|t }}</a>
+        <a href="/impact-stories"
+           class="btn btn-primary">{{ 'View all lead stories'|t }}</a>
     </div>
 {% endif %}
 
