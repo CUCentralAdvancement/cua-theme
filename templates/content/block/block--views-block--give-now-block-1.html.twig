@@ -36,18 +36,16 @@
 				{% if row._entity is not empty %}
 				{% set node = row._entity %}
 				{% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
+				{% set link = node.field_link.uri ?: '#' %}
 
-				<div{{ attributes
-				|without('id')
-					.setAttribute('id', 'give-now-item-' ~ node.id)
-					.addClass(givenow_classes)
-					.setAttribute('role', 'listitem')
-					.setAttribute('aria-labelledby', heading_id) }}>
+				<a href="{{ link }}"
+				   id="give-now-item-{{ node.id }}"
+				   class="{{ givenow_classes }} text-decoration-none"
+				   role="listitem"
+				   aria-labelledby="{{ heading_id }}">
 
 					<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
-
 						<div class="position-relative">
-
 							{% if node.field_flag.value == 'flag_on' %}
 								{% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
 								<div class="position-absolute start-0">
@@ -81,7 +79,6 @@
 							{% set heading_level = heading_level ?: 'h3' %}
 							{% if node.label %}
 							<{{ heading_level }} id="{{ heading_id }}" class="give-now-title">
-							{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 							{{ node.label }}
 						</{{ heading_level }}>
 						{% endif %}
@@ -92,18 +89,14 @@
 							</div>
 						{% endif %}
 
-						{% if node.field_link is not empty and node.field_link.uri is not empty %}
-							<div class="card-footer card-story d-flex p-0 mb-5">
-								<a href="{{ node.field_link.uri }}"
-								   class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3"
-								   aria-label="Give to {{ node.label }}">
-									{{ node.field_link.title ?: 'Give to ' ~ node.label }}
-								</a>
-							</div>
-						{% endif %}
+						<div class="card-footer card-story d-flex p-0 mb-5">
+                    <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
+                      {{ node.field_link.title ?: 'Give to ' ~ node.label }}
+                    </span>
+						</div>
 					</div>
-				</div>
 			</div>
+			</a>
 			{% endif %}
 			{% endfor %}
 		</div>
