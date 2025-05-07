@@ -5,7 +5,10 @@
 */
 #}
 
+{# Attache Library #}
 {{ attach_library('cua_theme/call-to-action') }}
+
+{# Import Macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {% set unique_id = 'block-call-to-action-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'})|clean_class %}
@@ -48,12 +51,10 @@
     .setAttribute('role', 'region')
     .setAttribute('aria-labelledby', unique_id ~ '-label') }}{{ data_animation_classes ? ' data-animation-classes="' ~ data_animation_classes ~ '"' : '' }}>
 
-
     {# Screen reader-only title for accessibility. #}
     {{ title_prefix ?? '' }}
     <h4 id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</h4>
     {{ title_suffix ?? '' }}
-
 
     {% if wrap_entire_card %}
     <a href="{{ single_link.url ?: '#' }}"
@@ -103,8 +104,16 @@
 
         {# Visual Title: Use div with heading role to avoid duplicate <h3> #}
         {% if label %}
+            {% set heading_classes = [
+                'display-4 card-text lead title',
+                text_alignment,
+                center_content,
+                text_color,
+                padding,
+            ] | filter(v => v) | join(' ') %}
+            {# Render title #}
             <div role="heading" aria-level="3"
-                 class="display-4 card-text lead title d-flex justify-content-start {{ text_color }} {{ padding }}">
+                 class="{{ heading_classes }}">
                 {{ label }}
             </div>
         {% endif %}
