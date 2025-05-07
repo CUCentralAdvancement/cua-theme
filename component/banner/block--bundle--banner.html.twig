@@ -1,3 +1,6 @@
+I understand you're looking for a fix. Let's make sure your template is 508 compliant. Here's the updated version:
+
+```twig
 {#
 /**
  * @file
@@ -22,7 +25,7 @@
     color_background ?: null,
     margins ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-]|merge(utility_classes ?: [])|filter(v => v)|join(' ') %}
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Background image URL (if set) #}
 {% set bg_image_url = content.field_image is not empty ? file_url(content.field_image['#items'].entity.uri.value) : '' %}
@@ -34,7 +37,7 @@
     position_container ? 'd-flex ' ~ position_container|clean_class : null,
     container_size ?: null,
     'background-size-cover',
-]|filter(v => v)|join(' ') %}
+] | filter(v => v) | join(' ') %}
 
 {# Banner body (text) classes #}
 {% set banner_body_classes = [
@@ -47,7 +50,7 @@
     padding ?: null,
     'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-]|filter(v => v)|join(' ') %}
+] | filter(v => v) | join(' ') %}
 
 {# Optional animation classes #}
 {% set animation_classes = (animation or animation_speed or animation_delay)
@@ -61,7 +64,12 @@
     .setAttribute('role', 'region')
     .setAttribute('aria-labelledby', heading_id) }}>
 
-    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;">
+    {# Add the heading for the region (hidden visually but accessible to screen readers) #}
+    <h2 id="{{ heading_id }}" class="visually-hidden">
+        {{ label }}
+    </h2>
+
+    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;" aria-describedby="{{ heading_id }}">
 
         <div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
 
