@@ -110,6 +110,11 @@ html, body {
     height: 100%;
 }
 
+a:focus {
+    outline: 2px solid #005fcc; /* or your brand color */
+    outline-offset: 4px;
+}
+
 /* =====================================
    Global Typography Styles
    ===================================== */
@@ -375,7 +380,6 @@ p.intro {
     font-weight: var(--font-weight-normal); /* Uses normal font weight */
     line-height: 1.5 !important; /* Ensures better readability */
 }
-
 
 /* =====================================
    Delete Button Styling
