@@ -51,16 +51,10 @@
                     <div class="col {{ color_background  ?: '' }} px-5 py-4 m-5">
 
                         {# Render the title #}
-                        {{ titleMacros.render_title(
-                            label,
-                            title_prefix,
-                            title_suffix,
-                            center_content,
-                            text_alignment,
-                            text_color,
-                            padding,
-                            links
-                        ) }}
+                        {# Screen reader-only title for accessibility. #}
+                        {{ title_prefix ?? '' }}
+                        <h2 id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</h2>
+                        {{ title_suffix ?? '' }}
 
                         {# Render Body #}
                         {% if content %}
