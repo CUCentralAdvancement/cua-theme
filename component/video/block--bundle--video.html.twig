@@ -12,7 +12,7 @@
 
 {# Preload the video resource if applicable #}
 {% if provider == 'local' and content.field_video_mp4.0 %}
-    <link rel="preload" href="{{ content.field_video_mp4.0 }}" as="video">
+    <link rel="preload" href="{{ content.field_video_mp4.0 }}" as="video" type="video/mp4">
 {% endif %}
 
 {# Import macros #}
