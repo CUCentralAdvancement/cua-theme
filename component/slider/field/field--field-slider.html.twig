@@ -1,31 +1,23 @@
-{# Carousel based on Bootstrap 5 #}
-
- {# Loop through each item in the carosel indicators #}
+{# Render carousel indicators #}
 <div class="carousel-indicators pt-3">
 	{% for item in items %}
-		{% set index = loop.index0 %}
 		<button type="button"
-				data-bs-target="#carousel"
-				data-bs-slide-to="{{ index }}"
+				data-bs-target="#carousel" {# gets dynamically replaced in block template #}
+				data-bs-slide-to="{{ loop.index0 }}"
 				class="{{ loop.first ? 'active' : '' }}"
 				aria-current="{{ loop.first ? 'true' : 'false' }}"
-				aria-label="Slide {{ loop.index }}"></button>
+				aria-label="Slide {{ loop.index }}">
+		</button>
 	{% endfor %}
 </div>
 
-{# Loop through each carosel  item #}
-{% for item in items %}
-	{# Determine active class for the first item #}
-	{% set active_class = loop.first ? ' active' : '' %}
-	{# Add classes to the slide item #}
-	<div class="carousel-item{{ active_class }}" data-bs-interval="7000">
-		{# Render each item's content within the paragraph container #}
-		<div{{ attributes.addClass(classes) }}>
-			{{ item.content }}
+{# Render carousel items #}
+<div class="carousel-inner text-align-center">
+	{% for item in items %}
+		<div class="carousel-item{{ loop.first ? ' active' : '' }}" data-bs-interval="7000">
+			<div{{ attributes.addClass(classes) }}>
+				{{ item.content }}
+			</div>
 		</div>
-	</div>
-{% endfor %}
-
-
-
-
+	{% endfor %}
+</div>

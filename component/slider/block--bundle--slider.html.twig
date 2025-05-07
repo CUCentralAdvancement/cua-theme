@@ -1,22 +1,14 @@
 {#
 /**
-* @file
-* Template for the Slider component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
+ * @file
+ * Template for the Slider component.
+ */
 #}
 
-{# Attach the library #}
 {{ attach_library('cua_theme/slider') }}
-
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Add Slider classes #}
+{# Set classes and dynamic IDs #}
 {% set slider_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -26,46 +18,29 @@
     color_background ?: null,
     text_color ?: null,
 ] %}
+{% set block_id = 'block--node--slider--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
-{# Add unique id to block #}
-{% set unique_id = 'block--node-' ~ '-slider' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+<div{{ attributes.addClass(slider_classes).setAttribute('id', block_id).setAttribute('role', 'region') }}>
 
-{# Add unique id to block #}
-{% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+    {{ titleMacros.render_title(label, title_prefix, title_suffix) }}
 
-{# Content #}
-<div{{ attributes.addClass(slider_classes).setAttribute('id', unique_id).setAttribute('role', 'region') }}>
+    <div id="{{ carousel_id }}" class="carousel carousel-dark slide slide-numbers-{{ visibility_numbers }}" data-bs-ride="carousel">
 
-    {# Render Title #}
-    {{ titleMacros.render_title(
-        label,
-        title_prefix,
-        title_suffix,
-    ) }}
+        {# Inject the carousel_id into the field template via content variable #}
+        {% set content_with_id = content|render|replace({'data-bs-target="#carousel"': 'data-bs-target="#' ~ carousel_id ~ '"'}) %}
+        {{ content_with_id|raw }}
 
-    <div id="{{ carousel_id }}" class="carousel carousel-dark slide slide-numbers-{{ visibility_numbers }}"
-         data-bs-ride="carousel">
-
-        {# SLider Content  #}
-        <div class="carousel-inner text-align-center">
-            {{ content }}
-        </div>
-
-        {# Include Arrows Component #}
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
-            <button class="carousel-control-prev" type="button"
-                    data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
                 <span class="fa-solid fa-circle-left" aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Previous'|t }}</span>
             </button>
-
-            <button class="carousel-control-next" type="button"
-                    data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
                 <span class="fa-solid fa-circle-right" aria-hidden="true"></span>
-                <span class="visually-hidden">{{ 'Next'|t }}t</span>
+                <span class="visually-hidden">{{ 'Next'|t }}</span>
             </button>
         {% endif %}
-
     </div>
 
 </div>
