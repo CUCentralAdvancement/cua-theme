@@ -2,7 +2,7 @@
 <div class="carousel-indicators pt-3">
 	{% for item in items %}
 		<button type="button"
-				data-bs-target="#carousel" {# gets dynamically replaced in block template #}
+				data-bs-target="#{{ carousel_id }}"
 				data-bs-slide-to="{{ loop.index0 }}"
 				class="{{ loop.first ? 'active' : '' }}"
 				aria-current="{{ loop.first ? 'true' : 'false' }}"

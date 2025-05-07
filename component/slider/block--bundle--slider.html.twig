@@ -25,7 +25,7 @@
 
     {{ titleMacros.render_title(label, title_prefix, title_suffix) }}
 
-    <div id="{{ carousel_id }}" class="carousel carousel-dark slide slide-numbers-{{ visibility_numbers }}" data-bs-ride="carousel">
+    <div id="{{ carousel_id }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
         {# Inject the carousel_id into the field template via content variable #}
         {% set content_with_id = content|render|replace({'data-bs-target="#carousel"': 'data-bs-target="#' ~ carousel_id ~ '"'}) %}
