@@ -1,8 +1,8 @@
 {#
 /**
-* @file
-* Template for the Lead Story blocks.
-*/
+ * @file
+ * Template for the Lead Story blocks.
+ */
 #}
 
 {{ attach_library('cua_theme/call-to-action') }}
@@ -11,8 +11,8 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'col',
-    'm-2 h-100',
+    'm-2',
+    'h-100',
     'stories-item',
     id ? 'block--class--stories-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
@@ -29,53 +29,54 @@
     {% set view = content['#view'] %}
     {% if view.result is not empty %}
         <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
-            <div class="row">
+            {# Responsive layout: 1 col on mobile, 2 on tablet, 4 on desktop #}
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4">
 
                 {% for row in view.result %}
                     {% if row._entity is not empty %}
                         {% set node = row._entity %}
                         {% if node.field_link is not empty and node.field_link.uri is not empty %}
-                            <a href="{{ node.field_link.uri }}"
-                               class="{{ leadstory_classes }}"
-                               id="stories-item-{{ node.id }}"
-                               aria-labelledby="story-title-{{ node.id }}"
-                               style="text-decoration: none; color: inherit; display: block;">
+                            <div class="d-flex">
+                                <a href="{{ node.field_link.uri }}"
+                                   class="{{ leadstory_classes }}"
+                                   id="stories-item-{{ node.id }}"
+                                   aria-labelledby="story-title-{{ node.id }}"
+                                   style="text-decoration: none; color: inherit; display: block; width: 100%;">
 
-                                <div class="lead-story-wrapper p-2">
+                                    <div class="lead-story-wrapper p-2">
 
-                                    {% if node.field_image.entity %}
-                                        {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
-                                        {% set alt_text = node.field_image.alt ?? 'Image for ' ~ node.label %}
-                                        <div class="card-header mb-2">
-                                            <img src="{{ image_url }}"
-                                                 alt="{{ alt_text|e('html_attr') }}"
-                                                 class="img-fluid">
+                                        {% if node.field_image.entity %}
+                                            {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
+                                            {% set alt_text = node.field_image.alt ?? 'Image for ' ~ node.label %}
+                                            <div class="card-header mb-2">
+                                                <img src="{{ image_url }}"
+                                                     alt="{{ alt_text|e('html_attr') }}"
+                                                     class="img-fluid">
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="stories-content pt-2">
+                                            <h3 class="stories-title" id="story-title-{{ node.id }}">
+                                                {{ node.label }}
+                                            </h3>
+
+                                            {% if node.body.value is not empty %}
+                                                <div class="stories-body mb-2">
+                                                    {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a>')|raw }}
+                                                </div>
+                                            {% endif %}
+
+                                            {% if node.field_link.title or node.label %}
+                                                <div class="card-footer card-story d-flex p-0 mb-5">
+                          <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
+                            {{ node.field_link.title ?? 'Read more' }}
+                          </span>
+                                                </div>
+                                            {% endif %}
                                         </div>
-                                    {% endif %}
-
-                                    <div class="stories-content pt-2">
-
-                                        <h3 class="stories-title" id="story-title-{{ node.id }}">
-                                            {{ node.label }}
-                                        </h3>
-
-                                        {% if node.body.value is not empty %}
-                                            <div class="stories-body mb-2">
-                                                {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a>')|raw }}
-                                            </div>
-                                        {% endif %}
-
-                                        {% if node.field_link.title or node.label %}
-                                            <div class="card-footer card-story d-flex p-0 mb-5">
-                        <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
-                          {{ node.field_link.title ?? 'Read more' }}
-                        </span>
-                                            </div>
-                                        {% endif %}
-
                                     </div>
-                                </div>
-                            </a> {# ← Proper closing tag here #}
+                                </a>
+                            </div>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
