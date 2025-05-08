@@ -1,13 +1,14 @@
 {#
 /**
-* @file
-* Template for the Button component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ * @file
+ * Template for the Button component.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Full List Utility Classes
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ */
 #}
 
 {# Import macros #}
@@ -25,7 +26,7 @@
     text_alignment ?: null,
     text_color ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {# Define dynamic classes for the footer container. #}
 {% set card_footer_classes = [
@@ -54,14 +55,16 @@
     'me-2',
 ] | filter(v => v) | join(' ') %}
 
-{# Generate unique ID #}
+{# Generate unique ID for block and heading #}
 {% set unique_id = 'block--node-' ~ '-button' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set heading_id = unique_id ~ '-title' %}
 
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(button_classes).setAttribute('role', 'region') }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(button_classes).setAttribute('role', 'region').setAttribute('aria-labelledby', heading_id) }}>
 
-    {# Render the title #}
-    <h2>{{ titleMacros.render_title(
+    {# Render the title and assign an ID for aria-labelledby #}
+    <h2 id="{{ heading_id }}">
+        {{ titleMacros.render_title(
             label,
             title_prefix,
             title_suffix,
@@ -70,7 +73,8 @@
             text_color,
             padding,
             links
-        ) }}</h2>
+        ) }}
+    </h2>
 
     {# Render Body #}
     {% if content %}
@@ -83,7 +87,7 @@
         ) }}
     {% endif %}
 
-    {# Render Footer #}
+    {# Render Footer with links #}
     <div class="{{ card_footer_classes }}"
             {% if multiple_links %}
         role="group" aria-label="{{ custom_label ?: 'Related links' }}"
@@ -93,12 +97,14 @@
         {% for link in links %}
             {% if is_single_link %}
                 {# Render single link (non-clickable text wrapping the card). #}
-                <span class="{{ card_footer_link_classes }}">{{ link.title }}</span>
+                <span class="{{ card_footer_link_classes }}" aria-label="{{ link.title }}">{{ link.title }}</span>
             {% else %}
                 {# Render multiple links as clickable anchors. #}
                 <a href="{{ link.url }}"
                    class="{{ card_footer_link_classes }}"
-                        {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
+                   role="link"
+                        {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}
+                   aria-label="{{ link.title }}">
                     {{ link.title }}
                 </a>
             {% endif %}
