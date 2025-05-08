@@ -1,15 +1,24 @@
 {#
 /**
- * @file
- * Template for the Give Now blocks.
- *
- * This template renders a grid of "Give Now" items using a Drupal view.
- */
+* @file
+* Template for the Give Now blocks.
+*
+* This template renders a responsive grid of donation opportunities ("Give Now" items),
+* populated from a Drupal View. Each item represents a node of the "gi" content type
+* and is rendered as a card with optional image, label, description, icon flag, and link.
+*
+* Admin users are also shown a toolbar for managing these blocks.
+*/
 #}
 
+{# Attach the call-to-action library which includes necessary CSS/JS for this component. #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Set CSS classes for each Give Now card #}
+{#
+Define a list of CSS classes that will be applied to each Give Now block card.
+These include standard block classes, dynamic provider/plugin identifiers,
+an optional ID-based class, and any utility classes passed in from the block config.
+#}
 {% set givenow_classes = [
 	'block',
 	'block-' ~ configuration.provider|clean_class,
@@ -19,17 +28,31 @@
 	id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Admin quick actions #}
+{#
+If the user is an admin (has the "administer site configuration" permission),
+show a row of buttons to help them quickly:
+- Sort and manage block order
+- Add a new Give Now item
+- View staging blocks
+- Edit existing Give Now content
+#}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="d-flex justify-content-center m-2">
-		<a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
-		<a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new Give Now'|t }}</a>
-		<a href="/give-now/view-sample" class="btn btn-secondary mx-2">{{ 'View Staging Blocks'|t }}</a>
-		<a href="/admin/content?title=&type=gi&status=1" class="btn btn-secondary mx-2">{{ 'Edit Give Now Blocks'|t }}</a>
+		<a href="/give-now/sort"
+		   class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
+		<a href="/node/add/gi"
+		   class="btn btn-secondary mx-2">{{ 'Add new Give Now'|t }}</a>
+		<a href="/give-now/view-sample"
+		   class="btn btn-secondary mx-2">{{ 'View Staging Blocks'|t }}</a>
+		<a href="/admin/content?title=&type=gi&status=1"
+		   class="btn btn-secondary mx-2">{{ 'Edit Give Now Blocks'|t }}</a>
 	</div>
 {% endif %}
 
-{# Render view content if available #}
+{#
+Check if the View object is available and has results.
+If not, display fallback messages for missing or empty content.
+#}
 {% if content['#view'] is not empty %}
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
@@ -37,6 +60,7 @@
 		<div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
 			<div class="row" role="list" aria-label="Give Now items">
 
+				{# Loop through each result row from the view. Each row is a node entity. #}
 				{% for row in view.result %}
 				{% if row._entity is not empty %}
 				{% set node = row._entity %}
@@ -50,10 +74,12 @@
 					   class="{{ givenow_classes }} text-decoration-none d-block h-100"
 					   aria-labelledby="{{ heading_id }}">
 
+						{# Outer card wrapper with shadow and optional background color #}
 						<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
 
-							{# Flag section #}
 							<div class="position-relative">
+
+								{# Optional flag displayed in top-left corner (e.g. "New", "Featured") #}
 								{% if node.field_flag.value == 'flag_on' %}
 									{% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
 									<div class="position-absolute start-0">
@@ -71,7 +97,7 @@
 									</div>
 								{% endif %}
 
-								{# Image section #}
+								{# If an image is present, display it with alt text and responsive scaling. #}
 								{% if node.field_image.entity %}
 									{% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
 									{% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
@@ -82,35 +108,42 @@
 											 class="img-fluid">
 									</div>
 								{% endif %}
+
 							</div>
 
-							{# Main content area (label + body) #}
+							{# Render the heading if a label is present #}
 							{% if node.label or node.body.value is not empty %}
 							<div class="give-now-content px-3 pt-2">
 								{% if node.label %}
-								<{{ heading_level }} id="{{ heading_id }}" class="give-now-title">
+								<{{ heading_level }} id="{{ heading_id }}"
+								class="give-now-title">
 								{{ node.label }}
 							</{{ heading_level }}>
 							{% endif %}
 
+							{# Render body content if available, with allowed HTML tags #}
 							{% if node.body.value is not empty %}
 								<div class="give-now-body mb-2">
 									{{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
 								</div>
 							{% endif %}
+
 						</div>
 						{% endif %}
 
-						{# Call to action button #}
+						{# Call to action (CTA) footer button — shows link title or default #}
 						{% if node.field_link.title is not empty %}
-							<div class="card-footer card-story d-flex p-0 mb-5">
-                      <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
-                        {{ node.field_link.title ?: 'Give to ' ~ node.label }}
-                      </span>
+							<div class="card-footer card-story d-flex p-0 mb-5 mx-3">
+								<span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
+								{{ node.field_link.title ?: 'Give to ' ~ node.label }}
+								</span>
 							</div>
 						{% endif %}
+
 				</div>
+
 				</a>
+
 			</div>
 			{% endif %}
 			{% endfor %}
@@ -119,10 +152,12 @@
 		</div>
 
 	{% else %}
+		{# Displayed if view is loaded but has no results. #}
 		<div class="text-center p-4">
 			<p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
 		</div>
 	{% endif %}
 {% else %}
+	{# Displayed if view data is not available at all. #}
 	<p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
 {% endif %}
