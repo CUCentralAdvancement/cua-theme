@@ -1,26 +1,22 @@
 {#
 /**
- * @file
- * Template for rendering a button-style block component.
- *
- * This block uses Bootstrap 5 and custom macros to render a flexible,
- * styled button card with optional title, body, and footer links.
- *
- * Documentation:
- * - Bootstrap 5: https://getbootstrap.com/docs/5.3
- * - Utility Classes: https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css
- */
+* @file
+* Template for the Button component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
 #}
 
-{# Import required macros for title, body, and footer rendering #}
+{# Import macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Attach any required libraries #}
+{# Attach the library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Construct dynamic classes for the button/card block wrapper #}
+{# Define button classes #}
 {% set button_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -28,35 +24,58 @@
     color_border ?: null,
     text_alignment ?: null,
     text_color ?: null,
-    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
-]|merge(utility_classes ?: [])|filter(v => v)|join(' ') %}
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
 
-{# Generate a unique ID for this block instance to support accessibility #}
-{% set unique_id = 'block--node--button--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{# Define dynamic classes for the footer container. #}
+{% set card_footer_classes = [
+    'card-footer',
+    'd-flex',
+    multiple_links ? 'multiple-links' : '',
+    container_size,
+    position_container,
+    text_alignment,
+    padding,
+    'mb-5',
+    'me-3',
+] | filter(v => v) | join(' ') %}
 
-{# Begin block markup #}
-<div{{ attributes
-|without('id')
-    .setAttribute('id', unique_id)
-    .addClass(button_classes)
-    .setAttribute('role', 'region')
-}}>
+{# Define dynamic classes for the footer links. #}
+{% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+{% set card_footer_link_classes = [
+    'card-link',
+    'btn',
+    outline_class,
+    'text-decoration-none',
+    position_container,
+    text_alignment,
+    'p-2',
+    'mt-3',
+    'me-2',
+] | filter(v => v) | join(' ') %}
 
-    {# Render the title using the title macro #}
-    {{ titleMacros.render_title(
-        label,
-        title_prefix,
-        title_suffix,
-        center_content,
-        text_alignment,
-        text_color,
-        padding,
-        links
-    ) }}
+{# Generate unique ID #}
+{% set unique_id = 'block--node-' ~ '-button' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-    {# Render the main body content if available #}
+{# Render content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(button_classes).setAttribute('role', 'region') }}>
+
+    {# Render the title #}
+    <h2>{{ titleMacros.render_title(
+            label,
+            title_prefix,
+            title_suffix,
+            center_content,
+            text_alignment,
+            text_color,
+            padding,
+            links
+        ) }}</h2>
+
+    {# Render Body #}
     {% if content %}
-        {{ bodyMacros.render_body(
+        {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+        {{ bodyMacros.render_body (
             content,
             padding,
             text_color,
@@ -64,21 +83,26 @@
         ) }}
     {% endif %}
 
-    {# Render footer links using macro only if links are passed in #}
-    {% if links is defined and links|length > 0 %}
-        {{ cardFooterMacros.render_card_footer(
-            links,
-            container_size,
-            color_background,
-            position_container,
-            text_alignment,
-            padding,
-            outline,
-            button_color,
-            false,
-            false,
-            'Related links'
-        ) }}
-    {% endif %}
+    {# Render Footer #}
+    <div class="{{ card_footer_classes }}"
+            {% if multiple_links %}
+        role="group" aria-label="{{ custom_label ?: 'Related links' }}"
+            {% endif %}>
+
+        {# Render each link in the footer. Handle single and multiple links. #}
+        {% for link in links %}
+            {% if is_single_link %}
+                {# Render single link (non-clickable text wrapping the card). #}
+                <span class="{{ card_footer_link_classes }}">{{ link.title }}</span>
+            {% else %}
+                {# Render multiple links as clickable anchors. #}
+                <a href="{{ link.url }}"
+                   class="{{ card_footer_link_classes }}"
+                        {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
+                    {{ link.title }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 </div>
