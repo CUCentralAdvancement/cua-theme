@@ -1,22 +1,26 @@
 {#
 /**
-* @file
-* Template for the Button component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ * @file
+ * Template for rendering a button-style block component.
+ *
+ * This block uses Bootstrap 5 and custom macros to render a flexible,
+ * styled button card with optional title, body, and footer links.
+ *
+ * Documentation:
+ * - Bootstrap 5: https://getbootstrap.com/docs/5.3
+ * - Utility Classes: https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css
+ */
 #}
 
-{# Import macros #}
+{# Import required macros for title, body, and footer rendering #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Attach the library #}
+{# Attach any required libraries #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Define button classes #}
+{# Construct dynamic classes for the button/card block wrapper #}
 {% set button_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -24,16 +28,21 @@
     color_border ?: null,
     text_alignment ?: null,
     text_color ?: null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ? utility_classes : []) | filter(v => v) | join(' ') %}
+    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
+]|merge(utility_classes ?: [])|filter(v => v)|join(' ') %}
 
-{# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-button' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{# Generate a unique ID for this block instance to support accessibility #}
+{% set unique_id = 'block--node--button--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(button_classes).setAttribute('role', 'region') }}>
+{# Begin block markup #}
+<div{{ attributes
+|without('id')
+    .setAttribute('id', unique_id)
+    .addClass(button_classes)
+    .setAttribute('role', 'region')
+}}>
 
-    {# Render the title #}
+    {# Render the title using the title macro #}
     {{ titleMacros.render_title(
         label,
         title_prefix,
@@ -45,10 +54,9 @@
         links
     ) }}
 
-    {# Render Body #}
+    {# Render the main body content if available #}
     {% if content %}
-        {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-        {{ bodyMacros.render_body (
+        {{ bodyMacros.render_body(
             content,
             padding,
             text_color,
@@ -56,10 +64,9 @@
         ) }}
     {% endif %}
 
-    {# Render Footer #}
-    {% if links %}
-        {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-        {{ cardFooterMacros.render_card_footer (
+    {# Render footer links using macro only if links are passed in #}
+    {% if links is defined and links|length > 0 %}
+        {{ cardFooterMacros.render_card_footer(
             links,
             container_size,
             color_background,
@@ -68,7 +75,9 @@
             padding,
             outline,
             button_color,
-            button_layout
+            false,
+            false,
+            'Related links'
         ) }}
     {% endif %}
 
