@@ -9,6 +9,7 @@
 
 {{ attach_library('cua_theme/call-to-action') }}
 
+{# Set CSS classes for each Give Now card #}
 {% set givenow_classes = [
 	'block',
 	'block-' ~ configuration.provider|clean_class,
@@ -18,6 +19,7 @@
 	id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
+{# Admin quick actions #}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="d-flex justify-content-center m-2">
 		<a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
@@ -27,80 +29,95 @@
 	</div>
 {% endif %}
 
+{# Render view content if available #}
 {% if content['#view'] is not empty %}
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
+
 		<div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
 			<div class="row" role="list" aria-label="Give Now items">
+
 				{% for row in view.result %}
 				{% if row._entity is not empty %}
 				{% set node = row._entity %}
 				{% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
 				{% set link = node.field_link.uri ?: '#' %}
+				{% set heading_level = heading_level ?: 'h3' %}
 
-				<a href="{{ link }}"
-				   id="give-now-item-{{ node.id }}"
-				   class="{{ givenow_classes }} text-decoration-none"
-				   role="listitem"
-				   aria-labelledby="{{ heading_id }}">
+				<div class="col give-now-wrapper" role="listitem">
+					<a href="{{ link }}"
+					   id="give-now-item-{{ node.id }}"
+					   class="{{ givenow_classes }} text-decoration-none d-block h-100"
+					   aria-labelledby="{{ heading_id }}">
 
-					<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
-						<div class="position-relative">
-							{% if node.field_flag.value == 'flag_on' %}
-								{% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
-								<div class="position-absolute start-0">
-									<div class="{{ flag_classes|join(' ')|trim }}"
-										 style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
-										{% if node.field_icon.value %}
-											<i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
-											   style="color: {{ node.field_icon_color.value }}"
-											   aria-hidden="true"></i>
-										{% endif %}
-										{% if node.field_flag_title.value %}
-											<span class="flag-title">{{ node.field_flag_title.value }}</span>
-										{% endif %}
+						<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
+
+							{# Flag section #}
+							<div class="position-relative">
+								{% if node.field_flag.value == 'flag_on' %}
+									{% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
+									<div class="position-absolute start-0">
+										<div class="{{ flag_classes|join(' ')|trim }}"
+											 style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
+											{% if node.field_icon.value %}
+												<i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
+												   style="color: {{ node.field_icon_color.value }}"
+												   aria-hidden="true"></i>
+											{% endif %}
+											{% if node.field_flag_title.value %}
+												<span class="flag-title">{{ node.field_flag_title.value }}</span>
+											{% endif %}
+										</div>
 									</div>
-								</div>
+								{% endif %}
+
+								{# Image section #}
+								{% if node.field_image.entity %}
+									{% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
+									{% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
+									<div class="card-header mb-2">
+										<img src="{{ image_url }}"
+											 alt="{{ alt_text }}"
+											 loading="lazy"
+											 class="img-fluid">
+									</div>
+								{% endif %}
+							</div>
+
+							{# Main content area (label + body) #}
+							{% if node.label or node.body.value is not empty %}
+							<div class="give-now-content px-3 pt-2">
+								{% if node.label %}
+								<{{ heading_level }} id="{{ heading_id }}" class="give-now-title">
+								{{ node.label }}
+							</{{ heading_level }}>
 							{% endif %}
 
-							{% if node.field_image.entity %}
-								{% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
-								{% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
-								<div class="card-header mb-2">
-									<img src="{{ image_url }}"
-										 alt="{{ alt_text }}"
-										 loading="lazy"
-										 class="img-fluid">
+							{% if node.body.value is not empty %}
+								<div class="give-now-body mb-2">
+									{{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
 								</div>
 							{% endif %}
 						</div>
-
-						<div class="give-now-content px-3 pt-2">
-							{% set heading_level = heading_level ?: 'h3' %}
-							{% if node.label %}
-							<{{ heading_level }} id="{{ heading_id }}" class="give-now-title">
-							{{ node.label }}
-						</{{ heading_level }}>
 						{% endif %}
 
-						{% if node.body.value is not empty %}
-							<div class="give-now-body mb-2">
-								{{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
+						{# Call to action button #}
+						{% if node.field_link.title is not empty %}
+							<div class="card-footer card-story d-flex p-0 mb-5">
+                      <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
+                        {{ node.field_link.title ?: 'Give to ' ~ node.label }}
+                      </span>
 							</div>
 						{% endif %}
-
-						<div class="card-footer card-story d-flex p-0 mb-5">
-                    <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
-                      {{ node.field_link.title ?: 'Give to ' ~ node.label }}
-                    </span>
-						</div>
-					</div>
+				</div>
+				</a>
 			</div>
-			</a>
 			{% endif %}
 			{% endfor %}
+
 		</div>
 		</div>
+
 	{% else %}
 		<div class="text-center p-4">
 			<p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
