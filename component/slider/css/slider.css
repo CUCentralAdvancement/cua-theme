@@ -19,5 +19,23 @@
 
 .fa-circle-left::before,
 .fa-circle-right::before {
-  font-size: 3rem !important;
+  font-size: 2.5rem !important;
+}
+
+.cu-bg-white .fa-arrow-alt-circle-left:before,
+.cu-bg-white .fa-circle-left:before,
+.cu-bg-white .fa-arrow-alt-circle-right:before,
+.cu-bg-white .fa-circle-right:before{
+  color: black;
+}
+
+.cu-bg-black .fa-arrow-alt-circle-left:before,
+.cu-bg-black .fa-circle-left:before {
+  color: white;
+}
+
+.slider blockquote {
+  margin: 10px 130px;
+  padding: 1rem 5rem;
+  width: 80%;
 }
