@@ -23,7 +23,11 @@
 
 <div{{ attributes.addClass(slider_classes).setAttribute('id', block_id).setAttribute('role', 'region') }}>
 
-    {{ titleMacros.render_title(label, title_prefix, title_suffix) }}
+    {{ titleMacros.render_title(
+        label,
+        title_prefix,
+        title_suffix
+    ) }}
 
     <div id="{{ carousel_id }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
 

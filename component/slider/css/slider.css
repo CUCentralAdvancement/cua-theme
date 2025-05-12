@@ -16,3 +16,8 @@
 .small.text-align-center {
   display: none; /* Hides the element by default */
 }
+
+.fa-circle-left::before,
+.fa-circle-right::before {
+  font-size: 3rem !important;
+}
