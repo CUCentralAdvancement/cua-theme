@@ -1,11 +1,6 @@
-{#
-/**
-* @file
-* Accessible and modular Call to Action (CTA) template.
-*/
-#}
+{# Accessible and modular Call to Action (CTA) template. #}
 
-{# Attache Library #}
+{# Attach Library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
 {# Import Macros #}
@@ -53,109 +48,109 @@
 
     {# Screen reader-only title for accessibility. #}
     {{ title_prefix ?? '' }}
-    <h3 id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</h3>
-    {{ title_suffix ?? '' }}
+    <{{ heading_level }} id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</{{ heading_level }}>
+{{ title_suffix ?? '' }}
 
     {% if wrap_entire_card %}
-    <a href="{{ single_link.url ?: '#' }}"
-       class="cta-link"
-       role="link"
-       {% if single_link.title %}aria-label="{{ single_link.title|striptags|trim }}"{% endif %}>
-        {% endif %}
-
-        {# Optional flag #}
-        {% if flag %}
-            {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
-            {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background) }}
-        {% endif %}
-
-        {# Media: Video, Image, or Icon #}
-        {% if provider %}
-            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-        {% elseif card_image %}
-            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-            {{ cardImageMacros.render_card_image(
-                card_image,
-                position_container,
-                text_alignment,
-                text_color,
-                image_size,
-                visibility,
-                content,
-                true
-            ) }}
-        {% elseif icon %}
-            {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-            {{ iconMacros.render_icon(
-                icon,
-                icon_size,
-                icon_color,
-                padding,
-                position_container,
-                text_alignment
-            ) }}
-        {% endif %}
-
-        {# Caption #}
-        {% if caption %}
-            {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
-            {{ captionMacros.render_caption(caption, padding, text_color, text_alignment) }}
-        {% endif %}
-
-        {# Visual Title: Use div with heading role to avoid duplicate <h3> #}
-        {% if label %}
-            {% set heading_classes = [
-                'display-4 card-text lead title',
-                text_alignment,
-                center_content,
-                text_color,
-                padding,
-            ] | filter(v => v) | join(' ') %}
-            {# Render title #}
-            <div role="heading" aria-level="3" aria-hidden="true" class="{{ heading_classes }}">
-                {{ label }}
-            </div>
-        {% endif %}
-
-        {# Body Content #}
-        {% if content %}
-            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-            {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
-        {% endif %}
-
-        {# Render single link (non-clickable text wrapping the card). #}
-        {% if single_link %}
-            {# Define dynamic classes for the footer links. #}
-            {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-            {% set card_footer_classes = [
-                'card-footer',
-                'd-flex',
-                multiple_links ? 'multiple-links' : '',
-                container_size,
-                position_container,
-                text_alignment,
-                padding,
-                'mb-5',
-            ] | filter(v => v) | join(' ') %}
-            {% set card_footer_link_classes = [
-                'card-link',
-                'btn',
-                outline_class,
-                'text-decoration-none',
-                position_container,
-                text_alignment,
-                'p-2',
-                'mt-3',
-            ] | filter(v => v) | join(' ') %}
-            <div class="{{ card_footer_classes }}">
-			<span class="{{ card_footer_link_classes }}"
-                  aria-hidden="true">{{ single_link.title }}</span>
-            </div>
-        {% endif %}
-
-        {% if wrap_entire_card %}
-    </a>
+<a href="{{ single_link.url ?: '#' }}"
+   class="cta-link"
+   role="link"
+   {% if single_link.title %}aria-label="{{ single_link.title|striptags|trim }}"{% endif %}>
     {% endif %}
+
+    {# Optional flag #}
+    {% if flag %}
+        {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
+        {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background) }}
+    {% endif %}
+
+    {# Media: Video, Image, or Icon #}
+    {% if provider %}
+        {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+    {% elseif card_image %}
+        {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+        {{ cardImageMacros.render_card_image(
+            card_image,
+            position_container,
+            text_alignment,
+            text_color,
+            image_size,
+            visibility,
+            content,
+            true
+        ) }}
+    {% elseif icon %}
+        {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+        {{ iconMacros.render_icon(
+            icon,
+            icon_size,
+            icon_color,
+            padding,
+            position_container,
+            text_alignment
+        ) }}
+    {% endif %}
+
+    {# Caption #}
+    {% if caption %}
+        {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
+        {{ captionMacros.render_caption(caption, padding, text_color, text_alignment) }}
+    {% endif %}
+
+    {# Visual Title: Use div with heading role to avoid duplicate <h3> #}
+    {% if label %}
+        {% set heading_classes = [
+            'display-4 card-text lead title',
+            text_alignment,
+            center_content,
+            text_color,
+            padding,
+        ] | filter(v => v) | join(' ') %}
+        {# Render title #}
+        <div role="heading" aria-level="3" aria-hidden="true" class="{{ heading_classes }}">
+            {{ label }}
+        </div>
+    {% endif %}
+
+    {# Body Content #}
+    {% if content %}
+        {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+        {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+    {% endif %}
+
+    {# Render single link (non-clickable text wrapping the card). #}
+    {% if single_link %}
+        {# Define dynamic classes for the footer links. #}
+        {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+        {% set card_footer_classes = [
+            'card-footer',
+            'd-flex',
+            multiple_links ? 'multiple-links' : '',
+            container_size,
+            position_container,
+            text_alignment,
+            padding,
+            'mb-5',
+        ] | filter(v => v) | join(' ') %}
+        {% set card_footer_link_classes = [
+            'card-link',
+            'btn',
+            outline_class,
+            'text-decoration-none',
+            position_container,
+            text_alignment,
+            'p-2',
+            'mt-3',
+        ] | filter(v => v) | join(' ') %}
+        <div class="{{ card_footer_classes }}">
+            <span class="{{ card_footer_link_classes }}"
+                  aria-hidden="true">{{ single_link.title }}</span>
+        </div>
+    {% endif %}
+
+    {% if wrap_entire_card %}
+</a>
+{% endif %}
 
     {# Render footer buttons if there are multiple links and not fully wrapped #}
     {% if links and not wrap_entire_card %}
