@@ -48,8 +48,8 @@
 
     {# Screen reader-only title for accessibility. #}
     {{ title_prefix ?? '' }}
-    <{{ heading_level }} id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</{{ heading_level }}>
-{{ title_suffix ?? '' }}
+         <{{ heading_level }} id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</{{ heading_level }}>
+    {{ title_suffix ?? '' }}
 
     {% if wrap_entire_card %}
 <a href="{{ single_link.url ?: '#' }}"
