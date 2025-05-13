@@ -39,17 +39,17 @@
 		{# Render the title to allow editing #}
 		{{ title_prefix ?? '' }}
 		{# Ensure the title is properly escaped to prevent XSS vulnerabilities #}
-		<h1 class="visually-hidden">{{ label|e }}</h1>
+		<h2 class="visually-hidden">{{ label|e }}</h2>
 		{{ title_suffix ?? '' }}
 
 		{# Render the new title #}
 		{% if heading %}
-			<h1{{ title_attributes.addClass('title') }}>{{ heading|e }}</h1>
+			<h2{{ title_attributes.addClass('title') }}>{{ heading|e }}</h2>
 		{% endif %}
 
 		{# Render sub-title #}
 		{% if subtitle %}
-			<h2{{ title_attributes.addClass('title px-3 pb-4') }}>{{ subtitle|e }}</h2>
+			<h3{{ title_attributes.addClass('title px-3 pb-4') }}>{{ subtitle|e }}</h3>
 		{% endif %}
 	</div>
 
