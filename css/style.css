@@ -2648,6 +2648,11 @@ nav#block-cua-theme-campusoffices {
     margin-top: 0 !important; /* No margin at the top with important flag */
 }
 
+.give-now-item:focus .shadow,
+.give-now-item:hover .shadow {
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5); /* Custom accessible shadow */
+    transition: box-shadow 0.2s ease-in-out;
+}
 
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
