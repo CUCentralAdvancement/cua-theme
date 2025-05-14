@@ -1,98 +1,111 @@
 {#
 /**
  * @file
- * Template for the Lead Story blocks with enhanced accessibility.
+ * 508-compliant Twig template for the Give Now blocks.
  */
 #}
 
 {{ attach_library('cua_theme/call-to-action') }}
 
-{% set leadstory_classes = [
+{% set givenow_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'm-2',
-    'h-100',
-    'stories-item',
-    id ? 'block--class--stories-' ~ id|clean_class : null,
+    'col',
+    'give-now-item',
+    id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {% if user.hasPermission('administer site configuration') %}
-    <div class="col d-flex justify-content-center mt-2">
-        <a href="/lead-story/sort" class="btn btn-primary" target="_blank" rel="noopener noreferrer">{{ 'Sort and manage lead'|t }}</a>
-        <a href="/node/add/lead_story" class="btn btn-primary" target="_blank" rel="noopener noreferrer">{{ 'Add new lead story'|t }}</a>
-        <a href="/impact-stories" class="btn btn-primary" target="_blank" rel="noopener noreferrer">{{ 'View all lead stories'|t }}</a>
+    <div class="d-flex justify-content-center m-2">
+        <a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
+        <a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new Give Now'|t }}</a>
+        <a href="/give-now/view-sample" class="btn btn-secondary mx-2">{{ 'View Staging Blocks'|t }}</a>
+        <a href="/admin/content?title=&type=gi&status=1" class="btn btn-secondary mx-2">{{ 'Edit Give Now Blocks'|t }}</a>
     </div>
 {% endif %}
 
 {% if content['#view'] is not empty %}
     {% set view = content['#view'] %}
     {% if view.result is not empty %}
-        <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4">
-
+        <div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
+            <div class="row" role="list" aria-label="Give Now items">
                 {% for row in view.result %}
-                    {% if row._entity is not empty %}
-                        {% set node = row._entity %}
-                        {% if node.field_link is not empty and node.field_link.uri is not empty %}
-                            {% set description_text = node.body.summary ?: node.body.value|striptags|trim|slice(0, 200) ~ '…' %}
-                            <div class="d-flex">
-                                <a href="{{ node.field_link.uri }}"
-                                   class="{{ leadstory_classes }}"
-                                   id="stories-item-{{ node.id }}"
-                                   aria-labelledby="story-title-{{ node.id }}"
-                                   {% if description_text %}aria-describedby="story-description-{{ node.id }}"{% endif %}
-                                   style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                {% if row._entity is not empty %}
+                {% set node = row._entity %}
+                {% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
+                {% set link = node.field_link.uri ?: '#' %}
+                {% set heading_level = heading_level ?: 'h3' %}
 
-                                    <div class="lead-story-wrapper p-2">
+                <div class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" role="listitem">
+                    <a href="{{ link }}"
+                       id="give-now-item-{{ node.id }}"
+                       class="{{ givenow_classes }} text-decoration-none d-block h-100"
+                       aria-labelledby="{{ heading_id }}">
 
-                                        {% if node.field_image.entity %}
-                                            {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
-                                            {% set alt_text = (node.field_image.alt ? node.field_image.alt ~ ' – ' : '') ~ node.label %}
-                                            <div class="card-header mb-2">
-                                                <img src="{{ image_url }}"
-                                                     alt="{{ alt_text|e('html_attr') }}"
-                                                     class="img-fluid">
-                                            </div>
-                                        {% endif %}
-
-                                        <div class="stories-content pt-2">
-                                            <h3 class="stories-title" id="story-title-{{ node.id }}">
-                                                {{ node.label }}
-                                            </h3>
-
-                                            {% if node.body.value is not empty %}
-                                                <div class="stories-body mb-2">
-                                                    {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a>')|raw }}
-                                                </div>
+                        <div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
+                            <div class="position-relative">
+                                {% if node.field_flag.value == 'flag_on' %}
+                                    {% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
+                                    <div class="position-absolute start-0">
+                                        <div class="{{ flag_classes|join(' ')|trim }}"
+                                             style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
+                                            {% if node.field_icon.value %}
+                                                <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
+                                                   style="color: {{ node.field_icon_color.value }}"
+                                                   aria-hidden="true"></i>
                                             {% endif %}
-
-                                            {% if description_text %}
-                                                <div id="story-description-{{ node.id }}" class="visually-hidden">
-                                                    {{ description_text }}
-                                                </div>
-                                            {% endif %}
-
-                                            {% if node.field_link.title or node.label %}
-                                                <div class="card-footer card-story d-flex p-0 mb-5">
-                          <span class="card-link btn outline-btn-cu-bg-light-grey text-decoration-none p-2 mt-3 text-white">
-                            {{ node.field_link.title ?? 'Read more' }}
-                          </span>
-                                                </div>
+                                            {% if node.field_flag_title.value %}
+                                                <span class="flag-title">{{ node.field_flag_title.value }}</span>
                                             {% endif %}
                                         </div>
                                     </div>
-                                </a>
+                                {% endif %}
+
+                                {% if node.field_image.entity %}
+                                    {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
+                                    {% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
+                                    <div class="card-header mb-2">
+                                        <img src="{{ image_url }}"
+                                             alt="{{ alt_text }}"
+                                             loading="lazy"
+                                             class="img-fluid">
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            {% if node.label or node.body.value is not empty %}
+                            <div class="give-now-content px-3 pt-2">
+                                {% if node.label %}
+                                <{{ heading_level }} id="{{ heading_id }}" class="give-now-title">
+                                {{ node.label }}
+                            </{{ heading_level }}>
+                            {% endif %}
+                            {% if node.body.value is not empty %}
+                                <div class="give-now-body mb-2">
+                                    {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        {% if node.field_link.title is not empty %}
+                            <div class="card-footer card-story d-flex p-0 mb-5 mx-3">
+                                <div class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true" role="presentation">
+                                    {{ node.field_link.title ?: 'Give to ' ~ node.label }}
+                                </div>
                             </div>
                         {% endif %}
-                    {% endif %}
-                {% endfor %}
-
+                </div>
+                </a>
             </div>
+            {% endif %}
+            {% endfor %}
+        </div>
         </div>
     {% else %}
         <div class="text-center p-4">
-            <p class="no-content-message text-muted">{{ 'No stories available at the moment. Check back soon!'|t }}</p>
+            <p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
         </div>
     {% endif %}
 {% else %}
