@@ -12,34 +12,34 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'col',
-    'give-now-item',
-    id ? 'block--class--give-now-' ~ id|clean_class : null,
+    'lead-story-item',
+    id ? 'block--class--lead-story-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
 {% if user.hasPermission('administer site configuration') %}
     <div class="d-flex justify-content-center m-2">
-        <a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
-        <a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new Give Now'|t }}</a>
-        <a href="/give-now/view-sample" class="btn btn-secondary mx-2">{{ 'View Staging Blocks'|t }}</a>
-        <a href="/admin/content?title=&type=gi&status=1" class="btn btn-secondary mx-2">{{ 'Edit Give Now Blocks'|t }}</a>
+        <a href="/lead-story/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage lead stories'|t }}</a>
+        <a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new lead story'|t }}</a>
+        <a href="/lead-story/view-sample" class="btn btn-secondary mx-2">{{ 'View staging blocks'|t }}</a>
+        <a href="/admin/content?title=&type=gi&status=1" class="btn btn-secondary mx-2">{{ 'Edit lead story blocks'|t }}</a>
     </div>
 {% endif %}
 
 {% if content['#view'] is not empty %}
     {% set view = content['#view'] %}
     {% if view.result is not empty %}
-        <div class="container-fluid cu-bd-black px-2 pt-1 pb-5">
+        <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
             <div class="row" role="list" aria-label="Give Now items">
                 {% for row in view.result %}
                 {% if row._entity is not empty %}
                 {% set node = row._entity %}
-                {% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
+                {% set heading_id = 'lead-story-item-' ~ node.id ~ '-title' %}
                 {% set link = node.field_link.uri ?: '#' %}
                 {% set heading_level = heading_level ?: 'h3' %}
 
-                <div class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" role="listitem">
+                <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4" role="listitem">
                     <a href="{{ link }}"
-                       id="give-now-item-{{ node.id }}"
+                       id="lead-story-item-{{ node.id }}"
                        class="{{ givenow_classes }} text-decoration-none d-block h-100"
                        aria-labelledby="{{ heading_id }}">
 
@@ -75,14 +75,14 @@
                             </div>
 
                             {% if node.label or node.body.value is not empty %}
-                            <div class="give-now-content px-3 pt-2">
+                            <div class="lead-story-content px-3 pt-2">
                                 {% if node.label %}
-                                <{{ heading_level }} id="{{ heading_id }}" class="give-now-title">
+                                <{{ heading_level }} id="{{ heading_id }}" class="lead-story-title">
                                 {{ node.label }}
                             </{{ heading_level }}>
                             {% endif %}
                             {% if node.body.value is not empty %}
-                                <div class="give-now-body mb-2">
+                                <div class="lead-story-body mb-2">
                                     {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
                                 </div>
                             {% endif %}

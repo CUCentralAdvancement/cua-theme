@@ -2649,9 +2649,52 @@ nav#block-cua-theme-campusoffices {
 }
 
 .give-now-item:focus .shadow,
-.give-now-item:hover .shadow {
+.give-now-item:hover .shadow,
+.lead-story-item:focus .shadow,
+.lead-story-item:hover .shadow {
     box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5); /* Custom accessible shadow */
     transition: box-shadow 0.2s ease-in-out;
+}
+
+/* Default state */
+.lead-story-item {
+    color: var(--cua-white)
+}
+
+.lead-story-item * {
+    color: var(--cua-white) !important;
+}
+
+/* Optional: background if needed for visibility */
+.lead-story-item .shadow,
+.lead-story-item .card-header,
+.lead-story-item .card-footer {
+    background-color: transparent;
+}
+
+/* Hover and focus state */
+.lead-story-item:hover,
+.lead-story-item:focus {
+    color:var(--cua-white);
+    text-decoration: none;
+}
+
+.lead-story-item:hover *,
+.lead-story-item:focus * {
+    color: var(--cua-white) !important;
+}
+
+/* Optional: button or card link hover tweak */
+.lead-story-item .card-link.btn:hover,
+.lead-story-item .card-link.btn:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--cua-white) !important;
+    color:var(--cua-white) !important;
+}
+
+.lead-story-item .card-footer .btn.outline-btn-cu-bg-black {
+    border: 2px solid var(--cua-white) !important;
+    color: var(--cua-white) !important;
 }
 
 /* Reduce animation for users who prefer reduced motion */
