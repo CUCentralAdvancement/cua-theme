@@ -1,23 +1,23 @@
 {#
 /**
-* @file
-* Template for the Heading component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
+ * @file
+ * Template for the Heading component with 508 accessibility compliance.
+ *
+ * Bootstrap Documentation
+ * https://getbootstrap.com/docs/5.3
+ *
+ * Utility Classes Reference
+ * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css
+ */
 #}
 
 {# Import macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Attach the library #}
+{# Attach the component's library (JS/CSS) #}
 {{ attach_library('cua_theme/heading') }}
 
-{# Define CTA classes #}
+{# Generate block-specific classes for styling #}
 {% set heading_classes = [
 	'container',
 	'block',
@@ -29,28 +29,48 @@
 	id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ')|trim %}
 
-{# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-heading' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{# Create a unique ID for this block instance #}
+{% set unique_id = 'block--node-heading--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(heading_classes).setAttribute('role', 'region') }}>
+{# Define a title ID for ARIA reference #}
+{% set heading_id = unique_id ~ '-title' %}
+
+{# Start of the block wrapper with appropriate ARIA role and labeling #}
+<div{{
+attributes
+| without('id')
+	.setAttribute('id', unique_id)
+	.addClass(heading_classes)
+	.setAttribute('role', 'region')
+	.setAttribute('aria-labelledby', heading_id)
+}}>
 
 	<div class="row pt-2">
-		{# Render the title to allow editing #}
+
+		{# Render contextual admin title prefix (e.g., "Configure block") #}
 		{{ title_prefix ?? '' }}
-		{# Ensure the title is properly escaped to prevent XSS vulnerabilities #}
-		<h2 class="visually-hidden">{{ label|e }}</h2>
+
+		{# Render the visible and accessible heading if defined #}
+		{% if heading %}
+			<h3 id="{{ heading_id }}"{{ title_attributes.addClass('title') }}>
+				{{ heading|e }}
+			</h3>
+		{% else %}
+			{# Fallback to label if no heading is provided, still accessible and visible #}
+			<h3 id="{{ heading_id }}" class="title">
+				{{ label|e }}
+			</h3>
+		{% endif %}
+
 		{{ title_suffix ?? '' }}
 
-		{# Render the new title #}
-		{% if heading %}
-			<h2{{ title_attributes.addClass('title') }}>{{ heading|e }}</h2>
+		{# Render a subtitle if provided, using <h3> to maintain hierarchy #}
+		{% if subtitle %}
+			<h4 class="title px-3 pb-4">
+				{{ subtitle|e }}
+			</h4>
 		{% endif %}
 
-		{# Render sub-title #}
-		{% if subtitle %}
-			<h3{{ title_attributes.addClass('title px-3 pb-4') }}>{{ subtitle|e }}</h3>
-		{% endif %}
 	</div>
 
 </div>
