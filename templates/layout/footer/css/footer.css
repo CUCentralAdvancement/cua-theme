@@ -255,6 +255,10 @@ a:focus {
     outline-offset: 3px;
 }
 
+.card h3, .card .h3, .card h3 a, .card .h3 a {
+    line-height: 1.1;
+}
+
 /*** Responsive ***/
 /* Screens below 991px */
 @media (max-width: 991px) {
