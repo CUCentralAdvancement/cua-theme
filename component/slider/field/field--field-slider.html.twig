@@ -1,20 +1,32 @@
 {# Render carousel indicators #}
-<div class="carousel-indicators pt-3">
+<div class="carousel-indicators pt-3" role="tablist"
+	 aria-label="Slider indicators">
 	{% for item in items %}
-		<button type="button"
+		<button
+				type="button"
 				data-bs-target="#{{ carousel_id }}"
 				data-bs-slide-to="{{ loop.index0 }}"
 				class="{{ loop.first ? 'active' : '' }}"
 				aria-current="{{ loop.first ? 'true' : 'false' }}"
-				aria-label="Slide {{ loop.index }}">
-		</button>
+				aria-label="Go to slide {{ loop.index }}"
+				role="tab"
+				{% if loop.first %} aria-selected="true" {% else %} aria-selected="false" {% endif %}
+		></button>
 	{% endfor %}
 </div>
 
 {# Render carousel items #}
-<div class="carousel-inner text-align-center">
+<div class="carousel-inner text-align-center" role="group"
+	 aria-roledescription="carousel" aria-label="Testimonial slider"
+	 aria-live="polite">
 	{% for item in items %}
-		<div class="carousel-item{{ loop.first ? ' active' : '' }}" data-bs-interval="6000">
+		<div
+				class="carousel-item{{ loop.first ? ' active' : '' }}"
+				data-bs-interval="6000"
+				role="tabpanel"
+				id="slide-{{ loop.index }}"
+				aria-hidden="{{ loop.first ? 'false' : 'true' }}"
+		>
 			<div{{ attributes.addClass(classes) }}>
 				{{ item.content }}
 			</div>

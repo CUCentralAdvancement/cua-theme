@@ -1,38 +1,36 @@
 {#
 /**
  * @file
- * Template for the Slider component.
+ * Accessible Template for the Slider component (508 compliant).
  */
 #}
 
 {{ attach_library('cua_theme/slider') }}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Set classes and dynamic IDs #}
+{# Dynamic variables #}
+{% set block_id = 'block--node--slider--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{% set title_id = block_id ~ '-title' %}
+
+{# CSS classes #}
 {% set slider_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'slider',
-    'mx-5 my-1',
+    'mx-5', 'my-1',
     color_background ?: null,
     text_color ?: null,
 ] %}
-{% set block_id = 'block--node--slider--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
-{% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
-<div{{ attributes.addClass(slider_classes).setAttribute('id', block_id).setAttribute('role', 'region') }}>
-
-    {{ titleMacros.render_title(
-        label,
-        title_prefix,
-        title_suffix
-    ) }}
+<div{{ attributes.addClass(slider_classes).setAttribute('id', block_id).setAttribute('role', 'region').setAttribute('aria-labelledby', title_id) }}>
+    {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id) }}
 
     <div id="{{ carousel_id }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
-        {# Inject the carousel_id into the field template via content variable #}
-        {% set content_with_id = content|render|replace({'data-bs-target="#carousel"': 'data-bs-target="#' ~ carousel_id ~ '"'}) %}
+        {# Replace hardcoded data-bs-target with the dynamic carousel_id #}
+        {% set content_with_id = content|render|replace({'data-bs-target="#"': 'data-bs-target="#' ~ carousel_id ~ '"'}) %}
         {{ content_with_id|raw }}
 
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
@@ -46,5 +44,4 @@
             </button>
         {% endif %}
     </div>
-
 </div>
