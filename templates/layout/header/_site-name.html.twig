@@ -1,10 +1,30 @@
-{# Site name and breadcrumb #}
+{#
+/**
+ * @file
+ * Site name and optional breadcrumb navigation.
+ *
+ * Displays the site name prominently with optional breadcrumb trail on
+ * larger screens (desktop only).
+ *
+ * Variables:
+ * - site_name: The site's name, escaped for safe output.
+ * - page.breadcrumb: Optional breadcrumb block rendered if present.
+ *
+ * Usage:
+ * This partial is included in the header template to show site identity
+ * and improve navigation context.
+ */
+#}
+
 <div class="container-fluid site-name-wrapper g-0">
     <div class="container px-3 my-1">
         <div class="row">
+            {# Site name displayed with some margin for spacing #}
             <div class="col-auto site-slogan mx-2 my-2">
                 {{ site_name|e }}
             </div>
+
+            {# Optional breadcrumb navigation visible only on desktop #}
             {% if page.breadcrumb %}
                 {% block breadcrumb %}
                     <div class="col d-none d-lg-block pt-2">
