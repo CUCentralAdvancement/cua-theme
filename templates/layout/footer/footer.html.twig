@@ -1,62 +1,54 @@
 {#
 /**
-* @file
-* Template for the Footer component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
-*
-* Available fields located in:
-* - cua_theme.theme
-*/
+ * @file
+ * Accessible Footer component template.
+ */
 #}
 
-{# Render content #}
-<footer class="site-footer mt-auto">
-    {# Site Footer Top Section #}
+<footer class="site-footer mt-auto" role="contentinfo" aria-label="{{ 'University of Colorado site footer'|t }}">
+
+    {# -- Top Section of the Footer: Main Footer Regions -- #}
     <div id="site-footer-top" class="container pt-3">
-        {# Check if any footer regions are present #}
+
         {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
             <div class="row g-0">
 
-                {# Footer Region 1 and 5: University Information #}
-                <div class="col-md-4 col-sm-6 px-2">
-                    {# Footer Region 1: #}
-                    {% if page.footer_first %}
-                        <div class="first-col-footer g-0">
-                            {{ page.footer_first }}
-                        </div>
-                    {% endif %}
-                </div>
+                {# -- Footer Region 1: University Info / Contact -- #}
+                {% if page.footer_first %}
+                    <div class="col-md-4 col-sm-6 px-2" role="region" aria-labelledby="footer-university-info-heading">
+                        <h2 id="footer-university-info-heading" class="visually-hidden">{{ 'University Information'|t }}</h2>
+                        {{ page.footer_first }}
+                    </div>
+                {% endif %}
 
-                {# Additional Footer Regions #}
-                {# Footer Region 2: Displayed as a column on medium and a row on small screens #}
+                {# -- Footer Region 2: Helpful Links -- #}
                 {% if page.footer_second %}
-                    <div class="col-md-3 col-sm-6 mt-2 px-2">
+                    <div class="col-md-3 col-sm-6 mt-2 px-2" role="region" aria-labelledby="footer-helpful-links-heading">
+                        <h2 id="footer-helpful-links-heading" class="visually-hidden">{{ 'Helpful Links'|t }}</h2>
                         {{ page.footer_second }}
                     </div>
                 {% endif %}
 
-                {# Footer Region 3: Displayed as a column on medium and a row on small screens #}
+                {# -- Footer Region 3: More Resources -- #}
                 {% if page.footer_third %}
-                    <div class="col-md-3 col-sm-6 mt-2 px-2">
+                    <div class="col-md-3 col-sm-6 mt-2 px-2" role="region" aria-labelledby="footer-more-resources-heading">
+                        <h2 id="footer-more-resources-heading" class="visually-hidden">{{ 'More Resources'|t }}</h2>
                         {{ page.footer_third }}
                     </div>
                 {% endif %}
 
-                {# Footer Region 4: Displayed as a column on medium and a row on small screens #}
+                {# -- Footer Region 4: Quick Links -- #}
                 {% if page.footer_fourth %}
-                    <div class="col-md-2 col-sm-6 mt-2 px-2">
+                    <div class="col-md-2 col-sm-6 mt-2 px-2" role="region" aria-labelledby="footer-quick-links-heading">
+                        <h2 id="footer-quick-links-heading" class="visually-hidden">{{ 'Quick Links'|t }}</h2>
                         {{ page.footer_fourth }}
                     </div>
                 {% endif %}
 
-                {# Footer Region 5 #}
+                {# -- Footer Region 5: Make a Gift -- #}
                 {% if page.footer_fifth %}
-                    <div class="make-a-gift g-0 my-2">
+                    <div class="make-a-gift g-0 my-2" role="region" aria-labelledby="footer-support-heading">
+                        <h2 id="footer-support-heading" class="visually-hidden">{{ 'Support the University'|t }}</h2>
                         {{ page.footer_fifth }}
                     </div>
                 {% endif %}
@@ -65,12 +57,11 @@
         {% endif %}
     </div>
 
-    {# Site Footer Bottom Section #}
-    <div id="site-footer-bottom"
-         class="container-fluid bg-pure-black px-5 pb-2">
+    {# -- Bottom Section of the Footer -- #}
+    <div id="site-footer-bottom" class="container-fluid bg-pure-black px-5 pb-2">
         <div class="row">
 
-            {# CU Logo #}
+            {# -- University Logo -- #}
             <div class="col-sm-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
                 <picture>
                     <source
@@ -95,40 +86,41 @@
                 </picture>
             </div>
 
-            {# Footer Region 6 #}
+            {# -- Footer Region 6: Legal/Social -- #}
             {% if page.footer_sixth %}
-                <div class="col-sm-12 d-flex align-items-center justify-content-center">
+                <div class="col-sm-12 d-flex align-items-center justify-content-center" role="region" aria-labelledby="footer-additional-info-heading">
+                    <h2 id="footer-additional-info-heading" class="visually-hidden">{{ 'Additional Footer Information'|t }}</h2>
                     {{ page.footer_sixth }}
                 </div>
             {% endif %}
 
-            {# Copyright/Regents Information #}
+            {# -- Copyright --
+			   Screen reader users will read link content; no extra ARIA needed.
+            #}
             <div class="copyright col-sm-12 border-top border-secondary d-flex align-items-center justify-content-center">
-                <p class="mt-2 mb-3 strong text-light"
-                   aria-label="{{ 'Copyright and University of Colorado Regents website'|t }}">
+                <p class="mt-2 mb-3 strong text-light">
                     {{ '©'|t }} {{ 'now' | date('Y') }}
-                    <a href="https://regents.cu.edu" rel="noopener"
+                    <a href="https://regents.cu.edu"
+                       rel="noopener"
                        target="_blank"
-                       class="link-light link-underline-opacity-0 px-2"
-                       aria-label="{{ 'Visit the University of Colorado Regents website'|t }}">
+                       class="link-light link-underline-opacity-0 px-2">
                         {{ 'Regents of the University of Colorado'|t }}
                     </a>
 
                     {% if not logged_in %}
                         <span class="admin-login">
-							<a href="{{ path('user.login') }}" rel="noopener"
-                               class="link-light link-underline-opacity-0 px-2"
-                               aria-label="{{ 'Login'|t }}">
-							<i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
-							{{ 'Login'|t }}
+							<a href="{{ path('user.login') }}"
+                               rel="noopener"
+                               class="link-light link-underline-opacity-0 px-2">
+								<i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
+								{{ 'Login'|t }}
 							</a>
 						</span>
                     {% endif %}
-
                 </p>
             </div>
 
         </div>
-
     </div>
+
 </footer>
