@@ -1,43 +1,39 @@
 {#
-/**
-* @file
-* Template for the Counter component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+Counter Component Template
+--------------------------
+- Renders a visual card with a numeric counter, optional icon/image, title, body, and links.
+- Implements WCAG/Section 508 accessibility best practices.
+- Dynamically generates semantic IDs for ARIA labeling.
+- Utilizes Bootstrap 5 utility classes.
+- Uses macros for modular, reusable structure.
 #}
 
-
-{# Attach the library #}
+{# Attach required styles and JS behavior for the counter #}
 {{ attach_library('cua_theme/counter') }}
 
-
-{# Import macros #}
+{# Import reusable rendering macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
 
-{# Define counter classes, use default filter for utility classes #}
+{# Build base classes dynamically with fallbacks and optional utility extensions #}
 {% set counter_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'counter',
-    'card rounded-0 mx-2 p-3',
+    'card', 'rounded-0', 'mx-2', 'p-3',
     color_background ?: null,
     color_border ?: null,
     container_size ?: null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
+    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null
 ] | merge(utility_classes|default([])) | filter(v => v) | join(' ') %}
 
-{# Generate unique ID #}
+{# Generate unique ID for region and title #}
 {% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set title_id = unique_id ~ '-title' %}
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(counter_classes).setAttribute('role', 'region') }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(counter_classes).setAttribute('role', 'region').setAttribute('aria-labelledby', title_id) }}>
 
-    {# Render the title #}
+    {# Render the title with ID #}
     {{ titleMacros.render_title(
         label,
         title_prefix,
@@ -46,10 +42,11 @@
         text_alignment,
         text_color,
         padding,
-        links
+        links,
+        title_id
     ) }}
 
-    {# Conditionally import and render image or icon #}
+    {# Conditionally render an image or icon (mutually exclusive) #}
     {% if card_image %}
         {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
         {{ cardImageMacros.render_card_image(
@@ -70,11 +67,12 @@
             icon_color,
             padding,
             position_container,
-            text_alignment
+            text_alignment,
+            'Counter visual icon'
         ) }}
     {% endif %}
 
-    {# Render the counter #}
+    {# Render the animated counter number (with appropriate ARIA support handled inside the macro) #}
     {{ counterMacros.render_counter(
         number,
         text_alignment,
@@ -83,7 +81,6 @@
         after_number
     ) }}
 
-    {# Conditionally render body if content exists #}
     {% if content %}
         {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
         {{ bodyMacros.render_body(
@@ -94,7 +91,6 @@
         ) }}
     {% endif %}
 
-    {# Conditionally render footer if links exist #}
     {% if links %}
         {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
         {{ cardFooterMacros.render_card_footer(
