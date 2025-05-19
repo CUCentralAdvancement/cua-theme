@@ -6,13 +6,18 @@
 {# Content #}
 {% if provider|default(false) %}
 
-    {# Render title #}
-    {{ titleMacros.render_card_basic_title(
-        title_prefix,
-        label,
-        title_suffix) }}
+    {# Define a unique ID for accessibility (example shown using loop index or node ID if available) #}
+    {% set heading_id = 'block--node--video--' ~ node.id ~ '-label' %}
 
-    {# Render video #}
+    {# Render the heading with proper ID so it can be referenced by aria-labelledby #}
+    {# Screen reader-only heading to support aria-labelledby #}
+    {% if label %}
+        <h2 id="{{ title_id }}" class="visually-hidden">
+            {{ label }}
+        </h2>
+    {% endif %}
+
+    {# Render video container — no aria-hidden or role=presentation here #}
     <div class="video-container g-0 m-0 p-0 position-relative">
         {% include '@cua_theme/component/video/partials/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
     </div>

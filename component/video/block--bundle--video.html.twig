@@ -5,7 +5,6 @@
 *
 * Bootstrap Documentation
 * https://getbootstrap.com/docs/5.3
-*
 * Full List Utility Classes
 * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
 #}
@@ -33,28 +32,29 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
 ] %}
 
-{# Generate a unique ID for the block #}
+{# Generate a unique ID for the block and its accessible title #}
 {% set unique_id = 'block--node--video--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set title_id = unique_id ~ '-label' %}
 
 {# Render the main content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(video_classes).setAttribute('role', 'region') }}>
+<div{{ attributes
+|without('id')
+    .setAttribute('id', unique_id)
+    .addClass(video_classes)
+    .setAttribute('role', 'region')
+    .setAttribute('aria-labelledby', title_id)
+}}>
 
-    {# Include Video component #}
+
+    {# Include the video partial (video should be marked aria-hidden="true" inside the partial) #}
     {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
 
     {# Desktop component #}
     {% if label or body %}
-
         <div class="video-desktop-copy d-none d-md-block g-0">
-            <div class="container-fluid mx-auto {% if parallax_video %}parallax-main-content{% else %}position-absolute{% endif %} d-flex {{ position_container ?? '' }}">
+            <div class="container-fluid mx-auto {{ parallax_video ? 'parallax-main-content' : 'position-absolute' }} d-flex {{ position_container ?? '' }}">
                 <div class="row">
-                    <div class="col {{ color_background  ?: '' }} px-5 py-4 m-5">
-
-                        {# Render the title #}
-                        {# Screen reader-only title for accessibility. #}
-                        {{ title_prefix ?? '' }}
-                        <h2 id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</h2>
-                        {{ title_suffix ?? '' }}
+                    <div class="col {{ color_background ?: '' }} px-5 py-4 m-5">
 
                         {# Render Body #}
                         {% if content %}
@@ -88,23 +88,25 @@
             </div>
         </div>
 
-        {# Video -- Mobile #}
-        <div class="video-mobile-copy d-md-none g-0 {% if parallax_video %}parallax-main-content{% endif %}">
+        {# Mobile Component #}
+        <div class="video-mobile-copy d-md-none g-0 {{ parallax_video ? 'parallax-main-content' }}">
             <div class="container mt-0 mt-md-5">
                 <div class="row">
-                    <div class="col {{ color_background  ?: '' }} p-3 my-5">
+                    <div class="col {{ color_background ?: '' }} p-3 my-5">
 
-                        {# Render the title #}
-                        {{ titleMacros.render_title(
-                            label,
-                            title_prefix,
-                            title_suffix,
-                            center_content,
-                            text_alignment,
-                            text_color,
-                            padding,
-                            links
-                        ) }}
+                        {# Visually visible title but hidden from screen readers (redundant to SR-only heading above) #}
+                        <div aria-hidden="true">
+                            {{ titleMacros.render_title(
+                                label,
+                                title_prefix,
+                                title_suffix,
+                                center_content,
+                                text_alignment,
+                                text_color,
+                                padding,
+                                links
+                            ) }}
+                        </div>
 
                         {# Render Body #}
                         {% if content %}
@@ -137,7 +139,6 @@
                 </div>
             </div>
         </div>
-
     {% endif %}
 
 </div>
