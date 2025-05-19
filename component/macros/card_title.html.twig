@@ -7,7 +7,18 @@
 {# {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding) }} #}
 
 {# Content #}
-{% macro render_title(label, title_prefix = '', title_suffix = '', center_content = null, text_alignment = null, text_color = null, padding = null, hide_from_screen_readers = false, links = []) %}
+{% macro render_title(
+    label,
+    title_prefix = '',
+    title_suffix = '',
+    center_content = null,
+    text_alignment = null,
+    text_color = null,
+    padding = null,
+    hide_from_screen_readers = false,
+    links = [],
+    title_id = ''
+    ) %}
 
     {# Define Title Classes #}
     {% set title_classes = [
@@ -31,12 +42,22 @@
             {% set firstLink = links[0] %}
         <a class="{{ title_link_classes }}" href="{{ firstLink.url }}"
            title="{{ firstLink.title }}"{% if hide_from_screen_readers %} aria-hidden="true"{% endif %}>
-            <{{ hide_from_screen_readers ? 'div' : 'h2' }} role="heading" aria-level="3" class="{{ title_classes }}">
+            <{{ hide_from_screen_readers ? 'div' : 'h2' }}
+            role="heading"
+            aria-level="3"
+            class="{{ title_classes }}"
+            {% if title_id %}id="{{ title_id }}"{% endif %}
+            >
             {{ label }}
             </{{ hide_from_screen_readers ? 'div' : 'h2' }}>
             </a>
         {% else %}
-            <{{ hide_from_screen_readers ? 'div' : 'h2' }} role="heading" aria-level="3" class="{{ title_classes }}">
+            <{{ hide_from_screen_readers ? 'div' : 'h2' }}
+            role="heading"
+            aria-level="3"
+            class="{{ title_classes }}"
+            {% if title_id %}id="{{ title_id }}"{% endif %}
+            >
             {{ label }}
             </{{ hide_from_screen_readers ? 'div' : 'h2' }}>
         {% endif %}
