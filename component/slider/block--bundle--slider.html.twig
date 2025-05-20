@@ -24,21 +24,39 @@
     text_color ?: null,
 ] %}
 
-<div{{ attributes.addClass(slider_classes).setAttribute('id', block_id).setAttribute('role', 'region').setAttribute('aria-labelledby', title_id) }}>
-    {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id) }}
+<div{{ attributes
+    .addClass(slider_classes)
+    .setAttribute('id', block_id)
+    .setAttribute('role', 'region')
+    .setAttribute('aria-labelledby', title_id)
+}}>
+    {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
 
-    <div id="{{ carousel_id }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
-
-        {# Replace hardcoded data-bs-target with the dynamic carousel_id #}
-        {% set content_with_id = content|render|replace({'data-bs-target="#"': 'data-bs-target="#' ~ carousel_id ~ '"'}) %}
-        {{ content_with_id|raw }}
+    <div
+            id="{{ carousel_id }}"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+            aria-roledescription="carousel"
+            aria-label="{{ label }}"
+    >
+        {{ content }}
 
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
-            <button class="carousel-control-prev" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
+            <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#{{ carousel_id }}"
+                    data-bs-slide="prev"
+            >
                 <span class="fa-solid fa-circle-left" aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Previous'|t }}</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
+            <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#{{ carousel_id }}"
+                    data-bs-slide="next"
+            >
                 <span class="fa-solid fa-circle-right" aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Next'|t }}</span>
             </button>
