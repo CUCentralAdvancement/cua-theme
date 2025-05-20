@@ -1,39 +1,29 @@
 {#
 /**
-* @file
-* Template for the Spacer component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ * @file
+ * Template for the Spacer component.
+ */
 #}
 
-{# Attach the library #}
 {{ attach_library('cua_theme/spacer') }}
 
-{# Add unique ID and Classes #}
-{% set unique_id = 'block--node-' ~ '-spacer' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set unique_id = 'block--node--spacer--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 {% set spacer_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'spacer',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
-] | merge(utility_classes is iterable ? utility_classes : []) | join(' ')|trim %}
+]|merge(utility_classes is iterable ? utility_classes : [])|join(' ')|trim %}
 
-{# Render content based on user role #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(spacer_classes).setAttribute('role', 'region') }}>
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(spacer_classes).setAttribute('aria-hidden', 'true') }}>
     <div class="spacer {{ size }} g-0">
-        {{ title_prefix }}
+
         {% if is_admin %}
-            <div class="small text-align-center">
+            <div class="small text-align-center" aria-hidden="true">
                 {{ label }}: {{ 'Blank space size:'|t }} {{ size }} {{ '(Only visible for logged-in admins)'|t }}
             </div>
-        {% elseif label %}
-            <div class="hidden" aria-hidden="true">{{ 'spacer'|t }}</div>
         {% endif %}
-        {{ title_suffix }}
+
     </div>
 </div>
