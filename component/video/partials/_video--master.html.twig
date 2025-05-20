@@ -1,27 +1,15 @@
-{# Video Containers #}
+{#
+* Master Video Partial - Embeds video with accessible heading.
+* Cleaned up to avoid duplicate aria-labelledby issues.
+#}
 
-{# Import macros #}
 {% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
 
-{# Content #}
 {% if provider|default(false) %}
-
-    {# Define a unique ID for accessibility (example shown using loop index or node ID if available) #}
-    {% set heading_id = 'block--node--video--' ~ node.id ~ '-label' %}
-
-    {# Render the heading with proper ID so it can be referenced by aria-labelledby #}
-    {# Screen reader-only heading to support aria-labelledby #}
-    {% if label %}
-        <h2 id="{{ title_id }}" class="visually-hidden">
-            {{ label }}
-        </h2>
-    {% endif %}
-
-    {# Render video container — no aria-hidden or role=presentation here #}
     <div class="video-container g-0 m-0 p-0 position-relative">
+        {# Only include the provider-specific partial; no extra <h2> here #}
         {% include '@cua_theme/component/video/partials/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
     </div>
-
 {% else %}
     <p>{{ 'No video provider specified.'|t }}</p>
 {% endif %}

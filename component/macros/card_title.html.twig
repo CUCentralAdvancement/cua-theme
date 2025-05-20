@@ -1,12 +1,3 @@
-{# Title Macro #}
-
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/title_macros.html.twig' as titleMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding) }} #}
-
-{# Content #}
 {% macro render_title(
     label,
     title_prefix = '',
@@ -17,52 +8,52 @@
     padding = null,
     hide_from_screen_readers = false,
     links = [],
-    title_id = ''
+    title_id = '',
+    heading_level = 2
     ) %}
-
-    {# Define Title Classes #}
     {% set title_classes = [
         'display-4 card-text lead title',
         center_content ?: null,
         text_alignment ?: null,
         text_color ?: null,
-        padding ?: null,
+        padding ?: null
     ] | filter(v => v) | join(' ') %}
 
-    {# Define Title Link Classes #}
     {% set title_link_classes = [
         'title-link',
-        text_color ?: null,
+        text_color ?: null
     ] | filter(v => v) | join(' ') %}
+
+    {% set heading_tag = 'h' ~ heading_level %}
 
     {{ title_prefix ?: '' }}
 
     {% if label is not empty %}
         {% if links|length %}
             {% set firstLink = links[0] %}
-        <a class="{{ title_link_classes }}" href="{{ firstLink.url }}"
-           title="{{ firstLink.title }}"{% if hide_from_screen_readers %} aria-hidden="true"{% endif %}>
-            <{{ hide_from_screen_readers ? 'div' : 'h2' }}
-            role="heading"
-            aria-level="3"
-            class="{{ title_classes }}"
-            {% if title_id %}id="{{ title_id }}"{% endif %}
-            >
-            {{ label }}
-            </{{ hide_from_screen_readers ? 'div' : 'h2' }}>
+        <a class="{{ title_link_classes }}" href="{{ firstLink.url }}" title="{{ firstLink.title }}"{% if hide_from_screen_readers %} aria-hidden="true"{% endif %}>
+            {% if hide_from_screen_readers %}
+                <div class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
+                    {{ label }}
+                </div>
+            {% else %}
+                <{{ heading_tag }} class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
+                {{ label }}
+                </{{ heading_tag }}>
+            {% endif %}
             </a>
         {% else %}
-            <{{ hide_from_screen_readers ? 'div' : 'h2' }}
-            role="heading"
-            aria-level="3"
-            class="{{ title_classes }}"
-            {% if title_id %}id="{{ title_id }}"{% endif %}
-            >
-            {{ label }}
-            </{{ hide_from_screen_readers ? 'div' : 'h2' }}>
+            {% if hide_from_screen_readers %}
+                <div class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
+                    {{ label }}
+                </div>
+            {% else %}
+                <{{ heading_tag }} class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
+                {{ label }}
+                </{{ heading_tag }}>
+            {% endif %}
         {% endif %}
     {% endif %}
 
     {{ title_suffix ?: '' }}
-
 {% endmacro %}

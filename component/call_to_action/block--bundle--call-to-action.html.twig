@@ -46,10 +46,14 @@
     .setAttribute('role', 'region')
     .setAttribute('aria-labelledby', unique_id ~ '-label') }}{{ data_animation_classes ? ' data-animation-classes="' ~ data_animation_classes ~ '"' : '' }}>
 
-    {# Screen reader-only title for accessibility. #}
-    {{ title_prefix ?? '' }}
-         <{{ heading_level }} id="{{ unique_id }}-label" class="sr-only">{{ label|e }}</{{ heading_level }}>
-    {{ title_suffix ?? '' }}
+    {# Hidden accessible heading for screen readers only #}
+    {% if label %}
+    <{{ heading_level }}
+    id="{{ unique_id }}-label"
+    class="sr-only">
+    {{ label }}
+</{{ heading_level }}>
+{% endif %}
 
     {% if wrap_entire_card %}
 <a href="{{ single_link.url ?: '#' }}"
@@ -97,7 +101,7 @@
         {{ captionMacros.render_caption(caption, padding, text_color, text_alignment) }}
     {% endif %}
 
-    {# Visual Title: Use div with heading role to avoid duplicate <h3> #}
+    {# Visual Title BELOW the image/icon, hidden from screen readers #}
     {% if label %}
         {% set heading_classes = [
             'display-4 card-text lead title',
@@ -106,7 +110,6 @@
             text_color,
             padding,
         ] | filter(v => v) | join(' ') %}
-        {# Render title #}
         <div role="heading" aria-level="3" aria-hidden="true" class="{{ heading_classes }}">
             {{ label }}
         </div>
@@ -120,7 +123,6 @@
 
     {# Render single link (non-clickable text wrapping the card). #}
     {% if single_link %}
-        {# Define dynamic classes for the footer links. #}
         {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
         {% set card_footer_classes = [
             'card-footer',
@@ -171,3 +173,4 @@
     {% endif %}
 
 </div>
+{{ title_suffix ?: '' }}

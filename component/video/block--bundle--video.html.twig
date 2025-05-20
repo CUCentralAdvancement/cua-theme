@@ -1,26 +1,26 @@
 {#
 /**
-* @file
-* Template for the Video component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+ * @file
+ * Accessible Template for the Video component.
+ */
 #}
 
-{# Preload the video resource if applicable #}
-{% if provider == 'local' and content.field_video_mp4.0 %}
-    <link rel="preload" href="{{ content.field_video_mp4.0 }}" as="video" type="video/mp4">
+{# Preload local video if applicable #}
+{% if provider == 'local' and content.field_video_mp4.0 is defined %}
+    {# Assuming content.field_video_mp4.0 is a render array, get the URL #}
+    {% set video_url = content.field_video_mp4.0['#url'] ?? content.field_video_mp4.0['#file'].url ?? null %}
+    {% if video_url %}
+        <link rel="preload" href="{{ video_url }}" as="video" type="video/mp4">
+    {% endif %}
 {% endif %}
 
-{# Import macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
-{# Attach the library #}
 {{ attach_library('cua_theme/video') }}
 
-{# Define the main block classes #}
+{# Define block classes #}
 {% set video_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -32,11 +32,11 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
 ] %}
 
-{# Generate a unique ID for the block and its accessible title #}
+{# Generate unique block ID and accessible title ID #}
 {% set unique_id = 'block--node--video--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 {% set title_id = unique_id ~ '-label' %}
 
-{# Render the main content #}
+{# Main video block wrapper #}
 <div{{ attributes
 |without('id')
     .setAttribute('id', unique_id)
@@ -45,31 +45,37 @@
     .setAttribute('aria-labelledby', title_id)
 }}>
 
+    {# Visually hidden heading for screen readers #}
+    <h2 id="{{ title_id }}" class="visually-hidden">
+        {{ label ?: 'Video Content' }}
+    </h2>
 
-    {# Include the video partial (video should be marked aria-hidden="true" inside the partial) #}
-    {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+    {# Include video partial (iframe must have title, no aria-label, controls=1) #}
+    {% include '@cua_theme/component/video/partials/_video--master.html.twig' with {
+        title_id: title_id,
+        provider: provider,
+        label: label,
+    } %}
 
-    {# Desktop component #}
-    {% if label or body %}
+    {# Optional: Accessible transcript link #}
+    {% if transcript_url is defined %}
+        <p class="sr-only-focusable">
+            <a href="{{ transcript_url }}">Read video transcript</a>
+        </p>
+    {% endif %}
+
+    {# Desktop layout copy #}
+    {% if label or content %}
         <div class="video-desktop-copy d-none d-md-block g-0">
             <div class="container-fluid mx-auto {{ parallax_video ? 'parallax-main-content' : 'position-absolute' }} d-flex {{ position_container ?? '' }}">
                 <div class="row">
                     <div class="col {{ color_background ?: '' }} px-5 py-4 m-5">
 
-                        {# Render Body #}
                         {% if content %}
-                            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                            {{ bodyMacros.render_body(
-                                content,
-                                padding,
-                                text_color,
-                                text_alignment
-                            ) }}
+                            {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
                         {% endif %}
 
-                        {# Render Footer #}
-                        {% if links %}
-                            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+                        {% if links is defined and links|length %}
                             {{ cardFooterMacros.render_card_footer(
                                 links,
                                 container_size,
@@ -88,13 +94,12 @@
             </div>
         </div>
 
-        {# Mobile Component #}
+        {# Mobile layout copy #}
         <div class="video-mobile-copy d-md-none g-0 {{ parallax_video ? 'parallax-main-content' }}">
             <div class="container mt-0 mt-md-5">
                 <div class="row">
                     <div class="col {{ color_background ?: '' }} p-3 my-5">
 
-                        {# Visually visible title but hidden from screen readers (redundant to SR-only heading above) #}
                         <div aria-hidden="true">
                             {{ titleMacros.render_title(
                                 label,
@@ -104,24 +109,18 @@
                                 text_alignment,
                                 text_color,
                                 padding,
-                                links
+                                links,
+                                false,
+                                title_id,
+                                2
                             ) }}
                         </div>
 
-                        {# Render Body #}
                         {% if content %}
-                            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                            {{ bodyMacros.render_body(
-                                content,
-                                padding,
-                                text_color,
-                                text_alignment
-                            ) }}
+                            {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
                         {% endif %}
 
-                        {# Render Footer #}
-                        {% if links %}
-                            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+                        {% if links is defined and links|length %}
                             {{ cardFooterMacros.render_card_footer(
                                 links,
                                 container_size,
