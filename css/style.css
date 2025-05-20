@@ -2697,6 +2697,11 @@ nav#block-cua-theme-campusoffices {
     color: var(--cua-white) !important;
 }
 
+.lead-story-item:focus-visible {
+    outline: 2px solid #005a9c; /* Example focus color */
+    outline-offset: 2px;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
