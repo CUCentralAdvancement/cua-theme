@@ -1,62 +1,76 @@
 {#
-@file
-Accessible Drupal Twig template for a "Button" block component.
-Uses macros and ARIA best practices for 508/WCAG compliance.
+/**
+* @file
+* Template for the Basic Block component.
+*
+* Bootstrap Documentation
+* https://getbootstrap.com/docs/5.3
+*
+* Full List Utility Classes
+* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+*
 #}
 
+{# Import macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
 
-{{ attach_library('cua_theme/call-to-action') }}
-
-{# Define CSS classes for the block wrapper #}
-{% set button_classes = [
+{# Define CTA classes #}
+{% set basic_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
-    'button card',
-    color_border ?: null,
+    'block-' ~ plugin_id|clean_class,
+    'basic-block',
+    'card px-4 py-1',
     text_alignment ?: null,
     text_color ?: null,
-    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null
+    color_background ?: null,
+    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Generate unique IDs for block and heading for aria-labelledby compliance #}
-{% set unique_id = 'block--node--button--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
-{% set heading_id = unique_id ~ '-title' %}
+{# Generate unique ID #}
+{% set unique_id = 'block--node-' ~ '-basic-block' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# Footer and button styling #}
-{% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-{% set card_footer_classes = [
-    'card-footer',
-    'd-flex',
-    multiple_links ? 'multiple-links' : '',
-    container_size,
-    position_container,
-    text_alignment,
-    padding,
-    'mb-5',
-    'me-3'
-] | filter(v => v) | join(' ') %}
+{# Render content #}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes).setAttribute('role', 'region') }}>
 
-{% set card_footer_link_classes = [
-    'card-link',
-    'btn',
-    outline_class,
-    'text-decoration-none',
-    position_container,
-    text_alignment,
-    'p-2',
-    'mt-3',
-    'me-2'
-] | filter(v => v) | join(' ') %}
+    {# Screen reader-only title for accessibility. #}
+    {# Only render the sr-only title if the visible title is not shown. #}
+    {% if not label %}
+        {{ title_prefix ?? '' }}
+        <h3 class="sr-only">
+            {{ label is not empty ? label|e : 'Content Section'|t }}
+        </h3>
+        {{ title_suffix ?? '' }}
+    {% endif %}
 
-<div{{ attributes|without('id')
-    .setAttribute('id', unique_id)
-    .addClass(button_classes)
-    .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', heading_id) }}>
+    {# Include image or icon #}
+    {% if card_image %}
+        {# Render the card image #}
+        {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+        {{ cardImageMacros.render_card_image(
+            card_image,
+            position_container,
+            text_alignment,
+            text_color,
+            image_size,
+            visibility,
+            content,
+            links
+        ) }}
+    {% elseif icon %}
+        {# Render the icon #}
+        {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+        {{ iconMacros.render_icon(
+            icon,
+            icon_size,
+            icon_color,
+            padding,
+            position_container,
+            text_alignment
+        ) }}
+    {% endif %}
 
-    {# Accessible semantic heading with optional link and ARIA compliance #}
+    {# Render the title #}
     {{ titleMacros.render_title(
         label,
         title_prefix,
@@ -65,15 +79,13 @@ Uses macros and ARIA best practices for 508/WCAG compliance.
         text_alignment,
         text_color,
         padding,
-        hide_from_screen_readers,
-        links,
-        heading_id,
-        2
+        links
     ) }}
 
-    {# Optional body content section #}
+    {# Render Body #}
     {% if content %}
-        {{ bodyMacros.render_body(
+        {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+        {{ bodyMacros.render_body (
             content,
             padding,
             text_color,
@@ -81,22 +93,20 @@ Uses macros and ARIA best practices for 508/WCAG compliance.
         ) }}
     {% endif %}
 
-    {# Render card footer with call-to-action links #}
-    <div class="{{ card_footer_classes }}"
-         {% if multiple_links %}role="group" aria-label="{{ custom_label ?: 'Related links' }}"{% endif %}>
+    {# Render Footer #}
+    {% if links %}
+        {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+        {{ cardFooterMacros.render_card_footer (
+            links,
+            container_size,
+            color_background,
+            position_container,
+            text_alignment,
+            padding,
+            outline,
+            button_color,
+            button_layout
+        ) }}
+    {% endif %}
 
-        {% for link in links %}
-            {% if is_single_link %}
-                <span class="{{ card_footer_link_classes }}" aria-label="{{ link.title }}">{{ link.title }}</span>
-            {% else %}
-                <a href="{{ link.url }}"
-                   class="{{ card_footer_link_classes }}"
-                   role="link"
-                   {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}
-                   aria-label="{{ link.title }}">
-                    {{ link.title }}
-                </a>
-            {% endif %}
-        {% endfor %}
-    </div>
 </div>
