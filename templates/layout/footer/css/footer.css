@@ -249,10 +249,14 @@ div#site-footer-top {
 }
 
 /* Keyboard focus outlines */
-.nav-link:focus,
+.site-footer .site-footer .nav-link:focus,
 a:focus {
     outline: 3px solid var(--cua-gold);
     outline-offset: 3px;
+}
+
+.site-footer li.nav-item {
+    margin: 0 0 .5rem 0
 }
 
 .card h3, .card .h3, .card h3 a, .card .h3 a {
