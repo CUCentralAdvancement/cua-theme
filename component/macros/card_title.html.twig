@@ -1,3 +1,44 @@
+{#
+Title Macro: render_title
+
+This macro renders a heading element (h1-h6) with flexible styling and accessibility options,
+designed to be used for card titles or other headings in your Drupal Twig templates.
+
+Parameters:
+- label (string): The visible text of the title. Required.
+- title_prefix (string): Optional HTML/text to prepend before the title (e.g., for Drupal's title prefix system).
+- title_suffix (string): Optional HTML/text to append after the title.
+- center_content (string|null): Optional CSS class to control centering or alignment of content.
+- text_alignment (string|null): CSS class for text alignment (e.g., 'text-center', 'text-left').
+- text_color (string|null): CSS class for text color styling.
+- padding (string|null): CSS class to control padding around the title.
+- hide_from_screen_readers (bool): If true, adds aria-hidden="true" to hide the title from screen readers.
+- links (array): An optional array of link objects. If provided, the title becomes a link using the first link's URL.
+- title_id (string): Optional ID attribute for the title, useful for aria-labelledby references.
+- heading_level (int|string): Heading level to use ('1' through '6'). Defaults to 2 (h2).
+
+Usage example:
+
+{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+{{ titleMacros.render_title(
+    label,
+    title_prefix,
+    title_suffix,
+    'center-content-class',
+    'text-center',
+    'text-primary',
+    'p-3',
+    false,
+    links,
+    'unique-title-id',
+    3
+) }}
+
+Notes:
+- The macro wraps the label in a heading tag with appropriate classes.
+- If 'links' is provided and non-empty, the title text will be wrapped in an <a> tag linking to the first link's URL.
+- Supports hiding the title from screen readers when used alongside a visually hidden accessible heading.
+#}
 {% macro render_title(
     label,
     title_prefix = '',
@@ -26,34 +67,27 @@
 
     {% set heading_tag = 'h' ~ heading_level %}
 
-    {{ title_prefix ?: '' }}
+    {{ title_prefix }}
 
     {% if label is not empty %}
         {% if links|length %}
             {% set firstLink = links[0] %}
-        <a class="{{ title_link_classes }}" href="{{ firstLink.url }}" title="{{ firstLink.title }}"{% if hide_from_screen_readers %} aria-hidden="true"{% endif %}>
-            {% if hide_from_screen_readers %}
-                <div class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
-                    {{ label }}
-                </div>
-            {% else %}
-                <{{ heading_tag }} class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
+            <{{ heading_tag }} class="{{ title_classes }}" {% if title_id %}id="{{ title_id }}"{% endif %}>
+            <a class="{{ title_link_classes }} {{ title_classes }}"
+               href="{{ firstLink.url }}"
+               title="{{ firstLink.title }}"
+               {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}>
                 {{ label }}
-                </{{ heading_tag }}>
-            {% endif %}
             </a>
+            </{{ heading_tag }}>
         {% else %}
-            {% if hide_from_screen_readers %}
-                <div class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
-                    {{ label }}
-                </div>
-            {% else %}
-                <{{ heading_tag }} class="{{ title_classes }}"{% if title_id %} id="{{ title_id }}"{% endif %}>
-                {{ label }}
-                </{{ heading_tag }}>
-            {% endif %}
+            <{{ heading_tag }} class="{{ title_classes }}"
+            {% if title_id %}id="{{ title_id }}"{% endif %}
+            {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}>
+            {{ label }}
+            </{{ heading_tag }}>
         {% endif %}
     {% endif %}
 
-    {{ title_suffix ?: '' }}
+    {{ title_suffix }}
 {% endmacro %}
