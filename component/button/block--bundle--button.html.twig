@@ -63,18 +63,18 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(button_classes).setAttribute('role', 'region').setAttribute('aria-labelledby', heading_id) }}>
 
     {# Render the title and assign an ID for aria-labelledby #}
-    <h2 id="{{ heading_id }}">
-        {{ titleMacros.render_title(
-            label,
-            title_prefix,
-            title_suffix,
-            center_content,
-            text_alignment,
-            text_color,
-            padding,
-            links
-        ) }}
-    </h2>
+    {{ titleMacros.render_title(
+        label,
+        title_prefix,
+        title_suffix,
+        center_content,
+        text_alignment,
+        text_color,
+        padding,
+        hide_from_screen_readers,
+        links,
+        heading_id
+    ) }}
 
     {# Render Body #}
     {% if content %}
