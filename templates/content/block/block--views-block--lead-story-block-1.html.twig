@@ -63,7 +63,11 @@ If yes, proceed to render the grid of lead story/donation cards.
             Uses role="list" to indicate a list of related items for accessibility.
             Includes aria-label for screen readers describing the list content.
             #}
-            <div class="row" role="list" aria-label="Give Now items">
+            {# Visually hidden heading for screen reader context #}
+            <h2 id="give-now-section-title" class="visually-hidden">
+                {{ 'Giving opportunities for the colorado unversity campuses'|t }}
+            </h2>
+            <div class="row" role="list" aria-labelledby="give-now-section-title">
 
                 {# Loop through each view result (each node) #}
                 {% for row in view.result %}
