@@ -1,111 +1,144 @@
 {#
 /**
- * @file
- * Accessible Footer component template (508 Compliant).
- */
+* @file
+* 508-Compliant Accessible Footer Template.
+*
+* Each content section has a meaningful, unique <h2> for screen reader navigation.
+* Decorative icons use aria-hidden. Picture elements no longer misuse ARIA roles.
+*/
 #}
 
-<footer class="site-footer mt-auto" role="contentinfo" aria-label="{{ 'University of Colorado site footer'|t }}">
-    {# -- Top Section of the Footer -- #}
+<footer class="site-footer mt-auto"
+        role="contentinfo"
+        aria-label="{{ 'University of Colorado site footer'|t }}">
+
+    {# -------------------- TOP SECTION -------------------- #}
     <div id="site-footer-top" class="container pt-3">
+
         {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
             <div class="row g-0">
+
                 {% if page.footer_first %}
-                    <section class="col-md-4 col-sm-6 px-2" aria-labelledby="footer-university-info-heading">
-                        <h2 id="footer-university-info-heading" class="visually-hidden">{{ 'University Information'|t }}</h2>
+                    <section class="col-md-4 col-sm-6 px-2"
+                             aria-labelledby="footer-university-info-heading">
+                        <h2 id="footer-university-info-heading"
+                            class="visually-hidden">
+                            {{ 'University Information'|t }}
+                        </h2>
                         {{ page.footer_first }}
                     </section>
                 {% endif %}
 
                 {% if page.footer_second %}
-                    <section class="col-md-3 col-sm-6 mt-2 px-2" aria-labelledby="footer-helpful-links-heading">
-                        <h2 id="footer-helpful-links-heading" class="visually-hidden">{{ 'Helpful Links'|t }}</h2>
+                    <section class="col-md-3 col-sm-6 mt-2 px-2"
+                             aria-labelledby="footer-campus-links-heading">
+                        <h2 id="footer-campus-links-heading"
+                            class="visually-hidden">
+                            {{ 'Campus Links'|t }}
+                        </h2>
                         {{ page.footer_second }}
                     </section>
                 {% endif %}
 
                 {% if page.footer_third %}
-                    <section class="col-md-3 col-sm-6 mt-2 px-2" aria-labelledby="footer-more-resources-heading">
-                        <h2 id="footer-more-resources-heading" class="visually-hidden">{{ 'More Resources'|t }}</h2>
+                    <section class="col-md-3 col-sm-6 mt-2 px-2"
+                             aria-labelledby="footer-resources-heading">
+                        <h2 id="footer-resources-heading"
+                            class="visually-hidden">
+                            {{ 'Resources for Students and Faculty'|t }}
+                        </h2>
                         {{ page.footer_third }}
                     </section>
                 {% endif %}
 
                 {% if page.footer_fourth %}
-                    <section class="col-md-2 col-sm-6 mt-2 px-2" aria-labelledby="footer-quick-links-heading">
-                        <h2 id="footer-quick-links-heading" class="visually-hidden">{{ 'Quick Links'|t }}</h2>
+                    <section class="col-md-2 col-sm-6 mt-2 px-2"
+                             aria-labelledby="footer-quick-links-heading">
+                        <h2 id="footer-quick-links-heading"
+                            class="visually-hidden">
+                            {{ 'Quick Navigation Links'|t }}
+                        </h2>
                         {{ page.footer_fourth }}
                     </section>
                 {% endif %}
 
                 {% if page.footer_fifth %}
-                    <section class="col-12 make-a-gift g-0 my-2" aria-labelledby="footer-support-heading">
-                        <h2 id="footer-support-heading" class="visually-hidden">{{ 'Support the University'|t }}</h2>
+                    <section class="col-12 make-a-gift g-0 my-2"
+                             aria-labelledby="footer-support-heading">
+                        <h2 id="footer-support-heading" class="visually-hidden">
+                            {{ 'Support the University'|t }}
+                        </h2>
                         {{ page.footer_fifth }}
                     </section>
                 {% endif %}
+
             </div>
         {% endif %}
     </div>
 
-    {# -- Bottom Section of the Footer -- #}
-    <div id="site-footer-bottom" class="container-fluid bg-pure-black px-5 pb-2">
+    {# -------------------- BOTTOM SECTION -------------------- #}
+    <div id="site-footer-bottom"
+         class="container-fluid bg-pure-black px-5 pb-2">
         <div class="row">
 
-            {# -- University Logo -- #}
+            {# Logo with proper alt text (no ARIA role misuse) #}
             <div class="col-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
                 <picture>
-                    <source
-                            media="(max-width: 499px)"
+                    <source media="(max-width: 499px)"
                             srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
                             width="250"
-                            height="70" />
-                    <source
-                            media="(min-width: 500px)"
+                            height="70"/>
+                    <source media="(min-width: 500px)"
                             srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
                             width="500"
-                            height="140" />
-                    <img
-                            src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                            alt="{{ 'University of Colorado logo'|t }}"
-                            width="500"
-                            height="140"
-                            loading="lazy" />
+                            height="140"/>
+                    <img src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
+                         alt="{{ 'University of Colorado logo'|t }}"
+                         width="500"
+                         height="140"
+                         loading="lazy"/>
                 </picture>
             </div>
 
-            {# -- Footer Sixth Region: Social / Legal -- #}
+            {# Additional Information / Legal, Social Links #}
             {% if page.footer_sixth %}
-                <section class="col-12 d-flex align-items-center justify-content-center" aria-labelledby="footer-additional-info-heading">
-                    <h2 id="footer-additional-info-heading" class="visually-hidden">{{ 'Additional Footer Information'|t }}</h2>
+                <section
+                        class="col-12 d-flex align-items-center justify-content-center"
+                        aria-labelledby="footer-additional-info-heading">
+                    <h2 id="footer-additional-info-heading"
+                        class="visually-hidden">
+                        {{ 'Legal and Additional Information'|t }}
+                    </h2>
                     {{ page.footer_sixth }}
                 </section>
             {% endif %}
 
-            {# -- Copyright --
-         Includes Regents link and conditional login.
-            #}
+            {# Copyright #}
             <div class="col-12 border-top border-secondary d-flex align-items-center justify-content-center">
                 <p class="mt-2 mb-3 strong text-light">
                     {{ '©'|t }} {{ 'now' | date('Y') }}
                     <a href="https://regents.cu.edu"
                        rel="noopener"
                        target="_blank"
-                       class="link-light link-underline-opacity-0 px-2">
+                       class="link-light link-underline-opacity-0 px-2"
+                       aria-label="{{ 'Regents of the University of Colorado (opens in a new tab)'|t }}">
                         {{ 'Regents of the University of Colorado'|t }}
                     </a>
+
                     {% if not logged_in %}
                         <span class="admin-login">
-              <a href="{{ path('user.login') }}"
-                 rel="noopener"
-                 class="link-light link-underline-opacity-0 px-2">
-                <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
-                {{ 'Login'|t }}
-              </a>
-            </span>
+							<a href="{{ path('user.login') }}"
+                               rel="noopener"
+                               class="link-light link-underline-opacity-0 px-2">
+							<i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
+							{{ 'Login'|t }}
+							</a>
+						</span>
                     {% endif %}
                 </p>
             </div>
+
         </div>
     </div>
+
 </footer>
