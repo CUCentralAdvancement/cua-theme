@@ -6,7 +6,7 @@
 {# Import Macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{% set unique_id = 'block-call-to-action-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'})|clean_class %}
+{% set unique_id = ('block-call-to-action-' ~ elements.content['#block_content'].id())|replace({'_': '-', ':': '--'})|clean_class %}
 {% set heading_level = heading_level ?: 'h3' %}
 
 {% set cta_classes = [
@@ -27,24 +27,33 @@
     id ? 'block--class--call-to-action-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{% set data_animation_classes = prefers_reduced_motion ? [] : [
+{# Sanitize animation classes to remove any quotes that might break HTML #}
+{% set raw_animation_classes = prefers_reduced_motion ? [] : [
     'animate__animated',
     animation ?: null,
     animation_speed ?: null,
     animation_delay ?: null,
-] | filter(v => v) | join(' ') %}
+] | filter(v => v) %}
+
+{% set data_animation_classes = raw_animation_classes
+    | join(' ')
+    | replace({'"': ''}) %}
 
 {% set links_count = links|length %}
 {% set single_link = (links_count == 1) ? links|first : null %}
 {% set wrap_entire_card = single_link and not content_contains_other_links %}
 
 {{ title_prefix ?: '' }}
+
+{# Render the main container div with all attributes including safe animation classes #}
 <div{{ attributes
 | without('id')
     .setAttribute('id', unique_id)
     .addClass(cta_classes)
     .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', unique_id ~ '-label') }}{{ data_animation_classes ? ' data-animation-classes="' ~ data_animation_classes ~ '"' : '' }}>
+    .setAttribute('aria-labelledby', unique_id ~ '-label')
+    .setAttribute('tabindex', '0')
+    .setAttribute('data-animation-classes', data_animation_classes) }}>
 
     {# Hidden accessible heading for screen readers only #}
     {% if label %}
@@ -58,7 +67,6 @@
     {% if wrap_entire_card %}
 <a href="{{ single_link.url ?: '#' }}"
    class="cta-link"
-   role="link"
    {% if single_link.title %}aria-label="{{ single_link.title|striptags|trim }}"{% endif %}>
     {% endif %}
 
@@ -103,17 +111,17 @@
 
     {# Visual Title BELOW the image/icon, hidden from screen readers #}
     {% if label %}
-        {% set heading_classes = [
-            'display-4 card-text lead title',
-            text_alignment,
-            center_content,
-            text_color,
-            padding,
-        ] | filter(v => v) | join(' ') %}
-        <div role="heading" aria-level="3" aria-hidden="true" class="{{ heading_classes }}">
-            {{ label }}
-        </div>
-    {% endif %}
+    {% set heading_classes = [
+        'display-4 card-text lead title',
+        text_alignment,
+        center_content,
+        text_color,
+        padding,
+    ] | filter(v => v) | join(' ') %}
+    <{{ heading_level }} class="{{ heading_classes }}" aria-hidden="true">
+    {{ label }}
+</{{ heading_level }}>
+{% endif %}
 
     {# Body Content #}
     {% if content %}
@@ -151,8 +159,8 @@
     {% endif %}
 
     {% if wrap_entire_card %}
-</a>
-{% endif %}
+        </a>
+    {% endif %}
 
     {# Render footer buttons if there are multiple links and not fully wrapped #}
     {% if links and not wrap_entire_card %}
