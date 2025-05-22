@@ -261,13 +261,17 @@ h6.title {
 /* Styles for the page title block */
 div#block-cua-theme-page-title {
     color: var(--cua-gray-700); /* Uses a predefined gray color */
-    margin: 2rem 1.5rem; /* Adds spacing around the title block */
     position: relative; /* Allows for absolute-positioned children */
 }
 
 /* Ensures the page title always has a 2rem font size */
 h1.page-title.pt-2 {
     font-size: 2rem !important;
+    margin: 0 0 2rem;
+}
+
+div#main-wrapper {
+    margin: 3rem 0 0;
 }
 
 /* =====================================
@@ -1033,11 +1037,6 @@ a.bef-link--selected {
     margin: .7rem 0 0 !important;
 }
 
-/* Adjusts margins for the landing page title block */
-.node--type-landing-page div#block-cua-theme-page-title {
-    margin: 2rem 1.5rem 0 1.5rem !important;
-}
-
 /* Inherits font size and removes top margin for landing page content */
 .node--type-landing-page .node__content {
     font-size: inherit;
@@ -1053,16 +1052,6 @@ a.bef-link--selected {
 /* Styles unpublished nodes with a light red background */
 .node--unpublished {
     background: #fce0e0;
-}
-
-/* Duplicated styles - margin for landing page titles */
-.node--type-landing-page h1.title {
-    margin: .7rem 0 0 !important;
-}
-
-/* Duplicated styles - Adjusts margins for the landing page title block */
-.node--type-landing-page div#block-cua-theme-page-title {
-    margin: 2rem 1.5rem 2rem 1.5rem !important;
 }
 
 /* Modal styles */
