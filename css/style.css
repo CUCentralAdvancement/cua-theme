@@ -297,8 +297,7 @@ h1.page-title.pt-2 {
 .user-administrator .aioa-widget-wrapper,
 .user-logged-in.aioa-widget-wrapper,
 .field.field--name-field-tags .field__label,
-.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper,
-.path-frontpage div#block-cua-theme-page-title {
+.block-views-exposed-filter-blocks .form-actions.js-form-wrapper.form-wrapper {
     display: none !important;
 }
 
