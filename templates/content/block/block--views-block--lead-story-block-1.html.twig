@@ -1,29 +1,7 @@
-{#
-/**
- * @file
- * 508-compliant Twig template for rendering "Give Now" or "Lead Story" blocks.
- *
- * This template loops through the Drupal view results to output a grid of
- * accessible, responsive cards, each linking to a donation or story page.
- *
- * Key features:
- * - Uses ARIA roles and labels for screen reader support.
- * - Supports dynamic flags, icons, images, and custom background styles.
- * - Includes admin-only quick links for managing content.
- * - Uses a flexible heading level for semantic HTML structure.
- */
-#}
-
-{# Attach the required theme/library for call-to-action styling and JS #}
+{# Attach required theme/library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{#
-Compose CSS classes for the main link block element:
-- Includes Drupal block classes for consistent styling.
-- Adds custom classes based on the provider, plugin id, and block id.
-- Merges any additional utility classes passed in the context.
-- Filters out empty/null values and joins into a string.
-#}
+{# Compose CSS classes for the main link block element #}
 {% set givenow_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -33,12 +11,7 @@ Compose CSS classes for the main link block element:
     id ? 'block--class--lead-story-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{#
-Admin helper buttons: Displayed only if user has admin permission to
-administer site configuration. Provide quick access to sorting, adding,
-staging, and editing lead story blocks. This helps streamline content
-management for editors and admins.
-#}
+{# Admin helper buttons #}
 {% if user.hasPermission('administer site configuration') %}
     <div class="d-flex justify-content-center m-2">
         <a href="/lead-story/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage lead stories'|t }}</a>
@@ -48,73 +21,26 @@ management for editors and admins.
     </div>
 {% endif %}
 
-{#
-Check if the view data is available.
-If yes, proceed to render the grid of lead story/donation cards.
-#}
+{# Check if view data is available #}
 {% if content['#view'] is not empty %}
     {% set view = content['#view'] %}
-
-    {# Check if the view has any results to display #}
     {% if view.result is not empty %}
         <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
-            {#
-            Row container for grid layout.
-            Uses role="list" to indicate a list of related items for accessibility.
-            Includes aria-label for screen readers describing the list content.
-            #}
-            {# Visually hidden heading for screen reader context #}
             <h2 id="give-now-section-title" class="visually-hidden">
-                {{ 'Giving opportunities for the colorado unversity campuses'|t }}
+                {{ 'Giving opportunities for the colorado university campuses'|t }}
             </h2>
             <div class="row" role="list" aria-labelledby="give-now-section-title">
-
-                {# Loop through each view result (each node) #}
                 {% for row in view.result %}
                 {% if row._entity is not empty %}
                 {% set node = row._entity %}
-
-                {# Unique ID for the heading used by aria-labelledby #}
                 {% set heading_id = 'lead-story-item-' ~ node.id ~ '-title' %}
-
-                {# URL for the main link, fallback to '#' if empty #}
                 {% set link = node.field_link.uri ?: '#' %}
-
-                {# Heading level is dynamic; defaults to h3 if not set #}
                 {% set heading_level = heading_level ?: 'h3' %}
 
-                {#
-                Outer wrapper div for grid column and accessibility:
-                - Bootstrap responsive column classes
-                - role="listitem" to pair with the parent list container
-                - bottom margin for spacing
-                #}
                 <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4" role="listitem">
-
-                    {#
-                    Link wrapping the entire card for keyboard and screen reader access.
-                    - href points to node URL
-                    - id used for identification (linked by aria-labelledby)
-                    - dynamic CSS classes for styling and layout
-                    - aria-labelledby references heading id for screen readers to announce title
-                    #}
-                    <a href="{{ link }}"
-                       id="lead-story-item-{{ node.id }}"
-                       class="{{ givenow_classes }} text-decoration-none d-block h-100"
-                       aria-labelledby="{{ heading_id }}">
-
-                        {#
-                        Inner container with padding, full height, and optional shadow and background color.
-                        Classes depend on node field values.
-                        #}
-                        <div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
+                    <a href="{{ link }}" class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column" aria-labelledby="{{ heading_id }}">
+                        <article class="m-2 shadow {{ node.field_color_background.value ?: '' }} flex-grow-1 d-flex flex-column">
                             <div class="position-relative">
-
-                                {#
-                                Optional flag badge in top-left corner if enabled.
-                                Includes dynamic background color, icon, and title.
-                                Uses flexbox and nowrap to keep the flag visually consistent.
-                                #}
                                 {% if node.field_flag.value == 'flag_on' %}
                                     {% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
                                     <div class="position-absolute start-0">
@@ -131,34 +57,15 @@ If yes, proceed to render the grid of lead story/donation cards.
                                         </div>
                                     </div>
                                 {% endif %}
-
-                                {#
-                                Card header image:
-                                - Checks if image entity exists
-                                - Uses Drupal image style 'lead_story' for consistent sizing
-                                - Provides alt text fallback to node label if alt missing
-                                - Lazy loads image for performance
-                                #}
                                 {% if node.field_image.entity %}
                                     {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
                                     {% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
                                     <div class="card-header mb-2">
-                                        <img src="{{ image_url }}"
-                                             alt="{{ alt_text }}"
-                                             loading="lazy"
-                                             class="img-fluid">
+                                        <img src="{{ image_url }}" alt="{{ alt_text }}" loading="lazy" class="img-fluid">
                                     </div>
                                 {% endif %}
                             </div>
-
-                            {#
-                            Content area including title and body text.
-                            - Only renders if label or body exists.
-                            - Title uses dynamic heading level and id.
-                            - Body content allows limited safe HTML tags.
-                            #}
-                            {% if node.label or node.body.value is not empty %}
-                            <div class="lead-story-content px-3 pt-2">
+                            <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
                                 {% if node.label %}
                                 <{{ heading_level }} id="{{ heading_id }}" class="lead-story-title">
                                 {{ node.label }}
@@ -166,41 +73,29 @@ If yes, proceed to render the grid of lead story/donation cards.
                             {% endif %}
                             {% if node.body.value is not empty %}
                                 <div class="lead-story-body mb-2">
-                                    {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
+                                    {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a>')|raw }}
                                 </div>
                             {% endif %}
-                        </div>
-                        {% endif %}
-
-                        {#
-                        Optional card footer button-like div for link title.
-                        - Styled visually as a button.
-                        - Marked aria-hidden and role="presentation" so screen readers ignore it,
-                          since the entire card is already a link.
-                        #}
-                        {% if node.field_link.title is not empty %}
-                            <div class="card-footer card-story d-flex p-0 mb-5 mx-3">
-                                <div class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true" role="presentation">
-                                    {{ node.field_link.title ?: 'Give to ' ~ node.label }}
-                                </div>
-                            </div>
-                        {% endif %}
-                </div> {# End inner card container #}
-                </a> {# End link wrapping card #}
-            </div> {# End grid column wrapper #}
+                </div>
+                {% if node.field_link.title is not empty %}
+                    <div class="card-footer card-story d-flex p-0 mb-3 mx-3">
+									<span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-center">
+										{{ node.field_link.title ?: 'Give to ' ~ node.label }}
+									</span>
+                    </div>
+                {% endif %}
+                </article>
+                </a>
+            </div>
             {% endif %}
             {% endfor %}
-
-        </div> {# End row (list container) #}
-        </div> {# End container-fluid #}
-
-        {# If no results found, show a user-friendly message #}
+        </div>
+        </div>
     {% else %}
         <div class="text-center p-4">
             <p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
         </div>
     {% endif %}
-    {# If view data is not available at all #}
 {% else %}
     <p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
 {% endif %}
