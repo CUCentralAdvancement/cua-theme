@@ -19,15 +19,8 @@
  */
 #}
 
-{# Attach necessary theme/library assets for styles and scripts #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{#
-Compose an array of CSS classes for the card/link wrapper.
-Includes block provider and plugin ID, Bootstrap grid classes,
-plus any utility classes optionally passed in.
-Null or empty values are filtered out before joining.
-#}
 {% set givenow_classes = [
 	'block',
 	'block-' ~ configuration.provider|clean_class,
@@ -37,11 +30,6 @@ Null or empty values are filtered out before joining.
 	id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{#
-Admin toolbar:
-Display buttons for site admins with links to manage, add, or view Give Now blocks.
-These buttons are conditionally shown based on user permissions.
-#}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="d-flex justify-content-center m-2">
 		<a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
@@ -51,73 +39,32 @@ These buttons are conditionally shown based on user permissions.
 	</div>
 {% endif %}
 
-{#
-Check if the View object exists and has results before rendering cards.
-If not, display an appropriate message.
-#}
 {% if content['#view'] is not empty %}
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
 		<div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
 
-			{#
-			Bootstrap row container acting as a list landmark for accessibility.
-			The role="list" and aria-label help screen reader users understand
-			this is a list of donation opportunities.
-			#}
 			<div class="row" role="list" aria-label="Donation opportunities">
 
-				{# Iterate through each row/entity in the view results #}
 				{% for row in view.result %}
 				{% if row._entity is not empty %}
 				{% set node = row._entity %}
 
-				{#
-				Create unique IDs for aria-labelledby linking.
-				Use node ID to make heading IDs unique per card.
-				#}
 				{% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
-
-				{#
-				Get the link URI from the field_link field.
-				Provide fallback '#' if no URI is present to prevent broken links.
-				#}
+				{% set body_id = 'give-now-item-' ~ node.id ~ '-body' %}
 				{% set link = node.field_link.uri ?: '#' %}
-
-				{#
-				Heading level can be passed into the template; defaults to h2.
-				This controls semantic heading levels for accessibility.
-				#}
 				{% set heading_level = heading_level ?: 'h2' %}
 
-				{#
-				Each card is a list item inside the list landmark.
-				Role="listitem" helps screen readers interpret this structure.
-				#}
 				<div class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" role="listitem">
 
-					{#
-					Link wraps entire card to make whole card clickable.
-					aria-labelledby links to the heading for screen readers to announce.
-					Uses dynamically built classes from earlier.
-					#}
 					<a href="{{ link }}"
 					   id="give-now-item-{{ node.id }}"
 					   class="{{ givenow_classes }} text-decoration-none d-block h-100"
-					   aria-labelledby="{{ heading_id }}">
+					   aria-labelledby="{{ heading_id }}"
+					   aria-describedby="{{ node.body.value is not empty ? body_id : '' }}">
 
-						{#
-						Inner container for card visual styling.
-						Conditionally adds 'shadow' class based on field_shadow value.
-						Also applies optional background color class.
-						#}
 						<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
 
-							{#
-							Optional flag banner with icon and title.
-							Positioned absolutely in the card.
-							This flag is purely decorative; icons have aria-hidden="true".
-							#}
 							<div class="position-relative">
 								{% if node.field_flag.value == 'flag_on' %}
 									{% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
@@ -136,12 +83,6 @@ If not, display an appropriate message.
 									</div>
 								{% endif %}
 
-								{#
-								Optional card image:
-								Uses a Drupal image style for consistent sizing.
-								Provides alt text fallback for accessibility.
-								Image is lazy-loaded for performance.
-								#}
 								{% if node.field_image.entity %}
 									{% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
 									{% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
@@ -154,11 +95,6 @@ If not, display an appropriate message.
 								{% endif %}
 							</div>
 
-							{#
-							Content area including:
-							- Title wrapped in semantic heading with unique ID for aria-labelledby.
-							- Body content sanitized for allowed tags only.
-							#}
 							{% if node.label or node.body.value is not empty %}
 							<div class="give-now-content px-3 pt-2">
 								{% if node.label %}
@@ -168,24 +104,19 @@ If not, display an appropriate message.
 							{% endif %}
 
 							{% if node.body.value is not empty %}
-								<div class="give-now-body mb-2">
+								<div id="{{ body_id }}" class="give-now-body mb-2">
 									{{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
 								</div>
 							{% endif %}
 						</div>
 						{% endif %}
 
-						{#
-						Card footer showing the link title as a visual button.
-						This is hidden from screen readers via aria-hidden and role="presentation"
-						to avoid redundancy, since the entire card is already linked.
-						#}
 						{% if node.field_link.title is not empty %}
 							<div class="card-footer card-story d-flex p-0 mb-5 mx-3">
-                      <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3"
-							aria-hidden="true" role="presentation">
-                        {{ node.field_link.title }}
-                      </span>
+									<span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3"
+										  aria-hidden="true" role="presentation">
+										{{ node.field_link.title }}
+									</span>
 							</div>
 						{% endif %}
 
@@ -199,12 +130,10 @@ If not, display an appropriate message.
 		</div> {# End outer container-fluid #}
 
 	{% else %}
-		{# Show friendly message if there are no donation opportunities #}
 		<div class="text-center p-4">
 			<p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
 		</div>
 	{% endif %}
 {% else %}
-	{# Show fallback message if View data is unavailable #}
 	<p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
 {% endif %}
