@@ -1,5 +1,19 @@
-{# Render carousel indicators #}
-<div class="carousel-indicators pt-3" role="tablist"
+{#
+Accessible Bootstrap Carousel Template (no JavaScript required)
+
+GOALS:
+- Fully navigable by screen readers, including macOS VoiceOver
+- Uses only Twig/markup (no JS)
+- Proper use of ARIA roles for indicators (tabs) and slides (tabpanels)
+- Slide content is focusable and semantic
+
+PREREQUISITES:
+- Ensure the `carousel_id` and `items` are passed correctly from the parent context.
+#}
+
+{# === Carousel Indicators (Tabs) === #}
+<div class="carousel-indicators pt-3"
+	 role="tablist"
 	 aria-label="Slider indicators">
 	{% for item in items %}
 		<button
@@ -7,32 +21,40 @@
 				data-bs-target="#{{ carousel_id }}"
 				data-bs-slide-to="{{ loop.index0 }}"
 				class="{{ loop.first ? 'active' : '' }}"
-				aria-current="{{ loop.first ? 'true' : 'false' }}"
-				aria-label="Go to slide {{ loop.index }}"
 				role="tab"
-				{% if loop.first %} aria-selected="true" {% else %} aria-selected="false" {% endif %}
-		></button>
+				aria-label="Go to slide {{ loop.index }}"
+				aria-selected="{{ loop.first ? 'true' : 'false' }}"
+				aria-controls="slide-{{ loop.index }}"
+		>
+		</button>
 	{% endfor %}
 </div>
 
-{# Render carousel items #}
-<div class="carousel-inner"
-	 role="group"
-	 aria-roledescription="carousel"
-	 aria-label="Quotes"
-	 aria-live="polite">
-
+{# === Carousel Slides (Tabpanels) === #}
+<div
+		class="carousel-inner"
+		role="region"
+		aria-roledescription="carousel"
+		aria-label="Quote carousel"
+>
 	{% for item in items %}
 		<div
 				class="carousel-item{{ loop.first ? ' active' : '' }}"
 				data-bs-interval="6000"
 				role="tabpanel"
 				id="slide-{{ loop.index }}"
-				aria-hidden="{{ loop.first ? 'false' : 'true' }}"
+				aria-labelledby="slide-label-{{ loop.index }}"
+				tabindex="{{ loop.first ? '0' : '-1' }}"
 		>
-			<div{{ attributes.addClass(classes) }}>
+			<section class="carousel-slide-content p-3">
+				{# Optional slide heading for accessibility context #}
+				<h3 id="slide-label-{{ loop.index }}" class="visually-hidden">
+					Slide {{ loop.index }}
+				</h3>
+
+				{# Slide content — ensure it's semantically structured HTML #}
 				{{ item.content }}
-			</div>
+			</section>
 		</div>
 	{% endfor %}
 </div>
