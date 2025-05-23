@@ -2690,6 +2690,17 @@ nav#block-cua-theme-campusoffices {
     outline-offset: 2px;
 }
 
+.card-link:focus {
+    outline: 3px solid #ffcc00; /* High-contrast gold/yellow outline */
+    outline-offset: 2px;         /* Slight spacing outside the element */
+    border-radius: 4px;          /* Match your button’s border radius if needed */
+}
+
+/* Optional: also apply on hover for visual parity */
+.card-link:hover {
+    text-decoration: underline;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
