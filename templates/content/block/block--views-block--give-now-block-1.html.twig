@@ -6,21 +6,23 @@
  * This template outputs a responsive grid of donation opportunity cards,
  * sourced from a Drupal View displaying nodes of content type "gi".
  *
- * Each card:
- * - Is a link wrapping the entire card for easy click/tap interaction.
- * - Uses ARIA attributes for accessibility (e.g., role="list", aria-labelledby).
- * - May include an optional flag with icon and label.
- * - May include an image with appropriate alt text (fallback provided).
- * - Displays title and sanitized body content.
- * - Shows a visual footer link label, hidden from screen readers since
- *   the entire card is already a link.
- *
- * Admin users see a toolbar for managing Give Now blocks.
+ * Features:
+ * - Entire card is a link for ease of interaction (especially on mobile).
+ * - ARIA roles/labels improve accessibility and screen reader support.
+ * - Admin UI includes shortcut buttons to manage blocks.
+ * - Cards can optionally include flags, images, styled footers.
  */
 #}
 
+{# Attach the custom theme library with styles/scripts for call-to-action blocks #}
 {{ attach_library('cua_theme/call-to-action') }}
 
+{#
+Dynamically construct a string of CSS classes for each Give Now card.
+- Includes base block classes.
+- Adds provider and plugin identifiers for targeted theming.
+- Includes utility classes (if defined).
+#}
 {% set givenow_classes = [
 	'block',
 	'block-' ~ configuration.provider|clean_class,
@@ -30,6 +32,10 @@
 	id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
+{#
+Render the admin toolbar if the user has site config permissions.
+Provides quick access to sort, add, preview, or edit Give Now items.
+#}
 {% if user.hasPermission('administer site configuration') %}
 	<div class="d-flex justify-content-center m-2">
 		<a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
@@ -39,24 +45,29 @@
 	</div>
 {% endif %}
 
+{# Begin rendering block content if a valid View result exists #}
 {% if content['#view'] is not empty %}
 	{% set view = content['#view'] %}
 	{% if view.result is not empty %}
 		<div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
-
 			<div class="row" role="list" aria-label="Donation opportunities">
 
+				{# Loop through each node (donation opportunity) in the view #}
 				{% for row in view.result %}
 				{% if row._entity is not empty %}
 				{% set node = row._entity %}
 
+				{# Define unique ARIA IDs for title and body for accessibility #}
 				{% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
 				{% set body_id = 'give-now-item-' ~ node.id ~ '-body' %}
+
+				{# Determine link target; fallback to "#" if none exists #}
 				{% set link = node.field_link.uri ?: '#' %}
 				{% set heading_level = heading_level ?: 'h2' %}
 
 				<div class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" role="listitem">
 
+					{# Entire card is a link for full-card clickable area #}
 					<a href="{{ link }}"
 					   id="give-now-item-{{ node.id }}"
 					   class="{{ givenow_classes }} text-decoration-none d-block h-100"
@@ -66,6 +77,7 @@
 						<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
 
 							<div class="position-relative">
+								{# Optional flag badge on the card #}
 								{% if node.field_flag.value == 'flag_on' %}
 									{% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
 									<div class="position-absolute start-0">
@@ -83,6 +95,7 @@
 									</div>
 								{% endif %}
 
+								{# Optional card header image with alt text fallback #}
 								{% if node.field_image.entity %}
 									{% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
 									{% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
@@ -95,8 +108,10 @@
 								{% endif %}
 							</div>
 
+							{# Content area including title and body #}
 							{% if node.label or node.body.value is not empty %}
 							<div class="give-now-content px-3 pt-2">
+
 								{% if node.label %}
 								<{{ heading_level }} id="{{ heading_id }}" class="give-now-title">
 								{{ node.label }}
@@ -108,32 +123,36 @@
 									{{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
 								</div>
 							{% endif %}
+
 						</div>
 						{% endif %}
 
+						{# Optional visual footer link label (hidden from screen readers) #}
 						{% if node.field_link.title is not empty %}
 							<div class="card-footer card-story d-flex p-0 mb-5 mx-3">
-									<span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3"
-										  aria-hidden="true" role="presentation">
-										{{ node.field_link.title }}
-									</span>
+                      <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3"
+							aria-hidden="true" role="presentation">
+                        {{ node.field_link.title }}
+                      </span>
 							</div>
 						{% endif %}
 
 				</div> {# End inner card container #}
 				</a> {# End link wrapping entire card #}
-			</div> {# End list item #}
+			</div> {# End individual card column #}
 			{% endif %}
 			{% endfor %}
 
-		</div> {# End Bootstrap row list container #}
+		</div> {# End row list container #}
 		</div> {# End outer container-fluid #}
 
 	{% else %}
+		{# Display fallback if there are no view results #}
 		<div class="text-center p-4">
 			<p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
 		</div>
 	{% endif %}
 {% else %}
+	{# View data was not available at all (e.g., view context not passed) #}
 	<p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
 {% endif %}
