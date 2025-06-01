@@ -2702,6 +2702,30 @@ nav#block-cua-theme-campusoffices {
     text-decoration: underline;
 }
 
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: var(--cua-white);
+    color: var(--cua-blue);
+    padding: 8px 16px;
+    z-index: 100;
+    text-decoration: none;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+    background-color: var(--cua-white);
+    color: var(--cua-blue);
+    font-weight: 600;
+}
+
+.skip-link:hover {
+    top: 0;
+    background-color: var(--cua-blue);
+    color: var(--cua-white);
+}
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
