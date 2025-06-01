@@ -1,14 +1,21 @@
-{# Accessible and modular Call to Action (CTA) template. #}
+{# Accessible and modular Call to Action (CTA) template.
+   This template is designed for flexibility (media, text, buttons),
+   full 508/WCAG 2.1 accessibility compliance, and reusable layout structure.
+#}
 
-{# Attach Library #}
+{# Attach component-specific CSS/JS via Drupal library #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Import Macros #}
+{# Import title rendering macros (used for screen reader and visible headings) #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
+{# Generate a unique and accessible ID for ARIA references and section labeling #}
 {% set unique_id = ('block-call-to-action-' ~ elements.content['#block_content'].id())|replace({'_': '-', ':': '--'})|clean_class %}
+
+{# Default heading level fallback for card titles (can be overridden) #}
 {% set heading_level = heading_level ?: 'h3' %}
 
+{# Construct base CSS classes for the CTA block, using filters to remove null/empty values #}
 {% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -27,7 +34,7 @@
     id ? 'block--class--call-to-action-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Sanitize animation classes to remove any quotes that might break HTML #}
+{# Build a sanitized string of animation classes for frontend behavior #}
 {% set raw_animation_classes = prefers_reduced_motion ? [] : [
     'animate__animated',
     animation ?: null,
@@ -39,44 +46,56 @@
     | join(' ')
     | replace({'"': ''}) %}
 
+{# Evaluate links for wrapping logic: if there's a single link and no other links inside body content, wrap whole card #}
 {% set links_count = links|length %}
 {% set single_link = (links_count == 1) ? links|first : null %}
 {% set wrap_entire_card = single_link and not content_contains_other_links %}
 
 {{ title_prefix ?: '' }}
 
-{# Render the main container div with all attributes including safe animation classes #}
+{# Main CTA card container, rendered as a landmark region with a programmatically labeled heading #}
 <div{{ attributes
 | without('id')
     .setAttribute('id', unique_id)
     .addClass(cta_classes)
     .setAttribute('role', 'region')
     .setAttribute('aria-labelledby', unique_id ~ '-label')
-    .setAttribute('tabindex', '0')
-    .setAttribute('data-animation-classes', data_animation_classes) }}>
+    .setAttribute('data-animation-classes', data_animation_classes)
+}}>
 
-    {# Hidden accessible heading for screen readers only #}
+    {# Ensure we have a valid unique ID. Fallback to a safe default if block ID is unavailable. #}
+    {% set block_id = elements.content['#block_content'].id() ?? 'cta-unknown' %}
+    {% set unique_id = ('block-call-to-action-' ~ block_id)|replace({'_': '-', ':': '--'})|clean_class %}
+
+    {# Determine heading level safely (must be h1-h6); fallback to h3 if invalid or unset. #}
+    {% set valid_headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] %}
+    {% set heading_level = (heading_level in valid_headings) ? heading_level : 'h3' %}
+
+    {# Hidden accessible heading used for aria-labelledby (visually hidden but available to screen readers) #}
     {% if label %}
     <{{ heading_level }}
     id="{{ unique_id }}-label"
-    class="sr-only">
+    class="sr-only visually-hidden">
     {{ label }}
 </{{ heading_level }}>
 {% endif %}
 
-    {% if wrap_entire_card %}
+	{# If allowed, wrap the entire CTA in a link (only if safe to do so per content analysis) #}
+	{% if wrap_entire_card %}
 <a href="{{ single_link.url ?: '#' }}"
    class="cta-link"
-   {% if single_link.title %}aria-label="{{ single_link.title|striptags|trim }}"{% endif %}>
+        {% if single_link.title %}
+    aria-label="{{ single_link.title|striptags|trim }}"
+        {% endif %}>
     {% endif %}
 
-    {# Optional flag #}
+    {# Optional flag or badge (e.g., “New”, “Featured”) #}
     {% if flag %}
         {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
         {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background) }}
     {% endif %}
 
-    {# Media: Video, Image, or Icon #}
+    {# Media rendering (video takes priority, then image, then icon) #}
     {% if provider %}
         {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
     {% elseif card_image %}
@@ -103,13 +122,13 @@
         ) }}
     {% endif %}
 
-    {# Caption #}
+    {# Caption text under the image/icon area, optional #}
     {% if caption %}
         {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
         {{ captionMacros.render_caption(caption, padding, text_color, text_alignment) }}
     {% endif %}
 
-    {# Visual Title BELOW the image/icon, hidden from screen readers #}
+    {# Visible card title for sighted users (aria-hidden because it's duplicated for screen readers above) #}
     {% if label %}
     {% set heading_classes = [
         'display-4 card-text lead title',
@@ -118,19 +137,21 @@
         text_color,
         padding,
     ] | filter(v => v) | join(' ') %}
-    <{{ heading_level }} class="{{ heading_classes }}" aria-hidden="true">
+    <{{ heading_level }}
+    class="{{ heading_classes }}"
+    aria-hidden="true">
     {{ label }}
 </{{ heading_level }}>
 {% endif %}
 
-    {# Body Content #}
-    {% if content %}
+	{# Body content (rich text or paragraph field), optional #}
+	{% if content %}
         {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
         {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
     {% endif %}
 
-    {# Render single link (non-clickable text wrapping the card). #}
-    {% if single_link %}
+	{# Footer section for single link (wrapped card); renders button-like span but not clickable #}
+	{% if single_link %}
         {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
         {% set card_footer_classes = [
             'card-footer',
@@ -153,17 +174,18 @@
             'mt-3',
         ] | filter(v => v) | join(' ') %}
         <div class="{{ card_footer_classes }}">
-            <span class="{{ card_footer_link_classes }}"
+			<span class="{{ card_footer_link_classes }}"
                   aria-hidden="true">{{ single_link.title }}</span>
         </div>
     {% endif %}
 
-    {% if wrap_entire_card %}
+	{# Close link wrapper if entire card is wrapped in an anchor #}
+	{% if wrap_entire_card %}
         </a>
     {% endif %}
 
-    {# Render footer buttons if there are multiple links and not fully wrapped #}
-    {% if links and not wrap_entire_card %}
+	{# Render footer with multiple button links (if NOT wrapping entire card) #}
+	{% if links and not wrap_entire_card %}
         {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
         {{ cardFooterMacros.render_card_footer(
             links,
@@ -179,6 +201,7 @@
             false
         ) }}
     {% endif %}
-
 </div>
+
+{# Drupal block suffix placeholder (used for contextual links/admin UI) #}
 {{ title_suffix ?: '' }}
