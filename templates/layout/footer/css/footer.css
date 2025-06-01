@@ -251,8 +251,8 @@ div#site-footer-top {
 /* Keyboard focus outlines */
 .site-footer .site-footer .nav-link:focus,
 a:focus {
-    outline: 3px solid var(--cua-gold);
-    outline-offset: 3px;
+    outline: 3px solid #736645;
+    outline-offset: 2px;
 }
 
 .site-footer li.nav-item {
