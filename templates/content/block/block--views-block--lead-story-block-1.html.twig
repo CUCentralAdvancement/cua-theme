@@ -1,7 +1,17 @@
-{# Attach required theme/library #}
+{#
+Attach the required theme library for this component.
+This likely includes CSS/JS necessary for the "Call to Action" block styling.
+#}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Compose CSS classes for the main link block element #}
+{#
+Compose CSS classes for the main link block element.
+This block may receive additional utility classes passed in as 'utility_classes'.
+- 'block' and variations of it describe the Drupal block type.
+- 'col' and 'lead-story-item' are used for layout/grid structure.
+- An ID-based class is optionally added if an ID is present.
+The array is filtered to remove empty/null values and then joined into a string.
+#}
 {% set givenow_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -11,7 +21,10 @@
     id ? 'block--class--lead-story-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Admin helper buttons #}
+{#
+Admin helper buttons are shown only to users with site configuration permissions.
+These allow quick access to content management links for the "lead story" blocks.
+#}
 {% if user.hasPermission('administer site configuration') %}
     <div class="d-flex justify-content-center m-2">
         <a href="/lead-story/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage lead stories'|t }}</a>
@@ -21,81 +34,121 @@
     </div>
 {% endif %}
 
-{# Check if view data is available #}
+{#
+Begin main content rendering only if view data is available.
+This view likely provides the "lead story" content items to render.
+#}
 {% if content['#view'] is not empty %}
     {% set view = content['#view'] %}
     {% if view.result is not empty %}
         <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
+            {# Visually hidden heading for screen readers, describing the section. #}
             <h2 id="give-now-section-title" class="visually-hidden">
                 {{ 'Giving opportunities for the colorado university campuses'|t }}
             </h2>
+
+            {# Start the row for grid layout, using a list role for accessibility. #}
             <div class="row" role="list" aria-labelledby="give-now-section-title">
+
+                {# Iterate through each view row, typically a node/entity. #}
                 {% for row in view.result %}
                 {% if row._entity is not empty %}
                 {% set node = row._entity %}
+                {# Generate a unique ID for the heading associated with this block. #}
                 {% set heading_id = 'lead-story-item-' ~ node.id ~ '-title' %}
+                {# Get the URL for the link field, defaulting to "#" if not set. #}
                 {% set link = node.field_link.uri ?: '#' %}
+                {# Determine the heading level to use, defaulting to <h3>. #}
                 {% set heading_level = heading_level ?: 'h3' %}
 
+                {# Render each "lead story" block in the grid layout. #}
                 <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4" role="listitem">
-                    <a href="{{ link }}" class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column" aria-labelledby="{{ heading_id }}">
+
+                    {# The entire block is wrapped in a link for a clickable card. #}
+                    <a href="{{ link }}"
+                       class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column"
+                       aria-labelledby="{{ heading_id }}">
+
+                        {# Start content #}
                         <article class="m-2 shadow {{ node.field_color_background.value ?: '' }} flex-grow-1 d-flex flex-column">
+
+                            {# Optional flag badge (like "New" or "Featured"), conditionally rendered. #}
                             <div class="position-relative">
                                 {% if node.field_flag.value == 'flag_on' %}
                                     {% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
                                     <div class="position-absolute start-0">
                                         <div class="{{ flag_classes|join(' ')|trim }}"
                                              style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
+                                            {# Optional icon inside the flag. #}
                                             {% if node.field_icon.value %}
                                                 <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
                                                    style="color: {{ node.field_icon_color.value }}"
                                                    aria-hidden="true"></i>
                                             {% endif %}
+                                            {# Optional flag title inside the badge. #}
                                             {% if node.field_flag_title.value %}
                                                 <span class="flag-title">{{ node.field_flag_title.value }}</span>
                                             {% endif %}
                                         </div>
                                     </div>
                                 {% endif %}
+
+                                {# Optional image at the top of the card, with alt text fallback. #}
                                 {% if node.field_image.entity %}
                                     {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
                                     {% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
                                     <div class="card-header mb-2">
-                                        <img src="{{ image_url }}" alt="{{ alt_text }}" loading="lazy" class="img-fluid">
+                                        <img src="{{ image_url }}"
+                                             alt="{{ alt_text }}"
+                                             loading="lazy"
+                                             class="img-fluid">
                                     </div>
                                 {% endif %}
                             </div>
+
+                            {# Main content area of the card. #}
                             <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
+                                {# The title of the lead story, if available. #}
                                 {% if node.label %}
                                 <{{ heading_level }} id="{{ heading_id }}" class="lead-story-title">
                                 {{ node.label }}
                             </{{ heading_level }}>
                             {% endif %}
+
+                            {# The body/description of the lead story, limited to certain HTML tags. #}
                             {% if node.body.value is not empty %}
                                 <div class="lead-story-body mb-2">
                                     {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a>')|raw }}
                                 </div>
                             {% endif %}
                 </div>
+
+                {# Optional call-to-action text rendered as a styled button-like span. #}
                 {% if node.field_link.title is not empty %}
-                    <div class="card-footer card-story d-flex p-0 mb-3 mx-3">
-									<span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-center">
-										{{ node.field_link.title ?: 'Give to ' ~ node.label }}
-									</span>
+                    <div class="card-footer card-story mb-2">
+                      <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start">
+                        {{ node.field_link.title ?: 'Give to ' ~ node.label }}
+                      </span>
                     </div>
                 {% endif %}
+
                 </article>
                 </a>
+
             </div>
             {% endif %}
             {% endfor %}
         </div>
         </div>
+
     {% else %}
+        {# Fallback message if no view results are available. #}
         <div class="text-center p-4">
             <p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
         </div>
     {% endif %}
+
 {% else %}
+    {# Fallback message if the view data is entirely missing. #}
     <p class="no-view-message text-black">{{ 'View data not available.'|t }}</p>
 {% endif %}
