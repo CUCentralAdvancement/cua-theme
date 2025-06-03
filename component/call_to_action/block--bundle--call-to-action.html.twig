@@ -64,8 +64,6 @@ Accessible and modular Call to Action (CTA) template.
 	{% set single_link = (links_count == 1) ? links|first : null %}
 	{% set wrap_entire_card = single_link and not content_contains_other_links %}
 
-	{{ title_prefix ?: '' }}
-
 	{# Main container for the CTA block:
 	Acts as a region landmark for assistive technologies.
 	- Accessible label via aria-labelledby references the hidden heading.
@@ -80,6 +78,9 @@ Accessible and modular Call to Action (CTA) template.
     .setAttribute('aria-labelledby', unique_id ~ '-label')
     .setAttribute('data-animation-classes', data_animation_classes)
 }}>
+
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
 
     {# Visually hidden heading for screen readers:
        - Provides an accessible name for the region.
@@ -226,6 +227,3 @@ Accessible and modular Call to Action (CTA) template.
     {% endif %}
 
 </div>
-
-{# Drupal block suffix placeholder for contextual links/admin tools. #}
-	{{ title_suffix ?: '' }}
