@@ -37,9 +37,9 @@
     {# Only render the sr-only title if the visible title is not shown. #}
     {% if not label %}
         {{ title_prefix ?? '' }}
-        <h3 class="sr-only">
+        <span class="sr-only">
             {{ label is not empty ? label|e : 'Content Section'|t }}
-        </h3>
+        </span>
         {{ title_suffix ?? '' }}
     {% endif %}
 
