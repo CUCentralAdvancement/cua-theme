@@ -45,6 +45,10 @@
     .setAttribute('aria-labelledby', title_id)
 }}>
 
+    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
+
     {# Visually hidden heading for screen readers #}
     <h2 id="{{ title_id }}" class="visually-hidden">
         {{ label ?: 'Video Content' }}

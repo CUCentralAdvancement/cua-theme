@@ -2,12 +2,29 @@
 /**
  * @file
  * Template for the Spacer component.
+ *
+ * Provides vertical spacing between components using layout utility classes.
+ * - Renders a blank div with a size-based class (e.g., "spacer spacer-lg").
+ * - Fully aria-hidden for accessibility compliance.
+ * - Includes an admin-only label for visual reference in layout editing.
+ * - Dynamic ID and class generation for styling, scripting, and targeting.
  */
 #}
 
+{# Attach the component’s CSS/JS if needed (optional spacer-specific styling) #}
 {{ attach_library('cua_theme/spacer') }}
 
+{# Generate a unique ID for this spacer block instance.
+   - Replaces unsafe characters for valid HTML/CSS.
+   - Useful for targeting in JavaScript or CSS if needed.
+#}
 {% set unique_id = 'block--node--spacer--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+
+{# Build dynamic CSS class list for the spacer block wrapper.
+   - Includes system-level block classes and custom utility classes.
+   - Utility classes can be added through the UI or preprocess logic.
+   - Filters out empty/null values and joins as a space-separated string.
+#}
 {% set spacer_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -16,9 +33,31 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class
 ]|merge(utility_classes is iterable ? utility_classes : [])|join(' ')|trim %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(spacer_classes).setAttribute('aria-hidden', 'true') }}>
+{# Main wrapper element for the spacer block.
+   - Uses a unique ID and adds accessibility attributes.
+   - aria-hidden="true" ensures the spacer is ignored by screen readers.
+#}
+<div{{ attributes
+| without('id')
+    .setAttribute('id', unique_id)
+    .addClass(spacer_classes)
+    .setAttribute('aria-hidden', 'true')
+}}>
+
+    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
+
+    {# Spacer element:
+       - Class "spacer {{ size }}" adds visual space via padding/margin utilities.
+       - g-0 ensures no unintended Bootstrap gutters.
+    #}
     <div class="spacer {{ size }} g-0">
 
+        {# Admin-only label for layout visibility in edit mode.
+           - Shown only to logged-in users with admin permissions.
+           - Helpful for identifying spacer size when there's no visual content.
+        #}
         {% if is_admin %}
             <div class="small text-align-center" aria-hidden="true">
                 {{ label }}: {{ 'Blank space size:'|t }} {{ size }} {{ '(Only visible for logged-in admins)'|t }}

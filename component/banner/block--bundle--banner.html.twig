@@ -63,6 +63,10 @@
     .setAttribute('aria-labelledby', heading_id)
 }}>
 
+    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
+
     {# Screen reader-only heading for the region #}
     <h3 id="{{ heading_id }}" class="visually-hidden">
         {{ label }}

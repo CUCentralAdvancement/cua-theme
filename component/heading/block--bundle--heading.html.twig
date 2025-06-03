@@ -47,8 +47,9 @@ attributes
 
 	<div class="row pt-2">
 
-		{# Render contextual admin title prefix (e.g., "Configure block") #}
-		{{ title_prefix ?? '' }}
+		{# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
+		{{ title_prefix ?: '' }}
+		{{ title_suffix ?: '' }}
 
 		{# Render the visible and accessible heading if defined #}
 		{% if heading %}
@@ -61,8 +62,6 @@ attributes
 				{{ label|e }}
 			</h3>
 		{% endif %}
-
-		{{ title_suffix ?? '' }}
 
 		{# Render a subtitle if provided, using <h3> to maintain hierarchy #}
 		{% if subtitle %}

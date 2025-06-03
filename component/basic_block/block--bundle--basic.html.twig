@@ -33,14 +33,16 @@
 {# Render content #}
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes).setAttribute('role', 'region') }}>
 
+    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
+
     {# Screen reader-only title for accessibility. #}
     {# Only render the sr-only title if the visible title is not shown. #}
     {% if not label %}
-        {{ title_prefix ?? '' }}
         <span class="sr-only">
             {{ label is not empty ? label|e : 'Content Section'|t }}
         </span>
-        {{ title_suffix ?? '' }}
     {% endif %}
 
     {# Include image or icon #}
