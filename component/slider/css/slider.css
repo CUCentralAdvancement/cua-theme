@@ -39,3 +39,26 @@
   padding: 1rem 5rem;
   width: 80%;
 }
+
+/* Media query for screens below 991px */
+@media (max-width: 991px) {
+  .slider blockquote {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .slider  button.carousel-control-prev,
+  .slider button.carousel-control-next {
+    display: none;
+  }
+
+  .slider blockquote {
+    border-left: 0 solid var(--cua-gold);
+  }
+
+  .slider .px-5 {
+    padding-right: 0 !important;
+    padding-left: 2rem !important;
+  }
+}
