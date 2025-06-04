@@ -1,19 +1,31 @@
 {#
 /**
- * @file
- * Accessible Template for the Slider component (508 compliant).
- */
+* @file
+* Accessible Template for the Slider component (508/WCAG 2.1 compliant).
+*
+* Renders a Bootstrap carousel wrapped in an accessible <region> container.
+* - Dynamically generates unique IDs for block and carousel elements.
+* - Includes optional navigation controls (arrows) based on field setting.
+* - Supports theming through background and text color variables.
+* - Integrates card title rendering via imported macro.
+*/
 #}
 
+{# Attach necessary CSS/JS for the slider component #}
 {{ attach_library('cua_theme/slider') }}
+
+{# Import reusable macro for rendering the card title in a consistent way #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Dynamic variables #}
+{# Generate unique IDs for accessibility and carousel targeting #}
 {% set block_id = 'block--node--slider--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 {% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 {% set title_id = block_id ~ '-title' %}
 
-{# CSS classes #}
+{# Build CSS class list for the main slider container
+- Utility classes like mx-5 and my-1 can be adjusted for spacing needs.
+- Background and text color classes are passed in as variables.
+#}
 {% set slider_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -24,39 +36,57 @@
     text_color ?: null,
 ] %}
 
+{# Accessible region wrapper for the entire slider block
+- Uses aria-labelledby to associate the region with a title.
+- `role="region"` marks this as a landmark for screen readers.
+#}
 <div{{ attributes
     .addClass(slider_classes)
     .setAttribute('id', block_id)
     .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', title_id)
-}}>
+    .setAttribute('aria-labelledby', title_id) }}>
+
+    {# Render the accessible title using imported macro
+- Ensures proper semantic heading with ID for aria-labelledby reference.
+    #}
     {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
 
+    {# Main carousel container
+- Uses Bootstrap classes and data attributes to enable sliding behavior.
+- `aria-roledescription="carousel"` describes the widget role to assistive tech.
+- `aria-label` provides a readable name for the component.
+    #}
     <div
-            id="{{ carousel_id }}"
-            class="carousel carousel-dark slide"
-            data-bs-ride="carousel"
-            aria-roledescription="carousel"
-            aria-label="{{ label }}"
+        id="{{ carousel_id }}"
+        class="carousel carousel-dark slide"
+        data-bs-ride="carousel"
+        aria-roledescription="carousel"
+        aria-label="{{ label }}"
     >
+        {# Render slide content (usually <div class="carousel-inner">...</div>) #}
         {{ content }}
 
+        {# Conditionally render carousel navigation arrows
+        - Based on field_visibility_arrows boolean field on the Paragraph.
+        - Uses Font Awesome icons and visually hidden text for screen reader users.
+        #}
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
             <button
                     class="carousel-control-prev"
                     type="button"
                     data-bs-target="#{{ carousel_id }}"
-                    data-bs-slide="prev"
-            >
+                    data-bs-slide="prev">
+
                 <span class="fa-solid fa-circle-left" aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Previous'|t }}</span>
             </button>
+
             <button
                     class="carousel-control-next"
                     type="button"
                     data-bs-target="#{{ carousel_id }}"
-                    data-bs-slide="next"
-            >
+                    data-bs-slide="next">
+
                 <span class="fa-solid fa-circle-right" aria-hidden="true"></span>
                 <span class="visually-hidden">{{ 'Next'|t }}</span>
             </button>
