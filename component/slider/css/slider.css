@@ -68,4 +68,9 @@
     margin-right: 0 !important;
   }
 
+  .slider.blockquote p {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
 }
