@@ -1,28 +1,59 @@
-{# Generate a unique ID to prevent multiple accordions interfering #}
-{% set uid = 'accordion-' ~ random() %}
+{#
+/**
+ * @file
+ * Template for rendering a single accordion item using Bootstrap 5.3.
+ * Designed for Paragraphs.
+ *
+ * Accessibility:
+ * - ARIA attributes connect toggle button and collapsible region
+ * - `role="region"` identifies content section for screen readers
+ * - Heading level (<h2>) should reflect actual page hierarchy
+ *
+ * ID Strategy:
+ * - Use paragraph.id when available for stable IDs
+ * - Fallback to random() to avoid errors in preview/unsaved states
+ */
+#}
+
+{# Safely retrieve paragraph ID or fallback to random #}
+{% set paragraph_entity = content['#paragraph'] ?? null %}
+{% set uid = 'accordion-' ~ (paragraph_entity and paragraph_entity.id ? paragraph_entity.id : random()) %}
 {% set header_id = uid ~ '-header' %}
 {% set collapse_id = uid ~ '-collapse' %}
 
-<div{{ attributes.addClass('accordion') }} id="{{ uid }}">
-	<div class="accordion-item">
-		<h2 class="accordion-header" id="{{ header_id }}">
-			<button class="accordion-button collapsed"
-			        type="button"
-			        data-bs-toggle="collapse"
-			        data-bs-target="#{{ collapse_id }}"
-			        aria-expanded="false"
-			        aria-controls="{{ collapse_id }}">
-				{{ content.field_title ?? 'Missing title' }}
-			</button>
-		</h2>
-		
-		<div id="{{ collapse_id }}"
-		     class="accordion-collapse collapse"
-		     aria-labelledby="{{ header_id }}"
-		     data-bs-parent="#{{ uid }}">
-			<div class="accordion-body">
-				{{ content.field_body ?? 'Missing body' }}
+{# Bootstrap container to center and limit width to ~90% #}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8 col-lg-10">
+
+			<div{{ attributes.addClass('accordion') }} id="{{ uid }}">
+				<div class="accordion-item">
+
+					<h2 class="accordion-header" id="{{ header_id }}">
+						<button class="accordion-button collapsed"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#{{ collapse_id }}"
+								aria-expanded="false"
+								aria-controls="{{ collapse_id }}">
+							{{ content.field_title ?? 'Missing title' }}
+						</button>
+					</h2>
+
+					<div id="{{ collapse_id }}"
+						 class="accordion-collapse collapse"
+						 aria-labelledby="{{ header_id }}"
+						 data-bs-parent="#{{ uid }}"
+						 role="region">
+
+						<div class="accordion-body">
+							{{ content.field_body ?? 'Missing body' }}
+						</div>
+
+					</div>
+				</div>
 			</div>
+
 		</div>
 	</div>
 </div>
