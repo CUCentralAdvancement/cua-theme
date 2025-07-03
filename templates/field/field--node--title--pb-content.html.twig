@@ -1,0 +1,20 @@
+{#
+Custom title field template for pb_content.
+#}
+
+{% if label_hidden %}
+	<h1 class="page-title">
+		{% for item in items %}
+			{{ item.content }}
+		{% endfor %}
+	</h1>
+{% else %}
+	<div class="field--name-title">
+		<h1 class="page-title">
+			<span class="field-label">{{ label }}:</span>
+			{% for item in items %}
+				{{ item.content }}
+			{% endfor %}
+		</h1>
+	</div>
+{% endif %}
