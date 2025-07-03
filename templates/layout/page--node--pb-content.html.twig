@@ -68,31 +68,115 @@
  */
 #}
 
+{# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
+{% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+{% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
 
 <div id="page-wrapper">
-	<div id="page page-builder">
+	<div id="page">
+		
+		{# Alert #}
+		{% if page.alert %}
+			{% block alert %}
+				{{ page.alert }}
+			{% endblock %}
+		{% endif %}
 		
 		{# Header #}
 		{% include '@cua_theme/templates/layout/header/header.html.twig' %}
 		
+		{# Banner #}
+		{% if page.banner %}
+			{% block banner %}
+				{{ page.banner }}
+			{% endblock %}
+		{% endif %}
+		
+		{# Highlight #}
+		{% if page.highlighted %}
+			<div class="highlighted">
+				<aside class="{{ container }} section clearfix"
+				       role="complementary">
+					{{ page.highlighted }}
+				</aside>
+			</div>
+		{% endif %}
+		
+		{# Featured Top #}
+		{% if page.featured_top %}
+			{% block featured %}
+				<div class="featured-top">
+					<aside class="featured-top__inner section {{ container }} clearfix"
+					       role="complementary">
+						{{ page.featured_top }}
+					</aside>
+				</div>
+			{% endblock %}
+		{% endif %}
+		
 		{# Main Content #}
 		<div id="main-wrapper" class="layout-main-wrapper pb-5 clearfix">
 			{% block content %}
-				<div id="main" class="{{ container }}">
+				<div id="main" class="container-fluid">
 					<div class="row d-flex flex-column-reverse flex-md-row clearfix">
+						
+						{# Left Sidebar #}
+						{% if sidebar_first_exists %}
+							<div class="col-md-3 col-sm-12 mb-4 order-1 order-md-2 mobile-padding">
+								<aside class="section" role="complementary">
+									{{ page.sidebar_first }}
+								</aside>
+							</div>
+						{% endif %}
 						
 						{# Page Content #}
 						<main{{ content_attributes }} class="col-md-9 col-sm-12 mb-4 order-2 order-md-1">
 							<section class="section">
-								<a class="visually-hidden-focusable" href="#main-content" id="main-content" tabindex="-1">{{ 'Skip to main content'|t }}</a
+								<a class="visually-hidden-focusable" href="#main-content" id="main-content" tabindex="-1">{{ 'Skip to main content'|t }}</a>
 								{{ page.content }}
 							</section>
 						</main>
 						
+						{# Right Sidebar #}
+						{% if sidebar_second_exists %}
+							<div class="col-md-3 col-sm-12 mb-4 order-3 order-md-last">
+								<aside class="section" role="complementary">
+									{{ page.sidebar_second }}
+								</aside>
+							</div>
+						{% endif %}
+					
 					</div>
 				</div>
 			{% endblock %}
 		</div>
+		
+		{# Featured Bottom One #}
+		{% if page.featured_bottom_first %}
+			<div class="featured-bottom-first container-fluid g-0">
+				<aside class="clearfix" role="complementary">
+					{{ page.featured_bottom_first }}
+				</aside>
+			</div>
+		{% endif %}
+		
+		{# Featured Bottom Second #}
+		{% if page.featured_bottom_second %}
+			<div class="featured-bottom-second container g-0">
+				<aside class="clearfix" role="complementary">
+					{{ page.featured_bottom_second }}
+				</aside>
+			</div>
+		{% endif %}
+		
+		{# Featured Bottom Third #}
+		{% if page.featured_bottom_third %}
+			<div class="featured-bottom-third container-fluid g-0">
+				<aside class="clearfix" role="complementary">
+					{{ page.featured_bottom_third }}
+				</aside>
+			</div>
+		{% endif %}
 		
 		{# Footer #}
 		{% include '@cua_theme/templates/layout/footer/footer.html.twig' %}

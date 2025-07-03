@@ -5,10 +5,25 @@ This removes default margin from the #main-wrapper container when viewing PB Con
 Necessary to allow the hero to span full-width of the viewport.
 #}
 <style>
-  .node--type-pb-content div#main-wrapper,
-  .node--type-pb-content #main-wrapper {
-    margin: 0 !important;
-  }
+	.node--type-pb-content div#main-wrapper,
+	.node--type-pb-content #main-wrapper {
+		margin: 0 !important;
+	}
+	.node--type-pb-content div#main-wrapper,
+	.node--type-pb-content #main-wrapper {
+		margin: 0 !important;
+	}
+	.paragraph .pb__hero-txt-wrapper-inner:not(.page-node-type-pb-content .pb__hero-txt-wrapper-inner) {
+		width: 50%;
+		max-width: 50%;
+	}
+	h1.page-title.pb-title {
+		margin: 0 !important;
+	}
+	.pb-subtitle {
+		margin: 0 0 .5rem .25rem !important;
+		font-size: 1.1rem;
+	}
 </style>
 
 {#
@@ -30,24 +45,28 @@ Hero and subtitle fields are excluded from double rendering.
 #}
 <article{{ attributes }}>
 	<div class="container">
-		
-		<header>
+
+		{# Title / Subtitle #}
+		<div class="title-wrapper mb-4">
+
+			{# Title #}
 			{{ title_prefix }}
-			<h1 class="page-title">{{ node.label }}</h1>
+			<h1 class="page-title pb-title">{{ node.label }}</h1>
 			{{ title_suffix }}
-			
+
 			{# Optional subtitle field (if present) #}
 			{% if content.field_subtitle %}
 				<div class="pb-subtitle">
 					{{ content.field_subtitle }}
 				</div>
 			{% endif %}
-		</header>
-		
+		</div>
+
+		{# Main Content #}
 		<div{{ content_attributes }}>
 			{# Render all fields except hero and subtitle, which were handled above #}
 			{{ content|without('field_hero', 'field_subtitle') }}
 		</div>
-	
+
 	</div>
 </article>
