@@ -2766,21 +2766,76 @@ nav#block-cua-theme-campusoffices {
 .node--type-pb-content #main-wrapper {
     margin: 0 !important;
 }
+
 .node--type-pb-content div#main-wrapper,
 .node--type-pb-content #main-wrapper {
     margin: 0 !important;
 }
+
 .paragraph .pb__hero-txt-wrapper-inner:not(.page-node-type-pb-content .pb__hero-txt-wrapper-inner) {
     width: 50%;
     max-width: 50%;
 }
+
 h1.page-title.pb-title {
     margin: 0 !important;
 }
+
 .pb-subtitle {
     margin: 0 0 .5rem .25rem !important;
     font-size: 1.1rem;
 }
+
+/* Wrap each field group (campus, category, tags) in a flex container */
+.field--name-field-campus,
+.field--name-field-category,
+.field--name-field-tags {
+    display: inline-block; /* Allow them to flow inline */
+    margin-right: 1rem;
+}
+
+/* Inline links inside those groups */
+.field--name-field-campus .field__item,
+.field--name-field-category .field__item {
+    display: inline-block;
+}
+
+.field--name-field-tags ul.links {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-flex;
+    gap: .25rem;
+}
+
+.field--name-field-tags ul.links li {
+    display: inline-block;
+}
+
+/* Optional: style the actual links */
+.field__item a,
+.field--name-field-tags ul.links a {
+    text-decoration: none;
+    color: var(--cua-dark-gray);
+    font-weight: 500;
+}
+
+.field__item a:hover,
+.field--name-field-tags ul.links a:hover {
+    text-decoration: underline;
+    color: var(--cua-white);
+}
+
+.field--name-field-campus,
+.field--name-field-category {
+    margin-right: .25rem !important;
+}
+
+.field--name-field-campus .field__item {
+    display: inline;
+    margin-right: 0;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
