@@ -15,6 +15,32 @@ function cua_theme_form_search_block_form_alter(array &$form, FormStateInterface
 }
 
 /**
+ * Implements hook_preprocess_node().
+ *
+ * Adds an 'author_name' variable to node templates, using the user's
+ * preferred display name (if provided), falling back to the CAS-synced
+ * username/email otherwise.
+ */
+function cua_theme_preprocess_node(array &$vars): void {
+    // Only apply this logic if we're working with a Node entity.
+    if ($vars['node'] instanceof \Drupal\node\NodeInterface) {
+
+        // Load the full User entity for the node author (not just a stub).
+        $author = \Drupal\user\Entity\User::load($vars['node']->getOwnerId());
+
+        if ($author) {
+            // Try to use the value from the custom 'Preferred name' field.
+            // Field machine name: 'field_preferred_name'.
+            $preferred = $author->get('field_preferred_name')->value;
+
+            // If a preferred name exists, use it; otherwise, fall back to
+            // getDisplayName(), which may be an email if synced via CAS.
+            $vars['author_name'] = $preferred ?: $author->getDisplayName();
+        }
+    }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter() for form templates.
  *
  * @param array $suggestions
