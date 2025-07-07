@@ -41,9 +41,15 @@ Hero and subtitle fields are excluded from double rendering.
 			{% endif %}
 
 			{# Author and Date Metadata #}
-			<div class="pb-meta text-muted small mx-2">
-				{{ node.getCreatedTime()|date("F j, Y") ~ ' - '~ node.getOwner().getDisplayName() }}
-			</div>
+
+			{% if node.field_show_author_meta.value %}
+				<div class="pb-meta text-muted small">
+					<span class="date">{{ node.getCreatedTime()|date("F j, Y") }}</span>
+					&mdash;
+					<span class="author">{{ node.getOwner().getDisplayName() }}</span>
+				</div>
+			{% endif %}
+
 		</div>
 
 		{# Main Content #}
