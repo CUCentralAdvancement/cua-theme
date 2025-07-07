@@ -43,7 +43,7 @@ Hero and subtitle fields are excluded from double rendering.
 			{# Author and Date Metadata #}
 
 			{% if node.field_show_author_meta.value %}
-				<div class="pb-meta text-muted small">
+				<div class="pb-meta text-muted small m-1">
 					<span class="date">{{ node.getCreatedTime()|date("F j, Y") }}</span>
 					&mdash;
 					<span class="author">{{ node.getOwner().getDisplayName() }}</span>
