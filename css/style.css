@@ -2735,6 +2735,7 @@ nav#block-cua-theme-campusoffices {
 }
 
 .paragraph--type--youtube .paragraph__inner a {
+    margin-top: 1rem !important;
     display: inline-block;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
@@ -2755,6 +2756,10 @@ nav#block-cua-theme-campusoffices {
     border-color: var(--cua-black)!important;
     text-decoration: none;
     color: var(--cua-white)!important;
+}
+
+.paragraph {
+    margin-bottom: 3rem !important;
 }
 
 /* Reduce animation for users who prefer reduced motion */
