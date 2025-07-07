@@ -4,27 +4,6 @@ STYLE FIXES FOR FULL-WIDTH HERO
 This removes default margin from the #main-wrapper container when viewing PB Content nodes.
 Necessary to allow the hero to span full-width of the viewport.
 #}
-<style>
-	.node--type-pb-content div#main-wrapper,
-	.node--type-pb-content #main-wrapper {
-		margin: 0 !important;
-	}
-	.node--type-pb-content div#main-wrapper,
-	.node--type-pb-content #main-wrapper {
-		margin: 0 !important;
-	}
-	.paragraph .pb__hero-txt-wrapper-inner:not(.page-node-type-pb-content .pb__hero-txt-wrapper-inner) {
-		width: 50%;
-		max-width: 50%;
-	}
-	h1.page-title.pb-title {
-		margin: 0 !important;
-	}
-	.pb-subtitle {
-		margin: 0 0 .5rem .25rem !important;
-		font-size: 1.1rem;
-	}
-</style>
 
 {#
 HERO SECTION
@@ -60,6 +39,11 @@ Hero and subtitle fields are excluded from double rendering.
 					{{ content.field_subtitle }}
 				</div>
 			{% endif %}
+
+			{# Author and Date Metadata #}
+			<div class="pb-meta text-muted small mx-2">
+				{{ node.getCreatedTime()|date("F j, Y") ~ ' - '~ node.getOwner().getDisplayName() }}
+			</div>
 		</div>
 
 		{# Main Content #}

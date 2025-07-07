@@ -2762,6 +2762,25 @@ nav#block-cua-theme-campusoffices {
     margin-bottom: 3rem !important;
 }
 
+.node--type-pb-content div#main-wrapper,
+.node--type-pb-content #main-wrapper {
+    margin: 0 !important;
+}
+.node--type-pb-content div#main-wrapper,
+.node--type-pb-content #main-wrapper {
+    margin: 0 !important;
+}
+.paragraph .pb__hero-txt-wrapper-inner:not(.page-node-type-pb-content .pb__hero-txt-wrapper-inner) {
+    width: 50%;
+    max-width: 50%;
+}
+h1.page-title.pb-title {
+    margin: 0 !important;
+}
+.pb-subtitle {
+    margin: 0 0 .5rem .25rem !important;
+    font-size: 1.1rem;
+}
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
