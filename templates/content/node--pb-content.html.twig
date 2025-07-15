@@ -29,9 +29,11 @@ Hero and subtitle fields are excluded from double rendering.
 		<div class="title-wrapper mb-4">
 
 			{# Title #}
-			{{ title_prefix }}
-			<h1 class="page-title pb-title">{{ node.label }}</h1>
-			{{ title_suffix }}
+            {{ title_prefix }}
+            <h1 class="page-title pb-title {% if not node.field_show_title.value %}visually-hidden{% endif %}">
+                {{ node.label }}
+            </h1>
+            {{ title_suffix }}
 
 			{# Optional subtitle field (if present) #}
 			{% if content.field_subtitle %}
