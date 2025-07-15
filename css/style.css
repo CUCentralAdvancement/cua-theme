@@ -2836,6 +2836,17 @@ h1.page-title.pb-title {
     margin-right: 0;
 }
 
+.field--name-pb-content-body a,
+.field--name-pb-content-body a:visited {
+    text-decoration: underline !important;
+    color: var(--cua-link-color) !important;
+}
+.field--name-pb-content-body a:hover,
+.field--name-pb-content-body a:focus {
+    text-decoration: none !important;
+    color: var(--cua-blue-dark) !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
