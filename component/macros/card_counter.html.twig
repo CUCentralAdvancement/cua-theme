@@ -1,15 +1,17 @@
-{# Counter Title Macro #}
+{# --------------------------------------------
+  Counter Title Macro - 508 Accessible Version
+  Description: Renders an animated counter with
+  optional text before and after. Includes ARIA
+  features for screen readers.
+  Usage:
+    {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
+    {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }}
+-------------------------------------------- #}
 
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
-{# Call the macro and pass the necessary variables #}
-{# {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }} #}
-
-{# Counter Macro #}
 {% macro render_counter(number, text_alignment, text_color, before_number, after_number) %}
     {% if number %}
 
-        {# Set default classes for the container #}
+        {# Define default classes based on inputs; filter out any null/empty values #}
         {% set container_classes = [
             text_alignment ?: 'left',
             text_color ?: '',
@@ -17,7 +19,7 @@
 
         <div class="counter-size {{ container_classes|join(' ')|trim }}">
 
-            {# Before number #}
+            {# Optional text before the number, e.g. '$' or '#' #}
             {% if before_number %}
                 {% set before_classes = [
                     'padding-right',
@@ -28,33 +30,34 @@
                 </span>
             {% endif %}
 
-            {# Counter #}
-            {% if number %}
-                {% set counter_classes = [
-                    'counter-up',
-                    text_color ?: '',
-                ] | filter(v => v) %}
-                <span class="{{ counter_classes|join(' ')|trim }}"
-                      aria-label="{{ 'Counter: @number'|t({'@number': number}) }}"
-                      aria-live="polite"
-                      role="status"
-                      data-count="{{ number }}">
-                    0
-                </span>
+            {# Animated counter span.
+               - aria-live="polite" allows screen readers to announce updates non-disruptively.
+               - role="status" designates this as a live region.
+               - aria-hidden="true" prevents the "0" (animated placeholder) from being read.
+               - data-count is used by JavaScript to animate the count-up.
+            #}
+            <span class="counter-up {{ text_color ?: '' }}"
+                  aria-live="polite"
+                  role="status"
+                  aria-hidden="true"
+                  data-count="{{ number }}">
+                0
+            </span>
 
-                {# Accessibility fallback for screen readers #}
-                <span class="visually-hidden" data-counter-announcer>
-                    {{ number }}
-                </span>
-            {% endif %}
+            {# Screen reader-only announcement fallback.
+               - Hidden visually but will be read aloud to users relying on assistive tech.
+               - Includes semantic context: "Counter: X"
+            #}
+            <span class="visually-hidden" data-counter-announcer>
+                {{ 'Counter: @number'|t({'@number': number}) }}
+            </span>
 
-            {# After number #}
+            {# Optional text after the number, e.g. '%' or 'people' #}
             {% if after_number %}
                 {% set after_classes = [
                     'padding-left',
                     text_color ?: '',
                 ] | filter(v => v) %}
-
                 <span class="{{ after_classes|join(' ')|trim }}">
                     {{ after_number|e }}
                 </span>
