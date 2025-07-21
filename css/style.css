@@ -286,7 +286,7 @@ div#main-wrapper {
     position: absolute; /* Positions the accent relative to the heading */
     pointer-events: none; /* Prevents interaction */
     top: -0.2rem;
-    left: -4px;
+    left: -12px;
     display: block;
     width: 60px;
     height: 60px;

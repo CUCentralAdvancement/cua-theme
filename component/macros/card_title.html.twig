@@ -1,44 +1,39 @@
 {#
-Title Macro: render_title
+Macro: render_title
 
-This macro renders a heading element (h1-h6) with flexible styling and accessibility options,
-designed to be used for card titles or other headings in your Drupal Twig templates.
+Purpose:
+  Renders a heading (h1–h6) with optional visual and accessibility-related features.
+  Allows for alignment, color, padding, link wrapping, and screen reader visibility.
+  Designed to be reusable across card components, hero blocks, etc.
+
+Usage Example:
+  {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+  {{ titleMacros.render_title(
+    label,
+    '', '',                    # title_prefix, title_suffix (handled in template)
+    null,                      # center_content (legacy, optional)
+    'text-center',             # text_alignment
+    'text-blue-light',         # text_color
+    'p-3',                     # padding
+    true,                      # hide_from_screen_readers
+    [],                        # links (optional)
+    'unique-id',               # title_id
+    3                          # heading level (e.g., <h3>)
+  ) }}
 
 Parameters:
-- label (string): The visible text of the title. Required.
-- title_prefix (string): Optional HTML/text to prepend before the title (e.g., for Drupal's title prefix system).
-- title_suffix (string): Optional HTML/text to append after the title.
-- center_content (string|null): Optional CSS class to control centering or alignment of content.
-- text_alignment (string|null): CSS class for text alignment (e.g., 'text-center', 'text-left').
-- text_color (string|null): CSS class for text color styling.
-- padding (string|null): CSS class to control padding around the title.
-- hide_from_screen_readers (bool): If true, adds aria-hidden="true" to hide the title from screen readers.
-- links (array): An optional array of link objects. If provided, the title becomes a link using the first link's URL.
-- title_id (string): Optional ID attribute for the title, useful for aria-labelledby references.
-- heading_level (int|string): Heading level to use ('1' through '6'). Defaults to 2 (h2).
-
-Usage example:
-
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{{ titleMacros.render_title(
-    label,
-    title_prefix,
-    title_suffix,
-    'center-content-class',
-    'text-center',
-    'text-primary',
-    'p-3',
-    false,
-    links,
-    'unique-title-id',
-    3
-) }}
-
-Notes:
-- The macro wraps the label in a heading tag with appropriate classes.
-- If 'links' is provided and non-empty, the title text will be wrapped in an <a> tag linking to the first link's URL.
-- Supports hiding the title from screen readers when used alongside a visually hidden accessible heading.
+  - label: (string) Required title text
+  - title_prefix / title_suffix: Contextual wrapper content (from Drupal)
+  - center_content: Optional legacy class for layout centering (pass null if unused)
+  - text_alignment: Alignment class (e.g., 'text-center', 'text-start')
+  - text_color: Optional text color class
+  - padding: Optional spacing class
+  - hide_from_screen_readers: Boolean to set aria-hidden
+  - links: Optional array of link objects (only first one used)
+  - title_id: Optional HTML ID attribute for heading
+  - heading_level: Level of heading element to render (defaults to <h2>)
 #}
+
 {% macro render_title(
     label,
     title_prefix = '',
@@ -52,42 +47,62 @@ Notes:
     title_id = '',
     heading_level = 2
     ) %}
+
+    {# Build the full class list for the heading tag #}
+    {# Includes base typography, plus optional alignment, color, padding #}
     {% set title_classes = [
-        'display-4 card-text lead title',
-        center_content ?: null,
-        text_alignment ?: null,
-        text_color ?: null,
-        padding ?: null
+        'display-4',
+        'card-text',
+        'lead',
+        'title',
+        center_content,
+        text_alignment,
+        text_color,
+        padding
     ] | filter(v => v) | join(' ') %}
 
+    {# Class list for the optional <a> link inside heading #}
+    {# Avoid duplicating heading styles — just apply minimal necessary styling #}
     {% set title_link_classes = [
         'title-link',
-        text_color ?: null
+        text_color
     ] | filter(v => v) | join(' ') %}
 
+    {# Compile the actual heading tag name (e.g., 'h2', 'h3') #}
     {% set heading_tag = 'h' ~ heading_level %}
 
     {{ title_prefix }}
 
+    {# Only render heading if label exists #}
     {% if label is not empty %}
+
+        {# If links are provided, wrap label in <a> tag inside the heading #}
         {% if links|length %}
             {% set firstLink = links[0] %}
-            <{{ heading_tag }} class="{{ title_classes }}" {% if title_id %}id="{{ title_id }}"{% endif %}>
-            <a class="{{ title_link_classes }} {{ title_classes }}"
-               href="{{ firstLink.url }}"
-               title="{{ firstLink.title }}"
-               {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}>
+            <{{ heading_tag }}
+            class="{{ title_classes }}"
+            {% if title_id %}id="{{ title_id }}"{% endif %}>
+            <a
+                    class="{{ title_link_classes }}"
+                    href="{{ firstLink.url }}"
+                    title="{{ firstLink.title }}"
+                    {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}>
                 {{ label }}
             </a>
             </{{ heading_tag }}>
+
+            {# If no link is present, render plain heading with label only #}
         {% else %}
-            <{{ heading_tag }} class="{{ title_classes }}"
+            <{{ heading_tag }}
+            class="{{ title_classes }}"
             {% if title_id %}id="{{ title_id }}"{% endif %}
             {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}>
             {{ label }}
             </{{ heading_tag }}>
         {% endif %}
+
     {% endif %}
 
     {{ title_suffix }}
+
 {% endmacro %}
