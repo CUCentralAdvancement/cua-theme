@@ -3,12 +3,22 @@
  * @file
  * Template for the Image Bundle component.
  *
- * Bootstrap Documentation:
- * https://getbootstrap.com/docs/5.3
+ * Description:
+ *   Renders a flexible "card" layout containing a title, image, caption,
+ *   optional body content, and an optional footer button/link.
+ *   Styling is controlled via passed-in utility classes (alignment, padding, etc.).
+ *
+ * Bootstrap 5 Documentation:
+ *   https://getbootstrap.com/docs/5.3
  */
 #}
 
-{# ------------------ Class Compilation ------------------ #}
+{# ------------------ Compile Wrapper Classes for Outer Container ------------------ #}
+{#
+The main container uses a base card layout.
+Text alignment, background/border colors, sizing, and margins are passed in as variables.
+We sanitize text_alignment to a known-safe list before including it.
+#}
 {% set image_bundle_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -22,17 +32,35 @@
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# ------------------ Generate Unique ID ------------------ #}
+{# ------------------ Define Reusable Wrapper Classes for Inner Sections ------------------ #}
+{#
+Many content blocks (caption, body, image) were not respecting alignment or styling.
+Instead of modifying all macros, we wrap each block in a container with text alignment,
+padding, and text color applied via this shared class set.
+#}
+{% set image_wrap_classes = [
+    text_alignment,
+    padding,
+    text_color,
+    'g-0'
+] | filter(v => v) | join(' ') %}
+
+{# ------------------ Generate Unique ID for the Region ------------------ #}
+{#
+This ensures the block has a stable, unique ID based on its content entity.
+Used for accessibility (e.g. aria-labelledby) or direct linking.
+#}
 {% set unique_id = 'block--node--image-bundle--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
-{# ------------------ Render Content ------------------ #}
+{# ------------------ Begin Component Markup ------------------ #}
 <div{{ attributes
 |without('id')
     .setAttribute('id', unique_id)
     .addClass(image_bundle_classes)
     .setAttribute('role', 'region') }}>
 
-    {# Drupal Edit Links (must remain) #}
+    {# ------------------ Drupal Title Prefix/Suffix ------------------ #}
+    {# Required by Drupal — supports contextual edit links, etc. #}
     {{ title_prefix ?: '' }}
     {{ title_suffix ?: '' }}
 
@@ -57,43 +85,36 @@
     {# ------------------ Image ------------------ #}
     {% if card_image %}
         {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-        {{ cardImageMacros.render_card_image(
-            card_image,
-            position_container,
-            text_alignment,
-            text_color,
-            image_size,
-            visibility,
-            content,
-            links
-        ) }}
+        <div class="{{ image_wrap_classes }}">
+            {{ cardImageMacros.render_card_image(
+                card_image,
+                image_size,
+                content
+            ) }}
+        </div>
     {% endif %}
 
     {# ------------------ Caption ------------------ #}
     {% if caption %}
         {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
-        {{ captionMacros.render_caption(
-            caption,
-            padding,
-            text_color,
-            text_alignment
-        ) }}
+        <div class="{{ image_wrap_classes }}">
+            {{ captionMacros.render_caption(
+                caption
+            ) }}
+        </div>
     {% endif %}
 
-    {# ------------------ Body ------------------ #}
+    {# ------------------ Body Content ------------------ #}
     {% if content %}
         {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-        {{ bodyMacros.render_body(
-            content,
-            padding,
-            text_color,
-            text_alignment,
-            null,
-            text_color
-        ) }}
+        <div class="{{ image_wrap_classes }}">
+            {{ bodyMacros.render_body(
+                content
+            ) }}
+        </div>
     {% endif %}
 
-    {# ------------------ Footer ------------------ #}
+    {# ------------------ Footer (e.g., link or button) ------------------ #}
     {% if links %}
         {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
         {{ cardFooterMacros.render_card_footer(
