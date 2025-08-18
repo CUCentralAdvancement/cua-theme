@@ -64,8 +64,12 @@ This view likely provides the "lead story" content items to render.
 
                     {# The entire block is wrapped in a link for a clickable card. #}
                     <a href="{{ link }}"
-                       class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column"
-                       aria-labelledby="{{ heading_id }}">
+                       class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
+                       aria-labelledby="{{ heading_id }}"
+                       data-story-id="{{ node.id }}"
+                       data-story-title="{{ node.label|e('html_attr') }}"
+                       data-story-url="{{ link }}"
+                       data-block-id="{{ id ?: 'lead-stories' }}">
 
                         {# Start content #}
                         <article class="m-2 shadow {{ node.field_color_background.value ?: '' }} flex-grow-1 d-flex flex-column">
