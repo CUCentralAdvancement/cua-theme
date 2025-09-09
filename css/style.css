@@ -94,6 +94,7 @@
     --font-weight-bold: 700;
     --font-weight-xbold: 900;
 }
+
 /* Enable smooth scrolling when an element within the page gains focus */
 html:focus-within {
     scroll-behavior: smooth;
