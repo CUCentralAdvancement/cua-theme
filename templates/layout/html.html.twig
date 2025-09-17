@@ -33,21 +33,21 @@ GTM-KBWVM4MVB
 <!DOCTYPE html>
 <html{{ html_attributes }}>
 <head>
-    {# Google Tag Manager script. Required in <head> for proper tracking. #}
-    <script>
-        (function (w, d, s, l, i) {
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
-                'gtm.start': new Date().getTime(), event: 'gtm.js'
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
             });
             var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
             j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-KBWVM4MVB');
-    </script>
-    {# End Google Tag Manager script #}
+        })(window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB');</script>
+    <!-- End Google Tag Manager -->
 
     {# Injects <head> elements like meta tags, title, and more. #}
     <head-placeholder token="{{ placeholder_token|raw }}">
@@ -70,12 +70,12 @@ GTM-KBWVM4MVB
                 ] %}
 </head>
 
-<body{{ attributes.addClass(body_classes) }}>
-{# Google Tag Manager fallback for users with JavaScript disabled #}
+<body{{ attributes.addClass(body_classes) }}><!-- Google Tag Manager (noscript) -->
 <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWVM4MVB"
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 {# Accessible skip link for keyboard users — becomes visible on focus #}
 <a href="#main-content" class="skip-link">{{ 'Skip to main content'|t }}</a>
