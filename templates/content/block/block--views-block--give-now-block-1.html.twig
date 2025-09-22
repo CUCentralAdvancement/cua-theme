@@ -119,7 +119,7 @@ Provides quick access to sort, add, preview, or edit Give Now items.
 
 							{% if node.body.value is not empty %}
 								<div id="{{ body_id }}" class="give-now-body mb-2">
-									{{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a><h1><h2><h3><h4><h5><h6>')|raw }}
+									{{ node.body.value|raw }}
 								</div>
 							{% endif %}
 

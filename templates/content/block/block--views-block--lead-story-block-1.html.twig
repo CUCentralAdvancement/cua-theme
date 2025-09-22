@@ -120,7 +120,7 @@ This view likely provides the "lead story" content items to render.
                             {# The body/description of the lead story, limited to certain HTML tags. #}
                             {% if node.body.value is not empty %}
                                 <div class="lead-story-body mb-2">
-                                    {{ node.body.value|striptags('<p><br><strong><em><ul><ol><li><a>')|raw }}
+                                    {{ node.body.value|raw }}
                                 </div>
                             {% endif %}
                 </div>
