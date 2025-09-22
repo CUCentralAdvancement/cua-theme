@@ -64,7 +64,15 @@ Provides quick access to sort, add, preview, or edit Give Now items.
 							 role="listitem">
 
 							{% set link = node.field_link.uri ?: '#' %}
-							<a href="{{ link }}" id="give-now-item-{{ node.id }}" class="{{ givenow_classes }} text-decoration-none d-block h-100" aria-labelledby="{{ heading_id }}" aria-describedby="{{ body_id }}">
+							<a href="{{ link }}"
+							   id="give-now-item-{{ node.id }}"
+							   class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
+							   aria-labelledby="{{ heading_id }}"
+							   aria-describedby="{{ body_id }}"
+							   data-story-id="{{ node.id }}"
+							   data-story-title="{{ node.label|e('html_attr') }}"
+							   data-story-url="{{ link }}"
+							   data-block-id="{{ id ?: 'give-now' }}">
 
 								<div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
 
