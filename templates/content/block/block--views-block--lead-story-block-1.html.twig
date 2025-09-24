@@ -111,18 +111,14 @@ This view likely provides the "lead story" content items to render.
                             {# Main content area of the card. #}
                             <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
                                 {# The title of the lead story, if available. #}
-                                {% if node.label %}
                                 <{{ heading_level }} id="{{ heading_id }}" class="lead-story-title">
                                 {{ node.label }}
                             </{{ heading_level }}>
-                            {% endif %}
 
                             {# The body/description of the lead story, limited to certain HTML tags. #}
-                            {% if node.body.value is not empty %}
                                 <div class="lead-story-body mb-2">
                                     {{ node.body.value|raw }}
                                 </div>
-                            {% endif %}
                 </div>
 
                 {# Optional call-to-action text rendered as a styled button-like span. #}

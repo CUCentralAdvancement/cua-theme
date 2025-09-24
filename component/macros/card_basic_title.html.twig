@@ -17,9 +17,9 @@
 {% macro render_card_basic_title(title_prefix, label, title_suffix) %}
 
     {{ title_prefix ?? '' }}
-    <h2 class="visually-hidden">
+    <h3 class="visually-hidden">
         {{ label|e }}
-    </h2>
+    </h3>
     {{ title_suffix ?? '' }}
 
 {% endmacro %}
