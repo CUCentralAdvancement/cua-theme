@@ -1,0 +1,19 @@
+/*
+ * @file
+ * Provides the layout styles for seven-column layout section.
+ */
+
+.layout--sevencol-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.layout--sevencol-section > .layout__region {
+  flex: 0 1 100%;
+}
+
+@media screen and (min-width: 40em) {
+  .layout--sevencol-section > .layout__region {
+    flex: 0 1 14.285714%;
+  }
+}

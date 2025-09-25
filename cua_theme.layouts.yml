@@ -18,3 +18,78 @@ layout_fivecol_section:
       label: Fourth
     fifth:
       label: Fifth
+
+layout_sixcol_section:
+  label: 'Six column'
+  path: layouts/sixcol_section
+  template: layout--sixcol-section
+  library: cua_theme/sixcol_section
+  category: 'Columns: 6'
+  default_region: first
+  icon_map:
+    - [first, second, third, fourth, fifth, sixth]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth
+    fifth:
+      label: Fifth
+    sixth:
+      label: Sixth
+
+layout_sevencol_section:
+  label: 'Seven column'
+  path: layouts/sevencol_section
+  template: layout--sevencol-section
+  library: cua_theme/sevencol_section
+  category: 'Columns: 7'
+  default_region: first
+  icon_map:
+    - [first, second, third, fourth, fifth, sixth, seventh]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth
+    fifth:
+      label: Fifth
+    sixth:
+      label: Sixth
+    seventh:
+      label: Seventh
+
+layout_eightcol_section:
+  label: 'Eight column'
+  path: layouts/eightcol_section
+  template: layout--eightcol-section
+  library: cua_theme/eightcol_section
+  category: 'Columns: 8'
+  default_region: first
+  icon_map:
+    - [first, second, third, fourth, fifth, sixth, seventh, eighth]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth
+    fifth:
+      label: Fifth
+    sixth:
+      label: Sixth
+    seventh:
+      label: Seventh
+    eighth:
+      label: Eighth

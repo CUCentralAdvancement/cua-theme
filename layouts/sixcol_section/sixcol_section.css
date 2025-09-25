@@ -1,0 +1,19 @@
+/*
+ * @file
+ * Provides the layout styles for four-column layout section.
+ */
+
+.layout--sixcol-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.layout--sixcol-section > .layout__region {
+  flex: 0 1 100%;
+}
+
+@media screen and (min-width: 40em) {
+  .layout--sixcol-section > .layout__region {
+    flex: 0 1 16.6666%; /* 100% / 6 = ~16.67% */
+  }
+}
