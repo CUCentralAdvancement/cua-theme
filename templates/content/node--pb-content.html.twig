@@ -12,6 +12,10 @@ This wrapper holds the full-width hero paragraph field (field_hero).
 Do NOT place a Bootstrap .container inside this paragraph template.
 The image and layout are styled globally to stretch 100vw and center content.
 #}
+<style>
+	.pb-hero-wrapper.w-100 .paragraph { margin-bottom: -2.2rem !important;}
+</style>
+
 <div class="pb-hero-wrapper w-100">
 	{{ content.field_hero }}
 </div>
