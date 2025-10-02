@@ -166,6 +166,24 @@ a.cta-link {
     text-decoration: none !important; /* Ensures links do not have underlines */
 }
 
+/* Hide only the button text */
+.nobtn-hide_btn {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* If the card-footer has a hidden button, remove mb-5 */
+.card-footer:has(.nobtn-hide_btn) {
+    margin-bottom: 0 !important;
+}
+
 /* =====================================
    Responsive Adjustments
    ===================================== */
