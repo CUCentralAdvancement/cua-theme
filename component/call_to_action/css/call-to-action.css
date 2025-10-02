@@ -75,7 +75,7 @@ h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
 
 /* Spacing for call-to-action blocks */
 .block .call-to-action {
-    margin: 15px; /* Adds margin around the block */
+    margin: 0 15px; /* Adds margin around the block */
 }
 
 /* Add bottom padding to call-to-action block */
@@ -182,6 +182,15 @@ a.cta-link {
 /* If the card-footer has a hidden button, remove mb-5 */
 .card-footer:has(.nobtn-hide_btn) {
     margin-bottom: 0 !important;
+    display: none !important;
+}
+
+.block-inline-blockcall-to-action .card-footer {
+    margin-bottom: 0 !important;
+}
+
+.layout__region:has(> .block.block-layout-builder) {
+    padding: 0 0 25px !important;
 }
 
 /* =====================================
@@ -194,3 +203,4 @@ a.cta-link {
         margin: 0 !important; /* Resets margin for smaller screens */
     }
 }
+
