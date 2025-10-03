@@ -167,7 +167,9 @@ a.cta-link {
 }
 
 /* Hide only the button text */
-.nobtn-hide_btn {
+.nobtn-hide_btn,
+.btn-hide_btn,
+.outline-btn-hide_btn {
     position: absolute !important;
     width: 1px !important;
     height: 1px !important;
@@ -180,9 +182,15 @@ a.cta-link {
 }
 
 /* If the card-footer has a hidden button, remove mb-5 */
-.card-footer:has(.nobtn-hide_btn) {
+.card-footer:has(.nobtn-hide_btn),
+.card-footer:has(.btn-hide_btn),
+.card-footer:has(.outline-btn-hide_btn){
     margin-bottom: 0 !important;
     display: none !important;
+}
+
+.call-to-action.card .p {
+    line-height: 1.3 !important;
 }
 
 .block-inline-blockcall-to-action .card-footer {
