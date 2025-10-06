@@ -201,6 +201,9 @@ a.cta-link {
     padding: 0 0 25px !important;
 }
 
+.card-body.d-flex.flex-column.card-text.lead {
+    padding-bottom: 17px !important;
+}
 /* =====================================
    Responsive Adjustments
    ===================================== */
