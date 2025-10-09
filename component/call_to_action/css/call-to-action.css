@@ -208,10 +208,3 @@ a.cta-link {
    Responsive Adjustments
    ===================================== */
 
-/* Media query for screens below 991px */
-@media (max-width: 991px) {
-    .block .call-to-action {
-        margin: 0 !important; /* Resets margin for smaller screens */
-    }
-}
-
