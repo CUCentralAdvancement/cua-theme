@@ -202,9 +202,16 @@ a.cta-link {
 }
 
 .card-body.d-flex.flex-column.card-text.lead {
-    padding-bottom: 17px !important;
+    padding-bottom: 17px;
 }
 /* =====================================
    Responsive Adjustments
    ===================================== */
+
+/* Media query for screens below 991px */
+@media (max-width: 991px) {
+    .block .call-to-action {
+        margin: 0 15px !important; /* Resets margin for smaller screens */
+    }
+}
 
