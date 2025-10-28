@@ -1246,7 +1246,7 @@ a.bef-link--selected {
 /* General flag styling with shadow, position, and font size */
 .flag {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Add shadow for visual elevation */
-    font-size: .9rem; /* Set font size */
+    font-size: 1rem; /* Set font size */
     font-weight: 600; /* Set font weight to semi-bold */
     padding: 1px 20px 1px 7px; /* Set padding around the flag */
     position: absolute; /* Position flag absolutely within parent */
