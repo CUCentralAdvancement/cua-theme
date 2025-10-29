@@ -262,3 +262,24 @@
     font-size: 0.875rem; /* Adjust button font size */
   }
 }
+
+/* Ensure banner image always renders fully */
+.banner-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Prevent collapse when no content is present */
+  min-height: 40vh;
+  width: 100%;
+}
+
+/* Optional: fallback for very short images */
+.banner-image-container::before {
+  content: '';
+  display: block;
+  padding-top: 25%; /* Creates aspect ratio fallback */
+}

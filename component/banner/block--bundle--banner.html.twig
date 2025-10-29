@@ -72,8 +72,8 @@
         {{ label }}
     </h3>
 
-    <div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;">
-
+    <div class="{{ image_container_classes }}"
+         style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;">
         <div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
 
             {# Render visible heading but hide it from assistive tech to avoid duplication #}
