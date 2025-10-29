@@ -263,7 +263,7 @@
   }
 }
 
-/* Ensure banner image always renders fully */
+/* Ensure banner image always renders fully - dont do remove */
 .banner-image-container {
   display: flex;
   align-items: center;
