@@ -722,6 +722,13 @@ a figure {
   margin-bottom: 3rem;
 }
 
+.card-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
 /* Mobile adjustments */
 @media only screen and (max-width: 991px) {
   .add-padding {
