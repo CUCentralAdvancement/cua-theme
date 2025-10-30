@@ -729,6 +729,7 @@ a figure {
   display: block !important;
 }
 
+
 /* Mobile adjustments */
 @media only screen and (max-width: 991px) {
   .add-padding {

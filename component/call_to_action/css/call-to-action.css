@@ -204,6 +204,7 @@ a.cta-link {
 .card-body.d-flex.flex-column.card-text.lead {
     padding-bottom: 17px;
 }
+
 /* =====================================
    Responsive Adjustments
    ===================================== */
@@ -214,4 +215,5 @@ a.cta-link {
         margin: 0 15px !important; /* Resets margin for smaller screens */
     }
 }
+
 
