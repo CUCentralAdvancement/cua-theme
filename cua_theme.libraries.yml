@@ -97,6 +97,14 @@ heading:
       component/heading/css/heading.css:
         weight: -10
 
+# Image
+image:
+  version: VERSION
+  css:
+    component:
+      component/image/css/image-card.css:
+        weight: -10
+
 # Slider
 slider:
   version: VERSION

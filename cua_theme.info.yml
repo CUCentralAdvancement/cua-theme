@@ -46,3 +46,4 @@ libraries:
   - cua_theme/spacer
   - cua_theme/tabs
   - cua_theme/video
+  - cua_theme/image
