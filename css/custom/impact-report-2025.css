@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Project Charts & Data Visualization Styles
+   ========================================================================== */
+
+/* --- Content Block & Layout Adjustments --- */
+
+/* Hero Banner Override: Prevents cropping on a specific node's banner block. */
+#block--node-banner--1927 .banner-image-container {
+  /* (Intentionally left empty) */
+}
+
+/* General Layout Adjustment: Resets positioning for a specific two-column layout. */
+.layout.layout--twocol-section.fp {
+  background-attachment: scroll !important; /* Visuals */
+  overflow: visible !important;             /* Layout */
+  position: relative !important;            /* Layout */
+  transform: none !important;               /* Misc/Transform */
+  z-index: auto !important;                 /* Layout */
+}
+
+/* Base style for the chart block wrapper (Drupal/CMS block) */
+.block.block-charts-blocks.block-charts-block {
+  border: none !important;      /* Box Model */
+  margin: auto !important;      /* Box Model - Centers the constrained chart block */
+  max-width: 60% !important;    /* Box Model - Constrains the width of the chart block */
+}
+
+
+/* --- Typography & Text Styles --- */
+
+/* Specific styling for H4 elements */
+h4 {
+  font-size: 1.25rem !important; /* Typography */
+}
+
+/* Style for text elements with the 'flag' class */
+.flag {
+  font-size: 1.1rem; /* Typography */
+}
+
+/* Styles for smaller, descriptive paragraph text (e.g., captions, footnotes) */
+p.small-text {
+  font-size: .8rem;    /* Typography */
+  line-height: 1.1;    /* Typography */
+}
+
+
+/* --- Highcharts & C3/D3 Chart Specific Styling --- */
+
+/* Highcharts: Text on Axes (tick marks and labels) */
+.highcharts-axis .tick text,
+.highcharts-axis-labels text,
+g.tick text {
+  fill: #000 !important;          /* Visuals (color override) */
+  font-family: inherit !important; /* Typography */
+  font-size: 14px !important;      /* Typography */
+  font-weight: bold !important;    /* Typography */
+}
+
+/* C3/D3 Charts: General Text Styling */
+/* Targets ALL text within the C3 chart container for consistency. */
+.c3 text,
+.c3-chart text,
+.c3-chart-text text,
+.c3-axis text,
+.c3-axis-x text,
+.c3-axis-y text {
+  font-family: inherit !important; /* Typography */
+  font-size: 14px !important;      /* Typography */
+  line-height: 1.2 !important;     /* Typography */
+}
+
+/* C3 Charts: Stronger override for inline-styled text nodes */
+.c3 text[style],
+.c3-chart text[style],
+.c3-axis text[style],
+.c3-chart-text text[style] {
+  font-size: 12px !important;      /* Typography */
+  font-weight: 700 !important;     /* Typography */
+}
+
+/* Chart.js/HTML-Based Charts: Styling for the main container */
+.charts-chartjs.chart {
+  color: #000 !important;          /* Visuals */
+  font-family: inherit !important; /* Typography */
+  font-size: 12px !important;      /* Typography */
+  font-weight: 700 !important;     /* Typography (bold) */
+}
+
+/* Chart.js/HTML-Based Charts: Legend or Title Text rendered as separate HTML elements */
+.charts-chartjs.chart + .chart-legend,
+.charts-chartjs.chart + .chart-title {
+  font-size: 12px !important;      /* Typography */
+  font-weight: 700 !important;     /* Typography */
+}
+
+
+/* --- Image Styles for Data Visualizations (Endowment, Assets, etc.) --- */
+/* Ensures data-related images are centered and responsive on larger screens. */
+img.endowment-image,
+img.asset-image,
+img.ltip-image,
+img.transfers-image {
+  display: block !important; /* Layout */
+  height: auto !important;   /* Box Model */
+  margin: 0 auto !important; /* Box Model */
+  width: 60% !important;     /* Box Model */
+}
+
+/* Media Query: Full width for data visualization images on smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  img.endowment-image,
+  img.asset-image,
+  img.ltip-image,
+  img.transfers-image {
+    display: block !important; /* Layout */
+    height: auto !important;   /* Box Model */
+    margin: 0 auto !important; /* Box Model */
+    width: 100% !important;    /* Box Model - Full width for better visibility */
+  }
+}

@@ -138,3 +138,11 @@ video:
         weight: -10
   js:
     component/video/js/player.js: { minified: true }
+
+# Custom CSS
+impact_report_2025:
+  version: VERSION
+  css:
+    component:
+      css/custom/impact-report-2025.css:
+        weight: -10
