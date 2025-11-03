@@ -46,21 +46,32 @@
 |without('id')
     .setAttribute('id', unique_id)
     .addClass(image_bundle_classes)
-    .setAttribute('role', 'region') }}>
+    .setAttribute('role', 'region')
+    .setAttribute('itemscope', '')
+    .setAttribute('itemtype', 'https://schema.org/CreativeWork')
+    .setAttribute('data-component', 'image-bundle-card')
+}}>
 
     {{ title_prefix ?: '' }}
     {{ title_suffix ?: '' }}
 
     {% if wrap_entire_card %}
     {% set wrapper_href = single_link.url ?: '#' %}
+    {% set ga_action_value = single_link.title|default(label|default('N/A'))|striptags|trim|e %}
     <a href="{{ wrapper_href }}"
        class="card-link-wrapper d-block text-reset"
-       {% if single_link.title %}aria-label="{{ single_link.title|striptags|trim }}"{% endif %}>
+       {% if single_link.title %}aria-label="{{ single_link.title|striptags|trim }}"{% endif %}
+            {# ADD SAFE GTM TRACKING ATTRIBUTES #}
+       data-ga-event="card_click"
+       data-ga-category="image_bundle"
+       data-ga-action="{{ ga_action_value }}"
+       data-ga-component-id="{{ unique_id }}">
         {% endif %}
 
         {# Title #}
         {% if label %}
             {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+            {# REMOVED THE BREAKING ATTRIBUTE PASS-THROUGH #}
             {{ titleMacros.render_title(
                 label,
                 '',
