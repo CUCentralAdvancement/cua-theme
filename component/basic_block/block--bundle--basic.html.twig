@@ -30,14 +30,25 @@
 {# Generate unique ID #}
 {% set unique_id = 'block--node-' ~ '-basic-block' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
+{# GA4/SEO FIX: Determine if it's a single link for manual rendering #}
+{% set links_count = links|length %}
+{% set single_link = (links_count == 1) ? links|first : null %}
+
 {# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(basic_classes).setAttribute('role', 'region') }}>
+<div{{ attributes
+|without('id')
+    .setAttribute('id', unique_id)
+    .addClass(basic_classes)
+    .setAttribute('role', 'region')
+    .setAttribute('itemscope', '')
+    .setAttribute('itemtype', 'https://schema.org/WebPageElement')
+    .setAttribute('data-component', 'basic-block')
+}}>
 
     {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
     {{ title_prefix ?: '' }}
     {{ title_suffix ?: '' }}
 
-    {# Screen reader-only title for accessibility. #}
     {# Only render the sr-only title if the visible title is not shown. #}
     {% if not label %}
         <span class="sr-only">
@@ -72,7 +83,7 @@
         ) }}
     {% endif %}
 
-    {# Render the title #}
+    {# Render the title. Adding itemprop="name" #}
     {{ titleMacros.render_title(
         label,
         title_prefix,
@@ -81,7 +92,8 @@
         text_alignment,
         text_color,
         padding,
-        links
+        links,
+        'itemprop="block-content"'
     ) }}
 
     {# Render Body #}
@@ -95,20 +107,53 @@
         ) }}
     {% endif %}
 
-    {# Render Footer #}
     {% if links %}
-        {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-        {{ cardFooterMacros.render_card_footer (
-            links,
-            container_size,
-            color_background,
-            position_container,
-            text_alignment,
-            padding,
-            outline,
-            button_color,
-            button_layout
-        ) }}
+        {% if single_link %}
+            {# GA4/SEO FIX: Scenario 1: SINGLE LINK - Render manually to guarantee GA4 attributes #}
+            {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+
+            {% set link_classes = [
+                'card-link',
+                'btn',
+                outline_class,
+                'text-decoration-none',
+                'p-2',
+                'mt-3',
+            ]|filter(v => v)|join(' ') %}
+
+            <div class="card-footer d-flex container mb-5">
+                <a href="{{ single_link.url ?: '#' }}"
+                   class="{{ link_classes }}"
+                   data-ga-event="basic_block_link"
+                   data-ga-category="basic_block"
+                   data-ga-action="{{ single_link.title|default(label)|striptags|trim|e }}"
+                   data-ga-component-id="{{ unique_id }}">
+                    {{ single_link.title|default('Learn More') }}
+                </a>
+            </div>
+        {% else %}
+            {# Scenario 2: MULTIPLE LINKS - Fall back to the macro #}
+            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+            {% set ga_attributes = {
+                'data-ga-event': 'basic_block_link',
+                'data-ga-category': 'basic_block',
+                'data-ga-component-id': unique_id
+            } %}
+            {{ cardFooterMacros.render_card_footer (
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color,
+                button_layout,
+                false,
+                false,
+                ga_attributes
+            ) }}
+        {% endif %}
     {% endif %}
 
 </div>
