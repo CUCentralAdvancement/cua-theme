@@ -1,11 +1,4 @@
-{#
-/**
- * @file
- * Accessible and responsive Half and Half component.
- * 508 Compliance: Proper heading structure, labeled regions, alt text, no duplicate content, no tabindex misuse.
- */
-#}
-
+{# Attach the Half and Half component's CSS/JS library #}
 {{ attach_library('cua_theme/half-and-half') }}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
@@ -31,7 +24,15 @@
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class
 ]|filter(v => v)|merge(utility_classes ?: [])|join(' ')|trim %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }}{% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+{# Main container for the Half and Half block, including Schema.org and data-component attributes #}
+<div{{ attributes
+|without('id')
+    .setAttribute('id', unique_id)
+    .addClass(hh_classes)
+    .setAttribute('itemscope', '')
+    .setAttribute('itemtype', 'https://schema.org/WebPageElement')
+    .setAttribute('data-component', 'half-and-half')
+}}{% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
 
     {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
     {{ title_prefix ?: '' }}
@@ -95,7 +96,7 @@
                                     text_color,
                                     padding
                                 ]|filter(v => v)|join(' ') %}
-                                <h2 id="{{ heading_id }}" class="{{ heading_classes }}">
+                                <h2 id="{{ heading_id }}" class="{{ heading_classes }}" itemprop="name">
                                     {{ label }}
                                 </h2>
                             {% endif %}
@@ -114,19 +115,55 @@
                             {# CTA links #}
                             {% if links %}
                                 {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                                {{ cardFooterMacros.render_card_footer(
-                                    links,
-                                    container_size,
-                                    color_background,
-                                    position_container,
-                                    text_alignment,
-                                    padding,
-                                    outline,
-                                    button_color,
-                                    button_layout,
-                                    false,
-                                    single_link ? true : false
-                                ) }}
+
+                                {# Define GA4 attributes for links #}
+                                {% set ga_attributes = {
+                                    'data-ga-event': 'half_half_link',
+                                    'data-ga-category': 'half_and_half',
+                                    'data-ga-component-id': unique_id
+                                } %}
+
+                                {% if links|length == 1 and not content_contains_other_links %}
+                                    {# Scenario 1: SINGLE LINK - Render manually to guarantee GA4 attributes #}
+                                    {% set first_link = links|first %}
+                                    {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+
+                                    {% set link_classes = [
+                                        'card-link',
+                                        'btn',
+                                        outline_class,
+                                        'text-decoration-none',
+                                        'p-2',
+                                        'mt-3',
+                                    ]|filter(v => v)|join(' ') %}
+
+                                    <div class="card-footer d-flex container mb-5">
+                                        <a href="{{ first_link.url ?: '#' }}"
+                                           class="{{ link_classes }}"
+                                           data-ga-event="half_half_link"
+                                           data-ga-category="half_and_half"
+                                           data-ga-action="{{ first_link.title|default(label)|striptags|trim|e }}"
+                                           data-ga-component-id="{{ unique_id }}">
+                                            {{ first_link.title|default('Learn More') }}
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    {# Scenario 2: MULTIPLE LINKS or LINK INSIDE CONTENT - Fall back to macro, passing GA4 attributes #}
+                                    {{ cardFooterMacros.render_card_footer(
+                                        links,
+                                        container_size,
+                                        color_background,
+                                        position_container,
+                                        text_alignment,
+                                        padding,
+                                        outline,
+                                        button_color,
+                                        button_layout,
+                                        false,
+                                        single_link ? true : false,
+                                        ga_attributes
+                                    ) }}
+                                {% endif %}
                             {% endif %}
 
                         </div>
