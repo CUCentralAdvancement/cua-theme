@@ -1,31 +1,9 @@
-{#
-Accessible and modular Call to Action (CTA) template.
-- Fully 508/WCAG 2.1 compliant: Uses semantic elements, ARIA landmarks, and proper headings.
-- Entire card is a single clickable <a> link when a single link is safe to use (prevents focus trap issues).
-- Supports multiple content types: media (image, video, icon), optional flags, captions, and one or more links.
-- Static <h3> heading used for visual consistency across cards.
-- Verbose comments added for developer clarity and maintainability.
-#}
-
-{# Attach the CTA component's CSS/JS library (from cua_theme) #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Import reusable macros for rendering card titles (if needed) #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Generate a unique ID for this CTA block:
-   - Used for accessibility: aria-labelledby references.
-   - Used for CSS targeting: unique per block content entity.
-   - Replace underscores and colons for safe CSS class and ID use.
-#}
 {% set unique_id = ('block-call-to-action-' ~ elements.content['#block_content'].id())|replace({'_': '-', ':': '--'})|clean_class %}
 
-{# Compose the CSS class list for the main CTA block:
-   - Base classes: 'block', 'call-to-action', 'card', etc.
-   - Conditional classes based on theme settings (e.g., background color, padding, margin, animation triggers).
-   - Utility classes can be passed in and merged.
-   - Empty/null values are filtered out before joining into a string.
-#}
 {% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -44,31 +22,17 @@ Accessible and modular Call to Action (CTA) template.
     id ? 'block--class--call-to-action-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-	{# Build animation-related CSS classes for frontend animation triggers:
-   - Skip animations if user prefers reduced motion.
-   - Remove any quotes for safe output.
-    #}
-	{% set raw_animation_classes = prefers_reduced_motion ? [] : [
-        'animate__animated',
-        animation ?: null,
-        animation_speed ?: null,
-        animation_delay ?: null,
-    ] | filter(v => v) %}
-	{% set data_animation_classes = raw_animation_classes|join(' ')|replace({'"': ''}) %}
+{% set raw_animation_classes = prefers_reduced_motion ? [] : [
+    'animate__animated',
+    animation ?: null,
+    animation_speed ?: null,
+    animation_delay ?: null,
+] | filter(v => v) %}
+{% set data_animation_classes = raw_animation_classes|join(' ')|replace({'"': ''}) %}
 
-	{# Determine if the entire card can safely become a single <a> link:
-   - Must have exactly one link AND no other links in the content.
-   - Ensures a single focusable element for screen reader and keyboard users.
-    #}
-	{% set links_count = links|length %}
-	{% set single_link = (links_count == 1) ? links|first : null %}
-	{% set wrap_entire_card = single_link and not content_contains_other_links %}
-
-	{# Main container for the CTA block:
-	Acts as a region landmark for assistive technologies.
-	- Accessible label via aria-labelledby references the hidden heading.
-	- Data attribute for frontend JS animations.
-    #}
+{% set links_count = links|length %}
+{% set single_link = (links_count == 1) ? links|first : null %}
+{% set wrap_entire_card = single_link and not content_contains_other_links %}
 
 <div{{ attributes
 | without('id')
@@ -77,42 +41,36 @@ Accessible and modular Call to Action (CTA) template.
     .setAttribute('role', 'region')
     .setAttribute('aria-labelledby', unique_id ~ '-label')
     .setAttribute('data-animation-classes', data_animation_classes)
+    .setAttribute('itemscope', '')
+    .setAttribute('itemtype', 'https://schema.org/CreativeWork')
+    .setAttribute('data-component', 'call-to-action-card')
 }}>
 
-    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
     {{ title_prefix ?: '' }}
     {{ title_suffix ?: '' }}
 
-    {# Visually hidden heading for screen readers:
-       - Provides an accessible name for the region.
-       - Uses <h3> consistently for semantic hierarchy.
-    #}
     {% if label %}
         <h3 id="{{ unique_id }}-label" class="sr-only visually-hidden">{{ label }}</h3>
     {% endif %}
 
-    {# Start wrapping the entire card in a single <a> link if safe (CTA best practice) #}
     {% if wrap_entire_card %}
+    {% set ga_action_value = single_link.title|default(label|default('N/A'))|striptags|trim|e %}
     <a href="{{ single_link.url ?: '#' }}"
        class="cta-link"
             {% if single_link.title %}
-        aria-label="{{ single_link.title|striptags|trim }}"
-            {% endif %}>
+                aria-label="{{ single_link.title|striptags|trim }}"
+            {% endif %}
+       data-ga-event="cta_click"
+       data-ga-category="call_to_action"
+       data-ga-action="{{ ga_action_value }}"
+       data-ga-component-id="{{ unique_id }}">
         {% endif %}
 
-        {# Optional flag/badge component (e.g., "New", "Featured"):
-           - Rendered via a reusable macro for consistency.
-           - Supports optional flag title and icon.
-        #}
         {% if flag %}
             {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
             {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background) }}
         {% endif %}
 
-        {# Media block at the top of the card:
-           - Supports video (via provider), image, or fallback icon.
-           - Falls back to an empty span with aria-hidden for layout consistency if no media is available.
-        #}
         <div class="cta-media">
             {% if provider %}
                 {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
@@ -143,15 +101,11 @@ Accessible and modular Call to Action (CTA) template.
             {% endif %}
         </div>
 
-        {# Optional caption text beneath media, styled via macro. #}
         {% if caption %}
             {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
             {{ captionMacros.render_caption(caption, padding, text_color, text_alignment) }}
         {% endif %}
 
-        {# Visible card title for sighted users:
-           - Rendered as a <h3> consistently for design, but aria-hidden to avoid screen reader duplication.
-        #}
         {% if label %}
             {% set heading_classes = [
                 'display-4 card-text lead title',
@@ -163,18 +117,11 @@ Accessible and modular Call to Action (CTA) template.
             <h3 class="{{ heading_classes }}" aria-hidden="true">{{ label }}</h3>
         {% endif %}
 
-        {# Optional card body text:
-           - Rendered via macro for formatting and consistency.
-        #}
         {% if content %}
             {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
             {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
         {% endif %}
 
-        {# Visual-only CTA button in the footer:
-           - Not focusable if entire card is wrapped in a link.
-           - Styled as a button but uses <span> to avoid focus/interaction.
-        #}
         {% if single_link %}
             {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
             {% set card_footer_classes = [
@@ -202,9 +149,6 @@ Accessible and modular Call to Action (CTA) template.
             </div>
         {% endif %}
 
-        {# Footer with multiple links (used when entire card is not a single link):
-           - Renders a standard set of links via macro.
-        #}
         {% if links and not wrap_entire_card %}
             {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
             {{ cardFooterMacros.render_card_footer(
@@ -222,7 +166,6 @@ Accessible and modular Call to Action (CTA) template.
             ) }}
         {% endif %}
 
-        {# Close wrapping <a> if entire card is a single link. #}
         {% if wrap_entire_card %}
     </a>
     {% endif %}
