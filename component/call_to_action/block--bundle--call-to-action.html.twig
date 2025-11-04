@@ -1,9 +1,13 @@
+{# Attach the CTA-specific library for styles and scripts #}
 {{ attach_library('cua_theme/call-to-action') }}
 
+{# Import title rendering macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
+{# Generate a unique ID for the block, sanitized for CSS use #}
 {% set unique_id = ('block-call-to-action-' ~ elements.content['#block_content'].id())|replace({'_': '-', ':': '--'})|clean_class %}
 
+{# Build the class list for the CTA container, merging utility classes and filtering out nulls #}
 {% set cta_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -22,6 +26,7 @@
     id ? 'block--class--call-to-action-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
+{# Build animation classes unless reduced motion is preferred #}
 {% set raw_animation_classes = prefers_reduced_motion ? [] : [
     'animate__animated',
     animation ?: null,
@@ -30,10 +35,12 @@
 ] | filter(v => v) %}
 {% set data_animation_classes = raw_animation_classes|join(' ')|replace({'"': ''}) %}
 
+{# Determine link context: single link and whether it wraps the card #}
 {% set links_count = links|length %}
 {% set single_link = (links_count == 1) ? links|first : null %}
 {% set wrap_entire_card = single_link and not content_contains_other_links %}
 
+{# Begin CTA container with semantic attributes and animation metadata #}
 <div{{ attributes
 | without('id')
     .setAttribute('id', unique_id)
@@ -46,13 +53,16 @@
     .setAttribute('data-component', 'call-to-action-card')
 }}>
 
+    {# Render title prefix/suffix if present #}
     {{ title_prefix ?: '' }}
     {{ title_suffix ?: '' }}
 
+    {# Hidden accessible label for screen readers #}
     {% if label %}
         <h3 id="{{ unique_id }}-label" class="sr-only visually-hidden">{{ label }}</h3>
     {% endif %}
 
+    {# Wrap entire card in a link if there's only one and no other links in content #}
     {% if wrap_entire_card %}
     {% set ga_action_value = single_link.title|default(label|default('N/A'))|striptags|trim|e %}
     <a href="{{ single_link.url ?: '#' }}"
@@ -66,11 +76,13 @@
        data-ga-component-id="{{ unique_id }}">
         {% endif %}
 
+        {# Optional flag rendering #}
         {% if flag %}
             {% import '@cua_theme/component/macros/card_flag.html.twig' as flagMacros %}
             {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background) }}
         {% endif %}
 
+        {# Media block: video, image, icon, or fallback #}
         <div class="cta-media">
             {% if provider %}
                 {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
@@ -101,11 +113,13 @@
             {% endif %}
         </div>
 
+        {# Optional caption block #}
         {% if caption %}
             {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
             {{ captionMacros.render_caption(caption, padding, text_color, text_alignment) }}
         {% endif %}
 
+        {# Visible heading if label is present #}
         {% if label %}
             {% set heading_classes = [
                 'display-4 card-text lead title',
@@ -117,11 +131,13 @@
             <h3 class="{{ heading_classes }}" aria-hidden="true">{{ label }}</h3>
         {% endif %}
 
+        {# Main body content #}
         {% if content %}
             {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
             {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
         {% endif %}
 
+        {# Single link footer (non-wrapping) #}
         {% if single_link %}
             {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
             {% set card_footer_classes = [
@@ -149,6 +165,7 @@
             </div>
         {% endif %}
 
+        {# Multiple links footer (if not wrapping) #}
         {% if links and not wrap_entire_card %}
             {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
             {{ cardFooterMacros.render_card_footer(
@@ -166,6 +183,7 @@
             ) }}
         {% endif %}
 
+        {# Close wrapping link if opened earlier #}
         {% if wrap_entire_card %}
     </a>
     {% endif %}
