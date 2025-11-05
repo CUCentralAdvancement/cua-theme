@@ -30,6 +30,10 @@
     {% set unique_id = id ? 'block--node--image-bundle--' ~ id|replace({'_': '-'})|clean_class : 'block--node--image-bundle' %}
 {% endif %}
 
+{# ------------------ ROBUST TITLE: Get title even if "Display title" is unchecked ------------------ #}
+{# Use 'label' if provided (box checked), else fall back to the block entity's actual label. #}
+{% set component_title = label ?: (block_entity ? block_entity.label() : null) %}
+
 {# ------------------ Single-link detection (associative-aware) ------------------ #}
 {% set links = links ?: [] %}
 {% set links_count = links is iterable ? links|length : 0 %}
@@ -57,10 +61,29 @@
 
     {% if wrap_entire_card %}
     {% set wrapper_href = single_link.url ?: '#' %}
-    {% set ga_action_value = single_link.title|default(label|default('N/A'))|striptags|trim|e %}
+    {# USE ROBUST component_title FOR GA ACTION #}
+    {% set ga_action_value = single_link.title|default(component_title|default('N/A'))|striptags|trim|e %}
+
+    {# ------------------ ACCESSIBILITY FIX: Define a descriptive aria-label ------------------ #}
+    {% set aria_label_content %}
+        {# Start with the main component title (component_title), if it exists #}
+        {% if component_title %}{{ component_title|striptags|trim }}{% endif %}
+
+        {# Append the link title for more context, if it's different and exists #}
+        {% if single_link.title and single_link.title|striptags|trim != component_title|striptags|trim %}
+            {% if component_title %} - {% endif %}{{ single_link.title|striptags|trim }}
+        {% elseif not component_title %}
+            {# Fallback if no main label exists, use the link title #}
+            {{ single_link.title|striptags|trim }}
+        {% endif %}
+    {% endset %}
+
     <a href="{{ wrapper_href }}"
        class="card-link-wrapper d-block text-reset"
-       {% if single_link.title %}aria-label="{{ single_link.title|striptags|trim }}"{% endif %}
+            {# Use the constructed aria_label_content for the aria-label #}
+            {% if aria_label_content|length %}
+                aria-label="{{ aria_label_content|trim|e }}"
+            {% endif %}
             {# ADD SAFE GTM TRACKING ATTRIBUTES #}
        data-ga-event="card_click"
        data-ga-category="image_bundle"
@@ -69,6 +92,10 @@
         {% endif %}
 
         {# Title #}
+        {#
+        # This section uses 'label', so it correctly respects the
+        # "Display title" checkbox for VISUAL rendering.
+        #}
         {% if label %}
             {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
             {# REMOVED THE BREAKING ATTRIBUTE PASS-THROUGH #}
