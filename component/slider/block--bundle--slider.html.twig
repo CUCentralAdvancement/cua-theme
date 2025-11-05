@@ -46,30 +46,22 @@
     .setAttribute('role', 'region')
     .setAttribute('aria-labelledby', title_id) }}>
 
-    {# Render the accessible title using imported macro
-- Ensures proper semantic heading with ID for aria-labelledby reference.
-    #}
+    {# Render the accessible title using imported macro #}
     {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
 
-    {# Main carousel container
-- Uses Bootstrap classes and data attributes to enable sliding behavior.
-- `aria-roledescription="carousel"` describes the widget role to assistive tech.
-- `aria-label` provides a readable name for the component.
-    #}
+    {# Main carousel container #}
     <div
-        id="{{ carousel_id }}"
-        class="carousel carousel-dark slide"
-        data-bs-ride="carousel"
-        aria-roledescription="carousel"
-        aria-label="{{ label }}"
+            id="{{ carousel_id }}"
+            class="carousel carousel-dark slide"
+            data-bs-ride="false"   {# **FIXED: Disables autoscrolling on load** #}
+            data-bs-pause="false"  {# **FIXED: Disables pause-on-hover behavior** #}
+            aria-roledescription="carousel"
+            aria-label="{{ label }}"
     >
         {# Render slide content (usually <div class="carousel-inner">...</div>) #}
         {{ content }}
 
-        {# Conditionally render carousel navigation arrows
-        - Based on field_visibility_arrows boolean field on the Paragraph.
-        - Uses Font Awesome icons and visually hidden text for screen reader users.
-        #}
+        {# Conditionally render carousel navigation arrows #}
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
             <button
                     class="carousel-control-prev"
