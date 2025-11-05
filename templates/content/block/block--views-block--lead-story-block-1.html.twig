@@ -65,7 +65,7 @@ This view likely provides the "lead story" content items to render.
                     {# The entire block is wrapped in a link for a clickable card. #}
                     <a href="{{ link }}"
                        class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
-                       aria-labelledby="{{ heading_id }}"
+                       aria-label="Read more {{ node.label }} by clicking this link"
                        data-story-id="{{ node.id }}"
                        data-story-title="{{ node.label|e('html_attr') }}"
                        data-story-url="{{ link }}"
