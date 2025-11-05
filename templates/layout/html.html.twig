@@ -70,15 +70,19 @@ GTM-KBWVM4MVB
                 ] %}
 </head>
 
-<body{{ attributes.addClass(body_classes) }}><!-- Google Tag Manager (noscript) -->
+<body{{ attributes.addClass(body_classes) }}>
+
+{# Accessible skip link for keyboard users — becomes visible on focus #}
+<a href="#main" class="visually-hidden focusable">
+    {{ 'Skip to main content'|t }}
+</a>
+
+<!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-
-{# Accessible skip link for keyboard users — becomes visible on focus #}
-<a href="#main-content" class="skip-link">{{ 'Skip to main content'|t }}</a>
 
 {# Initial markup inserted by modules/themes before the main page content #}
 {{ page_top }}
