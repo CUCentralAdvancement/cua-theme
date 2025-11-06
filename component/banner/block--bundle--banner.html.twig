@@ -10,7 +10,6 @@
 
 {# Generate unique IDs for ARIA attributes #}
 {% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
-{% set heading_id = unique_id ~ '-title' %}
 
 {# Container classes for the block #}
 {% set container_classes = [
@@ -55,7 +54,14 @@
     : null
 %}
 
-{# Accessible banner region with only one heading #}
+{# Determine heading ID and render heading based on label presence #}
+{% if label %}
+    {% set heading_id = unique_id ~ '-visible-title' %}
+{% else %}
+    {% set heading_id = unique_id ~ '-sr-title' %}
+{% endif %}
+
+{# Accessible banner region with dynamic heading reference #}
 <div{{ attributes
     .setAttribute('id', unique_id)
     .addClass(container_classes)
@@ -63,24 +69,21 @@
     .setAttribute('aria-labelledby', heading_id)
 }}>
 
-    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
     {{ title_prefix ?: '' }}
     {{ title_suffix ?: '' }}
-
-    {# Screen reader-only heading for the region #}
-    <h3 id="{{ heading_id }}" class="visually-hidden">
-        {{ label }}
-    </h3>
 
     <div class="{{ image_container_classes }}"
          style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;">
         <div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
 
-            {# Render visible heading but hide it from assistive tech to avoid duplication #}
             {% if label %}
-                <h2 class="display-4 card-text lead title {{ text_color }} {{ padding }}" aria-hidden="true">
+                <h2 id="{{ heading_id }}" class="display-4 card-text lead title {{ text_color }} {{ padding }}">
                     {{ label }}
                 </h2>
+            {% else %}
+                <h3 id="{{ heading_id }}" class="visually-hidden">
+                    {{ 'Banner region'|t }}
+                </h3>
             {% endif %}
 
             {# Optional body content #}
@@ -106,7 +109,5 @@
             {% endif %}
 
         </div> {# /.banner-body #}
-
     </div> {# /.banner-image-container #}
-
 </div> {# /.block container #}
