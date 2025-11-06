@@ -110,3 +110,14 @@
 .image-bundle .btn.btn-outline-hide_btn {
   display: none;
 }
+
+.card-link-wrapper:hover .card-img img {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.card-link-wrapper:hover .card-img img {
+  transform: translateY(-5px) scale(1.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
