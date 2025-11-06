@@ -32,6 +32,7 @@
     parallax ?: null,
     position_container ? 'd-flex ' ~ position_container|clean_class : null,
     container_size ?: null,
+    margin ?: null,
     'background-size-cover',
 ] | filter(v => v) | join(' ') %}
 
@@ -44,6 +45,7 @@
     text_color ?: null,
     effect_copy_class ?: null,
     padding ?: null,
+    margin ?: null,
     'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] | filter(v => v) | join(' ') %}
@@ -79,7 +81,7 @@
             {% if label %}
                 {# Render visually styled title as a div, hidden from screen readers if it matches page.title #}
                 <div id="{{ heading_id }}"
-                     class="display-4 card-text lead title {{ text_color }} {{ padding }}"
+                     class="display-4 card-text lead title {{ text_color }}"
                      role="presentation"
                      aria-hidden="{{ label == page.title ? 'true' : 'false' }}">
                     {{ label }}

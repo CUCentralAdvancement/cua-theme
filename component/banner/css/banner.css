@@ -283,3 +283,15 @@
   display: block;
   padding-top: 25%; /* Creates aspect ratio fallback */
 }
+
+.banner-image-container.margin_bottom {
+  margin: 0 0 2rem !important;
+}
+
+.banner-image-container.margin_top {
+  margin: 2rem 0 0!important;
+}
+
+.banner-image-container.margin_top_and_bottom {
+  margin: 2rem 0!important;
+}
