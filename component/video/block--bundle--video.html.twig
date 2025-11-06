@@ -55,11 +55,15 @@
     </h2>
 
     {# Include video partial (iframe must have title, no aria-label, controls=1) #}
-    {% include '@cua_theme/component/video/partials/_video--master.html.twig' with {
-        title_id: title_id,
-        provider: provider,
-        label: label,
-    } %}
+    {# Include video partial (iframe must have title, no aria-label, controls=1) #}
+    <div class="{{ container_size}}"
+        {% include '@cua_theme/component/video/partials/_video--master.html.twig' with {
+            title_id: title_id,
+            provider: provider,
+            label: label,
+        } %}
+    </div>
+
 
     {# Optional: Accessible transcript link #}
     {% if transcript_url is defined %}
