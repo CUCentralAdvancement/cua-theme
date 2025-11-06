@@ -18,8 +18,6 @@
     'block-' ~ plugin_id|clean_class,
     'jumbotron jumbotron-fluid banner g-0',
     'container-fluid',
-    color_background ?: null,
-    margins ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
@@ -45,7 +43,6 @@
     text_color ?: null,
     effect_copy_class ?: null,
     padding ?: null,
-    margin ?: null,
     'my-5 my-sm-3',
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] | filter(v => v) | join(' ') %}
@@ -96,7 +93,7 @@
             {# Optional body content #}
             {% if content %}
                 {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+                {{ bodyMacros.render_body(content, text_color, text_alignment) }}
             {% endif %}
 
             {# Optional links #}
