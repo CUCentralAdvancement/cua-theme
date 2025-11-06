@@ -54,14 +54,14 @@
     : null
 %}
 
-{# Determine heading ID and render heading based on label presence #}
+{# Determine heading ID for aria-labelledby #}
 {% if label %}
-    {% set heading_id = unique_id ~ '-visible-title' %}
+    {% set heading_id = unique_id ~ '-banner-title' %}
 {% else %}
     {% set heading_id = unique_id ~ '-sr-title' %}
 {% endif %}
 
-{# Accessible banner region with dynamic heading reference #}
+{# Accessible banner region with valid heading reference #}
 <div{{ attributes
     .setAttribute('id', unique_id)
     .addClass(container_classes)
@@ -77,10 +77,15 @@
         <div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
 
             {% if label %}
-                <h2 id="{{ heading_id }}" class="display-4 card-text lead title {{ text_color }} {{ padding }}">
+                {# Render visually styled title as a div, hidden from screen readers if it matches page.title #}
+                <div id="{{ heading_id }}"
+                     class="display-4 card-text lead title {{ text_color }} {{ padding }}"
+                     role="presentation"
+                     aria-hidden="{{ label == page.title ? 'true' : 'false' }}">
                     {{ label }}
-                </h2>
+                </div>
             {% else %}
+                {# Fallback hidden heading for screen readers #}
                 <h3 id="{{ heading_id }}" class="visually-hidden">
                     {{ 'Banner region'|t }}
                 </h3>
