@@ -59,6 +59,25 @@ video {
   overflow: hidden; /* Ensure no overflow */
 }
 
+.video .container-sm {
+  max-width: 50% !important;
+}
+
+.video .container-md {
+  max-width: 60% !important;
+}
+
+.video .container-lg {
+  max-width: 70% !important;
+}
+
+.video .container-xl {
+  max-width: 80% !important;
+}
+
+.video .container-xxl {
+  max-width: 90% !important;
+}
 /*** Responsive starts here ***/
 @media only screen and (max-width: 991px) {
   /* Reset the parallax video to behave normally on mobile */
@@ -73,4 +92,14 @@ video {
     top: unset;
     left: unset;
   }
+
+  .video .container-sm,
+  .video .container-md,
+  .video .container-lg,
+  .video .container-xl,
+  .video .container-xxl {
+    max-width: 100% !important;
+  }
+
+
 }
