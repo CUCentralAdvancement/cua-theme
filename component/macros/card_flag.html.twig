@@ -26,7 +26,7 @@
                 icon_size ?: '',
                 'px-1',
             ] | filter(v => v) %}
-            <i class="{{ icon_classes|join(' ')|trim }}"></i>
+            <i class="{{ icon_classes|join(' ')|trim }}" aria-hidden="true"></i>
         {% endif %}
 
         {# Render title in a semantic wrapper #}
