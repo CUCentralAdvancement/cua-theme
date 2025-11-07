@@ -1,11 +1,14 @@
 {#
-Counter Component Template — 508 Compliant Version
+Counter Component Template
 #}
 
 {{ attach_library('cua_theme/counter') }}
 
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
+
+{% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set title_id = unique_id ~ '-title' %}
 
 {% set counter_classes = [
     'block',
@@ -18,9 +21,6 @@ Counter Component Template — 508 Compliant Version
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null
 ] | merge(utility_classes|default([])) | filter(v => v) | join(' ') %}
 
-{% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
-{% set title_id = unique_id ~ '-title' %}
-
 <div{{ attributes
 |without('id')
     .setAttribute('id', unique_id)
@@ -29,53 +29,31 @@ Counter Component Template — 508 Compliant Version
     .setAttribute('aria-labelledby', title_id)
 }}>
 
-    {{ titleMacros.render_title(
-        label,
-        title_prefix,
-        title_suffix,
-        center_content,
-        text_alignment,
-        text_color,
-        padding,
-        hide_from_screen_readers,
-        links,
-        title_id
-    ) }}
+    {# Accessible heading for screen readers and ARIA reference #}
+    <h3 id="{{ title_id }}" class="visually-hidden">
+        {{ label ?: 'Counter Block' }}
+    </h3>
 
-    {# Icon or image display (mutually exclusive) #}
-    {% if card_image %}
-        {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-        {{ cardImageMacros.render_card_image(
-            card_image,
-            position_container,
-            text_alignment,
-            text_color,
-            image_size,
-            visibility,
-            content,
-            links
-        ) }}
-    {% elseif icon %}
-        {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-        {{ iconMacros.render_icon(
-            icon,
-            icon_size,
-            icon_color,
-            padding,
-            position_container,
-            text_alignment,
-            'Counter visual icon'
-        ) }}
+    {# Optional visual title (if needed for display) #}
+    {% if label %}
+        <div class="text-align-center h4-text title cu-text-black">
+            {{ label }}
+        </div>
     {% endif %}
 
-    {# Accessible counter display #}
-    {{ counterMacros.render_counter(
-        number,
-        text_alignment,
-        text_color,
-        before_number,
-        after_number
-    ) }}
+    {# Counter display with ARIA live region #}
+    <div class="counter-size d-flex justify-content-center cu-text-black">
+    <span class="counter-up cu-text-black"
+          aria-live="polite"
+          role="status"
+          aria-hidden="false"
+          data-count="{{ number }}">
+      {{ number }}
+    </span>
+        <span class="visually-hidden" data-counter-announcer="">
+      Counter: {{ number }}
+    </span>
+    </div>
 
     {# Optional descriptive body content #}
     {% if content %}
