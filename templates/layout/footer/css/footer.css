@@ -1,6 +1,8 @@
 /* Footer Headings and Navigation Top */
 footer h3,
 .site-footer h3,
+footer h4,
+.site-footer h4,
 footer #site-footer-top .clearfix.nav {
     display: flex;
     flex-direction: column;
@@ -287,7 +289,7 @@ h3#block-cua-theme-aboutus-menu,
 /* Responsive text size for headings and links */
 @media (max-width: 768px) {
     .site-footer h3,
-    .site-footer h3 {
+    .site-footer h4 {
         font-size: 1.125rem;
     }
 
