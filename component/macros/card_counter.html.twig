@@ -8,6 +8,16 @@
     {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }}
 -------------------------------------------- #}
 
+{# --------------------------------------------
+  Counter Title Macro - 508 Accessible Version
+  Description: Renders an animated counter with
+  optional text before and after. Includes ARIA
+  features for screen readers.
+  Usage:
+    {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
+    {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }}
+-------------------------------------------- #}
+
 {% macro render_counter(number, text_alignment, text_color, before_number, after_number) %}
     {% if number %}
 
