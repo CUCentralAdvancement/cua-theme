@@ -1,6 +1,6 @@
 /* Footer Headings and Navigation Top */
-footer h4,
-.site-footer h4,
+footer h3,
+.site-footer h3,
 footer #site-footer-top .clearfix.nav {
     display: flex;
     flex-direction: column;
@@ -263,6 +263,14 @@ a:focus {
     line-height: 1.1;
 }
 
+h3#block-cua-theme-mainnavigation-4-menu,
+h3#block-cua-theme-giving-menu,
+h3#block-cua-theme-campusoffices-menu,
+h3#block-cua-theme-aboutus-menu,
+.site-footer h3 {
+    color: var(--cua-gold) !important;
+}
+
 /*** Responsive ***/
 /* Screens below 991px */
 @media (max-width: 991px) {
@@ -278,8 +286,8 @@ a:focus {
 
 /* Responsive text size for headings and links */
 @media (max-width: 768px) {
-    .site-footer h4,
-    .site-footer h4 {
+    .site-footer h3,
+    .site-footer h3 {
         font-size: 1.125rem;
     }
 
