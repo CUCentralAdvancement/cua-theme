@@ -48,9 +48,9 @@ PREREQUISITES:
 		>
 			<section class="carousel-slide-content p-3">
 				{# Optional slide heading for accessibility context #}
-				<h3 id="slide-label-{{ loop.index }}" class="visually-hidden">
+				<p id="slide-label-{{ loop.index }}" class="visually-hidden">
 					Slide {{ loop.index }}
-				</h3>
+				</p>
 
 				{# Slide content — ensure it's semantically structured HTML #}
 				{{ item.content }}
