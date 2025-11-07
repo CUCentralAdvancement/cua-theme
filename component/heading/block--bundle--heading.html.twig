@@ -53,21 +53,21 @@ attributes
 
 		{# Render the visible and accessible heading if defined #}
 		{% if heading %}
-			<h3 id="{{ heading_id }}"{{ title_attributes.addClass('title') }}>
+			<h2 id="{{ heading_id }}"{{ title_attributes.addClass('title') }}>
 				{{ heading|e }}
-			</h3>
+			</h2>
 		{% else %}
 			{# Fallback to label if no heading is provided, still accessible and visible #}
-			<h3 id="{{ heading_id }}" class="title">
+			<h2 id="{{ heading_id }}" class="title">
 				{{ label|e }}
-			</h3>
+			</h2>
 		{% endif %}
 
 		{# Render a subtitle if provided, using <h3> to maintain hierarchy #}
 		{% if subtitle %}
-			<h4 class="title px-3 pb-4">
+			<h3 class="title px-3 pb-4">
 				{{ subtitle|e }}
-			</h4>
+			</h3>
 		{% endif %}
 
 	</div>

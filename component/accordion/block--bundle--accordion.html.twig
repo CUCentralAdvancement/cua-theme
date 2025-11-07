@@ -39,7 +39,7 @@
     {# Render Title, if present. #}
     {% if label is not empty %}
         {{ title_prefix ?: '' }}
-        <h2 id="{{ labelledby_id }}">{{ label }}</h2>
+        <h3 id="{{ labelledby_id }}">{{ label }}</h3>
         {{ title_suffix ?: '' }}
     {% else %}
         {{ title_prefix ?: '' }}

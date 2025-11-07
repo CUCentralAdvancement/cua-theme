@@ -41,9 +41,9 @@ This view likely provides the "lead story" content items to render.
     {% if view.result is not empty %}
         <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
             {# Visually hidden heading for screen readers, describing the section. #}
-            <h2 id="give-now-section-title" class="visually-hidden">
+            <h3 id="give-now-section-title" class="visually-hidden">
                 {{ 'Giving opportunities for the colorado university campuses'|t }}
-            </h2>
+            </h3>
 
             {# Start the row for grid layout, using a list role for accessibility. #}
             <div class="row" role="list" aria-labelledby="give-now-section-title">
@@ -56,8 +56,6 @@ This view likely provides the "lead story" content items to render.
                 {% set heading_id = 'lead-story-item-' ~ node.id ~ '-title' %}
                 {# Get the URL for the link field, defaulting to "#" if not set. #}
                 {% set link = node.field_link.uri ?: '#' %}
-                {# Determine the heading level to use, defaulting to <h3>. #}
-                {% set heading_level = heading_level ?: 'h3' %}
 
                 {# Render each "lead story" block in the grid layout. #}
                 <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4" role="listitem">
@@ -111,9 +109,9 @@ This view likely provides the "lead story" content items to render.
                             {# Main content area of the card. #}
                             <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
                                 {# The title of the lead story, if available. #}
-                                <{{ heading_level }} id="{{ heading_id }}" class="lead-story-title">
-                                {{ node.label }}
-                            </{{ heading_level }}>
+                                <h3 id="{{ heading_id }}" class="lead-story-title">
+                                    {{ node.label }}
+                                 </h3>
 
                             {# The body/description of the lead story, limited to certain HTML tags. #}
                                 <div class="lead-story-body mb-2">

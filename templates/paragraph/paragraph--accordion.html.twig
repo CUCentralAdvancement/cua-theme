@@ -29,7 +29,7 @@
 			<div{{ attributes.addClass('accordion') }} id="{{ uid }}">
 				<div class="accordion-item">
 
-					<h2 class="accordion-header" id="{{ header_id }}">
+					<h3 class="accordion-header" id="{{ header_id }}">
 						<button class="accordion-button collapsed"
 								type="button"
 								data-bs-toggle="collapse"
@@ -38,7 +38,7 @@
 								aria-controls="{{ collapse_id }}">
 							{{ content.field_title ?? 'Missing title' }}
 						</button>
-					</h2>
+					</h3>
 
 					<div id="{{ collapse_id }}"
 						 class="accordion-collapse collapse"
