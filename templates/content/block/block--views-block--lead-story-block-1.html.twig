@@ -45,7 +45,7 @@ This view likely provides the "lead story" content items to render.
 
             {# Visually hidden heading for screen readers, describing the section. #}
             <h3 id="give-now-section-title" class="visually-hidden text-white">
-                {{ 'Giving opportunities for the colorado university campuses'|t }}
+                {{ 'How Giving Shapes Lives at Colorado’s University Campuses'|t }}
             </h3>
 
             {# Start the row for grid layout, using a list role for accessibility. #}
@@ -130,13 +130,14 @@ This view likely provides the "lead story" content items to render.
                                         <div class="lead-story-body mb-2">
                                             {{ node.body.value|raw }}
                                         </div>
+
                                     </div>
 
-                                    {# Optional call-to-action text rendered as a styled button-like span. #}
+                                    {# Optional text rendered as a styled button-like span. #}
                                     {% if node.field_link.title is not empty %}
                                         <div class="card-footer card-story mb-2">
                                           <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start">
-                                            {{ node.field_link.title ?: 'Give to ' ~ node.label }}
+                                            {{ node.field_link.title ?: ' ' ~ node.label }}
                                           </span>
                                         </div>
                                     {% endif %}
@@ -153,7 +154,7 @@ This view likely provides the "lead story" content items to render.
     {% else %}
         {# Fallback message if no view results are available. #}
         <div class="text-center p-4">
-            <p class="no-content-message text-muted">{{ 'No donation opportunities available at the moment. Check back soon!'|t }}</p>
+            <p class="no-content-message text-muted">{{ 'No stories available at the moment. Check back soon!'|t }}</p>
         </div>
     {% endif %}
 
