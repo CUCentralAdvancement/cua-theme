@@ -65,14 +65,6 @@ This view likely provides the "lead story" content items to render.
                         <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4"
                              role="listitem">
 
-                            {# Hidden accessible label for screen readers #}
-                            {% if label %}
-                                <h4 id="{{ unique_id }}-label"
-                                    class="sr-only visually-hidden">
-                                    {{ label }}
-                                </h4>
-                            {% endif %}
-
                             {# The entire block is wrapped in a link for a clickable card. #}
                             <a href="{{ link }}"
                                class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
@@ -84,6 +76,11 @@ This view likely provides the "lead story" content items to render.
 
                                 {# Start content #}
                                 <article class="m-2 shadow {{ node.field_color_background.value ?: '' }} flex-grow-1 d-flex flex-column">
+
+                                    {# Hidden accessible label for screen readers #}
+                                    <h4 class="sr-only visually-hidden">
+                                        {{ node.label }}
+                                    </h4>
 
                                     {# Optional flag badge (like "New" or "Featured"), conditionally rendered. #}
                                     <div class="position-relative">
@@ -121,12 +118,13 @@ This view likely provides the "lead story" content items to render.
 
                                     {# Main content area of the card. #}
                                     <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
+
                                         {# The title of the lead story, if available. #}
-                                        <h4 id="{{ heading_id }}"
-                                            class="lead-story-title"
-                                            aria-hidden="true">
+                                        <p id="{{ heading_id }}"
+                                           class="fs-4 fw-bold"
+                                           aria-hidden="true">
                                             {{ node.label }}
-                                        </h4>
+                                        </p>
 
                                         {# The body/description of the lead story, limited to certain HTML tags. #}
                                         <div class="lead-story-body mb-2">

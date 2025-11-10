@@ -2939,6 +2939,10 @@ h1.page-title.pb-title {
     margin: 100px 0 0 !important;
 }
 
+p#lead-story-item-1016-title {
+    line-height: 1.2;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
