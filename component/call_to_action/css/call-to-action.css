@@ -2,16 +2,6 @@
    Call to Action Component Styling
    ===================================== */
 
-/* Hover effect on call-to-action card */
-.call-to-action.card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition on hover */
-}
-
-.call-to-action.card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds a subtle shadow effect */
-    transform: translateY(-3px); /* Lift effect for hover */
-}
-
 /* Remove border radius from card image elements (top corners) */
 .call-to-action .card-img,
 .call-to-action .card-img-top {
