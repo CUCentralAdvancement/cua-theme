@@ -79,7 +79,7 @@ This view likely provides the "lead story" content items to render.
 
                                     {# Hidden accessible label for screen readers #}
                                     <h4 class="sr-only visually-hidden">
-                                        {{ node.label }}
+                                        {{ 'Read more about ' ~ node.label | t }}
                                     </h4>
 
                                     {# Optional flag badge (like "New" or "Featured"), conditionally rendered. #}
@@ -136,7 +136,7 @@ This view likely provides the "lead story" content items to render.
                                     {# Optional text rendered as a styled button-like span. #}
                                     {% if node.field_link.title is not empty %}
                                         <div class="card-footer card-story mb-2">
-                                          <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start">
+                                          <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start" aria-hidden="true">
                                             {{ node.field_link.title ?: ' ' ~ node.label }}
                                           </span>
                                         </div>
