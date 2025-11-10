@@ -1854,7 +1854,7 @@ h2#block-cua-theme-main-menu-menu {
 .campus-card h5,
 .campus-card h6 {
     color: var(--cua-black);
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 .campus-card h2,
@@ -1865,6 +1865,10 @@ h2#block-cua-theme-main-menu-menu {
     line-height: 1.2 !important;
 }
 
+.campus-card h3 {
+    line-height: 1.05 !important;
+    font-size: 1.5rem !important;
+}
 .campus-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
