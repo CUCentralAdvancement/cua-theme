@@ -51,6 +51,11 @@ Provides quick access to sort, add, preview, or edit Give Now items.
         <div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
             <div class="row" role="list" aria-label="Donation opportunities">
 
+                {# Visually hidden heading for screen readers, describing the section. #}
+                <h3 id="give-now-section-title" class="visually-hidden text-white">
+                    {{ 'Ways to Give to CU Boulder, UCCS, CU Denver, and Anschutz'|t }}
+                </h3>
+
                 {# Loop through each node (donation opportunity) in the view #}
                 {% for row in view.result %}
                     {% if row._entity is not empty %}
@@ -74,7 +79,12 @@ Provides quick access to sort, add, preview, or edit Give Now items.
                                data-story-url="{{ link }}"
                                data-block-id="{{ id ?: 'give-now' }}">
 
-                                <div class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
+                                <article class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
+
+                                    {# Hidden accessible label for screen readers #}
+                                    <h4 class="sr-only visually-hidden">
+                                        {{ node.label ~ ' ' ~ 'Funds'|t }}
+                                    </h4>
 
                                     <div class="position-relative">
 
@@ -100,21 +110,29 @@ Provides quick access to sort, add, preview, or edit Give Now items.
 
                                     {# Content area including title and body #}
                                     <div class="give-now-content px-3 pt-2">
-                                        <h3 id="{{ heading_id }}" class="give-now-title">
-                                            {{ node.label }}
-                                        </h3>
-                                        <div id="{{ body_id }}" class="give-now-body mb-2">
+
+                                        <h4 id="{{ heading_id }}"
+                                            class="give-now-title fs-3 fw-bold"
+                                            aria-hidden="true">
+                                            {{ node.label }}<br>
+                                            <span class="fs-4 fw-normal d-block">
+                                                {{ 'Funds'|t }}
+                                            </span>
+                                        </h4>
+
+                                        <div id="{{ body_id }}" class="give-now-body mb-2 mx-1 pt-2">
                                             {{ node.body.value|raw }}
                                         </div>
+
                                     </div>
 
                                     <div class="card-footer card-story d-flex p-0 mb-5 mx-3">
-                                        <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3">
+                                        <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
                                         {{ node.field_link.title }}
                                         </span>
                                     </div>
 
-                                </div> {# End inner card container #}
+                                </article> {# End inner card container #}
                             </a> {# End link wrapping entire card #}
 
                         </div> {# End individual card column #}
