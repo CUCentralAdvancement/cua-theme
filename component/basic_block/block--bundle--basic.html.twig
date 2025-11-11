@@ -51,7 +51,7 @@
 
     {# Only render the sr-only title if the visible title is not shown. #}
     {% if not label %}
-        <span class="sr-only">
+        <span class="sr-only bg-black text-white">
             {{ label is not empty ? label|e : 'Content Section'|t }}
         </span>
     {% endif %}
@@ -92,7 +92,6 @@
         text_alignment,
         text_color,
         padding,
-        links,
         'itemprop="block-content"'
     ) }}
 
