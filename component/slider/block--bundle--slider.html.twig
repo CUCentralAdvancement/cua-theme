@@ -3,11 +3,8 @@
 * @file
 * Accessible Template for the Slider component (508/WCAG 2.1 compliant).
 *
-* Renders a Bootstrap carousel wrapped in an accessible <region> container.
-* - Dynamically generates unique IDs for block and carousel elements.
-* - Includes optional navigation controls (arrows) based on field setting.
-* - Supports theming through background and text color variables.
-* - Integrates card title rendering via imported macro.
+* FIX: Conditionally applies aria-labelledby based on title existence to prevent
+* "Broken ARIA reference" error. Uses aria-label as a fallback.
 */
 #}
 
@@ -17,15 +14,16 @@
 {# Import reusable macro for rendering the card title in a consistent way #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Generate unique IDs for accessibility and carousel targeting #}
-{% set block_id = 'block--node--slider--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
-{% set carousel_id = 'carousel-' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{# 1. Generate unique IDs for accessibility and carousel targeting #}
+{% set block_content_id = elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{% set block_id = 'block--node--slider--' ~ block_content_id %}
+{% set carousel_id = 'carousel-' ~ block_content_id %}
 {% set title_id = block_id ~ '-title' %}
 
-{# Build CSS class list for the main slider container
-- Utility classes like mx-5 and my-1 can be adjusted for spacing needs.
-- Background and text color classes are passed in as variables.
-#}
+{# 2. Check if the block has a title to render #}
+{% set has_title = label is not empty and label is not null %}
+
+{# 3. Build CSS class list for the main slider container #}
 {% set slider_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -36,38 +34,45 @@
     text_color ?: null,
 ] %}
 
-{# Accessible region wrapper for the entire slider block
-- Uses aria-labelledby to associate the region with a title.
-- `role="region"` marks this as a landmark for screen readers.
-#}
+{# 4. Determine appropriate ARIA attributes for the region container #}
+{% set region_aria_attributes = { 'role': 'region' } %}
+
+{% if has_title %}
+    {# If we have a title, use aria-labelledby to point to the rendered H tag #}
+    {% set region_aria_attributes = region_aria_attributes|merge({ 'aria-labelledby': title_id }) %}
+{% else %}
+    {# If there is no title, provide a generic accessible name for the region #}
+    {% set region_aria_attributes = region_aria_attributes|merge({ 'aria-label': 'Content Slider Component'|t }) %}
+{% endif %}
+
+{# Accessible region wrapper for the entire slider block #}
 <div{{ attributes
     .addClass(slider_classes)
     .setAttribute('id', block_id)
-    .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', title_id) }}>
+    .setAttributes(region_aria_attributes) }}>
 
-    {# Render the accessible title using imported macro #}
-    {{ titleMacros.render_title(
-        label,
-        title_prefix,
-        title_suffix,
-        title_id=title_id
-    ) }}
+    {# Render the accessible title using imported macro (only if a label exists) #}
+    {% if has_title %}
+        {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
+    {% endif %}
 
-    {# Main carousel container #}
+    {# Main carousel container
+    - aria-roledescription="carousel" describes the widget role to assistive tech.
+    - aria-label provides a readable name for the component.
+    #}
     <div
             id="{{ carousel_id }}"
             class="carousel carousel-dark slide"
-            data-bs-ride="false"   {# **FIXED: Disables autoscrolling on load** #}
-            data-bs-pause="false"  {# **FIXED: Disables pause-on-hover behavior** #}
+            data-bs-ride="carousel"
             aria-roledescription="carousel"
-            aria-label="{{ label }}"
+            aria-label="{{ 'Image Slider'|t }}"
     >
         {# Render slide content (usually <div class="carousel-inner">...</div>) #}
         {{ content }}
 
         {# Conditionally render carousel navigation arrows #}
         {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
+            {# Previous Button #}
             <button
                     class="carousel-control-prev"
                     type="button"
@@ -75,9 +80,10 @@
                     data-bs-slide="prev">
 
                 <span class="fa-solid fa-circle-left" aria-hidden="true"></span>
-                <span class="visually-hidden">{{ 'Previous'|t }}</span>
+                <span class="visually-hidden">{{ 'Previous slide'|t }}</span>
             </button>
 
+            {# Next Button #}
             <button
                     class="carousel-control-next"
                     type="button"
@@ -85,7 +91,7 @@
                     data-bs-slide="next">
 
                 <span class="fa-solid fa-circle-right" aria-hidden="true"></span>
-                <span class="visually-hidden">{{ 'Next'|t }}</span>
+                <span class="visually-hidden">{{ 'Next slide'|t }}</span>
             </button>
         {% endif %}
     </div>
