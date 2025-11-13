@@ -108,6 +108,7 @@
 
     {% if links %}
         {% if single_link %}
+
             {# GA4/SEO FIX: Scenario 1: SINGLE LINK - Render manually to guarantee GA4 attributes #}
             {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
 
