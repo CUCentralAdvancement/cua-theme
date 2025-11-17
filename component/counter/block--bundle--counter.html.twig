@@ -21,14 +21,26 @@ Counter Component Template — 508 Compliant Version
 {% set unique_id = 'block--node--counter--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 {% set title_id = unique_id ~ '-title' %}
 
-<div{{ attributes
-|without('id')
+{# Build attributes safely and avoid dangling ARIA references #}
+{% set attributes = attributes
+    | without('id')
     .setAttribute('id', unique_id)
     .addClass(counter_classes)
     .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', title_id)
-}}>
+%}
 
+{# Decide landmark naming strategy #}
+{% if label and not hide_from_screen_readers %}
+    {# We intend to render a visible/announcing title with id=title_id #}
+    {% set attributes = attributes.setAttribute('aria-labelledby', title_id) %}
+{% else %}
+    {# No reliable target for aria-labelledby; provide a direct label #}
+    {% set attributes = attributes.setAttribute('aria-label', (label ?: 'Counter')|striptags|trim) %}
+{% endif %}
+
+<div{{ attributes }}>
+
+    {# Title: must render with id=title_id when label is present and not hidden #}
     {{ titleMacros.render_title(
         label,
         title_prefix,
