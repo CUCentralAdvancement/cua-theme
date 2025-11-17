@@ -40,18 +40,25 @@
 {% set single_link = (links_count == 1) ? links|first : null %}
 {% set wrap_entire_card = single_link and not content_contains_other_links %}
 
-{# Begin CTA container with semantic attributes and animation metadata #}
-<div{{ attributes
-| without('id')
+{# Build attributes safely #}
+{% set attributes = attributes
+    | without('id')
     .setAttribute('id', unique_id)
     .addClass(cta_classes)
     .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', unique_id ~ '-label')
     .setAttribute('data-animation-classes', data_animation_classes)
     .setAttribute('itemscope', '')
     .setAttribute('itemtype', 'https://schema.org/CreativeWork')
     .setAttribute('data-component', 'call-to-action-card')
-}}>
+%}
+{% if label %}
+    {% set attributes = attributes.setAttribute('aria-labelledby', unique_id ~ '-label') %}
+{% else %}
+    {% set attributes = attributes.setAttribute('aria-label', 'Call to Action') %}
+{% endif %}
+
+{# Begin CTA container #}
+<div{{ attributes }}>
 
     {# Render title prefix/suffix if present #}
     {{ title_prefix ?: '' }}
