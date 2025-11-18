@@ -6,13 +6,6 @@
 {# Call the macro and pass the necessary variables #}
 {# {{ titleMacros.render_card_basic_title(title_prefix, label, title_suffix) }} #}
 
-{# Basic Title Macro #}
-
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ titleMacros.render_card_basic_title(title_prefix, label, title_suffix) }} #}
 
 {% macro render_card_basic_title(title_prefix, label, title_suffix) %}
     {{ title_prefix ?? '' }}
