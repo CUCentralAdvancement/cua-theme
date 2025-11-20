@@ -11,6 +11,10 @@
 {# Generate unique IDs for ARIA attributes #}
 {% set unique_id = 'block--node-banner--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
+{# Determine link context: single link and whether it wraps the card #}
+{% set links_count = links|length %}
+{% set single_link = (links_count == 1) ? links|first : null %}
+
 {# Container classes for the block #}
 {% set container_classes = [
     'block',
@@ -47,11 +51,35 @@
     (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
 ] | filter(v => v) | join(' ') %}
 
+ {# Define dynamic classes for the footer container. #}
+        {% set card_footer_classes = [
+            'card-footer',
+            'd-flex',
+            multiple_links ? 'multiple-links' : '',
+            container_size,
+            position_container,
+            text_alignment,
+            padding,
+            'mb-5',
+        ] | filter(v => v) | join(' ') %}
+
+        {# Define dynamic classes for the footer links. #}
+        {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+        {% set card_footer_link_classes = [
+            'card-link',
+            'btn',
+            outline_class,
+            'text-decoration-none',
+            position_container,
+            text_alignment,
+            'p-2',
+            'mt-3',
+        ] | filter(v => v) | join(' ') %}
+
 {# Optional animation attributes #}
 {% set animation_classes = (animation or animation_speed or animation_delay)
     ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay
-    : null
-%}
+    : null %}
 
 {# Determine heading ID for aria-labelledby #}
 {% if label %}
@@ -65,8 +93,7 @@
     .setAttribute('id', unique_id)
     .addClass(container_classes)
     .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', heading_id)
-}}>
+    .setAttribute('aria-labelledby', heading_id) }}>
 
     {{ title_prefix ?: '' }}
     {{ title_suffix ?: '' }}
@@ -97,19 +124,33 @@
             {% endif %}
 
             {# Optional links #}
-            {% if links %}
-                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                {{ cardFooterMacros.render_card_footer(
-                    links,
+            {# Single link footer (non-wrapping) #}
+            {% if single_link %}
+                {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+                {% set card_footer_classes = [
+                    'card-footer',
+                    'd-flex',
+                    multiple_links ? 'multiple-links' : '',
                     container_size,
-                    color_background,
                     position_container,
                     text_alignment,
                     padding,
-                    outline,
-                    button_color,
-                    button_layout
-                ) }}
+                    'mb-5',
+                ] | filter(v => v) | join(' ') %}
+                {% set card_footer_link_classes = [
+                    'card-link',
+                    'btn',
+                    outline_class,
+                    'text-decoration-none',
+                    position_container,
+                    text_alignment,
+                    'p-2',
+                    'mt-3',
+                ] | filter(v => v) | join(' ') %}
+                <div class="{{ card_footer_classes }}">
+                    <span class="{{ card_footer_link_classes }}"
+                          aria-hidden="true">{{ single_link.title }}</span>
+                </div>
             {% endif %}
 
         </div> {# /.banner-body #}
