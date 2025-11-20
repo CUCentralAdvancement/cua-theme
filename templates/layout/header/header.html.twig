@@ -10,7 +10,8 @@
  */
 #}
 
-<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
+<header id="header" class="header" role="banner"
+        aria-label="{{ 'Site header'|t }}">
     {# Top Bar Container #}
     <div class="container top-bar mb-2">
         <div class="row clearfix g-0">
@@ -42,17 +43,12 @@
 
                                     {# Visible site slogan #}
                                     <span class="site-slogan text-nowrap">
-                    {{ site_slogan }}
-                  </span>
+                                      {{ site_slogan }}
+                                     </span>
                                 </a>
-                            </div>
 
-                            {# Mobile search icon #}
-                            {% if page.search %}
-                                <span class="d-lg-none mx-4">
-                  {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
-                </span>
-                            {% endif %}
+
+                            </div>
 
                             {# Mobile menu toggle button with accessibility attributes #}
                             <div class="d-lg-none ms-auto">
@@ -75,18 +71,12 @@
             {# Desktop Secondary Menu #}
             {% if page.secondary_menu %}
                 <div class="col-md-5 secondary-menu d-none d-lg-block g-0">
-                    <nav role="navigation" aria-label="{{ 'Secondary menu'|t }}">
+                    <nav role="navigation"
+                         aria-label="{{ 'Secondary menu'|t }}">
                         <div class="d-flex justify-content-end">
                             {{ page.secondary_menu }}
                         </div>
                     </nav>
-                </div>
-            {% endif %}
-
-            {# Desktop Search Icon #}
-            {% if page.search %}
-                <div class="col-md-1 d-flex justify-content-end g-0 d-none d-lg-block">
-                    {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
                 </div>
             {% endif %}
 
@@ -97,7 +87,8 @@
     {% if page.search %}
         <div class="container-fluid main-search bg-light border-top border-grey">
             <div class="container">
-                <h2 id="search-heading" class="visually-hidden">{{ 'Search'|t }}</h2>
+                <h2 id="search-heading"
+                    class="visually-hidden">{{ 'Search'|t }}</h2>
                 <div class="collapse" id="CollapseSearch"
                      data-bs-parent=".site-name-wrapper"
                      aria-labelledby="search-heading">
@@ -109,12 +100,24 @@
         </div>
     {% endif %}
 
-    {# Desktop Site Name #}
-    {% if site_name %}
-        <span class="bg-light border-bottom border-grey d-none d-lg-block">
-      {% include '@cua_theme/templates/layout/header/_site-name.html.twig' %}
-    </span>
-    {% endif %}
+    {# Desktop Site Name and Search #}
+    <div class="container-fluid d-none d-lg-block bg-light border-bottom border-grey px-3 py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            {% if site_name %}
+                <div class="site-slogan mx-2 my-2">
+                    {{ site_name|e }}
+                </div>
+            {% endif %}
+
+            {% if page.search %}
+                <div class="search-icon search-button">
+                    {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
 
     {# Main Navigation Bar with accessible label #}
     {% if page.primary_menu or page.secondary_menu or page.search %}
@@ -123,7 +126,8 @@
              id="navbar-main"
              aria-labelledby="main-menu-label">
             <div class="container px-3 g-0">
-                <h2 id="main-menu-label" class="visually-hidden">{{ 'Main Menu'|t }}</h2>
+                <h2 id="main-menu-label"
+                    class="visually-hidden">{{ 'Main Menu'|t }}</h2>
 
                 <div class="collapse navbar-collapse"
                      id="mainNavbarSupportedContent">
@@ -137,7 +141,8 @@
 
                     {# Primary Menu #}
                     {% if page.primary_menu %}
-                        <nav role="navigation" aria-label="{{ 'Primary menu'|t }}">
+                        <nav role="navigation"
+                             aria-label="{{ 'Primary menu'|t }}">
                             {{ page.primary_menu }}
                         </nav>
                     {% endif %}
@@ -156,20 +161,46 @@
                                 {{ page.secondary_menu }}
                             </div>
                         {% endif %}
-
-                        {% if page.search %}
-                            {% include '@cua_theme/templates/layout/header/_search-icon.html.twig' %}
-                        {% endif %}
                     </div>
                 </div>
             </div>
         </nav>
     {% endif %}
 
-    {# Mobile Site Name #}
-    {% if site_name %}
-        <span class="d-lg-none">
-      {% include '@cua_theme/templates/layout/header/_site-name.html.twig' %}
-    </span>
-    {% endif %}
+    {# Mobile Site Name and Search #}
+    {# Mobile Site Name and Search #}
+    <div class="container-fluid d-block d-lg-none bg-light border-bottom border-grey px-2 py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            {% if site_name %}
+                <div class="site-slogan">
+                    {{ site_name|e }}
+                </div>
+            {% endif %}
+
+            {% if page.search %}
+                <div class="search-button">
+                    <button
+                            class="search-icon btn btn-default"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#CollapseSearch"
+                            aria-expanded="false"
+                            aria-controls="CollapseSearch"
+                            aria-label="{{ 'Search'|t }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16" fill="currentColor"
+                             class="bi bi-search" viewBox="0 0 16 16" role="img"
+                             aria-hidden="true" focusable="false">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85
+                     3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12
+                     6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
 </header>
