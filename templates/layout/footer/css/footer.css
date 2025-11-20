@@ -23,6 +23,7 @@ footer #site-footer-top .clearfix.nav {
 }
 
 .site-footer .block {
+    background: transparent !important;
     border: none !important;
     margin: 26px 0;
 }
