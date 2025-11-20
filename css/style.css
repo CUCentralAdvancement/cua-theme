@@ -1678,16 +1678,16 @@ h2#block-cua-theme-main-menu-menu {
 .give-now-item a,
 .stories-item a,
 .give-now-item p,
-.give-now-item  span,
-.give-now-item  .flag-title,
-.give-now-item  .give-now-body,
-.give-now-item  .position-absolute i,
-.give-now-item  .position-absolute {
+.give-now-item span,
+.give-now-item .flag-title,
+.give-now-item .give-now-body,
+.give-now-item .position-absolute i,
+.give-now-item .position-absolute {
     color: var(--cua-black) !important; /* Force all text to use the inherited color */
 }
 
 /* Ensure the button keeps its correct colors */
-.give-now-item  .card-link.btn {
+.give-now-item .card-link.btn {
     background-color: transparent !important;
     border: 2px solid var(--cua-black) !important;
     border-radius: 0 !important;
@@ -1695,7 +1695,7 @@ h2#block-cua-theme-main-menu-menu {
     font-weight: bold !important
 }
 
-.give-now-item  .card-link.btn:hover {
+.give-now-item .card-link.btn:hover {
     color: var(--cua-white) !important;
 }
 
@@ -1765,15 +1765,15 @@ h2#block-cua-theme-main-menu-menu {
 }
 
 #views-form-lead-story-page-1 .views-field.views-field-title a {
-    color: black !important;  /* Make text black */
-    font-weight: bold !important;  /* Make text bold */
-    text-decoration: none !important;  /* Remove underline */
+    color: black !important; /* Make text black */
+    font-weight: bold !important; /* Make text bold */
+    text-decoration: none !important; /* Remove underline */
 }
 
 /* Optional: Add hover effect if needed */
 #views-form-lead-story-page-1 .views-field.views-field-title a:hover {
-    color: #333 !important;  /* Slightly darker on hover */
-    text-decoration: underline !important;  /* Restore underline on hover */
+    color: #333 !important; /* Slightly darker on hover */
+    text-decoration: underline !important; /* Restore underline on hover */
 }
 
 /* Hide 1st for blocks for sample give now */
@@ -2669,7 +2669,7 @@ nav#block-cua-theme-campusoffices {
 /* Hover and focus state */
 .lead-story-item:hover,
 .lead-story-item:focus {
-    color:var(--cua-white);
+    color: var(--cua-white);
     text-decoration: none;
 }
 
@@ -2683,7 +2683,7 @@ nav#block-cua-theme-campusoffices {
 .lead-story-item .card-link.btn:focus {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--cua-white) !important;
-    color:var(--cua-white) !important;
+    color: var(--cua-white) !important;
 }
 
 .lead-story-item .card-footer .btn.outline-btn-cu-bg-black {
@@ -2697,9 +2697,9 @@ nav#block-cua-theme-campusoffices {
 }
 
 .card-link:focus {
-    outline: 3px solid #ffcc00; /* High-contrast gold/yellow outline */
-    outline-offset: 2px;         /* Slight spacing outside the element */
-    border-radius: 4px;          /* Match your button’s border radius if needed */
+    outline: 3px solid #fc0; /* High-contrast gold/yellow outline */
+    outline-offset: 2px; /* Slight spacing outside the element */
+    border-radius: 4px; /* Match your button’s border radius if needed */
 }
 
 /* Optional: also apply on hover for visual parity */
@@ -2746,9 +2746,9 @@ nav#block-cua-theme-campusoffices {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--cua-black)!important;
-    background-color: var(--cua-gold)!important;
-    border: 1px solid var(--cua-gold)!important;
+    color: var(--cua-black) !important;
+    background-color: var(--cua-gold) !important;
+    border: 1px solid var(--cua-gold) !important;
     border-radius: 0.375rem;
     text-align: center;
     text-decoration: none;
@@ -2757,10 +2757,10 @@ nav#block-cua-theme-campusoffices {
 }
 
 .paragraph--type--youtube .paragraph__inner a:hover {
-    background-color: var(--cua-black)!important;
-    border-color: var(--cua-black)!important;
+    background-color: var(--cua-black) !important;
+    border-color: var(--cua-black) !important;
     text-decoration: none;
-    color: var(--cua-white)!important;
+    color: var(--cua-white) !important;
 }
 
 .paragraph {
@@ -2882,7 +2882,7 @@ h1.page-title.pb-title {
     margin: 0 auto;
 }
 
-.lead-story-sort  #edit-save-order {
+.lead-story-sort #edit-save-order {
     color: white !important;
     margin: 10px 0 0;
 }
@@ -2892,11 +2892,11 @@ h1.page-title.pb-title {
     margin-left: 1px !important;
 }
 
-.lead-story-sort #draggableviews-table-lead-story-page-1-0  .views-field.views-field-title {
+.lead-story-sort #draggableviews-table-lead-story-page-1-0 .views-field.views-field-title {
     color: var(--cua-black);
 }
 
-.lead-story-sort #block-cua-theme-content  h3 {
+.lead-story-sort #block-cua-theme-content h3 {
     color: white;
     margin-top: 10px;
 }
@@ -3053,12 +3053,12 @@ p#lead-story-item-1016-title {
         border-right: 1px solid var(--cua-white) !important;
     }
 
-    /* Page title styling adjustments */
+    /* Page title styling adjustments
     div#block-cua-theme-page-title {
-        margin: 1rem 0 0 5px !important;
-        max-width: 90% !important;
+        margin: 1rem 0 0 5px;
+        max-width: 90%;
     }
-
+    */
     /* Hide the square accent on headings */
     .base-heading-square__accent {
         display: none;
@@ -3074,7 +3074,6 @@ p#lead-story-item-1016-title {
         width: 100%;
         height: auto;
     }
-
 
     /* Styling for specific div elements */
     div#edit-contacts--2, div#edit-bod--2 {
@@ -3184,4 +3183,5 @@ p#lead-story-item-1016-title {
     div#block--inline-block--basic-515 {
         display: none; /* Hide element */
     }
+
 }
