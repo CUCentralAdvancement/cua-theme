@@ -2763,10 +2763,6 @@ nav#block-cua-theme-campusoffices {
     color: var(--cua-white) !important;
 }
 
-.paragraph {
-    margin-bottom: 3rem;
-}
-
 .node--type-pb-content div#main-wrapper,
 .node--type-pb-content #main-wrapper {
     margin: 0 !important;
