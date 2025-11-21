@@ -28,7 +28,7 @@
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
     {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
         {% set heading_id = unique_id ~ '-heading-' ~ device %}
-        <div class="container {{ visibility_class }} g-0">
+        <div class="container-fluid {{ visibility_class }} g-0">
             <div class="card">
                 <div class="row g-0">
                     {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
