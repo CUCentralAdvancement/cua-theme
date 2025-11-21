@@ -1,17 +1,17 @@
-{# Attach the Half and Half component's CSS/JS library #}
+{#
+/**
+ * @file
+ * Optimized Template for the Half and Half component with accessibility improvements.
+ */
+#}
+
 {{ attach_library('cua_theme/half-and-half') }}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Animation-related classes and attributes #}
 {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay]|filter(v => v) %}
 {% set data_animation_classes = animation_classes|join(' ')|trim %}
 {% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
-
-{# Unique ID for the block for labeling and accessibility #}
 {% set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
-{% set heading_id = unique_id ~ '-heading' %}
-
-{# Combined block classes #}
 {% set hh_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -22,133 +22,84 @@
     container_size,
     margins,
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class
-]|filter(v => v)|merge(utility_classes ?: [])|join(' ')|trim %}
+] | filter(v => v) | merge(utility_classes ?: []) | join(' ')|trim %}
 
-{# Main container for the Half and Half block, including Schema.org and data-component attributes #}
-<div{{ attributes
-|without('id')
-    .setAttribute('id', unique_id)
-    .addClass(hh_classes)
-    .setAttribute('itemscope', '')
-    .setAttribute('itemtype', 'https://schema.org/WebPageElement')
-    .setAttribute('data-component', 'half-and-half')
-}}{% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
-
-    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
-    {{ title_prefix ?: '' }}
-    {{ title_suffix ?: '' }}
-
-    {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
-    {% set is_7030_layout = layout == '4' %}
-    {% set is_5050_layout = layout == '50_50' %}
-
-    {% set col_classes = {
-        'img': [is_7030_layout ? 'col-md-4' : '', is_5050_layout ? 'col-md-6' : '', 'col-12', color_background, padding, image_alignment],
-        'content': [is_7030_layout ? 'col-md-8' : '', is_5050_layout ? 'col-md-6' : '', 'col-12', color_background, text_alignment, padding]
-    } %}
-
-    {% if layout %}
-        <div class="container g-0">
+{{ title_prefix ?? '' }}
+<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+    {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
+        {% set heading_id = unique_id ~ '-heading-' ~ device %}
+        <div class="container {{ visibility_class }} g-0">
             <div class="card">
                 <div class="row g-0">
+                    {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
+                    {% set is_7030_layout = layout == '4' %}
+                    {% set is_5050_layout = layout == '50_50' %}
 
-                    {# --- MEDIA COLUMN --- #}
-                    <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }} order-md-1 order-1">
-                        {% if provider %}
-                            {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-                        {% elseif card_image %}
-                            {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-                            {{ cardImageMacros.render_card_image(
-                                card_image,
-                                position_container,
-                                text_alignment,
-                                text_color,
-                                image_size,
-                                visibility,
-                                content,
-                                true
-                            ) }}
-                        {% elseif icon %}
-                            {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-                            {{ iconMacros.render_icon(
-                                icon,
-                                icon_size,
-                                icon_color,
-                                padding,
-                                position_container,
-                                text_alignment
-                            ) }}
-                        {% endif %}
-                    </div>
+                    {% set col_classes = {
+                        'img': [is_7030_layout ? 'col-md-4' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, padding, image_alignment],
+                        'content': [is_7030_layout ? 'col-md-8' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, text_alignment, padding]
+                    } %}
 
-                    {# --- TEXT COLUMN --- #}
-                    <div class="{{ col_classes.content|filter(v => v)|join(' ')|trim }} order-md-2 order-2"
-                         role="region"
-                         aria-labelledby="{{ heading_id }}">
-                        <div class="row mx-5 pt-3">
-
-                            {# Heading #}
-                            {% if label %}
-                                {% set heading_classes = [
-                                    'display-4 card-text lead title g-0',
+                    {% if layout %}
+                        {# Media Column #}
+                        <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
+                            {% if provider %}
+                                {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
+                            {% elseif card_image %}
+                                {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
+                                {{ cardImageMacros.render_card_image(
+                                    card_image,
+                                    position_container,
                                     text_alignment,
-                                    center_content,
                                     text_color,
-                                    padding
-                                ]|filter(v => v)|join(' ') %}
-                                <h3 id="{{ heading_id }}" class="{{ heading_classes }}" itemprop="name">
-                                    {{ label }}
-                                </h3>
-                            {% endif %}
-
-                            {# Body #}
-                            {% if content %}
-                                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                                {{ bodyMacros.render_body(
+                                    image_size,
+                                    visibility,
                                     content,
+                                    true
+                                ) }}
+                            {% elseif icon %}
+                                {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+                                {{ iconMacros.render_icon(
+                                    icon,
+                                    icon_size,
+                                    icon_color,
                                     padding,
-                                    text_color,
+                                    position_container,
                                     text_alignment
                                 ) }}
                             {% endif %}
+                        </div>
 
-                            {# CTA links #}
-                            {% if links %}
-                                {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
+                        {# Text Content Column #}
+                        <div class="{{ col_classes.content|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}"
+                             role="region" aria-labelledby="{{ heading_id }}">
+                            <div class="row mx-5 pt-3">
 
-                                {# Define GA4 attributes for links #}
-                                {% set ga_attributes = {
-                                    'data-ga-event': 'half_half_link',
-                                    'data-ga-category': 'half_and_half',
-                                    'data-ga-component-id': unique_id
-                                } %}
+                                {% if label %}
+                                    {% set heading_classes = [
+                                        'display-4 card-text lead title g-0',
+                                        text_alignment,
+                                        center_content,
+                                        text_color,
+                                        padding,
+                                    ] | filter(v => v) | join(' ') %}
+                                    <h3 id="{{ heading_id }}" class="{{ heading_classes }}">
+                                        {{ label }}
+                                    </h3>
+                                {% endif %}
 
-                                {% if links|length == 1 and not content_contains_other_links %}
-                                    {# Scenario 1: SINGLE LINK - Render manually to guarantee GA4 attributes #}
-                                    {% set first_link = links|first %}
-                                    {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+                                {% if content %}
+                                    {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+                                    {{ bodyMacros.render_body(
+                                        content,
+                                        padding,
+                                        text_color,
+                                        text_alignment
+                                    ) }}
+                                {% endif %}
 
-                                    {% set link_classes = [
-                                        'card-link',
-                                        'btn',
-                                        outline_class,
-                                        'text-decoration-none',
-                                        'p-2',
-                                        'mt-3',
-                                    ]|filter(v => v)|join(' ') %}
-
-                                    <div class="card-footer d-flex container mb-5">
-                                        <a href="{{ first_link.url ?: '#' }}"
-                                           class="{{ link_classes }}"
-                                           data-ga-event="half_half_link"
-                                           data-ga-category="half_and_half"
-                                           data-ga-action="{{ first_link.title|default(label)|striptags|trim|e }}"
-                                           data-ga-component-id="{{ unique_id }}">
-                                            {{ first_link.title|default('Learn More') }}
-                                        </a>
-                                    </div>
-                                {% else %}
-                                    {# Scenario 2: MULTIPLE LINKS or LINK INSIDE CONTENT - Fall back to macro, passing GA4 attributes #}
+                                {% if links %}
+                                    {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                                     {{ cardFooterMacros.render_card_footer(
                                         links,
                                         container_size,
@@ -160,17 +111,15 @@
                                         button_color,
                                         button_layout,
                                         false,
-                                        single_link ? true : false,
-                                        ga_attributes
+                                        single_link ? true : false
                                     ) }}
                                 {% endif %}
-                            {% endif %}
-
+                            </div>
                         </div>
-                    </div>
-
+                    {% endif %}
                 </div>
             </div>
         </div>
-    {% endif %}
+    {% endfor %}
 </div>
+{{ title_suffix ?? '' }}
