@@ -103,17 +103,56 @@ Counter Component Template — 508 Compliant Version / updated 11/18/2025
     {# Optional links or buttons #}
     {% if links %}
         {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-        {{ cardFooterMacros.render_card_footer(
-            links,
-            container_size,
-            color_background,
-            position_container,
-            text_alignment,
-            padding,
-            outline,
-            button_color,
-            button_layout
-        ) }}
+
+        {# Define GA4 attributes for links #}
+        {% set ga_attributes = {
+            'data-ga-event': 'counter',
+            'data-ga-category': 'counter',
+            'data-ga-component-id': unique_id
+        } %}
+
+        {% if links|length == 1 and not content_contains_other_links %}
+            {# Scenario 1: SINGLE LINK - Render manually to guarantee GA4 attributes #}
+            {% set first_link = links|first %}
+            {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+
+            {% set link_classes = [
+                'card-link',
+                'btn',
+                outline_class,
+                'text-decoration-none',
+                'p-2',
+                'mt-3',
+            ]|filter(v => v)|join(' ') %}
+
+            <div class="card-footer d-flex container mb-5">
+                <a href="{{ first_link.url ?: '#' }}"
+                   class="{{ link_classes }}"
+                   data-ga-event="counter"
+                   data-ga-category="counter"
+                   data-ga-action="{{ first_link.title|default(label)|striptags|trim|e }}"
+                   data-ga-component-id="{{ unique_id }}">
+                    {{ first_link.title|default('Learn More') }}
+                </a>
+            </div>
+        {% else %}
+            {# Scenario 2: MULTIPLE LINKS or LINK INSIDE CONTENT - Fall back to macro, passing GA4 attributes #}
+            {{ cardFooterMacros.render_card_footer(
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color,
+                button_layout,
+                false,
+                single_link ? true : false,
+                ga_attributes
+            ) }}
+        {% endif %}
     {% endif %}
+
 
 </div>
