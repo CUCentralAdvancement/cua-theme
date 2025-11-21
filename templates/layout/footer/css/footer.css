@@ -102,7 +102,7 @@ footer .link-cua {
 
 footer .nav-link:visited,
 footer .link-cua:visited {
-    color: var(--cua-gold);
+    color: var(--cua-white);
 }
 
 footer #site-footer-bottom .nav-link {
