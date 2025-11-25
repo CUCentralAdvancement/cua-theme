@@ -2,16 +2,29 @@
 /**
  * @file
  * Optimized Template for the Half and Half component with accessibility improvements.
+ *
+ * Developer Notes:
+ * - This template handles responsive two-column layouts (media + text).
+ * - Accessibility: Each text column is wrapped in a <div role="region"> with aria-labelledby
+ *   pointing to a unique heading ID for screen reader context.
+ * - Layouts supported: 70/30 (media/text) and 50/50 split.
+ * - Device-specific rendering: separate markup for desktop vs mobile ensures correct order
+ *   of media/text columns.
  */
 #}
 
 {{ attach_library('cua_theme/half-and-half') }}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
+{# Build animation classes dynamically based on configuration #}
 {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay]|filter(v => v) %}
 {% set data_animation_classes = animation_classes|join(' ')|trim %}
 {% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
+
+{# Unique block ID ensures ARIA references are valid and prevents duplicate IDs #}
 {% set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+
+{# Compose CSS classes for the wrapper, merging utility classes and block metadata #}
 {% set hh_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -24,28 +37,44 @@
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class
 ] | filter(v => v) | merge(utility_classes ?: []) | join(' ')|trim %}
 
-{{ title_prefix ?? '' }}
+
 <div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }} {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+
+    {# Render title prefix/suffix if present (Drupal core convention) #}
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
+
+    {# Loop through device contexts: desktop vs mobile.
+       - Desktop: media/text side by side
+       - Mobile: stacked, with media first then text #}
     {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
         {% set heading_id = unique_id ~ '-heading-' ~ device %}
         <div class="container-fluid {{ visibility_class }} g-0">
             <div class="card">
                 <div class="row g-0">
+
+                    {# Determine layout type from field_custom_layout value #}
                     {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
                     {% set is_7030_layout = layout == '4' %}
                     {% set is_5050_layout = layout == '50_50' %}
 
+                    {# Column class maps:
+                       - Media column: image/video/icon
+                       - Content column: text/links
+                       - Responsive: col-md-4 vs col-md-6 depending on layout #}
                     {% set col_classes = {
                         'img': [is_7030_layout ? 'col-md-4' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, padding, image_alignment],
                         'content': [is_7030_layout ? 'col-md-8' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, text_alignment, padding]
                     } %}
 
                     {% if layout %}
-                        {# Media Column #}
+                        {# Media Column: renders video, image, or icon depending on available data #}
                         <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
                             {% if provider %}
+                                {# Video embed partial #}
                                 {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                             {% elseif card_image %}
+                                {# Image macro rendering with accessibility-aware parameters #}
                                 {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
                                 {{ cardImageMacros.render_card_image(
                                     card_image,
@@ -58,6 +87,7 @@
                                     true
                                 ) }}
                             {% elseif icon %}
+                                {# Icon macro rendering #}
                                 {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
                                 {{ iconMacros.render_icon(
                                     icon,
@@ -70,12 +100,15 @@
                             {% endif %}
                         </div>
 
-                        {# Text Content Column #}
+                        {# Text Content Column:
+                           - role="region" + aria-labelledby ensures screen readers announce heading context
+                           - Contains heading, body, and optional footer links #}
                         <div class="{{ col_classes.content|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}"
                              role="region" aria-labelledby="{{ heading_id }}">
                             <div class="row mx-5 pt-3">
 
                                 {% if label %}
+                                    {# Heading: styled with display classes, tied to aria-labelledby #}
                                     {% set heading_classes = [
                                         'display-4 card-text lead title g-0',
                                         text_alignment,
@@ -89,6 +122,7 @@
                                 {% endif %}
 
                                 {% if content %}
+                                    {# Body macro: renders text content with alignment and color options #}
                                     {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
                                     {{ bodyMacros.render_body(
                                         content,
@@ -99,6 +133,7 @@
                                 {% endif %}
 
                                 {% if links %}
+                                    {# Footer macro: renders CTA links/buttons with layout and color options #}
                                     {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
                                     {{ cardFooterMacros.render_card_footer(
                                         links,
@@ -122,4 +157,3 @@
         </div>
     {% endfor %}
 </div>
-{{ title_suffix ?? '' }}
