@@ -4,12 +4,31 @@
  * Optimized Template for the Half and Half component with accessibility improvements.
  *
  * Developer Notes:
- * - This template handles responsive two-column layouts (media + text).
- * - Accessibility: Each text column is wrapped in a <div role="region"> with aria-labelledby
- *   pointing to a unique heading ID for screen reader context.
- * - Layouts supported: 70/30 (media/text) and 50/50 split.
- * - Device-specific rendering: separate markup for desktop vs mobile ensures correct order
- *   of media/text columns.
+ * PURPOSE:
+ * - Provides a flexible two-column component (media + text) with responsive behavior.
+ * - Supports multiple layouts (70/30, 50/50) and device-specific rendering.
+ *
+ * ACCESSIBILITY:
+ * - Each text column is wrapped in <div role="region"> with a programmatic name.
+ *   • If a heading label exists, aria-labelledby points to its ID.
+ *   • If no heading label exists, aria-label provides a fallback name ("Content section").
+ * - Unique IDs are generated per block instance to avoid collisions and ensure ARIA references are valid.
+ * - Headings should use semantic levels (<h2>, <h3>) appropriate to page hierarchy, not just styling.
+ * - Media column renders video, image, or icon with macros; ensure alt text or aria-labels are provided
+ *   in those macros for non-text content.
+ *
+ * LAYOUTS:
+ * - 70/30 split: media col-md-4, content col-md-8.
+ * - 50/50 split: media col-md-6, content col-md-6.
+ * - Mobile rendering stacks columns, with media first and text last (order classes applied).
+ *
+ * MACROS:
+ * - card_image, card_icon, card_body, card_footer are imported and used consistently.
+ * - Any changes to these macros should be audited for accessibility (alt text, aria roles).
+ *
+ * MAINTENANCE:
+ * - If new layouts are introduced, update col_classes mapping and ensure ARIA roles remain intact.
+ * - Keep animation classes sanitized to avoid empty values.
  */
 #}
 
@@ -71,7 +90,7 @@
                         {# Media Column: renders video, image, or icon depending on available data #}
                         <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
                             {% if provider %}
-                                {# Video embed partial #}
+                                {# Video embed partial (ensure captions/alt text handled in partial) #}
                                 {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
                             {% elseif card_image %}
                                 {# Image macro rendering with accessibility-aware parameters #}
@@ -87,7 +106,7 @@
                                     true
                                 ) }}
                             {% elseif icon %}
-                                {# Icon macro rendering #}
+                                {# Icon macro rendering (ensure aria-label provided in macro) #}
                                 {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
                                 {{ iconMacros.render_icon(
                                     icon,
@@ -101,10 +120,16 @@
                         </div>
 
                         {# Text Content Column:
-                           - role="region" + aria-labelledby ensures screen readers announce heading context
-                           - Contains heading, body, and optional footer links #}
+                           - role="region" ensures screen readers announce this as a landmark.
+                           - aria-labelledby ties to heading if present.
+                           - aria-label fallback ensures region is named even if no heading exists. #}
                         <div class="{{ col_classes.content|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}"
-                             role="region" aria-labelledby="{{ heading_id }}">
+                             role="region"
+                                {% if label %}
+                            aria-labelledby="{{ heading_id }}"
+                        {% else %}
+                            aria-label="Content section"
+                                {% endif %}>
                             <div class="row mx-5 pt-3">
 
                                 {% if label %}
@@ -116,9 +141,9 @@
                                         text_color,
                                         padding,
                                     ] | filter(v => v) | join(' ') %}
-                                    <h3 id="{{ heading_id }}" class="{{ heading_classes }}">
+                                    <h2 id="{{ heading_id }}" class="{{ heading_classes }}">
                                         {{ label }}
-                                    </h3>
+                                    </h2>
                                 {% endif %}
 
                                 {% if content %}
