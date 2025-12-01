@@ -2941,8 +2941,8 @@ p#lead-story-item-1016-title {
 
 button.accordion-button.collapsed,
 button:focus:not(:focus-visible) {
-    padding: .65rem;
-    font-weight: bold;
+    padding: .65rem !important;
+    font-weight: bold !important;
 }
 
 
