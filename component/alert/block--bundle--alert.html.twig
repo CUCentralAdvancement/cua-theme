@@ -42,28 +42,30 @@
 }}>
 
     <div class="container">
-        <div class="row">
+        <span class="row">
 
             {# Accessible close button #}
             <button type="button" class="btn-close" aria-label="{{ 'Close alert'|t }}" data-bs-dismiss="alert"></button>
 
-            {# Icon rendering section, if an icon is provided #}
-            {% if icon %}
-                {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-                <div class="col-sm-1 icon-container">
-                    {{ iconMacros.render_icon (
-                        icon,
-                        icon_size,
-                        icon_color,
-                        padding,
-                        position_container,
-                        text_alignment
-                    ) }}
-                </div>
-            {% endif %}
-
             {# Dynamic column size if icon exists #}
-            <div class="col-sm-{{ content.field_icon is not empty ? '11' : '12' }} p-3">
+            <div class="col p-2">
+
+                 {# Icon rendering section, if an icon is provided #}
+                {% if icon %}
+                    {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
+                    <div class="d-flex justify-content-center">
+                      <span class="icon-container">
+                        {{ iconMacros.render_icon(
+                            icon,
+                            icon_size,
+                            icon_color,
+                            padding,
+                            position_container,
+                            text_alignment
+                        ) }}
+                      </span>
+                    </div>
+                {% endif %}
 
                 {{ title_prefix }}
                 {% if label %}
@@ -102,6 +104,6 @@
 
             </div>
 
-        </div>
     </div>
+</div>
 </div>
