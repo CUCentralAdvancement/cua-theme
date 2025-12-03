@@ -2945,7 +2945,9 @@ button:focus:not(:focus-visible) {
     font-weight: bold !important;
 }
 
-
+.alert-dismissible {
+    padding-right: 0 !important;
+}
 
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
