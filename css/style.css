@@ -2949,6 +2949,14 @@ button:focus:not(:focus-visible) {
     padding-right: 0 !important;
 }
 
+button.accordion-button.collapsed,
+button:focus:not(:focus-visible),
+.accordion-button {
+    padding: .65rem;
+    font-weight: bold;
+}
+
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
