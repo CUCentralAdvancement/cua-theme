@@ -2952,8 +2952,8 @@ button:focus:not(:focus-visible) {
 button.accordion-button.collapsed,
 button:focus:not(:focus-visible),
 .accordion-button {
-    padding: .65rem;
-    font-weight: bold;
+    padding: .65rem !important;
+    font-weight: bold !important;
 }
 
 
