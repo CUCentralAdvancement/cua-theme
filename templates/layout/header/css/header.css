@@ -81,8 +81,8 @@ nav#navbar-main.sticky {
 }
 
 .layout-main-wrapper .nav-link.is-active {
-    text-decoration: underline !important;
-    color: #ac9046 !important;
+    text-decoration: none!important;
+    color: #81620f !important;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link ul li a:first-child,

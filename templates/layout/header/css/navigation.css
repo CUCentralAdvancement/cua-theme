@@ -195,8 +195,9 @@ aside a.bef-link::before {
 aside .form-select a:hover::before,
 aside a.nav-link:hover::before,
 aside a.bef-link:hover::before {
-  background-color: var(--cua-gold); /* Gold underline */
+  background-color: #81620f; /* Gold underline */
   width: 100%; /* Full width on hover */
+  color: #81620f !important;
 }
 
 /* Additional menu styling for right-side column */
@@ -487,7 +488,7 @@ a.nav-link.active.is-active {
 
 /* Override color for specific active links */
 #main-wrapper a.nav-link.active.is-active {
-  color: #ac9046 !important; /* Custom gold color for specific active links */
+  color: #81620f !important;
 }
 
 /* Margin for block menu in the main wrapper */
