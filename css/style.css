@@ -2956,6 +2956,10 @@ button:focus:not(:focus-visible),
     font-weight: bold !important;
 }
 
+aside a.nav-link, aside a.bef-link {
+    font-size: 1rem !important;
+}
+
 
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
