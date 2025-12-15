@@ -2971,6 +2971,7 @@ aside a.nav-link, aside a.bef-link {
 
 .node--type-faqs .layout__region.layout__region--content {
     border-bottom: 5px solid #ccc;
+    margin: 0 0 2rem !important;
 }
 
 .node--type-faqs .block.block-layout-builder.block-field-blocknodefaqsfield-category {
