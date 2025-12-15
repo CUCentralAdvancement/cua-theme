@@ -2965,6 +2965,18 @@ aside a.nav-link, aside a.bef-link {
     margin: 0 auto !important;
 }
 
+.node--type-faqs .layout.layout--onecol {
+    padding: 0 2rem !important;
+}
+
+.node--type-faqs .layout__region.layout__region--content {
+    border-bottom: 5px solid #ccc;
+}
+
+.node--type-faqs .block.block-layout-builder.block-field-blocknodefaqsfield-category {
+    margin: 2rem 0 0 !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
