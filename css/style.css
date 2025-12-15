@@ -2978,6 +2978,7 @@ aside a.nav-link, aside a.bef-link {
     margin: 2rem 0 0 !important;
 }
 
+/* Force text white */
 .views-accordion-header:hover a {
     color: white !important;
 }
