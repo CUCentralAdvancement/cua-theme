@@ -2978,6 +2978,10 @@ aside a.nav-link, aside a.bef-link {
     margin: 2rem 0 0 !important;
 }
 
+.views-accordion-header:hover a {
+    color: white !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
