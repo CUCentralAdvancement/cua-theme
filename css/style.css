@@ -2983,6 +2983,7 @@ aside a.nav-link, aside a.bef-link {
     color: white !important;
 }
 
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
