@@ -22,11 +22,6 @@
   font-size: 2.5rem !important;
 }
 
-span.fa-solid.fa-circle-left,
-span.fa-solid.fa-circle-right {
-  color: black !important;
-}
-
 .cu-bg-white .fa-arrow-alt-circle-left:before,
 .cu-bg-white .fa-circle-left:before,
 .cu-bg-white .fa-arrow-alt-circle-right:before,
