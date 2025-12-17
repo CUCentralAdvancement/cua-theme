@@ -1861,7 +1861,7 @@ h2#block-cua-theme-main-menu-menu {
 .campus-card h3,
 .campus-card h4,
 .campus-card h5,
-.campus-card h6 {);
+.campus-card h6 {
     line-height: 1.2 !important;
 }
 
@@ -2982,7 +2982,6 @@ aside a.nav-link, aside a.bef-link {
 .views-accordion-header:hover a {
     color: white !important;
 }
-
 
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
