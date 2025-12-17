@@ -1878,9 +1878,6 @@ h2#block-cua-theme-main-menu-menu {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25); /* optional: adds a more elevated shadow */
 }
 
-/* =====================================
-   Custom Styling
-   ===================================== */
 
 /* Styling for each staff directory item */
 .staff-directory .views-view-responsive-grid__item {
@@ -1888,7 +1885,7 @@ h2#block-cua-theme-main-menu-menu {
     border: 1px solid var(--cua-dark-gray); /* Dark gray border */
     border-radius: 15px; /* Rounded corners */
     margin: 0.15rem; /* Small margin */
-    padding: 1rem; /* Padding inside the item */
+    padding: 1rem /* Padding inside the item */
 }
 
 /* Styling for staff directory links */
