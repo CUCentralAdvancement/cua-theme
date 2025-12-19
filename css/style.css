@@ -2955,6 +2955,7 @@ button:focus:not(:focus-visible),
 
 aside a.nav-link, aside a.bef-link {
     font-size: 1rem !important;
+    color: #81620f !important;
 }
 
 #accordionCU {
