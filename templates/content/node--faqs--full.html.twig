@@ -1,0 +1,82 @@
+{#
+
+FAQ CONTENT
+---------------------
+Wrapped in Bootstrap's .container to align with site layout grid.
+Hero and subtitle fields are excluded from double rendering.
+#}
+
+<div class="container">
+  <div class="row">
+    
+    <aside class="col-12 col-md-3 mb-4">
+      <div class="p-3">
+      <nav role="navigation" aria-labelledby="block-cua-theme-mainnavigation-3--2-menu" id="block-cua-theme-mainnavigation-3--2" class="contextual-region block block-menu navigation menu--main">
+            
+    <h3 id="block-cua-theme-mainnavigation-3--2-menu">FAQ Categories</h3>
+    <div data-contextual-id="block:block=cua_theme_mainnavigation_3:langcode=en|menu:menu=main:langcode=en" data-contextual-token="Ir-PURTrNDf3HfxQp0AasVRX2UpFGOglvJrzw6CcNAY" data-drupal-ajax-container="" data-once="contextual-render" class="contextual"><button class="trigger focusable visually-hidden" type="button" aria-pressed="false">Open  configuration options</button>
+
+
+<ul class="contextual-links" hidden=""><li class="block-configure"><a href="/admin/structure/block/manage/cua_theme_mainnavigation_3?destination=/faq">Configure block</a></li><li class="block-remove"><a href="/admin/structure/block/manage/cua_theme_mainnavigation_3/delete?destination=/faq">Remove block</a></li><li class="entitymenuedit-form"><a href="/admin/structure/menu/manage/main?destination=/faq">Edit menu</a></li></ul>
+              <ul class="clearfix nav navbar-nav" data-component-id="bootstrap_barrio:menu_main">
+                    <li class="nav-item">
+                          <a href="/faq" class="nav-link nav-link--faq is-active" data-drupal-link-system-path="faq" aria-current="page">FAQs</a>
+              </li>
+                <li class="nav-item active">
+                          <a href="/faq#general-questions" class="nav-link active nav-link--faqgeneral-questions is-active" data-drupal-link-system-path="faq" aria-current="page">General questions</a>
+              </li>
+                <li class="nav-item">
+                          <a href="/faq#ways-to-give" class="nav-link nav-link--faqways-to-give is-active" data-drupal-link-system-path="faq" aria-current="page">Ways to give</a>
+              </li>
+                <li class="nav-item">
+                          <a href="/faq#cu-foundation" class="nav-link nav-link--faqcu-foundation is-active" data-drupal-link-system-path="faq" aria-current="page">CU Foundation</a>
+              </li>
+                <li class="nav-item">
+                          <a href="/faq#common-giving-terms" class="nav-link nav-link--faqcommon-giving-terms is-active" data-drupal-link-system-path="faq" aria-current="page">Common giving terms</a>
+              </li>
+                <li class="nav-item">
+                          <a href="https://giveto.cu.edu/funds/?a=8403519" class="nav-link nav-link-https--givetocuedu-funds-a8403519">Search Funds</a>
+              </li>
+        </ul>
+   </nav>
+      </div>
+    </aside>
+
+    <main class="col-12 col-md-9 mb-4">
+      <div class="p-3">
+       	<div class="container">
+
+		{# Title / Subtitle #}
+		<div class="title-wrapper mb-4">
+
+			{# Title #}
+            {{ title_prefix }}
+            <h1 class="page-title pb-title {% if not node.field_show_title.value %}visually-hidden{% endif %}">
+                {{ node.label }}
+            </h1>
+            {{ title_suffix }}
+
+         </div>
+
+		{# Main Content #}
+		<div{{ content_attributes }}>
+			{# Render all fields except hero and subtitle, which were handled above #}
+			{{ content|without('field_hero', 'field_subtitle') }}
+		</div>
+
+	</div>
+</article>
+
+      </div>
+    </main>
+
+  </div>
+</div>
+
+
+
+
+<article{{ attributes }}>
+
+
+
