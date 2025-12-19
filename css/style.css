@@ -2981,6 +2981,13 @@ aside a.nav-link, aside a.bef-link {
     color: white !important;
 }
 
+.search-form.search-block-form {
+    display: flex;
+    gap: 0; /* Adjust spacing between input and button */
+    flex-wrap: wrap; /* Optional: allows wrapping on smaller screens */
+    align-items: center;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
