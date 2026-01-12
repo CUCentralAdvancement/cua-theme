@@ -2988,6 +2988,10 @@ aside a.nav-link, aside a.bef-link {
     align-items: center;
 }
 
+.lead-story-content p.fs-4.fw-bold {
+    line-height: 1.2 !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
