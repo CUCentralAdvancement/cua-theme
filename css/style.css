@@ -1796,7 +1796,7 @@ h2#block-cua-theme-main-menu-menu {
 }
 
 .contextual-region .contextual .contextual-links li a {
-    color: white !important;
+    color: inherit;
 }
 
 .campus-card .card-footer a {
