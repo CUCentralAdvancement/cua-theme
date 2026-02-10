@@ -3149,6 +3149,12 @@ aside a.nav-link, aside a.bef-link {
 /* Media query for screens with a max-width of 576px (phones) */
 @media only screen and (max-width: 576px) {
 
+    .campus-card,
+    .views-col {
+        display: block;
+        width: 100% !important;
+    }
+
     /* Accordion content padding */
     .ui-accordion .ui-accordion-content {
         padding: 1rem;
