@@ -2992,6 +2992,11 @@ aside a.nav-link, aside a.bef-link {
     line-height: 1.2 !important;
 }
 
+#lead-story-section-title {
+    color: var(--cua-gold) !important;
+}
+
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
