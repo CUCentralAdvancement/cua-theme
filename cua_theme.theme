@@ -163,6 +163,9 @@ function cua_theme_plugin_filter_block__layout_builder_alter(array &$definitions
  *   template.
  */
 
+/**
+ * Implements hook_preprocess_block().
+ */
 function cua_theme_preprocess_block(array &$variables): void {
     if (!empty($variables['content']['#block_content'])) {
         $block_content = $variables['content']['#block_content'];
@@ -174,6 +177,7 @@ function cua_theme_preprocess_block(array &$variables): void {
             'field_video_youtube',
         ];
 
+        // --- THE DYNAMIC MAPPING LOOP ---
         foreach ($block_content->getFieldDefinitions() as $field_name => $field_definition) {
             if (in_array($field_name, $excluded_fields)) {
                 continue;
@@ -186,25 +190,27 @@ function cua_theme_preprocess_block(array &$variables): void {
                     $field_value = reset($field_items);
 
                     if (is_array($field_value) && isset($field_value['value'])) {
-                        // FIX: Ensure we are only passing strings/ints to avoid array_flip warnings
                         $val = $field_value['value'];
+                        // SAFETY: Ensure we never pass NULL. If not a scalar, default to empty string.
                         $variables[str_replace('field_', '', $field_name)] = is_scalar($val) ? $val : (string) $val;
                     }
+                } else {
+                    // FIX: If field is empty, set to empty string so Twig doesn't crash on NULL
+                    $variables[str_replace('field_', '', $field_name)] = '';
                 }
             }
         }
 
-        // Special handling for links
+        // --- LINK HANDLING ---
         if ($block_content->hasField('field_link')) {
             $link_field_items = $block_content->get('field_link')->getValue();
             if (!empty($link_field_items)) {
                 $links = [];
                 foreach ($link_field_items as $item) {
                     try {
-                        $url_object = Url::fromUri($item['uri']);
-                        // FIX: Use toString(TRUE) to get the string value safely for the logs
+                        $url_object = \Drupal\Core\Url::fromUri($item['uri']);
                         $url = $url_object->isExternal() ? $item['uri'] : $url_object->toString();
-                        $links[] = ['url' => $url, 'title' => $item['title']];
+                        $links[] = ['url' => $url, 'title' => $item['title'] ?? ''];
                     } catch (\Exception $e) {
                         continue;
                     }
@@ -213,21 +219,19 @@ function cua_theme_preprocess_block(array &$variables): void {
             }
         }
 
-        // Special handling for images
+        // --- IMAGE HANDLING ---
         if ($block_content->hasField('field_image')) {
             $image_field_items = $block_content->get('field_image')->getValue();
             if (!empty($image_field_items)) {
                 $image_field_value = reset($image_field_items);
                 if (is_array($image_field_value)) {
-                    // FIX: Pass the render array directly to Twig. 
-                    // This prevents double-escaping and keeps the "No-Lag" performance.
+                    // Pass the render array so Twig renders the actual <img> tag (no escaping)
                     $variables['card_image'] = $block_content->get('field_image')->view(['type' => 'default']);
                     
-                    // Keep your metadata for use in macros/templates
                     $variables['image'] = $image_field_value['image'] ?? NULL;
                     $variables['image_url'] = $image_field_value['uri'] ?? NULL;
-                    $variables['image_alt'] = $image_field_value['alt'] ?? NULL;
-                    $variables['image_title'] = $image_field_value['title'] ?? NULL;
+                    $variables['image_alt'] = $image_field_value['alt'] ?? '';
+                    $variables['image_title'] = $image_field_value['title'] ?? '';
                 }
             }
         }
