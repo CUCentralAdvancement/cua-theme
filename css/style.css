@@ -2996,6 +2996,21 @@ aside a.nav-link, aside a.bef-link {
     color: var(--cua-gold) !important;
 }
 
+/* Specifically target the text when the badge is black */
+.flag-badge.cu-bg-black .flag-text,
+.flag-badge.cu-bg-pure-black .flag-text {
+    color: var(--cua-gold) !important;
+    -webkit-text-fill-color: var(--cua-gold)  !important; /* Some themes use fill for text effects */
+    text-decoration: none !important;
+}
+
+/* If you ever use a gold background, you probably want black text for contrast */
+.flag-badge.cu-bg-gold .flag-text,
+.flag-badge.cu-bg-white .flag-text,
+.flag-badge.cu-bg-light-grey .flag-text {
+    color: var(--cua-black) !important;
+    text-decoration: none !important;
+}
 
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
