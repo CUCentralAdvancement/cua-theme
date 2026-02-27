@@ -20,7 +20,10 @@
 
 {# Preload logic: The "No-Lag" start #}
 {% if provider == 'local' and content.field_video_mp4.0 is defined %}
-    {% set video_url = content.field_video_mp4.0['#url'] ?? content.field_video_mp4.0['#file'].url ?? null %}
+    {# Force the URL to a string immediately #}
+    {% set raw_url = content.field_video_mp4.0['#url'] ?? content.field_video_mp4.0['#file'].url ?? null %}
+    {% set video_url = raw_url ? raw_url|render|striptags|trim : null %}
+    
     {% if video_url %}
         <link rel="preload" href="{{ video_url }}" as="video" type="video/mp4">
     {% endif %}
