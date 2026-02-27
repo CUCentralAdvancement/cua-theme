@@ -17,10 +17,10 @@
   =============================================================================
 #}
 
-{# Import macros: Atomic logic for Title, Image, Icon, and Body #}
+{# Import macros #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Utility Class Merging: Merging CMS-side utility classes with Bootstrap card logic #}
+{# Define CTA classes #}
 {% set basic_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -33,21 +33,16 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Unique ID: Critical for GA4 component tracking and ARIA landmarking #}
-{% set unique_id = 'block--node-basic-block--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{# Generate unique ID #}
+{% set unique_id = 'block--node-' ~ '-basic-block' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 
-{# GA4/SEO Logic: Determine if we should trigger the manual "Pro-link" render #}
+{# GA4/SEO FIX: Determine if it's a single link for manual rendering #}
 {% set links_count = links|length %}
 {% set single_link = (links_count == 1) ? links|first : null %}
 
-{# 
-  OUTER WRAPPER:
-  - role="region": Identified as a landmark for assistive tech.
-  - itemscope/itemtype: Provides machine-readable context to search crawlers.
-  - data-component: Internal hook for automated testing (Cypress/Playwright).
-#}
+{# Render content #}
 <div{{ attributes
-    .without('id')
+    |without('id')
     .setAttribute('id', unique_id)
     .addClass(basic_classes)
     .setAttribute('role', 'region')
@@ -56,52 +51,81 @@
     .setAttribute('data-component', 'basic-block')
 }}>
 
-    {{ title_prefix }}
-    {{ title_suffix }}
+    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
 
-    {# 
-       A11Y FALLBACK: 
-       Ensures the region landmark is named for screen readers even if 
-       no visible heading is rendered. 
-    #}
+    {# Only render the sr-only title if the visible title is not shown. #}
     {% if not label %}
         <span class="sr-only bg-black text-white">
-            {{ 'Content Section'|t }}
+            {{ label is not empty ? label|e : 'Content Section'|t }}
         </span>
     {% endif %}
 
-    {# 
-       MEDIA LAYER: 
-       Strict branching logic. We prioritize the Card Image over the Icon 
-       to ensure the visual hierarchy remains consistent.
-    #}
+    {# Include image or icon #}
     {% if card_image %}
+        {# Render the card image #}
         {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-        {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, links) }}
+        {{ cardImageMacros.render_card_image(
+            card_image,
+            position_container,
+            text_alignment,
+            text_color,
+            image_size,
+            visibility,
+            content,
+            links
+        ) }}
     {% elseif icon %}
+        {# Render the icon #}
         {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-        {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
+        {{ iconMacros.render_icon(
+            icon,
+            icon_size,
+            icon_color,
+            padding,
+            position_container,
+            text_alignment
+        ) }}
     {% endif %}
 
-    {# TITLE LAYER: Includes itemprop="name" (or custom) for Schema.org crawlers #}
-    {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding, 'itemprop="name"') }}
+    {# Render the title. Adding itemprop="name" #}
+    {{ titleMacros.render_title(
+        label,
+        title_prefix,
+        title_suffix,
+        center_content,
+        text_alignment,
+        text_color,
+        padding,
+        'itemprop="block-content"'
+    ) }}
 
-    {# BODY LAYER: Handled via macro to respect Drupal's text filters/sanitization #}
+    {# Render Body #}
     {% if content %}
         {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-        {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+        {{ bodyMacros.render_body (
+            content,
+            padding,
+            text_color,
+            text_alignment
+        ) }}
     {% endif %}
 
-    {# 
-       FOOTER / CTA LAYER: 
-       This is where the 'Names and Notes' philosophy lives.
-    #}
     {% if links %}
         {% if single_link %}
 
-            {# SCENARIO 1: SINGLE LINK - The Manual 'Hammer' for GA4 accuracy #}
+            {# GA4/SEO FIX: Scenario 1: SINGLE LINK - Render manually to guarantee GA4 attributes #}
             {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-            {% set link_classes = ['card-link', 'btn', outline_class, 'text-decoration-none', 'p-2', 'mt-3']|filter(v => v)|join(' ') %}
+
+            {% set link_classes = [
+                'card-link',
+                'btn',
+                outline_class,
+                'text-decoration-none',
+                'p-2',
+                'mt-3',
+            ]|filter(v => v)|join(' ') %}
 
             <div class="card-footer d-flex container mb-5">
                 <a href="{{ single_link.url ?: '#' }}"
@@ -110,18 +134,31 @@
                    data-ga-category="basic_block"
                    data-ga-action="{{ single_link.title|default(label)|striptags|trim|e }}"
                    data-ga-component-id="{{ unique_id }}">
-                    {{ single_link.title|default('Learn More'|t) }}
+                    {{ single_link.title|default('Learn More') }}
                 </a>
             </div>
         {% else %}
-            {# SCENARIO 2: MULTIPLE LINKS - Standard macro fallback with attribute injection #}
+            {# Scenario 2: MULTIPLE LINKS - Fall back to the macro #}
             {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
             {% set ga_attributes = {
                 'data-ga-event': 'basic_block_link',
                 'data-ga-category': 'basic_block',
                 'data-ga-component-id': unique_id
             } %}
-            {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false, ga_attributes) }}
+            {{ cardFooterMacros.render_card_footer (
+                links,
+                container_size,
+                color_background,
+                position_container,
+                text_alignment,
+                padding,
+                outline,
+                button_color,
+                button_layout,
+                false,
+                false,
+                ga_attributes
+            ) }}
         {% endif %}
     {% endif %}
 
