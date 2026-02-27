@@ -163,88 +163,74 @@ function cua_theme_plugin_filter_block__layout_builder_alter(array &$definitions
  *   template.
  */
 
-/**
- * Implements hook_preprocess_block().
- */
 function cua_theme_preprocess_block(array &$variables): void {
-    // Check if the block content is available in the variables array.
     if (!empty($variables['content']['#block_content'])) {
         $block_content = $variables['content']['#block_content'];
         $renderer = \Drupal::service('renderer');
 
-        // Define an array of field names to exclude from preprocessing.
         $excluded_fields = [
             'field_visibility_arrows',
             'field_video_mp4',
             'field_video_youtube',
-            // Add other fields you want to exclude here.
         ];
 
-        // Preprocess all fields dynamically, excluding specified fields.
         foreach ($block_content->getFieldDefinitions() as $field_name => $field_definition) {
-            // Skip excluded fields.
             if (in_array($field_name, $excluded_fields)) {
                 continue;
             }
 
-            // Check if the block content has the current field.
             if ($block_content->hasField($field_name)) {
-                // Get the field's value as an array.
                 $field_items = $block_content->get($field_name)->getValue();
 
                 if (!empty($field_items) && is_array($field_items)) {
-                    // Retrieve the first item of the field's value if it exists.
                     $field_value = reset($field_items);
 
-                    // Check if the field value is an array and contains a 'value' key.
                     if (is_array($field_value) && isset($field_value['value'])) {
-                        // Assign the value to the variables array without the "field_" prefix.
-                        $variables[str_replace('field_', '', $field_name)] = $field_value['value'];
+                        // FIX: Ensure we are only passing strings/ints to avoid array_flip warnings
+                        $val = $field_value['value'];
+                        $variables[str_replace('field_', '', $field_name)] = is_scalar($val) ? $val : (string) $val;
                     }
                 }
             }
         }
 
-        // Special handling for specific fields like links and images.
+        // Special handling for links
         if ($block_content->hasField('field_link')) {
-            // Handle the link field.
             $link_field_items = $block_content->get('field_link')->getValue();
             if (!empty($link_field_items)) {
                 $links = [];
                 foreach ($link_field_items as $item) {
-                    $url_object = Url::fromUri($item['uri']);
-                    $url = $url_object->isExternal() ? $item['uri'] : $url_object->toString();
-                    $links[] = ['url' => $url, 'title' => $item['title']];
+                    try {
+                        $url_object = Url::fromUri($item['uri']);
+                        // FIX: Use toString(TRUE) to get the string value safely for the logs
+                        $url = $url_object->isExternal() ? $item['uri'] : $url_object->toString();
+                        $links[] = ['url' => $url, 'title' => $item['title']];
+                    } catch (\Exception $e) {
+                        continue;
+                    }
                 }
                 $variables['links'] = $links;
-                if (count($links) > 1) {
-                    $variables['attributes']['class'][] = 'multiple-links';
-                }
             }
         }
 
+        // Special handling for images
         if ($block_content->hasField('field_image')) {
-            // Handle the image field.
             $image_field_items = $block_content->get('field_image')->getValue();
             if (!empty($image_field_items)) {
                 $image_field_value = reset($image_field_items);
                 if (is_array($image_field_value)) {
                     $image_render_array = $block_content->get('field_image')->view(['type' => 'default']);
-                    $variables['card_image'] = $renderer->render($image_render_array);
-                    $variables['image'] = $image_field_value['image'] ?? NULL;
-                    $variables['image_url'] = $image_field_value['uri'] ?? NULL;
-                    $variables['image_alt'] = $image_field_value['alt'] ?? NULL;
-                    $variables['image_title'] = $image_field_value['title'] ?? NULL;
+                    // Keep your renderer but ensure it's a string
+                    $variables['card_image'] = (string) $renderer->render($image_render_array);
                 }
             }
         }
 
-        // Set cache context and tags to optimize caching.
         $variables['#cache']['contexts'][] = 'url';
         $variables['#cache']['tags'][] = 'block_content:' . $block_content->id();
-        $variables['#cache']['max-age'] = Cache::PERMANENT;
     }
 }
+
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for HTML templates.
  *
