@@ -219,9 +219,15 @@ function cua_theme_preprocess_block(array &$variables): void {
             if (!empty($image_field_items)) {
                 $image_field_value = reset($image_field_items);
                 if (is_array($image_field_value)) {
-                    $image_render_array = $block_content->get('field_image')->view(['type' => 'default']);
-                    // Keep your renderer but ensure it's a string
-                    $variables['card_image'] = (string) $renderer->render($image_render_array);
+                    // FIX: Pass the render array directly to Twig. 
+                    // This prevents double-escaping and keeps the "No-Lag" performance.
+                    $variables['card_image'] = $block_content->get('field_image')->view(['type' => 'default']);
+                    
+                    // Keep your metadata for use in macros/templates
+                    $variables['image'] = $image_field_value['image'] ?? NULL;
+                    $variables['image_url'] = $image_field_value['uri'] ?? NULL;
+                    $variables['image_alt'] = $image_field_value['alt'] ?? NULL;
+                    $variables['image_title'] = $image_field_value['title'] ?? NULL;
                 }
             }
         }
