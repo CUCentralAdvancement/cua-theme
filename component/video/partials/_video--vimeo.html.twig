@@ -1,12 +1,43 @@
-{# Vimeo Video Container #}
-<div style="padding:56.25% 0 0 0;position:relative;">
-    {# Video #}
-    <iframe title="{{ label }}"
-            src="https://player.vimeo.com/video/{{ video }}?h=364db7b3dd&autoplay=1&title=0&byline=0&portrait=0=autoplay=1{{ autoplay }}"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen></iframe>
-    {# Attach the library #}
-    {{ attach_library('cua_theme/video') }}
+{# 
+  =============================================================================
+  PARTIAL: _video--vimeo.html.twig
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS (Vimeo Movement)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA 
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Responsive Pattern: Uses the "Intrinsic Ratio" container (56.25% for 16:9).
+  - A11Y: Maps the block label directly to the iframe title for SR context.
+  - Performance: Strips unnecessary UI elements (byline, portrait) to keep 
+    the "dial" clean and professional.
+
+  MAINTENANCE WARNING:
+  The 'autoplay' parameter is set to 1. Ensure the parent container 
+  is 'muted' if you expect this to fire without user interaction, 
+  as modern browsers block unmuted autoplay.
+  =============================================================================
+#}
+
+{{ attach_library('cua_theme/video') }}
+
+{# 
+   VIMEO WRAPPER: 
+   Maintains a 16:9 aspect ratio. Using a wrapper prevents the video 
+   from collapsing or overflowing on responsive breakpoints.
+#}
+<div class="video-vimeo-wrapper" style="padding:56.25% 0 0 0; position:relative;">
+    
+    {# 
+       VIMEO IFRAME:
+       - title: Vital for 508 compliance.
+       - dnt: (Optional) Set to 1 to protect user privacy (Do Not Track).
+       - background: Set to 1 if you want the "Hero Background" style without controls.
+    #}
+    <iframe 
+        src="https://player.vimeo.com/video/{{ video_id|default(video) }}?autoplay=1&title=0&byline=0&portrait=0&muted=1&dnt=1" 
+        title="{{ label|default('Vimeo Video Player'|t) }}"
+        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+        frameborder="0" 
+        allow="autoplay; fullscreen; picture-in-picture" 
+        allowfullscreen
+    ></iframe>
 </div>

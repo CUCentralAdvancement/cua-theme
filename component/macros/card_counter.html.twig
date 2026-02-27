@@ -1,74 +1,73 @@
-{# --------------------------------------------
-  Counter Title Macro - 508 Accessible Version
-  Description: Renders an animated counter with
-  optional text before and after. Includes ARIA
-  features for screen readers.
-  Usage:
-    {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
-    {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }}
--------------------------------------------- #}
+{# 
+  =============================================================================
+  MACRO: render_counter
+  STABILITY: Production-Stable / Architecture: Sinn 103 (Chronograph Complication)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ARIA 1.2 Status Pattern
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Animation Guard: The "0" placeholder is hidden from screen readers to 
+    prevent distracting digit-by-digit announcements during JS execution.
+  - A11Y: Uses a dedicated 'data-counter-announcer' span to provide the 
+    final, static value to Assistive Tech immediately.
+  - Flexibility: Handles 'before' and 'after' strings (e.g., "$", "k", "%") 
+    while maintaining consistent color and alignment gaskets.
 
-{# --------------------------------------------
-  Counter Title Macro - 508 Accessible Version
-  Description: Renders an animated counter with
-  optional text before and after. Includes ARIA
-  features for screen readers.
-  Usage:
-    {% import '@cua_theme/component/macros/card_counter.html.twig' as counterMacros %}
-    {{ counterMacros.render_counter(number, text_alignment, text_color, before_number, after_number) }}
--------------------------------------------- #}
+  MAINTENANCE WARNING:
+  The 'counter-up' JS library must target the 'data-count' attribute. 
+  Ensure the animation duration is under 2.5 seconds to comply with 
+  WCAG 2.2 'Motion' guidelines for neurodivergent users.
+  =============================================================================
+#}
 
 {% macro render_counter(number, text_alignment, text_color, before_number, after_number) %}
     {% if number %}
 
-        {# Define default classes based on inputs; filter out any null/empty values #}
+        {# 
+           VALIDATION & DEFAULTS:
+           Ensures text alignment doesn't "drift" from the design spec.
+        #}
         {% set container_classes = [
-            text_alignment ?: 'left',
+            'counter-container',
+            text_alignment ?: 'text-start',
             text_color ?: '',
         ] | filter(v => v) %}
 
         <div class="counter-size {{ container_classes|join(' ')|trim }}">
 
-            {# Optional text before the number, e.g. '$' or '#' #}
+            {# BEFORE NUMBER (e.g. $, #, +) #}
             {% if before_number %}
-                {% set before_classes = [
-                    'padding-right',
-                    text_color ?: '',
-                ] | filter(v => v) %}
-                <span class="{{ before_classes|join(' ')|trim }}">
+                <span class="counter-prefix pe-1 {{ text_color ?: '' }}">
                     {{ before_number|e }}
                 </span>
             {% endif %}
 
-            {# Animated counter span.
-               - aria-live="polite" allows screen readers to announce updates non-disruptively.
-               - role="status" designates this as a live region.
-               - aria-hidden="true" prevents the "0" (animated placeholder) from being read.
-               - data-count is used by JavaScript to animate the count-up.
+            {# 
+               ANIMATED ELEMENT (Visual Only):
+               - aria-hidden="true": The "laggy" count-up is ignored by AT.
+               - data-count: The "top-grade" value for JS to target.
             #}
             <span class="counter-up {{ text_color ?: '' }}"
-                  aria-live="polite"
-                  role="status"
                   aria-hidden="true"
                   data-count="{{ number }}">
                 0
             </span>
 
-            {# Screen reader-only announcement fallback.
-               - Hidden visually but will be read aloud to users relying on assistive tech.
-               - Includes semantic context: "Counter: X"
+            {# 
+               ACCESSIBLE ANNOUNCER (AT Only):
+               - role="status": Marks this as a landmark for status updates.
+               - aria-live="polite": Announces the full number once ready.
             #}
-            <span class="visually-hidden" data-counter-announcer>
-                {{ 'Counter: @number'|t({'@number': number}) }}
+            <span class="visually-hidden" role="status" aria-live="polite" data-counter-announcer>
+                {{ 'Total count: @before@number@after'|t({
+                    '@before': before_number,
+                    '@number': number,
+                    '@after': after_number
+                }) }}
             </span>
 
-            {# Optional text after the number, e.g. '%' or 'people' #}
+            {# AFTER NUMBER (e.g. %, People, Units) #}
             {% if after_number %}
-                {% set after_classes = [
-                    'padding-left',
-                    text_color ?: '',
-                ] | filter(v => v) %}
-                <span class="{{ after_classes|join(' ')|trim }}">
+                <span class="counter-suffix ps-1 {{ text_color ?: '' }}">
                     {{ after_number|e }}
                 </span>
             {% endif %}

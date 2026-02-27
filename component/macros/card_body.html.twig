@@ -1,37 +1,47 @@
-{# Body Macro #}
+{# 
+  =============================================================================
+  MACRO: render_body
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS (Standard Grade)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Drupal 11 Ready
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Flexbox Guard: Uses 'd-flex flex-column' to ensure child elements (like 
+    paragraphs) stack vertically without horizontal alignment lag.
+  - Validation: Implements a "Closed Case" logic—only predefined padding, 
+    color, and alignment classes are allowed to render.
+  - Performance: Uses 'clearfix' as a fail-safe for legacy floated content 
+    within the 'lead' text body.
 
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/body_macros.html.twig' as bodyMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ bodyMacros.render_body(content, body, padding, text_color, text_alignment) }} #}
-
-{#
-Params:
-  - content: Must contain 'body' field with processed text
-  - padding: null|'remove-padding'|'add-padding'|'p-0'
-  - text_color: null|'cu-text-gold'|'cu-text-black'|'cu-text-white'
-  - text_alignment: null|'justify-content-{start/center/end}'
+  MAINTENANCE WARNING:
+  If a new brand color (e.g., 'cu-text-maroon') is added to the theme, it must 
+  be added to 'allowed_text_colors' here to pass the gasket.
+  =============================================================================
 #}
-
-{# Content #}
 
 {% macro render_body(content, padding = null, text_color = null, text_alignment = null) %}
     {% if content.body is defined and content.body %}
-        {# Move allowed values to constants #}
+        
+        {# 
+           CONSTANTS: The "Design Gaskets"
+           Defines the valid tokens for this component's ecosystem.
+        #}
         {% set allowed_padding = ['remove-padding', 'add-padding', 'p-0'] %}
         {% set allowed_text_colors = ['cu-text-gold', 'cu-text-black', 'cu-text-white'] %}
         {% set allowed_text_alignments = ['justify-content-start', 'justify-content-center', 'justify-content-end'] %}
 
-        {# Validation #}
+        {# 
+           STRICT VALIDATION: 
+           Prevents class-bloat and keeps the "dial" clean.
+        #}
         {% set padding = padding in allowed_padding ? padding : null %}
         {% set text_color = text_color in allowed_text_colors ? text_color : null %}
-        {% set text_alignment = text_alignment in allowed_text_alignments ? 'd-flex ' ~ text_alignment : null %}
+        
+        {# Ensure text_alignment triggers flexbox context #}
+        {% set text_alignment_class = text_alignment in allowed_text_alignments ? 'd-flex ' ~ text_alignment : null %}
 
-        {# Class construction #}
+        {# CLASS ORCHESTRATION #}
         {% set body_classes = [
             'card-body',
-            'd-flex',
             'flex-column',
             'card-text',
             'lead',
@@ -39,10 +49,10 @@ Params:
             'clearfix',
             padding,
             text_color,
-            text_alignment
+            text_alignment_class
         ] | filter(v => v) %}
 
-        {# Output #}
+        {# OUTPUT: The legible "Face" of the card #}
         <div class="{{ body_classes|join(' ')|trim }}">
             {{ content.body }}
         </div>

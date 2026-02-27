@@ -1,16 +1,41 @@
-{# Basic Title Macro #}
+{# 
+  =============================================================================
+  MACRO: render_card_basic_title
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS (Stealth)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / SEO Tier 1
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Accessibility: Uses .visually-hidden to provide an H1 to the Accessibility 
+    Tree. This ensures screen reader users have a clear starting point.
+  - SEO: Provides a semantic H1 tag for web crawlers, crucial for page-level 
+    keyword relevance.
+  - Flexibility: Maintains title_prefix and title_suffix for Drupal's 
+    contextual administrative links.
 
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ titleMacros.render_card_basic_title(title_prefix, label, title_suffix) }} #}
-
+  MAINTENANCE WARNING:
+  Only use this macro once per page (typically in the Hero or Page Title 
+  block). Multiple H1 tags can confuse some older screen readers and 
+  dilute SEO weight.
+  =============================================================================
+#}
 
 {% macro render_card_basic_title(title_prefix, label, title_suffix) %}
+    {# 
+       ADMIN HOOKS: 
+       Essential for the "Notes and Names" of Drupal's edit interface.
+    #}
     {{ title_prefix ?? '' }}
-    <h1 class="visually-hidden">
-        {{ label|e }}
-    </h1>
+
+    {# 
+       STEALTH HEADING: 
+       - .visually-hidden: Standard Bootstrap utility to hide from sight.
+       - |e: Escapes input to prevent XSS injection.
+    #}
+    {% if label %}
+        <h1 class="visually-hidden">
+            {{ label|e }}
+        </h1>
+    {% endif %}
+
     {{ title_suffix ?? '' }}
 {% endmacro %}

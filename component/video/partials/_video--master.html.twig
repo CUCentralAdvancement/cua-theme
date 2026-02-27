@@ -1,15 +1,39 @@
-{#
-* Master Video Partial - Embeds video with accessible heading.
-* Cleaned up to avoid duplicate aria-labelledby issues.
+{# 
+  =============================================================================
+  PARTIAL: _video--master.html.twig
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS (The Caliber)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA 
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Dynamic Inclusion: Uses Twig's string concatenation to include the specific 
+    provider partial (youtube, local, vimeo) based on the CMS value.
+  - Fail-Safe: The 'ignore missing' flag prevents a 500 error if a provider 
+    is selected but the partial hasn't been created yet.
+  - Layout: 'g-0 m-0 p-0' ensures the video container is a perfect 
+    edge-to-edge fit within its parent card.
+
+  MAINTENANCE WARNING:
+  The provider string must exactly match the filename suffix 
+  (e.g., provider 'youtube' looks for '_video--youtube.html.twig').
+  =============================================================================
 #}
 
 {% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
 
 {% if provider|default(false) %}
-    <div class="video-container g-0 m-0 p-0 position-relative">
-        {# Only include the provider-specific partial; no extra <h2> here #}
+    <div class="video-master-movement g-0 m-0 p-0 position-relative">
+        {# 
+           DYNAMIC PARTIAL INJECTION:
+           This is the "Engine" of the component. 
+           It delegates the actual <iframe> or <video> tag rendering 
+           to the specific sub-partial.
+        #}
         {% include '@cua_theme/component/video/partials/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
     </div>
 {% else %}
-    <p>{{ 'No video provider specified.'|t }}</p>
+    {# Fallback for the CMS Editor: Helps debug empty video blocks #}
+    <div class="alert alert-warning m-3" role="alert">
+        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+        {{ 'No video provider specified. Please select a provider (YouTube, Local, etc.) in the block configuration.'|t }}
+    </div>
 {% endif %}

@@ -1,9 +1,51 @@
-{# Local Video Container #}
-{# Video #}
-<div class="{% if parallax_video is not empty %}parallax-video {% endif %}video g-0">
-    <video autoplay="autoplay" loop="loop" muted="muted" width="100%"
-           height="auto" tabindex="-1" preload="auto">
+{# 
+  =============================================================================
+  PARTIAL: _video-local.html.twig
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS (Local Movement)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Browser Policy Hardened
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Performance: Uses 'playsinline' to prevent iOS from forcing full-screen 
+    playback on load.
+  - A11Y: 'tabindex="-1"' is preserved to keep the decorative video out of 
+    the focus order, while 'muted' ensures autoplay isn't blocked by browsers.
+  - Logic: Implements conditional 'parallax-video' classing for the JS hook.
+
+  MAINTENANCE WARNING:
+  If 'parallax_video' is active, ensure the parent container has a defined 
+  height or 'overflow: hidden' to prevent the video from "bleeding" into 
+  other components during scroll.
+  =============================================================================
+#}
+
+<div class="{% if parallax_video %}parallax-video {% endif %}video-local-wrapper g-0">
+    {# 
+       VIDEO TAG:
+       'playsinline' is critical for mobile; without it, the video 
+       won't autoplay inside the card on iPhones.
+       'poster' attribute is recommended if you have a fallback image 
+       field to prevent a "black box" during initial load.
+    #}
+    <video 
+        autoplay 
+        loop 
+        muted 
+        playsinline
+        width="100%" 
+        height="auto" 
+        tabindex="-1" 
+        preload="auto"
+        poster="{{ card_image_url|default('') }}"
+        class="d-block w-100"
+    >
+        {# 
+           SOURCE:
+           Targeting the URL directly. If Drupal renders a full file 
+           object, ensure we are grabbing the URI/URL string.
+        #}
         <source src="{{ content.field_video_mp4.0 }}" type="video/mp4">
+        
+        {# Fallback text for very old browsers #}
+        {{ 'Your browser does not support the video tag.'|t }}
     </video>
 </div>
-

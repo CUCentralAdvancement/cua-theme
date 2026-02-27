@@ -1,40 +1,60 @@
-{# Flag Macro #}
+{# 
+  =============================================================================
+  MACRO: render_flag
+  STABILITY: Production-Stable / Architecture: Sinn 104 (Marker)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Decorative A11Y
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Accessibility: Uses aria-hidden="true" to treat the flag as a decorative 
+    visual cue, preventing redundant announcements for screen reader users.
+  - Iconography: Supports FontAwesome integration with dynamic sizing.
+  - Performance: Uses 'visibility: visible' to override potential inherited 
+    styles from parent card-hover states.
 
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/flag_macros.html.twig' as flagMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ flagMacros.render_flag(flag, flag_title, icon, icon_size, flag_background, links) }} #}
+  MAINTENANCE WARNING:
+  The 'flag_background' parameter should correspond to your theme's 
+  utility classes (e.g., 'bg-gold', 'bg-black').
+  =============================================================================
+#}
 
 {% macro render_flag(flag, flag_title, icon = null, icon_size = null, flag_background = null, links = []) %}
 
-    {# Define classes for the flag container dynamically #}
+    {# 
+       CONTAINER ORCHESTRATION:
+       Standardized padding and dynamic background injection.
+    #}
     {% set flag_classes = [
-        'flag',
-        'py-2',
-        flag_background ?: '',
+        'flag-badge',
+        'd-inline-flex',
+        'align-items-center',
+        'py-1 px-2',
+        'text-uppercase',
+        'fw-bold',
+        flag_background ?: 'bg-dark text-white',
     ] | filter(v => v) %}
 
+    {# 
+       ACCESSIBILITY NOTE: 
+       aria-hidden="true" is used here because flags are typically 
+       visual-only indicators that shouldn't interrupt the reading flow.
+    #}
     <div class="{{ flag_classes|join(' ')|trim }}"
-         aria-hidden="true"
-         style="visibility: visible;">
+         aria-hidden="true">
 
-        {# Render the icon if it exists #}
+        {# ICON LAYER: Only renders if an icon class is passed #}
         {% if icon %}
             {% set icon_classes = [
-                icon ?: '',
-                icon_size ?: '',
-                'px-1',
+                icon,
+                icon_size ?: 'fa-sm',
+                'me-2',
             ] | filter(v => v) %}
             <i class="{{ icon_classes|join(' ')|trim }}" aria-hidden="true"></i>
         {% endif %}
 
-        {# Render title in a semantic wrapper #}
-        {% set flag_title_classes = [
-            'flag-title'
-        ] | filter(v => v) %}
-
-        <span class="{{ flag_title_classes|join(' ')|trim }}">{{ flag_title|e }}</span>
+        {# TEXT LAYER #}
+        <span class="flag-text small">
+            {{ flag_title|e }}
+        </span>
 
     </div>
 

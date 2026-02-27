@@ -1,26 +1,45 @@
-{# Icon Macro #}
+{# 
+  =============================================================================
+  MACRO: render_icon
+  STABILITY: Production-Stable / Architecture: Sinn 556 (Handset)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Decorative A11Y
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Accessibility: aria-hidden="true" ensures the icon is treated as a 
+    decorative element, satisfying WCAG 2.1 decorative requirements.
+  - Flexbox Guard: Uses 'd-flex' with dynamic positioning to allow icons to 
+    sit comfortably in various layouts (Hero, Card, or List).
+  - Styling: Supports both class-based sizing and inline color injection for 
+    brand-specific "lume" (e.g., cu-gold).
 
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/icon_macros.html.twig' as iconMacros %} #}
+  MAINTENANCE WARNING:
+  The 'icon' parameter expects a full FontAwesome class string 
+  (e.g., 'fa-solid fa-house').
+  =============================================================================
+#}
 
-{# Call the macro and pass the necessary variables #}
-{# {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }} #}
-
-{# Content #}
 {% macro render_icon(icon, icon_size = null, icon_color = null, padding = null, position_container = null, text_alignment = null) %}
     {% if icon %}
-        {# Concatenate optional classes with a space #}
-        {% set icon_classes = [
+        {# 
+           CLASS ORCHESTRATION:
+           Standardized vertical spacing (pt-5 pb-3) keeps icons from 
+           clashing with headings.
+        #}
+        {% set container_classes = [
             padding,
             position_container ? 'd-flex ' ~ position_container : null,
             text_alignment,
-            'pt-5 pb-3'
+            'icon-wrapper pt-5 pb-3'
         ] | filter(v => v) | join(' ') %}
 
-        {# Content #}
-        <div class="{{ icon_classes }}">
-            <i class="{{ icon }}{{ icon_size ? ' ' ~ icon_size : '' }}"
-               {% if icon_color %}style="color: {{ icon_color }}"{% endif %}
+        {# 
+           OUTPUT:
+           Inline style for color is used to allow for the exact CU-brand 
+           hex codes without bloating the CSS file with hundreds of utilities.
+        #}
+        <div class="{{ container_classes }}">
+            <i class="{{ icon }}{{ icon_size ? ' ' ~ icon_size : ' fa-2x' }}"
+               {% if icon_color %}style="color: {{ icon_color }};"{% endif %}
                aria-hidden="true">
             </i>
         </div>

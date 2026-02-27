@@ -1,23 +1,35 @@
-{#
-/**
- * @file
- * Template for the Button component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- */
+{# 
+  =============================================================================
+  COMPONENT: Action Button / Global CTA
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (No-Lag)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ARIA 1.2 "Region" Landmark
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Logic: Handles binary UX patterns (Single "Card-Style" vs. Multiple Action cluster).
+  - Accessibility: Implements 'aria-labelledby' mapping to ensure the region's 
+    context is preserved during keyboard navigation.
+  - Performance: Leverages the 'call-to-action' library only when invoked.
+
+  MAINTENANCE WARNING:
+  The 'is_single_link' variable renders a <span>. This is intended for 
+  implementations where the entire card is wrapped in a JS-controlled 
+  click listener or a parent <a>. Do not use <span> for standalone 
+  buttons without a parent interaction handler.
+  =============================================================================
 #}
 
-{# Import macros #}
+{# Import macros: Externalized logic for Title and Body consistency #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Attach the library #}
+{# Asset Load: Selective library injection for minimal DOM footprint #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# Define button classes #}
+{# 
+  UTILITY CLASS MERGING:
+  Standardized block classes merged with site-builder utility injections. 
+  The 'me-3' on the footer provides the necessary visual 'breathing room' 
+  for the action cluster.
+#}
 {% set button_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -28,41 +40,24 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Define dynamic classes for the footer container. #}
-{% set card_footer_classes = [
-    'card-footer',
-    'd-flex',
-    multiple_links ? 'multiple-links' : '',
-    container_size,
-    position_container,
-    text_alignment,
-    padding,
-    'mb-5',
-    'me-3',
-] | filter(v => v) | join(' ') %}
-
-{# Define dynamic classes for the footer links. #}
-{% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-{% set card_footer_link_classes = [
-    'card-link',
-    'btn',
-    outline_class,
-    'text-decoration-none',
-    position_container,
-    text_alignment,
-    'p-2',
-    'mt-3',
-    'me-2',
-] | filter(v => v) | join(' ') %}
-
-{# Generate unique ID for block and heading #}
-{% set unique_id = 'block--node-' ~ '-button' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{# Unique ID generation for landmark and heading associations #}
+{% set unique_id = 'button-' ~ elements.content['#block_content'].id()|default(random(1000)) %}
 {% set heading_id = unique_id ~ '-title' %}
 
-{# Render content #}
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(button_classes).setAttribute('role', 'region').setAttribute('aria-labelledby', heading_id) }}>
+{# 
+  OUTER WRAPPER: 
+  role="region" identifies this as a distinct navigational landmark.
+#}
+<div{{ attributes
+    .without('id')
+    .setAttribute('id', unique_id)
+    .addClass(button_classes)
+    .setAttribute('role', 'region')
+    .setAttribute('aria-labelledby', heading_id) 
+}}>
 
-    {# Render the title and assign an ID for aria-labelledby #}
+    {# TITLE LAYER: Passes the heading_id to the macro to finalize the A11Y bridge #}
+    {{ title_prefix }}
     {{ titleMacros.render_title(
         label,
         title_prefix,
@@ -75,40 +70,57 @@
         links,
         heading_id
     ) }}
+    {{ title_suffix }}
 
-    {# Render Body #}
+    {# BODY LAYER: Handled via macro for filtered HTML processing #}
     {% if content %}
         {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-        {{ bodyMacros.render_body (
-            content,
-            padding,
-            text_color,
-            text_alignment
-        ) }}
+        {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
     {% endif %}
 
-    {# Render Footer with links #}
-    <div class="{{ card_footer_classes }}"
-            {% if multiple_links %}
-        role="group" aria-label="{{ custom_label ?: 'Related links' }}"
-            {% endif %}>
+    {# 
+       FOOTER / ACTION LAYER: 
+       Dynamic rendering of the link cluster. 
+    #}
+    {% set card_footer_classes = [
+        'card-footer d-flex mb-5 me-3',
+        multiple_links ? 'multiple-links' : '',
+        container_size,
+        position_container,
+        text_alignment,
+        padding,
+    ] | filter(v => v) | join(' ') %}
 
-        {# Render each link in the footer. Handle single and multiple links. #}
+    <div class="{{ card_footer_classes }}"
+         {% if multiple_links %} role="group" aria-label="{{ custom_label ?: 'Related links'|t }}" {% endif %}>
+
         {% for link in links %}
+            {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+            {% set card_footer_link_classes = [
+                'card-link btn text-decoration-none p-2 mt-3 me-2',
+                outline_class,
+                position_container,
+                text_alignment,
+            ] | filter(v => v) | join(' ') %}
+
             {% if is_single_link %}
-                {# Render single link (non-clickable text wrapping the card). #}
-                <span class="{{ card_footer_link_classes }}" aria-label="{{ link.title }}">{{ link.title }}</span>
+                {# 
+                   SCENARIO 1: Visual placeholder for card-wrapped interaction. 
+                   aria-label ensures the context is readable even without a href.
+                #}
+                <span class="{{ card_footer_link_classes }}" aria-label="{{ link.title }}">
+                    {{ link.title }}
+                </span>
             {% else %}
-                {# Render multiple links as clickable anchors. #}
+                {# SCENARIO 2: Standard standalone interactive links #}
                 <a href="{{ link.url }}"
                    class="{{ card_footer_link_classes }}"
                    role="link"
-                        {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}
+                   {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}
                    aria-label="{{ link.title }}">
                     {{ link.title }}
                 </a>
             {% endif %}
         {% endfor %}
     </div>
-
 </div>

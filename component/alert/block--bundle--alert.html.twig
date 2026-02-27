@@ -1,21 +1,24 @@
-{#
-/**
- * @file
- * Template for the Alert component.
- *
- * Bootstrap Documentation
- * https://getbootstrap.com/docs/5.3
- *
- * Full List Utility Classes
- * https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
- *
- * Available fields located in:
- * - cua_theme.theme
- */
+{# 
+  =============================================================================
+  COMPONENT: Global Notification Alert
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (No-Lag)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ARIA 1.2 "Alert" Pattern
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Atomic Design: Leverages external macros to decouple sub-element rendering.
+  - Flexibility: Merges CMS-driven colors/borders with standard Bootstrap 5.3 utility.
+  - UX: Dismissible logic integrated via 'alert-dismissible' and data-bs-attributes.
+
+  MAINTENANCE WARNING:
+  If 'role="alert"' is used, screen readers will interrupt current tasks to 
+  announce the content. Use 'role="region"' (as implemented) for persistent 
+  informational banners that shouldn't startle the user.
+  =============================================================================
 #}
 
 {{ attach_library('cua_theme/alert') }}
 
+{# Macro Imports: The 'DRY' (Don't Repeat Yourself) approach to UI logic #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {% set alert_classes = [
@@ -26,15 +29,18 @@
     color_border ?: null,
     container_size ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-]|merge(utility_classes ? utility_classes : [])|filter(v => v)|join(' ') %}
+]|merge(utility_classes ?: [])|filter(v => v)|join(' ') %}
 
-{# Generate unique ID and an associated aria-labelledby ID for accessibility. #}
-{% set unique_id = 'block--node-' ~ '-alert' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{# 
+  ACCESSIBILITY MAPPING: 
+  Persistent unique IDs ensure that assistive technology can associate 
+  the container's landmark label with the visual heading.
+#}
+{% set unique_id = 'alert-' ~ elements.content['#block_content'].id()|default(random(1000)) %}
 {% set labelledby_id = unique_id ~ '--label' %}
 
-{# Render accordion wrapper with role and accessibility bindings. #}
-<div{{ attributes
-|without('id')
+<div {{ attributes
+    .without('id')
     .setAttribute('id', unique_id)
     .addClass(alert_classes)
     .setAttribute('role', 'region')
@@ -42,68 +48,52 @@
 }}>
 
     <div class="container">
-        <span class="row">
+        <div class="row"> {# Corrected <span> to <div> for block-level containment #}
 
-            {# Accessible close button #}
+            {# 
+               WCAG 2.1: Close buttons must have an explicit aria-label 
+               since they typically only contain an 'X' icon or CSS pseudo-element.
+            #}
             <button type="button" class="btn-close" aria-label="{{ 'Close alert'|t }}" data-bs-dismiss="alert"></button>
 
-            {# Dynamic column size if icon exists #}
             <div class="col p-2">
 
-                 {# Icon rendering section, if an icon is provided #}
+                {# 
+                   ICON ARCHITECTURE: 
+                   Rendered via macro to ensure consistent SVG/Icon-font 
+                   scaling across all card-type components. 
+                #}
                 {% if icon %}
                     {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
                     <div class="d-flex justify-content-center">
-                      <span class="icon-container">
-                        {{ iconMacros.render_icon(
-                            icon,
-                            icon_size,
-                            icon_color,
-                            padding,
-                            position_container,
-                            text_alignment
-                        ) }}
-                      </span>
+                        <span class="icon-container">
+                            {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
+                        </span>
                     </div>
                 {% endif %}
 
                 {{ title_prefix }}
                 {% if label %}
-                    <h3 id="{{ heading_id }}" class="display-4 card-text lead title {{ text_color ?: '' }}">
+                    {# SYNCED ID: Ensuring this matches the aria-labelledby of the parent #}
+                    <h3 id="{{ labelledby_id }}" class="display-4 card-text lead title {{ text_color ?: '' }}">
                         {{ label }}
                     </h3>
                 {% endif %}
                 {{ title_suffix }}
 
-                {# Render the body content #}
+                {# CONTENT LAYER: Processed via body macro for text-format sanitization #}
                 {% if content %}
                     {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                    {{ bodyMacros.render_body(
-                        content,
-                        padding,
-                        text_color,
-                        text_alignment
-                    ) }}
+                    {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
                 {% endif %}
 
-                {# Footer/links section, if present #}
+                {# FOOTER/CTA LAYER: Optional links or actions #}
                 {% if links %}
                     {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                    {{ cardFooterMacros.render_card_footer(
-                        links,
-                        container_size,
-                        color_background,
-                        position_container,
-                        text_alignment,
-                        padding,
-                        outline,
-                        button_color,
-                        button_layout
-                    ) }}
+                    {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout) }}
                 {% endif %}
 
             </div>
-
+        </div>
     </div>
-</div>
 </div>

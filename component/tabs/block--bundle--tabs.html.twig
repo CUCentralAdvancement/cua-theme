@@ -1,36 +1,71 @@
-{#
-/**
-* @file
-* Template for the Tab component.
-*
-* Bootstrap Documentation
-* https://getbootstrap.com/docs/5.3
-*
-* Full List Utility Classes
-* https://github.com/twbs/bootstrap/blob/v5.3.0/dist/css/bootstrap.css#L5360
+{# 
+  =============================================================================
+  COMPONENT: Accessible Tabbed Interface
+  STABILITY: Production-Stable / Architecture: Sinn556 iRS Equivalent (Multi-Layer)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ARIA 1.2 "Tab Panel" Pattern
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Wrapper: Provides a "Region" landmark so users can find the tabbed interface 
+    quickly via screen reader shortcut keys.
+  - Logic: Uses clean_class filters to ensure the CSS hooks don't "clank" 
+    against the DOM.
+  - Flexibility: The 'content' block is preserved for standard Drupal 
+    field rendering or manual Twig overrides.
+
+  MAINTENANCE WARNING:
+  The inner 'content' must render the <ul> with [role="tablist"] and the 
+  associated panes with [role="tabpanel"]. Ensure your Tab Item sub-component 
+  matches the IDs used in the tab buttons to prevent "Laggy" navigation.
+  =============================================================================
 #}
 
-{%
-    set classes = [
+{# Asset Load: Selective library injection for the tab movement #}
+{{ attach_library('cua_theme/tabs') }}
+
+{# ID ARCHITECTURE: Unique ID for the tab region #}
+{% set unique_id = 'tabs-' ~ elements.content['#block_content'].id()|default(random(1000)) %}
+{% set title_id = unique_id ~ '-title' %}
+
+{# CLASS ORCHESTRATION: Standardized Sinn-spec "Case" #}
+{% set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-]
-%}
+    'tabs-component',
+    'my-4'
+] %}
 
-{# Attach the library #}
-{{ attach_library('cua_theme/tabs') }}
+{# 
+   OUTER WRAPPER: 
+   role="region" ensures this is a navigable landmark.
+   aria-labelledby connects the region name to the visible heading.
+#}
+<div{{ attributes
+    .addClass(classes)
+    .setAttribute('id', unique_id)
+    .setAttribute('role', 'region')
+    .setAttribute('aria-labelledby', label ? title_id : null) 
+}}>
 
-<div{{ attributes.addClass(classes) }}>
     {{ title_prefix }}
     {% if label %}
-        <h2{{ title_attributes }}>{{ label }}</h2>
+        {# 
+           VISIBLE HEADING: 
+           Provides the programmatic name for the region landmark. 
+        #}
+        <h2 id="{{ title_id }}" {{ title_attributes.addClass('tab-section-title') }}>
+            {{ label }}
+        </h2>
     {% endif %}
     {{ title_suffix }}
+
     {% block content %}
-        <div{{ content_attributes.addClass('content') }}>
+        {# 
+           CONTENT AREA: 
+           This is where the Bootstrap 'nav-tabs' and 'tab-content' render. 
+        #}
+        <div{{ content_attributes.addClass('content mt-3') }}>
             {{ content }}
         </div>
     {% endblock %}
 </div>
-

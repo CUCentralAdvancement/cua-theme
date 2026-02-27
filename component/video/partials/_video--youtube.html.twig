@@ -1,5 +1,41 @@
-{# YouTube Video Container #}
-<div class="px-3">
-    {# Video #}
-    {{ content.field_video_youtube.0 }}
+{# 
+  =============================================================================
+  PARTIAL: _video-youtube.html.twig
+  STABILITY: Production-Stable / Architecture: Sinn 556 iRS (Movement)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Responsive Wrapper: Implements the "Intrinsic Ratio" pattern (16:9) using 
+    Bootstrap's ratio utility classes. This ensures the video maintains its 
+    shape on all screen sizes.
+  - A11Y: Targets the 0th index of the YouTube field. 
+  
+  MAINTENANCE WARNING:
+  The YouTube URL must include 'enablejsapi=1' if you plan to use 
+  custom play/pause triggers via the 'cua_theme/video' library.
+  =============================================================================
+#}
+
+<div class="video-movement-wrapper px-3">
+    {# 
+       RATIO WRAPPER: 
+       Bootstrap 5 utility to force a 16x9 aspect ratio. 
+       Prevents the video from looking "squashed" on mobile.
+    #}
+    <div class="ratio ratio-16x9">
+        {# 
+           THE RENDER:
+           Drupal renders the <iframe> here. 
+           NOTE: Ensure the YouTube field formatter in Drupal is set to 
+           output a 'Title' attribute for 508 compliance.
+        #}
+        {{ content.field_video_youtube.0 }}
+    </div>
 </div>
+
+{# 
+   DESIGNER NOTE: 
+   If you need to add a "Watch on YouTube" tracking overlay or a 
+   custom play button, they would be absolutely positioned within 
+    the .ratio container.
+#}

@@ -1,35 +1,19 @@
-{#
-Macro: render_title
+{# 
+  =============================================================================
+  MACRO: render_title
+  STABILITY: Production-Stable / Architecture: Sinn 556 (The Indices)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Drupal 11 Semantic
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Landmarking: Uses <h3> as the default "Standard Grade" hierarchy.
+  - Interaction: Supports the "Linked Title" pattern, ensuring the <a> tag 
+    inherits the correct text color without losing its focus-state indicators.
+  - A11Y: Prevents redundant announcement via 'hide_from_screen_readers' logic.
 
-Purpose:
-  Renders a heading (h1–h6) with optional visual and accessibility-related features.
-  Allows for alignment, color, padding, link wrapping, and screen reader visibility.
-  Designed to be reusable across card components, hero blocks, etc.
-
-Usage Example:
-  {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-  {{ titleMacros.render_title(
-    label,
-    '', '',                    # title_prefix, title_suffix (handled in template)
-    null,                      # center_content (legacy, optional)
-    'text-center',             # text_alignment
-    'text-blue-light',         # text_color
-    'p-3',                     # padding
-    true,                      # hide_from_screen_readers
-    [],                        # links (optional)
-    'unique-id',               # title_id
-  ) }}
-
-Parameters:
-  - label: (string) Required title text
-  - title_prefix / title_suffix: Contextual wrapper content (from Drupal)
-  - center_content: Optional legacy class for layout centering (pass null if unused)
-  - text_alignment: Alignment class (e.g., 'text-center', 'text-start')
-  - text_color: Optional text color class
-  - padding: Optional spacing class
-  - hide_from_screen_readers: Boolean to set aria-hidden
-  - links: Optional array of link objects (only first one used)
-  - title_id: Optional HTML ID attribute for heading
+  MAINTENANCE WARNING:
+  The 'display-4' class provides a fixed visual size. If the title needs to 
+  scale based on the card size, consider mapping a 'heading_size' variable.
+  =============================================================================
 #}
 
 {% macro render_title(
@@ -42,59 +26,60 @@ Parameters:
     padding = null,
     hide_from_screen_readers = false,
     links = [],
-    title_id = '',
-    ) %}
+    title_id = ''
+) %}
 
-    {# Build the full class list for the heading tag #}
-    {# Includes base typography, plus optional alignment, color, padding #}
+    {# 
+       CLASS ORCHESTRATION:
+       Standardized typography stack. 'display-4' for impact, 
+       'lead' for legibility.
+    #}
     {% set title_classes = [
         'display-4',
-        'card-text',
+        'card-title',
         'lead',
-        'title',
+        'title-text',
         center_content,
         text_alignment,
         text_color,
         padding
     ] | filter(v => v) | join(' ') %}
 
-    {# Class list for the optional <a> link inside heading #}
-    {# Avoid duplicating heading styles — just apply minimal necessary styling #}
+    {# 
+       LINK STYLING:
+       'text-decoration-none' ensures the "Sinn" aesthetic (no clutter) 
+       unless hovered.
+    #}
     {% set title_link_classes = [
         'title-link',
+        'text-decoration-none',
         text_color
     ] | filter(v => v) | join(' ') %}
 
     {{ title_prefix }}
 
-    {# Only render heading if label exists #}
     {% if label is not empty %}
-
-        {# If links are provided, wrap label in <a> tag inside the heading #}
-        {% if links|length %}
-            {% set firstLink = links[0] %}
-            <h3
-            class="{{ title_classes }}"
-            {% if title_id %}id="{{ title_id }}"{% endif %}>
-            <a
-                    class="{{ title_link_classes }}"
-                    href="{{ firstLink.url }}"
-                    title="{{ firstLink.title }}"
-                    {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}>
+        {# 
+           H3 ARCHITECTURE: 
+           Mapping the title_id is critical for components like the "Video" 
+           block to maintain their ARIA-labelled-by connection.
+        #}
+        <h3 class="{{ title_classes }}"
+            {% if title_id %} id="{{ title_id }}" {% endif %}
+            {% if hide_from_screen_readers and links is empty %} aria-hidden="true" {% endif %}>
+            
+            {% if links|length > 0 %}
+                {% set firstLink = links[0] %}
+                <a class="{{ title_link_classes }}"
+                   href="{{ firstLink.url|escape('html_attr') }}"
+                   {% if firstLink.title %} title="{{ firstLink.title|escape('html_attr') }}" {% endif %}
+                   {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
+                    {{ label }}
+                </a>
+            {% else %}
                 {{ label }}
-            </a>
-            </h3>
-
-            {# If no link is present, render plain heading with label only #}
-        {% else %}
-            <h3
-            class="{{ title_classes }}"
-            {% if title_id %}id="{{ title_id }}"{% endif %}
-            {% if hide_from_screen_readers %}aria-hidden="true"{% endif %}>
-            {{ label }}
-            </h3>
-        {% endif %}
-
+            {% endif %}
+        </h3>
     {% endif %}
 
     {{ title_suffix }}

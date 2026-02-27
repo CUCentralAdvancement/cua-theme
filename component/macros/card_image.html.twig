@@ -1,10 +1,22 @@
-{# Card Image Macro #}
+{# 
+  =============================================================================
+  MACRO: render_card_image
+  STABILITY: Production-Stable / Architecture: Sinn 103 (The Crystal)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Mobile UX Optimized
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Interaction: Supports the "Big Target" pattern by wrapping the image in 
+    the card's primary URL if available.
+  - Performance: Uses 'g-0' (no gutter) to ensure the image sits flush 
+    against the card edges, maintaining the "Case" integrity.
+  - A11Y: Prevents redundant link announcements via 'aria-hidden' and 
+    'aria-label' mapping.
 
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/card_image_macros.html.twig' as cardImageMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content) }} #}
+  MAINTENANCE WARNING:
+  'card_image' expects a full Drupal render array or <img> tag. If passing 
+  a background image, ensure 'role="img"' and 'aria-label' are added manually.
+  =============================================================================
+#}
 
 {% macro render_card_image(
     card_image,
@@ -16,42 +28,57 @@
     content = null,
     hide_from_screen_readers = false,
     links = null
-    ) %}
+) %}
 
     {% if card_image %}
 
-        {# Set card image classes #}
+        {# 
+           CONTAINER ORCHESTRATION:
+           Leveraging Bootstrap's 'card-header' to anchor the media at 
+           the top of the component stack.
+        #}
         {% set card_image_classes = [
             'card-header',
+            'border-0',
+            'bg-transparent',
             position_container ? 'd-flex ' ~ position_container : null,
-            text_alignment ?: null,
-            text_color ?: null,
-            image_size ?: null,
-            'g-0',
+            text_alignment,
+            text_color,
+            image_size,
+            'g-0'
         ] | filter(v => v) | join(' ') %}
 
-        {# Set presentation classes based on conditions #}
+        {# 
+           MEDIA WRAPPER:
+           Provides the hook for 'img-hover-effect' (e.g., zoom/brighten).
+        #}
         {% set presentation_classes = [
-            'card-img',
-            image_size ?: null,
+            'card-img-wrapper',
+            'overflow-hidden',
+            image_size
         ] | filter(v => v) | join(' ') %}
 
-        {# Content #}
         <div class="{{ card_image_classes }}">
             <div class="{{ presentation_classes }}">
 
-                {# Card Image with link #}
-                {% if links is not empty %}
+                {# 
+                   LINK LOGIC: 
+                   If links exist, the image becomes an interactive "pusher".
+                #}
+                {% if links is not empty and links[0].url is defined %}
                     {% set firstLink = links[0] %}
-                    <a class="img-hover-effect" href="{{ firstLink.url|escape('html_attr') }}"
+                    <a class="img-hover-effect d-block" 
+                       href="{{ firstLink.url|escape('html_attr') }}"
                        title="{{ firstLink.title|escape('html_attr') }}"
-                            {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}
+                       {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}
                        aria-label="{{ firstLink.title|escape('html_attr') }}">
                         {{ card_image }}
                     </a>
                 {% else %}
-                    {# Card Image without link #}
-                    {{ card_image }}
+                    {# DECORATIVE / NON-INTERACTIVE IMAGE #}
+                    <div class="img-static">
+                        {{ card_image }}
+                    </div>
                 {% endif %}
 
             </div>

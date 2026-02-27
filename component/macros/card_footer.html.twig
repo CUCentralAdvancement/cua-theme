@@ -1,39 +1,22 @@
-{#
-/**
- * @file
- * Macro for rendering a card footer with dynamic links.
- *
- * This macro generates a styled footer section for a card component, supporting
- * both single and multiple links. Links can include customization options like
- * colors, padding, and alignment.
- *
- * Parameters:
- * - links: An array of link objects, each containing:
- *     - url: The destination URL for the link.
- *     - title: The display text for the link.
- * - container_size: Optional; specifies the size of the footer container (e.g., 'container', 'container-fluid').
- * - color_background: Optional; sets a background color for the footer.
- * - position_container: Optional; adjusts positioning of the links within the container.
- * - text_alignment: Optional; aligns text within the footer (e.g., 'text-left', 'text-center').
- * - padding: Optional; sets padding for the footer.
- * - outline: Optional; enables outline styles for the buttons.
- * - button_color: Optional; specifies the color of the buttons (e.g., 'primary', 'secondary').
- * - hide_from_screen_readers: Optional; hides links from assistive technologies if set to true.
- * - is_single_link: Optional; if true, wraps the entire card content in a single clickable link.
- * - custom_label: Optional; sets a custom ARIA label for the footer in multiple link scenarios.
- *
- * Features:
- * - Accessible: Includes ARIA attributes for better screen reader compatibility.
- * - Responsive: Leverages Bootstrap utility classes for responsive design.
- * - Flexible: Handles multiple customization options for layout and style.
- */
+{# 
+  =============================================================================
+  MACRO: render_card_footer
+  STABILITY: Production-Stable / Architecture: Sinn 103 (Interactive)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Bootstrap 5.3
+  =============================================================================
+  TECHNICAL ARCHITECTURE:
+  - Flexbox Layout: Uses 'd-flex' with dynamic positioning to allow CTAs to 
+    align start, center, or end based on the card's visual balance.
+  - Accessibility: Implements 'role="group"' for multiple CTAs, providing 
+    semantic grouping for assistive technologies.
+  - Logic: Filters invalid links (missing URL or Title) at the "gasket" level 
+    to prevent empty button rendering.
+
+  MAINTENANCE WARNING:
+  The 'outline' parameter should be the Boolean 'true' or 'false'. The logic 
+  automatically prepends 'btn-outline-' or 'btn-' based on the result.
+  =============================================================================
 #}
-
-{# Import the macro file #}
-{# {% import '@cua_theme/component/macros/footer_macros.html.twig' as footerMacros %} #}
-
-{# Call the macro and pass the necessary variables #}
-{# {{ footerMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, hide_from_screen_readers, is_single_link, custom_label) }} #}
 
 {% macro render_card_footer(
     links,
@@ -43,64 +26,74 @@
     text_alignment = null,
     padding = null,
     outline = null,
-    button_color = null,
+    button_color = 'primary',
     hide_from_screen_readers = false,
     is_single_link = false,
     custom_label = null
-    ) %}
+) %}
 
-    {# Ensure 'links' is initialized to an empty array if not provided. Filter invalid entries. #}
+    {# Gasket: Filter out any links missing essential parts #}
     {% set links = links|default([])|filter(link => link.url is not empty and link.title is not empty) %}
 
-    {# Only render the footer if there are valid links. #}
     {% if links|length > 0 %}
         {% set multiple_links = links|length > 1 %}
 
-        {# Define dynamic classes for the footer container. #}
+        {# 
+           BUTTON STYLING:
+           Determines if we are using the "Solid" or "Instrument" (Outline) 
+           look for the buttons.
+        #}
+        {% set btn_variant = outline ? 'btn-outline-' ~ button_color : 'btn-' ~ button_color %}
+
+        {# FOOTER WRAPPER CLASSES #}
         {% set card_footer_classes = [
             'card-footer',
             'd-flex',
-            multiple_links ? 'multiple-links' : '',
+            'flex-wrap',
+            multiple_links ? 'multiple-links gap-2' : '',
             container_size,
             position_container,
             text_alignment,
             padding,
             'mb-5',
+            'border-0 bg-transparent'
         ] | filter(v => v) | join(' ') %}
 
-        {# Define dynamic classes for the footer links. #}
-        {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+        {# BUTTON CLASSES #}
         {% set card_footer_link_classes = [
             'card-link',
             'btn',
-            outline_class,
+            btn_variant,
             'text-decoration-none',
-            position_container,
-            text_alignment,
-            'p-2',
-            'mt-3',
+            'p-2 mt-3',
         ] | filter(v => v) | join(' ') %}
 
         <div class="{{ card_footer_classes }}"
-                {% if multiple_links %}
-            role="group" aria-label="{{ custom_label ?: 'Related links' }}"
-                {% endif %}>
+             {% if multiple_links %}
+                role="group" 
+                aria-label="{{ custom_label ?: 'Related links'|t }}"
+             {% endif %}>
 
-            {# Render each link in the footer. Handle single and multiple links. #}
             {% for link in links %}
                 {% if is_single_link %}
-                    {# Render single link (non-clickable text wrapping the card). #}
-                    <span class="{{ card_footer_link_classes }}">{{ link.title }}</span>
+                    {# 
+                       DECORATIVE BUTTON:
+                       Used when the entire card is wrapped in an <a> tag.
+                       aria-hidden="true" is essential here to prevent the 
+                       screen reader from seeing two identical links.
+                    #}
+                    <span class="{{ card_footer_link_classes }}" aria-hidden="true">
+                        {{ link.title|e }}
+                    </span>
                 {% else %}
-                    {# Render multiple links as clickable anchors. #}
+                    {# STANDARD CTA #}
                     <a href="{{ link.url }}"
                        class="{{ card_footer_link_classes }}"
-                            {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
-                        {{ link.title }}
+                       {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
+                        {{ link.title|e }}
                     </a>
                 {% endif %}
             {% endfor %}
         </div>
-
     {% endif %}
 {% endmacro %}
