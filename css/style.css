@@ -3265,3 +3265,28 @@ aside a.nav-link, aside a.bef-link {
     }
 
 }
+
+/* 2. FAQ fix */
+
+@media only screen and (max-width: 1024px) {
+  
+    /* 1. Stop the flexbox grid from crushing the accordion and fix the negative margins causing horizontal scroll */
+    .view-id-faqs .view-content.row {
+      display: block !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      width: 100%;
+    }
+  
+    /* 2. Force the accordion panels to use natural height instead of calculated inline styles */
+    .view-id-faqs .ui-accordion-content {
+      height: auto !important;
+      overflow: visible !important;
+      box-sizing: border-box;
+    }
+    
+    /* 3. Ensure the direct children of the row don't exceed screen width */
+    .view-id-faqs .view-content.row > div {
+      max-width: 100%;
+    }
+  }
