@@ -536,3 +536,20 @@ aside .nav {
 .toolbar.toolbar-secondary .toolbar-bar .toolbar-icon-rebuild-cache-access::before {
   background-color: transparent !important; /* Transparent background */
 }
+
+/* Target your Give Now link */
+
+/* Default */
+ul.nav .nav-item > a[href*="8403519"] {
+  background: var(--cua-gold);
+  color: var(--cua-black);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  border: none !important;
+}
+
+/* Hover invert */
+ul.nav .nav-item > a[href*="8403519"]:hover {
+  background: var(--cua-black);
+  color: var(--cua-gold);
+}

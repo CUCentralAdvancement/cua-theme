@@ -1,32 +1,59 @@
 {#
 /**
  * @file
- * Search Icon button toggle.
+ * _search-icon.html.twig
  *
- * This component renders a button that toggles the visibility of the
- * main search form using Bootstrap's collapse functionality.
+ * Search form toggle button.
+ *
+ * Renders a button that toggles the visibility of the collapsible
+ * search form region (#CollapseSearch) using Bootstrap's collapse JS.
  *
  * Accessibility:
- * - aria-expanded updates automatically by Bootstrap when toggled.
- * - aria-controls links the button to the collapsible search form region.
- * - aria-label provides screen readers with clear context.
+ * - aria-label="Open search" describes the *action* (opening the form),
+ *   not just the concept of search. This is more accurate for screen
+ *   reader users than a generic "Search" label, which implies the button
+ *   performs a search rather than revealing a form.
+ * - aria-expanded is managed automatically by Bootstrap JS when toggled.
+ *   It starts as "false" because the search panel is collapsed by default.
+ * - aria-controls links this button to the collapsible region it controls.
+ * - The SVG uses aria-hidden="true" and focusable="false":
+ *     aria-hidden="true"  — removes the SVG from the accessibility tree
+ *                           entirely. The button's aria-label provides
+ *                           the accessible name, so the SVG is redundant
+ *                           to screen readers.
+ *     focusable="false"   — prevents IE/legacy Edge from placing focus
+ *                           on the SVG element itself, which would create
+ *                           a confusing extra tab stop.
+ *
+ * NOTE: role="img" has been intentionally removed from the SVG.
+ *       It directly contradicts aria-hidden="true". When aria-hidden is
+ *       set, the element is removed from the accessibility tree, making
+ *       any role assignment on it meaningless. Using both together is
+ *       invalid and confusing — aria-hidden wins, so role="img" was
+ *       doing nothing except adding noise.
  *
  * Styling:
- * - Uses Bootstrap utility classes for flex and button styling.
- * - Inline SVG icon from Bootstrap Icons library for consistent visuals.
+ * - btn-link keeps the button visually minimal (no border/background).
+ * - p-0 and text-dark keep it flush and consistently colored.
+ * - Replace these classes as needed to match your design system.
  */
 #}
 
-
 <button
-        class="search-icon btn btn-default"
+        class="search-icon btn btn-link p-0 text-dark"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#CollapseSearch"
         aria-expanded="false"
         aria-controls="CollapseSearch"
-        aria-label="{{ 'Search'|t }}">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" role="img" aria-hidden="true" focusable="false">
+        aria-label="{{ 'Open search'|t }}">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="16" height="16"
+         fill="currentColor"
+         class="bi bi-search"
+         viewBox="0 0 16 16"
+         aria-hidden="true"
+         focusable="false">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
     </svg>
 </button>

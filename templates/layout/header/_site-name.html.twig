@@ -1,37 +1,60 @@
 {#
 /**
  * @file
+ * _site-name.html.twig
+ *
  * Site name and optional breadcrumb navigation.
  *
- * Displays the site name prominently with optional breadcrumb trail on
- * larger screens (desktop only).
+ * Displays the site name prominently with an optional breadcrumb trail
+ * on larger screens (desktop only).
  *
  * Variables:
- * - site_name: The site's name, escaped for safe output.
+ * - site_name: The site's name. Output with |e (HTML-escape only).
+ *              Do NOT use |t here — Drupal translates site_name upstream
+ *              before passing it to templates. Double-translating can
+ *              corrupt output or produce unexpected strings.
  * - page.breadcrumb: Optional breadcrumb block rendered if present.
  *
  * Usage:
- * This partial is included in the header template to show site identity
+ * This partial is included in page.html.twig to show site identity
  * and improve navigation context.
+ *
+ * NOTE: {% block %} tags have NO effect in included partials.
+ * They only function in templates that use {% extends %}.
+ * The breadcrumb is conditionally rendered with {% if %} only,
+ * which is correct and sufficient here.
  */
 #}
 
 <div class="container-fluid site-name-wrapper g-0">
     <div class="container px-3 my-1">
-        <div class="row">
-            {# Site name displayed with some margin for spacing #}
+        <div class="row align-items-center">
+
+            {#
+              Site name output.
+              |e applies HTML-escaping to guard against unexpected characters.
+              |t is intentionally omitted — Drupal has already translated
+              this value before it reaches this template.
+            #}
             <div class="col-auto site-slogan mx-2 my-2">
                 {{ site_name|e }}
             </div>
 
-            {# Optional breadcrumb navigation visible only on desktop #}
+            {#
+              Optional breadcrumb navigation.
+              Visible only on desktop (lg+) via d-none d-lg-block.
+
+              NOTE: No {% block %} wrapper is used here. This file is
+              an included partial, not an extended template. The {% block %}
+              tag that previously wrapped this section was silently ignored
+              by Twig and has been removed to prevent confusion.
+            #}
             {% if page.breadcrumb %}
-                {% block breadcrumb %}
-                    <div class="col d-none d-lg-block pt-2">
-                        {{ page.breadcrumb }}
-                    </div>
-                {% endblock %}
+                <div class="col d-none d-lg-block pt-2">
+                    {{ page.breadcrumb }}
+                </div>
             {% endif %}
+
         </div>
     </div>
 </div>
