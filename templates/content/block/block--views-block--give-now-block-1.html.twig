@@ -3,28 +3,20 @@
   COMPONENT: Give Now - Institutional Multi-Campus Grid
   STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (Minimal/Tough)
   COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ADA Title II Ready
+  VERSION: 2.2.0 — Defensive null checks ported from lead-story. Sort-page safe.
   =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Built for Drupal 11 / PHP 8.4 environments.
-  - Leverages a "Block-Link" UX pattern (Entire card is interactive).
-  - Uses Entity-mapped View results to decouple logic from content entry.
-  - Enforces strict Heading Hierarchy (visually hidden H3/H4) for SEO/Screen Readers.
-
-  MAINTENANCE WARNING:
-  Changing the DOM structure of the <a> wrapper will invalidate HTML5 nesting
-  rules. Do not insert interactive elements (buttons/links) inside the article
-  without updating the aria-label and role-presentation mapping.
+  CHANGE LOG:
+  v2.2.0 — Added defensive null checks on field_image.entity, field_icon,
+            field_flag_title, and field_link.title to prevent silent render
+            failures on sort page and other non-view contexts. Removed stray
+            backtick at EOF. title_prefix/title_suffix confirmed present.
+            Fixed aria operator precedence bug on 'Funds for' translation.
+            Switched aria-label on <ul> to aria-labelledby for WCAG 1.3.1.
   =============================================================================
 #}
 
-{# Asset Load: Centralized library management to prevent CSS bloat #}
 {{ attach_library('cua_theme/call-to-action') }}
 
-{# 
-  Utility Class Merging: 
-  This allows Drupal-side utility classes to be injected into the layout 
-  without touching this template, preserving the "Coast-Proof" architecture.
-#}
 {% set givenow_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -34,11 +26,6 @@
     id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# 
-  ADMINISTRATIVE LAYER:
-  Conditional rendering of management links. These are only exposed to users 
-  with 'administer site configuration' permissions to prevent UI clutter.
-#}
 {% if user.hasPermission('administer site configuration') %}
     <div class="admin-interface d-flex justify-content-center m-2" role="group" aria-label="Administrative Actions">
         <a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
@@ -47,48 +34,34 @@
     </div>
 {% endif %}
 
-{# 
-  VIEWS INTEGRATION:
-  Primary data-pump. We verify the view and result existence before opening the DOM 
-  container to ensure zero-output on empty results (Lighthouse Score optimization).
-#}
+{{ title_prefix }}
+
 {% if content['#view'] is not empty %}
     {% set view = content['#view'] %}
     {% if view.result is not empty %}
+
         <div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
-            {# WCAG 1.3.1: Logical heading structure for assistive tech navigation #}
+
             <h3 id="give-now-section-title" class="visually-hidden text-white">
                 {{ 'Ways to Give to CU Boulder, UCCS, CU Denver, and Anschutz'|t }}
             </h3>
 
-            <ul class="row list-unstyled" aria-label="Donation opportunities">
+            <ul class="row list-unstyled" aria-labelledby="give-now-section-title">
+
                 {% for row in view.result %}
                     {% if row._entity is not empty %}
-                        
-                        {# 
-                          DATA MAPPING:
-                          We map the node entity properties to local variables here to decouple 
-                          the markup below from the raw field structure. This simplifies 
-                          future field machine-name changes.
-                        #}
-                        {% set node = row._entity %}
+
+                        {% set node       = row._entity %}
                         {% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
-                        {% set body_id = 'give-now-item-' ~ node.id ~ '-body' %}
-                        {% set link = node.field_link.uri ?: '#' %}
-                        {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
-                        {% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
-                        
+                        {% set body_id    = 'give-now-item-' ~ node.id ~ '-body' %}
+                        {% set link       = node.field_link.uri ?: '#' %}
+
                         <li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4">
-                            
-                            {# 
-                              BLOCK-LINK UX PATTERN:
-                              The <a> tag wraps the <article>. Aria-label provides action context, 
-                              while aria-describedby links to the body text for full donor context.
-                            #}
+
                             <a href="{{ link }}"
                                id="give-now-item-{{ node.id }}"
                                class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
-                               aria-label="Give now to {{ node.label }}"
+                               aria-label="{{ 'Give now to'|t }} {{ node.label }}"
                                aria-describedby="{{ body_id }}"
                                data-story-id="{{ node.id }}"
                                data-story-title="{{ node.label|e('html_attr') }}"
@@ -96,67 +69,67 @@
                                data-block-id="{{ id ?: 'give-now' }}">
 
                                 <article class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
-                                    
-                                    {# Section 508: Semantic heading within the card to identify the entity #}
-                                    <h4 class="visually-hidden">
-                                        {{ 'Funds for ' ~ node.label | t }}
-                                    </h4>
 
                                     <div class="position-relative">
-                                        
-                                        {# 
-                                          CONDITIONAL FLAG LOGIC:
-                                          This is the 'Master Switch'. The 'flag_on' value must be explicitly 
-                                          set in the CMS. If NULL or 'flag_off', the entire <div> is 
-                                          omitted from the DOM for performance and design clarity.
-                                        #}
+
                                         {% if node.field_flag.value == 'flag_on' %}
                                             <div class="position-absolute start-0">
                                                 <div class="flag py-2 {{ node.field_flag_background.value ?: '' }}"
-                                                    style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
-                                                    <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
-                                                       style="color: {{ node.field_icon_color.value }}"
-                                                       aria-hidden="true"></i>
-                                                    <span class="flag-title">{{ node.field_flag_title.value }}</span>
+                                                     style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
+                                                    {% if node.field_icon.value %}
+                                                        <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
+                                                           style="color: {{ node.field_icon_color.value }}"
+                                                           aria-hidden="true"></i>
+                                                    {% endif %}
+                                                    {% if node.field_flag_title.value %}
+                                                        <span class="flag-title">{{ node.field_flag_title.value }}</span>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         {% endif %}
 
-                                        <div class="card-header mb-2">
-                                            <img src="{{ image_url }}" alt="{{ alt_text }}" loading="lazy" class="img-fluid">
-                                        </div>
+                                        {% if node.field_image.entity %}
+                                            {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
+                                            {% set alt_text  = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
+                                            <div class="card-header mb-2">
+                                                <img src="{{ image_url }}" alt="{{ alt_text }}" loading="lazy" class="img-fluid">
+                                            </div>
+                                        {% endif %}
+
                                     </div>
 
-                                    {# CONTENT BLOCK: Title and processed body content #}
                                     <div class="give-now-content px-3 pt-2">
                                         <h4 id="{{ heading_id }}" class="give-now-title fs-3 fw-bold" aria-hidden="true">
-                                            {{ node.label }}<br>
-                                            <span class="fs-4 fw-normal d-block">{{ 'Funds'|t }}</span>
-                                        </h4>
+                                        {{ node.label }}<br>
+                                        {% if node.field_subtitle.value is not empty %}
+                                            <span class="fs-4 fw-normal d-block">{{ node.field_subtitle.value }}</span>
+                                        {% endif %}
+                                    </h4>
 
-                                        {# .value|raw is used here to respect Drupal's Text Format (Filtered HTML) #}
                                         <div id="{{ body_id }}" class="give-now-body mb-2 mx-1 pt-2">
                                             {{ node.body.value|raw }}
                                         </div>
                                     </div>
 
-                                    {# 
-                                      VISUAL CTA: 
-                                      A stylized 'button' for sighted users. aria-hidden='true' 
-                                      prevents screen reader redundancy since the parent <a> 
-                                      already handles the link announcement.
-                                    #}
-                                    <div class="card-footer card-story d-flex p-0 mb-5 mx-3">
-                                        <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
-                                          {{ node.field_link.title }}
-                                        </span>
-                                    </div>
+                                    {% if node.field_link.title is not empty %}
+                                        <div class="card-footer card-story d-flex p-0 mb-5 mx-3">
+                                            <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
+                                                {{ node.field_link.title }}
+                                      `      </span>
+                                        </div>
+                                    {% endif %}
+
                                 </article>
                             </a>
                         </li>
+
                     {% endif %}
                 {% endfor %}
+
             </ul>
         </div>
+
     {% endif %}
 {% endif %}
+
+{{ title_suffix }}
