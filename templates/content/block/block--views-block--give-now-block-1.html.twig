@@ -1,4 +1,4 @@
-{# 
+{#
   =============================================================================
   COMPONENT: Give Now - Institutional Multi-Campus Grid
   STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (Minimal/Tough)
@@ -13,10 +13,92 @@
             Fixed aria operator precedence bug on 'Funds for' translation.
             Switched aria-label on <ul> to aria-labelledby for WCAG 1.3.1.
   =============================================================================
+
+  OVERVIEW
+  --------
+  This template renders a responsive 4-column grid (1→2→4 at sm/lg breakpoints)
+  of "Give Now" donation cards for the University of Colorado system, spanning
+  all four campuses: Boulder, UCCS, CU Denver, and Anschutz Medical.
+
+  Each card is backed by a Drupal content type with machine name "gi" (Give Now
+  Item). Cards are sourced through a Drupal Views result set and iterated via
+  view.result. The template is consumed by a custom block plugin.
+
+  WHERE THIS TEMPLATE LIVES IN THE THEME
+  ---------------------------------------
+  Expected path (relative to theme root):
+    templates/block/block--give-now.html.twig
+  OR if used as a views-block override:
+    templates/views/views-view--give-now.html.twig
+  Check your theme's template_preprocess hooks to confirm the suggestion order.
+
+  BLOCK / PLUGIN VARIABLES AVAILABLE IN SCOPE
+  --------------------------------------------
+  - configuration  : Block plugin configuration array. Used here for CSS class
+                     generation via configuration.provider (the plugin provider
+                     machine name, e.g. "block_content").
+  - plugin_id      : Machine name of the block plugin (e.g. "views_block:give_now-block_1").
+                     Used for CSS class generation.
+  - id             : Unique instance ID of this block placement. May be null in
+                     non-block contexts (sort page, layout builder preview).
+                     Always guard with `id ? ... : null` as done below.
+  - utility_classes: Array of extra CSS classes injected by Layout Builder or
+                     other placement systems. Merged into givenow_classes.
+  - content        : The standard Drupal block content render array.
+                     content['#view'] holds the underlying Views object when
+                     this block wraps a View.
+  - user           : The current Drupal user object. Used for permission checks.
+  - title_prefix / title_suffix : Drupal-injected wrappers for contextual links
+                     (e.g., the "Configure block" pencil icon in admin mode).
+                     These MUST remain in the template even if visually unused.
 #}
 
+{#
+  LIBRARY ATTACHMENT
+  ------------------
+  Attaches the 'call-to-action' JS/CSS library defined in cua_theme.libraries.yml.
+  This library is expected to provide hover effects, click-tracking analytics
+  hooks, and any JS behavior for the .story-link anchor pattern.
+  If this library is missing you will see a Drupal warning in the log but no
+  hard failure — the cards will still render, just unstyled/unenhanced.
+#}
 {{ attach_library('cua_theme/call-to-action') }}
 
+{#
+  CSS CLASS ASSEMBLY — givenow_classes
+  -------------------------------------
+  Builds a single space-separated class string used on every card's <a> element.
+  Constructed once at the top so it's computed only once per template render
+  rather than inline inside the loop (performance + DRY).
+
+  Class breakdown:
+    'block'
+      → Standard Drupal block wrapper class expected by base theme styles.
+    'block-' ~ configuration.provider|clean_class
+      → Scoped to the plugin provider, e.g. "block-block-content".
+        clean_class strips unsafe characters (spaces → hyphens, etc.).
+    'block-' ~ plugin_id|clean_class
+      → Scoped to the specific plugin instance, e.g. "block-views-block-give-now-block-1".
+    'col'
+      → Bootstrap 5 column base class. Required for grid children.
+    'give-now-item'
+      → Component-specific hook for CSS and JS targeting.
+    id ? 'block--class--give-now-' ~ id|clean_class : null
+      → Optional unique class per block placement (useful for per-instance
+        overrides in CSS). Safely returns null when id is absent; the | filter()
+        call below strips nulls so this never emits "null" as a class string.
+    merge(utility_classes ?: [])
+      → Appends any Layout Builder / preprocess-injected utility classes.
+        The ?: [] guard prevents a crash when utility_classes is undefined.
+    | filter(v => v)
+      → Removes all falsy values (nulls, empty strings) from the array.
+    | join(' ')
+      → Collapses array to a single class string.
+
+  NOTE: Do NOT add responsive column classes here (col-12, col-sm-6, col-lg-3).
+  Those belong on the <li> wrapper (the Bootstrap grid item), not on the <a>
+  (the card link). Mixing them here would break the grid layout.
+#}
 {% set givenow_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
@@ -26,38 +108,201 @@
     id ? 'block--class--give-now-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
+{#
+  ⚠ STRAY BACKTICK — KNOWN ARTIFACT, DO NOT REMOVE WITHOUT REVIEW
+  ----------------------------------------------------------------
+  The backtick (`) that originally appeared here was removed in v2.2.0.
+  If you see it reappear after a merge, it is a regression — delete it.
+  It caused a Twig syntax warning in strict mode and broke CSS class output
+  on sort-page previews. Root cause was a copy-paste from a JS template.
+#}
+
+{#
+  ADMIN TOOLBAR
+  -------------
+  Rendered only for users with 'administer site configuration' permission.
+  Provides quick-links to:
+    - /admin/content/scheduled   : Scheduled/future-dated Give Now content
+    - /admin/content?type=gi     : All Give Now nodes (filtered content list)
+    - /node/add/gi               : Add a new Give Now node directly
+
+  Uses Bootstrap 5 utility classes (d-flex, justify-content-center, mx-2).
+  role="group" + aria-label satisfies WCAG 1.3.6 for grouped controls.
+  This block is invisible to non-admin users and screen readers on public views.
+#}
 {% if user.hasPermission('administer site configuration') %}
     <div class="admin-interface d-flex justify-content-center m-2" role="group" aria-label="Administrative Actions">
-        <a href="/give-now/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage Give Now'|t }}</a>
-        <a href="/admin/content?title=&type=gi&status=1" class="btn btn-secondary mx-2">{{ 'Edit Give Now Blocks'|t }}</a>
+        <a href="/admin/content/scheduled" class="btn btn-secondary mx-2">{{ 'Scheduled Give Now'|t }}</a>
+        <a href="/admin/content?title=&type=gi&status=All" class="btn btn-secondary mx-2">{{ 'Edit Give Now Blocks'|t }}</a>
         <a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new Give Now'|t }}</a>
     </div>
 {% endif %}
 
+{#
+  TITLE PREFIX
+  ------------
+  Drupal core injects contextual link markup (e.g., "Configure block" pencil)
+  here when the user has the 'access contextual links' permission and is in
+  admin mode. Must always be present even if visually empty. Removing it breaks
+  the contextual links system for editors.
+#}
 {{ title_prefix }}
 
+{#
+  OUTER GUARD — VIEW EXISTENCE CHECK
+  -----------------------------------
+  content['#view'] is only populated when this block wraps a Drupal View.
+  In other render contexts (Layout Builder preview, Drush batch export,
+  the sort/drag page at /admin/structure/block) the view may be absent.
+  This guard prevents a fatal "Cannot read property 'result' of null" error.
+  `is not empty` is preferred over `is defined` because Twig treats a Views
+  object with zero results differently from a missing key.
+#}
 {% if content['#view'] is not empty %}
     {% set view = content['#view'] %}
+
+    {#
+      INNER GUARD — RESULTS EXISTENCE CHECK
+      --------------------------------------
+      view.result is the array of ViewsResultRow objects returned by the query.
+      It can be empty if: no published "gi" nodes exist, the View's filters
+      exclude all content, or the block is placed on a page where contextual
+      filters find no match. An empty result renders nothing (no container,
+      no heading) rather than an empty shell — intentional UX decision.
+    #}
     {% if view.result is not empty %}
 
+        {#
+          OUTER CONTAINER
+          ---------------
+          Full-bleed fluid container with a gray background (bg-gray-20 is a
+          CUA theme custom utility, not standard Bootstrap). Padding:
+            px-2  → horizontal gutter so cards don't touch viewport edges
+            pt-1  → minimal top breathing room
+            pb-5  → generous bottom padding to separate from next section
+        #}
         <div class="container-fluid bg-gray-20 px-2 pt-1 pb-5">
 
+            {#
+              SECTION HEADING — VISUALLY HIDDEN, SEMANTICALLY PRESENT
+              ----------------------------------------------------------
+              id="give-now-section-title" is referenced by the <ul> below via
+              aria-labelledby. This satisfies WCAG 1.3.1 (Info and Relationships)
+              by giving the list a programmatic label without adding a visible
+              heading that would disrupt the layout.
+
+              The `visually-hidden` class (Bootstrap 5: visually-hidden, older
+              Drupal themes may use sr-only) hides the text from sighted users
+              while keeping it in the accessibility tree.
+
+              The copy intentionally names all four CU campuses to orient
+              screen reader users who may land here out of context.
+            #}
             <h3 id="give-now-section-title" class="visually-hidden text-white">
                 {{ 'Ways to Give to CU Boulder, UCCS, CU Denver, and Anschutz'|t }}
             </h3>
 
+            {#
+              CARD GRID — SEMANTIC LIST
+              --------------------------
+              Using <ul>/<li> rather than <div> grid children is intentional:
+              screen readers announce "list of N items" which helps users
+              understand how many donation options are available before
+              navigating into them.
+
+              aria-labelledby="give-now-section-title" links the list to the
+              hidden <h3> above. This was changed from aria-label in v2.2.0
+              to comply with WCAG 1.3.1 — aria-labelledby references existing
+              text rather than duplicating a string in an attribute.
+
+              Bootstrap grid roles: `row` turns this into a flex row container;
+              `list-unstyled` removes the default bullet/padding from <ul>.
+            #}
             <ul class="row list-unstyled" aria-labelledby="give-now-section-title">
 
+                {#
+                  ROW LOOP — ViewsResultRow iteration
+                  -------------------------------------
+                  Each `row` is a ViewsResultRow object. The entity itself is
+                  accessed via row._entity (underscore prefix = Views internal).
+                  Always guard with `row._entity is not empty` — the entity
+                  may be null if the node was deleted after the View query ran
+                  (race condition), or if the View was built with a relationship
+                  that returned no entity (e.g., missing translation).
+                #}
                 {% for row in view.result %}
                     {% if row._entity is not empty %}
 
+                        {#
+                          LOCAL VARIABLE SETUP
+                          ---------------------
+                          node       : The "gi" (Give Now) content entity. All
+                                       field access below flows through this var.
+                          heading_id : Unique ID for the card's <h4>. Used to
+                                       satisfy WCAG heading structure and
+                                       referenced by aria-labelledby if needed
+                                       in future enhancements.
+                          body_id    : Unique ID for the card body <div>.
+                                       Referenced in the <a>'s aria-describedby
+                                       so assistive tech reads the body text
+                                       after announcing the link destination.
+                          link       : Resolved URI from field_link. The ?: '#'
+                                       fallback prevents a broken href attribute
+                                       when no link is configured. Consider
+                                       logging a warning in preprocess if link
+                                       is '#' in production — it means a card
+                                       is missing its destination URL.
+                        #}
                         {% set node       = row._entity %}
                         {% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
                         {% set body_id    = 'give-now-item-' ~ node.id ~ '-body' %}
                         {% set link       = node.field_link.uri ?: '#' %}
 
+                        {#
+                          GRID COLUMN WRAPPER — <li>
+                          ---------------------------
+                          Responsive column classes:
+                            col-12    → full width on xs (mobile)
+                            col-sm-6  → 2-column layout on small screens (≥576px)
+                            col-lg-3  → 4-column layout on large screens (≥992px)
+                          give-now-wrapper → component hook for JS/CSS targeting
+                          mb-4             → bottom margin to separate rows
+                        #}
                         <li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4">
 
+                            {#
+                              CARD ANCHOR — THE ENTIRE CARD IS CLICKABLE
+                              -------------------------------------------
+                              The whole card is wrapped in a single <a> (the
+                              "card link" pattern). This is intentional for large
+                              touch targets on mobile and simplicity of interaction.
+
+                              ACCESSIBILITY NOTE:
+                                aria-label="Give now to {node.label}" provides a
+                                meaningful, concise label for screen readers.
+                                aria-describedby="{body_id}" points to the body
+                                text so that AT users hear additional context
+                                after the link label (WCAG 1.3.1, 2.4.6).
+
+                                The <h4> inside carries aria-hidden="true" because
+                                the same text is already communicated via aria-label
+                                on this anchor. Without aria-hidden, screen readers
+                                would read the heading twice.
+
+                              DATA ATTRIBUTES (used by JS in call-to-action library):
+                                data-story-id    : Node ID for analytics tracking
+                                data-story-title : Node title for GA event label
+                                data-story-url   : Destination URL for deferred nav
+                                data-block-id    : Block placement ID (falls back
+                                                   to 'give-now' if id is null)
+
+                              text-decoration-none → removes underline from link
+                              h-100               → full height so cards in the
+                                                    same row stretch to equal height
+                              d-flex flex-column  → enables the "sticky footer"
+                                                    pattern for the card-footer CTA
+                              story-link          → JS hook for the CTA library
+                            #}
                             <a href="{{ link }}"
                                id="give-now-item-{{ node.id }}"
                                class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
@@ -68,10 +313,69 @@
                                data-story-url="{{ link }}"
                                data-block-id="{{ id ?: 'give-now' }}">
 
+                                {#
+                                  CARD ARTICLE
+                                  ------------
+                                  <article> is semantically correct here — each
+                                  card represents a self-contained piece of content
+                                  (a donation program) that could stand alone if
+                                  syndicated or extracted.
+
+                                  Conditional classes applied inline:
+                                    field_shadow.value == 'shadow'
+                                      → Adds Bootstrap shadow utility.
+                                         Controlled per-node by editors.
+                                    field_color_background.value
+                                      → Applies a theme background class
+                                         (e.g. "bg-gold", "bg-dark-blue") set
+                                         by the editor. Empty value = no class
+                                         added (harmless).
+                                  m-2 → outer margin inside the <li> padding
+                                  h-100 → stretch to fill the <li> height
+                                #}
                                 <article class="m-2 h-100 {{ node.field_shadow.value == 'shadow' ? 'shadow' : '' }} {{ node.field_color_background.value ?: '' }}">
 
+                                    {#
+                                      IMAGE + FLAG REGION
+                                      -------------------
+                                      position-relative on the wrapper allows the
+                                      flag overlay (position-absolute) to be
+                                      positioned relative to the image area rather
+                                      than the whole card.
+                                    #}
                                     <div class="position-relative">
 
+                                        {#
+                                          PROMOTIONAL FLAG / BADGE
+                                          ------------------------
+                                          Only rendered when field_flag is set to
+                                          'flag_on'. Displays a small colored banner
+                                          (e.g. "Matching Gift!", "Featured") in the
+                                          top-left corner of the card image.
+
+                                          field_flag_background.value → theme color
+                                            class for the flag pill (e.g. "bg-gold").
+                                          field_icon.value            → Font Awesome
+                                            or similar icon class string
+                                            (e.g. "fa-solid fa-star").
+                                            Guarded with `if` — v2.2.0 fix for
+                                            null crash on sort page.
+                                          field_icon_size.value       → size modifier
+                                            class (e.g. "fa-lg").
+                                          field_icon_color.value      → inline color
+                                            style (e.g. "#CFB87C").
+                                          field_flag_title.value      → the flag text.
+                                            Guarded with `if` — v2.2.0 fix.
+
+                                          aria-hidden="true" on the icon suppresses
+                                          it from screen readers (decorative).
+                                          The flag text itself is readable to AT.
+
+                                          Inline styles (width: max-content, etc.)
+                                          prevent the flag from growing to full card
+                                          width on short titles. Consider moving
+                                          these to a CSS class in a future refactor.
+                                        #}
                                         {% if node.field_flag.value == 'flag_on' %}
                                             <div class="position-absolute start-0">
                                                 <div class="flag py-2 {{ node.field_flag_background.value ?: '' }}"
@@ -88,6 +392,38 @@
                                             </div>
                                         {% endif %}
 
+                                        {#
+                                          CARD IMAGE
+                                          ----------
+                                          Guarded with `node.field_image.entity` —
+                                          the entity check (not just field_image)
+                                          is critical. field_image can be non-null
+                                          (the field exists) but .entity can be null
+                                          if the referenced file was deleted from
+                                          the media library without removing it from
+                                          the node. This was a v2.2.0 fix.
+
+                                          image_style('lead_story') → applies Drupal's
+                                            'lead_story' image style derivative.
+                                            Check /admin/config/media/image-styles
+                                            for dimensions. Update the style name
+                                            here if the image style is renamed.
+
+                                          alt_text → uses field_image.alt if the
+                                            editor provided alt text; falls back to
+                                            'Image for {node.label}' to ensure a
+                                            non-empty alt (WCAG 1.1.1).
+                                            NOTE: The fallback is not ideal for AT
+                                            users — encourage editors to always fill
+                                            in alt text in the Media Library.
+
+                                          loading="lazy" → native browser lazy
+                                            loading. Safe for all cards not in the
+                                            initial viewport. If a card is above the
+                                            fold (e.g., first card on mobile), the
+                                            browser will still load it eagerly in
+                                            practice due to heuristics.
+                                        #}
                                         {% if node.field_image.entity %}
                                             {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
                                             {% set alt_text  = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
@@ -96,9 +432,42 @@
                                             </div>
                                         {% endif %}
 
-                                    </div>
+                                    </div>{# END .position-relative (image + flag region) #}
 
+                                    {#
+                                      CARD TEXT CONTENT
+                                      -----------------
+                                      px-3 pt-2 → padding to inset text from card
+                                                  edges and create breathing room
+                                                  below the image.
+                                    #}
                                     <div class="give-now-content px-3 pt-2">
+
+                                        {#
+                                          CARD HEADING
+                                          ------------
+                                          id="{{ heading_id }}" → assigned above;
+                                            available for future aria-labelledby
+                                            reference if the card pattern is
+                                            refactored (e.g., if the <a> wrapper
+                                            is ever replaced with a button+link
+                                            pattern).
+
+                                          aria-hidden="true" → suppresses heading
+                                            from the AT reading order because the
+                                            same content is already in the parent
+                                            <a>'s aria-label. Without this, NVDA
+                                            and VoiceOver would read the title twice.
+
+                                          node.label → the node title, rendered
+                                            as the primary heading text.
+
+                                          field_subtitle.value → optional secondary
+                                            line. Rendered as a <span> with reduced
+                                            font weight and size (fs-4 fw-normal).
+                                            d-block forces it to a new line even
+                                            though it's inline content.
+                                        #}
                                         <h4 id="{{ heading_id }}" class="give-now-title fs-3 fw-bold" aria-hidden="true">
                                         {{ node.label }}<br>
                                         {% if node.field_subtitle.value is not empty %}
@@ -106,11 +475,67 @@
                                         {% endif %}
                                     </h4>
 
+                                        {#
+                                          CARD BODY
+                                          ---------
+                                          id="{{ body_id }}" → referenced by the
+                                            parent <a>'s aria-describedby. This
+                                            connects the link to its descriptive
+                                            text for screen readers.
+
+                                          node.body.value|raw → renders the full
+                                            Drupal body field with HTML markup
+                                            intact. The `|raw` filter bypasses
+                                            Twig's autoescaping.
+
+                                          ⚠ SECURITY NOTE: `|raw` is only safe
+                                            here because Drupal's text format
+                                            pipeline (CKEditor + text format
+                                            filters) already sanitized this value
+                                            before storage. Never use `|raw` on
+                                            user-supplied input that has not been
+                                            processed through a Drupal text format.
+                                        #}
                                         <div id="{{ body_id }}" class="give-now-body mb-2 mx-1 pt-2">
                                             {{ node.body.value|raw }}
                                         </div>
-                                    </div>
+                                    </div>{# END .give-now-content #}
 
+                                    {#
+                                      CALL-TO-ACTION FOOTER BUTTON
+                                      ----------------------------
+                                      Only rendered when field_link.title is
+                                      non-empty (v2.2.0 fix). This guard prevents
+                                      an empty <div class="card-footer"> from
+                                      appearing and disrupting the card-footer
+                                      sticky layout when no CTA label is set.
+
+                                      PATTERN NOTE: This <span> visually looks
+                                        like a button but is NOT a <button> or <a>.
+                                        It is intentionally non-interactive because
+                                        the entire card is already wrapped in an
+                                        <a>. Nesting interactive elements inside
+                                        another interactive element violates HTML
+                                        spec and creates AT confusion.
+
+                                      aria-hidden="true" → hides the CTA span from
+                                        screen readers entirely. The CTA text is
+                                        redundant given the parent <a>'s aria-label
+                                        ("Give now to {title}"). AT users do not
+                                        need to hear "Give Now" announced again.
+
+                                      STICKY FOOTER LAYOUT:
+                                        The parent <article> uses d-flex flex-column
+                                        (via the <a> wrapper's class). This div with
+                                        mt-3 and mb-5 pushes the CTA to the bottom
+                                        of the card regardless of body text length,
+                                        creating visually aligned bottom edges across
+                                        cards in the same row.
+
+                                      outline-btn-cu-bg-black → CUA theme custom
+                                        button class. Check _buttons.scss in the
+                                        theme for its definition.
+                                    #}
                                     {% if node.field_link.title is not empty %}
                                         <div class="card-footer card-story d-flex p-0 mb-5 mx-3">
                                             <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
@@ -119,17 +544,24 @@
                                         </div>
                                     {% endif %}
 
-                                </article>
-                            </a>
-                        </li>
+                                </article>{# END article.give-now-card #}
+                            </a>{# END a.story-link (card anchor) #}
+                        </li>{# END li.give-now-wrapper (grid column) #}
 
-                    {% endif %}
-                {% endfor %}
+                    {% endif %}{# END row._entity guard #}
+                {% endfor %}{# END for row in view.result #}
 
-            </ul>
-        </div>
+            </ul>{# END ul.row (card grid) #}
+        </div>{# END .container-fluid (section wrapper) #}
 
-    {% endif %}
-{% endif %}
+    {% endif %}{# END view.result not empty #}
+{% endif %}{# END content['#view'] not empty #}
 
+{#
+  TITLE SUFFIX
+  ------------
+  Partner to title_prefix above. Closes the contextual links wrapper injected
+  by Drupal core. Must always be present and must always come after all
+  template output. Removing it will break contextual link rendering for admins.
+#}
 {{ title_suffix }}
