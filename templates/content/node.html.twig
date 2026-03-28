@@ -1,7 +1,8 @@
 {#
 /**
  * @file
- * AI-Optimized Node Template (Layout Builder Guaranteed Version)
+ * AI-Optimized Node Template (Durable "Sinn 556" Version)
+ * Fixes TypeError: strip_tags() by ensuring strings are rendered before filtering.
  */
 #}
 {{ attach_library('bootstrap_barrio/node') }}
@@ -24,10 +25,12 @@
     {{ title_prefix }}
     {% if not page %}
       <h2{{ title_attributes.addClass('node__title').setAttribute('itemprop', 'headline') }}>
-        <a href="{{ url }}" rel="bookmark" itemprop="mainEntityOfPage">{{ node.label }}</a>
+        {# Use |render|striptags for the title link just in case of weird characters #}
+        <a href="{{ url }}" rel="bookmark" itemprop="mainEntityOfPage">{{ node.label|render|striptags|trim }}</a>
       </h2>
     {% else %}
-      <meta itemprop="headline" content="{{ node.label }}">
+      {# node.label is safe, but |render ensures it's a string for the meta tag #}
+      <meta itemprop="headline" content="{{ node.label|render|striptags|trim }}">
     {% endif %}
     {{ title_suffix }}
     
@@ -39,7 +42,7 @@
             {% trans %}
               Submitted by 
               <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                <span itemprop="name">{{ author_name }}</span>
+                <span itemprop="name">{{ author_name|render|striptags|trim }}</span>
               </span> 
               on 
               <time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">{{ date }}</time>
@@ -54,14 +57,9 @@
 
   <div{{ content_attributes.addClass('node__content', 'clearfix').setAttribute('itemprop', 'articleBody') }}>
     {# 
-      ======================================================================
-      AI OPTIMIZATION: THE "TAG WRAPPER" WORKAROUND
-      Since Layout Builder hides the render arrays for field_tags and 
-      field_campus, we manually check if they exist and wrap them in 
-      a span with 'itemprop="keywords"'.
-      ======================================================================
+      AI OPTIMIZATION: Manually wrap content in keywords. 
+      This is safe because {{ content }} is a render array meant for printing.
     #}
-    
     {% if content.field_tags or content.field_campus %}
       <span itemprop="keywords" style="display: contents;">
         {{ content }}
@@ -72,13 +70,30 @@
   </div>
 
   {% if view_mode == 'full' %}
+    {# 
+      FIXED SUMMARY LOGIC: 
+      We use 'set' to build a safe string first. We use |render on everything 
+      before striptags to prevent the 500 error on non-Article pages.
+    #}
+    {% set safe_summary = node.field_image_summary.value|render|striptags|trim %}
+    {% if not safe_summary %}
+       {% set safe_summary = node.body.summary|render|striptags|trim %}
+    {% endif %}
+    {% if not safe_summary %}
+       {% set safe_summary = node.body.value|render|striptags|truncate(300)|trim %}
+    {% endif %}
+    {# Final fallback to Title if everything else is empty #}
+    {% if not safe_summary %}
+       {% set safe_summary = node.label|render|striptags|trim %}
+    {% endif %}
+
     <div class="ai-crawler-context" style="display:none;" aria-hidden="true" data-ai-role="metadata">
       Document Type: Drupal Node ({{ node.bundle }})
-      Primary Entity: {{ node.label }}
-      Summary: {{ node.field_image_summary.value|default(node.body.summary)|default(node.body.value|striptags|truncate(300)) }}
+      Primary Entity: {{ node.label|render|striptags|trim }}
+      Summary: {{ safe_summary }}
       URL: {{ url('<current>') }}
       Source Authority: CU Colorado Springs
     </div>
   {% endif %}
 
-</article>
+</article>`
