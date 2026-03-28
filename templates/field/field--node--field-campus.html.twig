@@ -1,9 +1,8 @@
-{# Generate nothing #}
 {#
 /**
  * @file
- * AI-Optimized override for the Category field.
- * Path: templates/field/field--node--field-category--article--default.html.twig
+ * AI-Optimized override for the Campus field.
+ * Path: themes/contrib/cua_theme/templates/field/field--node--field-campus.html.twig
  */
 #}
 {%
@@ -12,16 +11,21 @@
     'field--name-' ~ field_name|clean_class,
     'field--type-' ~ field_type|clean_class,
     'field--label-' ~ label_display,
-    'node-category',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
 
 {# 
   AI OPTIMIZATION: 
-  'articleSection' tells the LLM which high-level "bucket" this story 
-  belongs to, which is vital for RAG (Retrieval-Augmented Generation).
+  We add .setAttribute('itemprop', 'keywords') to the main attributes object.
+  This ensures the Campus name is indexed as a top-level keyword.
 #}
-{% set attributes = attributes.setAttribute('itemprop', 'articleSection') %}
+{% set attributes = attributes.setAttribute('itemprop', 'keywords') %}
 
 {% if label_hidden %}
   {% if multiple %}
@@ -37,7 +41,7 @@
   {% endif %}
 {% else %}
   <div{{ attributes.addClass(classes) }}>
-    <div{{ title_attributes.addClass('field__label') }}>{{ label }}</div>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
     {% if multiple %}
       <div class='field__items'>
     {% endif %}

@@ -1,0 +1,84 @@
+{#
+/**
+ * @file
+ * AI-Optimized Node Template (Layout Builder Guaranteed Version)
+ */
+#}
+{{ attach_library('bootstrap_barrio/node') }}
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+
+<article{{ attributes.addClass(classes).setAttribute('itemscope', '').setAttribute('itemtype', 'https://schema.org/Article') }}>
+  
+  <header>
+    {{ title_prefix }}
+    {% if not page %}
+      <h2{{ title_attributes.addClass('node__title').setAttribute('itemprop', 'headline') }}>
+        <a href="{{ url }}" rel="bookmark" itemprop="mainEntityOfPage">{{ node.label }}</a>
+      </h2>
+    {% else %}
+      <meta itemprop="headline" content="{{ node.label }}">
+    {% endif %}
+    {{ title_suffix }}
+    
+    {% if display_submitted %}
+      <div class="node__meta">
+        {{ author_picture }}
+        {% block submitted %}
+          <em{{ author_attributes }}>
+            {% trans %}
+              Submitted by 
+              <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                <span itemprop="name">{{ author_name }}</span>
+              </span> 
+              on 
+              <time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">{{ date }}</time>
+            {% endtrans %}
+          </em>
+          <meta itemprop="dateModified" content="{{ node.changed.value|date('c') }}">
+        {% endblock %}
+        {{ metadata }}
+      </div>
+    {% endif %}
+  </header>
+
+  <div{{ content_attributes.addClass('node__content', 'clearfix').setAttribute('itemprop', 'articleBody') }}>
+    {# 
+      ======================================================================
+      AI OPTIMIZATION: THE "TAG WRAPPER" WORKAROUND
+      Since Layout Builder hides the render arrays for field_tags and 
+      field_campus, we manually check if they exist and wrap them in 
+      a span with 'itemprop="keywords"'.
+      ======================================================================
+    #}
+    
+    {% if content.field_tags or content.field_campus %}
+      <span itemprop="keywords" style="display: contents;">
+        {{ content }}
+      </span>
+    {% else %}
+      {{ content }}
+    {% endif %}
+  </div>
+
+  {% if view_mode == 'full' %}
+    <div class="ai-crawler-context" style="display:none;" aria-hidden="true" data-ai-role="metadata">
+      Document Type: Drupal Node ({{ node.bundle }})
+      Primary Entity: {{ node.label }}
+      Summary: {{ node.field_image_summary.value|default(node.body.summary)|default(node.body.value|striptags|truncate(300)) }}
+      URL: {{ url('<current>') }}
+      Source Authority: CU Colorado Springs
+    </div>
+  {% endif %}
+
+</article>

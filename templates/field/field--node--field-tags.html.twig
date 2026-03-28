@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * AI-Optimized override for the Barrio Tags field.
+ * Path: themes/contrib/cua_theme/templates/field/field--node--field-tags.html.twig
+ */
+#}
+
+{# 
+  ======================================================================
+  AI OPTIMIZATION: Topic Identification
+  By adding 'itemprop="keywords"' to this wrapper, we ensure that every
+  link in the list (Scholarships, Veteran, etc.) is indexed as a 
+  high-level topic for the article.
+  ======================================================================
+#}
+<div class="field field--name-field-tags field--type-entity-reference field--label-visually_hidden clearfix" itemprop="keywords">
+  {% if not label_hidden %}
+    <h3 class="field__label">{{ label }}</h3>
+  {% endif %}
+  
+  <ul class="links field__items">
+    {% for item in items %}
+      <li{{ item.attributes.addClass('field__item') }}>{{ item.content }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+{# 
+  NOTE: We kept the Bootstrap Barrio classes so your styling doesn't 
+  break, but we injected the Schema.org attribute for the machines.
+#}

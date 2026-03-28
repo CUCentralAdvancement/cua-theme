@@ -1,0 +1,73 @@
+{#
+/**
+ * @file
+ * Theme implementation for the 'field_tags' (Taxonomy) field.
+ *
+ * AI OPTIMIZATION NOTE: 
+ * Standard Drupal tags are just a list of links. For an AI, these 
+ * links are "discoverable," but their relationship to the current 
+ * page isn't always explicit. Adding 'itemprop="keywords"' 
+ * formalizes this relationship.
+ */
+#}
+
+{# 
+  ======================================================================
+  AI OPTIMIZATION #1: Attribute Injection
+  We add 'itemprop="keywords"' to the wrapper attributes. 
+  This tells the AI: "Every string or link inside this div is a 
+  primary topic or category for the parent Article."
+  ======================================================================
+#}
+{%
+  set attributes = attributes.setAttribute('itemprop', 'keywords')
+%}
+
+{% if label_hidden %}
+  {% if multiple %}
+    <div{{ attributes.addClass('field__items', 'clearfix') }}>
+      {% for item in items %}
+        <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass('field__item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass('field', 'field--name-' ~ field_name|clean_class, 'field--type-' ~ field_type|clean_class, 'field--label-' ~ label_display, 'clearfix') }}>
+    <div{{ title_attributes.addClass('field__label') }}>{{ label }}</div>
+    
+    {# 
+      ==================================================================
+      AI OPTIMIZATION #2: List Structuring
+      For multiple tags (like "Scholarships" and "Veteran"), 
+      keeping them in a clean list inside the 'keywords' div 
+      helps the AI 'chunk' each topic as a separate entity 
+      without them bleeding together into one long string.
+      ==================================================================
+    #}
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+    {% endfor %}
+    
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{# 
+  ======================================================================
+  AI OPTIMIZATION #3: Semantic Signal for Taxonomy
+  By using 'itemprop="keywords"', search-engine based AI (like Perplexity 
+  or Google Gemini) will prioritize these terms when deciding which 
+  "buckets" to place this story in. It turns a "visual list" 
+  into "indexed metadata."
+  ======================================================================
+#}

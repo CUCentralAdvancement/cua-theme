@@ -52,8 +52,13 @@
 ]
 %}
 
+{# 
+  AI OPTIMIZATION: 
+  By adding 'itemprop="name"', we explicitly define this field as the 
+  primary title of the Schema.org Article entity defined in node.html.twig.
+#}
 {% for item in items %}
-    <span{{ item.attributes.addClass('field__item') }}>
+    <span{{ item.attributes.addClass('field__item').setAttribute('itemprop', 'name') }}>
         {{ item.content }}
     </span>
 {% endfor %}
