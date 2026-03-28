@@ -11,7 +11,9 @@
   - Tracking: Hard-coded GA4 data-attributes for precision event mapping.
   - A11Y: Supports 'prefers-reduced-motion' to prevent vestibular triggers 
     from heavy CSS animations.
-  - SEO: Marked up as 'CreativeWork' via Schema.org microdata.
+  - SEO & AI: Marked up as 'Action' via Schema.org microdata to ensure LLMs
+    understand this block is a user-interaction gateway (e.g., Donate, Apply), 
+    not just a standard paragraph of text.
 
   MAINTENANCE WARNING:
   The GA4 'data-ga-action' value is auto-sanitized (|striptags|trim|e). 
@@ -62,7 +64,11 @@
 {% set single_link = (links_count == 1) ? links|first : null %}
 {% set wrap_entire_card = single_link and not content_contains_other_links %}
 
-{# Build attributes safely #}
+{# 
+  AI OPTIMIZATION:
+  Changed 'CreativeWork' to 'Action'. This signals to RAG models and Google 
+  Search Generative Experience that this block represents a task the user can complete. 
+#}
 {% set attributes = attributes
     | without('id')
     .setAttribute('id', unique_id)
@@ -70,7 +76,7 @@
     .setAttribute('role', 'region')
     .setAttribute('data-animation-classes', data_animation_classes)
     .setAttribute('itemscope', '')
-    .setAttribute('itemtype', 'https://schema.org/CreativeWork')
+    .setAttribute('itemtype', 'https://schema.org/Action')
     .setAttribute('data-component', 'call-to-action-card')
 %}
 {% if label %}
@@ -81,6 +87,22 @@
 
 {# Begin CTA container #}
 <div{{ attributes }}>
+
+    {# 
+      AI OPTIMIZATION: Invisible Metadata Context
+      We define the schema 'target' (EntryPoint) invisibly at the top of the block.
+      Because the visible link can render in 3 different places below (wrapper, footer, 
+      or macro), mapping it invisibly prevents breaking the UX/CSS logic while 
+      giving crawlers a perfect, unambiguous data layer.
+    #}
+    <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus" />
+    {% if single_link %}
+        <div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
+            <meta itemprop="url" content="{{ single_link.url }}" />
+            <meta itemprop="actionPlatform" content="http://schema.org/DesktopWebPlatform" />
+            <meta itemprop="actionPlatform" content="http://schema.org/MobileWebPlatform" />
+        </div>
+    {% endif %}
 
     {# Render title prefix/suffix if present #}
     {{ title_prefix ?: '' }}
@@ -160,13 +182,18 @@
                 text_color,
                 padding,
             ] | filter(v => v) | join(' ') %}
-            <h3 class="{{ heading_classes }}" aria-hidden="true">{{ label }}</h3>
+            
+            {# AI OPTIMIZATION: itemprop="name" added to explicitly label the Action #}
+            <h3 class="{{ heading_classes }}" aria-hidden="true" itemprop="name">{{ label }}</h3>
         {% endif %}
 
         {# Main body content #}
         {% if content %}
-            {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-            {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+            {# AI OPTIMIZATION: Wrapped the macro output to define the 'description' of the Action #}
+            <div itemprop="description" class="cta-semantic-body">
+                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+                {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+            </div>
         {% endif %}
 
         {# Single link footer (non-wrapping) #}
@@ -220,4 +247,4 @@
     </a>
     {% endif %}
 
-</div>
+</div>`
