@@ -1,53 +1,72 @@
-{#
+{# 
 FAQ Node Template
-Cleaned of hardcoded Drupal administration tokens that break link functionality.
+Optimized for SEO, accessibility, and AI parsing.
+- Adds semantic landmarks
+- Improves heading hierarchy
+- Adds aria-labels for navigation
+- Removes hardcoded absolute URLs where possible
 #}
+
 <article{{ attributes.addClass('faq-container') }}>
-    <div class="container">
-        <div class="row">
 
-            {# Left Sidebar (25%) #}
-            <aside class="col-12 col-md-3 mb-4">
-                <div class="p-3">
-                    <h3 class="h5">FAQ Categories</h3>
-                    {# Cleaned List: Removed 'contextual' wrapper that blocks clicks #}
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a href="https://giving.cu.edu/faq"
-                                                class="nav-link py-1">{{ 'FAQs'|t }}</a></li>
-                        <li class="nav-item"><a href="https://giving.cu.edu/faq#general-questions"
-                                                class="nav-link py-1">{{ 'General questions'|t }}</a></li>
-                        <li class="nav-item"><a href="https://giving.cu.edu/faq#ways-to-give"
-                                                class="nav-link py-1">{{ 'Ways to give'|t }}</a></li>
-                        <li class="nav-item"><a href="https://giving.cu.edu/faq#cu-foundation"
-                                                class="nav-link py-1">{{ 'CU Foundation'|t }}</a></li>
-                        <li class="nav-item"><a href="https://giving.cu.edu/faq#common-giving-terms"
-                                                class="nav-link py-1">{{ 'Common giving terms'|t }}</a></li>
-                        <li class="nav-item"><a href="https://giveto.cu.edu/funds/?a=8403519"
-                                                class="nav-link py-1">{{ 'Search Funds'|t }}</a></li>
-                    </ul>
-                </div>
-            </aside>
+  <div class="container">
+    <div class="row">
 
-            {# Main Content (75%) #}
-            <main class="col-12 col-md-9 mb-4">
-                {# Title #}
-                <header class="title-wrapper mb-4">
-                    {{ title_prefix }}
-                    {% if not node.field_show_title.value %}
-                        <h1 class="visually-hidden">{{ label }}</h1>
-                    {% else %}
-                        <h1 class="page-title">{{ label }}</h1>
-                    {% endif %}
-                    {{ title_suffix }}
-                </header>
+      {# -------------------------
+         LEFT SIDEBAR (Navigation)
+         ------------------------- #}
+      <aside class="col-12 col-md-3 mb-4" aria-label="FAQ categories">
+        <nav class="p-3">
+          <h2 class="h5">FAQ Categories</h2>
 
-                {# Content Area #}
-                <div{{ content_attributes.addClass('node-content') }}>
-                    {# Using |without to prevent double rendering if you have other fields #}
-                    {{ content|without('field_hero', 'field_subtitle') }}
-                </div>
-            </main>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="/faq" class="nav-link py-1">{{ 'FAQs'|t }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="/faq#general-questions" class="nav-link py-1">{{ 'General questions'|t }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="/faq#ways-to-give" class="nav-link py-1">{{ 'Ways to give'|t }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="/faq#cu-foundation" class="nav-link py-1">{{ 'CU Foundation'|t }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="/faq#common-giving-terms" class="nav-link py-1">{{ 'Common giving terms'|t }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://giveto.cu.edu/funds/?a=8403519" class="nav-link py-1">{{ 'Search Funds'|t }}</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
-        </div>
+      {# -------------------------
+         MAIN CONTENT
+         ------------------------- #}
+      <main class="col-12 col-md-9 mb-4">
+
+        <header class="title-wrapper mb-4">
+          {{ title_prefix }}
+
+          {% if not node.field_show_title.value %}
+            <h1 class="visually-hidden">{{ label }}</h1>
+          {% else %}
+            <h1 class="page-title">{{ label }}</h1>
+          {% endif %}
+
+          {{ title_suffix }}
+        </header>
+
+        <section{{ content_attributes.addClass('node-content') }}>
+          {{ content|without('field_hero', 'field_subtitle') }}
+        </section>
+
+      </main>
+
     </div>
+  </div>
+
 </article>
+`
