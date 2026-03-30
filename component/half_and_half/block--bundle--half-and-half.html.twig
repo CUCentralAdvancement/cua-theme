@@ -18,23 +18,30 @@
   =============================================================================
 #}
 
+{#
+  =============================================================================
+  COMPONENT: Half and Half (Two-Column Split)
+  OPTIMIZED: Semantic structure, AI ingestion, SEO clarity, WCAG 2.2 AA
+  =============================================================================
+#}
+
 {{ attach_library('cua_theme/half-and-half') }}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Animation logic: Filtered to ensure clean DOM strings #}
+{# Animation logic #}
 {% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay]|filter(v => v) %}
 {% set data_animation_classes = animation_classes|join(' ')|trim %}
 {% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
 
-{# Unique block ID: Prevents ARIA reference breakage in multi-block views #}
+{# Unique block ID #}
 {% set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
 
-{# Class orchestration for the Sinn-spec "Case" #}
+{# Component wrapper classes #}
 {% set hh_classes = [
     'block',
+    'half-and-half',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'half-and-half',
     animate_trigger,
     border_style,
     container_size,
@@ -42,35 +49,47 @@
     id ? 'block--' ~ id|replace({'_': '-'})|clean_class
 ] | filter(v => v) | merge(utility_classes ?: []) | join(' ')|trim %}
 
-<div{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }} 
-    {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}>
+<section{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }}
+    {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}
+    aria-label="{{ label ?: 'Content block'|t }}">
 
     {{ title_prefix }}
     {{ title_suffix }}
 
-    {# 
-       DEVICE LOOP:
-       We render specific DOM structures for desktop and mobile to 
-       maintain a 'Media-First' visual hierarchy on smaller viewports.
-    #}
+    {# DEVICE LOOP: Desktop + Mobile #}
     {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
         {% set heading_id = unique_id ~ '-heading-' ~ device %}
-        
-        <div class="container-fluid {{ visibility_class }} g-0">
+
+        <div class="container-fluid {{ visibility_class }} g-0" role="presentation">
             <div class="card border-0 rounded-0">
                 <div class="row g-0">
 
-                    {# Layout logic: Decoupling the CMS choice from the Bootstrap col-classes #}
+                    {# Layout logic #}
                     {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
                     {% set is_7030_layout = layout == '4' %}
                     {% set is_5050_layout = layout == '50_50' %}
 
                     {% set col_classes = {
-                        'img': [is_7030_layout ? 'col-md-4' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, padding, image_alignment],
-                        'content': [is_7030_layout ? 'col-md-8' : '', is_5050_layout ? 'col-md-6' : '', 'col-sm-12', color_background, text_alignment, padding]
+                        'img': [
+                            is_7030_layout ? 'col-md-4' : '',
+                            is_5050_layout ? 'col-md-6' : '',
+                            'col-sm-12',
+                            color_background,
+                            padding,
+                            image_alignment
+                        ],
+                        'content': [
+                            is_7030_layout ? 'col-md-8' : '',
+                            is_5050_layout ? 'col-md-6' : '',
+                            'col-sm-12',
+                            color_background,
+                            text_alignment,
+                            padding
+                        ]
                     } %}
 
                     {% if layout %}
+
                         {# MEDIA COLUMN #}
                         <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
                             {% if provider %}
@@ -84,15 +103,26 @@
                             {% endif %}
                         </div>
 
-                        {# CONTENT COLUMN: Landmark region for accessibility #}
-                        <div class="{{ col_classes.content|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}"
-                             role="region"
-                             {% if label %} aria-labelledby="{{ heading_id }}" {% else %} aria-label="{{ 'Content section'|t }}" {% endif %}>
-                            
+                        {# CONTENT COLUMN #}
+                        <section class="{{ col_classes.content|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}"
+                                 role="region"
+                                 {% if label %} aria-labelledby="{{ heading_id }}" {% else %} aria-label="{{ 'Content section'|t }}" {% endif %}>
+
                             <div class="row mx-5 pt-3">
+
                                 {% if label %}
-                                    {# Heading: Programmatically linked to the region above #}
-                                    {% set heading_classes = ['display-4 card-text lead title g-0', text_alignment, center_content, text_color, padding]|filter(v => v)|join(' ') %}
+                                    {% set heading_classes = [
+                                        'display-4',
+                                        'card-text',
+                                        'lead',
+                                        'title',
+                                        'g-0',
+                                        text_alignment,
+                                        center_content,
+                                        text_color,
+                                        padding
+                                    ]|filter(v => v)|join(' ') %}
+
                                     <h2 id="{{ heading_id }}" class="{{ heading_classes }}">
                                         {{ label }}
                                     </h2>
@@ -105,13 +135,27 @@
 
                                 {% if links %}
                                     {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                                    {{ cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, single_link ? true : false) }}
+                                    {{ cardFooterMacros.render_card_footer(
+                                        links,
+                                        container_size,
+                                        color_background,
+                                        position_container,
+                                        text_alignment,
+                                        padding,
+                                        outline,
+                                        button_color,
+                                        button_layout,
+                                        false,
+                                        single_link ? true : false
+                                    ) }}
                                 {% endif %}
+
                             </div>
-                        </div>
+                        </section>
+
                     {% endif %}
                 </div>
             </div>
         </div>
     {% endfor %}
-</div>
+</section>
