@@ -64,6 +64,13 @@
 #}
 {{ attach_library('cua_theme/call-to-action') }}
 
+{# 
+  DEV NOTE: ADMIN CONTROLS
+  We are checking for a specific Drupal permission string here. 
+  By keeping these links hardcoded in the template rather than using Drupal's menu system, 
+  we avoid menu caching complexities for authenticated vs. anonymous users.
+  The `d-flex justify-content-center m-2` utilizes Bootstrap 5 utility classes.
+#}
 {# ===========================
    ADMIN CONTROLS (unchanged)
    =========================== #}
@@ -78,17 +85,39 @@
     </div>
 {% endif %}
 
+{# 
+  DEV NOTE: CONTEXTUAL LINKS
+  `title_prefix` and `title_suffix` are required by Drupal's Render API.
+  If these are removed, the quick-edit "pencil" icon will not appear for content editors when hovering over this block.
+#}
 {{ title_prefix }}
 {{ title_suffix }}
 
+{# 
+  DEV NOTE: VIEW WRAPPER GUARD
+  Because this template might be suggested by a block preprocess hook that doesn't strictly contain a view 
+  (e.g., Layout Builder preview screens or block configuration pages), checking if `content['#view']` exists 
+  prevents WSOD (White Screen of Death) fatal errors.
+#}
 {# ===========================
    VIEW WRAPPER
    =========================== #}
 {% if content['#view'] is not empty %}
     {% set view = content['#view'] %}
 
+    {# 
+      DEV NOTE: EMPTY STATE CHECK
+      Ensures we don't render an empty `<section>` tag if the View returns no results. 
+      This is crucial for SEO and accessibility (avoiding empty landmark regions).
+    #}
     {% if view.result is not empty %}
 
+        {# 
+          DEV NOTE: ACCESSIBILITY & SCHEMA
+          The `role="region"` and `aria-labelledby` tie this entire section to a hidden <h2>.
+          This gives screen reader users necessary context ("Ways to Give...") without cluttering the visual UI.
+          The `itemscope` and `itemtype` initiate Schema.org structured data for rich search results.
+        #}
         <section class="container-fluid bg-gray-20 px-2 pt-1 pb-5"
                  role="region"
                  aria-labelledby="give-now-section-title"
@@ -105,12 +134,27 @@
             <ul class="row list-unstyled"
                 itemprop="itemListElement">
 
+                {# 
+                  DEV NOTE: LOOPING THE VIEW
+                  `view.result` contains the raw result rows. `row._entity` is the fully loaded Drupal Node object.
+                  We extract `row._entity` so we can access entity fields directly (e.g., node.field_name.value)
+                  instead of relying on Views field rendering (which can be heavy and introduces unwanted wrapper markup).
+                #}
                 {% for row in view.result %}
                     {% if row._entity is not empty %}
 
                         {% set node       = row._entity %}
+                        
+                        {# 
+                          DEV NOTE: DYNAMIC ID GENERATION
+                          Using `node.id` guarantees uniqueness across the DOM. 
+                          These IDs are critical because they are referenced by `aria-describedby` and `aria-labelledby` below, 
+                          creating an accessible programmatic relationship between the card's link and its text.
+                        #}
                         {% set heading_id = 'give-now-item-' ~ node.id ~ '-title' %}
                         {% set body_id    = 'give-now-item-' ~ node.id ~ '-body' %}
+                        
+                        {# Defensive fallback for the URL: defaults to '#' if the field is empty #}
                         {% set link       = node.field_link.uri ?: '#' %}
 
                         <li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4"
@@ -120,6 +164,12 @@
 
                             <meta itemprop="position" content="{{ loop.index }}" />
 
+                            {# 
+                              DEV NOTE: BLOCK-LEVEL LINK PATTERN
+                              Wrapping the entire card contents in a single `<a>` tag is an modern UI pattern 
+                              that increases the tap target size for mobile users. 
+                              The class `.story-link` (attached via the library at the top) likely handles focus/hover states.
+                            #}
                             <a href="{{ link }}"
                                id="give-now-item-{{ node.id }}"
                                class="give-now-item d-flex flex-column text-decoration-none h-100 story-link"
@@ -137,6 +187,12 @@
                                        =========================== #}
                                     <figure class="position-relative" role="presentation">
 
+                                        {# 
+                                          DEV NOTE: FLAG RENDER LOGIC
+                                          The flag acts as a contextual badge (e.g., "Urgent", "New Fund").
+                                          Notice the inline styles here; while generally avoided, they are used here 
+                                          to enforce strict dimensional constraints regardless of the surrounding theme CSS.
+                                        #}
                                         {% if node.field_flag.value == 'flag_on' %}
                                             <div class="position-absolute start-0">
                                                 <div class="flag py-2 {{ node.field_flag_background.value ?: '' }}"
@@ -153,6 +209,13 @@
                                             </div>
                                         {% endif %}
 
+                                        {# 
+                                          DEV NOTE: IMAGE RENDERING
+                                          Checking `node.field_image.entity` is a vital defensive check. 
+                                          If the node has an image field, but no image is actually uploaded, 
+                                          trying to access `entity.fileuri` will throw a fatal error.
+                                          We also pipe the URI through `image_style('lead_story')` to let Drupal handle responsive cropping/sizing.
+                                        #}
                                         {% if node.field_image.entity %}
                                             {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
                                             {% set alt_text  = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Image for ' ~ node.label %}
@@ -169,6 +232,12 @@
                                        =========================== #}
                                     <div class="give-now-content px-3 pt-2">
 
+                                        {# 
+                                          DEV NOTE: ACCESSIBLE TYPOGRAPHY
+                                          This H3 is the anchor point for the `aria-labelledby` on the parent `<article>`.
+                                          If a subtitle exists, it's rendered visually as a block, but kept within the <h3> 
+                                          so screen readers announce both the Title and Subtitle together cohesively.
+                                        #}
                                         <h3 id="{{ heading_id }}"
                                             class="give-now-title fs-3 fw-bold"
                                             itemprop="name">
@@ -181,13 +250,27 @@
                                             {% endif %}
                                         </h3>
 
+                                        {# 
+                                          DEV NOTE: BODY RENDERING
+                                          The `|raw` filter is used here because WYSIWYG body fields contain HTML tags (like <p>, <strong>, etc.).
+                                          Without `|raw`, Twig will auto-escape the HTML and output literal `<p>` strings to the browser.
+                                          This is safe because content entered via the Drupal admin UI goes through XSS filtering on save.
+                                        #}
                                         <div id="{{ body_id }}"
                                              class="give-now-body mb-2 mx-1 pt-2"
                                              itemprop="description">
                                             {{ node.body.value|raw }}
                                         </div>
 
-                                          {% if node.field_link.title is not empty %}
+                                        {# 
+                                          DEV NOTE: THE "FAKE" BUTTON
+                                          Because the entire card is wrapped in an `<a>` tag, adding a `<button>` or another `<a>` here
+                                          would create invalid HTML (nested interactive elements). 
+                                          Instead, we use a `<span>` styled to look like a button. 
+                                          `aria-hidden="true"` prevents screen readers from redundantly announcing "Read More" 
+                                          since they already read the card's main link context.
+                                        #}
+                                        {% if node.field_link.title is not empty %}
                                         <div class="card-footer card-story d-flex p-0 mb-5 mx-1">
                                             <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
                                                 {{ node.field_link.title }}
@@ -206,6 +289,4 @@
             </ul>
         </section>
     {% endif %}
-{% endif %}
-
-
+{% endif %}`
