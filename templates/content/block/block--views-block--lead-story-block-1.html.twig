@@ -184,15 +184,13 @@
     </div>
 {% endif %}
 
-{#
-  TITLE PREFIX
-  ------------
-  Drupal core injects contextual link markup (e.g., "Configure block" pencil)
-  here when the user has the 'access contextual links' permission and is in
-  admin mode. Must always be present even if visually empty. Removing it breaks
-  the contextual links system for editors.
+{# 
+  DEV NOTE: CONTEXTUAL LINKS
+  `title_prefix` and `title_suffix` are required by Drupal's Render API.
+  If these are removed, the quick-edit "pencil" icon will not appear for content editors when hovering over this block.
 #}
 {{ title_prefix }}
+{{ title_suffix }}
 
 {# 
   DATA VALIDATION & LOOP INITIALIZATION:
@@ -706,11 +704,4 @@
     {% endif %}{# END view.result not empty #}
 {% endif %}{# END content['#view'] not empty #}
 
-{#
-  TITLE SUFFIX
-  ------------
-  Partner to title_prefix above. Closes the contextual links wrapper injected
-  by Drupal core. Must always be present and must always come after all
-  template output. Removing it will break contextual link rendering for admins.
-#}
-{{ title_suffix }}
+
