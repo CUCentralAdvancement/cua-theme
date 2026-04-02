@@ -17,25 +17,5 @@
 #}
 
 <div class="video-movement-wrapper px-3">
-    {# 
-       RATIO WRAPPER: 
-       Bootstrap 5 utility to force a 16x9 aspect ratio. 
-       Prevents the video from looking "squashed" on mobile.
-    #}
-    <div class="ratio ratio-16x9">
-        {# 
-           THE RENDER:
-           Drupal renders the <iframe> here. 
-           NOTE: Ensure the YouTube field formatter in Drupal is set to 
-           output a 'Title' attribute for 508 compliance.
-        #}
-        {{ content.field_video_youtube.0 }}
-    </div>
+  {{ content.field_video_youtube.0 }}
 </div>
-
-{# 
-   DESIGNER NOTE: 
-   If you need to add a "Watch on YouTube" tracking overlay or a 
-   custom play button, they would be absolutely positioned within 
-    the .ratio container.
-#}
