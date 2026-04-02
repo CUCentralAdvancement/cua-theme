@@ -181,12 +181,12 @@
                                   (user.hasPermission('edit own gi content') and node.getOwnerId() == user.id) %}
                                 <div class="give-now-edit-link d-flex justify-content-center mt-1">
                                     <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}"
-                                       class="btn btn-sm btn-secondary"
+                                       class="btn btn-primary"
                                        aria-label="{{ 'Edit: '|t }}{{ node.label }}">
-                                        {{ 'Edit Content'|t }}
+                                        {{ 'Edit'|t ~ ' ' ~ node.label }}
                                     </a>
                                 </div>
-                            {% endif %}
+                               {% endif %}
 
                             <a href="{{ link }}"
                                id="give-now-item-{{ node.id }}"
@@ -228,24 +228,41 @@
                                         {% endif %}
 
                                         {#
-                                          DEV NOTE: SORT WEIGHT DEBUG BADGE
-                                          Displays the current sort order values for this Give Now card.
-                                          Visible ONLY to administrators (administer site configuration).
+                                          DEV NOTE: ADMIN DEBUG BADGE ROW
+                                          Renders a centered row of admin-only badges below each Give Now card.
+                                          Visible ONLY to users with 'administer site configuration' permission.
+                                          Anonymous users and non-admins see nothing — no wrapper div is rendered.
 
-                                          TWO FIELDS CONTROL CARD ORDER:
+                                          BADGE 1 — SORT ORDER
+                                          Displays both sort fields that control the card's position in the grid:
                                           - field_sort_weight : Numeric weight used by the Views sort criteria.
                                                                 Lower numbers appear first. Configure the sort
                                                                 in the View at /admin/structure/views.
                                           - field_alpha_order : Secondary alphabetical sort key. Used as a
                                                                 tiebreaker when multiple cards share the same
                                                                 sort weight value.
+                                          The `?? ''` null-coalescing operator silently falls back to an empty
+                                          string if either field has no value, preventing a fatal render error.
 
-                                          The `?? ''` null-coalescing operator prevents a fatal error if either
-                                          field has no value — it falls back to an empty string silently.
+                                          BADGE 2 — PUBLISH STATE
+                                          Displays whether this card is Published (green) or Unpublished (red).
+                                          Uses node.isPublished(), a core Drupal Node method that returns TRUE
+                                          if node status = 1. This method is sandbox-safe and will not throw a
+                                          Twig\Sandbox\SecurityError unlike node.access().
+
+                                          LAYOUT
+                                          `d-flex justify-content-center gap-2` centers the badges horizontally
+                                          and adds consistent spacing between them using Bootstrap 5 utilities.
+                                          Both badges share the same permission check to avoid redundant calls.
                                         #}
                                         {% if user.hasPermission('administer site configuration') %}
-                                            <div class="badge bg-dark text-white">
-                                                {{ ('Sort:'|t) ~ ' ' ~ (node.field_sort_weight.0.value ?? '') ~ ' ' ~ (' '|t) ~ ' ' ~ (node.field_alpha_order.0.value ?? '') }}
+                                            <div class="d-flex justify-content-center gap-2 my-2">
+                                                <div class="badge bg-dark text-white">
+                                                    {{ ('Sort:'|t) ~ ' ' ~ (node.field_sort_weight.0.value ?? '') ~ ' ' ~ (' '|t) ~ ' ' ~ (node.field_alpha_order.0.value ?? '') }}
+                                                </div>
+                                                <div class="badge {{ node.isPublished() ? 'bg-success' : 'bg-danger' }} text-white">
+                                                    {{ node.isPublished() ? 'Published'|t : 'Unpublished'|t }}
+                                                </div>
                                             </div>
                                         {% endif %}
 
