@@ -3,9 +3,15 @@
   COMPONENT: Give Now - Institutional Multi-Campus Grid
   STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (Minimal/Tough)
   COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ADA Title II Ready
-  VERSION: 2.2.0 — Defensive null checks ported from lead-story. Sort-page safe.
+  VERSION: 2.3.0 — Added per-card edit links using sandbox-safe user.hasPermission()
+                    checks instead of node.access() (which is blocked by Twig sandbox).
   =============================================================================
   CHANGE LOG:
+  v2.3.0 — Added per-card "Edit Content" link below each Give Now card. Uses
+            user.hasPermission('edit any gi content') and
+            user.hasPermission('edit own gi content') + node.getOwnerId()
+            comparison instead of node.access('update'), which throws a
+            Twig\Sandbox\SecurityError in Drupal's sandboxed Twig environment.
   v2.2.0 — Added defensive null checks on field_image.entity, field_icon,
             field_flag_title, and field_link.title to prevent silent render
             failures on sort page and other non-view contexts. Removed stray
@@ -72,7 +78,7 @@
   The `d-flex justify-content-center m-2` utilizes Bootstrap 5 utility classes.
 #}
 {# ===========================
-   ADMIN CONTROLS (unchanged)
+   ADMIN CONTROLS
    =========================== #}
 {% if user.hasPermission('administer site configuration') %}
     <div class="admin-interface d-flex justify-content-center m-2"
@@ -166,10 +172,22 @@
 
                             {# 
                               DEV NOTE: BLOCK-LEVEL LINK PATTERN
-                              Wrapping the entire card contents in a single `<a>` tag is an modern UI pattern 
+                              Wrapping the entire card contents in a single `<a>` tag is a modern UI pattern 
                               that increases the tap target size for mobile users. 
                               The class `.story-link` (attached via the library at the top) likely handles focus/hover states.
                             #}
+
+                               {% if user.hasPermission('edit any gi content') or
+                                  (user.hasPermission('edit own gi content') and node.getOwnerId() == user.id) %}
+                                <div class="give-now-edit-link d-flex justify-content-center mt-1">
+                                    <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}"
+                                       class="btn btn-sm btn-secondary"
+                                       aria-label="{{ 'Edit: '|t }}{{ node.label }}">
+                                        {{ 'Edit Content'|t }}
+                                    </a>
+                                </div>
+                            {% endif %}
+
                             <a href="{{ link }}"
                                id="give-now-item-{{ node.id }}"
                                class="give-now-item d-flex flex-column text-decoration-none h-100 story-link"
@@ -206,6 +224,28 @@
                                                         <span class="flag-title">{{ node.field_flag_title.value }}</span>
                                                     {% endif %}
                                                 </div>
+                                            </div>
+                                        {% endif %}
+
+                                        {#
+                                          DEV NOTE: SORT WEIGHT DEBUG BADGE
+                                          Displays the current sort order values for this Give Now card.
+                                          Visible ONLY to administrators (administer site configuration).
+
+                                          TWO FIELDS CONTROL CARD ORDER:
+                                          - field_sort_weight : Numeric weight used by the Views sort criteria.
+                                                                Lower numbers appear first. Configure the sort
+                                                                in the View at /admin/structure/views.
+                                          - field_alpha_order : Secondary alphabetical sort key. Used as a
+                                                                tiebreaker when multiple cards share the same
+                                                                sort weight value.
+
+                                          The `?? ''` null-coalescing operator prevents a fatal error if either
+                                          field has no value — it falls back to an empty string silently.
+                                        #}
+                                        {% if user.hasPermission('administer site configuration') %}
+                                            <div class="badge bg-dark text-white">
+                                                {{ ('Sort:'|t) ~ ' ' ~ (node.field_sort_weight.0.value ?? '') ~ ' ' ~ (' '|t) ~ ' ' ~ (node.field_alpha_order.0.value ?? '') }}
                                             </div>
                                         {% endif %}
 
@@ -271,17 +311,18 @@
                                           since they already read the card's main link context.
                                         #}
                                         {% if node.field_link.title is not empty %}
-                                        <div class="card-footer card-story d-flex p-0 mb-5 mx-1">
-                                            <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
-                                                {{ node.field_link.title }}
-                                            </span>
-                                        </div>
-                                    {% endif %}
+                                            <div class="card-footer card-story d-flex p-0 mb-5 mx-1">
+                                                <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
+                                                    {{ node.field_link.title }}
+                                                </span>
+                                            </div>
+                                        {% endif %}
 
                                     </div>
 
                                 </article>
-                            </a>
+                            </a>   
+
                         </li>
 
                     {% endif %}
@@ -289,4 +330,5 @@
             </ul>
         </section>
     {% endif %}
-{% endif %}`
+{% endif %}
+`
