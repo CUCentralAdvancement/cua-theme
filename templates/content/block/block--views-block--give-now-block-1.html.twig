@@ -212,7 +212,7 @@
                                   (user.hasPermission('edit own gi content') and node.getOwnerId() == user.id) %}
                                 <div class="give-now-edit-link d-flex justify-content-center my-3">
                                     <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}"
-                                       class="btn btn-primary"
+                                       class="btn btn-secondary"
                                        aria-label="{{ 'Edit: '|t }}{{ node.label }}">
                                         {{ 'Edit:'|t ~ ' ' ~ node.label }}
                                     </a>
