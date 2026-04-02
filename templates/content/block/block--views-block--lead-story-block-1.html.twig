@@ -1,158 +1,139 @@
-{# 
+{#-
   =============================================================================
   COMPONENT: Lead Story Grid (SEO & AI Optimized)
-  VERSION: 2.2.0 | Drupal 11 / PHP 8.4
+  VERSION: 3.0.0 | Drupal 11 / PHP 8.4 Optimized
+  STABILITY: Production-Stable (Sinn 556 Ethos)
   =============================================================================
   STRATEGIC SUMMARY:
-  1. SEO/AI: Uses Schema.org (CreativeWork) to map content for LLM crawlers.
-  2. Access: "Block-Link" pattern with dual-layer headings for Screen Readers.
-  3. Perf: Lazy loading and optimized image styles for Core Web Vitals.
+  1. SEO/AI: Schema.org 'CreativeWork' + 'ImageObject' for LLM ingestion.
+  2. Access: Block-link pattern with hidden headers for AT context.
+  3. Perf: LCP optimization (fetchpriority) on the primary story card.
   =============================================================================
-#}
+-#}
 
-{{ attach_library('cua_theme/call-to-action') }}
+{{- attach_library('cua_theme/call-to-action') -}}
 
-{# 
-  Logic: Dynamically build classes for the block wrapper. 
-  The 'utility_classes' allows for 'Sinn 556' style durability across different pages.
-#}
-{% set givenow_classes = [
+{%- set givenow_classes = [
   'block',
   'block-' ~ configuration.provider|clean_class,
   'block-' ~ plugin_id|clean_class,
   'col',
   'lead-story-item',
   id ? 'block--class--lead-story-' ~ id|clean_class : null,
-] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') -%}
 
-{# Admin Shortcuts: Only rendered for authenticated site builders. #}
-{% if user.hasPermission('administer site configuration') %}
+{%- if user.hasPermission('administer site configuration') -%}
   <div class="admin-interface d-flex justify-content-center m-2" role="group" aria-label="Editor Shortcuts">
     <a href="/lead-story/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage lead stories'|t }}</a>
     <a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new lead story'|t }}</a>
   </div>
-{% endif %}
+{%- endif -%}
 
-{{ title_prefix }}
-{{ title_suffix }}
+{{- title_prefix -}}
+{{- title_suffix -}}
 
-{% if content['#view'] is not empty %}
-  {% set view = content['#view'] %}
-  {% if view.result is not empty %}
+{%- if content['#view'] is not empty -%}
+  {%- set view = content['#view'] -%}
+  {%- if view.result is not empty -%}
 
     <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
 
-      {# SEO: H2 provides a clear "Table of Contents" marker for search engines. #}
       <h2 id="lead-story-section-title" class="cua-gold text-center mb-4">
         {{ "How Giving Shapes Lives at Colorado's University Campuses"|t }}
       </h2>
 
-      {# Accessibility: role="list" ensures the grid is announced as a collection. #}
       <div class="row" role="list" aria-labelledby="lead-story-section-title">
 
-        {% for row in view.result %}
-          {% if row._entity is not empty %}
+        {%- for row in view.result -%}
+          {%- if row._entity is not empty -%}
             
-            {% set node = row._entity %}
-            {% set heading_id = 'lead-story-item-' ~ node.id ~ '-title' %}
-            {% set link = node.field_link.uri ?: '#' %}
+            {%- set node = row._entity -%}
+            {%- set heading_id = 'lead-story-item-' ~ node.id ~ '-title' -%}
+            {%- set link = node.field_link.uri ?: '#' -%}
 
             <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4" role="listitem">
 
-              {# UX: Entire card is a link (Block-Link) to maximize mobile 'hit' area. #}
               <a href="{{ link }}"
                  class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
                  rel="bookmark"
-                 aria-label="Read story: {{ node.label }}"
+                 aria-label="{{ 'Read story: ' ~ node.label }}"
                  data-story-id="{{ node.id }}">
 
-                {# 
-                   AI Ingestion: 'itemscope' defines this card as a single data entity.
-                   This makes the content "sticky" for AI-generated search results.
-                #}
                 <article class="m-2 shadow {{ node.field_color_background.value ?: 'cua-black-opacity-75' }} flex-grow-1 d-flex flex-column" 
                          itemscope itemtype="http://schema.org/CreativeWork">
                   
-                  {# Hidden Meta: Provides 'Freshness' data to AI crawlers. #}
                   <meta itemprop="mainEntityOfPage" content="{{ link }}">
                   <meta itemprop="datePublished" content="{{ node.created.value|date('c') }}">
 
-                  {# Context: Visually hidden H3 provides screen readers with card context. #}
                   <h3 class="visually-hidden" itemprop="alternativeHeadline">
                     {{ 'Read more about ' ~ node.label | t }}
                   </h3>
 
                   <div class="position-relative">
-                    {# Logic: Conditional 'Flag' overlay for urgent or featured stories. #}
-                    {% if node.field_flag.value == 'flag_on' %}
-                      {% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
+                    {%- if node.field_flag.value == 'flag_on' -%}
+                      {%- set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) -%}
                       <div class="position-absolute start-0">
                         <div class="{{ flag_classes|join(' ')|trim }}" style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
-                          {% if node.field_icon.value %}
+                          {%- if node.field_icon.value -%}
                             <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1" style="color: {{ node.field_icon_color.value }}" aria-hidden="true"></i>
-                          {% endif %}
-                          {% if node.field_flag_title.value %}
+                          {%- endif -%}
+                          {%- if node.field_flag_title.value -%}
                             <span class="flag-title">{{ node.field_flag_title.value }}</span>
-                          {% endif %}
+                          {%- endif -%}
                         </div>
                       </div>
-                    {% endif %}
+                    {%- endif -%}
 
-                    {# Image: Schema.org ImageObject improves visibility in Image Search. #}
-                    {% if node.field_image.entity %}
-                      {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
-                      {% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Story image for ' ~ node.label %}
+                    {%- if node.field_image.entity -%}
+                      {%- set image_url = node.field_image.entity.fileuri | image_style('lead_story') -%}
+                      {%- set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Story image for ' ~ node.label -%}
                       <div class="card-header mb-2" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
                         <img src="{{ image_url }}" 
                              alt="{{ alt_text }}" 
                              itemprop="url"
-                             loading="lazy" 
+                             loading="{{ loop.first ? 'eager' : 'lazy' }}"
+                             fetchpriority="{{ loop.first ? 'high' : 'auto' }}"
                              class="img-fluid">
                       </div>
-                    {% endif %}
+                    {%- endif -%}
                   </div>
 
                   <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
-                    {# Header: Semantic 'headline' mapping for LLM summaries. #}
                     <header>
                       <p id="{{ heading_id }}" class="fs-4 fw-bold" itemprop="headline">
-                        {{ node.label }}
+                        {{- node.label -}}
                       </p>
                     </header>
 
-                    {# Body: itemprop="description" tells AI this is the core narrative. #}
                     <div class="lead-story-body mb-2" itemprop="description">
-                      {# Note: Raw used here only for trusted editorial content. #}
-                      {{ node.body.value|raw }}
+                      {{- node.body.value|raw -}}
                     </div>
                   </div>
                   
-                  {# CTA: Visual button for users; hidden from AT to prevent redundant links. #}
-                  {% if node.field_link.title is not empty %}
+                  {%- if node.field_link.title is not empty -%}
                     <div class="card-footer card-story mb-2">
                       <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start" aria-hidden="true">
-                        {{ node.field_link.title }}
+                        {{- node.field_link.title -}}
                       </span>
                     </div>
-                  {% endif %}
+                  {%- endif -%}
 
                 </article>
               </a>
             </div>
 
-          {% endif %}
-        {% endfor %}
+          {%- endif -%}
+        {%- endfor -%}
 
       </div>
 
-      {# Footer: Main routing for the editorial ecosystem. #}
       <nav class="card-footer d-flex justify-content-center mb-5" aria-label="More Stories Navigation">
         <a href="/impact-stories" 
            class="card-link btn btn-cu-bg-gold text-decoration-none px-5 py-2 mt-4">
-          {{ 'Browse More Stories'|t }}
+          {{- 'Browse More Stories'|t -}}
         </a>
       </nav>
 
     </div>
-  {% endif %}
-{% endif %}`
+  {%- endif -%}
+{%- endif -%}
