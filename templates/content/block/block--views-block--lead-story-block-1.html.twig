@@ -1,707 +1,158 @@
 {# 
   =============================================================================
-  COMPONENT: Lead Story Grid (Institutional Front-End)
-  STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent
-  VERSION: 2.1.0 (Drupal 11 / PHP 8.4 Optimized)
-  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ADA Title II Ready
+  COMPONENT: Lead Story Grid (SEO & AI Optimized)
+  VERSION: 2.2.0 | Drupal 11 / PHP 8.4
   =============================================================================
-  ARCHITECTURAL DESIGN RATIONALE:
-  - Utilizes a "Block-Link" UX Pattern: The entire card is encapsulated within 
-    a semantic <a> tag to maximize the "hit area" for mobile/touch users.
-  - Heading Hierarchy: Employs a dual-layer heading strategy to satisfy SEO 
-    requirements while providing high-fidelity navigation for AT (Assistive Tech).
-  - Flexbox Distribution: Implements a nested Flexbox model to ensure 
-    consistent card heights and footer alignment regardless of content delta.
-
-  ACCESSIBILITY NOTES:
-  - Aria-Label: Specifically curated to provide action context without 
-    verbosity (e.g., omitting "click here" or "link").
-  - Role Assignment: Uses 'list' and 'listitem' roles to compensate for 
-    non-standard <div> based grid layouts in legacy screen readers.
+  STRATEGIC SUMMARY:
+  1. SEO/AI: Uses Schema.org (CreativeWork) to map content for LLM crawlers.
+  2. Access: "Block-Link" pattern with dual-layer headings for Screen Readers.
+  3. Perf: Lazy loading and optimized image styles for Core Web Vitals.
   =============================================================================
-
-  OVERVIEW
-  --------
-  This template renders a responsive 4-column grid of "Lead Story" impact cards
-  used to showcase donor impact narratives across CU's campuses. Unlike the
-  Give Now grid (block--give-now.html.twig) which drives donation actions, this
-  component is editorial — it surfaces stories that motivate giving rather than
-  soliciting it directly.
-
-  The component is paired with a "Browse More Stories" global CTA footer that
-  routes to /impact-stories, making this grid the entry point of a larger
-  stories ecosystem.
-
-  CONTENT TYPE
-  ------------
-  Cards are sourced from Drupal nodes. Despite the admin link pointing to
-  /node/add/gi, confirm the actual machine name of the content type with the
-  site's content model documentation — it may share the "gi" type with Give Now
-  items, distinguished by a field or bundle, or it may be a separate type.
-  Clarify this before adding any preprocess logic.
-
-  SISTER TEMPLATE
-  ---------------
-  This component shares significant structural DNA with block--give-now.html.twig
-  (v2.2.0). Key differences to be aware of:
-    1. Grid element: Uses <div role="list"> + <div role="listitem"> instead of
-       semantic <ul>/<li>. See the ROLE ASSIGNMENT section below for rationale.
-    2. Heading pattern: Uses a visually-hidden <h4> + aria-hidden <p> instead
-       of the Give Now pattern of aria-hidden <h4> alone.
-    3. The section <h3> here is VISIBLE (cua-gold text-center) vs. visually
-       hidden in Give Now. Different editorial intent — this heading is a marketing statement, not just an accessibility anchor.
-    4. Missing: field_shadow toggle. Shadow is applied unconditionally here
-       via the hard-coded 'shadow' class on <article>.
-    5. Extra: Global CTA footer (Browse More Stories) after the loop — absent
-       in Give Now.
-    6. Missing: The id attribute on the <a> card anchor present in Give Now.
-       If per-card anchor deep-linking is ever needed, this will need adding.
-
-  WHERE THIS TEMPLATE LIVES IN THE THEME
-  ---------------------------------------
-  Expected path (relative to theme root):
-    templates/block/block--lead-story.html.twig
-  OR as a Views block override:
-    templates/views/views-view--lead-stories.html.twig
-  Verify the active suggestion in the Twig debug comments in the page source
-  (enable twig.config.debug in services.yml locally to inspect).
-
-  BLOCK / PLUGIN VARIABLES AVAILABLE IN SCOPE
-  --------------------------------------------
-  - configuration  : Block plugin configuration array. Provides
-                     configuration.provider for CSS class generation
-                     (e.g., "block_content", "views").
-  - plugin_id      : Machine name of the block plugin
-                     (e.g., "views_block:lead_stories-block_1").
-                     Used for BEM-style CSS scoping.
-  - id             : Block placement instance ID. May be null in non-block
-                     render contexts (Layout Builder preview, sort page).
-                     Always guarded with ?: fallback.
-  - utility_classes: Array of extra CSS classes injected by Layout Builder
-                     or preprocess hooks. Merged into givenow_classes.
-                     Note: variable is named givenow_classes here — see CSS
-                     CLASS ASSEMBLY note below about the naming inconsistency.
-  - content        : Standard Drupal block render array.
-                     content['#view'] holds the Views object.
-  - user           : Current Drupal user object for permission checks.
-  - title_prefix / title_suffix : Drupal contextual link wrappers. Must
-                     always be present. See individual notes below.
 #}
 
-{#
-  LIBRARY ATTACHMENT
-  ------------------
-  Attaches 'call-to-action' JS/CSS library from cua_theme.libraries.yml.
-  This is the same library used by block--give-now.html.twig. It is expected
-  to provide:
-    - Hover/transition effects for .story-link anchors
-    - Click-tracking / analytics event wiring for data-story-* attributes
-    - Any entrance animation or lazy-reveal JS behavior
-
-  If you see missing styles or broken hover states, check that this library
-  is defined and that its asset paths resolve correctly. Drupal will log a
-  warning (not an error) if the library is missing, so cards will still
-  render without it.
-#}
 {{ attach_library('cua_theme/call-to-action') }}
 
 {# 
-  DYNAMIC CLASS ORCHESTRATION:
-  We merge Drupal-provided utility classes with hard-coded component classes 
-  to maintain a strictly decoupled layout system. 
-
-  DEV NOTE — CSS CLASS ASSEMBLY (givenow_classes)
-  ------------------------------------------------
-  ⚠ NAMING INCONSISTENCY: This variable is named `givenow_classes` but this
-  is the Lead Story template, not Give Now. This is a copy-paste artifact from
-  the sister template and should be renamed `lead_story_classes` in a future
-  refactor. It is functionally correct — the name has no runtime effect — but
-  it creates confusion when reading the markup below where the same variable
-  name appears on the card anchor.
-
-  Class breakdown:
-    'block'
-      → Standard Drupal block wrapper class. Expected by base theme styles.
-    'block-' ~ configuration.provider|clean_class
-      → Provider-scoped class, e.g. "block-block-content".
-        clean_class normalizes unsafe characters (spaces → hyphens).
-    'block-' ~ plugin_id|clean_class
-      → Plugin-scoped class, e.g. "block-views-block-lead-stories-block-1".
-    'col'
-      → Bootstrap 5 column base class required for grid children.
-    'lead-story-item'
-      → Component-specific hook for CSS and JS targeting. Note: differs
-        from Give Now's 'give-now-item'. Make sure _lead-story.scss targets
-        this class and not the Give Now one.
-    id ? 'block--class--lead-story-' ~ id|clean_class : null
-      → Optional unique class per block placement for per-instance CSS
-        overrides. Safely returns null when id is absent.
-    merge(utility_classes ?: [])
-      → Appends Layout Builder or preprocess-injected utility classes.
-        ?: [] guards against undefined variable crash.
-    | filter(v => v)
-      → Strips nulls and empty strings from the array.
-    | join(' ')
-      → Collapses to a single space-separated class string.
-
-  IMPORTANT: Do NOT add responsive column classes (col-12, col-sm-6, col-lg-3)
-  here. They belong on the <div role="listitem"> wrapper, not the <a> element.
+  Logic: Dynamically build classes for the block wrapper. 
+  The 'utility_classes' allows for 'Sinn 556' style durability across different pages.
 #}
 {% set givenow_classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'col',
-    'lead-story-item',
-    id ? 'block--class--lead-story-' ~ id|clean_class : null,
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  'col',
+  'lead-story-item',
+  id ? 'block--class--lead-story-' ~ id|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# 
-  ADMINISTRATIVE CONTROL LAYER:
-  Conditional rendering of management hooks for content editors.
-  Restricted to users with 'administer site configuration' permissions.
-
-  DEV NOTE — ADMIN TOOLBAR
-  ------------------------
-  Two quick-links are provided:
-    /lead-story/sort  → The drag-and-drop sort/weight management page for
-                        ordering story cards. This is likely a custom Views
-                        page or a contrib module (e.g., Weight, Draggableviews).
-                        If this URL 404s in a new environment, check that the
-                        relevant module is enabled and the route is registered.
-    /node/add/gi      → Add a new node. Confirm content type machine name
-                        matches "gi" — see CONTENT TYPE note in the header.
-
-  role="group" + aria-label="Editor Shortcuts" groups the admin links for
-  AT users who have admin permissions. Invisible to public users entirely.
-  Bootstrap 5 utilities (d-flex, justify-content-center, m-2, mx-2) handle
-  the horizontal layout.
-#}
+{# Admin Shortcuts: Only rendered for authenticated site builders. #}
 {% if user.hasPermission('administer site configuration') %}
-    <div class="admin-interface d-flex justify-content-center m-2" role="group" aria-label="Editor Shortcuts">
-        <a href="/lead-story/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage lead stories'|t }}</a>
-        <a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new lead story'|t }}</a>
-    </div>
+  <div class="admin-interface d-flex justify-content-center m-2" role="group" aria-label="Editor Shortcuts">
+    <a href="/lead-story/sort" class="btn btn-secondary mx-2">{{ 'Sort and manage lead stories'|t }}</a>
+    <a href="/node/add/gi" class="btn btn-secondary mx-2">{{ 'Add new lead story'|t }}</a>
+  </div>
 {% endif %}
 
-{# 
-  DEV NOTE: CONTEXTUAL LINKS
-  `title_prefix` and `title_suffix` are required by Drupal's Render API.
-  If these are removed, the quick-edit "pencil" icon will not appear for content editors when hovering over this block.
-#}
 {{ title_prefix }}
 {{ title_suffix }}
 
-{# 
-  DATA VALIDATION & LOOP INITIALIZATION:
-  Ensures the 'view' object exists and contains valid results before 
-  committing to DOM rendering, protecting against empty-state bloat.
-
-  DEV NOTE — GUARD CHAIN
-  -----------------------
-  Two nested guards protect against two distinct failure modes:
-
-  1. content['#view'] is not empty
-     → The outer guard. content['#view'] is only populated when this block
-       wraps a Drupal View. In Layout Builder preview, Drush exports, or the
-       sort/admin page, this key may be absent entirely. `is not empty`
-       preferred over `is defined` because an initialized-but-empty Views
-       object should also be skipped.
-
-  2. view.result is not empty
-     → The inner guard. Protects against a View that exists but returned
-       zero rows (no published stories, all filtered out by exposed filters,
-       or contextual filter with no match). An empty result renders nothing —
-       no container, no heading — rather than an empty gray shell.
-       This is intentional UX; if you need an empty-state message, add it
-       in an {% else %} block here.
-#}
 {% if content['#view'] is not empty %}
-    {% set view = content['#view'] %}
-    {% if view.result is not empty %}
+  {% set view = content['#view'] %}
+  {% if view.result is not empty %}
 
-        {#
-          OUTER CONTAINER
-          ---------------
-          Full-bleed fluid container. Class breakdown:
-            container-fluid       → removes max-width cap, edge-to-edge layout
-            cu-bd-black           → CUA custom class; likely sets a black or
-                                    very dark background. Check _colors.scss.
-            pt-3                  → top padding (tighter than Give Now's pt-1)
-            pb-5                  → generous bottom padding for section separation
-            px-2                  → horizontal gutter to prevent cards touching
-                                    the viewport edge on mobile
-        #}
-        <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
+    <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
 
-            {#
-              SECTION HEADING — VISIBLE MARKETING STATEMENT
-              -----------------------------------------------
-              Unlike the Give Now grid where the equivalent <h3> is
-              visually-hidden (accessibility anchor only), this heading is
-              VISIBLE and styled as a marketing tagline.
+      {# SEO: H2 provides a clear "Table of Contents" marker for search engines. #}
+      <h2 id="lead-story-section-title" class="cua-gold text-center mb-4">
+        {{ "How Giving Shapes Lives at Colorado's University Campuses"|t }}
+      </h2>
 
-              id="lead-story-section-title" → referenced by the grid
-                container's aria-labelledby below (WCAG 1.3.1).
-              cua-gold → CUA theme custom color utility. Renders the heading
-                in CU gold against the dark cu-bd-black background.
-              text-center mb-4 → centered layout with bottom margin.
+      {# Accessibility: role="list" ensures the grid is announced as a collection. #}
+      <div class="row" role="list" aria-labelledby="lead-story-section-title">
 
-              COPY NOTE: "How Giving Shapes Lives at Colorado's University
-              Campuses" uses the |t filter for Drupal's translation system.
-              If this needs to be editable by content admins (not just
-              translators), consider moving it to a block field rather than
-              hardcoding it in the template.
-            #}
-            <h3 id="lead-story-section-title" class="cua-gold text-center mb-4">
-                {{ "How Giving Shapes Lives at Colorado's University Campuses"|t }}
-            </h3>
+        {% for row in view.result %}
+          {% if row._entity is not empty %}
+            
+            {% set node = row._entity %}
+            {% set heading_id = 'lead-story-item-' ~ node.id ~ '-title' %}
+            {% set link = node.field_link.uri ?: '#' %}
 
-            {#
-              GRID CONTAINER — DIV-BASED LIST WITH ARIA ROLES
-              ------------------------------------------------
-              DEV NOTE — WHY <div role="list"> INSTEAD OF <ul>?
-              This is the key structural difference from block--give-now.html.twig
-              which uses a semantic <ul>/<li> grid. Here, <div> with explicit
-              role="list" + role="listitem" is used instead.
+            <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4" role="listitem">
 
-              The rationale (per the header's ACCESSIBILITY NOTES):
-                Some legacy screen readers (notably older VoiceOver + Safari
-                combinations) strip list semantics from <ul> elements when
-                CSS resets apply `list-style: none`. The Bootstrap `list-unstyled`
-                class triggers this in some environments. Using explicit ARIA
-                roles on <div> elements sidesteps the CSS-stripping issue
-                entirely and guarantees list semantics across all AT.
+              {# UX: Entire card is a link (Block-Link) to maximize mobile 'hit' area. #}
+              <a href="{{ link }}"
+                 class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
+                 rel="bookmark"
+                 aria-label="Read story: {{ node.label }}"
+                 data-story-id="{{ node.id }}">
 
-              WCAG NOTE: role="list" on a <div> combined with
-              aria-labelledby="lead-story-section-title" satisfies WCAG 1.3.1
-              (Info and Relationships) — the list has a programmatic label
-              pointing to the visible <h3> above.
-
-              Bootstrap classes:
-                'row' → flex row container for the Bootstrap 5 grid.
-            #}
-            <div class="row" role="list" aria-labelledby="lead-story-section-title">
-
-                {#
-                  ROW LOOP — ViewsResultRow iteration
-                  -------------------------------------
-                  Each `row` is a ViewsResultRow object from the Views result set.
-                  The entity itself is accessed via row._entity (underscore prefix
-                  = Views internal property, not a public field).
-
-                  The `row._entity is not empty` guard is critical:
-                    - Prevents a crash if the node was deleted after the View's
-                      query ran (race condition between query and render).
-                    - Prevents errors if a Views relationship returned no entity
-                      (e.g., a missing translation in multilingual setups).
-                    - Protects against the sort page context where _entity may
-                      be partially hydrated.
+                {# 
+                   AI Ingestion: 'itemscope' defines this card as a single data entity.
+                   This makes the content "sticky" for AI-generated search results.
                 #}
-                {% for row in view.result %}
-                    {% if row._entity is not empty %}
-                        
-                        {# 
-                          ENTITY MAPPING:
-                          Extracting node-level data early to clean up the markup below.
+                <article class="m-2 shadow {{ node.field_color_background.value ?: 'cua-black-opacity-75' }} flex-grow-1 d-flex flex-column" 
+                         itemscope itemtype="http://schema.org/CreativeWork">
+                  
+                  {# Hidden Meta: Provides 'Freshness' data to AI crawlers. #}
+                  <meta itemprop="mainEntityOfPage" content="{{ link }}">
+                  <meta itemprop="datePublished" content="{{ node.created.value|date('c') }}">
 
-                          DEV NOTE — LOCAL VARIABLE SETUP
-                          --------------------------------
-                          node       : The story content entity. All field access flows
-                                       through this variable. Field names follow the Drupal
-                                       field machine name convention (field_*).
-                          heading_id : Unique DOM ID for the visible <p> title element.
-                                       Scoped to node.id to guarantee uniqueness on the
-                                       page even if multiple instances of this block are
-                                       placed in the same layout. Used as a potential
-                                       aria-labelledby target for future refactors.
-                          link       : Resolved URI from field_link. The ?: '#' fallback
-                                       prevents a broken or absent href when the editor
-                                       hasn't configured a URL. In production, a '#' link
-                                       means the node is missing its destination — consider
-                                       logging a watchdog warning in a preprocess hook if
-                                       link evaluates to '#'.
+                  {# Context: Visually hidden H3 provides screen readers with card context. #}
+                  <h3 class="visually-hidden" itemprop="alternativeHeadline">
+                    {{ 'Read more about ' ~ node.label | t }}
+                  </h3>
 
-                          NOTE: Unlike the Give Now template, there is no `body_id` variable
-                          here because this template does not use aria-describedby on the
-                          card anchor. If you add it in a future accessibility pass, follow
-                          the Give Now pattern: set body_id and add aria-describedby="{{ body_id }}"
-                          to the <a> element.
-                        #}
-                        {% set node = row._entity %}
-                        {% set heading_id = 'lead-story-item-' ~ node.id ~ '-title' %}
-                        {% set link = node.field_link.uri ?: '#' %}
+                  <div class="position-relative">
+                    {# Logic: Conditional 'Flag' overlay for urgent or featured stories. #}
+                    {% if node.field_flag.value == 'flag_on' %}
+                      {% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
+                      <div class="position-absolute start-0">
+                        <div class="{{ flag_classes|join(' ')|trim }}" style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
+                          {% if node.field_icon.value %}
+                            <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1" style="color: {{ node.field_icon_color.value }}" aria-hidden="true"></i>
+                          {% endif %}
+                          {% if node.field_flag_title.value %}
+                            <span class="flag-title">{{ node.field_flag_title.value }}</span>
+                          {% endif %}
+                        </div>
+                      </div>
+                    {% endif %}
 
-                        {#
-                          GRID COLUMN WRAPPER — <div role="listitem">
-                          --------------------------------------------
-                          Responsive column classes:
-                            col-12    → full width on xs (mobile, <576px)
-                            col-sm-6  → 2-column layout on small (≥576px)
-                            col-lg-3  → 4-column layout on large (≥992px)
-                          lead-story-wrapper → component CSS/JS hook
-                          mb-4               → bottom margin to separate rows
-                          role="listitem"    → pairs with role="list" on parent
-                                              <div> — see GRID CONTAINER note above
-                        #}
-                        <div class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4" role="listitem">
+                    {# Image: Schema.org ImageObject improves visibility in Image Search. #}
+                    {% if node.field_image.entity %}
+                      {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
+                      {% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Story image for ' ~ node.label %}
+                      <div class="card-header mb-2" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                        <img src="{{ image_url }}" 
+                             alt="{{ alt_text }}" 
+                             itemprop="url"
+                             loading="lazy" 
+                             class="img-fluid">
+                      </div>
+                    {% endif %}
+                  </div>
 
-                            {# 
-                              SEMANTIC ANCHOR — FULL-CARD CLICKABLE LINK
-                              -------------------------------------------
-                              The entire card is wrapped in a single <a> to create
-                              a large touch target on mobile (the "card link" pattern).
+                  <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
+                    {# Header: Semantic 'headline' mapping for LLM summaries. #}
+                    <header>
+                      <p id="{{ heading_id }}" class="fs-4 fw-bold" itemprop="headline">
+                        {{ node.label }}
+                      </p>
+                    </header>
 
-                              ACCESSIBILITY DECISIONS:
-                                aria-label="Read story: {node.label}"
-                                  → Provides an action-oriented label for screen
-                                    readers. "Read story:" is a deliberate prefix
-                                    that distinguishes these from the Give Now links
-                                    ("Give now to:") so AT users navigating a page
-                                    that contains both grids can tell them apart.
-                                  → Does NOT use aria-describedby (unlike Give Now).
-                                    If body text is important for AT context, add
-                                    a body_id variable and aria-describedby in a
-                                    future pass.
+                    {# Body: itemprop="description" tells AI this is the core narrative. #}
+                    <div class="lead-story-body mb-2" itemprop="description">
+                      {# Note: Raw used here only for trusted editorial content. #}
+                      {{ node.body.value|raw }}
+                    </div>
+                  </div>
+                  
+                  {# CTA: Visual button for users; hidden from AT to prevent redundant links. #}
+                  {% if node.field_link.title is not empty %}
+                    <div class="card-footer card-story mb-2">
+                      <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start" aria-hidden="true">
+                        {{ node.field_link.title }}
+                      </span>
+                    </div>
+                  {% endif %}
 
-                              NOTE: There is NO id attribute on this <a>, unlike the
-                              Give Now card anchor (id="give-now-item-{{ node.id }}").
-                              If per-card deep-linking or JS targeting by ID is
-                              needed in the future, add id="lead-story-item-{{ node.id }}".
-
-                              DATA ATTRIBUTES (consumed by call-to-action JS library):
-                                data-story-id    → Node ID for analytics event tracking
-                                data-story-title → Node title for GA event label
-                                                   |e('html_attr') escapes quotes/special
-                                                   chars for safe attribute embedding
-                                data-story-url   → Destination URL for deferred navigation
-                                data-block-id    → Block placement ID; falls back to
-                                                   'lead-stories' string when id is null
-                                                   (e.g., sort page, Layout Builder preview)
-
-                              LAYOUT CLASSES:
-                                text-decoration-none → removes underline from link
-                                h-100               → stretches to full <div> height
-                                                      enabling equal-height cards in a row
-                                d-flex flex-column  → enables the sticky-footer pattern
-                                                      for the CTA button at card bottom
-                                story-link          → JS hook for the CTA library
-                            #}
-                            <a href="{{ link }}"
-                               class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
-                               aria-label="Read story: {{ node.label }}"
-                               data-story-id="{{ node.id }}"
-                               data-story-title="{{ node.label|e('html_attr') }}"
-                               data-story-url="{{ link }}"
-                               data-block-id="{{ id ?: 'lead-stories' }}">
-
-                                {#
-                                  CARD ARTICLE
-                                  ------------
-                                  <article> is semantically appropriate — each card
-                                  represents a self-contained story that could stand
-                                  alone if syndicated or extracted from context.
-
-                                  Class breakdown:
-                                    m-2     → outer margin creating a gutter between
-                                              cards within the same Bootstrap column
-                                    shadow  → Bootstrap drop shadow. Applied
-                                              UNCONDITIONALLY here, unlike Give Now
-                                              which uses a per-node field_shadow toggle.
-                                              If per-card shadow control is needed,
-                                              add field_shadow to the content type and
-                                              apply the same conditional used in Give Now.
-                                    node.field_color_background.value ?: 'cua-black-opacity-75'
-                                              → Editor-selected background color class
-                                                (e.g., "bg-gold", "bg-dark-blue") OR the
-                                                default 'cua-black-opacity-75' if empty.
-                                                Note the fallback value — unlike Give Now
-                                                which falls back to no class, this always
-                                                applies a background. Check _colors.scss
-                                                for 'cua-black-opacity-75' definition.
-                                    flex-grow-1 d-flex flex-column
-                                              → Enables content to fill the full height
-                                                of the <a> wrapper, and allows the CTA
-                                                footer to stick to the bottom via
-                                                `mt-auto` or margin on the footer div.
-                                #}
-                                <article class="m-2 shadow {{ node.field_color_background.value ?: 'cua-black-opacity-75' }} flex-grow-1 d-flex flex-column">
-
-                                    {#
-                                      DUAL HEADING STRATEGY — LAYER 1 (SCREEN READER ONLY)
-                                      -----------------------------------------------------
-                                      This visually-hidden <h4> exists to satisfy two goals:
-                                        1. SEO: Provides a heading in the document outline
-                                           that search crawlers can follow.
-                                        2. AT Navigation: Users of screen readers who
-                                           navigate by headings (H key in NVDA/JAWS) will
-                                           land on this heading and hear the story title,
-                                           giving them context before they choose to enter
-                                           the link.
-
-                                      The |t filter on the concatenated string is intentional
-                                      for i18n — "Read more about" is a translatable prefix.
-
-                                      ⚠ ARIA INTERACTION WARNING:
-                                      This heading is inside the <a> card link. Nesting a
-                                      heading inside an <a> is technically valid HTML5 (block
-                                      elements can appear in <a> in HTML5), but some screen
-                                      readers may announce both the heading AND the link label.
-                                      Test with NVDA + Chrome and VoiceOver + Safari if you
-                                      receive bug reports about double-reading of story titles.
-                                      The Give Now template avoids this by using aria-hidden
-                                      on the heading instead.
-                                    #}
-                                    <h4 class="visually-hidden">
-                                        {{ 'Read more about ' ~ node.label | t }}
-                                    </h4>
-
-                                    {#
-                                      IMAGE + FLAG REGION
-                                      -------------------
-                                      position-relative on this wrapper allows the flag
-                                      overlay (position-absolute inside) to be positioned
-                                      relative to the image area, not the entire card.
-                                    #}
-                                    <div class="position-relative">
-                                        {# 
-                                          PROMOTIONAL FLAG / BADGE
-                                          ------------------------
-                                          Only rendered when field_flag equals 'flag_on'.
-                                          Renders a small colored banner in the top-left
-                                          corner of the card image (e.g., "Giving Day",
-                                          "Featured Story").
-
-                                          DEV NOTE — FLAG CLASS ASSEMBLY
-                                          This template uses a more advanced flag class
-                                          assembly than Give Now. Rather than inline
-                                          concatenation, it uses a filtered array:
-                                            ['flag', 'py-2', node.field_flag_background.value ?: '']
-                                            | filter(v => v)  → removes empty string if no bg value
-                                            | join(' ') | trim → collapses to class string, trims whitespace
-
-                                          This is slightly cleaner than Give Now's approach and
-                                          avoids an extra trailing space when field_flag_background
-                                          is empty. Consider back-porting this pattern to Give Now
-                                          in a future consistency pass.
-
-                                          Field explanations (same as Give Now):
-                                            field_flag_background.value → background color class
-                                            field_icon.value            → icon class string (Font Awesome)
-                                            field_icon_size.value       → size modifier class
-                                            field_icon_color.value      → inline hex/rgb color
-                                            field_flag_title.value      → visible flag text
-
-                                          aria-hidden="true" on the <i> icon suppresses it
-                                          from screen readers (purely decorative).
-                                        #}
-                                        {% if node.field_flag.value == 'flag_on' %}
-                                            {% set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) %}
-                                            <div class="position-absolute start-0">
-                                                <div class="{{ flag_classes|join(' ')|trim }}"
-                                                     style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
-                                                    {% if node.field_icon.value %}
-                                                        <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
-                                                           style="color: {{ node.field_icon_color.value }}"
-                                                           aria-hidden="true"></i>
-                                                    {% endif %}
-                                                    {% if node.field_flag_title.value %}
-                                                        <span class="flag-title">{{ node.field_flag_title.value }}</span>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                        {% endif %}
-
-                                        {# 
-                                          CARD IMAGE
-                                          ----------
-                                          node.field_image.entity guard — same pattern as Give Now
-                                          v2.2.0. Protects against a non-null field_image whose
-                                          referenced file entity was deleted from the Media Library
-                                          without being removed from the node. Without this guard,
-                                          accessing .fileuri on a null entity causes a fatal error.
-
-                                          image_style('lead_story') → applies the 'lead_story'
-                                            Drupal image style derivative. Verify dimensions at
-                                            /admin/config/media/image-styles. Update the style
-                                            name here if it is ever renamed in the UI.
-
-                                          alt_text fallback → 'Story image for {node.label}' when
-                                            the editor left the alt field blank. This fallback is
-                                            more descriptive than Give Now's 'Image for' prefix,
-                                        #}
-                                        {% if node.field_image.entity %}
-                                            {% set image_url = node.field_image.entity.fileuri | image_style('lead_story') %}
-                                            {% set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Story image for ' ~ node.label %}
-                                            <div class="card-header mb-2">
-                                                <img src="{{ image_url }}" alt="{{ alt_text }}" loading="lazy" class="img-fluid">
-                                            </div>
-                                        {% endif %}
-                                    </div>{# END .position-relative (image + flag region) #}
-
-                                    {#
-                                      CARD TEXT CONTENT
-                                      -----------------
-                                      flex-grow-1 d-flex flex-column → this is what makes the
-                                        CTA footer "stick" to the bottom of the card. flex-grow-1
-                                        causes this content div to expand and fill all available
-                                        vertical space, pushing the card-footer below it to the
-                                        bottom of the <article>. Without this, the footer floats
-                                        up to sit directly below the body text, breaking the
-                                        aligned-bottom-edge visual across cards of different heights.
-                                      px-3 pt-2 → horizontal padding and top breathing room
-                                    #}
-                                    <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
-
-                                        {#
-                                          DUAL HEADING STRATEGY — LAYER 2 (VISIBLE TITLE)
-                                          ------------------------------------------------
-                                          This <p> is the VISIBLE card title. It uses a <p>
-                                          (paragraph) tag rather than a heading tag deliberately,
-                                          because the <h4> above already handles the heading
-                                          semantics for screen readers and the document outline.
-
-                                          Using another heading tag here would double the heading
-                                          in the AT reading order, which is why this is a <p>
-                                          with heading-style typography classes (fs-4 fw-bold).
-
-                                          id="{{ heading_id }}" → provides a DOM anchor for
-                                            potential future aria-labelledby use (e.g., if the
-                                            card pattern is ever refactored to expose the title
-                                            as a separate interactive element).
-
-                                          aria-hidden="true" → critical. Suppresses this visible
-                                            title from the AT reading order because the hidden
-                                            <h4> above already handles reading the title to AT
-                                            users. Without this, screen readers announce the
-                                            story title TWICE per card.
-
-                                          Typography classes:
-                                            fs-4  → Bootstrap font-size 4 (~1.25rem)
-                                            fw-bold → bold weight
-                                        #}
-                                        <p id="{{ heading_id }}" class="fs-4 fw-bold" aria-hidden="true">
-                                            {{ node.label }}
-                                        </p>
-
-                                        {#
-                                          CARD BODY
-                                          ---------
-                                          node.body.value|raw → renders the Drupal body field
-                                            with full HTML markup intact. The `|raw` filter
-                                            bypasses Twig's autoescaping.
-
-                                          ⚠ SECURITY NOTE: `|raw` is only safe here because
-                                            Drupal's text format pipeline (CKEditor + configured
-                                            text filters) already sanitized this content before
-                                            storage. NEVER use `|raw` on unfiltered user input
-                                            or fields not processed through a Drupal text format.
-                                            If in doubt, use `{{ node.body.value }}` without |raw
-                                            and inspect the output — Twig escaping will show you
-                                            if the content contains unescaped markup.
-
-                                          mb-2 → bottom margin before the CTA footer
-                                        #}
-                                        <div class="lead-story-body mb-2">
-                                            {# |raw used with caution; respects Drupal filter configuration #}
-                                            {{ node.body.value|raw }}
-                                        </div>
-                                    </div>{# END .lead-story-content #}
-
-                                    {#
-                                      CALL-TO-ACTION FOOTER BUTTON
-                                      ----------------------------
-                                      Only rendered when field_link.title is non-empty.
-                                      Same guard as Give Now v2.2.0 — prevents an empty
-                                      .card-footer div from appearing when no CTA label
-                                      is configured, which would create unexpected whitespace
-                                      at the bottom of the card.
-
-                                      PATTERN NOTE: This is a <span>, NOT a <button> or <a>.
-                                      It is intentionally non-interactive because the entire
-                                      card is already wrapped in a clickable <a>. Nesting
-                                      a <button> or <a> inside another <a> violates the HTML
-                                      spec and causes AT to announce two separate interactive
-                                      elements where there is only one action.
-
-                                      aria-hidden="true" → hides this from screen readers.
-                                        The CTA text ("Read the story", "Learn more") is
-                                        redundant given the parent <a>'s aria-label. AT users
-                                        do not need to hear it announced separately.
-
-                                      Layout differences vs. Give Now CTA footer:
-                                        - No mb-5 here (Give Now has mb-5 on the wrapper div)
-                                        - w-100 text-start on the <span> — full-width button
-                                          appearance, left-aligned text. Give Now omits these.
-                                        - card-footer has mb-2 (vs. the more complex d-flex p-0
-                                          mb-5 mx-3 pattern in Give Now)
-                                        Consider aligning these in a future design system pass
-                                        to reduce per-component variation.
-                                    #}
-                                    {% if node.field_link.title is not empty %}
-                                        <div class="card-footer card-story mb-2">
-                                          <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start" aria-hidden="true">
-                                            {{ node.field_link.title }}
-                                          </span>
-                                        </div>
-                                    {% endif %}
-
-                                </article>{# END article.lead-story-card #}
-                            </a>{# END a.story-link (card anchor) #}
-                        </div>{# END div[role="listitem"] (grid column) #}
-
-                    {% endif %}{# END row._entity guard #}
-                {% endfor %}{# END for row in view.result #}
-
-            </div>{# END div[role="list"] .row (card grid) #}
-
-            {# 
-              GLOBAL CTA: Browse More Stories
-              PLACEMENT: Should be positioned after the {% endfor %} loop of the story grid.
-              ACCESSIBILITY: Uses clear, descriptive text for screen reader navigation.
-
-              DEV NOTE — GLOBAL CTA FOOTER
-              ------------------------------
-              This "Browse More Stories" button lives OUTSIDE the loop and applies
-              to the entire grid section, not to any individual card. It routes to
-              /impact-stories which should be the full stories listing page.
-
-              This element has NO equivalent in block--give-now.html.twig. It is
-              unique to the Lead Story component's editorial intent.
-
-              GA TRACKING ATTRIBUTES:
-                data-ga-event         → event type (basic_block_link)
-                data-ga-category      → GA category
-                data-ga-action        → GA action label / event label
-                data-ga-component-id  → hardcoded component ID for the GA layer.
-                                        ⚠ This value ('block--node--basic-block--2016')
-                                        is HARDCODED and tied to a specific node/block ID.
-                                        If the block is cloned or recreated in a new
-                                        Drupal environment, this ID will be stale. Consider
-                                        replacing with {{ id }} or a dynamic value in a
-                                        future refactor.
-
-              LAYOUT CLASSES:
-                card-footer d-flex justify-content-center → centered horizontal layout
-                mb-5                                      → bottom margin before next section
-                btn-cu-bg-gold                            → CUA theme gold button style.
-                                                            Check _buttons.scss for definition.
-                px-5 py-2 mt-4                            → generous horizontal padding,
-                                                            vertical padding, top margin
-            #}
-            <div class="card-footer d-flex justify-content-center mb-5">
-                <a href="/impact-stories" 
-                class="card-link btn btn-cu-bg-gold text-decoration-none px-5 py-2 mt-4" 
-                data-ga-event="basic_block_link" 
-                data-ga-category="basic_block" 
-                data-ga-action="Browse More Stories" 
-                data-ga-component-id="block--node--basic-block--2016">
-                    {{ 'Browse More Stories'|t }}
-                </a>
+                </article>
+              </a>
             </div>
 
-        </div>{# END .container-fluid (section wrapper) #}
-    {% endif %}{# END view.result not empty #}
-{% endif %}{# END content['#view'] not empty #}
+          {% endif %}
+        {% endfor %}
 
+      </div>
 
+      {# Footer: Main routing for the editorial ecosystem. #}
+      <nav class="card-footer d-flex justify-content-center mb-5" aria-label="More Stories Navigation">
+        <a href="/impact-stories" 
+           class="card-link btn btn-cu-bg-gold text-decoration-none px-5 py-2 mt-4">
+          {{ 'Browse More Stories'|t }}
+        </a>
+      </nav>
+
+    </div>
+  {% endif %}
+{% endif %}`
