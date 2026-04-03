@@ -1,29 +1,15 @@
 {#
 /**
- * @file
- * header.html.twig
- *
- * Final Accessible Header Template for CU Theme.
- * WCAG 2.1 / 508 Compliant. W3C Valid.
- *
- * Fixes applied across all review rounds:
- *  - rel="home" on logo anchor (not aria-label, not display text)
- *  - site_name and site_slogan output WITHOUT |t (Drupal translates upstream)
- *  - Secondary menu rendered exactly once (no duplicate IDs)
- *  - aria-label used directly on <nav> (no hidden h2 in document outline)
- *  - Search region h2 label placed OUTSIDE the collapse div so it is
- *    always in the DOM and always reachable by assistive technology
- *  - role="region" + aria-labelledby on search collapse for valid landmark
- *  - Mobile toggle button kept inside the <nav> so button and its
- *    controlled element share the same landmark region
- *  - clearfix retained on top bar row to guard against floated block output
- *  - Sticky logo uses alt="" + aria-hidden="true" (decorative/duplicate)
- *  - SVG icons use aria-hidden="true" (label lives on the button)
- *  - site_name and site_slogan use |e (HTML-escape) not |t (translate)
- *    because Drupal has already translated these values before this template
- *    receives them. Double-translating can corrupt output.
+ * @file: header.html.twig
+ * Standards: WCAG 2.1 AA / Section 508 Compliant.
+ * * Key Constraints:
+ * - Branding: site_name/slogan use |e (Drupal translates upstream).
+ * - Accessibility: Search h2 (#search-heading) must remain outside the collapse div.
+ * - Navigation: Mobile toggle sits in top bar but controls #navbar-main via ID.
+ * - Performance: Secondary menu rendered once; repositioned via CSS/Bootstrap.
  */
 #}
+
 <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
 
     {#
@@ -83,6 +69,13 @@
 
                                 </a>
                             </div>
+
+                            `{# --- Admin-Only Tutorials Link (Justified Right & Hidden on Mobile) --- #}
+                            {% if user.hasPermission('administer site configuration') %}
+                                <div class="ms-auto d-none d-lg-flex align-items-center">
+                                    <a href="/tutorials" class="btn btn-sm btn-outline-secondary">{{ 'Tutorials'|t }}</a>
+                                </div>
+                            {% endif %}
 
                             {#
                               --- Mobile Toggle Button ---
