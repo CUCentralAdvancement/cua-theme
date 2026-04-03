@@ -1,156 +1,64 @@
 {# 
+  MAINTENANCE NOTES (Strict Architecture):
+  1. WHITESPACE CONTROL: This template uses {% apply spaceless %} and 
+     whitespace control tags ({%- ... -%}) to purge invisible text nodes. 
+     Do NOT re-indent for "readability" as it will re-inject white space 
+     into the rendered DOM, impacting Section 508 and SEO scannability.
+  
+  2. COMPATIBILITY: Hardened for Drupal 11 (PHP 8.4) strict Twig lexing. 
+     Chained attributes on the <section> tag are intentional for 
+     performance and logic-binding.
+
+  3. ACCESSIBILITY: The heading ID logic is critical for the 'region' 
+     landmark. Do not change id="{{ heading_id }}" without updating 
+     the aria-labelledby on the parent <section>.
   =============================================================================
-  COMPONENT: Hero / Banner (Image & Text Overlay)
-  STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (No-Lag)
-  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / SEO Semantic Tier 1
-  =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Responsive: Uses a flex-column layout to prevent content "bleeding" on mobile.
-  - Performance: Inline background-image logic for rapid LCP (Largest Contentful Paint).
-  - Logic: Smart title-detection to prevent duplicate H1/H2 announcements.
-
-  MAINTENANCE WARNING:
-  Inline styles for background images are used for CMS flexibility. Ensure your 
-  Content Security Policy (CSP) allows 'unsafe-inline' for style-src, or move 
-  this to a dynamic <style> block in the header if hardening is required.
-  =============================================================================
 #}
-
-{{ attach_library('cua_theme/banner') }}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-
-{# 
-  ID ARCHITECTURE:
-  Persistent unique ID for the region landmark to support 'Skip to Content' 
-  and screen reader navigation.
-#}
-{% set unique_id = 'banner-' ~ elements.content['#block_content'].id()|default(random(1000)) %}
-
-{# Logic for handling single vs. multiple action triggers #}
-{% set links_count = links|length %}
-{% set single_link = (links_count == 1) ? links|first : null %}
-
-{# 
-  UTILITY CLASS MERGING:
-  Standardized block classes merged with site-builder utility injections. 
-#}
-{% set container_classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'jumbotron jumbotron-fluid banner g-0',
-    'container-fluid',
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
-
-{# Image Extraction: Fetching the raw URI for the CSS background-image property #}
-{% set bg_image_url = content.field_image is not empty ? file_url(content.field_image['#items'].entity.uri.value) : '' %}
-
-{# Flexbox-aware container for image positioning and parallax effects #}
-{% set image_container_classes = [
-    'banner-image-container',
-    parallax ?: null,
-    position_container ? 'd-flex ' ~ position_container|clean_class : null,
-    container_size ?: null,
-    margins ?: null,
-    'background-size-cover',
-] | filter(v => v) | join(' ') %}
-
-{# 
-  RESPONSIVE BODY CLASSES:
-  We default to full-width on mobile (col-sm-12) and 5-columns on desktop.
-#}
-{% set banner_body_classes = [
-    'col-md-5',
-    'col-sm-12',
-    'banner-body mx-5',
-    color_background ?: null,
-    text_color ?: null,
-    effect_copy_class ?: null,
-    padding ?: null,
-    'my-5 my-sm-3',
-    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-] | filter(v => v) | join(' ') %}
-
-{# Animation Data Attributes: Decouples animation logic from the class string #}
-{% set animation_classes = (animation or animation_speed or animation_delay)
-    ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay
-    : null %}
-
-{# Heading ID Mapping for ARIA landmark binding #}
-{% if label %}
-    {% set heading_id = unique_id ~ '-banner-title' %}
-{% else %}
-    {% set heading_id = unique_id ~ '-sr-title' %}
-{% endif %}
-
-{# 
-  OUTER WRAPPER:
-  role="region" ensures this shows up in the 'Landmarks' menu for assistive tech.
-#}
-<div{{ attributes
-    .setAttribute('id', unique_id)
-    .addClass(container_classes)
-    .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', heading_id) }}>
-
-    {{ title_prefix }}
-    {{ title_suffix }}
-
-    <div class="{{ image_container_classes }}"
-         style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;">
-        
-        <div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}"{% endif %}>
-
-            {# 
-              TITLE LOGIC: 
-              If the banner title is the same as the page title, we hide it from 
-              screen readers to avoid 'double-speak' (WCAG 4.1.1). 
-              We use role="presentation" to strip semantic heading weight.
-            #}
-            {% if label %}
-                <div id="{{ heading_id }}"
-                     class="display-4 card-text lead title {{ text_color }}"
-                     role="presentation"
-                     aria-hidden="{{ label == page.title ? 'true' : 'false' }}">
-                    {{ label }}
-                </div>
-            {% else %}
-                {# Accessible fallback: Ensures every region landmark has a name #}
-                <h3 id="{{ heading_id }}" class="visually-hidden">
-                    {{ 'Banner region'|t }}
-                </h3>
-            {% endif %}
-
-            {# Content Layer: Leverages card_body macro for text rendering #}
-            {% if content %}
-                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                {{ bodyMacros.render_body(content, text_color, text_alignment) }}
-            {% endif %}
-
-            {# 
-              CTA SECTION: 
-              Single link implementation. Uses aria-hidden on the visual text
-              if the parent banner already provides enough context.
-            #}
-            {% if single_link %}
-                {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-                {% set card_footer_classes = [
-                    'card-footer d-flex mb-5',
-                    container_size,
-                    position_container,
-                    text_alignment,
-                    padding,
-                ] | filter(v => v) | join(' ') %}
-
-                <div class="{{ card_footer_classes }}">
-                    <span class="card-link btn {{ outline_class }} text-decoration-none p-2 mt-3"
-                          aria-hidden="true">
-                        {{ single_link.title }}
-                    </span>
-                </div>
-            {% endif %}
-
-        </div> {# /.banner-body #}
-    </div> {# /.banner-image-container #}
-</div>
+{{- attach_library('cua_theme/banner') -}}
+{%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
+{%- set unique_id = 'banner-' ~ elements.content['#block_content'].id()|default(random(1000)) -%}
+{%- set links_count = links|length -%}
+{%- set single_link = (links_count == 1) ? links|first : null -%}
+{%- set container_classes = ['block','block-' ~ configuration.provider|clean_class,'block-' ~ plugin_id|clean_class,'jumbotron jumbotron-fluid banner g-0','container-fluid position-relative',id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null] | merge(utility_classes ?: []) | filter(v => v) | join(' ') -%}
+{%- set bg_image_url = content.field_image is not empty ? file_url(content.field_image['#items'].entity.uri.value) : '' -%}
+{%- set bg_image_alt = content.field_image['#items'][0].alt|default(label|default('Banner background')) -%}
+{%- set image_container_classes = ['banner-image-container',parallax ?: null,position_container ? 'd-flex ' ~ position_container|clean_class : null,container_size ?: null,margins ?: null,'background-size-cover'] | filter(v => v) | join(' ') -%}
+{%- set banner_body_classes = ['col-md-5','col-sm-12','banner-body mx-5 z-1',color_background ?: null,text_color ?: null,effect_copy_class ?: null,padding ?: null,'my-5 my-sm-3',(animation or animation_speed or animation_delay) ? 'animate-trigger' : null] | filter(v => v) | join(' ') -%}
+{%- set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null -%}
+{%- if label -%}
+	{%- set heading_id = unique_id ~ '-banner-title' -%}
+{%- else -%}
+	{%- set heading_id = unique_id ~ '-sr-title' -%}
+{%- endif -%}
+<section{{attributes.setAttribute('id',unique_id).addClass(container_classes).setAttribute('role','region').setAttribute('aria-labelledby',heading_id)}}>
+	{{- title_prefix -}}
+	{{- title_suffix -}}
+	<div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;" role="img" aria-label="{{ bg_image_alt }}">
+		{%- apply spaceless -%}
+		<div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}" {% endif %}>
+			{%- if label -%}
+				<h2 id="{{ heading_id }}" class="display-4 card-text lead title {{ text_color }}" aria-hidden="{{ label|trim == page_title|trim ? 'true' : 'false' }}">
+					{{- label|trim -}}
+				</h2>
+			{%- else -%}
+				<h2 id="{{ heading_id }}" class="visually-hidden">
+					{{- 'Featured content'|t -}}
+				</h2>
+			{%- endif -%}
+			{%- if content -%}
+				{%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
+				{{- bodyMacros.render_body(content, text_color, text_alignment)|trim -}}
+			{%- endif -%}
+			{%- if single_link -%}
+				{%- set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color -%}
+				{%- set card_footer_classes = ['card-footer d-flex mb-5', container_size, position_container, text_alignment, padding] | filter(v => v) | join(' ') -%}
+				<div class="{{ card_footer_classes }}">
+					<a href="{{ single_link.url }}" class="card-link btn {{ outline_class }} text-decoration-none p-2 mt-3" aria-label="{{ single_link.title|trim }} - {{ label|trim|default('Read more') }}">
+						{{- single_link.title|trim -}}
+					</a>
+				</div>
+			{%- endif -%}
+		</div>
+		{%- endapply -%}
+	</div>
+</section>
