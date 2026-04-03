@@ -1,196 +1,107 @@
 {#
   =============================================================================
   COMPONENT: Call to Action (CTA)
-  OPTIMIZED: Semantic structure, AI ingestion, SEO clarity, WCAG 2.2 AA
+  ARCHITECTURE: Sinn 556 iRS Level (Zero-Bloat Hardened)
+  COMPLIANCE: WCAG 2.2 AA / Section 508 / Schema.org Action
   =============================================================================
 #}
+{{- attach_library('cua_theme/call-to-action') -}}
+{%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
+{# Unique ID Generation #}
+{%- set unique_id = ('cta-' ~ elements.content['#block_content'].id())|replace({'_': '-', ':': '--'})|clean_class -%}
+{# Animation Logic #}
+{%- set raw_animation = prefers_reduced_motion ? [] : [ 'animate__animated', animation ?: null, animation_speed ?: null, animation_delay ?: null ]|filter(v => v) -%}
+{%- set data_animation = raw_animation|join(' ')|trim -%}
+{# Class Merging #}
+{%- set cta_classes = [ 'block', 'call-to-action', 'card', 'rounded-0', 'h-100', 'block-' ~ configuration.provider|clean_class, 'block-' ~ plugin_id|clean_class, (animation or animation_speed or animation_delay) ? 'animate-trigger' : null, color_background, color_border, container_size, padding, margin, shadow, id ? 'block--' ~ id|clean_class : null ]|merge(utility_classes ?: [])|filter(v => v)|join(' ') -%}
+{# Link & Wrap Logic #}
+{%- set links_count = links|length -%}
+{%- set single_link = (links_count == 1) ? links|first : null -%}
+{%- set wrap_entire_card = single_link and not content_contains_other_links -%}
+{# Attribute Hardening #}
+{%- set attributes = attributes.setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region').setAttribute('data-animation-classes', data_animation).setAttribute('itemscope', '').setAttribute('itemtype', 'https://schema.org/Action').setAttribute('data-component', 'call-to-action-card') -%}
+{%- if label -%}
+	{%- set attributes = attributes.setAttribute('aria-labelledby', unique_id ~ '-label') -%}
+{%- else -%}
+	{%- set attributes = attributes.setAttribute('aria-label', 'Call to Action') -%}
+{%- endif -%}
 
-{{ attach_library('cua_theme/call-to-action') }}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
+<section{{attributes}}>
+	{%- apply spaceless -%}
+	<meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
+	{%- if single_link -%}
+		<div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
+			<meta itemprop="url" content="{{- single_link.url -}}"/>
+			<meta itemprop="actionPlatform" content="http://schema.org/DesktopWebPlatform"/>
+			<meta itemprop="actionPlatform" content="http://schema.org/MobileWebPlatform"/>
+		</div>
+	{%- endif -%}
 
-{# Unique ID #}
-{% set unique_id = ('block-call-to-action-' ~ elements.content['#block_content'].id())|replace({'_': '-', ':': '--'})|clean_class %}
+	{{- title_prefix -}}
+	{{- title_suffix -}}
 
-{# Animation classes #}
-{% set raw_animation_classes = prefers_reduced_motion ? [] : [
-    'animate__animated',
-    animation ?: null,
-    animation_speed ?: null,
-    animation_delay ?: null,
-]|filter(v => v) %}
-{% set data_animation_classes = raw_animation_classes|join(' ')|trim %}
+	{# Internal Card Wrap Logic #}
+	{%- if wrap_entire_card -%}
+		<a href="{{ single_link.url ?: '#' }}" class="cta-card-link-wrapper text-decoration-none color-inherit" aria-label="{{ single_link.title|striptags|trim }} - {{ label|striptags|trim }}">
+		{%- endif -%}
 
-{# CTA wrapper classes #}
-{% set cta_classes = [
-    'block',
-    'call-to-action',
-    'card',
-    'rounded-0',
-    'h-100',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
-    color_background,
-    color_border,
-    container_size,
-    padding,
-    margin,
-    shadow,
-    id ? 'block--class--call-to-action-' ~ id|clean_class : null,
-]|merge(utility_classes ?: [])|filter(v => v)|join(' ') %}
+		<figure class="cta-media mb-0" role="presentation">
+			{%- if provider -%}
+				{%- include '@cua_theme/component/video/partials/_video--master.html.twig' -%}
+			{%- elseif card_image -%}
+				{%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
+				{{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
+			{%- elseif icon -%}
+				{%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
+				{{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
+			{%- endif -%}
+		</figure>
 
-{# Link logic #}
-{% set links_count = links|length %}
-{% set single_link = (links_count == 1) ? links|first : null %}
-{% set wrap_entire_card = single_link and not content_contains_other_links %}
+		{%- if caption -%}
+			{%- import '@cua_theme/com`ponent/macros/card_caption.html.twig' as captionMacros -%}
+			{{- captionMacros.render_caption(caption, padding, text_color, text_alignment) -}}
+		{%- endif -%}
 
-{# CTA wrapper attributes #}
-{% set attributes = attributes
-    |without('id')
-    .setAttribute('id', unique_id)
-    .addClass(cta_classes)
-    .setAttribute('role', 'region')
-    .setAttribute('data-animation-classes', data_animation_classes)
-    .setAttribute('itemscope', '')
-    .setAttribute('itemtype', 'https://schema.org/Action')
-    .setAttribute('data-component', 'call-to-action-card')
-%}
+		{%- if label -%}
+			<header class="card-header border-0 bg-transparent px-3 pt-2 pb-0">
+				<h3 id="{{ unique_id }}-label" class="display-4 card-title title {{ text_color }} mb-0" itemprop="name">
+					{{- label|trim -}}
+				</h3>
+			</header>
+		{%- endif -%}
 
-{% if label %}
-    {% set attributes = attributes.setAttribute('aria-labelledby', unique_id ~ '-label') %}
-{% else %}
-    {% set attributes = attributes.setAttribute('aria-label', 'Call to Action') %}
-{% endif %}
+		<div class="card-body d-flex flex-column pt-2 {{ padding }} {{ text_alignment }}">
+			{%- if content -%}
+				<div itemprop="description" class="cta-text lead {{ text_color }}">
+					{%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
+					{{- bodyMacros.render_body(content, 'p-0', text_color, text_alignment)|trim -}}
+				</div>
+			{%- endif -%}
+		</div>
 
-{# ===========================
-   CTA WRAPPER (SEMANTIC)
-   =========================== #}
-<section{{ attributes }}>
+		{%- if single_link -%}
+			<footer class="card-footer bg-transparent border-0 {{ padding }} {{ text_alignment }} mt-auto">
+				{%- set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color -%}
+				{%- if wrap_entire_card -%}
+					{# If card is wrapped, this is a visual-only indicator to avoid nested links #}
+					<span class="btn {{ outline_class }} mt-3" aria-hidden="true">
+						{{- single_link.title -}}
+					</span>
+				{%- else -%}
+					<a href="{{ single_link.url }}" class="btn {{ outline_class }} mt-3">
+						{{- single_link.title -}}
+					</a>
+				{%- endif -%}
+			</footer>
+		{%- endif -%}
 
-    {# Invisible metadata for AI/SEO #}
-    <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus" />
+		{%- if links_count > 1 -%}
+			{%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
+			{{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false) -}}
+		{%- endif -%}
 
-    {% if single_link %}
-        <div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
-            <meta itemprop="url" content="{{ single_link.url }}" />
-            <meta itemprop="actionPlatform" content="http://schema.org/DesktopWebPlatform" />
-            <meta itemprop="actionPlatform" content="http://schema.org/MobileWebPlatform" />
-        </div>
-    {% endif %}
-
-    {{ title_prefix ?: '' }}
-    {{ title_suffix ?: '' }}
-
-    {# Accessible label #}
-    {% if label %}
-        <h3 id="{{ unique_id }}-label" class="visually-hidden">{{ label }}</h3>
-    {% endif %}
-
-    {# Wrap entire card if single link #}
-    {% if wrap_entire_card %}
-        <a href="{{ single_link.url ?: '#' }}"
-           class="cta-link"
-           aria-label="{{ single_link.title|striptags|trim }}"
-           data-ga-event="cta_click"
-           data-ga-category="call_to_action"
-           data-ga-action="{{ single_link.title|default(label)|striptags|trim }}"
-           data-ga-component-id="{{ unique_id }}">
-    {% endif %}
-
-        {# ===========================
-           MEDIA BLOCK (SEMANTIC)
-           =========================== #}
-        <figure class="cta-media" role="presentation">
-            {% if provider %}
-                {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-            {% elseif card_image %}
-                {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-                {{ cardImageMacros.render_card_image(
-                    card_image,
-                    position_container,
-                    text_alignment,
-                    text_color,
-                    image_size,
-                    visibility,
-                    content,
-                    true
-                ) }}
-            {% elseif icon %}
-                {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-                {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
-            {% else %}
-                <span class="cta-fallback" aria-hidden="true"></span>
-            {% endif %}
-        </figure>
-
-        {# Optional caption #}
-        {% if caption %}
-            {% import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros %}
-            {{ captionMacros.render_caption(caption, padding, text_color, text_alignment) }}
-        {% endif %}
-
-        {# Visible heading (semantic) #}
-        {% if label %}
-            {% set heading_classes = [
-                'display-4',
-                'card-text',
-                'lead',
-                'title',
-                text_alignment,
-                center_content,
-                text_color,
-                padding,
-            ]|filter(v => v)|join(' ') %}
-
-            <h3 class="{{ heading_classes }}" itemprop="name" aria-hidden="true">
-                {{ label }}
-            </h3>
-        {% endif %}
-
-        {# ===========================
-           BODY CONTENT (SEMANTIC)
-           =========================== #}
-        {% if content %}
-            <section itemprop="description" class="cta-semantic-body">
-                {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
-            </section>
-        {% endif %}
-
-        {# ===========================
-           FOOTER LINKS
-           =========================== #}
-
-        {# Single link footer (non-wrapping) #}
-        {% if single_link and not wrap_entire_card %}
-            {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-            <footer class="card-footer d-flex {{ container_size }} {{ position_container }} {{ text_alignment }} {{ padding }} mb-5">
-                <span class="btn {{ outline_class }} text-decoration-none p-2 mt-3" aria-hidden="true">
-                    {{ single_link.title }}
-                </span>
-            </footer>
-        {% endif %}
-
-        {# Multiple links footer #}
-        {% if links and not wrap_entire_card %}
-            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-            {{ cardFooterMacros.render_card_footer(
-                links,
-                container_size,
-                color_background,
-                position_container,
-                text_alignment,
-                padding,
-                outline,
-                button_color,
-                button_layout,
-                false,
-                false
-            ) }}
-        {% endif %}
-
-    {% if wrap_entire_card %}
-        </a>
-    {% endif %}
-
+		{%- if wrap_entire_card -%}
+		</a>
+	{%- endif -%}
+	{%- endapply -%}
 </section>
