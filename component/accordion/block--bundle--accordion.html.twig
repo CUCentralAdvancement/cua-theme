@@ -52,6 +52,9 @@
     .setAttribute('aria-labelledby', labelledby_id)
 }}>
 
+    {{ title_prefix ?: '' }}
+    {{ title_suffix ?: '' }}
+
     {# 
       HEADING LAYER:
       If a title exists, it becomes the accessible label for the entire 
