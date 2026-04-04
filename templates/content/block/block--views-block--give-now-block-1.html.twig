@@ -1,8 +1,8 @@
-{#-
+{#- 
   =============================================================================
   COMPONENT: Give Now Grid (Multi-Campus)
   ARCHITECTURE: Sinn 556 iRS Level (Zero-Bloat Hardened)
-  STABILITY: Production-Stable | Manual Logic Check Passed
+  STABILITY: Production-Stable | Schema.org Validated
   =============================================================================
 -#}
 {{- attach_library('cua_theme/call-to-action') -}}
@@ -32,25 +32,26 @@
 			{{ 'Ways to Give to CU Boulder, UCCS, CU Denver, and Anschutz'|t }}
 		</h2>
 
-		<ul class="row list-unstyled m-0" itemprop="itemListElement">
+		<ul class="row list-unstyled m-0">
 			{%- for row in view.result -%}
-				{#- FIXED: Standard nested IF to avoid Twig Syntax Errors -#}
 				{%- if row._entity is not empty -%}
 					{%- set node = row._entity -%}
 					{%- set heading_id = 'give-now-item-' ~ node.id ~ '-title' -%}
 					{%- set body_id    = 'give-now-item-' ~ node.id ~ '-body' -%}
 					{%- set link       = node.field_link.uri ?: '#' -%}
 
-					<li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" itemscope itemtype="https://schema.org/Action" itemprop="itemListElement">
+					<li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
 						{%- apply spaceless -%}
 						<meta itemprop="position" content="{{ loop.index }}"/>
-						<a href="{{ link }}" id="give-now-item-{{ node.id }}" class="give-now-item d-flex flex-column text-decoration-none h-100 story-link" aria-describedby="{{ body_id }}" itemprop="url">
+
+						<a href="{{ link }}" id="give-now-item-{{ node.id }}" class="give-now-item d-flex flex-column text-decoration-none h-100 story-link" aria-describedby="{{ body_id }}" itemprop="item" itemscope itemtype="https://schema.org/Action">
+
+							<meta itemprop="url" content="{{ link }}"/>
 
 							<article class="m-2 h-100 shadow {{ node.field_color_background.value ?: 'cu-bg-white' }}" role="group" aria-labelledby="{{ heading_id }}" itemscope itemtype="https://schema.org/CreativeWork">
 
-								<figure
-									class="position-relative mb-0" role="presentation">
-									{#- Flag Logic -#}
+								<figure class="position-relative mb-0" role="presentation">
+
 									{%- if node.field_flag.value == 'flag_on' -%}
 										<div class="position-absolute start-0 top-0 z-index-1">
 											<div class="flag py-2 {{ node.field_flag_background.value ?: '' }}" style="width:max-content;display:flex;align-items:center;padding:5px 10px;white-space:nowrap;">
