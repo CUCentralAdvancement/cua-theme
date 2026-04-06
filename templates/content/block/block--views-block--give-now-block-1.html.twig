@@ -7,14 +7,10 @@
 -#}
 {{- attach_library('cua_theme/call-to-action') -}}
 
-{#- Administrative Utility Belt -#}
 {%- if user.hasPermission('administer site configuration') -%}
 	<nav class="admin-interface d-flex justify-content-center gap-2 m-2" aria-label="Admin Actions">
-		<a href="/admin/content/scheduled" class="btn btn-sm btn-secondary">
-			{{ 'View Schedule'|t }}
-		</a>
 		<a href="/give-now/view-all" class="btn btn-sm btn-secondary">
-			{{ 'View All'|t }}
+			{{ 'Manage Schedules & Content'|t }}
 		</a>
 		<a href="/internal-documentation-giving-day-content-swap-process" class="btn btn-sm btn-secondary">
 			{{ 'Launch Guide'|t }}
