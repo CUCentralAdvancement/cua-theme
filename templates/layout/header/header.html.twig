@@ -71,11 +71,13 @@
                             </div>
 
                             `{# --- Admin-Only Tutorials Link (Justified Right & Hidden on Mobile) --- #}
-                            {% if user.hasPermission('administer site configuration') %}
-                                <div class="ms-auto d-none d-lg-flex align-items-center">
-                                    <a href="/tutorials" class="btn btn-sm btn-outline-secondary">{{ 'Tutorials'|t }}</a>
-                                </div>
-                            {% endif %}
+                           {% if user.hasPermission('administer site configuration') %}
+								<div class="ms-auto d-none d-lg-flex align-items-center">
+									<a href="/tutorials" class="btn btn-sm btn-admin-app">
+										{{ 'Tutorials'|t }}
+									</a>
+								</div>
+							{% endif %}
 
                             {#
                               --- Mobile Toggle Button ---
