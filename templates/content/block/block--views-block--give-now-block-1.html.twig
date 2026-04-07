@@ -9,10 +9,10 @@
 
 {%- if user.hasPermission('administer site configuration') -%}
 	<nav class="admin-interface d-flex justify-content-center gap-2 m-2" aria-label="Admin Actions">
-		<a href="/give-now/view-all" class="btn btn-sm btn-secondary">
+		<a href="/give-now/view-all" class="btn btn-sm btn-admin-app">
 			{{ 'Manage Schedules & Content'|t }}
 		</a>
-		<a href="/internal-documentation-giving-day-content-swap-process" class="btn btn-sm btn-secondary">
+		<a href="/internal-documentation-giving-day-content-swap-process" class="btn btn-sm btn-admin-app">
 			{{ 'Launch Guide'|t }}
 		</a>
 	</nav>
