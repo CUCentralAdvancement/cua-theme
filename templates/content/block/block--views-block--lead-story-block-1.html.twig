@@ -19,110 +19,104 @@
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') -%}
 
 {%- if user.hasPermission('administer site configuration') -%}
-  <div class="admin-interface d-flex justify-content-center m-2" role="group" aria-label="Editor Shortcuts">
-    <a href="/lead-story/sort" class="btn btn-sm btn-admin-app mx-2">{{ 'Sort and manage lead stories'|t }}</a>
-    <a href="/node/add/gi" class="bbtn btn-sm btn-admin-app mx-2">{{ 'Add new lead story'|t }}</a>
-  </div>
+	<div class="admin-interface d-flex justify-content-center m-2" role="group" aria-label="Editor Shortcuts">
+		<a href="/lead-story/sort" class="btn btn-sm btn-admin-app mx-2">
+			{{ 'Sort and manage lead stories'|t }}
+		</a>
+		<a href="/node/add/gi" class="bbtn btn-sm btn-admin-app mx-2">
+			{{ 'Add new lead story'|t }}
+		</a>
+	</div>
 {%- endif -%}
 
 {{- title_prefix -}}
 {{- title_suffix -}}
 
 {%- if content['#view'] is not empty -%}
-  {%- set view = content['#view'] -%}
-  {%- if view.result is not empty -%}
+	{%- set view = content['#view'] -%}
+	{%- if view.result is not empty -%}
 
-    <div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
-      <h2 id="lead-story-section-title" class="cua-gold text-center mb-4">
-        {{ "How Giving Shapes Lives at Colorado's University Campuses"|t }}
-      </h2>
+		<div class="container-fluid cu-bd-black pt-3 pb-5 px-2">
+			<h2 id="lead-story-section-title" class="cua-gold text-center mb-4">
+				{{ "How Giving Shapes Lives at Colorado's University Campuses"|t }}
+			</h2>
 
-      <ul class="row list-unstyled" aria-labelledby="lead-story-section-title">
-        {%- for row in view.result -%}
-          {%- if row._entity is not empty -%}
-            {%- set node = row._entity -%}
-            {%- set heading_id = 'lead-story-item-' ~ node.id ~ '-title' -%}
-            {%- set link = node.field_link.uri ?: '#' -%}
-            {%- set description_text = (node.body.summary ?: node.body.value|striptags)|trim -%}
+			<ul class="row list-unstyled" aria-labelledby="lead-story-section-title">
+				{%- for row in view.result -%}
+					{%- if row._entity is not empty -%}
+						{%- set node = row._entity -%}
+						{%- set heading_id = 'lead-story-item-' ~ node.id ~ '-title' -%}
+						{%- set link = node.field_link.uri ?: '#' -%}
+						{%- set description_text = (node.body.summary ?: node.body.value|striptags)|trim -%}
 
-            <li class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4">
-              <a href="{{ link }}"
-                 class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link"
-                 rel="bookmark"
-                 data-story-id="{{ node.id }}">
-                <article class="m-2 shadow {{ node.field_color_background.value ?: 'cua-black-opacity-75' }} flex-grow-1 d-flex flex-column"
-                         itemscope itemtype="http://schema.org/Article">
-                  <meta itemprop="url" content="{{ link }}">
-                  <meta itemprop="mainEntityOfPage" content="{{ link }}">
-                  <meta itemprop="datePublished" content="{{ node.created.value|date('c') }}">
-                  <meta itemprop="description" content="{{ description_text }}">
+						<li class="col-12 col-sm-6 col-lg-3 lead-story-wrapper mb-4">
+							<a href="{{ link }}" class="{{ givenow_classes }} text-decoration-none h-100 d-flex flex-column story-link" rel="bookmark" data-story-id="{{ node.id }}">
+								<article class="m-2 shadow {{ node.field_color_background.value ?: 'cua-black-opacity-75' }} flex-grow-1 d-flex flex-column" itemscope itemtype="http://schema.org/Article">
+									<meta itemprop="url" content="{{ link }}">
+									<meta itemprop="mainEntityOfPage" content="{{ link }}">
+									<meta itemprop="datePublished" content="{{ node.created.value|date('c') }}">
+									<meta itemprop="description" content="{{ description_text }}">
 
-                  <div class="position-relative">
-                    {%- if node.field_flag.value == 'flag_on' -%}
-                      {%- set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) -%}
-                      <div class="position-absolute start-0">
-                        <div class="{{ flag_classes|join(' ')|trim }}" style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
-                          {%- if node.field_icon.value -%}
-                            <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
-                               style="color: {{ node.field_icon_color.value }}"
-                               aria-hidden="true"></i>
-                          {%- endif -%}
-                          {%- if node.field_flag_title.value -%}
-                            <span class="flag-title">{{ node.field_flag_title.value }}</span>
-                          {%- endif -%}
-                        </div>
-                      </div>
-                    {%- endif -%}
+									<div class="position-relative">
+										{%- if node.field_flag.value == 'flag_on' -%}
+											{%- set flag_classes = ['flag', 'py-2', node.field_flag_background.value ?: ''] | filter(v => v) -%}
+											<div class="position-absolute start-0">
+												<div class="{{ flag_classes|join(' ')|trim }}" style="width: max-content; display: flex; align-items: center; padding: 5px 10px; white-space: nowrap;">
+													{%- if node.field_icon.value -%}
+														<i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1" style="color: {{ node.field_icon_color.value }}" aria-hidden="true"></i>
+													{%- endif -%}
+													{%- if node.field_flag_title.value -%}
+														<span class="flag-title">
+															{{ node.field_flag_title.value }}
+														</span>
+													{%- endif -%}
+												</div>
+											</div>
+										{%- endif -%}
 
-                    {%- if node.field_image.entity -%}
-                      {%- set image_url = node.field_image.entity.fileuri | image_style('lead_story') -%}
-                      {%- set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Story image for ' ~ node.label -%}
-                      <div class="card-header mb-2" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-                        <img src="{{ image_url }}"
-                             alt="{{ alt_text }}"
-                             itemprop="url"
-                             loading="{{ loop.first ? 'eager' : 'lazy' }}"
-                             fetchpriority="{{ loop.first ? 'high' : 'auto' }}"
-                             class="img-fluid">
-                      </div>
-                    {%- endif -%}
-                  </div>
+										{%- if node.field_image.entity -%}
+											{%- set image_url = node.field_image.entity.fileuri | image_style('lead_story') -%}
+											{%- set alt_text = node.field_image.alt|trim is not empty ? node.field_image.alt : 'Story image for ' ~ node.label -%}
+											<div class="card-header mb-2" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+												<img src="{{ image_url }}" alt="{{ alt_text }}" itemprop="url" loading="{{ loop.first ? 'eager' : 'lazy' }}" fetchpriority="{{ loop.first ? 'high' : 'auto' }}" class="img-fluid">
+											</div>
+										{%- endif -%}
+									</div>
 
-                  <div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
-                    <header>
-                      <h3 id="{{ heading_id }}" class="fs-4 fw-bold" itemprop="headline name">
-                        {{- node.label -}}
-                      </h3>
-                    </header>
+									<div class="lead-story-content px-3 pt-2 flex-grow-1 d-flex flex-column">
+										<header>
+											<h3 id="{{ heading_id }}" class="fs-4 fw-bold" itemprop="headline name">
+												{{- node.label -}}
+											</h3>
+										</header>
 
-                    <div class="lead-story-body mb-2">
-                      {{- node.body.value|raw -}}
-                    </div>
-                  </div>
+										<div class="lead-story-body mb-2">
+											{{- node.body.value|raw -}}
+										</div>
+									</div>
 
-                  {%- if node.field_link.title is not empty -%}
-                    <div class="card-footer card-story mb-2">
-                      <span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start" aria-hidden="true">
-                        {{- node.field_link.title -}}
-                      </span>
-                    </div>
-                  {%- endif -%}
-                </article>
-              </a>
-            </li>
-          {%- endif -%}
-        {%- endfor -%}
-      </ul>
+									{%- if node.field_link.title is not empty -%}
+										<div class="card-footer card-story mb-2">
+											<span class="btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3 w-100 text-start" aria-hidden="true">
+												{{- node.field_link.title -}}
+											</span>
+										</div>
+									{%- endif -%}
+								</article>
+							</a>
+						</li>
+					{%- endif -%}
+				{%- endfor -%}
+			</ul>
 
-      <nav class="card-footer d-flex justify-content-center mb-5" aria-label="More Stories Navigation">
-        <a href="/impact-stories"
-           class="card-link btn btn-cu-bg-gold text-decoration-none px-5 py-2 mt-4">
-          {{- 'Browse More Stories'|t -}}
-        </a>
-      </nav>
-    </div>
+			<nav class="card-footer d-flex justify-content-center mb-5" aria-label="More Stories Navigation">
+				<a href="/impact-stories" class="card-link btn btn-cu-bg-gold text-decoration-none px-5 py-2 mt-4">
+					{{- 'Browse More Stories'|t -}}
+				</a>
+			</nav>
+		</div>
 
-  {%- endif -%}
+	{%- endif -%}
 {%- endif -%}
 
 {% endapply %}
