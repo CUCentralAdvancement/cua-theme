@@ -509,8 +509,7 @@ aside .nav {
   display: flex; /* Flexbox layout */
   align-items: center; /* Center items vertically */
   gap: 6px; /* Space between icon and text */
-  padding: 8px 12px; /* Padding for button */
-  border-radius: 4px; /* Rounded corners */
+  border-radius: 0; /* Rounded corners */
   cursor: pointer; /* Pointer cursor */
   transition: background 0.2s ease-in-out; /* Smooth background transition */
 }
@@ -530,6 +529,8 @@ aside .nav {
   display: inline-block; /* Inline-block display */
   color: white; /* White icon */
   font-size: 1.1rem; /* Icon size */
+  position: relative;
+  margin: 0 10px 0 0;
 }
 
 /* Remove background color from rebuild cache icon */
