@@ -3290,7 +3290,6 @@ aside a.nav-link, aside a.bef-link {
       max-width: 100% !important;
     }
   }
-
   /* Admin Application Button */
 .btn-admin-app {
     background-color: #d9534f;   /* Bootstrap red */
@@ -3306,4 +3305,29 @@ aside a.nav-link, aside a.bef-link {
 .btn-admin-app:focus {
   background-color: #bb2d3b;   /* Darker red on hover */
   color: #000 !important;
+}
+
+#faq-accordion h3 {
+    margin: 3rem 0 1rem !important;
+}
+
+.accordion-button.collapsed {
+    background: #cfb87d17;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #cfb87d;
+}
+
+button.accordion-button.collapsed, button:focus:not(:focus-visible), .accordion-button {
+    padding: .75rem !important;
+    font-weight: normal !important;
+    font-size: 1.1rem;
+}
+
+#faq-accordion .accordion-button,
+#faq-accordion .accordion-item,
+#faq-accordion .accordion-header,
+#faq-accordion .accordion-collapse {
+  border-radius: 0 !important;
 }
