@@ -4,11 +4,11 @@
 {% endif %}
 
 {% if title %}
-  <h3 class="faq-group-title mt-4">{{ title }}</h3>
+  <h3 class="faq-group-title mt-4" id="faq-title-{{ title|clean_class }}">{{ title }}</h3>
 {% endif %}
 
 <div class="accordion" id="faq-accordion-{{ title|clean_class }}">
   {% for row in rows %}
     {{ row.content }}
   {% endfor %}
-</div>
+</div>`
