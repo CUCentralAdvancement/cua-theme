@@ -1,0 +1,35 @@
+{% set id = 'faq-' ~ row._entity.id() %}
+{% set accordion_id = 'faq-accordion-' ~ row._entity.field_category.entity.label|clean_class %}
+
+<div class="accordion-item">
+  <h4 class="accordion-header" id="heading-{{ id }}">
+    <button class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapse-{{ id }}"
+            aria-expanded="false"
+            aria-controls="collapse-{{ id }}">
+      {{ fields.title.content }}
+    </button>
+
+   
+  </h4>
+
+  <div id="collapse-{{ id }}"
+       class="accordion-collapse collapse"
+       aria-labelledby="heading-{{ id }}"
+       data-bs-parent="#{{ accordion_id }}">
+    <div class="accordion-body">
+      {{ fields.nothing.content }}
+    </div>
+     {# Edit link — only visible to users with edit permission #}
+    {% if is_admin or logged_in and user.hasPermission('edit any faq content') %}
+      <a href="{{ path('entity.node.edit_form', {'node': row._entity.id()}) }}"
+         class="btn btn-sm btn-outline-secondary ms-4 mb-3 faq-edit-link"
+         title="Edit this FAQ"
+         target="_blank">
+        ✏️ Edit
+      </a>
+    {% endif %}
+  </div>
+</div>

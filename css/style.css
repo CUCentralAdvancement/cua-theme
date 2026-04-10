@@ -3290,48 +3290,49 @@ aside a.nav-link, aside a.bef-link {
       max-width: 100% !important;
     }
   }
+
   /* Admin Application Button */
-.btn-admin-app {
-    background-color: #d9534f;   /* Bootstrap red */
-    color: #fff !important;      /* Black text */
-    font-weight: 700;            /* Bold */
-    border: none;                /* No border */
-    border-radius: 0;            /* No radius */
-    padding: 0.5rem 2rem;    /* App-style compact padding */
-    text-transform: none;        /* Keep text natural */
-}
-
-.btn-admin-app:hover,
-.btn-admin-app:focus {
-  background-color: #bb2d3b;   /* Darker red on hover */
-  color: #000 !important;
-}
-
-#faq-accordion h3 {
-    margin: 3rem 0 1rem !important;
-}
-
-.accordion-button.collapsed {
-    background: #cfb87d17;
-}
-
-.accordion-button:not(.collapsed) {
-    background: #cfb87d;
-}
-
-button.accordion-button.collapsed, button:focus:not(:focus-visible), .accordion-button {
-    padding: .75rem !important;
-    font-weight: normal !important;
-    font-size: 1.1rem;
-}
-
-#faq-accordion .accordion-button,
-#faq-accordion .accordion-item,
-#faq-accordion .accordion-header,
-#faq-accordion .accordion-collapse {
-  border-radius: 0 !important;
-}
-
-.accordion h3, .accordion .h3 {
-    margin: 3rem 0 1rem 0;
-}
+  .btn-admin-app {
+      background-color: #d9534f;   /* Bootstrap red */
+      color: #fff !important;      /* Black text */
+      font-weight: 700;            /* Bold */
+      border: none;                /* No border */
+      border-radius: 0;            /* No radius */
+      padding: 0.5rem 2rem;    /* App-style compact padding */
+      text-transform: none;        /* Keep text natural */
+  }
+  
+  .btn-admin-app:hover,
+  .btn-admin-app:focus {
+    background-color: #bb2d3b;   /* Darker red on hover */
+    color: #000 !important;
+  }
+  
+  #faq-accordion h3 {
+      margin: 3rem 0 1rem !important;
+  }
+  
+  .accordion-button.collapsed {
+      background: #cfb87d17;
+  }
+  
+  .accordion-button:not(.collapsed) {
+      background: #cfb87d;
+  }
+  
+  button.accordion-button.collapsed, button:focus:not(:focus-visible), .accordion-button {
+      padding: .75rem !important;
+      font-weight: normal !important;
+      font-size: 1.1rem;
+  }
+  
+  #faq-accordion .accordion-button,
+  #faq-accordion .accordion-item,
+  #faq-accordion .accordion-header,
+  #faq-accordion .accordion-collapse {
+    border-radius: 0 !important;
+  }
+  
+  .accordion h3, .accordion .h3 {
+      margin: 3rem 0 1rem 0;
+  }`

@@ -1,0 +1,24 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for row in view.result %}
+      {% set q = row._entity.label|striptags|trim %}
+      {% set a = row._entity.field_answer.value|striptags|trim %}
+      {
+        "@type": "Question",
+        "name": {{ q|json_encode|raw }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ a|json_encode|raw }}
+        }
+      }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+<div class="faqs view-faq">
+  {{ rows }}
+</div>
