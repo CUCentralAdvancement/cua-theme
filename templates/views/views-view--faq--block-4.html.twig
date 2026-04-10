@@ -1,2 +1,29 @@
-      {# FAQ #}
-        {% include '@cua_theme/templates/views/faq--include-block.html.twig' %}
+{% set faq_items = [] %}
+
+{% for row in view.result %}
+  {% set q = row._entity.title.value|striptags|trim %}
+  {% set a = row._entity.field_answer.value|striptags|trim %}
+
+  {% set faq_items = faq_items|merge([{
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": a
+    }
+  }]) %}
+{% endfor %}
+
+<script type="application/ld+json">
+{{ {
+  "@context": "https://schema.org",
+  "@type": "FAQs for Common giving terms",
+  "mainEntity": faq_items
+}|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
+</script>
+
+{% set uid = 'faq-accordion-' ~ random() %}
+
+<div class="accordion" id="{{ uid }}">
+  {{ rows }}
+</div>

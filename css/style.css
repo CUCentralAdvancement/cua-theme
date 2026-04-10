@@ -3331,3 +3331,7 @@ button.accordion-button.collapsed, button:focus:not(:focus-visible), .accordion-
 #faq-accordion .accordion-collapse {
   border-radius: 0 !important;
 }
+
+.accordion h3, .accordion .h3 {
+    margin: 3rem 0 1rem 0;
+}
