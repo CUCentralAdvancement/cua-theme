@@ -1,0 +1,58 @@
+{# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
+{% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+{% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+
+<div id="page-wrapper">
+	<div
+		id="page">
+
+		{# Header #}
+		{% include '@cua_theme/templates/layout/header/header.html.twig' %}
+
+		{# Main Content #}
+		<div id="main-wrapper" class="layout-main-wrapper pb-5 clearfix">
+			{% block content %}
+				<div id="main" class="{{ container }}">
+
+					<div class="card-body flex-column card-text lead g-0 clearfix">
+						<h1 class="cu-line g-0 m-0 p-0">
+							{{'FAQs'|t}}
+						</h1>
+					</div>
+					<div class="row d-flex flex-column-reverse flex-md-row clearfix">
+
+						{# Left Sidebar #}
+						{% if sidebar_first_exists %}
+							<div class="col-md-3 col-sm-12 mb-4 order-1 order-md-2 mt-4 mobile-padding">
+								<aside class="section" role="complementary">
+									{{ page.sidebar_first }}
+								</aside>
+							</div>
+						{% endif %}
+
+						{# Page Content #}
+						<main{{content_attributes}} class="col-md-9 col-sm-12 mb-4 order-2 order-md-1">
+							<section class="section">
+								{{ page.content }}
+							</section>
+						</main>
+
+						{# Right Sidebar #}
+						{% if sidebar_second_exists %}
+							<div class="col-md-3 col-sm-12 mb-4 order-3 order-md-last">
+								<aside class="section" role="complementary">
+									{{ page.sidebar_second }}
+								</aside>
+							</div>
+						{% endif %}
+
+					</div>
+				</div>
+			{% endblock %}
+		</div>
+
+		{# Footer #}
+		{% include '@cua_theme/templates/layout/footer/footer.html.twig' %}
+
+	</div>
+</div>
