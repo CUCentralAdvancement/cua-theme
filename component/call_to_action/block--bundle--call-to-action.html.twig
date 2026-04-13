@@ -13,7 +13,25 @@
 {%- set raw_animation = prefers_reduced_motion ? [] : [ 'animate__animated', animation ?: null, animation_speed ?: null, animation_delay ?: null ]|filter(v => v) -%}
 {%- set data_animation = raw_animation|join(' ')|trim -%}
 {# Class Merging #}
-{%- set cta_classes = [ 'block', 'call-to-action', 'card', 'rounded-0', 'h-100', 'block-' ~ configuration.provider|clean_class, 'block-' ~ plugin_id|clean_class, (animation or animation_speed or animation_delay) ? 'animate-trigger' : null, color_background, color_border, container_size, padding, margin, shadow, id ? 'block--' ~ id|clean_class : null ]|merge(utility_classes ?: [])|filter(v => v)|join(' ') -%}
+
+{%- set cta_classes = [ 
+    'block',
+    'call-to-action',
+    'card',
+    'rounded-0',
+    'h-100',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    (animation or animation_speed or animation_delay) ? 'animate-trigger' : null,
+    color_background ?: 'bg-transparent',
+    color_border,
+    container_size,
+    padding,
+    margin,
+    shadow,
+    id ? 'block--' ~ id|clean_class : null
+]|merge(utility_classes ?: [])|filter(v => v)|join(' ') -%}
+
 {# Link & Wrap Logic #}
 {%- set links_count = links|length -%}
 {%- set single_link = (links_count == 1) ? links|first : null -%}
@@ -25,6 +43,7 @@
 {%- else -%}
 	{%- set attributes = attributes.setAttribute('aria-label', 'Call to Action') -%}
 {%- endif -%}
+
 
 <section{{attributes}}>
 	{%- apply spaceless -%}
