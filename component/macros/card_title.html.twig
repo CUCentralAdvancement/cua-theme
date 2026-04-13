@@ -1,22 +1,11 @@
 {# 
   =============================================================================
   MACRO: render_title
-  STABILITY: Production-Stable / Architecture: Sinn 556 (The Indices)
-  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Drupal 11 Semantic
-  =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Landmarking: Uses <h3> as the default "Standard Grade" hierarchy.
-  - Interaction: Supports the "Linked Title" pattern, ensuring the <a> tag 
-    inherits the correct text color without losing its focus-state indicators.
-  - A11Y: Prevents redundant announcement via 'hide_from_screen_readers' logic.
-
-  MAINTENANCE WARNING:
-  The 'display-4' class provides a fixed visual size. If the title needs to 
-  scale based on the card size, consider mapping a 'heading_size' variable.
+  ARCHITECTURE: Sinn 556 (The Indices) - Minified Hardening
+  COMPLIANCE: WCAG 2.2 AA / Schema.org
   =============================================================================
 #}
-
-{% macro render_title(
+{%- macro render_title(
     label,
     title_prefix = '',
     title_suffix = '',
@@ -26,15 +15,10 @@
     padding = null,
     hide_from_screen_readers = false,
     links = [],
-    title_id = ''
-) %}
-
-    {# 
-       CLASS ORCHESTRATION:
-       Standardized typography stack. 'display-4' for impact, 
-       'lead' for legibility.
-    #}
-    {% set title_classes = [
+    title_id = '',
+    extra_attributes = ''
+) -%}
+	{%- set title_classes = [
         'display-4',
         'card-title',
         'lead',
@@ -43,45 +27,24 @@
         text_alignment,
         text_color,
         padding
-    ] | filter(v => v) | join(' ') %}
-
-    {# 
-       LINK STYLING:
-       'text-decoration-none' ensures the "Sinn" aesthetic (no clutter) 
-       unless hovered.
-    #}
-    {% set title_link_classes = [
+    ] | filter(v => v) | join(' ') -%}
+	{%- set title_link_classes = [
         'title-link',
         'text-decoration-none',
         text_color
-    ] | filter(v => v) | join(' ') %}
-
-    {{ title_prefix }}
-
-    {% if label is not empty %}
-        {# 
-           H3 ARCHITECTURE: 
-           Mapping the title_id is critical for components like the "Video" 
-           block to maintain their ARIA-labelled-by connection.
-        #}
-        <h3 class="{{ title_classes }}"
-            {% if title_id %} id="{{ title_id }}" {% endif %}
-            {% if hide_from_screen_readers and links is empty %} aria-hidden="true" {% endif %}>
-            
-            {% if links|length > 0 %}
-                {% set firstLink = links[0] %}
-                <a class="{{ title_link_classes }}"
-                   href="{{ firstLink.url|escape('html_attr') }}"
-                   {% if firstLink.title %} title="{{ firstLink.title|escape('html_attr') }}" {% endif %}
-                   {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
-                    {{ label }}
-                </a>
-            {% else %}
-                {{ label }}
-            {% endif %}
-        </h3>
-    {% endif %}
-
-    {{ title_suffix }}
-
-{% endmacro %}
+    ] | filter(v => v) | join(' ') -%}
+	{{- title_prefix|raw -}}
+	{%- if label is not empty -%}
+		<h3 class="{{ title_classes }}" {{ extra_attributes|raw }} {% if title_id %} id="{{ title_id }}" {% endif %} {% if hide_from_screen_readers and links is empty %} aria-hidden="true" {% endif %}>
+			{%- if links|length > 0 -%}
+				{%- set firstLink = links[0] -%}
+				<a class="{{ title_link_classes }}" href="{{ firstLink.url|escape('html_attr') }}" {% if firstLink.title %} title="{{ firstLink.title|escape('html_attr') }}" {% endif %} {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
+					{{- label -}}
+				</a>
+			{%- else -%}
+				{{- label -}}
+			{%- endif -%}
+		</h3>
+	{%- endif -%}
+	{{- title_suffix|raw -}}
+{%- endmacro -%}

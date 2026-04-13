@@ -1,164 +1,97 @@
 {# 
   =============================================================================
   COMPONENT: Basic Content Block
-  STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (No-Lag)
-  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / Schema.org Structured Data
+  ARCHITECTURE: Sinn 556 iRS Level (Minified / Zero-Bloat)
+  COMPLIANCE: WCAG 2.2 AA / Schema.org WebPageElement
   =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Built for Drupal 11. Implements 'WebPageElement' Schema for SEO depth.
-  - Data-Hardened: Manual <a> rendering for single-link scenarios to bypass 
-    macro limitations for GA4 data-attributes.
-  - Flexibility: Branching logic for Card Image vs. Icon to prevent DOM bloat.
+#}{%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
 
-  MAINTENANCE WARNING:
-  The GA4 event 'data-ga-action' is derived from the link title or block label. 
-  Ensure editors provide concise titles to prevent oversized event strings 
-  in Analytics dashboards.
-  =============================================================================
-#}
-
-{# Import macros #}
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-
-{# Define CTA classes #}
-{% set basic_classes = [
+{%- set basic_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'basic-block card border-0 px-4 py-1',
-    text_alignment ?: null,
-    text_color ?: null,
-    color_background ?: null,
+    'basic-block card rounded-0 h-100',
+    text_alignment,
+    text_color,
+    color_background ?: 'bg-transparent',
+    color_border ?: 'border-0',
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
-] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
+] | merge(utility_classes ?: []) | filter(v => v) | join(' ') -%}
 
-{# Generate unique ID #}
-{% set unique_id = 'block--node-' ~ '-basic-block' ~ '--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{%- set unique_id = 'block--node-basic-block--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) -%}
+{%- set region_label = label is not empty ? label|striptags|trim : 'Content Section'|t -%}
+{%- set links_count = links|length -%}
+{%- set single_link = (links_count == 1) ? links|first : null -%}
 
-{# GA4/SEO FIX: Determine if it's a single link for manual rendering #}
-{% set links_count = links|length %}
-{% set single_link = (links_count == 1) ? links|first : null %}
-
-{# Render content #}
 <div{{ attributes
     |without('id')
     .setAttribute('id', unique_id)
     .addClass(basic_classes)
     .setAttribute('role', 'region')
+    .setAttribute('aria-label', region_label)
     .setAttribute('itemscope', '')
     .setAttribute('itemtype', 'https://schema.org/WebPageElement')
+    .setAttribute('itemprop', 'isPartOf')
     .setAttribute('data-component', 'basic-block')
 }}>
+    {{- title_prefix -}}
+    {{- title_suffix -}}
 
-    {# Title prefix/suffix used by Drupal for contextual edit links. Must remain in place. #}
-    {{ title_prefix ?: '' }}
-    {{ title_suffix ?: '' }}
+    {%- if card_image -%}
+        {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
+        {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, links) -}}
+    {%- elseif icon -%}
+        {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
+        {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
+    {%- endif -%}
 
-    {# Only render the sr-only title if the visible title is not shown. #}
-    {% if not label %}
-        <span class="sr-only bg-black text-white">
-            {{ label is not empty ? label|e : 'Content Section'|t }}
-        </span>
-    {% endif %}
+    {%- if label -%}
+        {{- titleMacros.render_title(
+            label, 
+            title_prefix, 
+            title_suffix, 
+            center_content, 
+            text_alignment, 
+            text_color, 
+            padding, 
+            true, 
+            [], 
+            '', 
+            'itemprop="name"'
+        ) -}}
+    {%- endif -%}
 
-    {# Include image or icon #}
-    {% if card_image %}
-        {# Render the card image #}
-        {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-        {{ cardImageMacros.render_card_image(
-            card_image,
-            position_container,
-            text_alignment,
-            text_color,
-            image_size,
-            visibility,
-            content,
-            links
-        ) }}
-    {% elseif icon %}
-        {# Render the icon #}
-        {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-        {{ iconMacros.render_icon(
-            icon,
-            icon_size,
-            icon_color,
-            padding,
-            position_container,
-            text_alignment
-        ) }}
-    {% endif %}
+    {%- if content -%}
+        {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
+        <div itemprop="text">
+            {{- bodyMacros.render_body(content, padding, text_color, text_alignment) -}}
+        </div>
+    {%- endif -%}
 
-    {# Render the title. Adding itemprop="name" #}
-    {{ titleMacros.render_title(
-        label,
-        title_prefix,
-        title_suffix,
-        center_content,
-        text_alignment,
-        text_color,
-        padding,
-        'itemprop="block-content"'
-    ) }}
+    {%- if links -%}
+        {%- if single_link -%}
+            {%- set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color -%}
+            {%- set link_classes = ['card-link', 'btn', outline_class, 'text-decoration-none', 'p-2', 'mt-3']|filter(v => v)|join(' ') -%}
 
-    {# Render Body #}
-    {% if content %}
-        {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-        {{ bodyMacros.render_body (
-            content,
-            padding,
-            text_color,
-            text_alignment
-        ) }}
-    {% endif %}
-
-    {% if links %}
-        {% if single_link %}
-
-            {# GA4/SEO FIX: Scenario 1: SINGLE LINK - Render manually to guarantee GA4 attributes #}
-            {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-
-            {% set link_classes = [
-                'card-link',
-                'btn',
-                outline_class,
-                'text-decoration-none',
-                'p-2',
-                'mt-3',
-            ]|filter(v => v)|join(' ') %}
-
-            <div class="card-footer d-flex container mb-5">
-                <a href="{{ single_link.url ?: '#' }}"
-                   class="{{ link_classes }}"
-                   data-ga-event="basic_block_link"
-                   data-ga-category="basic_block"
-                   data-ga-action="{{ single_link.title|default(label)|striptags|trim|e }}"
+            <div class="card-footer bg-transparent border-0 d-flex container mb-5">
+                <a href="{{ single_link.url ?: '#' }}" 
+                   class="{{ link_classes }}" 
+                   itemprop="url" 
+                   data-ga-event="basic_block_link" 
+                   data-ga-category="basic_block" 
+                   data-ga-action="{{ single_link.title|default(label)|striptags|trim|e }}" 
                    data-ga-component-id="{{ unique_id }}">
-                    {{ single_link.title|default('Learn More') }}
+                    {{- single_link.title|default('Learn More') -}}
                 </a>
             </div>
-        {% else %}
-            {# Scenario 2: MULTIPLE LINKS - Fall back to the macro #}
-            {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-            {% set ga_attributes = {
+        {%- else -%}
+            {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
+            {%- set ga_attributes = {
                 'data-ga-event': 'basic_block_link',
                 'data-ga-category': 'basic_block',
                 'data-ga-component-id': unique_id
-            } %}
-            {{ cardFooterMacros.render_card_footer (
-                links,
-                container_size,
-                color_background,
-                position_container,
-                text_alignment,
-                padding,
-                outline,
-                button_color,
-                button_layout,
-                false,
-                false,
-                ga_attributes
-            ) }}
-        {% endif %}
-    {% endif %}
-
+            } -%}
+            {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false, ga_attributes) -}}
+        {%- endif -%}
+    {%- endif -%}
 </div>
