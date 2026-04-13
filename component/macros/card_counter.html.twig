@@ -4,75 +4,47 @@
   STABILITY: Production-Stable / Architecture: Sinn 103 (Chronograph Complication)
   COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ARIA 1.2 Status Pattern
   =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Animation Guard: The "0" placeholder is hidden from screen readers to 
-    prevent distracting digit-by-digit announcements during JS execution.
-  - A11Y: Uses a dedicated 'data-counter-announcer' span to provide the 
-    final, static value to Assistive Tech immediately.
-  - Flexibility: Handles 'before' and 'after' strings (e.g., "$", "k", "%") 
-    while maintaining consistent color and alignment gaskets.
-
-  MAINTENANCE WARNING:
-  The 'counter-up' JS library must target the 'data-count' attribute. 
-  Ensure the animation duration is under 2.5 seconds to comply with 
-  WCAG 2.2 'Motion' guidelines for neurodivergent users.
-  =============================================================================
 #}
 
-{% macro render_counter(number, text_alignment, text_color, before_number, after_number) %}
-    {% if number %}
+{%- macro render_counter(number, text_alignment, text_color, before_number, after_number) -%}
+	{%- if number -%}
 
-        {# 
-           VALIDATION & DEFAULTS:
-           Ensures text alignment doesn't "drift" from the design spec.
-        #}
-        {% set container_classes = [
+		{% set container_classes = [
             'counter-container',
             text_alignment ?: 'text-start',
             text_color ?: '',
         ] | filter(v => v) %}
 
-        <div class="counter-size {{ container_classes|join(' ')|trim }}">
+		<div
+			class="counter-size {{ container_classes|join(' ')|trim }}">
 
-            {# BEFORE NUMBER (e.g. $, #, +) #}
-            {% if before_number %}
-                <span class="counter-prefix pe-1 {{ text_color ?: '' }}">
-                    {{ before_number|e }}
-                </span>
-            {% endif %}
+			{# BEFORE NUMBER (e.g. $, #, +) #}
+			{% if before_number %}
+				<span class="counter-prefix pe-1 {{ text_color ?: '' }}">
+					{{ before_number|e }}
+				</span>
+			{% endif %}
 
-            {# 
-               ANIMATED ELEMENT (Visual Only):
-               - aria-hidden="true": The "laggy" count-up is ignored by AT.
-               - data-count: The "top-grade" value for JS to target.
-            #}
-            <span class="counter-up {{ text_color ?: '' }}"
-                  aria-hidden="true"
-                  data-count="{{ number }}">
-                0
-            </span>
+			<span class="counter-up {{ text_color ?: '' }}" aria-hidden="true" data-count="{{ number }}">
+				0
+			</span>
 
-            {# 
-               ACCESSIBLE ANNOUNCER (AT Only):
-               - role="status": Marks this as a landmark for status updates.
-               - aria-live="polite": Announces the full number once ready.
-            #}
-            <span class="visually-hidden" role="status" aria-live="polite" data-counter-announcer>
-                {{ 'Total count: @before@number@after'|t({
+			<span class="visually-hidden" role="status" aria-live="polite" data-counter-announcer>
+				{{ 'Total count: @before@number@after'|t({
                     '@before': before_number,
                     '@number': number,
                     '@after': after_number
                 }) }}
-            </span>
+			</span>
 
-            {# AFTER NUMBER (e.g. %, People, Units) #}
-            {% if after_number %}
-                <span class="counter-suffix ps-1 {{ text_color ?: '' }}">
-                    {{ after_number|e }}
-                </span>
-            {% endif %}
+			{# AFTER NUMBER (e.g. %, People, Units) #}
+			{% if after_number %}
+				<span class="counter-suffix ps-1 {{ text_color ?: '' }}">
+					{{ after_number|e }}
+				</span>
+			{% endif %}
 
-        </div>
+		</div>
 
-    {% endif %}
+	{% endif %}
 {% endmacro %}

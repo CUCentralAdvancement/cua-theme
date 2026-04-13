@@ -1,10 +1,16 @@
 {# 
   =============================================================================
   COMPONENT: Basic Content Block
-  ARCHITECTURE: Sinn 556 iRS Level (Minified / Zero-Bloat)
-  COMPLIANCE: WCAG 2.2 AA / Schema.org WebPageElement
+  ARCHITECTURE: Sinn 556 iRS Level (Zero-Bloat Hardened)
+  COMPLIANCE: WCAG 2.2 AA / Section 508 / Schema.org CreativeWork
+  AI STRATEGY: Conditional EntryPoint / PotentialAction Mapping
   =============================================================================
-#}{%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
+#}
+{%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
+
+{# ID and Class Logic #}
+{%- set unique_id = 'block--node-basic-block--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) -%}
+{%- set title_id = unique_id ~ '-title' -%}
 
 {%- set basic_classes = [
     'block',
@@ -18,35 +24,41 @@
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') -%}
 
-{%- set unique_id = 'block--node-basic-block--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) -%}
-{%- set region_label = label is not empty ? label|striptags|trim : 'Content Section'|t -%}
+{# Link Detection for Schema Mapping #}
 {%- set links_count = links|length -%}
 {%- set single_link = (links_count == 1) ? links|first : null -%}
 
-<div{{ attributes
-    |without('id')
-    .setAttribute('id', unique_id)
-    .addClass(basic_classes)
-    .setAttribute('role', 'region')
-    .setAttribute('aria-label', region_label)
-    .setAttribute('itemscope', '')
-    .setAttribute('itemtype', 'https://schema.org/WebPageElement')
-    .setAttribute('itemprop', 'isPartOf')
-    .setAttribute('data-component', 'basic-block')
-}}>
-    {{- title_prefix -}}
-    {{- title_suffix -}}
+<section{{attributes|without('id','role','aria-label').setAttribute('id',unique_id).addClass(basic_classes).setAttribute('aria-labelledby',title_id).setAttribute('itemscope','').setAttribute('itemtype','https://schema.org/CreativeWork').setAttribute('data-component','basic-block')}}>
+	{%- apply spaceless -%}
+    
+	<meta itemprop="provider" itemscope itemtype="https://schema.org/CollegeOrUniversity" content="University of Colorado"/>
 
-    {%- if card_image -%}
-        {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
-        {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, links) -}}
-    {%- elseif icon -%}
-        {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
-        {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
-    {%- endif -%}
+	{%- if single_link -%}
+		<div itemprop="potentialAction" itemscope itemtype="https://schema.org/ReadAction">
+			<meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
+			<div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
+				<meta itemprop="url" content="{{- single_link.url -}}"/>
+				<meta itemprop="actionPlatform" content="http://schema.org/DesktopWebPlatform"/>
+				<meta itemprop="actionPlatform" content="http://schema.org/MobileWebPlatform"/>
+			</div>
+		</div>
+	{%- endif -%}
 
-    {%- if label -%}
-        {{- titleMacros.render_title(
+	{{- title_prefix -}}
+	{{- title_suffix -}}
+
+	{# Media Section #}
+	{%- if card_image -%}
+		{%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
+		{{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, links) -}}
+	{%- elseif icon -%}
+		{%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
+		{{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
+	{%- endif -%}
+
+	{# Heading Section #}
+	{%- if label -%}
+		{{- titleMacros.render_title(
             label, 
             title_prefix, 
             title_suffix, 
@@ -54,44 +66,42 @@
             text_alignment, 
             text_color, 
             padding, 
-            true, 
+            false, 
             [], 
             '', 
-            'itemprop="name"'
+            'itemprop="name" id="' ~ title_id ~ '"'
         ) -}}
-    {%- endif -%}
+	{%- endif -%}
 
-    {%- if content -%}
-        {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
-        <div itemprop="text">
-            {{- bodyMacros.render_body(content, padding, text_color, text_alignment) -}}
-        </div>
-    {%- endif -%}
+	{# Main Content Section #}
+	{%- if content -%}
+		{%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
+		<div itemprop="text" class="card-body-wrapper g-0">
+			{{- bodyMacros.render_body(content, padding, text_color, text_alignment)|trim -}}
+		</div>
+	{%- endif -%}
 
-    {%- if links -%}
-        {%- if single_link -%}
-            {%- set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color -%}
-            {%- set link_classes = ['card-link', 'btn', outline_class, 'text-decoration-none', 'p-2', 'mt-3']|filter(v => v)|join(' ') -%}
+	{# Action Section (Footer) #}
+	{%- if links -%}
+		{%- if single_link -%}
+			{%- set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color -%}
+			{%- set link_classes = ['card-link', 'btn', outline_class, 'text-decoration-none', 'p-2', 'mt-3']|filter(v => v)|join(' ') -%}
 
-            <div class="card-footer bg-transparent border-0 d-flex container mb-5">
-                <a href="{{ single_link.url ?: '#' }}" 
-                   class="{{ link_classes }}" 
-                   itemprop="url" 
-                   data-ga-event="basic_block_link" 
-                   data-ga-category="basic_block" 
-                   data-ga-action="{{ single_link.title|default(label)|striptags|trim|e }}" 
-                   data-ga-component-id="{{ unique_id }}">
-                    {{- single_link.title|default('Learn More') -}}
-                </a>
-            </div>
-        {%- else -%}
-            {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
-            {%- set ga_attributes = {
+			<div class="card-footer bg-transparent border-0 d-flex container mb-5">
+				<a href="{{ single_link.url ?: '#' }}" class="{{ link_classes }}" itemprop="url" data-ga-event="basic_block_link" data-ga-category="basic_block" data-ga-action="{{ single_link.title|default(label)|striptags|trim|e }}" data-ga-component-id="{{ unique_id }}">
+					{{- single_link.title|default('Learn More') -}}
+				</a>
+			</div>
+		{%- else -%}
+			{%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
+			{%- set ga_attributes = {
                 'data-ga-event': 'basic_block_link',
                 'data-ga-category': 'basic_block',
                 'data-ga-component-id': unique_id
             } -%}
-            {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false, ga_attributes) -}}
-        {%- endif -%}
-    {%- endif -%}
-</div>
+			{{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false, ga_attributes) -}}
+		{%- endif -%}
+	{%- endif -%}
+
+	{%- endapply -%}
+</section>
