@@ -8,95 +8,111 @@
 {{- attach_library('cua_theme/call-to-action') -}}
 
 {%- if user.hasPermission('administer site configuration') -%}
-	<nav class="admin-interface d-flex justify-content-center gap-2 m-2" aria-label="Admin Actions">
-		<a href="/give-now/view-all" class="btn btn-sm btn-admin-app">
-			{{ 'Manage Schedules & Content'|t }}
-		</a>
-		<a href="/internal-documentation-giving-day-content-swap-process" class="btn btn-sm btn-admin-app">
-			{{ 'Launch Guide'|t }}
-		</a>
-	</nav>
+    <nav class="admin-interface d-flex justify-content-center gap-2 m-2" aria-label="Admin Actions">
+        <a href="/give-now/view-all" class="btn btn-sm btn-admin-app">{{ 'Manage Schedules & Content'|t }}</a>
+        <a href="/internal-documentation-giving-day-content-swap-process" class="btn btn-sm btn-admin-app">{{ 'Launch Guide'|t }}</a>
+    </nav>
 {%- endif -%}
 
 {%- if content['#view'].result is not empty -%}
-	{%- set view = content['#view'] -%}
+    {%- set view = content['#view'] -%}
 
-	<section class="container-fluid bg-gray-20 px-2 pt-1 pb-5" role="region" aria-labelledby="give-now-section-title" itemscope itemtype="https://schema.org/ItemList">
-		<meta itemprop="name" content="Ways to Give"/>
-		<meta itemprop="itemListOrder" content="https://schema.org/ItemListUnordered"/>
-		<h2 id="give-now-section-title" class="visually-hidden">
-			{{ 'Ways to Give to CU Boulder, UCCS, CU Denver, and Anschutz'|t }}
-		</h2>
+    <section class="container-fluid bg-gray-20 px-2 pt-1 pb-5" role="region" aria-labelledby="give-now-section-title" itemscope itemtype="https://schema.org/ItemList">
+        <meta itemprop="name" content="Ways to Give to CU"/>
+        <meta itemprop="itemListOrder" content="https://schema.org/ItemListUnordered"/>
+        <meta itemprop="numberOfItems" content="{{ view.result|length }}"/>
+        
+        <h2 id="give-now-section-title" class="visually-hidden">
+            {{ 'Ways to Give to CU Boulder, UCCS, CU Denver, and Anschutz'|t }}
+        </h2>
 
-		<ul class="row list-unstyled m-0">
-			{%- for row in view.result -%}
-				{%- if row._entity is not empty -%}
-					{%- set node = row._entity -%}
-					{%- set heading_id = 'give-now-item-' ~ node.id ~ '-title' -%}
-					{%- set body_id    = 'give-now-item-' ~ node.id ~ '-body' -%}
-					{%- set link       = node.field_link.uri ?: '#' -%}
+        <ul class="row list-unstyled m-0">
+            {%- for row in view.result -%}
+                {%- if row._entity is not empty -%}
+                    {%- set node = row._entity -%}
+                    {%- set heading_id = 'give-now-item-' ~ node.id ~ '-title' -%}
+                    {%- set body_id    = 'give-now-item-' ~ node.id ~ '-body' -%}
+                    {%- set link       = node.field_link.uri ?: '#' -%}
 
-					<li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-						{%- apply spaceless -%}
-						<meta itemprop="position" content="{{ loop.index }}"/>
+                    <li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        {%- apply spaceless -%}
+                        <meta itemprop="position" content="{{ loop.index }}"/>
 
-						<a href="{{ link }}" id="give-now-item-{{ node.id }}" class="give-now-item d-flex flex-column text-decoration-none h-100 story-link" aria-describedby="{{ body_id }}" itemprop="item" itemscope itemtype="https://schema.org/Action">
+                        {# START AI HARDENING: The DonateAction Container #}
+                        <div itemprop="item" itemscope itemtype="https://schema.org/DonateAction">
+                            <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
+                            
+                            {# THE WHO: Clear institutional recipient for the Knowledge Graph #}
+                            <div itemprop="recipient" itemscope itemtype="https://schema.org/CollegeOrUniversity">
+                                <meta itemprop="name" content="University of Colorado {{ node.label|trim }}"/>
+                            </div>
 
-							<meta itemprop="url" content="{{ link }}"/>
+                            {# THE WHAT: Precise intent for AI discovery/search matching #}
+                            <meta itemprop="name" content="Search {{ node.label|trim }} funds on GiveCampus"/>
 
-							<article class="m-2 h-100 shadow {{ node.field_color_background.value ?: 'cu-bg-white' }}" role="group" aria-labelledby="{{ heading_id }}" itemscope itemtype="https://schema.org/CreativeWork">
+                            <a href="{{ link }}" id="give-now-item-{{ node.id }}" class="give-now-item d-flex flex-column text-decoration-none h-100 story-link" aria-describedby="{{ body_id }}">
+                                
+                                {# THE WHERE: Technical EntryPoint for AI Agents #}
+                                <div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
+                                    <meta itemprop="url" content="{{ link }}"/>
+                                    <meta itemprop="actionPlatform" content="http://schema.org/DesktopWebPlatform"/>
+                                    <meta itemprop="actionPlatform" content="http://schema.org/MobileWebPlatform"/>
+                                </div>
 
-								<figure class="position-relative mb-0" role="presentation">
+                                <div class="m-2 h-100 shadow {{ node.field_color_background.value ?: 'cu-bg-white' }}" role="presentation">
 
-									{%- if node.field_flag.value == 'flag_on' -%}
-										<div class="position-absolute start-0 top-0 z-index-1">
-											<div class="flag py-2 {{ node.field_flag_background.value ?: '' }}" style="width:max-content;display:flex;align-items:center;padding:5px 10px;white-space:nowrap;">
-												{%- if node.field_icon.value -%}
-													<i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1" style="color:{{ node.field_icon_color.value }}" aria-hidden="true"></i>
-												{%- endif -%}
-												{%- if node.field_flag_title.value -%}
-													<span class="flag-title">
-														{{- node.field_flag_title.value|trim -}}
-													</span>
-												{%- endif -%}
-											</div>
-										</div>
-									{%- endif -%}
+                                    <figure class="position-relative mb-0" role="presentation">
+                                        {%- if node.field_flag.value == 'flag_on' -%}
+                                            <div class="position-absolute start-0 top-0 z-index-1">
+                                                <div class="flag py-2 {{ node.field_flag_background.value ?: '' }}" style="width:max-content;display:flex;align-items:center;padding:5px 10px;white-space:nowrap;">
+                                                    {%- if node.field_icon.value -%}
+                                                        <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1" style="color:{{ node.field_icon_color.value }}" aria-hidden="true"></i>
+                                                    {%- endif -%}
+                                                    <span class="flag-title">{{- node.field_flag_title.value|trim -}}</span>
+                                                </div>
+                                            </div>
+                                        {%- endif -%}
 
-									{%- if node.field_image.entity -%}
-										{%- set image_url = node.field_image.entity.fileuri | image_style('lead_story') -%}
-										<img src="{{ image_url }}" alt="{{ node.field_image.alt|default(node.label)|trim }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" fetchpriority="{{ loop.first ? 'high' : 'auto' }}" class="img-fluid card-header mb-2 w-100" itemprop="image">
-									{%- endif -%}
-								</figure>
+                                        {%- if node.field_image.entity -%}
+                                            {%- set image_url = node.field_image.entity.fileuri | image_style('lead_story') -%}
+                                            <img src="{{ image_url }}" 
+                                                 alt="{{ node.field_image.alt|default(node.label)|trim }}" 
+                                                 loading="{{ loop.first ? 'eager' : 'lazy' }}" 
+                                                 fetchpriority="{{ loop.first ? 'high' : 'auto' }}" 
+                                                 class="img-fluid card-header mb-2 w-100" 
+                                                 itemprop="image">
+                                        {%- endif -%}
+                                    </figure>
 
-								<div class="give-now-content px-3 pt-2">
-									<h3 id="{{ heading_id }}" class="give-now-title fs-3 fw-bold" itemprop="name">
-										{{- node.label|trim -}}
-										{%- if node.field_subtitle.value -%}
-											<span class="fs-4 fw-normal d-block" itemprop="alternateName">
-												{{- node.field_subtitle.value|trim -}}
-											</span>
-										{%- endif -%}
-									</h3>
+                                    <div class="give-now-content px-3 pt-2">
+                                        <h3 id="{{ heading_id }}" class="give-now-title fs-3 fw-bold" itemprop="name">
+                                            {{- node.label|trim -}}
+                                            {%- if node.field_subtitle.value -%}
+                                                <span class="fs-4 fw-normal d-block">
+                                                    {{- node.field_subtitle.value|trim -}}
+                                                </span>
+                                            {%- endif -%}
+                                        </h3>
 
-									<div id="{{ body_id }}" class="give-now-body mb-2 mx-1 pt-2" itemprop="description">
-										{{- node.body.value|raw -}}
-									</div>
+                                        <div id="{{ body_id }}" class="give-now-body mb-2 mx-1 pt-2" itemprop="description">
+                                            {{- node.body.value|raw -}}
+                                        </div>
 
-									{%- if node.field_link.title is not empty -%}
-										<div class="card-footer card-story d-flex p-0 mb-5 mx-1">
-											<span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
-												{{- node.field_link.title|trim -}}
-											</span>
-										</div>
-									{%- endif -%}
-								</div>
-							</article>
-						</a>
-						{%- endapply -%}
-					</li>
-				{%- endif -%}
-			{%- endfor -%}
-		</ul>
-	</section>
+                                        {%- if node.field_link.title is not empty -%}
+                                            <div class="card-footer card-story d-flex p-0 mb-5 mx-1">
+                                                <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3" aria-hidden="true">
+                                                    {{- node.field_link.title|trim -}}
+                                                </span>
+                                            </div>
+                                        {%- endif -%}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {%- endapply -%}
+                    </li>
+                {%- endif -%}
+            {%- endfor -%}
+        </ul>
+    </section>
 {%- endif -%}
