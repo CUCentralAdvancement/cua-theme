@@ -14,7 +14,8 @@
 
 		{%- if is_admin or (logged_in and user.hasPermission('edit any faq content')) -%}
 			<a href="{{ path('entity.node.edit_form', {'node': row._entity.id()}) }}" class="btn btn-sm btn-outline-secondary ms-4 mb-3 faq-edit-link" title="Edit this FAQ" target="_blank">
-				✏️ Edit
+				<i class="fa-solid fa-pencil me-2"></i>
+				Edit
 			</a>
 		{%- endif -%}
 	</div>
