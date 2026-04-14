@@ -4,10 +4,9 @@
 <div class="accordion-item">
 	<h3 class="accordion-header" id="heading-{{ id }}">
 		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ id }}" aria-expanded="false" aria-controls="collapse-{{ id }}">
-		`	{{ fields.title.content }}
+			{{ fields.title.content }}
 		</button>
 	</h3>
-
 	<div id="collapse-{{ id }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ id }}" data-bs-parent="#{{ accordion_id }}">
 		<div class="accordion-body">
 			{{ fields.nothing.content|trim|raw }}
