@@ -1,14 +1,17 @@
 {# JSON-LD only on first group to avoid duplicates #}
-{% if view.current_page == 0 and title == view.result[0]._entity.field_category.entity.label %}
-  {# Moved to views-view template instead - see note below #}
-{% endif %}
+{%- if view.current_page == 0 and title == view.result[0]._entity.field_category.entity.label -%}
+	{# Moved to views-view template instead - see note below #}
+{%- endif -%}
 
-{% if title %}
-  <h3 class="faq-group-title mt-4" id="faq-title-{{ title|clean_class }}">{{ title }}</h3>
-{% endif %}
+{%- if title -%}
+	<h3 class="faq-group-title mt-4" id="faq-title-{{ title|clean_class }}">
+		{{ title }}
+	</h3>
+{%- endif -%}
 
 <div class="accordion" id="faq-accordion-{{ title|clean_class }}">
-  {% for row in rows %}
-    {{ row.content }}
-  {% endfor %}
-</div>`
+	{%- for row in rows -%}
+		{{ row.content }}
+	{%- endfor -%}
+</div>
+`
