@@ -2,11 +2,11 @@
 {%- set accordion_id = 'faq-accordion-' ~ row._entity.field_category.entity.label|clean_class -%}
 
 <div class="accordion-item">
-	<h4 class="accordion-header" id="heading-{{ id }}">
+	<h3 class="accordion-header" id="heading-{{ id }}">
 		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ id }}" aria-expanded="false" aria-controls="collapse-{{ id }}">
-			{{ fields.title.content }}
+		`	{{ fields.title.content }}
 		</button>
-	</h4>
+	</h3>
 
 	<div id="collapse-{{ id }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ id }}" data-bs-parent="#{{ accordion_id }}">
 		<div class="accordion-body">
