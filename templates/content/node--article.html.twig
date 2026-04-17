@@ -1,0 +1,91 @@
+{% apply spaceless %}
+
+{{ attach_library('bootstrap_barrio/node') }}
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+
+<article{{ attributes.addClass(classes).setAttribute('itemscope','').setAttribute('itemtype','https://schema.org/Article') }}>
+
+  <meta itemprop="url" content="{{ url('<current>') }}">
+  <meta itemprop="mainEntityOfPage" content="{{ url('<current>') }}">
+
+  <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="University of Colorado">
+    <link itemprop="url" href="https://giving.cu.edu">
+  </div>
+
+  {% set email = node.getOwner().getEmail() %}
+  {% set author_name = email|split('@')[0]|replace({'.':' '})|title %}
+  <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <meta itemprop="name" content="{{ author_name }}">
+    <meta itemprop="email" content="{{ email }}">
+  </div>
+
+  <header>
+    {{ title_prefix }}
+
+    {% if not page %}
+      <h2{{ title_attributes.addClass('node__title').setAttribute('itemprop','headline') }}>
+        <a href="{{ url }}" rel="bookmark">{{ node.label|render|striptags|trim }}</a>
+      </h2>
+    {% else %}
+      <meta itemprop="headline" content="{{ node.label|render|striptags|trim }}">
+    {% endif %}
+
+    {{ title_suffix }}
+
+    {% if display_submitted %}
+      <div class="node__meta">
+        {{ author_picture }}
+        <em{{ author_attributes }}>
+          Submitted by 
+          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">{{ author_name }}</span>
+          </span>
+          on 
+          <time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">{{ date }}</time>
+        </em>
+        <meta itemprop="dateModified" content="{{ node.changed.value|date('c') }}">
+        {{ metadata }}
+      </div>
+    {% endif %}
+  </header>
+
+  <div{{ content_attributes.addClass('node__content','clearfix').setAttribute('itemprop','articleBody') }}>
+    {{ content }}
+  </div>
+
+  {% if view_mode == 'full' %}
+    {% set safe_summary = node.field_image_summary.value|render|striptags|trim %}
+    {% if not safe_summary %}
+      {% set safe_summary = node.body.summary|render|striptags|trim %}
+    {% endif %}
+    {% if not safe_summary %}
+      {% set safe_summary = node.body.value|render|striptags|truncate(300)|trim %}
+    {% endif %}
+    {% if not safe_summary %}
+      {% set safe_summary = node.label|render|striptags|trim %}
+    {% endif %}
+
+    <div class="ai-crawler-context" style="display:none;" aria-hidden="true" data-ai-role="metadata">
+      Document Type: Drupal Node ({{ node.bundle }})
+      Primary Entity: {{ node.label|render|striptags|trim }}
+      Summary: {{ safe_summary }}
+      URL: {{ url('<current>') }}
+      Source Authority: {{ node.field_campus.entity.label ?? 'University of Colorado' }}
+    </div>
+  {% endif %}
+
+</article>
+
+{% endapply %}
