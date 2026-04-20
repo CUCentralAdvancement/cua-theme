@@ -1,0 +1,73 @@
+{#
+#}
+
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB');</script>
+    <!-- End Google Tag Manager -->
+
+    {# Injects <head> elements like meta tags, title, and more. #}
+    <head-placeholder token="{{ placeholder_token|raw }}">
+
+        <title>{{ head_title|safe_join(' | ') }}</title>
+
+        {# Placeholder for <link rel="stylesheet"> #}
+        <css-placeholder token="{{ placeholder_token|raw }}">
+
+            {# Placeholder for <script> tags in head #}
+            <js-placeholder token="{{ placeholder_token|raw }}">
+
+                {# Set conditional body classes for styling and targeting. #}
+                {% set body_classes = [
+                    logged_in ? 'user-logged-in',
+                    root_path is defined and not root_path ? 'path-frontpage' : 'path-' ~ (root_path|default(''))|clean_class,
+                    node_type is defined ? 'node--type-' ~ node_type|clean_class : '',
+                    db_offline ? 'db-offline',
+                    current_user is defined and current_user.hasRole('administrator') ? 'user-administrator',
+                ] %}
+                {% if root_path == 'impact-stories' %}
+      <meta name="description" content="Impact stories from across the University of Colorado system.">
+    {% endif %}
+</head>
+
+<body{{ attributes.addClass(body_classes) }}>
+
+{# Accessible skip link for keyboard users — becomes visible on focus #}
+<a href="#main" class="visually-hidden focusable">
+    {{ 'Skip to main content'|t }}
+</a>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{# Initial markup inserted by modules/themes before the main page content #}
+{{ page_top }}
+
+{# Main page content #}
+{{ page }}
+
+{# Closing markup inserted after main content #}
+{{ page_bottom }}
+
+{# Placeholder for <script> tags at the end of body #}
+<js-bottom-placeholder token="{{ placeholder_token|raw }}">
+</body>
+</html>
