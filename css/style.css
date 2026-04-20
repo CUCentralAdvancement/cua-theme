@@ -3012,6 +3012,11 @@ aside a.nav-link, aside a.bef-link {
     text-decoration: none !important;
 }
 
+.campus-card h2.campus-card__title {
+    font-size: 1.5rem !important;
+    line-height: 1.1 !important;
+}
+
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
