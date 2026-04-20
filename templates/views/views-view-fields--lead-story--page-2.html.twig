@@ -1,0 +1,108 @@
+{#
+  Lead Story – Views Fields Template Override
+  External link: Content: Link (rewritten as {{ field_link__uri }})
+  Internal link: Content: Link to Content (Output URL as text)
+#}
+
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+
+{# Safe, guaranteed string: https://www.colorado.edu, https://www.uccs.edu, etc. #}
+{% set host = app.request.schemeAndHttpHost %}
+
+<div{{attributes.addClass(classes)}}>
+	{% apply spaceless %}
+
+	{# External link (Content: Link, rewritten as {{ field_link__uri }}) #}
+	{% set external = fields.field_link.content|striptags|trim %}
+
+	{# Internal link (Content: Link to Content → Output URL as text) #}
+	{% set internal = fields.view_node.content|striptags|trim %}
+
+	{# Final link: external overrides internal #}
+	{% set link = external ?: internal %}
+
+	{# Build absolute URL for itemid and href #}
+	{% if link starts with 'http' %}
+		{% set absolute_link = link %}
+	{% else %}
+		{% set absolute_link = host ~ link %}
+	{% endif %}
+
+	{# Normalize author name from UID email #}
+	{% set author_local = fields.uid.content|striptags|trim|split('@')|first %}
+	{% set author_parts = author_local|split('.') %}
+	{% set author_name = '' %}
+	{% for p in author_parts %}
+		{% set author_name = author_name ~ (loop.index > 1 ? ' ' : '') ~ p|lower|slice(0,1)|upper ~ p|lower|slice(1) %}
+	{% endfor %}
+
+	<article class="campus-card card h-100 mb-4 position-relative p-2 pb-5" itemscope itemtype="https://schema.org/Article" itemprop="mainEntityOfPage" itemid="{{ absolute_link }}">
+
+		<a href="{{ absolute_link|e('html_attr') }}" class="campus-card__link text-decoration-none d-block h-100" aria-labelledby="node-title-{{ fields.title.content|striptags|clean_id }}">
+
+			<div
+				class="campus-card__image card-img-top" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+
+				{# If the image field actually has rendered content, use it. Otherwise, fallback. #}
+				{% if fields.field_image is defined and fields.field_image.content is not empty %}
+					{{ fields.field_image.content|replace({'<img ':'<img itemprop="contentUrl" '})|raw }}
+				{% else %}
+					<img src="/sites/default/files/2025-04/white-logo.jpg" alt="Default campus image" class="img-fluid" itemprop="contentUrl">
+				{% endif %}
+			</div>
+
+			<div class="card-body px-2">
+
+				<h3 id="node-title-{{ fields.title.content|striptags|clean_id }}" class="campus-card__title mt-2" itemprop="headline name">
+					{{ fields.title.content }}
+				</h3>
+
+				<div class="py-3">
+					<div itemprop="description">
+						{{ fields.body.content }}
+					</div>
+				</div>
+
+				<span itemprop="author" itemscope itemtype="https://schema.org/Person" hidden>
+					<span itemprop="name">
+						{{ author_name }}
+					</span>
+				</span>
+
+				{% if fields.created is defined %}
+					<time itemprop="datePublished" datetime="{{ fields.created.content|striptags|trim }}" hidden></time>
+				{% endif %}
+
+				{% if fields.changed is defined %}
+					<time itemprop="dateModified" datetime="{{ fields.changed.content|striptags|trim }}" hidden></time>
+				{% endif %}
+
+				<span itemprop="publisher" itemscope itemtype="https://schema.org/Organization" hidden>
+					<span itemprop="name">
+						University of Colorado
+					</span>
+				</span>
+
+			</div>
+		</a>
+
+		{% if fields.edit_node is defined and fields.edit_node.content|striptags|trim %}
+			<div class="px-2 text-decoration-none">
+				<span class="edit green">
+					{{ fields.edit_node.content }}
+				</span>
+			</div>
+		{% endif %}
+
+	</article>
+
+	{% endapply %}
+</div>
