@@ -19,81 +19,92 @@
   ]
 %}
 
-<article{{ attributes.addClass(classes).setAttribute('itemscope', '').setAttribute('itemtype', 'https://schema.org/Article') }}>
-  
-  <header>
-    {{ title_prefix }}
-    {% if not page %}
-      <h2{{ title_attributes.addClass('node__title').setAttribute('itemprop', 'headline') }}>
-        {# Use |render|striptags for the title link just in case of weird characters #}
-        <a href="{{ url }}" rel="bookmark" itemprop="mainEntityOfPage">{{ node.label|render|striptags|trim }}</a>
-      </h2>
-    {% else %}
-      {# node.label is safe, but |render ensures it's a string for the meta tag #}
-      <meta itemprop="headline" content="{{ node.label|render|striptags|trim }}">
-    {% endif %}
-    {{ title_suffix }}
-    
-    {% if display_submitted %}
-      <div class="node__meta">
-        {{ author_picture }}
-        {% block submitted %}
-          <em{{ author_attributes }}>
-            {% trans %}
-              Submitted by 
-              <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                <span itemprop="name">{{ author_name|render|striptags|trim }}</span>
-              </span> 
-              on 
-              <time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">{{ date }}</time>
-            {% endtrans %}
-          </em>
-          <meta itemprop="dateModified" content="{{ node.changed.value|date('c') }}">
-        {% endblock %}
-        {{ metadata }}
-      </div>
-    {% endif %}
-  </header>
+<article{{attributes.addClass(classes).setAttribute('itemscope','').setAttribute('itemtype','https://schema.org/Article')}}>
 
-  <div{{ content_attributes.addClass('node__content', 'clearfix').setAttribute('itemprop', 'articleBody') }}>
-    {# 
-      AI OPTIMIZATION: Manually wrap content in keywords. 
-      This is safe because {{ content }} is a render array meant for printing.
-    #}
-    {% if content.field_tags or content.field_campus %}
-      <span itemprop="keywords" style="display: contents;">
-        {{ content }}
-      </span>
-    {% else %}
-      {{ content }}
-    {% endif %}
-  </div>
+	<header>
+		{{ title_prefix }}
+		{% if not page %}
+			<h2{{title_attributes.addClass('node__title').setAttribute('itemprop','headline')}}>
+				{# Use |render|striptags for the title link just in case of weird characters #}
+				<a href="{{ url }}" rel="bookmark" itemprop="mainEntityOfPage">
+					{{ node.label|render|striptags|trim }}
+				</a>
+			</h2>
+		{% else %}
+			{# node.label is safe, but |render ensures it's a string for the meta tag #}
+			<meta itemprop="headline" content="{{ node.label|render|striptags|trim }}">
+		{% endif %}
+		{{ title_suffix }}
 
-  {% if view_mode == 'full' %}
-    {# 
-      FIXED SUMMARY LOGIC: 
-      We use 'set' to build a safe string first. We use |render on everything 
-      before striptags to prevent the 500 error on non-Article pages.
-    #}
-    {% set safe_summary = node.field_image_summary.value|render|striptags|trim %}
-    {% if not safe_summary %}
-       {% set safe_summary = node.body.summary|render|striptags|trim %}
-    {% endif %}
-    {% if not safe_summary %}
-       {% set safe_summary = node.body.value|render|striptags|truncate(300)|trim %}
-    {% endif %}
-    {# Final fallback to Title if everything else is empty #}
-    {% if not safe_summary %}
-       {% set safe_summary = node.label|render|striptags|trim %}
-    {% endif %}
+		{% if display_submitted %}
+			<div class="node__meta">
+				{{ author_picture }}
+				{% block submitted %}
+					<em{{author_attributes}}>
+						{% trans %}
+						Submitted by
+						<span itemprop="author" itemscope itemtype="https://schema.org/Person">
+							<span itemprop="name">
+								{{ author_name|render|striptags|trim }}
+							</span>
+						</span>
+						on
+						<time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">
+							{{ date }}
+						</time>
+						{% endtrans %}
+					</em>
+					<meta itemprop="dateModified" content="{{ node.changed.value|date('c') }}">
+				{% endblock %}
+				{{ metadata }}
+			</div>
+		{% endif %}
+	</header>
 
-    <div class="ai-crawler-context" style="display:none;" aria-hidden="true" data-ai-role="metadata">
-      Document Type: Drupal Node ({{ node.bundle }})
-      Primary Entity: {{ node.label|render|striptags|trim }}
-      Summary: {{ safe_summary }}
-      URL: {{ url('<current>') }}
-      Source Authority: CU Colorado Springs
-    </div>
-  {% endif %}
+	<div{{content_attributes.addClass('node__content','clearfix').setAttribute('itemprop','articleBody')}}>
+		{# 
+		      AI OPTIMIZATION: Manually wrap content in keywords. 
+		      This is safe because {{ content }} is a render array meant for printing.
+		    #}
+		{% if content.field_tags or content.field_campus %}
+			<span itemprop="keywords" style="display: contents;">
+				{{ content }}
+			</span>
+		{% else %}
+			{{ content }}
+		{% endif %}
+	</div>
 
-</article>`
+	{% if view_mode == 'full' %}
+		{# 
+		      FIXED SUMMARY LOGIC: 
+		      We use 'set' to build a safe string first. We use |render on everything 
+		      before striptags to prevent the 500 error on non-Article pages.
+		    #}
+		{% set safe_summary = node.field_image_summary.value|render|striptags|trim %}
+		{% if not safe_summary %}
+			{% set safe_summary = node.body.summary|render|striptags|trim %}
+		{% endif %}
+		{% if not safe_summary %}
+			{% set safe_summary = node.body.value|render|striptags|truncate(300)|trim %}
+		{% endif %}
+		{# Final fallback to Title if everything else is empty #}
+		{% if not safe_summary %}
+			{% set safe_summary = node.label|render|striptags|trim %}
+		{% endif %}
+
+		<div class="ai-crawler-context" style="display:none;" aria-hidden="true" data-ai-role="metadata">
+			Document Type: Drupal Node (
+			{{ node.bundle }}
+			)
+			      Primary Entity:
+			{{ node.label|render|striptags|trim }}
+			Summary:
+			{{ safe_summary }}
+			URL:
+			{{ url('<current>') }}
+			Source Authority: CU Colorado Springs
+		</div>
+	{% endif %}
+
+</article>
