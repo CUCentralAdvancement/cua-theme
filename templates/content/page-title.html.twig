@@ -1,6 +1,9 @@
 {#
 /**
+ * @file
  * Theme override for page titles with visibility control.
+ * This prevents the "double title" issue by strictly honoring the 
+ * title_visibility variable from the Site Builder.
  */
 #}
 
@@ -10,13 +13,8 @@
     <h1{{ title_attributes.addClass('page-title', 'pt-2') }} id="page-title">
         {{ title }}
     </h1>
-    {#
-    /**
-  <span aria-hidden="true" class="base-heading-square__accent"></span>
-     */
-    #}
 {% elseif title_visibility|lower == 'hidden' %}
-    <h1{{ title_attributes.addClass('sr-only') }} id="page-title">
+    <h1{{ title_attributes.addClass('visually-hidden') }} id="page-title">
         {{ title }}
     </h1>
 {% endif %}
