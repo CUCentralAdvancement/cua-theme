@@ -33,7 +33,14 @@ GTM-KBWVM4MVB
 <!DOCTYPE html>
 <html{{ html_attributes }}>
 <head>
-    <!-- Google Tag Manager -->
+    {# 1. Priority Connections #}
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
+    {# 2. Font Preloads (Highest Priority) #}
+    <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    {# 3. Third-party Scripts #}
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
@@ -47,27 +54,10 @@ GTM-KBWVM4MVB
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB');</script>
-    <!-- End Google Tag Manager -->
-
-    {# Injects <head> elements like meta tags, title, and more. #}
     <head-placeholder token="{{ placeholder_token|raw }}">
-
-        <title>{{ head_title|safe_join(' | ') }}</title>
-
-        {# Placeholder for <link rel="stylesheet"> #}
-        <css-placeholder token="{{ placeholder_token|raw }}">
-
-            {# Placeholder for <script> tags in head #}
-            <js-placeholder token="{{ placeholder_token|raw }}">
-
-                {# Set conditional body classes for styling and targeting. #}
-                {% set body_classes = [
-                    logged_in ? 'user-logged-in',
-                    root_path is defined and not root_path ? 'path-frontpage' : 'path-' ~ (root_path|default(''))|clean_class,
-                    node_type is defined ? 'node--type-' ~ node_type|clean_class : '',
-                    db_offline ? 'db-offline',
-                    current_user is defined and current_user.hasRole('administrator') ? 'user-administrator',
-                ] %}
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
 </head>
 
 <body{{ attributes.addClass(body_classes) }}>
