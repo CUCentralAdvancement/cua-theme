@@ -281,6 +281,22 @@ h3#block-cua-theme-aboutus-menu,
     padding: 37px 0 0;
 }
 
+h2#block-cua-theme-mainnavigation-4-menu,
+h2#block-cua-theme-aboutus-menu,
+h2#block-cua-theme-giving-menu,
+h2#block-cua-theme-campusoffices-menu {
+    color: var(--cua-gold) !important;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--h5-size);
+    font-family: var(--font-roboto-condensed);
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 0.5rem;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    max-width: 90% !important;
+}
+
 /*** Responsive ***/
 /* Screens below 991px */
 @media (max-width: 991px) {
@@ -318,6 +334,4 @@ h3#block-cua-theme-aboutus-menu,
         font-size: var(--font-xsmall) !important;
     }
 }
-
-
 
