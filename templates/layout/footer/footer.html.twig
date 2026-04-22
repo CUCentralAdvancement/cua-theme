@@ -7,150 +7,241 @@
 * Decorative icons use aria-hidden. Picture elements no longer misuse ARIA roles.
 */
 #}
+{%- apply spaceless -%}
+<footer class="site-footer mt-auto" role="contentinfo" aria-label="{{ 'University of Colorado site footer'|t }}">
+	<div id="site-footer-top" class="container pt-3">
 
-<footer class="site-footer mt-auto"
-        role="contentinfo"
-        aria-label="{{ 'University of Colorado site footer'|t }}">
+		{%- if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth -%}
+			<div class="row g-0">
+				{%- if page.footer_first -%}
+					<div class="col-md-4 col-sm-6 px-2 d-flex flex-column gap-4 footer-address">
 
-    {# -------------------- TOP SECTION -------------------- #}
-    <div id="site-footer-top" class="container pt-3">
+						<section aria-labelledby="footer-university-info-heading" itemscope itemtype="https://schema.org/Organization">
 
-        {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
-            <div class="row g-0">
+							<h3 id="footer-university-info-heading" class="visually-hidden">
+								University of Colorado Advancement contact information
+							</h3>
 
-                {% if page.footer_first %}
-                    <section class="col-md-4 col-sm-6 px-2"
-                             aria-labelledby="footer-university-info-heading">
-                        <h3 id="footer-university-info-heading"
-                            class="visually-hidden">
-                            {{ 'University Information'|t }}
-                        </h3>
-                        {{ page.footer_first }}
-                    </section>
-                {% endif %}
+							<script type="application/ld+json">
+								{
+								"@context": "https://schema.org",
+								"@type": "Organization",
+								"name": "University of Colorado Advancement",
+								"url": "https://www.giving.cu.edu",
+								"email": "giving@cu.edu",
+								"parentOrganization": {
+								"@type": "Organization",
+								"name": "University of Colorado",
+								"url": "https://www.cu.edu"
+								},
+								"address": {
+								"@type": "PostalAddress",
+								"streetAddress": "1800 Grant Street, Suite 215",
+								"addressLocality": "Denver",
+								"addressRegion": "CO",
+								"postalCode": "80203",
+								"addressCountry": "US"
+								}
+								}
+							</script>
 
-                {% if page.footer_second %}
-                    <section class="col-md-3 col-sm-6 mt-2 px-2"
-                             aria-labelledby="footer-campus-links-heading">
-                        <h3 id="footer-campus-links-heading"
-                            class="visually-hidden">
-                            {{ 'Campus Links'|t }}
-                        </h3>
-                        {{ page.footer_second }}
-                    </section>
-                {% endif %}
+							<div class="cua-name-title text-white g-0">
+								<h3 class="g-0 mb-3" style="color: white;" itemprop="name">
+									University of Colorado Advancement
+								</h3>
+							</div>
 
-                {% if page.footer_third %}
-                    <section class="col-md-3 col-sm-6 mt-2 px-2"
-                             aria-labelledby="footer-resources-heading">
-                        <h3 id="footer-resources-heading"
-                            class="visually-hidden">
-                            {{ 'Resources for Students and Faculty'|t }}
-                        </h3>
-                        {{ page.footer_third }}
-                    </section>
-                {% endif %}
+							<div class="cua-address mb-3 px-2 text-white" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+								<span itemprop="streetAddress">
+									1800 Grant Street, Suite 215
+								</span>
+								<br>
+								<span itemprop="addressLocality">
+									Denver
+								</span>
+								,
+								<span itemprop="addressRegion">
+									CO
+								</span>
+								<span itemprop="postalCode">
+									80203
+								</span>
+							</div>
 
-                {% if page.footer_fourth %}
-                    <section class="col-md-2 col-sm-6 mt-2 px-2"
-                             aria-labelledby="footer-quick-links-heading">
-                        <h3 id="footer-quick-links-heading"
-                            class="visually-hidden">
-                            {{ 'Quick Navigation Links'|t }}
-                        </h3>
-                        {{ page.footer_fourth }}
-                    </section>
-                {% endif %}
+							<div class="cua-email mb-2 px-3">
+								
+								<a class="link-cua" href="mailto:giving@cu.edu" aria-label="Send email to giving@cu.edu" itemprop="email">
+									<i class="fa-solid fa-envelope mr-2" aria-hidden="true"></i>giving@cu.edu
+								</a>
+							</div>
 
-                {% if page.footer_fifth %}
-                    <section class="col-12 make-a-gift g-0 my-2"
-                             aria-labelledby="footer-support-heading">
-                        <h3 id="footer-support-heading" class="visually-hidden">
-                            {{ 'Support the University'|t }}
-                        </h3>
-                        {{ page.footer_fifth }}
-                    </section>
-                {% endif %}
+						</section>
 
-            </div>
-        {% endif %}
-    </div>
+						<section aria-labelledby="footer-campus-links-heading" itemscope itemtype="https://schema.org/Organization">
 
-    {# -------------------- BOTTOM SECTION -------------------- #}
-    <div id="site-footer-bottom"
-         class="container-fluid bg-pure-black px-5 pb-2">
-        <div class="row">
+							<h3 id="footer-campus-links-heading" class="visually-hidden">
+								University of Colorado Foundation contact information
+							</h3>
 
-            {# Logo with proper alt text (no ARIA role misuse) #}
-            <div class="col-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
-                <picture>
-                    <source media="(max-width: 499px)"
-                            srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                            width="250"
-                            height="70"/>
-                    <source media="(min-width: 500px)"
-                            srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                            width="500"
-                            height="140"/>
-                    <img src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}"
-                         alt="{{ 'University of Colorado logo'|t }}"
-                         width="500"
-                         height="140"
-                         loading="lazy"/>
-                </picture>
-            </div>
+							<script type="application/ld+json">
+								{
+								"@context": "https://schema.org",
+								"@type": "Organization",
+								"name": "University of Colorado Foundation",
+								"url": "https://www.cufund.org",
+								"telephone": "+13038137935",
+								"parentOrganization": {
+								"@type": "Organization",
+								"name": "University of Colorado",
+								"url": "https://www.cu.edu"
+								},
+								"address": {
+								"@type": "PostalAddress",
+								"name": "University of Colorado Foundation",
+								"postOfficeBoxNumber": "P.O. Box 561690",
+								"addressLocality": "Denver",
+								"addressRegion": "CO",
+								"postalCode": "80256-1690",
+								"addressCountry": "US"
+								},
+								"hasMap": "https://maps.app.goo.gl/G3RfovjWdKMCJZw6A"
+								}
+							</script>
 
-            {# Additional Information / Legal, Social Links #}
-            {% if page.footer_sixth %}
-                <section
-                        class="col-12 d-flex align-items-center justify-content-center"
-                        aria-labelledby="footer-additional-info-heading">
-                    <h3 id="footer-additional-info-heading"
-                        class="visually-hidden">
-                        {{ 'Legal and Additional Information'|t }}
-                    </h3>
-                    {{ page.footer_sixth }}
-                </section>
-            {% endif %}
+							<div class="cua-name-title g-0 text-light">
+								<h3 class="g-0 mb-3" style="color: white;" itemprop="name">
+									University of Colorado Foundation
+								</h3>
+							</div>
 
-            {# Copyright #}
-            <div class="col-12 border-top border-secondary d-flex align-items-center justify-content-center">
-                <p class="mt-2 mb-3 strong text-light">
-                    {{ '©'|t }} {{ 'now' | date('Y') }}
-                    <a href="https://regents.cu.edu"
-                       rel="noopener"
-                       target="_blank"
-                       class="link-light link-underline-opacity-0 px-2"
-                       aria-label="{{ 'Regents of the University of Colorado (opens in a new tab)'|t }}">
-                        {{ 'Regents of the University of Colorado'|t }}
-                    </a>
+							<div class="cua-address mb-2 px-2 text-white" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+								<span itemprop="name">
+									University of Colorado Foundation
+								</span>
+								<br>
+								<span itemprop="postOfficeBoxNumber">
+									P.O. Box 561690
+								</span>
+								<br>
+								<span itemprop="addressLocality">
+									Denver
+								</span>
+								,
+								<span itemprop="addressRegion">
+									CO
+								</span>
+								<span itemprop="postalCode">
+									80256-1690
+								</span>
+							</div>
 
-                    {% if not logged_in %}
-                        <span class="admin-login">
-                            <a href="https://www.giving.cu.edu/saml/login"
-                               rel="noopener"
-                               class="link-light link-underline-opacity-0 px-2">
-							<i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
-							{{ 'Login'|t }}
+							<div class="cua-phone mb-2 px-3 pt-2 text-gold">
+								
+								<a class="link-cua" href="tel:+13038137935" aria-label="Call 303-813-7935" itemprop="telephone">
+									<i class="fa-solid fa-phone pr-1" aria-hidden="true"></i>303-813-7935
+								</a>
+							</div>
+
+							<div class="cua-map mb-2 px-3 text-gold">
+								<a class="link-cua px-1" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A" aria-label="Open map and directions to University of Colorado Foundation" itemprop="hasMap">
+									<i class="fa-solid fa-map pr-1" aria-hidden="true"></i>
+									Directions
+								</a>
+							</div>
+
+						</section>
+
+					</div>
+				{%- endif -%}
+
+				{%- if page.footer_second -%}
+					<div class="col-md-3 col-sm-6 px-2">
+						{{ page.footer_second }}
+					</div>
+				{%- endif -%}
+
+				{%- if page.footer_third -%}
+					<section class="col-md-3 col-sm-6 px-2" aria-labelledby="footer-resources-heading">
+						<h3 id="footer-resources-heading" class="visually-hidden">
+							{{ 'Resources for Students and Faculty'|t }}
+						</h3>
+						{{- page.footer_third -}}
+					</section>
+				{%- endif -%}
+
+				{%- if page.footer_fourth -%}
+					<section class="col-md-2 col-sm-6 px-2" aria-labelledby="footer-quick-links-heading">
+						<h3 id="footer-quick-links-heading" class="visually-hidden">
+							{{ 'Quick Navigation Links'|t }}
+						</h3>
+						{{ page.footer_fourth }}
+					</section>
+				{%- endif -%}
+
+				{%- if page.footer_fifth -%}
+					<section class="col-12 make-a-gift g-0 my-2" aria-labelledby="footer-support-heading">
+						<h3 id="footer-support-heading" class="visually-hidden">
+							{{ 'Support the University'|t }}
+						</h3>
+						{{ page.footer_fifth }}
+					</section>
+				{%- endif -%}
+
+			</div>
+		{%- endif -%}
+
+	</div>
+
+	<div id="site-footer-bottom" class="container-fluid bg-pure-black px-5 pb-2">
+		<div class="row">
+
+			<div class="col-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
+				<picture>
+					<source media="(max-width: 499px)" srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}" width="250" height="70"/>
+					<source media="(min-width: 500px)" srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}" width="500" height="140"/>
+					<img src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}" alt="{{ 'University of Colorado logo'|t }}" width="500" height="140" loading="lazy"/>
+				</picture>
+			</div>
+
+			{%- if page.footer_sixth -%}
+				<section class="col-12 d-flex align-items-center justify-content-center" aria-labelledby="footer-additional-info-heading">
+					<h3 id="footer-additional-info-heading" class="visually-hidden">
+						{{ 'Legal and Additional Information'|t }}
+					</h3>
+					{{ page.footer_sixth }}
+				</section>
+			{%- endif -%}
+
+			<div class="col-12 border-top border-secondary d-flex align-items-center justify-content-center">
+				<p class="mt-2 mb-3 strong text-light">
+					{{ '©'|t }}
+					{{ 'now'|date('Y') }}
+					<a href="https://regents.cu.edu" rel="noopener" target="_blank" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Regents of the University of Colorado (opens in a new tab)'|t }}">
+						{{ 'Regents of the University of Colorado'|t }}
+					</a>
+
+					{%- if not logged_in -%}
+						<span class="admin-login">
+							<a href="https://www.giving.cu.edu/saml/login" rel="noopener" class="link-light link-underline-opacity-0 px-2">
+								<i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
+								{{ 'Login'|t }}
 							</a>
 						</span>
-                    {% endif %}
+					{%- endif -%}
 
-                    {% if user.hasPermission('administer site configuration') %}
-                        <span class="admin-login">
-                            <a href="/tutorials"
-                               rel="noopener"
-                               class="link-light link-underline-opacity-0 px-2">
-                                <i class="px-2 fas fa-chalkboard-teacher" aria-hidden="true"></i>
-                                {{ 'Tutorial Login'|t }}
-                            </a>
-                       </span>
-                    {% endif %}
+					{%- if user.hasPermission('administer site configuration') -%}
+						<span class="admin-login">
+							<a href="/tutorials" rel="noopener" class="link-light link-underline-opacity-0 px-2">
+								<i class="px-2 fas fa-chalkboard-teacher" aria-hidden="true"></i>
+								{{ 'Tutorial Login'|t }}
+							</a>
+						</span>
+					{%- endif -%}
 
-                </p>
-            </div>
+				</p>
+			</div>
 
-        </div>
-    </div>
-
+		</div>
+	</div>
 </footer>
+{%- endapply -%}

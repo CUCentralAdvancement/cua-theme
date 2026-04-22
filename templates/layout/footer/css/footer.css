@@ -12,9 +12,12 @@ footer #site-footer-top .clearfix.nav {
     margin-bottom: 0.5rem;
     padding-bottom: 5px;
     color: var(--cua-white) !important;
-    border-bottom: 1px solid var(--cua-gray-700);
 }
 
+footer h3{
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    max-width: 90% !important;
+}
 /* Site Footer Base */
 .site-footer {
     background: var(--cua-black) !important;
@@ -272,6 +275,10 @@ h3#block-cua-theme-campusoffices-menu,
 h3#block-cua-theme-aboutus-menu,
 .site-footer h3 {
     color: var(--cua-gold) !important;
+}
+
+.footer-address {
+    padding: 37px 0 0;
 }
 
 /*** Responsive ***/
