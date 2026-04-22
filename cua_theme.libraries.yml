@@ -3,6 +3,7 @@ global-styling:
   version: VERSION
   css:
     theme:
+      css/style.css: {}
     component:
       css/bootstrap.min.css:
         weight: -11
