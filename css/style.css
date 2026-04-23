@@ -209,7 +209,7 @@ body, p, a, li {
     line-height: 1.5; /* Ensures consistent spacing */
 }
 
-body {`
+body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: var(--base-font-family);
@@ -945,17 +945,21 @@ h2.text-align-center::after {
     margin: 1rem 7.5rem; /* Center with side margins */
 }
 
-/* Utility class for full padding */
-.full-padding, .fp {
-    padding-left: 7rem;
-    padding-right: 7rem;
+/* Full-width horizontal padding — contained copy, full-bleed background `*/
+.full-padding,
+.fp {
+    padding-left: max(1rem, calc((100% - 1320px) / 2 + 1rem)) !important;
+    padding-right: max(1rem, calc((100% - 1320px) / 2 + 1rem)) !important;
 }
 
-/* Utility classes for padding adjustments */
-.full-padding-top, .full-padding-top-bottom, .fptb {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+/* Vertical padding utilities — unchanged */
+.full-padding-top,
+.full-padding-top-bottom,
+.fptb {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
 }
+
 
 /* Remove Bootstrap container padding */
 .container-fluid {
@@ -3137,17 +3141,6 @@ aside a.nav-link, aside a.bef-link {
         min-height: auto;
     }
 
-    /* Padding adjustments for full-width sections */
-    .full-padding {
-        padding-left: 3rem;
-        padding-right: 3rem;
-    }
-
-    .full-padding-top {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
-
     /* Menu styling: Add borders to menu */
     aside .node__content .block.block-menu.navigation {
         border-right: 1px solid var(--cua-white);
@@ -3221,12 +3214,6 @@ aside a.nav-link, aside a.bef-link {
         border-right: 1px solid var(--cua-white) !important;
     }
 
-    /* Page title styling adjustments
-    div#block-cua-theme-page-title {
-        margin: 1rem 0 0 5px;
-        max-width: 90%;
-    }
-    */
     /* Hide the square accent on headings */
     .base-heading-square__accent {
         display: none;
@@ -3285,19 +3272,14 @@ aside a.nav-link, aside a.bef-link {
     }
 
     /* Full padding adjustments for smaller screens */
-    .full-padding {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    .full-padding,
+    .fp {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 
     .banner-body {
-        padding: 1rem !important;
-    }
-
-    /* General padding adjustments */
-    .full-padding, .fp {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding: 1rem;
     }
 
     /* Title font size adjustments */
