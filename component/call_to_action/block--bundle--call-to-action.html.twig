@@ -6,10 +6,10 @@
   =============================================================================
 #}
 {{- attach_library('cua_theme/call-to-action') -}}
-{%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
 
-{# Unique ID Generation #}
-{%- set unique_id = ('cta-' ~ elements.content['#block_content'].id())|replace({'_': '-', ':': '--'})|clean_class -%}
+{# Unique ID Generation - Safe fallback for uninitialized blocks #}
+{%- set block_id = elements.content['#block_content'].id()|default(random(1000, 9999)) -%}
+{%- set unique_id = ('cta-' ~ block_id)|replace({'_': '-', ':': '--'})|clean_class -%}
 
 {# Animation Logic #}
 {%- set raw_animation = prefers_reduced_motion ? [] : [ 'animate__animated', animation ?: null, animation_speed ?: null, animation_delay ?: null ]|filter(v => v) -%}
@@ -43,93 +43,95 @@
 {%- set attributes = attributes.setAttribute('id', unique_id).addClass(cta_classes).setAttribute('role', 'region').setAttribute('data-animation-classes', data_animation).setAttribute('itemscope', '').setAttribute('itemtype', 'https://schema.org/Action').setAttribute('data-component', 'call-to-action-card') -%}
 
 {%- if label -%}
-	{%- set attributes = attributes.setAttribute('aria-labelledby', unique_id ~ '-label') -%}
+    {%- set attributes = attributes.setAttribute('aria-labelledby', unique_id ~ '-label') -%}
 {%- else -%}
-	{%- set attributes = attributes.setAttribute('aria-label', 'Call to Action') -%}
+    {%- set attributes = attributes.setAttribute('aria-label', 'Call to Action') -%}
 {%- endif -%}
 
-<section{{attributes}}>
-	{%- apply spaceless -%}
+<section{{ attributes }}>
+    {# Drupal contextual links must sit outside the wrapper link #}
+    {{- title_prefix -}}
+    {{- title_suffix -}}
 
-	{# Metadata Layer #}
-	<meta
-	itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
-	<div itemprop="agent" itemscope itemtype="https://schema.org/CollegeOrUniversity">
-		<meta itemprop="name" content="University of Colorado"/>
-	</div>
+    {%- apply spaceless -%}
 
-	{%- if single_link -%}
-		<div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
-			<meta itemprop="url" content="{{- single_link.url -}}"/>
-			<meta itemprop="actionPlatform" content="http://schema.org/DesktopWebPlatform"/>
-			<meta itemprop="actionPlatform" content="http://schema.org/MobileWebPlatform"/>
-		</div>
-	{%- endif -%}
+    {# Metadata Layer #}
+    <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
+    <div itemprop="agent" itemscope itemtype="https://schema.org/CollegeOrUniversity">
+        <meta itemprop="name" content="{{ site_name|default('University of Colorado') }}"/>
+    </div>
 
-	{{- title_prefix -}}
-	{{- title_suffix -}}
+    {%- if single_link -%}
+        <div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
+            <meta itemprop="url" content="{{ single_link.url }}"/>
+            <meta itemprop="actionPlatform" content="http://schema.org/DesktopWebPlatform"/>
+            <meta itemprop="actionPlatform" content="http://schema.org/MobileWebPlatform"/>
+        </div>
+    {%- endif -%}
 
-	{# Internal Card Wrap Logic #}
-	{%- if wrap_entire_card -%}
-		<a href="{{ single_link.url ?: '#' }}" class="cta-card-link-wrapper text-decoration-none color-inherit" aria-label="{{ single_link.title|striptags|trim }} - {{ label|striptags|trim }}">
-		{%- endif -%}
+    {# Internal Card Wrap Logic #}
+    {%- if wrap_entire_card -%}
+        <a href="{{ single_link.url|default('#') }}" class="cta-card-link-wrapper text-decoration-none color-inherit" aria-label="{{ single_link.title|striptags|trim }} - {{ label|striptags|trim }}">
+    {%- endif -%}
 
-		  {# ── Media Block ─────────────────────────────────────────────────── #}
+        {# ── Media Block ─────────────────────────────────────────────────── #}
         {%- if provider or card_image or icon -%}
             <figure class="cta-media mb-0" role="presentation">
                 {%- if provider -%}
                     {%- include '@cua_theme/component/video/partials/_video--master.html.twig' -%}
                 {%- elseif card_image -%}
+                    {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
                     {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
                 {%- elseif icon -%}
+                    {%- import '@cua_theme/component/macros/icon.html.twig' as iconMacros -%}
                     {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
                 {%- endif -%}
             </figure>
         {%- endif -%}
 
-		{%- if caption -%}
-			{%- import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros -%}
-			{{- captionMacros.render_caption(caption, padding, text_color, text_alignment) -}}
-		{%- endif -%}
+        {%- if caption -%}
+            {%- import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros -%}
+            {{- captionMacros.render_caption(caption, padding, text_color, text_alignment) -}}
+        {%- endif -%}
 
-		{%- if label -%}
-			<header class="card-header border-0 pt-2 {{ padding }} {{ text_alignment }}">
-				<h3 id="{{ unique_id }}-label" class="display-4 card-title title {{ text_color }} mb-0" itemprop="name">
-					{{- label|trim -}}
-				</h3>
-			</header>
-		{%- endif -%}
+        {%- if label -%}
+            <header class="card-header border-0 pt-2 {{ padding }} {{ text_alignment }}">
+                <h3 id="{{ unique_id }}-label" class="display-4 card-title title {{ text_color }} mb-0" itemprop="name">
+                    {{- label|trim -}}
+                </h3>
+            </header>
+        {%- endif -%}
 
-		{%- if content -%}
-			<div itemprop="description" class="cta-text lead {{ padding }} {{ text_color }}">
-				{%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
-				{{- bodyMacros.render_body(content, text_color, text_alignment)|trim -}}
-			</div>
-		{%- endif -%}
+        {%- if content -%}
+            {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
+            <div itemprop="description" class="cta-text lead {{ padding }} {{ text_color }}">
+                {{- bodyMacros.render_body(content, text_color, text_alignment)|trim -}}
+            </div>
+        {%- endif -%}
 
-		{%- if single_link -%}
-			<footer class="card-footer bg-transparent border-0 {{ padding }} {{ text_alignment }} mt-auto">
-				{%- set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color -%}
-				{%- if wrap_entire_card -%}
-					<span class="btn {{ outline_class }} mt-3" aria-hidden="true">
-						{{- single_link.title -}}
-					</span>
-				{%- else -%}
-					<a href="{{ single_link.url }}" class="btn {{ outline_class }} mt-3">
-						{{- single_link.title -}}
-					</a>
-				{%- endif -%}
-			</footer>
-		{%- endif -%}
+        {%- if single_link -%}
+            <footer class="card-footer bg-transparent border-0 {{ padding }} {{ text_alignment }} mt-auto">
+                {%- set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color -%}
+                {%- if wrap_entire_card -%}
+                    <span class="btn {{ outline_class }} mt-3" aria-hidden="true">
+                        {{- single_link.title -}}
+                    </span>
+                {%- else -%}
+                    <a href="{{ single_link.url }}" class="btn {{ outline_class }} mt-3">
+                        {{- single_link.title -}}
+                    </a>
+                {%- endif -%}
+            </footer>
+        {%- endif -%}
 
-		{%- if links_count > 1 -%}
-			{%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
-			{{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false) -}}
-		{%- endif -%}
+        {%- if links_count > 1 -%}
+            {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
+            {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false) -}}
+        {%- endif -%}
 
-		{%- if wrap_entire_card -%}
-		</a>
-	{%- endif -%}
+    {%- if wrap_entire_card -%}
+        </a>
+    {%- endif -%}
 
-	{%- endapply -%}
+    {%- endapply -%}
 </section>
