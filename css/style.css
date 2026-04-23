@@ -3413,3 +3413,7 @@ aside a.nav-link, aside a.bef-link {
   #faq-accordion .accordion-collapse {
     border-radius: 0 !important;
   }
+`
+  button.search-icon {
+    padding: 0.6rem !important;
+}
