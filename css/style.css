@@ -3405,7 +3405,11 @@ aside a.nav-link, aside a.bef-link {
       padding: .75rem !important;
       font-weight: normal !important;
       font-size: 1.1rem;
-  }
+  }`
+
+  button.search-icon {
+    padding: 0.6rem !important;
+ }
   
   #faq-accordion .accordion-button,
   #faq-accordion .accordion-item,
@@ -3413,7 +3417,4 @@ aside a.nav-link, aside a.bef-link {
   #faq-accordion .accordion-collapse {
     border-radius: 0 !important;
   }
-`
-  button.search-icon {
-    padding: 0.6rem !important;
-}
+
