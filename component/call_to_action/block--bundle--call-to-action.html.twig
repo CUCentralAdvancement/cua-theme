@@ -54,7 +54,6 @@
 	{# Metadata Layer #}
 	<meta
 	itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
-	{# 'agent' is the correct property for an Action entity #}
 	<div itemprop="agent" itemscope itemtype="https://schema.org/CollegeOrUniversity">
 		<meta itemprop="name" content="University of Colorado"/>
 	</div>
@@ -75,20 +74,20 @@
 		<a href="{{ single_link.url ?: '#' }}" class="cta-card-link-wrapper text-decoration-none color-inherit" aria-label="{{ single_link.title|striptags|trim }} - {{ label|striptags|trim }}">
 		{%- endif -%}
 
-		<figure class="cta-media mb-0" role="presentation">
-			{%- if provider -%}
-				{%- include '@cua_theme/component/video/partials/_video--master.html.twig' -%}
-			{%- elseif card_image -%}
-				{%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
-				{{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
-			{%- elseif icon -%}
-				{%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
-				{{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
-			{%- endif -%}
-		</figure>
+		  {# ── Media Block ─────────────────────────────────────────────────── #}
+        {%- if provider or card_image or icon -%}
+            <figure class="cta-media mb-0" role="presentation">
+                {%- if provider -%}
+                    {%- include '@cua_theme/component/video/partials/_video--master.html.twig' -%}
+                {%- elseif card_image -%}
+                    {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
+                {%- elseif icon -%}
+                    {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
+                {%- endif -%}
+            </figure>
+        {%- endif -%}
 
 		{%- if caption -%}
-			{# FIXED: Removed the backtick from the path below #}
 			{%- import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros -%}
 			{{- captionMacros.render_caption(caption, padding, text_color, text_alignment) -}}
 		{%- endif -%}
