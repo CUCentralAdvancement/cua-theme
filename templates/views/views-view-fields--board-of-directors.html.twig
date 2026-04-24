@@ -9,23 +9,33 @@
   {%- set is_page = (view.current_display == 'page_1') -%}
   {%- set h_tag = is_page ? 'h3' : 'h4' -%}
 
+  {# Pre-process company field to determine if it's a real org or a description #}
+  {%- set company_raw = fields.field_company.content|striptags|trim -%}
+  {%- set retire_keywords = ['retired', 'self-employed', 'self employed', 'freelance', 'consultant', 'independent', 'volunteer', 'former'] -%}
+  {%- set is_description = false -%}
+  {%- for keyword in retire_keywords -%}
+    {%- if company_raw|lower starts with keyword or keyword in company_raw|lower -%}
+      {%- set is_description = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+
   <div itemscope itemtype="https://schema.org/Person">
-    
-    {# Name - Dynamically uses h3 or h4, and includes |raw fix #}
+
+    {# Name — dynamically uses h3 or h4 #}
     {%- if fields.title.content -%}
       <{{ h_tag }} class="cu-line-sm fw-bolder" itemprop="name">
         {{- fields.title.content|striptags|trim|raw -}}
       </{{ h_tag }}>
     {%- endif -%}
 
-    {# Board Designation #}
+    {# Board Designation — board role e.g. Chair, Treasurer #}
     {%- if fields.field_board_of_directors.content -%}
       <div class="fst-italic bold cu-gold pb-2" itemprop="jobTitle">
         {{- fields.field_board_of_directors.content|striptags|trim|raw -}}
       </div>
     {%- endif -%}
 
-    {# Professional Position #}
+    {# Professional Position — their actual career title #}
     {%- if fields.field_position.content -%}
       <div class="fst-italic pb-2" itemprop="jobTitle">
         {{- fields.field_position.content|striptags|trim|raw -}}
@@ -33,20 +43,28 @@
     {%- endif -%}
 
     {# Company/Organization #}
-    {%- if fields.field_company.content -%}
-      <div itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
-        <span itemprop="name">{{- fields.field_company.content|striptags|trim|raw -}}</span>
-      </div>
+    {%- if company_raw -%}
+      {%- if is_description -%}
+        <div class="fst-italic pb-2" itemprop="description">
+          {{- company_raw|raw -}}
+        </div>
+      {%- else -%}
+        <div itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+          <span class="pb-2" itemprop="name">{{- company_raw|raw -}}</span>
+        </div>
+      {%- endif -%}
     {%- endif -%}
 
     {# Location #}
     {%- if fields.field_home.content -%}
       <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-        <span itemprop="addressLocality">{{- fields.field_home.content|striptags|trim|raw -}}</span>
+        <span itemprop="addressLocality">
+          {{- fields.field_home.content|striptags|trim|raw -}}
+        </span>
       </div>
     {%- endif -%}
 
-    {# Static Board Membership #}
+    {# Static Board Membership — hidden from display, visible to parsers #}
     <div itemprop="memberOf" itemscope itemtype="https://schema.org/Organization" style="display:none;">
       <span itemprop="name">University of Colorado Foundation Board of Directors</span>
     </div>
@@ -57,6 +75,6 @@
         {{- fields.edit_node.content|raw -}}
       </div>
     {%- endif -%}
-    
+
   </div>
 {%- endapply -%}
