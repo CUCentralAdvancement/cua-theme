@@ -1,0 +1,62 @@
+{# 
+  File: views-view-fields--board-of-directors.html.twig 
+  This one file handles ALL displays for this view (Page + Attachments).
+  Optimized for Spaceless HTML, SEO, Entity Decoding, and dynamic headings.
+#}
+{%- apply spaceless -%}
+
+  {# Check if this is the main page display to determine heading level #}
+  {%- set is_page = (view.current_display == 'page_1') -%}
+  {%- set h_tag = is_page ? 'h3' : 'h4' -%}
+
+  <div itemscope itemtype="https://schema.org/Person">
+    
+    {# Name - Dynamically uses h3 or h4, and includes |raw fix #}
+    {%- if fields.title.content -%}
+      <{{ h_tag }} class="cu-line-sm fw-bolder" itemprop="name">
+        {{- fields.title.content|striptags|trim|raw -}}
+      </{{ h_tag }}>
+    {%- endif -%}
+
+    {# Board Designation #}
+    {%- if fields.field_board_of_directors.content -%}
+      <div class="fst-italic bold cu-gold pb-2" itemprop="jobTitle">
+        {{- fields.field_board_of_directors.content|striptags|trim|raw -}}
+      </div>
+    {%- endif -%}
+
+    {# Professional Position #}
+    {%- if fields.field_position.content -%}
+      <div class="fst-italic pb-2" itemprop="jobTitle">
+        {{- fields.field_position.content|striptags|trim|raw -}}
+      </div>
+    {%- endif -%}
+
+    {# Company/Organization #}
+    {%- if fields.field_company.content -%}
+      <div itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+        <span itemprop="name">{{- fields.field_company.content|striptags|trim|raw -}}</span>
+      </div>
+    {%- endif -%}
+
+    {# Location #}
+    {%- if fields.field_home.content -%}
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="addressLocality">{{- fields.field_home.content|striptags|trim|raw -}}</span>
+      </div>
+    {%- endif -%}
+
+    {# Static Board Membership #}
+    <div itemprop="memberOf" itemscope itemtype="https://schema.org/Organization" style="display:none;">
+      <span itemprop="name">University of Colorado Foundation Board of Directors</span>
+    </div>
+
+    {# Edit Link #}
+    {%- if fields.edit_node.content -%}
+      <div class="pt-3">
+        {{- fields.edit_node.content|raw -}}
+      </div>
+    {%- endif -%}
+    
+  </div>
+{%- endapply -%}
