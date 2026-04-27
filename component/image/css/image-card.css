@@ -1,123 +1,154 @@
+/* =============================================================================
+   COMPONENT: Image Bundle
+   ============================================================================= */
+
+/* --- CARD LINK WRAPPER ---------------------------------------------------- */
+
 .image-bundle .card-link-wrapper {
   display: block;
   text-decoration: none;
   color: inherit;
 }
+
 .image-bundle .card-link-wrapper:focus {
   outline: 2px solid #4d90fe;
   outline-offset: 2px;
 }
 
-/* Black Btn / outline= yes */
+/* --- IMAGE HOVER EFFECT
+   FIX: corrected selector from .card-img (wrong) to
+   .card-img-wrapper .img-static img (matches actual rendered HTML).
+   FIX: removed duplicate rule; base transition lives on the img itself
+   so the ease-out on mouse-leave works correctly.
+   ----------------------------------------------------------------------- */
+
+.image-bundle .image-responsive-fix .img-static img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-bundle .card-link-wrapper:hover .image-responsive-fix .img-static img {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --- RESPONSIVE IMAGE FIX ------------------------------------------------- */
+
+/* 1. Make the macro-rendered <img> fill its container responsively */
+.image-bundle .image-responsive-fix .img-static img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* 2. Strip card-header chrome the macro wraps around the image */
+.image-bundle .image-responsive-fix .card-header {
+  padding: 0;
+  background: transparent !important;
+  border: 0;
+}
+
+/* 3. Ensure the wrapper itself doesn't constrain width */
+.image-bundle .image-responsive-fix .img-static {
+  width: 100%;
+}
+
+/* --- BUTTONS -------------------------------------------------------------- */
+
+/* Black / outline */
 .image-bundle .btn.btn-outline-cu-bg-black {
   background: transparent;
   text-align: center;
-  border: 2px solid  var(--cua-black);
+  border: 2px solid var(--cua-black);
 }
-
 .image-bundle .btn.btn-outline-cu-bg-black:hover {
-  background:  var(--cua-black);
+  background: var(--cua-black);
   color: white;
 }
 
-/* Black Btn / outline= no */
-.image-bundle .btn.btn-cu-bg-black  {
+/* Black / solid */
+.image-bundle .btn.btn-cu-bg-black {
   background: var(--cua-black);
   text-align: center;
-  border: 2px solid  var(--cua-black);
+  border: 2px solid var(--cua-black);
 }
-
 .image-bundle .btn.btn-cu-bg-black:hover {
   color: var(--cua-gold);
-  border: 2px solid  var(--cua-black);
+  border: 2px solid var(--cua-black);
 }
 
-/* Gold Btn / outline= yes */
-.image-bundle .btn.btn-outline-cu-bg-gold  {
+/* Gold / outline */
+.image-bundle .btn.btn-outline-cu-bg-gold {
   background: transparent;
   text-align: center;
   border: 2px solid var(--cua-gold);
 }
-
 .image-bundle .btn.btn-outline-cu-bg-gold:hover {
   background: var(--cua-black);
   color: var(--cua-gold);
 }
 
-/* Gold Btn / outline= no */
-.image-bundle .btn.btn-cu-bg-gold  {
+/* Gold / solid */
+.image-bundle .btn.btn-cu-bg-gold {
   background: var(--cua-gold);
   text-align: center;
   border: none;
 }
-
 .image-bundle .btn.btn-cu-bg-gold:hover {
   background: var(--cua-black);
   color: var(--cua-gold);
 }
 
-/* Light Grey Btn / outline= yes */
-.image-bundle .btn.btn-outline-cu-bg-light-grey  {
+/* Light Grey / outline */
+.image-bundle .btn.btn-outline-cu-bg-light-grey {
   background: transparent;
   text-align: center;
   border: 2px solid var(--cua-gray-600);
 }
-
 .image-bundle .btn.btn-outline-cu-bg-light-grey:hover {
   background: var(--cua-black);
   color: var(--cua-gray-200);
 }
 
-/* Light Grey Btn / outline= no */
-.image-bundle .btn.btn-cu-bg-light-grey  {
+/* Light Grey / solid */
+.image-bundle .btn.btn-cu-bg-light-grey {
   background: var(--cua-gray-600);
   color: var(--cua-gray-100);
   text-align: center;
 }
-
 .image-bundle .btn.btn-cu-bg-light-grey:hover {
   background: var(--cua-black);
   color: var(--cua-gray-100);
 }
 
-/* White Btn / outline= yes */
-.image-bundle .btn.btn-outline-cu-bg-white  {
+/* White / outline */
+.image-bundle .btn.btn-outline-cu-bg-white {
   background: transparent;
   text-align: center;
   border: 2px solid var(--cua-white);
 }
-
 .image-bundle .btn.btn-outline-cu-bg-white:hover {
   background: var(--cua-white);
   color: var(--cua-black);
 }
 
-/* White Btn / outline= no */
-.image-bundle .btn.btn-cu-bg-white  {
+/* White / solid */
+.image-bundle .btn.btn-cu-bg-white {
   background: var(--cua-white);
   border: 2px solid var(--cua-white);
   color: var(--cua-black);
   text-align: center;
 }
-
 .image-bundle .btn.btn-cu-bg-white:hover {
   background: var(--cua-white);
   border: 2px solid var(--cua-black);
   color: var(--cua-black);
 }
 
-/* Hide Btn*/
+/* Hide button
+   FIX: added btn-hide_btn (solid variant) alongside btn-outline-hide_btn.
+   Raw HTML outputs btn-hide_btn — outline variant alone was never matching. */
+.image-bundle .btn.btn-hide_btn,
 .image-bundle .btn.btn-outline-hide_btn {
   display: none;
-}
-
-.card-link-wrapper:hover .card-img img {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
-}
-
-.card-link-wrapper:hover .card-img img {
-  transform: translateY(-5px) scale(1.02);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
+}`

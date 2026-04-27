@@ -1,33 +1,42 @@
 {#
   =============================================================================
   COMPONENT: Image Bundle (Visual-First Card)
-  ARCHITECTURE: Sinn 556 iRS Level (Zero-Bloat Hardened)
-  COMPLIANCE: WCAG 2.2 AA / Section 508 / Schema.org CreativeWork
+  FIX v2:
+    - Restored card_image macro (required to resolve Drupal render array URI)
+    - text_alignment removed from outer card classes (fixes broken column layout)
+    - img-static override added via wrapper to restore img-fluid behaviour
+    - h-100 on card for equal-height columns
   =============================================================================
 #}
+
 {{- attach_library('cua_theme/image-bundle') -}}
 
 {# 1. ID ARCHITECTURE #}
 {%- set block_entity = elements.content['#block_content'] ?? null -%}
 {%- if block_entity is not null and block_entity.id is defined -%}
-    {%- set unique_id = 'image-bundle-' ~ block_entity.id()|replace({'_': '-', ':': '--'}) -%}
+  {%- set unique_id = 'image-bundle-' ~ block_entity.id()|replace({'_': '-', ':': '--'}) -%}
 {%- else -%}
-    {%- set unique_id = id ? 'image-bundle-' ~ id|replace({'_': '-'})|clean_class : 'image-bundle-' ~ random(1000, 9999) -%}
+  {%- set unique_id = id ? 'image-bundle-' ~ id|replace({'_': '-'})|clean_class : 'image-bundle-' ~ random(1000, 9999) -%}
 {%- endif -%}
 
-{# 2. CLASS ORCHESTRATION — array for addClass() compatibility #}
+{# 2. CLASS ORCHESTRATION
+   CRITICAL: text_alignment is intentionally excluded from this array.
+   Adding flex/text-align utilities to the card wrapper itself breaks
+   Bootstrap's column layout and collapses inner block flow.
+   It is applied only to inner child elements below.
+#}
 {%- set image_bundle_classes_array = [
-    'block',
-    'image-bundle',
-    'card',
-    'rounded-0',
-    'block-' ~ (configuration.provider|default('')|clean_class),
-    color_background ?: null,
-    color_border ?: null,
-    container_size ?: null,
-    text_alignment ?: 'text-start',
-    margins ?: null,
-    id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null
+  'block',
+  'image-bundle',
+  'card',
+  'rounded-0',
+  'h-100',
+  'block-' ~ (configuration.provider|default('')|clean_class),
+  color_background ?: null,
+  color_border ?: null,
+  container_size ?: null,
+  margins ?: null,
+  id ? 'block--' ~ id|replace({'_': '-'})|clean_class : null
 ]|merge(utility_classes ?: [])|filter(v => v) -%}
 
 {# 3. LINK & WRAP LOGIC #}
@@ -36,79 +45,98 @@
 {%- set single_link = (links_count == 1) ? links|first : null -%}
 {%- set wrap_entire_card = single_link is not null -%}
 {%- set component_title = label ?: (block_entity ? block_entity.label() : null) -%}
+{%- set safe_text_alignment = text_alignment ?: 'text-start' -%}
 
 {# 4. ATTRIBUTE HARDENING #}
 {%- set attributes = attributes
-    .setAttribute('id', unique_id)
-    .addClass(image_bundle_classes_array)
-    .setAttribute('role', 'region')
-    .setAttribute('itemscope', '')
-    .setAttribute('itemtype', 'https://schema.org/CreativeWork')
-    .setAttribute('data-component', 'image-bundle-card')
+  .setAttribute('id', unique_id)
+  .addClass(image_bundle_classes_array)
+  .addClass('contextual-region')
+  .setAttribute('role', 'region')
+  .setAttribute('itemscope', '')
+  .setAttribute('itemtype', 'https://schema.org/CreativeWork')
+  .setAttribute('data-component', 'image-bundle-card')
 -%}
 
-{#
-  KEY FIX: contextual-region is added directly at render time via addClass()
-  on the div itself — not pre-built into a variable — so it is guaranteed
-  to be present even if the attributes chain above partially fails.
-  title_prefix / title_suffix live OUTSIDE apply spaceless entirely.
-#}
-<div{{ attributes.addClass('contextual-region') }}>
-    {{ title_prefix }}
-    {{ title_suffix }}
-    {%- if wrap_entire_card -%}
-        {%- set aria_label_content -%}
-            {{- component_title|striptags|trim -}}
-            {%- if single_link.title and (single_link.title|striptags|trim != component_title|striptags|trim) -%}
-                {{- ' - ' ~ single_link.title|striptags|trim -}}
-            {%- endif -%}
-        {%- endset -%}
-        <a href="{{ single_link.url|default('#') }}"
-           class="card-link-wrapper d-block text-reset text-decoration-none"
-           aria-label="{{ aria_label_content|trim|e }}"
-           data-ga-event="card_click"
-           data-ga-category="image_bundle"
-           data-ga-action="{{ single_link.title|default(component_title)|striptags|trim|e }}"
-           data-ga-component-id="{{ unique_id }}">
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {%- if wrap_entire_card -%}
+    {%- set aria_label_content -%}
+      {{- component_title|striptags|trim -}}
+      {%- if single_link.title and (single_link.title|striptags|trim != component_title|striptags|trim) -%}
+        {{- ' - ' ~ single_link.title|striptags|trim -}}
+      {%- endif -%}
+    {%- endset -%}
+    <a href="{{ single_link.url|default('#') }}"
+       class="card-link-wrapper d-block text-reset text-decoration-none"
+       aria-label="{{ aria_label_content|trim|e }}"
+       data-ga-event="card_click"
+       data-ga-category="image_bundle"
+       data-ga-action="{{ single_link.title|default(component_title)|striptags|trim|e }}"
+       data-ga-component-id="{{ unique_id }}">
+  {%- endif -%}
+
+  {%- apply spaceless -%}
+
+    {# TITLE #}
+    {%- if label -%}
+      {%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
+      {{- titleMacros.render_title(label, '', '', null, safe_text_alignment, text_color, true, [], null, 3) -}}
     {%- endif -%}
-    {%- apply spaceless -%}
-        {%- if label -%}
-            {%- import '@cua_theme/component/macros/card_title.html.twig' as titleMacros -%}
-            {{- titleMacros.render_title(label, '', '', null, text_alignment, text_color, true, [], null, 3) -}}
-        {%- endif -%}
-        {%- if card_image -%}
-            {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
-            <div class="image-wrap g-0 {{ text_alignment }} {{ padding }}">
-                {{- cardImageMacros.render_card_image(card_image, image_size) -}}
-            </div>
-        {%- endif -%}
-        {%- if caption -%}
-            {%- import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros -%}
-            <div class="caption-wrap {{ text_alignment }} {{ padding }} {{ text_color }}">
-                {{- captionMacros.render_caption(caption)|trim -}}
-            </div>
-        {%- endif -%}
-        {%- if content -%}
-            {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
-            <div class="body-wrap px-5 pt-3 pb-2 {{ text_alignment }} {{ padding }}">
-                {{- bodyMacros.render_body(content)|trim -}}
-            </div>
-        {%- endif -%}
-        {%- if links_count > 0 -%}
-            {%- if wrap_entire_card -%}
-                {%- set outline_class = outline ? 'btn-outline-' ~ button_color : 'btn-' ~ button_color -%}
-                <div class="card-footer d-flex justify-content-center align-items-center mb-3 border-0">
-                    <span class="card-link btn {{ outline_class }} mx-auto p-2" aria-hidden="true">
-                        {{- single_link.title|default('Read More') -}}
-                    </span>
-                </div>
-            {%- else -%}
-                {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
-                {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout) -}}
-            {%- endif -%}
-        {%- endif -%}
-    {%- endapply -%}
-    {%- if wrap_entire_card -%}
-        </a>
+
+    {# IMAGE
+       IMPORTANT: The macro MUST be used here — card_image is a Drupal render
+       array and the macro is responsible for resolving the actual image URI.
+       Accessing card_image.url directly returns empty string.
+       Responsiveness is restored by the .image-responsive-fix wrapper
+       which forces .img-static img to behave as img-fluid.
+       Add this to your theme CSS if not already present:
+         .image-responsive-fix .img-static img { width: 100%; height: auto; display: block; }
+         .image-responsive-fix .card-header { padding: 0; background: transparent; border: 0; }
+    #}
+    {%- if card_image -%}
+      {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
+      <div class="image-wrap image-responsive-fix g-0 {{ safe_text_alignment }} {{ padding }}">
+        {{- cardImageMacros.render_card_image(card_image, image_size) -}}
+      </div>
     {%- endif -%}
-</div>
+
+    {# CAPTION #}
+    {%- if caption -%}
+      {%- import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros -%}
+      <div class="caption-wrap {{ safe_text_alignment }} {{ padding }} {{ text_color }}">
+        {{- captionMacros.render_caption(caption)|trim -}}
+      </div>
+    {%- endif -%}
+
+    {# BODY #}
+    {%- if content -%}
+      {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
+      <div class="body-wrap px-5 pt-3 pb-2 {{ safe_text_alignment }} {{ padding }}">
+        {{- bodyMacros.render_body(content)|trim -}}
+      </div>
+    {%- endif -%}
+
+    {# FOOTER #}
+    {%- if links_count > 0 -%}
+      {%- if wrap_entire_card -%}
+        {%- set outline_class = outline ? 'btn-outline-' ~ button_color : 'btn-' ~ button_color -%}
+        <div class="card-footer d-flex justify-content-center align-items-center mb-3 border-0">
+          <span class="card-link btn {{ outline_class }} mx-auto p-2" aria-hidden="true">
+            {{- single_link.title|default('Read More') -}}
+          </span>
+        </div>
+      {%- else -%}
+        {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
+        {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, safe_text_alignment, padding, outline, button_color, button_layout) -}}
+      {%- endif -%}
+    {%- endif -%}
+
+  {%- endapply -%}
+
+  {%- if wrap_entire_card -%}
+    </a>
+  {%- endif -%}
+</div>`
