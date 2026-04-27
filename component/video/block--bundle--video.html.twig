@@ -1,15 +1,17 @@
 {#
 /**
  * @file
- * Accessible Template for the Video component.
+ * Final Optimized Template for the Video component.
  */
 #}
+{% apply spaceless %}
 
+{# 1. Setup & Preload #}
 {% if provider == 'local' and content.field_video_mp4.0 is defined %}
-    {% set video_url = content.field_video_mp4.0['#url'] ?? content.field_video_mp4.0['#file'].url ?? null %}
-    {% if video_url %}
-        <link rel="preload" href="{{ video_url }}" as="video" type="video/mp4">
-    {% endif %}
+  {% set video_url = content.field_video_mp4.0['#url'] ?? content.field_video_mp4.0['#file'].url ?? null %}
+  {% if video_url %}
+    <link rel="preload" href="{{ video_url }}" as="video" type="video/mp4">
+  {% endif %}
 {% endif %}
 
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
@@ -18,123 +20,86 @@
 
 {{ attach_library('cua_theme/video') }}
 
-{% set video_classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'video',
-    'card g-0',
-    'clearfix',
-    margins ?: null,
-    container_size ?: null,
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
-] %}
-
+{# 2. Logic & Attributes #}
 {% set unique_id = 'block--node--video--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
 {% set title_id = unique_id ~ '-label' %}
 
+{% set video_classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'video',
+  'card g-0',
+  'clearfix',
+  margins ?: null,
+  id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
+] %}
+
+{# 3. Pre-render content #}
+{# We render body and footer here, but we check if they actually have content #}
+{% set body_output = content ? bodyMacros.render_body(content, padding, text_color, text_alignment) : '' %}
+{% set footer_output = (links is defined and links|length) ? cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout) : '' %}
+
 <div{{ attributes
-|without('id')
-    .setAttribute('id', unique_id)
-    .addClass(video_classes)
-    .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', title_id)
+  |without('id')
+  .setAttribute('id', unique_id)
+  .addClass(video_classes)
+  .setAttribute('role', 'region')
+  .setAttribute('aria-labelledby', title_id)
 }}>
 
-    {{ title_prefix ?: '' }}
-    {{ title_suffix ?: '' }}
+  {{ title_prefix ?: '' }}
+  {{ title_suffix ?: '' }}
 
-    <h2 id="{{ title_id }}" class="visually-hidden">
-        {{ label ?: 'Video Content' }}
-    </h2>
+  <h2 id="{{ title_id }}" class="visually-hidden">{{ label ?: 'Video Content' }}</h2>
 
-    <div class="{{ container_size}}"
-        {% include '@cua_theme/component/video/partials/_video--master.html.twig' with {
-            title_id: title_id,
-            provider: provider,
-            label: label,
-        } %}
-    </div>
+  {# Video Section #}
+  <div class="{{ container_size }}">
+    {% include '@cua_theme/component/video/partials/_video--master.html.twig' with {
+      title_id: title_id,
+      provider: provider,
+      label: label
+    } %}
 
     {% if transcript_url is defined %}
-        <p class="sr-only-focusable">
-            <a href="{{ transcript_url }}">Read video transcript</a>
-        </p>
+      <div class="sr-only-focusable">
+        <a href="{{ transcript_url }}">Read video transcript</a>
+      </div>
     {% endif %}
+  </div>
 
-    {# Desktop layout copy #}
-    {% if label or content %}
-        <div class="video-desktop-copy d-none d-md-block g-0">
-            <div class="container-fluid mx-auto {{ parallax_video ? 'parallax-main-content' : 'position-absolute' }} d-flex {{ position_container ?? '' }}">
-                <div class="row">
-                    <div class="col {{ color_background ?: '' }} px-5 py-4 m-5">
-
-                        {% if content %}
-                            {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
-                        {% endif %}
-
-                        {% if links is defined and links|length %}
-                            {{ cardFooterMacros.render_card_footer(
-                                links,
-                                container_size,
-                                color_background,
-                                position_container,
-                                text_alignment,
-                                padding,
-                                outline,
-                                button_color,
-                                button_layout
-                            ) }}
-                        {% endif %}
-
-                    </div>
-                </div>
-            </div>
+  {# Layout Overlays #}
+  {% if label or body_output or footer_output %}
+    
+    {# Desktop Layout #}
+    <div class="video-desktop-copy d-none d-md-block g-0">
+      <div class="container-fluid mx-auto {{ parallax_video ? 'parallax-main-content' : 'position-absolute' }} d-flex {{ position_container ?? '' }}">
+        <div class="row">
+          <div class="col {{ color_background ?: '' }} px-5 py-4 m-5">
+            {# Removed extra card-body wrapper since the macro handles it #}
+            {{ body_output }}
+            {{ footer_output }}
+          </div>
         </div>
+      </div>
+    </div>
 
-        {# Mobile layout copy #}
-        <div class="video-mobile-copy d-md-none g-0 {{ parallax_video ? 'parallax-main-content' }}">
-            <div class="container mt-0 mt-md-5">
-                <div class="row">
-                    <div class="col {{ color_background ?: '' }} p-3 my-5">
-
-                        <div aria-hidden="true">
-                            {{ titleMacros.render_title(
-                                label,
-                                title_prefix,
-                                title_suffix,
-                                center_content,
-                                text_alignment,
-                                text_color,
-                                padding,
-                                links,
-                                false,
-                                title_id,
-                                2
-                            ) }}
-                        </div>
-
-                        {% if content %}
-                            {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
-                        {% endif %}
-
-                        {% if links is defined and links|length %}
-                            {{ cardFooterMacros.render_card_footer(
-                                links,
-                                container_size,
-                                color_background,
-                                position_container,
-                                text_alignment,
-                                padding,
-                                outline,
-                                button_color,
-                                button_layout
-                            ) }}
-                        {% endif %}
-
-                    </div>
-                </div>
+    {# Mobile Layout #}
+    <div class="video-mobile-copy d-md-none g-0 {{ parallax_video ? 'parallax-main-content' }}">
+      <div class="container mt-0 mt-md-5">
+        <div class="row">
+          <div class="col {{ color_background ?: '' }} p-3 my-5">
+            <div aria-hidden="true">
+              {# Ensure heading level is passed clearly #}
+              {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding, links, false, null, 3) }}
             </div>
+            {{ body_output }}
+            {{ footer_output }}
+          </div>
         </div>
-    {% endif %}
+      </div>
+    </div>
+
+  {% endif %}
 
 </div>
+{% endapply %}
