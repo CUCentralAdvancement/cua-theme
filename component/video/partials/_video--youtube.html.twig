@@ -1,21 +1,5 @@
-{# 
-  =============================================================================
-  PARTIAL: _video-youtube.html.twig
-  STABILITY: Production-Stable / Architecture: Sinn 556 iRS (Movement)
-  COMPLIANCE: Section 508 / WCAG 2.2 Level AA
-  =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Responsive Wrapper: Implements the "Intrinsic Ratio" pattern (16:9) using 
-    Bootstrap's ratio utility classes. This ensures the video maintains its 
-    shape on all screen sizes.
-  - A11Y: Targets the 0th index of the YouTube field. 
-  
-  MAINTENANCE WARNING:
-  The YouTube URL must include 'enablejsapi=1' if you plan to use 
-  custom play/pause triggers via the 'cua_theme/video' library.
-  =============================================================================
-#}
-
-<div class="video-movement-wrapper px-3">
-  {{ content.field_video_youtube.0 }}
+{# YouTube Video Container #}
+<div class="px-3">
+    {# Video #}
+    {{ content.field_video_youtube.0 }}
 </div>
