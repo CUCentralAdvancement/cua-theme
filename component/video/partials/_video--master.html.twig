@@ -1,15 +1,9 @@
-{#
-* Master Video Partial - Embeds video with accessible heading.
-* Cleaned up to avoid duplicate aria-labelledby issues.
-#}
+{# Master Video Partial #}
 
-{% import '@cua_theme/component/macros/card_basic_title.html.twig' as titleMacros %}
-
-{% if provider|default(false) %}
-    <div class="video-container g-0 m-0 p-0 position-relative">
-        {# Only include the provider-specific partial; no extra <h2> here #}
-        {% include '@cua_theme/component/video/partials/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
-    </div>
+{% if provider %}
+  <div class="video-container position-relative">
+    {% include '@cua_theme/component/video/partials/_video--' ~ provider|lower ~ '.html.twig' ignore missing %}
+  </div>
 {% else %}
-    <p>{{ 'No video provider specified.'|t }}</p>
+  <p class="video-error">No video provider specified.</p>
 {% endif %}

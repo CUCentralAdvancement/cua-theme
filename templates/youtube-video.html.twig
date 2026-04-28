@@ -1,0 +1,20 @@
+{# themes/contrib/cua_theme/templates/youtube-video.html.twig #}
+
+{% set src =
+  url
+  ?? embed_url
+  ?? (video_id ? 'https://www.youtube-nocookie.com/embed/' ~ video_id : '')
+%}
+
+{% set safe_title = label|striptags|trim ?: title|striptags|trim ?: 'Video' %}
+
+{% if src %}
+  <iframe
+    src="{{ src }}"
+    class="cu-youtube"
+    title="{{ safe_title }}"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+{% endif %}

@@ -1,120 +1,42 @@
-{#
-/**
- * @file
- * Strict Template for Video Component - Eliminates empty wrappers.
- */
-#}
 {% apply spaceless %}
-
-{# 1. Setup & Preload #}
-{% if provider == 'local' and content.field_video_mp4.0 is defined %}
-  {% set video_url = content.field_video_mp4.0['#url'] ?? content.field_video_mp4.0['#file'].url ?? null %}
-  {% if video_url %}
-    <link rel="preload" href="{{ video_url }}" as="video" type="video/mp4">
-  {% endif %}
-{% endif %}
-
-{% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
-{% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-{% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
 
 {{ attach_library('cua_theme/video') }}
 
-{# 2. Logic & Real Content Checking #}
-{% set unique_id = 'block--node--video--' ~ elements.content['#block_content'].id()|replace({"_": "-", ":": "--"}) %}
+{% set entity_id = elements.content['#block_content'].id() ?? random() %}
+{% set unique_id = 'block--node--video--' ~ entity_id|replace({'_':'-'})|trim('-')|clean_class %}
 {% set title_id = unique_id ~ '-label' %}
 
-{# Capture the output of macros #}
-{% set body_raw = content ? bodyMacros.render_body(content, padding, text_color, text_alignment) : '' %}
-{% set footer_raw = (links is defined and links|length) ? cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout) : '' %}
+{% set safe_label = label|render|striptags|trim ?: 'Video content' %}
 
-{# STRIKE TEAM: These checks strip tags and spaces to ensure we don't render empty div soup #}
-{% set has_real_body = body_raw|render|striptags|trim is not empty %}
-{% set has_real_footer = footer_raw|render|striptags|trim is not empty %}
-{% set has_real_label = label|render|striptags|trim is not empty %}
-
-{% set video_classes = [
+{% set classes = [
   'block',
-  'block-' ~ configuration.provider|clean_class,
+  configuration.provider ? 'block-' ~ configuration.provider|clean_class : null,
   'video',
-  'card g-0',
-  'clearfix',
-  margins ?: null,
-  id ? 'block--' ~ id|replace({"_": "-"})|clean_class : '',
-] %}
+  'card',
+  'g-0',
+  'clearfix'
+]|filter(v => v) %}
 
 <div{{ attributes
-  |without('id')
   .setAttribute('id', unique_id)
-  .addClass(video_classes)
+  .addClass(classes)
   .setAttribute('role', 'region')
   .setAttribute('aria-labelledby', title_id)
 }}>
 
-  {{ title_prefix ?: '' }}
-  {{ title_suffix ?: '' }}
+  <h2 id="{{ title_id }}" class="visually-hidden">
+    {{ safe_label }}
+  </h2>
 
-  {# Always render the H2 for 508 accessibility/SEO #}
-  <h2 id="{{ title_id }}" class="visually-hidden">{{ label ?: 'Video Content' }}</h2>
-
-  {# Video Master Include - Always renders #}
-  <div class="{{ container_size }}">
+  <div class="{{ container_size ?: 'container' }}">
     {% include '@cua_theme/component/video/partials/_video--master.html.twig' with {
-      title_id: title_id,
-      provider: provider,
-      label: label
-    } %}
-
-    {% if transcript_url is defined %}
-      <div class="sr-only-focusable">
-        <a href="{{ transcript_url }}">Read video transcript</a>
-      </div>
-    {% endif %}
+      provider: provider|default(null),
+      label: safe_label,
+      content: content,
+      transcript_url: transcript_url|default(null)
+    } only %}
   </div>
 
-  {# 3. Layout Overlays - ONLY if there is actual text content #}
-  {% if has_real_body or has_real_footer %}
-    
-    {# Desktop Layout #}
-    <div class="video-desktop-copy d-none d-md-block g-0">
-      <div class="container-fluid mx-auto {{ parallax_video ? 'parallax-main-content' : 'position-absolute' }} d-flex {{ position_container ?? '' }}">
-        <div class="row">
-          <div class="col {{ color_background ?: '' }} px-5 py-4 m-5">
-            {% if has_real_body %}
-              {{ body_raw|raw }}
-            {% endif %}
-            {% if has_real_footer %}
-              {{ footer_raw|raw }}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {# Mobile Layout #}
-    <div class="video-mobile-copy d-md-none g-0 {{ parallax_video ? 'parallax-main-content' }}">
-      <div class="container mt-0 mt-md-5">
-        <div class="row">
-          <div class="col {{ color_background ?: '' }} p-3 my-5">
-            {% if has_real_label %}
-              <div aria-hidden="true">
-                {{ titleMacros.render_title(label, title_prefix, title_suffix, center_content, text_alignment, text_color, padding, links, false, null, 3) }}
-              </div>
-            {% endif %}
-            
-            {% if has_real_body %}
-              {{ body_raw|raw }}
-            {% endif %}
-            
-            {% if has_real_footer %}
-              {{ footer_raw|raw }}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-
-  {% endif %}
-
 </div>
+
 {% endapply %}

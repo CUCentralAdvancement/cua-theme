@@ -1,9 +1,39 @@
-{# Local Video Container #}
-{# Video #}
-<div class="{% if parallax_video is not empty %}parallax-video {% endif %}video g-0">
-    <video autoplay="autoplay" loop="loop" muted="muted" width="100%"
-           height="auto" tabindex="-1" preload="auto">
-        <source src="{{ content.field_video_mp4.0 }}" type="video/mp4">
-    </video>
-</div>
+{# _video--local.html.twig #}
 
+{% set schema_name = label|striptags|trim ?: 'Video' %}
+
+{% set video_src = content.field_video_mp4.0 is defined
+  ? content.field_video_mp4.0
+  : ''
+%}
+
+<div itemscope itemtype="https://schema.org/VideoObject">
+
+  <meta itemprop="name" content="{{ schema_name }}">
+
+  {% if video_src %}
+    <meta itemprop="contentUrl" content="{{ video_src }}">
+  {% endif %}
+
+  <div class="video-embed">
+    <div class="video-responsive">
+      <video
+        controls
+        preload="metadata"
+        width="100%"
+      >
+        <source src="{{ video_src }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  {% if transcript_url %}
+    <p class="video-transcript-link">
+      <a href="{{ transcript_url }}" class="small">
+        View video transcript
+      </a>
+    </p>
+  {% endif %}
+
+</div>

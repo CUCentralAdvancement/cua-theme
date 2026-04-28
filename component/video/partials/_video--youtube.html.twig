@@ -1,5 +1,34 @@
-{# YouTube Video Container #}
-<div class="px-3">
-    {# Video #}
-    {{ content.field_video_youtube.0 }}
+{# _video--youtube.html.twig #}
+
+{% set schema_name = label|striptags|trim ?: 'Video' %}
+{% set video_markup = content.field_video_youtube|render %}
+
+{% set parts = video_markup|split('src="') %}
+{% set embed_url = parts|length > 1 ? parts[1]|split('"')[0] : '' %}
+
+<div itemscope itemtype="https://schema.org/VideoObject">
+
+  <meta itemprop="name" content="{{ schema_name }}">
+
+  {% if embed_url %}
+    <meta itemprop="embedUrl" content="{{ embed_url }}">
+  {% endif %}
+
+  <div class="video-embed">
+    <div class="video-responsive">
+      {{ video_markup
+        |replace({'title="Video"': 'title="' ~ schema_name ~ '"'})
+        |raw
+      }}
+    </div>
+  </div>
+
+  {% if transcript_url %}
+    <p class="video-transcript-link">
+      <a href="{{ transcript_url }}" class="small">
+        View video transcript
+      </a>
+    </p>
+  {% endif %}
+
 </div>

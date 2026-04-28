@@ -1,0 +1,26 @@
+{#
+  Clean YouTube field output
+  - removes <figure>
+  - removes aria-label
+  - preserves src + title
+#}
+
+{% for item in items %}
+  {% set iframe = item.content['#markup'] ?? '' %}
+
+  {% if iframe %}
+
+    {% set src = iframe|split('src="')[1]|split('"')[0] ?? '' %}
+
+    {% set title = iframe|split('title="')[1]|split('"')[0] ?? 'Video' %}
+
+    <iframe
+      src="{{ src }}"
+      class="cu-youtube"
+      title="{{ title }}"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+
+  {% endif %}
+{% endfor %}
