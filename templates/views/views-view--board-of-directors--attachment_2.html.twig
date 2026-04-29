@@ -2,33 +2,22 @@
   This header dynamically calculates:
     - total board members
     - elected members
-    - ex‑officio members
-
-  It pulls counts from three separate View displays:
-    board_of_directors / current_total
-    board_of_directors / elected
-    board_of_directors / ex_officio
-
-  drupal_view_result() returns ONLY the rows (no markup),
-  so |length gives accurate counts without recursion.
-
-  This entire block is self‑maintaining — no manual updates needed.
+    - ex-officio members
+  Each attachment view returns a single aggregated COUNT row,
+  so we read the nid field value from the first row directly.
+  This entire block is self-maintaining — no manual updates needed.
 #}
-
-{% set total = drupal_view_result('board_of_directors', 'current_total')|length %}
-{% set elected = drupal_view_result('board_of_directors', 'elected')|length %}
-{% set exofficio = drupal_view_result('board_of_directors', 'ex_officio')|length %}
+{% set total     = drupal_view_result('board_of_directors', 'attachment_4')[0].nid ?? 0 %}
+{% set elected   = drupal_view_result('board_of_directors', 'attachment_5')[0].nid ?? 0 %}
+{% set exofficio = drupal_view_result('board_of_directors', 'attachment_6')[0].nid ?? 0 %}
 
 <div class="view-header" itemscope itemtype="https://schema.org/Organization">
   <h3 class="cu-line mt-5" itemprop="name">{{ 'Board of Directors'|t }}</h3>
-     <div class="board-counts fw-bold mb-3">
+  <div class="board-counts fw-bold mb-3">
     <span itemprop="description">
-      {{ 'Current total of 24: 20 Elected, 4 Ex-Officio'|t }}
+      {{ 'Current total of'|t}} {{ total }}: {{ elected }} {{ 'Elected,'|t}} {{ exofficio }} {{ 'Ex-Officio'|t}}
     </span>
   </div>
-  
-</div>
-
   <meta itemprop="parentOrganization" content="University of Colorado Foundation">
 </div>
 
