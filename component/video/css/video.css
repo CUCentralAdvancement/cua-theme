@@ -1,20 +1,32 @@
-/* Video Component */
+/* =============================================================================
+   Video Component
+   ============================================================================= */
+
+/* Base video element — applies to all non-parallax, non-responsive-embed videos */
 video {
   object-fit: cover;
-  width: 100%; /* Use 100% of the container width for non-parallax */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: auto;
 }
 
+/* Wrapper that keeps the video clipped and positioned correctly */
 .video-container {
   min-height: 5rem !important;
-  position: relative; /* Ensure container positioning works with video */
-  overflow: hidden; /* Prevent the video from escaping the container */
+  position: relative;
+  overflow: hidden;
 }
 
+/* Mobile copy spacing adjustment */
 .video-mobile-copy {
   margin-bottom: 4rem !important;
 }
 
+
+/* =============================================================================
+   Video Card Background Overrides
+   ============================================================================= */
+
+/* Semi-transparent backgrounds when video sits inside a card */
 .video .cu-bg-white {
   background: rgba(255, 255, 255, 0.75) !important;
 }
@@ -23,6 +35,7 @@ video {
   background: rgba(0, 0, 0, 0.75) !important;
 }
 
+/* Card footer always stays transparent regardless of BG color class */
 .video .card-footer.cu-bg-black,
 .video .card-footer.cu-bg-white,
 .video .card-footer .cu-bg-black,
@@ -30,6 +43,12 @@ video {
   background: transparent !important;
 }
 
+
+/* =============================================================================
+   Video Card Text Overrides
+   ============================================================================= */
+
+/* Absolute-positioned content inside the video card — pushed up from the bottom */
 .block.block-layout-builder.video .container-fluid.mx-auto.position-absolute {
   bottom: 25%;
 }
@@ -38,77 +57,92 @@ video {
   color: var(--cua-white);
 }
 
+/* Mobile video wrapper overrides gold/white text to black for legibility */
 .mobile-video-wrapper .cu-text-gold,
 .mobile-video-wrapper .cu-text-white {
   color: var(--cua-black);
 }
 
-/* Parallax Video */
-.parallax-video video {
-  object-fit: cover;
-  width: 100vw; /* Full viewport width for parallax */
-  height: 100vh; /* Full viewport height for parallax */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
 
-.parallax-video {
-  min-height: 15rem;
-  overflow: hidden; /* Ensure no overflow */
-}
+/* =============================================================================
+   Responsive Embed (16:9 Aspect Ratio)
+   Handles both <iframe> and <video> embeds inside .video-responsive
+   ============================================================================= */
 
-.video .container-sm {
-  max-width: 50% !important;
-}
-
-.video .container-md {
-  max-width: 60% !important;
-}
-
-.video .container-lg {
-  max-width: 70% !important;
-}
-
-.video .container-xl {
-  max-width: 80% !important;
-}
-
-.video .container-xxl {
-  max-width: 90% !important;
-}
-
+/* Padding-top trick creates the 16:9 placeholder box */
 .video-responsive {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 */
+  padding-top: 56.25%; /* 16:9 ratio (9 / 16 = 0.5625) */
 }
 
-.video-responsive iframe {
+/* Both iframe and video fill the placeholder box absolutely */
+.video-responsive iframe,
+.video-responsive video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border: 0;
+  /* contain prevents cropping — important for non-decorative/training videos */
+  object-fit: contain;
 }
 
-/*** Responsive starts here ***/
+
+/* =============================================================================
+   Parallax Video
+   Fixed-position full-viewport background video
+   ============================================================================= */
+
+.parallax-video {
+  min-height: 15rem;
+  overflow: hidden;
+}
+
+.parallax-video video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+/* =============================================================================
+   Video Container Size Variants
+   Controls max-width of the inner container inside a .video block
+   ============================================================================= */
+
+.video .container-sm  { max-width: 50% !important; }
+.video .container-md  { max-width: 60% !important; }
+.video .container-lg  { max-width: 70% !important; }
+.video .container-xl  { max-width: 80% !important; }
+.video .container-xxl { max-width: 90% !important; }
+
+
+/* =============================================================================
+   Responsive — Mobile (max-width: 991px)
+   ============================================================================= */
+
 @media only screen and (max-width: 991px) {
-  /* Reset the parallax video to behave normally on mobile */
+
+  /* Reset parallax to normal scroll behavior on mobile */
   .parallax-video {
     min-height: auto;
   }
 
   .parallax-video video {
-    width: 100%; /* Ensure video fits container width */
-    height: auto; /* Maintain aspect ratio */
-    position: relative; /* Let video scroll with content */
+    width: 100%;
+    height: auto;
+    position: relative;
     top: unset;
     left: unset;
   }
 
+  /* All container size variants go full-width on mobile */
   .video .container-sm,
   .video .container-md,
   .video .container-lg,
@@ -116,6 +150,5 @@ video {
   .video .container-xxl {
     max-width: 100% !important;
   }
-
 
 }
