@@ -24,14 +24,17 @@
       {% set jobtitle  = (row._entity.field_position[0].value ~ '')|striptags|trim %}
       {% set rolelabel = (row._entity.field_board_of_directors[0].value ~ '')|striptags|trim %}
       {% set company   = (row._entity.field_company[0].value ~ '')|striptags|trim %}
-      {% set retire_words = ['retired', 'self-employed', 'self employed', 'freelance',
-                             'consultant', 'independent', 'volunteer', 'former'] %}
-      {% set is_retired = false %}
-      {% for word in retire_words %}
-        {% if word in company|lower %}
-          {% set is_retired = true %}
-        {% endif %}
-      {% endfor %}
+      {% set co = company|lower %}
+      {% set is_retired = (
+        'retired'     in co or
+        'self-employed' in co or
+        'self employed' in co or
+        'freelance'   in co or
+        'consultant'  in co or
+        'independent' in co or
+        'volunteer'   in co or
+        'former'      in co
+      ) %}
     {
       "@type": "OrganizationRole",
       "roleName": {{ rolelabel|json_encode|raw }},
