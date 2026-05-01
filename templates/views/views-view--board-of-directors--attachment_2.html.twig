@@ -7,20 +7,75 @@
   so we read the nid field value from the first row directly.
   This entire block is self-maintaining — no manual updates needed.
 #}
+
+{% if view.current_display == 'page_1' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "University of Colorado Foundation",
+  "subOrganization": {
+    "@type": "Organization",
+    "name": "Board of Directors"
+  },
+  "member": [
+    {% for row in view.result %}
+      {% set name      = (row._entity.label ~ '')|replace({'&nbsp;': ' '})|striptags|trim %}
+      {% set jobtitle  = (row._entity.field_position[0].value ~ '')|striptags|trim %}
+      {% set rolelabel = (row._entity.field_board_of_directors[0].value ~ '')|striptags|trim %}
+      {% set company   = (row._entity.field_company[0].value ~ '')|striptags|trim %}
+      {% set retire_words = ['retired', 'self-employed', 'self employed', 'freelance',
+                             'consultant', 'independent', 'volunteer', 'former'] %}
+      {% set is_retired = false %}
+      {% for word in retire_words %}
+        {% if word in company|lower %}
+          {% set is_retired = true %}
+        {% endif %}
+      {% endfor %}
+    {
+      "@type": "OrganizationRole",
+      "roleName": {{ rolelabel|json_encode|raw }},
+      "member": {
+        "@type": "Person",
+        "name": {{ name|json_encode|raw }}{% if jobtitle %},
+        "jobTitle": {{ jobtitle|json_encode|raw }}{% endif %}{% if company and not is_retired %},
+        "worksFor": {
+          "@type": "Organization",
+          "name": {{ company|json_encode|raw }}
+        }{% endif %}
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+
+{#
+  Count vars: each attachment view is an aggregated COUNT query returning one row.
+  We read the nid field from that single row as the count value.
+  Self-maintaining — add/remove board members and these update automatically.
+#}
 {% set total     = drupal_view_result('board_of_directors', 'attachment_4')[0].nid ?? 0 %}
 {% set elected   = drupal_view_result('board_of_directors', 'attachment_5')[0].nid ?? 0 %}
 {% set exofficio = drupal_view_result('board_of_directors', 'attachment_6')[0].nid ?? 0 %}
 
+{#
+  Visible header with microdata attributes.
+  Complements JSON-LD above — JSON-LD for crawlers, microdata for in-page parsers.
+  Not redundant — they serve different parsing surfaces.
+#}
 <div class="view-header" itemscope itemtype="https://schema.org/Organization">
   <h3 class="cu-line mt-5" itemprop="name">{{ 'Board of Directors'|t }}</h3>
   <div class="board-counts fw-bold mb-3">
     <span itemprop="description">
-      {{ 'Current total of'|t}} {{ total }}: {{ elected }} {{ 'Elected,'|t}} {{ exofficio }} {{ 'Ex-Officio'|t}}
+      {{ 'Current total of'|t }} {{ total }}: {{ elected }} {{ 'Elected,'|t }} {{ exofficio }} {{ 'Ex-Officio'|t }}
     </span>
   </div>
   <meta itemprop="parentOrganization" content="University of Colorado Foundation">
 </div>
 
+{# Render the view rows (individual board member cards) #}
 {% if rows %}
   <div class="view-content">
     <div class="row g-0">
