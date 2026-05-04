@@ -3,6 +3,16 @@
   COMPONENT: Give Now Grid (Multi-Campus)
   ARCHITECTURE: Sinn 556 iRS Level (Zero-Bloat Hardened)
   STABILITY: Production-Stable | Schema.org Validated
+  SCHEMA FIXES (2026-05) FINAL:
+    - Single itemprop="name" on ItemList via section_title variable (removed duplicate)
+    - section_title is single source of truth for schema meta + visually-hidden h2
+    - campus_names map uses official KG entity names (no "CU" prefix artifacts)
+    - campus_urls map provides canonical CollegeOrUniversity URL for KG linkage
+    - DonateAction name uses campus_name (KG-aligned), not raw node label
+    - CollegeOrUniversity name uses campus_name (KG-aligned), not raw node label
+    - Removed hidden display:none EntryPoint (ignored by Google)
+    - itemprop="url" on <a> tag (correct DonateAction target)
+    - No duplicate itemprop="name" on <h3>
   =============================================================================
 -#}
 {{- attach_library('cua_theme/call-to-action') -}}
@@ -14,10 +24,15 @@
     </nav>
 {%- endif -%}
 
-{#-
-  Campus canonical URL map for CollegeOrUniversity Knowledge Graph linkage.
-  These are stable root URLs — update only if a campus domain changes.
--#}
+{%- set section_title = 'Ways to Give to the University of Colorado Boulder, University of Colorado Colorado Springs, University of Colorado Denver, and University of Colorado Anschutz Medical Campus'|t -%}
+
+{%- set campus_names = {
+    'CU Boulder':  'University of Colorado Boulder',
+    'UCCS':        'University of Colorado Colorado Springs',
+    'CU Denver':   'University of Colorado Denver',
+    'CU Anschutz': 'University of Colorado Anschutz Medical Campus'
+} -%}
+
 {%- set campus_urls = {
     'CU Boulder':  'https://www.colorado.edu',
     'UCCS':        'https://www.uccs.edu',
@@ -35,13 +50,9 @@
         itemscope
         itemtype="https://schema.org/ItemList">
 
-        <meta itemprop="name"           content="Give to the University of Colorado System"/>
-        <meta itemprop="itemListOrder"  content="https://schema.org/ItemListUnordered"/>
-        <meta itemprop="numberOfItems"  content="{{ view.result|length }}"/>
-
-    {%- set section_title = 'Ways to Give to the University of Colorado Boulder, University of Colorado Colorado Springs, University of Colorado Denver, and University of Colorado Anschutz Medical Campus'|t -%}
-
-        <meta itemprop="name" content="{{ section_title }}"/>
+        <meta itemprop="name"          content="{{ section_title }}"/>
+        <meta itemprop="itemListOrder" content="https://schema.org/ItemListUnordered"/>
+        <meta itemprop="numberOfItems" content="{{ view.result|length }}"/>
 
         <h2 id="give-now-section-title" class="visually-hidden">
             {{ section_title }}
@@ -50,12 +61,13 @@
         <ul class="row list-unstyled m-0">
             {%- for row in view.result -%}
                 {%- if row._entity is not empty -%}
-                    {%- set node        = row._entity -%}
-                    {%- set heading_id  = 'give-now-item-' ~ node.id ~ '-title' -%}
-                    {%- set body_id     = 'give-now-item-' ~ node.id ~ '-body' -%}
-                    {%- set link        = node.field_link.uri ?: '#' -%}
-                    {%- set label       = node.label|trim -%}
-                    {%- set campus_url  = campus_urls[label] ?: '' -%}
+                    {%- set node         = row._entity -%}
+                    {%- set heading_id   = 'give-now-item-' ~ node.id ~ '-title' -%}
+                    {%- set body_id      = 'give-now-item-' ~ node.id ~ '-body' -%}
+                    {%- set link         = node.field_link.uri ?: '#' -%}
+                    {%- set label        = node.label|trim -%}
+                    {%- set campus_name  = campus_names[label] ?: 'University of Colorado ' ~ label -%}
+                    {%- set campus_url   = campus_urls[label] ?: '' -%}
 
                     <li
                         class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4"
@@ -72,14 +84,14 @@
                             itemscope
                             itemtype="https://schema.org/DonateAction">
 
-                            <meta itemprop="name"         content="Give to {{ label }}"/>
+                            <meta itemprop="name"         content="Give to {{ campus_name }}"/>
                             <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
 
                             <div
                                 itemprop="recipient"
                                 itemscope
                                 itemtype="https://schema.org/CollegeOrUniversity">
-                                <meta itemprop="name" content="University of Colorado {{ label }}"/>
+                                <meta itemprop="name" content="{{ campus_name }}"/>
                                 {%- if campus_url -%}
                                     <link itemprop="url" href="{{ campus_url }}"/>
                                 {%- endif -%}
@@ -126,7 +138,6 @@
                                     </figure>
 
                                     <div class="give-now-content px-3 pt-2">
-
                                         <h3
                                             id="{{ heading_id }}"
                                             class="give-now-title fs-3 fw-bold">
@@ -167,4 +178,3 @@
         </ul>
     </section>
 {%- endif -%}
-`
