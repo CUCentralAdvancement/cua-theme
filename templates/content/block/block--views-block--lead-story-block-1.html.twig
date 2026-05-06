@@ -81,10 +81,24 @@
 								<link itemprop="url" href="https://giving.cu.edu">
 							</div>
 
+							{# Author — same 3-step fallback as node.html.twig #}
+							{% set _owner = node.getOwner() %}
+							{% set _email = _owner.getEmail() %}
+							{% set _display_name = _owner.getDisplayName() %}
+
+							{% if ' ' in _display_name and '@' not in _display_name %}
+							{% set _author_name = _display_name %}
+							{% elseif '@' in _email %}
+							{% set _author_name = _email|split('@')[0]|replace({'.': ' ', '_': ' ', '-': ' '})|title %}
+							{% else %}
+							{% set _author_name = 'CU Advancement Staff' %}
+							{% endif %}
+							{% set _author_has_name = ' ' in _author_name %}
+
 							{# Author #}
-							<div itemprop="author" itemscope itemtype="https://schema.org/Person">
-								<meta itemprop="name" content="{{ author_name }}">
-								<meta itemprop="email" content="{{ email }}">
+							<div itemprop="author" itemscope itemtype="https://schema.org/{{ _author_has_name ? 'Person' : 'Organization' }}">
+								<meta itemprop="name" content="{{ _author_has_name ? _author_name : 'University of Colorado Advancement' }}">
+								<link itemprop="url" href="https://www.giving.cu.edu/impact-stories">
 							</div>
 
 							<a href="{{ link }}" id="lead-story-item-{{ node.id }}" class="{{ lead_story_classes }} text-decoration-none h-100 d-flex flex-column story-link" rel="bookmark" aria-describedby="{{ body_id }}" data-story-id="{{ node.id }}">
