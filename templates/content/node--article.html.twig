@@ -1,9 +1,6 @@
 {#
 ================================================================================
-  node.html.twig — University of Colorado Advancement — giving.cu.edu
-  Article and WebPage schema JSON-LD. Publisher: CU Advancement.
-
-  Last updated: May 2026
+  node.html.twig — FINAL (JSON-LD ONLY + AUTHOR FALLBACK)
 ================================================================================
 #}
 
@@ -15,58 +12,71 @@
 {%- set _email        = _owner.getEmail() -%}
 {%- set _display_name = _owner.getDisplayName() -%}
 
+{# PRIMARY AUTHOR NAME #}
 {%- if ' ' in _display_name and '@' not in _display_name -%}
   {%- set _author_name = _display_name -%}
 {%- elseif '@' in _email -%}
   {%- set _author_name = _email|split('@')[0]|replace({'.': ' ', '_': ' ', '-': ' '})|title -%}
 {%- else -%}
-  {%- set _author_name = 'CU Advancement Staff' -%}
+  {%- set _author_name = '' -%}
 {%- endif -%}
 
 {%- set _author_has_name = ' ' in _author_name -%}
 
+{# FALLBACK AUTHOR #}
+{%- set _fallback_name = 'Christine Deorio' -%}
+{%- set _fallback_slug = 'christine-deorio' -%}
+{%- set _fallback_url  = 'https://www.giving.cu.edu/about-us/staff/christine-deorio' -%}
+
+{# AUTHOR SLUG + URL #}
+{%- if _author_has_name -%}
+  {%- set _author_slug = _author_name
+    |lower
+    |replace({'.':' ','_':' ','-':' '})
+    |split(' ')
+    |filter(v => v)
+    |join('-')
+  -%}
+  {%- set _author_url = 'https://www.giving.cu.edu/about-us/staff/' ~ _author_slug -%}
+{%- else -%}
+  {%- set _author_name = _fallback_name -%}
+  {%- set _author_url  = _fallback_url -%}
+{%- endif -%}
+
+{# LOGO #}
 {%- set _logo_url = 'https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg' -%}
 
-{%- set _image_url = '' -%}
+{# IMAGE #}
+{%- set _image_url = _logo_url -%}
 {%- if node.field_image is defined and node.field_image.entity is not empty -%}
   {%- set _image_url = file_url(node.field_image.entity.fileuri) -%}
   {%- if _image_url starts with '/' -%}
     {%- set _image_url = 'https://www.giving.cu.edu' ~ _image_url -%}
   {%- endif -%}
-{%- elseif node.field_media_image is defined
-    and node.field_media_image.entity is not empty
-    and node.field_media_image.entity.field_media_image is defined -%}
-  {%- set _image_url = file_url(node.field_media_image.entity.field_media_image.entity.fileuri) -%}
-  {%- if _image_url starts with '/' -%}
-    {%- set _image_url = 'https://www.giving.cu.edu' ~ _image_url -%}
-  {%- endif -%}
-{%- else -%}
-  {%- set _image_url = _logo_url -%}
 {%- endif -%}
 
-{%- set _description = '' -%}
+{# DESCRIPTION #}
+{%- set _description = node.label|render|striptags|trim -%}
 {%- if node.body.summary is defined and node.body.summary|render|striptags|trim -%}
   {%- set _description = node.body.summary|render|striptags|trim -%}
 {%- elseif node.body.value is defined and node.body.value|render|striptags|trim -%}
   {%- set _description = node.body.value|render|striptags|truncate(300)|trim -%}
-{%- else -%}
-  {%- set _description = node.label|render|striptags|trim -%}
 {%- endif -%}
 
+{# SCHEMA TYPE #}
 {%- set _schema_type = 'Article' -%}
-{%- if node.bundle in ['page', 'landing_page', 'basic_page', 'webform', 'guide'] -%}
+{%- if node.bundle in ['page','landing_page','basic_page','webform','guide'] -%}
   {%- set _schema_type = 'WebPage' -%}
 {%- endif -%}
 
+{# CLASSES #}
 {%- set _classes = [
   'node',
   'node--type-' ~ node.bundle|clean_class,
-  node.isPromoted() ? 'node--promoted',
-  node.isSticky() ? 'node--sticky',
-  not node.isPublished() ? 'node--unpublished',
-  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  'clearfix',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class
 ] -%}
+
+{#-- JSON-LD ------------------------------------------------------------------#}
 
 {% if view_mode == 'full' %}
 <script type="application/ld+json">
@@ -83,8 +93,9 @@
     "url": {{ _image_url|json_encode|raw }}
   },
   "author": {
-    "@type": {{ _author_has_name ? '"Person"' : '"Organization"' }},
-    "name": {{ _author_has_name ? _author_name|json_encode|raw : '"University of Colorado Advancement"' }}
+    "@type": "Person",
+    "name": {{ _author_name|json_encode|raw }},
+    "url": {{ _author_url|json_encode|raw }}
   },
   "publisher": {
     "@type": "Organization",
@@ -103,46 +114,18 @@
 </script>
 {% endif %}
 
-{#-- ARTICLE HTML -------------------------------------------------------------#}
+{#-- HTML ---------------------------------------------------------------------#}
 
-{%- apply spaceless -%}
-<article{{ attributes.addClass(_classes).setAttribute('itemscope', '').setAttribute('itemtype', 'https://schema.org/' ~ _schema_type) }}>
-  <meta itemprop="url" content="{{ url('<current>') }}">
-  <meta itemprop="headline" content="{{ node.label|render|striptags|trim }}">
-  <meta itemprop="datePublished" content="{{ node.created.value|date('c') }}">
-  <meta itemprop="dateModified" content="{{ node.changed.value|date('c') }}">
-  <meta itemprop="image" content="{{ _image_url }}">
-  <meta itemprop="description" content="{{ _description }}">
-  <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" style="display:none;" aria-hidden="true">
-    <meta itemprop="name" content="University of Colorado Advancement">
-    <link itemprop="url" href="https://www.giving.cu.edu">
-    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-      <meta itemprop="url" content="{{ _logo_url }}">
-    </div>
-  </div>
-  <div itemprop="author" itemscope itemtype="https://schema.org/{{ _author_has_name ? 'Person' : 'Organization' }}" style="display:none;" aria-hidden="true">
-    <meta itemprop="name" content="{{ _author_has_name ? _author_name : 'University of Colorado Advancement' }}">
-  </div>
+<article{{ attributes.addClass(_classes) }}>
   <header>
     {{ title_prefix }}
-    {%- if not page -%}
-      <h2{{ title_attributes.addClass('node__title') }}>
-        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-      </h2>
-    {%- endif -%}
+    {% if not page %}
+      <h2>{{ label }}</h2>
+    {% endif %}
     {{ title_suffix }}
-    {%- if display_submitted -%}
-      <div class="node__meta">
-        {{ author_picture }}
-        <em{{ author_attributes }}>
-          <time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">{{ date }}</time>
-        </em>
-        {{ metadata }}
-      </div>
-    {%- endif -%}
   </header>
-  <div{{ content_attributes.addClass('node__content', 'clearfix').setAttribute('itemprop', 'articleBody') }}>
+
+  <div class="node__content">
     {{ content }}
   </div>
 </article>
-{%- endapply -%}
