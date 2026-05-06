@@ -1,11 +1,9 @@
 {#
-/**
-* @file
-* 508-Compliant Accessible Footer Template.
-*
-* Each content section has a meaningful, unique <h2> for screen reader navigation.
-* Decorative icons use aria-hidden. Picture elements no longer misuse ARIA roles.
-*/
+================================================================================
+  footer.html.twig — University of Colorado Advancement — giving.cu.edu
+  Organization JSON-LD for CU Advancement and CU Foundation with sameAs links.
+  Last updated: May 2026
+================================================================================
 #}
 {%- apply spaceless -%}
 <footer class="site-footer mt-auto" role="contentinfo" aria-label="{{ 'University of Colorado site footer'|t }}">
@@ -16,6 +14,7 @@
 				{%- if page.footer_first -%}
 					<div class="col-md-4 col-sm-6 px-2 d-flex flex-column gap-4 footer-address">
 
+			
 						<section aria-labelledby="footer-university-info-heading" itemscope itemtype="https://schema.org/Organization">
 
 							<h3 id="footer-university-info-heading" class="visually-hidden">
@@ -23,25 +22,37 @@
 							</h3>
 
 							<script type="application/ld+json">
-						{
-							"@context": "https://schema.org",
-							"@type": "Organization",
-							"name": "University of Colorado Advancement",
-							"url": "https://www.giving.cu.edu",
-							"email": "giving@cu.edu",
-							"parentOrganization": {
-							"@type": "Organization",
-							"name": "University of Colorado",
-							"url": "https://www.cu.edu"
-							},
-							"address": {
-							"@type": "PostalAddress",
-							"streetAddress": "1800 Grant Street, Suite 215",
-							"addressLocality": "Denver",
-							"addressRegion": "CO",
-							"postalCode": "80203",
-							"addressCountry": "US"
-							}
+							{
+							  "@context": "https://schema.org",
+							  "@type": "Organization",
+							  "name": "University of Colorado Advancement",
+							  "url": "https://www.giving.cu.edu",
+							  "email": "giving@cu.edu",
+							  "image": {
+							    "@type": "ImageObject",
+							    "url": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg"
+							  },
+							  "logo": {
+							    "@type": "ImageObject",
+							    "url": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg"
+							  },
+							  "parentOrganization": {
+							    "@type": "Organization",
+							    "name": "University of Colorado",
+							    "url": "https://www.cu.edu"
+							  },
+							  "address": {
+							    "@type": "PostalAddress",
+							    "streetAddress": "1800 Grant Street, Suite 215",
+							    "addressLocality": "Denver",
+							    "addressRegion": "CO",
+							    "postalCode": "80203",
+							    "addressCountry": "US"
+							  },
+							  "sameAs": [
+							    "https://www.cu.edu/advancement",
+							    "https://www.linkedin.com/company/university-of-colorado-advancement"
+							  ]
 							}
 							</script>
 
@@ -52,24 +63,14 @@
 							</div>
 
 							<div class="cua-address mb-3 px-2 text-white" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-								<span itemprop="streetAddress">
-									1800 Grant Street, Suite 215
-								</span>
+								<span itemprop="streetAddress">1800 Grant Street, Suite 215</span>
 								<br>
-								<span itemprop="addressLocality">
-									Denver
-								</span>
-								,
-								<span itemprop="addressRegion">
-									CO
-								</span>
-								<span itemprop="postalCode">
-									80203
-								</span>
+								<span itemprop="addressLocality">Denver</span>,
+								<span itemprop="addressRegion">CO</span>
+								<span itemprop="postalCode">80203</span>
 							</div>
 
 							<div class="cua-email mb-2 px-3">
-
 								<a class="link-cua" href="mailto:giving@cu.edu" aria-label="Send email to giving@cu.edu" itemprop="email">
 									<i class="fa-solid fa-envelope mr-2" aria-hidden="true"></i>
 									giving@cu.edu
@@ -85,27 +86,57 @@
 							</h3>
 
 							<script type="application/ld+json">
-								{
-								  "@context": "https://schema.org",
-								  "@type": "Organization",
-								  "name": "University of Colorado Foundation",
-								  "url": "https://www.cufund.org",
-								  "telephone": "+13038137935",
-								  "parentOrganization": {
-								    "@type": "Organization",
-								    "name": "University of Colorado",
-								    "url": "https://www.cu.edu"
-								  },
-								  "address": {
-								    "@type": "PostalAddress",
-								    "name": "University of Colorado Foundation",
-								    "postOfficeBoxNumber": "P.O. Box 561690",
-								    "addressLocality": "Denver",
-								    "addressRegion": "CO",
-								    "postalCode": "80256-1690",
-								    "addressCountry": "US"
-								  }
-								}
+							{
+							  "@context": "https://schema.org",
+							  "@type": "Organization",
+							  "name": "University of Colorado Foundation",
+							  "url": "https://www.cufund.org",
+							  "telephone": "+13038137935",
+							  "email": "gifts@cufund.org",
+							  "taxID": "84-6049811",
+							  "nonprofitStatus": "Nonprofit501c3",
+							  "foundingDate": "1967",
+							  "image": {
+							    "@type": "ImageObject",
+							    "url": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg"
+							  },
+							  "logo": {
+							    "@type": "ImageObject",
+							    "url": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg"
+							  },
+							  "parentOrganization": {
+							    "@type": "CollegeOrUniversity",
+							    "name": "University of Colorado",
+							    "url": "https://www.cu.edu"
+							  },
+							  "address": [
+							    {
+							      "@type": "PostalAddress",
+							      "name": "Main Office",
+							      "streetAddress": "1800 Grant Street, Suite 725",
+							      "addressLocality": "Denver",
+							      "addressRegion": "CO",
+							      "postalCode": "80203",
+							      "addressCountry": "US"
+							    },
+							    {
+							      "@type": "PostalAddress",
+							      "name": "Mailing Address for Gifts",
+							      "streetAddress": "1800 Grant Street, Suite 725",
+							      "postOfficeBoxNumber": "P.O. Box 17126",
+							      "addressLocality": "Denver",
+							      "addressRegion": "CO",
+							      "postalCode": "80217-9155",
+							      "addressCountry": "US"
+							    }
+							  ],
+							  "sameAs": [
+							    "https://www.giving.cu.edu",
+							    "https://www.linkedin.com/company/cu-foundation",
+							    "https://en.wikipedia.org/wiki/University_of_Colorado",
+							    "https://projects.propublica.org/nonprofits/organizations/846049811"
+							  ]
+							}
 							</script>
 
 							<div class="cua-name-title g-0 text-light">
@@ -115,28 +146,14 @@
 							</div>
 
 							<div class="cua-address mb-2 px-2 text-white" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-								<span itemprop="name">
-									University of Colorado Foundation
-								</span>
+								<span itemprop="streetAddress">1800 Grant Street, Suite 725</span>
 								<br>
-								<span itemprop="postOfficeBoxNumber">
-									P.O. Box 561690
-								</span>
-								<br>
-								<span itemprop="addressLocality">
-									Denver
-								</span>
-								,
-								<span itemprop="addressRegion">
-									CO
-								</span>
-								<span itemprop="postalCode">
-									80256-1690
-								</span>
+								<span itemprop="addressLocality">Denver</span>,
+								<span itemprop="addressRegion">CO</span>
+								<span itemprop="postalCode">80203</span>
 							</div>
 
 							<div class="cua-phone mb-2 px-3 pt-2 text-gold">
-
 								<a class="link-cua" href="tel:+13038137935" aria-label="Call 303-813-7935" itemprop="telephone">
 									<i class="fa-solid fa-phone pr-1" aria-hidden="true"></i>
 									303-813-7935
