@@ -1,89 +1,90 @@
-{#
-/**
- * @file
- * Theme override for the basic structure of a single Drupal page.
- *
- * Variables:
- * - logged_in: A flag indicating if user is logged in.
- * - root_path: The root path of the current page (e.g., node, admin, user).
- * - node_type: The content type for the current node, if the page is a node.
- * - head_title: List of text elements that make up the head_title variable.
- *   May contain one or more of the following:
- *   - title: The title of the page.
- *   - name: The name of the site.
- *   - slogan: The slogan of the site.
- * - page_top: Initial rendered markup. This should be printed before 'page'.
- * - page: The rendered page markup.
- * - path_info.args: Array of URL arguments (unaliased).
- * - page_bottom: Closing rendered markup. This variable should be printed after
- *   'page'.
- * - db_offline: A flag indicating if the database is offline.
- * - placeholder_token: The token for generating head, css, js and js-bottom
- *   placeholders.
- *
- * @see template_preprocess_html()
- */
-
-OLD   - 'https://www.googletagmanager.com/gtm.js?id=GTM-KBWW4MVB'
-OLS - <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
-GTM-KBWW4MVB
-GTM-KBWVM4MVB
-#}
-
 <!DOCTYPE html>
-<html{{ html_attributes }}>
-<head>
-    {# 1. Priority Connections #}
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    
-    {# 2. Font Preloads (Highest Priority) #}
-    <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<html{{html_attributes}}>
+	<head>
+		{# 1. Priority Connections #}
+		<link
+		rel="preconnect" href="https://www.googletagmanager.com">
 
-    {# 3. Third-party Scripts #}
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+		{# 2. Font Preloads (Highest Priority) #}
+		<link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+		<link
+		rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+		{# 3. Third-party Scripts #}
+		<script>
+			( function ( w, d, s, l, i )
+            {
+            w[ l ] = w[ l ] || [];
+            w[ l ].push( { 'gtm.start': new Date().getTime(), event: 'gtm.js' } );
+            var f = d.getElementsByTagName( s )[0],
+            j = d.createElement( s ),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
             j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB');</script>
-    <head-placeholder token="{{ placeholder_token|raw }}">
-    <title>{{ head_title|safe_join(' | ') }}</title>
-    <css-placeholder token="{{ placeholder_token|raw }}">
-    <js-placeholder token="{{ placeholder_token|raw }}">
-</head>
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore( j, f );
+            } )( window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB' );
+		</script>
 
-<body{{ attributes.addClass(body_classes) }}>
+		<head-placeholder token="{{ placeholder_token|raw }}">
+			<title>
+				{{ head_title|safe_join(' | ') }}
+			</title>
+			<css-placeholder token="{{ placeholder_token|raw }}">
+				<js-placeholder token="{{ placeholder_token|raw }}">
 
-{# Accessible skip link for keyboard users — becomes visible on focus #}
-<a href="#main" class="visually-hidden focusable">
-    {{ 'Skip to main content'|t }}
-</a>
+					<script type="application/ld+json">
+						{
+						  "@context": "https://schema.org",
+						  "@type": "Organization",
+						  "@id": "https://www.giving.cu.edu/#organization",
+						  "name": "University of Colorado Foundation",
+						  "alternateName": "CU Foundation",
+						  "url": "https://www.giving.cu.edu/",
+						  "logo": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg",
+						  "description": "The University of Colorado Foundation manages philanthropic giving, endowments, and donor funds supporting education, research, and community impact across the University of Colorado system.",
+						  "foundingDate": "1967",
+						  "taxID": "84-6049811",
+						  "nonprofitStatus": "https://schema.org/Nonprofit501c3",
+						
+						  "parentOrganization": {
+						    "@type": "CollegeOrUniversity",
+						    "name": "University of Colorado",
+						    "url": "https://www.cu.edu/"
+						  },
+						
+						  "sameAs": [
+						    "https://projects.propublica.org/nonprofits/organizations/846049811"
+						  ],
+						
+						  "department": {
+						    "@type": "Organization",
+						    "name": "Central CU Advancement",
+						    "url": "https://www.giving.cu.edu/about-us/central-cu-advancement",
+						    "parentOrganization": {
+						      "@id": "https://www.giving.cu.edu/#organization"
+						    }
+						  }
+						}
+					</script>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
+				</head>
 
-{# Initial markup inserted by modules/themes before the main page content #}
-{{ page_top }}
+				<body{{attributes.addClass(body_classes)}}>
 
-{# Main page content #}
-{{ page }}
+					{# Accessible skip link for keyboard users — becomes visible on focus #}
+					<a href="#main" class="visually-hidden focusable">
+						{{ 'Skip to main content'|t }}
+					</a>
 
-{# Closing markup inserted after main content #}
-{{ page_bottom }}
+					<!-- Google Tag Manager (noscript) -->
+					<noscript>
+						<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+					</noscript>
+					<!-- End Google Tag Manager (noscript) -->
 
-{# Placeholder for <script> tags at the end of body #}
-<js-bottom-placeholder token="{{ placeholder_token|raw }}">
-</body>
-</html>
+					{{ page_top }}
+					{{ page }}
+					{{ page_bottom }}
+
+					<js-bottom-placeholder token="{{ placeholder_token|raw }}"></body>
+				</html>
