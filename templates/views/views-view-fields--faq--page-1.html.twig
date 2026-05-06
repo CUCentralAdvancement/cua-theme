@@ -13,14 +13,16 @@
             {{- fields.title.content|striptags|trim -}}
         </button>
     </h3>
+
     <div id="collapse-{{ id }}"
-         class="accordion-collapse collapse"
-         aria-labelledby="heading-{{ id }}"
-         data-bs-parent="#{{ accordion_id }}">
+         class="accordion-collapse"
+         aria-labelledby="heading-{{ id }}">
+         
         <div class="accordion-body">
             <div class="faq-answer">
                 {{- fields.field_answer.content -}}
             </div>
+
             {%- set link_uri = row._entity.field_link.uri -%}
             {%- set link_title = row._entity.field_link.title -%}
             {%- if link_uri and 'internal:' not in link_uri -%}
@@ -33,6 +35,7 @@
                 </div>
             {%- endif -%}
         </div>
+
         {%- if logged_in and user.hasPermission('edit any faq content') -%}
             <div class="px-4 pb-3 border-top pt-2 mt-2">
                 <a href="{{- path('entity.node.edit_form', {'node': row._entity.id()}) -}}"
@@ -43,4 +46,5 @@
         {%- endif -%}
     </div>
 </div>
+
 {% endapply %}
