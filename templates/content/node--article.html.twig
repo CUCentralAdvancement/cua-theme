@@ -23,6 +23,8 @@
   {%- set _author_name = 'CU Advancement Staff' -%}
 {%- endif -%}
 
+{%- set _author_has_name = ' ' in _author_name -%}
+
 {%- set _logo_url = 'https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg' -%}
 
 {%- set _image_url = '' -%}
@@ -66,10 +68,6 @@
   'clearfix',
 ] -%}
 
-{#-- JSON-LD ------------------------------------------------------------------
-  Kept outside the spaceless block intentionally so the JSON
-  renders cleanly and is readable in production source view.
-#}
 {% if view_mode == 'full' %}
 <script type="application/ld+json">
 {
@@ -85,9 +83,8 @@
     "url": {{ _image_url|json_encode|raw }}
   },
   "author": {
-    "@type": "Organization",
-    "name": "University of Colorado Advancement",
-    "url": "https://www.giving.cu.edu"
+    "@type": {{ _author_has_name ? '"Person"' : '"Organization"' }},
+    "name": {{ _author_has_name ? _author_name|json_encode|raw : '"University of Colorado Advancement"' }}
   },
   "publisher": {
     "@type": "Organization",
@@ -123,9 +120,8 @@
       <meta itemprop="url" content="{{ _logo_url }}">
     </div>
   </div>
-  <div itemprop="author" itemscope itemtype="https://schema.org/Organization" style="display:none;" aria-hidden="true">
-    <meta itemprop="name" content="University of Colorado Advancement">
-    <link itemprop="url" href="https://www.giving.cu.edu">
+  <div itemprop="author" itemscope itemtype="https://schema.org/{{ _author_has_name ? 'Person' : 'Organization' }}" style="display:none;" aria-hidden="true">
+    <meta itemprop="name" content="{{ _author_has_name ? _author_name : 'University of Colorado Advancement' }}">
   </div>
   <header>
     {{ title_prefix }}
