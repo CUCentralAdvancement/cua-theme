@@ -41,6 +41,20 @@
     {% endif %}
     {{ title_suffix }}
 
+    {% if view_mode == 'full' %}
+      <div class="node__date" style="font-size: 0.875rem; color: #666; margin-bottom: 0.5rem;">
+        <time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">
+          Published: {{ node.created.value|date('F j, Y') }}
+        </time>
+        {% if node.changed.value != node.created.value %}
+          &middot;
+          <time datetime="{{ node.changed.value|date('c') }}" itemprop="dateModified">
+            Updated: {{ node.changed.value|date('F j, Y') }}
+          </time>
+        {% endif %}
+      </div>
+    {% endif %}
+
     {% if display_submitted %}
       <div class="node__meta">
         {{ author_picture }}
@@ -53,7 +67,7 @@
               <meta itemprop="url" content="https://www.giving.cu.edu/">
             </span>
             on
-            <time datetime="{{ node.created.value|date('c') }}" itemprop="datePublished">
+            <time datetime="{{ node.created.value|date('c') }}">
               {{ date }}
             </time>
             {% endtrans %}
