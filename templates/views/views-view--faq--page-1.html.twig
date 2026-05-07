@@ -3,7 +3,7 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "name": "Frequently Asked Questions about Giving to the University of Colorado",
+  "name": "Frequently Asked Questions about Giving to the University of Colorado System — CU Boulder, CU Anschutz, CU Denver, and UCCS",
   "mainEntity": [
 {% for row in view.result %}
   {% set q = row._entity.label|striptags|trim %}
@@ -24,13 +24,3 @@
 <div class="faqs view-faq">
   {{ rows }}
 </div>
-
-{# ONE global script, runs once #}
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll('.accordion-collapse').forEach(function(el) {
-    el.classList.remove('show');
-    el.classList.add('collapse');
-  });
-});
-</script>
