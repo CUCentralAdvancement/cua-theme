@@ -10,22 +10,6 @@
  */
 #}
 
-{# ============================================================
-   JSON-LD: Schema.org structured data for SEO and AI ingestion.
-   CollegeOrUniversity type signals institutional identity to
-   search engines, LLM crawlers (GPTBot, ClaudeBot, Googlebot).
-   ============================================================ #}
-{% set org = {
-  '@context': 'https://schema.org',
-  '@type': 'CollegeOrUniversity',
-  name: site_name,
-  url: url('<front>', {'absolute': true})|render,
-  logo: base_path ~ directory ~ '/images/logo.svg'
-} %}
-<script type="application/ld+json">
-  {{ org|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
-</script>
-
 <header id="header" class="header" role="banner"
   aria-label="{{ 'Site header'|t }}"
   data-site-name="{{ site_name|e }}"

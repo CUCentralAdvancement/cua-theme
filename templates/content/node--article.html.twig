@@ -1,6 +1,6 @@
 {#
 ================================================================================
-  node.html.twig — FINAL (JSON-LD ONLY + AUTHOR FALLBACK)
+  node.html.twig
 ================================================================================
 #}
 
@@ -63,10 +63,10 @@
   {%- set _description = node.body.value|render|striptags|truncate(300)|trim -%}
 {%- endif -%}
 
-{# SCHEMA TYPE #}
-{%- set _schema_type = 'Article' -%}
-{%- if node.bundle in ['page','landing_page','basic_page','webform','guide'] -%}
-  {%- set _schema_type = 'WebPage' -%}
+{# SCHEMA TYPE — only article and lead_story are Article; everything else is WebPage #}
+{%- set _schema_type = 'WebPage' -%}
+{%- if node.bundle in ['article', 'lead_story'] -%}
+  {%- set _schema_type = 'Article' -%}
 {%- endif -%}
 
 {# CLASSES #}
@@ -99,7 +99,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "University of Colorado Advancement",
+    "name": "University of Colorado Foundation",
     "url": "https://www.giving.cu.edu",
     "logo": {
       "@type": "ImageObject",
