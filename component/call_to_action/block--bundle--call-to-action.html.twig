@@ -83,7 +83,7 @@
                     {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
                     {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
                 {%- elseif icon -%}
-                    {%- import '@cua_theme/component/macros/icon.html.twig' as iconMacros -%}
+                    {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
                     {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
                 {%- endif -%}
             </figure>
