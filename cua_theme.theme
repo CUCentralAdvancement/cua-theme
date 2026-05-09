@@ -324,3 +324,16 @@ function cua_theme_preprocess_page_title(array &$variables): void {
         }
     }
 }
+
+/**
+ * Implements hook_page_attachments_alter().
+ * Remove Generator meta tag.
+ */
+function cua_theme_page_attachments_alter(array &$attachments): void {
+  foreach ($attachments['#attached']['html_head'] as $key => $attachment) {
+    if (isset($attachment[1]) && $attachment[1] === 'system_meta_generator') {
+      unset($attachments['#attached']['html_head'][$key]);
+      break;
+    }
+  }
+}
