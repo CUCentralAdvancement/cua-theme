@@ -1,89 +1,135 @@
 <!DOCTYPE html>
-<html{{html_attributes}}>
-	<head>
-		<link
-		rel="preconnect" href="https://www.googletagmanager.com">
-		<link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-		<link
-		rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-		
-		{# Security Headers #}
-		<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
-		
-		<script>
-			( function ( w, d, s, l, i )
-{
+<html{{ html_attributes }}>
 
-w[ l ] = w[ l ] || [];
-w[ l ].push( { 'gtm.start': new Date().getTime(), event: 'gtm.js' } );
-var f = d.getElementsByTagName( s )[0],
-j = d.createElement( s ),
-dl = l != 'dataLayer' ? '&l=' + l : '';
-j.async = true;
-j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-f.parentNode.insertBefore( j, f );
+  {# ============================================================
+     HEAD
+     ============================================================ #}
+  <head>
 
-} )( window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB' );
-		</script>
+    {# Performance: Early connection to GTM domain to reduce latency #}
+    <link rel="preconnect" href="https://www.googletagmanager.com">
 
-		<head-placeholder token="{{ placeholder_token|raw }}">
-			<title>
-				{{ head_title|safe_join(' | ') }}
-			</title>
-			<css-placeholder token="{{ placeholder_token|raw }}">
-				<js-placeholder token="{{ placeholder_token|raw }}">
-					<script type="application/ld+json">
-						{
-											"@context": "https://schema.org",
-											"@type": "Organization",
-											"@id": "https://www.giving.cu.edu/#organization",
-											"name": "University of Colorado Foundation",
-											"alternateName": "CU Foundation",
-											"url": "https://www.giving.cu.edu/",
-											"logo": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg",
-											"description": "The University of Colorado Foundation manages philanthropic giving, endowments, and donor funds supporting education, research, and community impact across the University of Colorado system.",
-											"foundingDate": "1967",
-											"taxID": "84-6049811",
-											"nonprofitStatus": "https://schema.org/Nonprofit501c3",
-											"parentOrganization": {
-												"@type": "CollegeOrUniversity",
-												"name": "University of Colorado",
-												"url": "https://www.cu.edu/"
-											},
-											"sameAs": [
-												"https://projects.propublica.org/nonprofits/organizations/846049811",
-												"https://en.wikipedia.org/wiki/University_of_Colorado",
-												"https://www.cufund.org"
-											],
-											"department": {
-												"@type": "Organization",
-												"name": "Central CU Advancement",
-												"url": "https://www.giving.cu.edu/about-us/central-cu-advancement",
-												"parentOrganization": {
-												"@id": "https://www.giving.cu.edu/#organization"
-												}
-											}
-											}
-					</script>
+    {# Performance: Preload critical fonts before render #}
+    <link
+      rel="preload"
+      href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin>
+    <link
+      rel="preload"
+      href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin>
 
-				</head>
+    {# Security: Permissions-Policy restricts browser features site-wide.
+       Disables camera, microphone, geolocation, and payment APIs.
+       Complements the HTTP header set by seckit. #}
+    <meta
+      http-equiv="Permissions-Policy"
+      content="camera=(), microphone=(), geolocation=(), payment=()">
 
-				<body{{attributes.addClass(body_classes)}}>
+    {# Analytics: GTM initialization loaded as external file.
+       No defer — must execute early to capture page load events.
+       External file satisfies CSP without needing unsafe-inline or sha256 hash.
+       GTM container: GTM-KBWW4MVB #}
+    <script src="/themes/contrib/cua_theme/js/gtm.js"></script>
 
-					{# Accessible skip link for keyboard users — becomes visible on focus #}
-					<a href="#main" class="visually-hidden focusable">
-						{{ 'Skip to main content'|t }}
-					</a>
+    {# Drupal: Injects all head meta, link, and other head elements
+       registered by modules and themes via hook_page_attachments() #}
+    <head-placeholder token="{{ placeholder_token|raw }}">
 
-					<!-- Google Tag Manager (noscript) -->
-					<noscript>
-						<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-					</noscript>
-					<!-- End Google Tag Manager (noscript) -->
+    <title>
+      {{ head_title|safe_join(' | ') }}
+    </title>
 
-					{{ page_top }}
-					{{ page }}
-					{{ page_bottom }}
+    {# Drupal: Injects all CSS registered via libraries #}
+    <css-placeholder token="{{ placeholder_token|raw }}">
 
-					<js-bottom-placeholder token="{{ placeholder_token|raw }}"></body>
-				</html>
+    {# Drupal: Injects all JS that belongs in the head #}
+    <js-placeholder token="{{ placeholder_token|raw }}">
+
+    {# Schema: Organization JSON-LD for the University of Colorado Foundation.
+       MUST remain inline — external src is not supported for JSON-LD.
+       Provides entity recognition for Google, Bing, and AI crawlers.
+       Includes sameAs links to ProPublica, Wikipedia, and cufund.org.
+       This block appears on every page via html.html.twig. #}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.giving.cu.edu/#organization",
+        "name": "University of Colorado Foundation",
+        "alternateName": "CU Foundation",
+        "url": "https://www.giving.cu.edu/",
+        "logo": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg",
+        "description": "The University of Colorado Foundation manages philanthropic giving, endowments, and donor funds supporting education, research, and community impact across the University of Colorado system.",
+        "foundingDate": "1967",
+        "taxID": "84-6049811",
+        "nonprofitStatus": "https://schema.org/Nonprofit501c3",
+        "parentOrganization": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Colorado",
+          "url": "https://www.cu.edu/"
+        },
+        "sameAs": [
+          "https://projects.propublica.org/nonprofits/organizations/846049811",
+          "https://en.wikipedia.org/wiki/University_of_Colorado",
+          "https://www.cufund.org"
+        ],
+        "department": {
+          "@type": "Organization",
+          "name": "Central CU Advancement",
+          "url": "https://www.giving.cu.edu/about-us/central-cu-advancement",
+          "parentOrganization": {
+            "@id": "https://www.giving.cu.edu/#organization"
+          }
+        }
+      }
+    </script>
+
+  </head>
+
+  {# ============================================================
+     BODY
+     ============================================================ #}
+  <body{{ attributes.addClass(body_classes) }}>
+
+    {# Accessibility: Skip link for keyboard and screen reader users.
+       Visually hidden until focused — targets #main landmark. #}
+    <a href="#main" class="visually-hidden focusable">
+      {{ 'Skip to main content'|t }}
+    </a>
+
+    {# Analytics: GTM noscript fallback for browsers with JS disabled.
+       Must be placed immediately after opening body tag per GTM spec. #}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {# Drupal: Renders content injected above the main page region
+       by modules via hook_page_top() #}
+    {{ page_top }}
+
+    {# Drupal: Renders the main page content — all regions,
+       blocks, and node content live here #}
+    {{ page }}
+
+    {# Drupal: Renders content injected below the main page region
+       by modules via hook_page_bottom() #}
+    {{ page_bottom }}
+
+    {# Drupal: Injects all JS registered to load at the bottom of the page.
+       Placed last for performance — defers non-critical script execution. #}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+
+  </body>
+</html>
