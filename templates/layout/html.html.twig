@@ -1,60 +1,35 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
 
-  {# ============================================================
-     HEAD
-     ============================================================ #}
   <head>
 
-    {# Performance: Early connection to GTM domain to reduce latency #}
+    {# Performance: establish connection early #}
     <link rel="preconnect" href="https://www.googletagmanager.com">
 
-    {# Performance: Preload critical fonts before render #}
-    <link
-      rel="preload"
+    {# GTM loads early but after preconnect #}
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KBWW4MVB"></script>
+
+    {# Font preloads #}
+    <link rel="preload"
       href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2"
       as="font"
       type="font/woff2"
       crossorigin>
-    <link
-      rel="preload"
+    <link rel="preload"
       href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2"
       as="font"
       type="font/woff2"
       crossorigin>
 
-    {# Security: Permissions-Policy restricts browser features site-wide.
-       Disables camera, microphone, geolocation, and payment APIs.
-       Complements the HTTP header set by seckit. #}
-    <meta
-      http-equiv="Permissions-Policy"
-      content="camera=(), microphone=(), geolocation=(), payment=()">
-
-    {# Analytics: GTM initialization loaded as external file.
-       No defer — must execute early to capture page load events.
-       External file satisfies CSP without needing unsafe-inline or sha256 hash.
-       GTM container: GTM-KBWW4MVB #}
-    <script src="/themes/contrib/cua_theme/js/gtm.js"></script>
-
-    {# Drupal: Injects all head meta, link, and other head elements
-       registered by modules and themes via hook_page_attachments() #}
+    {# Let Drupal inject ALL meta (including charset, canonical, og, etc.) #}
     <head-placeholder token="{{ placeholder_token|raw }}">
 
-    <title>
-      {{ head_title|safe_join(' | ') }}
-    </title>
+    <title>{{ head_title|safe_join(' | ') }}</title>
 
-    {# Drupal: Injects all CSS registered via libraries #}
     <css-placeholder token="{{ placeholder_token|raw }}">
-
-    {# Drupal: Injects all JS that belongs in the head #}
     <js-placeholder token="{{ placeholder_token|raw }}">
 
-    {# Schema: Organization JSON-LD for the University of Colorado Foundation.
-       MUST remain inline — external src is not supported for JSON-LD.
-       Provides entity recognition for Google, Bing, and AI crawlers.
-       Includes sameAs links to ProPublica, Wikipedia, and cufund.org.
-       This block appears on every page via html.html.twig. #}
+    {# JSON-LD must stay inline #}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -91,20 +66,12 @@
 
   </head>
 
-  {# ============================================================
-     BODY
-     ============================================================ #}
   <body{{ attributes.addClass(body_classes) }}>
 
-    {# Accessibility: Skip link for keyboard and screen reader users.
-       Visually hidden until focused — targets #main landmark. #}
     <a href="#main" class="visually-hidden focusable">
       {{ 'Skip to main content'|t }}
     </a>
 
-    {# Analytics: GTM noscript fallback for browsers with JS disabled.
-       Must be placed immediately after opening body tag per GTM spec. #}
-    <!-- Google Tag Manager (noscript) -->
     <noscript>
       <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
@@ -113,22 +80,11 @@
         style="display:none;visibility:hidden">
       </iframe>
     </noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    {# Drupal: Renders content injected above the main page region
-       by modules via hook_page_top() #}
     {{ page_top }}
-
-    {# Drupal: Renders the main page content — all regions,
-       blocks, and node content live here #}
     {{ page }}
-
-    {# Drupal: Renders content injected below the main page region
-       by modules via hook_page_bottom() #}
     {{ page_bottom }}
 
-    {# Drupal: Injects all JS registered to load at the bottom of the page.
-       Placed last for performance — defers non-critical script execution. #}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
 
   </body>
