@@ -3,13 +3,11 @@
 
   <head>
 
-    {# Performance: establish connection early #}
     <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    {# GTM loads early but after preconnect #}
     <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KBWW4MVB"></script>
 
-    {# Font preloads #}
     <link rel="preload"
       href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2"
       as="font"
@@ -21,7 +19,6 @@
       type="font/woff2"
       crossorigin>
 
-    {# Let Drupal inject ALL meta (including charset, canonical, og, etc.) #}
     <head-placeholder token="{{ placeholder_token|raw }}">
 
     <title>{{ head_title|safe_join(' | ') }}</title>
@@ -29,39 +26,60 @@
     <css-placeholder token="{{ placeholder_token|raw }}">
     <js-placeholder token="{{ placeholder_token|raw }}">
 
-    {# JSON-LD must stay inline #}
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
+    {
+      "@context": "https://schema.org",
+      "@type": ["Organization", "NGO"],
+      "@id": "https://www.giving.cu.edu/#organization",
+      "name": "University of Colorado Foundation",
+      "alternateName": "CU Foundation",
+      "url": "https://www.giving.cu.edu/",
+      "description": "Founded in 1967, the University of Colorado Foundation manages over $3.2 billion in assets to support education, research, and community engagement across CU's four campuses.",
+      "foundingDate": "1967",
+      "taxID": "84-6049811",
+      "nonprofitStatus": "Nonprofit501c3",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg",
+        "width": 225,
+        "height": 24
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1800 Grant Street, Suite 725",
+        "addressLocality": "Denver",
+        "addressRegion": "CO",
+        "postalCode": "80203",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-303-813-7935",
+        "email": "gifts@cufund.org",
+        "contactType": "donor services",
+        "areaServed": "US"
+      },
+      "parentOrganization": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Colorado",
+        "url": "https://www.cu.edu/"
+      },
+      "department": {
         "@type": "Organization",
-        "@id": "https://www.giving.cu.edu/#organization",
-        "name": "University of Colorado Foundation",
-        "alternateName": "CU Foundation",
-        "url": "https://www.giving.cu.edu/",
-        "logo": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg",
-        "description": "Find and donate to funds across the University of Colorado system, with resources and guidance to help donors navigate how to give.",
-        "foundingDate": "1967",
-        "taxID": "84-6049811",
-        "nonprofitStatus": "https://schema.org/Nonprofit501c3",
-        "parentOrganization": {
-          "@type": "CollegeOrUniversity",
-          "name": "University of Colorado",
-          "url": "https://www.cu.edu/"
-        },
-        "sameAs": [
-          "https://projects.propublica.org/nonprofits/organizations/846049811",
-          "https://en.wikipedia.org/wiki/University_of_Colorado",
-          "https://www.cufund.org"
-        ],
-        "department": {
-          "@type": "Organization",
-          "name": "Central CU Advancement",
-          "url": "https://www.giving.cu.edu/about-us/central-cu-advancement",
-          "parentOrganization": {
-            "@id": "https://www.giving.cu.edu/#organization"
-          }
-        }
+        "@id": "https://www.giving.cu.edu/#advancement",
+        "name": "Central CU Advancement",
+        "url": "https://www.giving.cu.edu/about-us/central-cu-advancement"
+      },
+      "sameAs": [
+        "https://projects.propublica.org/nonprofits/organizations/846049811",
+        "https://en.wikipedia.org/wiki/University_of_Colorado",
+        "https://www.cufund.org"
+      ],
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".field--name-body p.intro", "meta[name='description']"]
       }
+    }
     </script>
 
   </head>
@@ -88,4 +106,4 @@
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
 
   </body>
-</html>
+</html>`
