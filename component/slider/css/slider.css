@@ -1,22 +1,21 @@
 /* ===================================================
-   Spacer Styling - Layout Adjustments for Spacer Elements
+   Slider Component Styles
    =================================================== */
 
-/* Ensure the background for the spacer is inherited for user administrators */
+/* Spacer admin visibility */
 .user-administrator .spacer {
-  background: inherit; /* Inherits background from parent elements */
+  background: inherit;
 }
 
-/* Show the spacer element with center alignment for user administrators */
 .user-administrator .small.text-align-center {
-  display: block; /* Makes the element visible */
+  display: block;
 }
 
-/* Hide the spacer element with center alignment for all other users */
 .small.text-align-center {
-  display: none; /* Hides the element by default */
+  display: none;
 }
 
+/* Carousel control icons */
 .fa-circle-left::before,
 .fa-circle-right::before {
   font-size: 2.5rem !important;
@@ -30,7 +29,7 @@ span.fa-solid.fa-circle-right {
 .cu-bg-white .fa-arrow-alt-circle-left:before,
 .cu-bg-white .fa-circle-left:before,
 .cu-bg-white .fa-arrow-alt-circle-right:before,
-.cu-bg-white .fa-circle-right:before{
+.cu-bg-white .fa-circle-right:before {
   color: black;
 }
 
@@ -39,16 +38,21 @@ span.fa-solid.fa-circle-right {
   color: white;
 }
 
+/* Desktop blockquote — centered via auto margins */
 .slider blockquote {
-  margin: 10px 130px;
+  margin: 10px auto;
   padding: 1rem 5rem;
   width: 80%;
 }
 
+blockquote {
+  margin: 0 10%;
+}
 
-/* Media query for screens below 991px */
+/* Mobile — full width, no padding, no controls */
 @media (max-width: 991px) {
   .slider blockquote {
+    border-left: 0 solid var(--cua-gold);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -59,15 +63,11 @@ span.fa-solid.fa-circle-right {
     display: none;
   }
 
-  .slider blockquote {
-    border-left: 0 solid var(--cua-gold);
-  }
-
   .slider.px-5 {
     padding-right: 0 !important;
     padding-left: 2rem !important;
-
   }
+
   .slider.mx-5 {
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -78,4 +78,7 @@ span.fa-solid.fa-circle-right {
     line-height: 1.4;
   }
 
+  blockquote {
+    margin: 0;
+  }
 }
