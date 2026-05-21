@@ -1,109 +1,139 @@
-{# 
+{#-
   =============================================================================
   COMPONENT: Accessible Content Slider (Carousel)
-  STABILITY: Production-Stable / Architecture: Sinn 556 iRS St (Multi-Movement)
+  STABILITY: Production-Stable
   COMPLIANCE: Section 508 / WCAG 2.1 Level AA / WAI-ARIA Carousel Design Pattern
+  SCHEMA STRATEGY (2026-05):
+    - ItemList of Quotation items — correct for attributed donor/faculty quotes
+    - Quote text extracted directly from paragraph field_quote entities
+    - author extracted from quote text after the em-dash separator
+    - JSON-LD emitted once before the carousel wrapper
   =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Logic: Prevents "Broken ARIA references" by checking label existence before 
-    mapping landmarks.
-  - Interactive: Implements aria-roledescription="carousel" to inform assistive 
-    tech of the specific widget type.
-  - Controls: Hard-coded visually-hidden spans for SR navigation, ensuring 
-    navigational clarity even when icons fail to load.
+-#}
 
-  MAINTENANCE WARNING:
-  The carousel is set to data-bs-ride="false". This is a high-end "Coast-Proof" 
-  setting—it prevents auto-rotation on page load, which is a major 
-  vestibular/ADHD trigger and a common WCAG failure point.
-  =============================================================================
-#}
-
-{# Asset Load: Selective library injection for the slider movement #}
 {{ attach_library('cua_theme/slider') }}
-
-{# Macro Import: Title consistency across the fleet #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# 1. ID ARCHITECTURE: Precise targeting for Bootstrap's JS controller #}
-{% set block_content_id = elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
-{% set block_id = 'block--node--slider--' ~ block_content_id %}
-{% set carousel_id = 'carousel-' ~ block_content_id %}
-{% set title_id = block_id ~ '-title' %}
+{# ID Architecture #}
+{%- set block_content_id = elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) -%}
+{%- set block_id    = 'block--node--slider--' ~ block_content_id -%}
+{%- set carousel_id = 'carousel-' ~ block_content_id -%}
+{%- set title_id    = block_id ~ '-title' -%}
+{%- set has_title   = label is not empty and label is not null -%}
 
-{# 2. Title Existence Check #}
-{% set has_title = label is not empty and label is not null %}
+{# Class Orchestration #}
+{%- set slider_classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  'slider mx-5 my-1',
+  color_background ?: null,
+  text_color ?: null,
+]|filter(v => v) -%}
 
-{# 3. Class Orchestration #}
-{% set slider_classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'slider mx-5 my-1',
-    color_background ?: null,
-    text_color ?: null,
-] %}
+{# Landmark Strategy #}
+{%- set region_aria_attributes = {'role': 'region'} -%}
+{%- if has_title -%}
+  {%- set region_aria_attributes = region_aria_attributes|merge({'aria-labelledby': title_id}) -%}
+{%- else -%}
+  {%- set region_aria_attributes = region_aria_attributes|merge({'aria-label': 'Content Slider'|t}) -%}
+{%- endif -%}
 
-{# 4. Landmark Strategy: The "No-Lag" Accessibility Bridge #}
-{% set region_aria_attributes = { 'role': 'region' } %}
-{% if has_title %}
-    {% set region_aria_attributes = region_aria_attributes|merge({ 'aria-labelledby': title_id }) %}
-{% else %}
-    {% set region_aria_attributes = region_aria_attributes|merge({ 'aria-label': 'Content Slider'|t }) %}
-{% endif %}
+{# ===========================================================================
+   JSON-LD PRE-LOOP
+   Extract quotes from paragraph entities before rendering HTML.
+   field_slider references paragraph entities, each with field_quote text.
+   Author extracted from quote text — convention is "— Name, Title, Campus"
+   at the end of the quote body.
+   =========================================================================== #}
+{%- set _block_entity = elements.content['#block_content'] -%}
+{%- set _jsonld_items = [] -%}
 
-{# ACCESSIBLE REGION WRAPPER #}
-<div{{ attributes
-    .addClass(slider_classes)
-    .setAttribute('id', block_id)
-    .setAttributes(region_aria_attributes) }}>
+{%- for paragraph in _block_entity.field_slider -%}
+  {%- if paragraph.entity is not empty -%}
+    {%- set _raw    = paragraph.entity.field_quote.value|striptags|trim -%}
 
-    {# TITLE LAYER: Only rendered and ID-linked if label exists #}
-    {% if has_title %}
-        {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
-    {% endif %}
+    {# Split on em-dash to separate quote from attribution #}
+    {%- set _parts  = _raw|split('—') -%}
+    {%- set _text   = _parts[0]|trim -%}
+    {%- set _author = _parts|length > 1 ? _parts[1:]|join('—')|trim : null -%}
 
-    {# 
-       MAIN CAROUSEL WIDGET: 
-       Includes aria-roledescription for legacy screen reader support. 
-       We use carousel-dark to ensure controls meet contrast requirements.
-    #}
-    <div
-        id="{{ carousel_id }}"
-        class="carousel carousel-dark slide"
-        data-bs-ride="false"
-        data-bs-interval="10000"
-        aria-roledescription="carousel"
-        aria-label="{{ 'Image Slider'|t }}"
-    >
-        {# 
-           INNER CONTENT: 
-           Expects carousel-inner wrapper and carousel-item divs from content loop. 
-        #}
-        {{ content }}
+    {%- set _item = {
+      '@type':    'ListItem',
+      'position': loop.index,
+      'item': {
+        '@type': 'Quotation',
+        'text':  _text,
+      }
+    } -%}
 
-        {# NAVIGATION LAYER: Conditional visibility based on CMS field #}
-        {% if content.field_visibility_arrows['#items'].0.value == 'visible' %}
-            
-            {# Previous Control #}
-            <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#{{ carousel_id }}"
-                data-bs-slide="prev">
-                <span class="fa-solid fa-circle-left" aria-hidden="true"></span>
-                <span class="visually-hidden">{{ 'Previous slide'|t }}</span>
-            </button>
+    {%- if _author -%}
+      {%- set _item = _item|merge({'item': _item.item|merge({
+        'spokenByCharacter': {
+          '@type': 'Person',
+          'name':  _author,
+        }
+      })}) -%}
+    {%- endif -%}
 
-            {# Next Control #}
-            <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#{{ carousel_id }}"
-                data-bs-slide="next">
-                <span class="fa-solid fa-circle-right" aria-hidden="true"></span>
-                <span class="visually-hidden">{{ 'Next slide'|t }}</span>
-            </button>
-        {% endif %}
-    </div>
+    {%- set _jsonld_items = _jsonld_items|merge([_item]) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if _jsonld_items|length > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": {{ (label ?: 'Donor and Faculty Quotes')|json_encode|raw }},
+  "itemListOrder": "https://schema.org/ItemListUnordered",
+  "numberOfItems": {{ _jsonld_items|length }},
+  "itemListElement": {{ _jsonld_items|json_encode|raw }}
+}
+</script>
+{%- endif -%}
+
+{# ===========================================================================
+   HTML — layout unchanged
+   =========================================================================== #}
+<div id="{{ block_id }}" class="{{ slider_classes|join(' ') }}" role="{{ region_aria_attributes.role }}" {% if has_title %}aria-labelledby="{{ region_aria_attributes['aria-labelledby'] }}"{% else %}aria-label="{{ region_aria_attributes['aria-label'] }}"{% endif %}>
+
+  {{- title_prefix -}}
+  {{- title_suffix -}}
+
+  {%- if has_title -%}
+    {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
+  {%- endif -%}
+
+  <div
+      id="{{ carousel_id }}"
+      class="carousel carousel-dark slide"
+      data-bs-ride="false"
+      data-bs-interval="10000"
+      aria-roledescription="carousel"
+      aria-label="{{ 'Image Slider'|t }}">
+
+    {{ content }}
+
+    {%- if content.field_visibility_arrows['#items'].0.value == 'visible' -%}
+      <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#{{ carousel_id }}"
+          data-bs-slide="prev">
+        <span class="fa-solid fa-circle-left" aria-hidden="true"></span>
+        <span class="visually-hidden">{{ 'Previous slide'|t }}</span>
+      </button>
+
+      <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#{{ carousel_id }}"
+          data-bs-slide="next">
+        <span class="fa-solid fa-circle-right" aria-hidden="true"></span>
+        <span class="visually-hidden">{{ 'Next slide'|t }}</span>
+      </button>
+    {%- endif -%}
+
+  </div>
 </div>

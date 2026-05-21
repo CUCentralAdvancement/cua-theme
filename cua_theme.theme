@@ -337,3 +337,16 @@ function cua_theme_page_attachments_alter(array &$attachments): void {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_field() for field_slider.
+ */
+function cua_theme_preprocess_field__field_slider(array &$variables): void {
+  $element = $variables['element'];
+  if (!empty($element['#object'])) {
+    $block_content = $element['#object'];
+    $id = $block_content->id();
+    $carousel_id = 'carousel-' . str_replace(['_', ':'], ['-', '--'], $id);
+    $variables['carousel_id'] = $carousel_id;
+  }
+}

@@ -96,10 +96,10 @@
 {# ===========================================================================
    HTML — layout unchanged
    =========================================================================== #}
-<div{{ attributes
-  .addClass(slider_classes)
-  .setAttribute('id', block_id)
-  .setAttributes(region_aria_attributes) }}>
+<div id="{{ block_id }}" class="{{ slider_classes|join(' ') }}" role="{{ region_aria_attributes.role }}" {% if has_title %}aria-labelledby="{{ region_aria_attributes['aria-labelledby'] }}"{% else %}aria-label="{{ region_aria_attributes['aria-label'] }}"{% endif %}>
+
+  {{- title_prefix -}}
+  {{- title_suffix -}}
 
   {%- if has_title -%}
     {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
