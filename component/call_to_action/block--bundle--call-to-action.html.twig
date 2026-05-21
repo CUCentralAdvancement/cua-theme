@@ -1,7 +1,14 @@
 {# 
   =============================================================================
   COMPONENT: Call to Action (CTA)
-  COMPLIANCE: WCAG 2.2 AA / Section 508 / Schema.org DonateAction
+  COMPLIANCE: WCAG 2.2 AA / Section 508 / Schema.org Action (configurable type)
+  SCHEMA STRATEGY:
+    - JSON-LD via <script> block — preferred by Google & AI crawlers over Microdata
+    - Each block is a standalone DonateAction (Layout Builder blocks are isolated;
+      no parent template has visibility across siblings, so ItemList is not valid here)
+    - ItemList is only appropriate in view-based templates (e.g. give-now-grid)
+      where all items are known at render time
+    - Microdata attributes removed from HTML — no dual-format conflicts
   =============================================================================
 #}
 {{- attach_library('cua_theme/call-to-action') -}}
@@ -44,14 +51,12 @@
 {%- set single_link = (links_count == 1) ? links|first : null -%}
 {%- set wrap_entire_card = single_link and not content_contains_other_links -%}
 
-{# Attribute Hardening #}
+{# Attribute Hardening — no Microdata on section; schema handled via JSON-LD below #}
 {%- set attributes = attributes
   .setAttribute('id', unique_id)
   .addClass(cta_classes)
   .setAttribute('role', 'region')
   .setAttribute('data-animation-classes', data_animation)
-  .setAttribute('itemscope', '')
-  .setAttribute('itemtype', 'https://schema.org/DonateAction')
   .setAttribute('data-component', 'call-to-action-card') -%}
 
 {%- if label -%}
@@ -60,26 +65,66 @@
   {%- set attributes = attributes.setAttribute('aria-label', 'Call to Action') -%}
 {%- endif -%}
 
+{# =============================================================================
+   JSON-LD: Configurable Action type
+   Standalone schema per block — Layout Builder blocks render in isolation.
+   AI crawlers (ChatGPT, Gemini, Perplexity) and Google parse <script> JSON-LD
+   reliably; Microdata on arbitrary HTML elements is increasingly deprioritized.
+
+   schema_action_type is set by the site builder in block config.
+   Defaults to ReadAction — accurate for generic "Learn more" / content CTAs.
+   Common values:
+     ReadAction     — article, story, news link (default)
+     DonateAction   — giving / fundraising CTA
+     RegisterAction — event signup
+     ViewAction     — video or media CTA
+     LearnAction    — course or educational content
+
+   schema_description priority:
+     1. label (block title field — clean, always short)
+     2. content rendered and stripped (catches blocks where heading lives in body)
+     Truncated to 300 chars — appropriate for a schema description value.
+   ============================================================================= #}
+{%- set schema_type = schema_action_type ?: 'ReadAction' -%}
+{# Description priority:
+   1. label (block title field — clean, always short)
+   2. block entity body.value — targets the body field directly, avoids rendering
+      the full content render array which includes icon classes, colors, and
+      other field values that contaminate a stripped string.
+#}
+{%- set schema_description = label|striptags|trim -%}
+{%- if not schema_description -%}
+  {%- set _block_entity = elements.content['#block_content'] -%}
+  {%- if _block_entity.body.value -%}
+    {%- set schema_description = _block_entity.body.value|striptags|trim|slice(0, 300) -%}
+  {%- endif -%}
+{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": {{ schema_type|json_encode|raw }},
+  "name": {{ (single_link.title ?: label)|striptags|trim|json_encode|raw }},
+  "actionStatus": "https://schema.org/PotentialActionStatus",
+  {%- if single_link %}
+  "url": {{ single_link.url|json_encode|raw }},
+  {%- endif %}
+  {%- if schema_description %}
+  "description": {{ schema_description|json_encode|raw }},
+  {%- endif %}
+  "agent": {
+    "@type": "CollegeOrUniversity",
+    "name": {{ site_name|default('University of Colorado')|json_encode|raw }},
+    "url": "https://www.cu.edu"
+  }
+}
+</script>
+
 <section{{ attributes }}>
   {# Drupal contextual links must sit outside the wrapper link #}
   {{- title_prefix -}}
   {{- title_suffix -}}
 
   {%- apply spaceless -%}
-
-  {# Metadata Layer #}
-  <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
-  <div itemprop="agent" itemscope itemtype="https://schema.org/CollegeOrUniversity">
-    <meta itemprop="name" content="{{ site_name|default('University of Colorado') }}"/>
-  </div>
-
-  {%- if single_link -%}
-    <div itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" aria-hidden="true" style="display:none;">
-      <meta itemprop="url" content="{{ single_link.url }}"/>
-      <meta itemprop="actionPlatform" content="https://schema.org/DesktopWebPlatform"/>
-      <meta itemprop="actionPlatform" content="https://schema.org/MobileWebPlatform"/>
-    </div>
-  {%- endif -%}
 
   {# Card Wrapper Link — entire card is clickable when single link present #}
   {%- if wrap_entire_card -%}
@@ -141,8 +186,7 @@
     {%- if label -%}
       <header class="card-header border-0 pt-2 {{ padding }} {{ text_alignment }}">
         <h3 id="{{ unique_id }}-label"
-            class="display-4 card-title title {{ text_color }} mb-0"
-            itemprop="name">
+            class="display-4 card-title title {{ text_color }} mb-0">
           {{- label|trim -}}
         </h3>
       </header>
@@ -151,7 +195,7 @@
     {# Body Content #}
     {%- if content -%}
       {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
-      <div itemprop="description" class="cta-text lead {{ padding }} {{ text_color }}">
+      <div class="cta-text lead {{ padding }} {{ text_color }}">
         {{- bodyMacros.render_body(content, text_color, text_alignment)|trim -}}
       </div>
     {%- endif -%}
