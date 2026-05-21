@@ -1,27 +1,14 @@
-{# 
+{#-
   =============================================================================
   COMPONENT: Half and Half (Two-Column Split)
-  STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (No-Lag)
+  STABILITY: Production-Stable
   COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ADA Title II Ready
-  =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Responsive Pattern: Dual-loop execution for Desktop and Mobile visibility 
-    classes, ensuring visual order (Media first on mobile) is hard-coded.
-  - Layout Flexibility: Logic-gated column mapping for 70/30 or 50/50 splits.
-  - Accessibility: Landmarks are context-aware; aria-labelledby strings are 
-    unique per device loop to prevent ID collisions.
-
-  MAINTENANCE WARNING:
-  This template renders two versions of the DOM content. While optimized via 
-  visibility classes, ensure complex video embeds inside the 'provider' check 
-  do not trigger dual-playback or heavy redundant asset loading.
-  =============================================================================
-#}
-
-{#
-  =============================================================================
-  COMPONENT: Half and Half (Two-Column Split)
-  OPTIMIZED: Semantic structure, AI ingestion, SEO clarity, WCAG 2.2 AA
+  SCHEMA STRATEGY (2026-05):
+    - JSON-LD emitted once before the device loop — never duplicated
+    - CreativeWork base type — accurate for generic split content blocks
+    - potentialAction added when a single link is present
+    - VideoObject added when provider is youtube — hook ready, no content yet
+    - schema_action_type configurable by site builder, defaults to ReadAction
   =============================================================================
 #}
 
@@ -29,133 +16,184 @@
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
 {# Animation logic #}
-{% set animation_classes = ['animate__animated', animation, animation_speed, animation_delay]|filter(v => v) %}
-{% set data_animation_classes = animation_classes|join(' ')|trim %}
-{% set animate_trigger = animation_classes ? 'animate-trigger' : '' %}
+{%- set animation_classes = ['animate__animated', animation, animation_speed, animation_delay]|filter(v => v) -%}
+{%- set data_animation_classes = animation_classes|join(' ')|trim -%}
+{%- set animate_trigger = animation_classes ? 'animate-trigger' : '' -%}
 
 {# Unique block ID #}
-{% set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) %}
+{%- set unique_id = 'block--node-half-and-half--' ~ elements.content['#block_content'].id()|replace({'_': '-', ':': '--'}) -%}
+
+{# Link detection #}
+{%- set links_count = links|length -%}
+{%- set single_link = (links_count == 1) ? links|first : null -%}
+
+{# Schema #}
+{%- set _schema_type  = schema_action_type ?: 'ReadAction' -%}
+{%- set _block_entity = elements.content['#block_content'] -%}
+{%- set _description  = _block_entity.body.value
+  ? _block_entity.body.value|striptags|trim|slice(0, 300)
+  : label|striptags|trim -%}
+
+{# JSON-LD — emitted once, before the device loop #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  {%- if label %}
+  "name": {{ label|striptags|trim|json_encode|raw }},
+  {%- endif %}
+  {%- if _description %}
+  "description": {{ _description|json_encode|raw }},
+  {%- endif %}
+  "provider": {
+    "@type": "CollegeOrUniversity",
+    "name": {{ site_name|default('University of Colorado')|json_encode|raw }},
+    "url": "https://www.cu.edu"
+  }
+  {%- if single_link %},
+  "potentialAction": {
+    "@type": {{ _schema_type|json_encode|raw }},
+    "actionStatus": "https://schema.org/PotentialActionStatus",
+    "target": {{ single_link.url|json_encode|raw }}
+  }
+  {%- endif %}
+  {%- if provider == 'youtube' -%}
+    {%- set _video_markup = content.field_video_youtube|render -%}
+    {%- set _parts        = _video_markup|split('src="') -%}
+    {%- set _embed_url    = _parts|length > 1 ? _parts[1]|split('"')[0] : '' -%}
+    {%- set _video_id     = _embed_url|split('/embed/')|last|split('?')|first -%}
+    {%- set _watch_url    = _video_id ? 'https://www.youtube.com/watch?v=' ~ _video_id : _embed_url -%}
+  ,
+  "video": {
+    "@type": "VideoObject",
+    "name": {{ label|striptags|trim|default('Video')|json_encode|raw }},
+    "url": {{ _watch_url|json_encode|raw }},
+    "embedUrl": {{ _embed_url|json_encode|raw }}
+  }
+  {%- endif %}
+}
+</script>
 
 {# Component wrapper classes #}
-{% set hh_classes = [
-    'block',
-    'half-and-half',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    animate_trigger,
-    border_style,
-    container_size,
-    margins,
-    id ? 'block--' ~ id|replace({'_': '-'})|clean_class
-] | filter(v => v) | merge(utility_classes ?: []) | join(' ')|trim %}
+{%- set hh_classes = [
+  'block',
+  'half-and-half',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  animate_trigger,
+  border_style,
+  container_size,
+  margins,
+  id ? 'block--' ~ id|replace({'_': '-'})|clean_class,
+]|filter(v => v)|merge(utility_classes ?: [])|join(' ')|trim -%}
 
 <section{{ attributes|without('id').setAttribute('id', unique_id).addClass(hh_classes) }}
-    {% if data_animation_classes %} data-animation-classes="{{ data_animation_classes }}"{% endif %}
-    aria-label="{{ label ?: 'Content block'|t }}">
+    {% if data_animation_classes %}data-animation-classes="{{ data_animation_classes }}"{% endif %}
+    aria-label="{{ label ? label : 'Content block'|t }}">
 
-    {{ title_prefix }}
-    {{ title_suffix }}
+  {{ title_prefix }}
+  {{ title_suffix }}
 
-    {# DEVICE LOOP: Desktop + Mobile #}
-    {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
-        {% set heading_id = unique_id ~ '-heading-' ~ device %}
+  {# DEVICE LOOP: Desktop + Mobile #}
+  {% for device, visibility_class in {'desktop': 'd-none d-sm-block', 'mobile': 'd-block d-sm-none'} %}
+    {%- set heading_id = unique_id ~ '-heading-' ~ device -%}
 
-        <div class="container-fluid {{ visibility_class }} g-0" role="presentation">
-            <div class="card border-0 rounded-0">
-                <div class="row g-0">
+    <div class="container-fluid {{ visibility_class }} g-0" role="presentation">
+      <div class="card border-0 rounded-0">
+        <div class="row g-0">
 
-                    {# Layout logic #}
-                    {% set layout = content.field_custom_layout[0]['#markup'] ?? '' %}
-                    {% set is_7030_layout = layout == '4' %}
-                    {% set is_5050_layout = layout == '50_50' %}
+          {# Layout logic #}
+          {%- set layout       = content.field_custom_layout[0]['#markup'] ?? '' -%}
+          {%- set is_7030_layout = layout == '4' -%}
+          {%- set is_5050_layout = layout == '50_50' -%}
 
-                    {% set col_classes = {
-                        'img': [
-                            is_7030_layout ? 'col-md-4' : '',
-                            is_5050_layout ? 'col-md-6' : '',
-                            'col-sm-12',
-                            color_background,
-                            padding,
-                            image_alignment
-                        ],
-                        'content': [
-                            is_7030_layout ? 'col-md-8' : '',
-                            is_5050_layout ? 'col-md-6' : '',
-                            'col-sm-12',
-                            color_background,
-                            text_alignment,
-                            padding
-                        ]
-                    } %}
+          {%- set col_classes = {
+            'img': [
+              is_7030_layout ? 'col-md-4' : '',
+              is_5050_layout ? 'col-md-6' : '',
+              'col-sm-12',
+              color_background,
+              padding,
+              image_alignment,
+            ],
+            'content': [
+              is_7030_layout ? 'col-md-8' : '',
+              is_5050_layout ? 'col-md-6' : '',
+              'col-sm-12',
+              color_background,
+              text_alignment,
+              padding,
+            ],
+          } -%}
 
-                    {% if layout %}
+          {% if layout %}
 
-                        {# MEDIA COLUMN #}
-                        <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-first{% endif %}">
-                            {% if provider %}
-                                {% include '@cua_theme/component/video/partials/_video--master.html.twig' %}
-                            {% elseif card_image %}
-                                {% import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros %}
-                                {{ cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) }}
-                            {% elseif icon %}
-                                {% import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros %}
-                                {{ iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) }}
-                            {% endif %}
-                        </div>
-
-                        {# CONTENT COLUMN #}
-                        <section class="{{ col_classes.content|filter(v => v)|join(' ')|trim }} {% if visibility_class == 'd-block d-sm-none' %}order-last{% endif %}"
-                                 role="region"
-                                 {% if label %} aria-labelledby="{{ heading_id }}" {% else %} aria-label="{{ 'Content section'|t }}" {% endif %}>
-
-                            <div class="row mx-5 pt-3">
-
-                                {% if label %}
-                                    {% set heading_classes = [
-                                        'display-4',
-                                        'card-text',
-                                        'lead',
-                                        'title',
-                                        'g-0',
-                                        text_alignment,
-                                        center_content,
-                                        text_color,
-                                        padding
-                                    ]|filter(v => v)|join(' ') %}
-
-                                    <h2 id="{{ heading_id }}" class="{{ heading_classes }}">
-                                        {{ label }}
-                                    </h2>
-                                {% endif %}
-
-                                {% if content %}
-                                    {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-                                    {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
-                                {% endif %}
-
-                                {% if links %}
-                                    {% import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros %}
-                                    {{ cardFooterMacros.render_card_footer(
-                                        links,
-                                        container_size,
-                                        color_background,
-                                        position_container,
-                                        text_alignment,
-                                        padding,
-                                        outline,
-                                        button_color,
-                                        button_layout,
-                                        false,
-                                        single_link ? true : false
-                                    ) }}
-                                {% endif %}
-
-                            </div>
-                        </section>
-
-                    {% endif %}
-                </div>
+            {# MEDIA COLUMN #}
+            <div class="{{ col_classes.img|filter(v => v)|join(' ')|trim }}{% if visibility_class == 'd-block d-sm-none' %} order-first{% endif %}">
+              {%- if provider -%}
+                {%- include '@cua_theme/component/video/partials/_video--master.html.twig' -%}
+              {%- elseif card_image -%}
+                {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
+                {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
+              {%- elseif icon -%}
+                {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
+                {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
+              {%- endif -%}
             </div>
+
+            {# CONTENT COLUMN #}
+            <section class="{{ col_classes.content|filter(v => v)|join(' ')|trim }}{% if visibility_class == 'd-block d-sm-none' %} order-last{% endif %}"
+                     role="region"
+                     {% if label %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="{{ 'Content section'|t }}"{% endif %}>
+
+              <div class="row mx-5 pt-3">
+
+                {%- if label -%}
+                  {%- set heading_classes = [
+                    'display-4',
+                    'card-text',
+                    'lead',
+                    'title',
+                    'g-0',
+                    text_alignment,
+                    center_content,
+                    text_color,
+                    padding,
+                  ]|filter(v => v)|join(' ') -%}
+                  <h2 id="{{ heading_id }}" class="{{ heading_classes }}">
+                    {{- label -}}
+                  </h2>
+                {%- endif -%}
+
+                {%- if content -%}
+                  {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
+                  {{- bodyMacros.render_body(content, padding, text_color, text_alignment) -}}
+                {%- endif -%}
+
+                {%- if links -%}
+                  {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
+                  {{- cardFooterMacros.render_card_footer(
+                    links,
+                    container_size,
+                    color_background,
+                    position_container,
+                    text_alignment,
+                    padding,
+                    outline,
+                    button_color,
+                    button_layout,
+                    false,
+                    single_link ? true : false
+                  ) -}}
+                {%- endif -%}
+
+              </div>
+            </section>
+
+          {% endif %}
         </div>
-    {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
 </section>
