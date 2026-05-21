@@ -1,180 +1,213 @@
 {#-
   =============================================================================
   COMPONENT: Give Now Grid (Multi-Campus)
-  ARCHITECTURE: Sinn 556 iRS Level (Zero-Bloat Hardened)
-  STABILITY: Production-Stable | Schema.org Validated
-  SCHEMA FIXES (2026-05) FINAL:
-    - Single itemprop="name" on ItemList via section_title variable (removed duplicate)
-    - section_title is single source of truth for schema meta + visually-hidden h2
-    - campus_names map uses official KG entity names (no "CU" prefix artifacts)
-    - campus_urls map provides canonical CollegeOrUniversity URL for KG linkage
-    - DonateAction name uses campus_name (KG-aligned), not raw node label
-    - CollegeOrUniversity name uses campus_name (KG-aligned), not raw node label
-    - Removed hidden display:none EntryPoint (ignored by Google)
-    - itemprop="url" on <a> tag (correct DonateAction target)
-    - No duplicate itemprop="name" on <h3>
+  STABILITY: Production-Stable
+  SCHEMA STRATEGY (2026-05):
+    - Single JSON-LD <script> block replaces all Microdata attributes
+    - ItemList built in a pre-loop — view owns all 4 items simultaneously
+      so ItemList is semantically valid (unlike isolated Layout Builder blocks)
+    - DonateAction per campus with CollegeOrUniversity recipient
+    - campus_names / campus_urls maps provide KG-aligned entity names and
+      canonical URLs for Knowledge Graph linkage
+    - Absolute image URLs via hardcoded domain (image_style returns relative paths;
+      base_url and app.request are unavailable in this block template context)
+    - All itemscope / itemtype / itemprop attributes removed from HTML
   =============================================================================
 -#}
 {{- attach_library('cua_theme/call-to-action') -}}
 
 {%- if user.hasPermission('administer site configuration') -%}
-    <nav class="admin-interface d-flex justify-content-center gap-2 m-2" aria-label="Admin Actions">
-        <a href="/give-now/view-all" class="btn btn-sm btn-admin-app">{{ 'Manage Schedules & Content'|t }}</a>
-        <a href="/internal-documentation-giving-day-content-swap-process" class="btn btn-sm btn-admin-app">{{ 'Launch Guide'|t }}</a>
-    </nav>
+  <nav class="admin-interface d-flex justify-content-center gap-2 m-2" aria-label="Admin Actions">
+    <a href="/give-now/view-all" class="btn btn-sm btn-admin-app">{{ 'Manage Schedules & Content'|t }}</a>
+    <a href="/internal-documentation-giving-day-content-swap-process" class="btn btn-sm btn-admin-app">{{ 'Launch Guide'|t }}</a>
+  </nav>
 {%- endif -%}
 
 {%- set section_title = 'Ways to Give to the University of Colorado Boulder, University of Colorado Colorado Springs, University of Colorado Denver, and University of Colorado Anschutz Medical Campus'|t -%}
 
 {%- set campus_names = {
-    'CU Boulder':  'University of Colorado Boulder',
-    'UCCS':        'University of Colorado Colorado Springs',
-    'CU Denver':   'University of Colorado Denver',
-    'CU Anschutz': 'University of Colorado Anschutz Medical Campus'
+  'CU Boulder':  'University of Colorado Boulder',
+  'UCCS':        'University of Colorado Colorado Springs',
+  'CU Denver':   'University of Colorado Denver',
+  'CU Anschutz': 'University of Colorado Anschutz Medical Campus',
 } -%}
 
 {%- set campus_urls = {
-    'CU Boulder':  'https://www.colorado.edu',
-    'UCCS':        'https://www.uccs.edu',
-    'CU Denver':   'https://www.ucdenver.edu',
-    'CU Anschutz': 'https://www.cuanschutz.edu'
+  'CU Boulder':  'https://www.colorado.edu',
+  'UCCS':        'https://www.uccs.edu',
+  'CU Denver':   'https://www.ucdenver.edu',
+  'CU Anschutz': 'https://www.cuanschutz.edu',
 } -%}
 
 {%- if content['#view'].result is not empty -%}
-    {%- set view = content['#view'] -%}
+  {%- set view = content['#view'] -%}
 
-    <section
-        class="container-fluid bg-gray-20 px-2 pt-1 pb-5"
-        role="region"
-        aria-labelledby="give-now-section-title"
-        itemscope
-        itemtype="https://schema.org/ItemList">
+  {# ===========================================================================
+     JSON-LD PRE-LOOP
+     Build the full ItemList before HTML renders.
+     =========================================================================== #}
+  {%- set _jsonld_items = [] -%}
 
-        <meta itemprop="name"          content="{{ section_title }}"/>
-        <meta itemprop="itemListOrder" content="https://schema.org/ItemListUnordered"/>
-        <meta itemprop="numberOfItems" content="{{ view.result|length }}"/>
+  {%- for row in view.result -%}
+    {%- if row._entity is not empty -%}
+      {%- set node        = row._entity -%}
+      {%- set label       = node.label|trim -%}
+      {%- set _link       = node.field_link.uri ?: '#' -%}
+      {%- set _campus     = campus_names[label] ?: 'University of Colorado ' ~ label -%}
+      {%- set _campus_url = campus_urls[label] ?: '' -%}
+      {%- set _desc       = node.body.value|striptags|trim -%}
 
-        <h2 id="give-now-section-title" class="visually-hidden">
-            {{ section_title }}
-        </h2>
+      {%- set _action = {
+        '@type':        'DonateAction',
+        'name':         'Give to ' ~ _campus,
+        'actionStatus': 'https://schema.org/PotentialActionStatus',
+        'url':          _link,
+        'description':  _desc,
+        'recipient': {
+          '@type': 'CollegeOrUniversity',
+          'name':  _campus,
+          'url':   _campus_url,
+        },
+      } -%}
 
-        <ul class="row list-unstyled m-0">
-            {%- for row in view.result -%}
-                {%- if row._entity is not empty -%}
-                    {%- set node         = row._entity -%}
-                    {%- set heading_id   = 'give-now-item-' ~ node.id ~ '-title' -%}
-                    {%- set body_id      = 'give-now-item-' ~ node.id ~ '-body' -%}
-                    {%- set link         = node.field_link.uri ?: '#' -%}
-                    {%- set label        = node.label|trim -%}
-                    {%- set campus_name  = campus_names[label] ?: 'University of Colorado ' ~ label -%}
-                    {%- set campus_url   = campus_urls[label] ?: '' -%}
+      {%- if node.field_image.entity -%}
+        {%- set _image_url_raw = node.field_image.entity.fileuri|image_style('lead_story') -%}
+        {%- set _image_url = (_image_url_raw starts with 'http') ? _image_url_raw : ('https://www.giving.cu.edu/' ~ _image_url_raw|trim('/')) -%}
+        {%- set _action = _action|merge({
+          'image': {
+            '@type':  'ImageObject',
+            'url':    _image_url,
+            'width':  353,
+            'height': 236,
+            'caption': node.field_image.alt|default(label)|trim,
+          },
+        }) -%}
+      {%- endif -%}
 
-                    <li
-                        class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4"
-                        itemprop="itemListElement"
-                        itemscope
-                        itemtype="https://schema.org/ListItem">
+      {%- set _jsonld_items = _jsonld_items|merge([{
+        '@type':    'ListItem',
+        'position': loop.index,
+        'item':     _action,
+      }]) -%}
 
-                        {%- apply spaceless -%}
+    {%- endif -%}
+  {%- endfor -%}
 
-                        <meta itemprop="position" content="{{ loop.index }}"/>
+  {%- set _jsonld = {
+    '@context':        'https://schema.org',
+    '@type':           'ItemList',
+    'name':            section_title,
+    'itemListOrder':   'https://schema.org/ItemListUnordered',
+    'numberOfItems':   view.result|length,
+    'itemListElement': _jsonld_items,
+  } -%}
 
-                        <div
-                            itemprop="item"
-                            itemscope
-                            itemtype="https://schema.org/DonateAction">
+  <script type="application/ld+json">
+  {{ _jsonld|json_encode|raw }}
+  </script>
 
-                            <meta itemprop="name"         content="Give to {{ campus_name }}"/>
-                            <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus"/>
+  {# ===========================================================================
+     HTML — layout unchanged, Microdata attributes removed
+     =========================================================================== #}
+  <section
+      class="container-fluid bg-gray-20 px-2 pt-1 pb-5"
+      role="region"
+      aria-labelledby="give-now-section-title">
 
-                            <div
-                                itemprop="recipient"
-                                itemscope
-                                itemtype="https://schema.org/CollegeOrUniversity">
-                                <meta itemprop="name" content="{{ campus_name }}"/>
-                                {%- if campus_url -%}
-                                    <link itemprop="url" href="{{ campus_url }}"/>
-                                {%- endif -%}
-                            </div>
+    <h2 id="give-now-section-title" class="visually-hidden">
+      {{- section_title -}}
+    </h2>
 
-                            <a
-                                href="{{ link }}"
-                                itemprop="url"
-                                id="give-now-item-{{ node.id }}"
-                                class="give-now-item d-flex flex-column text-decoration-none h-100 story-link"
-                                aria-describedby="{{ body_id }}">
+    <ul class="row list-unstyled m-0">
+      {%- for row in view.result -%}
+        {%- if row._entity is not empty -%}
+          {%- set node       = row._entity -%}
+          {%- set heading_id = 'give-now-item-' ~ node.id ~ '-title' -%}
+          {%- set body_id    = 'give-now-item-' ~ node.id ~ '-body' -%}
+          {%- set link       = node.field_link.uri ?: '#' -%}
+          {%- set label      = node.label|trim -%}
 
-                                <div class="m-2 h-100 shadow {{ node.field_color_background.value ?: 'cu-bg-white' }}" role="presentation">
+          <li class="col-12 col-sm-6 col-lg-3 give-now-wrapper mb-4">
 
-                                    <figure class="position-relative mb-0" role="presentation">
+            {%- apply spaceless -%}
 
-                                        {%- if node.field_flag.value == 'flag_on' -%}
-                                            <div class="position-absolute start-0 top-0 z-index-1">
-                                                <div
-                                                    class="flag py-2 {{ node.field_flag_background.value ?: '' }}"
-                                                    style="width:max-content;display:flex;align-items:center;padding:5px 10px;white-space:nowrap;">
-                                                    {%- if node.field_icon.value -%}
-                                                        <i
-                                                            class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
-                                                            style="color:{{ node.field_icon_color.value }}"
-                                                            aria-hidden="true"></i>
-                                                    {%- endif -%}
-                                                    <span class="flag-title">{{- node.field_flag_title.value|trim -}}</span>
-                                                </div>
-                                            </div>
-                                        {%- endif -%}
+            <a
+                href="{{ link }}"
+                id="give-now-item-{{ node.id }}"
+                class="give-now-item d-flex flex-column text-decoration-none h-100 story-link"
+                aria-describedby="{{ body_id }}">
 
-                                        {%- if node.field_image.entity -%}
-                                            {%- set image_url = node.field_image.entity.fileuri | image_style('lead_story') -%}
-                                            <img
-                                                src="{{ image_url }}"
-                                                alt="{{ node.field_image.alt|default(label)|trim }}"
-                                                loading="{{ loop.first ? 'eager' : 'lazy' }}"
-                                                fetchpriority="{{ loop.first ? 'high' : 'auto' }}"
-                                                class="img-fluid card-header mb-2 w-100"
-                                                itemprop="image"/>
-                                        {%- endif -%}
+              <div class="m-2 h-100 shadow {{ node.field_color_background.value ?: 'cu-bg-white' }}" role="presentation">
 
-                                    </figure>
+                <figure class="position-relative mb-0" role="presentation">
 
-                                    <div class="give-now-content px-3 pt-2">
-                                        <h3
-                                            id="{{ heading_id }}"
-                                            class="give-now-title fs-3 fw-bold">
-                                            {{- label -}}
-                                            {%- if node.field_subtitle.value -%}
-                                                <span class="fs-4 fw-normal d-block">
-                                                    {{- node.field_subtitle.value|trim -}}
-                                                </span>
-                                            {%- endif -%}
-                                        </h3>
+                  {%- if node.field_flag.value == 'flag_on' -%}
+                    {%- set flag_classes = [
+                      'flag',
+                      'py-2',
+                      node.field_flag_background.value ?: null,
+                    ]|filter(v => v) -%}
+                    <div class="position-absolute start-0 top-0 z-1">
+                      <div class="{{ flag_classes|join(' ')|trim }}"
+                           style="width:max-content;display:flex;align-items:center;padding:5px 10px;white-space:nowrap;">
+                        {%- if node.field_icon.value -%}
+                          <i class="{{ node.field_icon.value }} {{ node.field_icon_size.value }} px-1"
+                             style="color:{{ node.field_icon_color.value }}"
+                             aria-hidden="true"></i>
+                        {%- endif -%}
+                        {%- if node.field_flag_title.value -%}
+                          <span class="flag-title">{{- node.field_flag_title.value|trim -}}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
 
-                                        <div
-                                            id="{{ body_id }}"
-                                            class="give-now-body mb-2 mx-1 pt-2"
-                                            itemprop="description">
-                                            {{- node.body.value|raw -}}
-                                        </div>
+                  {%- if node.field_image.entity -%}
+                    {%- set image_url = node.field_image.entity.fileuri|image_style('lead_story') -%}
+                    <img
+                        src="{{ image_url }}"
+                        alt="{{ node.field_image.alt|default(label)|trim }}"
+                        loading="{{ loop.first ? 'eager' : 'lazy' }}"
+                        fetchpriority="{{ loop.first ? 'high' : 'auto' }}"
+                        class="img-fluid card-header mb-2 w-100"/>
+                  {%- endif -%}
 
-                                        {%- if node.field_link.title is not empty -%}
-                                            <div class="card-footer card-story d-flex p-0 mb-5 mx-1">
-                                                <span
-                                                    class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3"
-                                                    aria-hidden="true">
-                                                    {{- node.field_link.title|trim -}}
-                                                </span>
-                                            </div>
-                                        {%- endif -%}
+                </figure>
 
-                                    </div>{#- /.give-now-content -#}
-                                </div>{#- /.shadow -#}
-                            </a>{#- /DonateAction url -#}
-                        </div>{#- /DonateAction -#}
+                <div class="give-now-content px-3 pt-2">
+                  <h3 id="{{ heading_id }}" class="give-now-title fs-3 fw-bold">
+                    {{- label -}}
+                    {%- if node.field_subtitle.value -%}
+                      <span class="fs-4 fw-normal d-block">
+                        {{- node.field_subtitle.value|trim -}}
+                      </span>
+                    {%- endif -%}
+                  </h3>
 
-                        {%- endapply -%}
-                    </li>
-                {%- endif -%}
-            {%- endfor -%}
-        </ul>
-    </section>
+                  <div id="{{ body_id }}" class="give-now-body mb-2 mx-1 pt-2">
+                    {{- node.body.value|raw -}}
+                  </div>
+
+                  {%- if node.field_link.title is not empty -%}
+                    <div class="card-footer card-story d-flex p-0 mb-5 mx-1">
+                      <span class="card-link btn outline-btn-cu-bg-black text-decoration-none p-2 mt-3"
+                            aria-hidden="true">
+                        {{- node.field_link.title|trim -}}
+                      </span>
+                    </div>
+                  {%- endif -%}
+
+                </div>{#- /.give-now-content -#}
+              </div>{#- /.shadow -#}
+            </a>
+
+            {%- endapply -%}
+          </li>
+
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+  </section>
+
 {%- endif -%}
