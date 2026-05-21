@@ -1,27 +1,88 @@
 {#-
   =============================================================================
-  PARTIAL: YouTube Video
+  COMPONENT: Video Block
   SCHEMA STRATEGY:
-    - Microdata removed — JSON-LD handled in the parent block template
-    - This partial is responsible for the embed only
-    - youtube-nocookie.com is correct for GDPR/privacy compliance
+    - JSON-LD VideoObject emitted only for YouTube (crawlable source)
+    - Locals/internal video gets no schema — crawlers can't access the source
+    - embed URL extracted from rendered markup (same approach as the old partial)
+    - youtube-nocookie.com used for embed (privacy); youtube.com/watch used
+      for schema url field (what Google resolves for rich results)
   =============================================================================
 -#}
-{%- set schema_name = label|striptags|trim ?: 'Video' -%}
-{%- set video_markup = content.field_video_youtube|render -%}
+{{- attach_library('cua_theme/video') -}}
 
-<div class="video-embed">
-  <div class="video-responsive">
-    {{- video_markup
-      |replace({'title="Video"': 'title="' ~ schema_name ~ '"'})
-      |raw -}}
-  </div>
-</div>
+{%- set entity_id = elements.content['#block_content'].id() ?? random() -%}
+{%- set unique_id = 'block--node--video--' ~ entity_id|replace({'_': '-'})|trim('-')|clean_class -%}
+{%- set title_id  = unique_id ~ '-label' -%}
+{%- set safe_label = label|render|striptags|trim ?: 'Video content' -%}
 
-{%- if transcript_url -%}
-  <p class="video-transcript-link">
-    <a href="{{ transcript_url }}" class="small">
-      {{- 'View video transcript'|t -}}
-    </a>
-  </p>
+{%- set classes = [
+  'block',
+  configuration.provider ? 'block-' ~ configuration.provider|clean_class : null,
+  'video',
+  'card',
+  'g-0',
+  'clearfix',
+]|filter(v => v) -%}
+
+{# ===========================================================================
+   JSON-LD: VideoObject — YouTube only
+   Extract the embed URL from rendered markup, then derive the watch URL
+   by swapping the nocookie embed path for the standard youtube.com/watch URL.
+   =========================================================================== #}
+{%- if provider == 'youtube' -%}
+  {%- set _video_markup  = content.field_video_youtube|render -%}
+  {%- set _parts         = _video_markup|split('src="') -%}
+  {%- set _embed_url     = _parts|length > 1 ? _parts[1]|split('"')[0] : '' -%}
+
+  {# Extract video ID from embed URL and build standard watch URL for schema #}
+  {%- set _video_id      = _embed_url|split('/embed/')|last|split('?')|first -%}
+  {%- set _watch_url     = _video_id ? 'https://www.youtube.com/watch?v=' ~ _video_id : _embed_url -%}
+
+  {%- set _description   = content.field_description is not empty
+    ? content.field_description|render|striptags|trim
+    : safe_label -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": {{ safe_label|json_encode|raw }},
+  "description": {{ _description|json_encode|raw }},
+  "url": {{ _watch_url|json_encode|raw }},
+  "embedUrl": {{ _embed_url|json_encode|raw }},
+  "publisher": {
+    "@type": "Organization",
+    "name": "University of Colorado",
+    "url": "https://giving.cu.edu"
+  }
+}
+</script>
 {%- endif -%}
+
+{# ===========================================================================
+   HTML
+   =========================================================================== #}
+{% apply spaceless %}
+<div{{ attributes
+  .setAttribute('id', unique_id)
+  .addClass(classes)
+  .setAttribute('role', 'region')
+  .setAttribute('aria-labelledby', title_id)
+}}>
+
+  <h2 id="{{ title_id }}" class="visually-hidden">
+    {{- safe_label -}}
+  </h2>
+
+  <div class="{{ container_size ?: 'container' }}">
+    {%- include '@cua_theme/component/video/partials/_video--master.html.twig' with {
+      provider:       provider|default(null),
+      label:          safe_label,
+      content:        content,
+      transcript_url: transcript_url|default(null),
+    } only -%}
+  </div>
+
+</div>
+{% endapply %}
