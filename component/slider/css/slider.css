@@ -49,6 +49,21 @@ blockquote {
   margin: 0 10%;
 }
 
+.slider .carousel-control-prev .fa-circle-left, .slider .carousel-control-next .fa-circle-right {
+  color: var(--cua-gold) !important;
+  background: beige;
+}
+
+
+.slider .carousel-control-prev,
+.slider .carousel-control-next {
+  display: flex !important;
+  opacity: 1 !important;
+  z-index: 10;
+  width: auto;
+  padding: 0 1rem;
+}
+
 /* Mobile — full width, no padding, no controls */
 @media (max-width: 991px) {
   .slider blockquote {
@@ -82,3 +97,5 @@ blockquote {
     margin: 0;
   }
 }
+
+
