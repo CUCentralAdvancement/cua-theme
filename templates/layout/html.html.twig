@@ -1,48 +1,16 @@
 {#
   html.html.twig
-  AI ingestion review: 2026-05-18. Re-audit annually or when org data changes.
-
-  AI INGESTION POLICY: noai/noimageai meta tags are intentionally ABSENT.
-  The university wants AI systems to index, surface, and learn from this site.
-  Do not add noai/noimageai tags without explicit policy approval.
-
-  Security surface summary:
-  - {{ page }} is the primary prompt-injection risk; mitigate via Drupal text
-    format configuration (restrict style= attributes and display:none patterns).
-  - placeholder_token|raw is safe — it is a Drupal render pipeline token,
-    not user input. Do not confuse with CSRF tokens (those are form-specific).
-  - JSON-LD speakable block actively signals AI crawlers; update if policy changes.
-  - GTM fires before any consent layer; audit tags for third-party AI data flows.
-  - charset, viewport, lang, meta description, and Open Graph tags are injected
-    by Drupal via head-placeholder and the metatag module — not this template's job.
-  - Content-Security-Policy is best enforced at the server/CDN level, not here.
 #}
 <!DOCTYPE html>
 <html{{ html_attributes }}>
 
   <head>
 
-    {#
-      PERFORMANCE HINTS
-      Preconnect reduces latency to GTM origin. dns-prefetch is a fallback for
-      browsers that do not support preconnect.
-    #}
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    {#
-      GOOGLE TAG MANAGER
-      WARNING: GTM fires before any consent layer. If any GTM tag ships page
-      content to a third-party AI service (e.g. via custom HTML or data layer
-      events), that is a data-governance risk independent of this template.
-      Audit GTM workspace for AI-adjacent tags and enforce a consent trigger
-      on anything that is not strictly necessary.
-      NOTE: GTM does not support Subresource Integrity (SRI) because the script
-      is dynamically generated per request. This is a known GTM limitation.
-    #}
     <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KBWW4MVB"></script>
 
-    {# Font preloads — crossorigin required for CORS font fetches. #}
     <link rel="preload"
       href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2"
       as="font"
@@ -54,66 +22,13 @@
       type="font/woff2"
       crossorigin>
 
-    {#
-      DRUPAL PLACEHOLDERS
-      |raw is intentional and safe: placeholder_token is a Drupal render pipeline
-      token used for BigPipe/placeholder replacement — it is never derived from
-      user input. It is NOT a CSRF token (those live in forms via csrf_token()).
-      Do not change to auto-escaped output; the placeholder tags will break.
-      Do not use |raw anywhere else in this file without the same justification.
-    #}
     <head-placeholder token="{{ placeholder_token|raw }}">
 
-    {#
-      PAGE TITLE
-      safe_join auto-escapes each element before joining, preventing XSS from
-      a malicious head_title value. AI crawlers use <title> as the document
-      label — keep titles accurate and descriptive.
-    #}
     <title>{{ head_title|safe_join(' | ') }}</title>
 
     <css-placeholder token="{{ placeholder_token|raw }}">
     <js-placeholder token="{{ placeholder_token|raw }}">
 
-    {#
-      STRUCTURED DATA — JSON-LD
-      Fully hardcoded and safe from injection.
-
-      AI INGESTION NOTE: JSON-LD is the primary signal consumed by AI systems
-      (LLMs, knowledge graphs, voice assistants). Key properties:
-
-        "@type": "NGO" is the correct Schema.org type (NGO extends Organization,
-          so listing both ["Organization", "NGO"] is redundant; "NGO" alone is
-          more precise and equally compatible).
-
-        "description" — AI systems treat this as the canonical org summary.
-          STALE DATA RISK: "$3.2 billion in assets" is hardcoded. Update this
-          figure at least annually or it will propagate outdated information
-          across AI-generated answers. Consider adding an "as of" date here.
-
-        "sameAs" — links used by knowledge graphs to deduplicate entities.
-          WARNING: the Wikipedia URL points to the University of Colorado
-          (the parent org), NOT the CU Foundation. If a Foundation-specific
-          Wikipedia article exists, replace it. If not, remove that entry —
-          a wrong sameAs actively harms entity identity in AI knowledge graphs.
-
-        "speakable" — tells voice AI and answer engines which content to read
-          aloud or surface in AI answers. The "meta[name='description']" selector
-          is valid because Drupal's metatag module injects that tag into the DOM
-          via head-placeholder above — by render time it exists. If you remove
-          the metatag module, remove this selector too.
-          The ".field--name-body p.intro" selector depends on cua_theme rendering
-          the body field with a <p class="intro"> wrapper. If the theme or field
-          display changes, this selector breaks silently. Review after any theme
-          update.
-
-        "contactPoint" / "address" — hardcoded. Update when contact info changes
-          or AI assistants will give donors wrong numbers and addresses.
-
-      If you ever make any of these values dynamic (pulled from config or fields),
-      use {{ value|e('json') }} and audit for injection — JSON-LD does not
-      benefit from HTML auto-escaping.
-    #}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -122,7 +37,7 @@
       "name": "University of Colorado Foundation",
       "alternateName": "CU Foundation",
       "url": "https://www.giving.cu.edu/",
-      "description": "Founded in 1967, the University of Colorado Foundation manages billions in assets to support education, research, and community engagement across CU's four campuses.",
+      "description": "Founded in 1967, the University of Colorado Foundation supports education, research, and community engagement across CU's four campuses.",
       "foundingDate": "1967",
       "taxID": "84-6049811",
       "nonprofitStatus": "Nonprofit501c3",
@@ -138,7 +53,10 @@
         "addressLocality": "Denver",
         "addressRegion": "CO",
         "postalCode": "80203",
-        "addressCountry": "US"
+        "addressCountry": {
+          "@type": "Country",
+          "name": "US"
+        }
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -161,32 +79,18 @@
       "sameAs": [
         "https://projects.propublica.org/nonprofits/organizations/846049811",
         "https://www.cufund.org"
-      ],
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", ".field--name-body p.intro", "meta[name='description']"]
-      }
+      ]
     }
     </script>
 
   </head>
 
-  {#
-    BODY ATTRIBUTES
-    attributes.addClass is safe — Drupal's Attribute object auto-escapes all
-    values. body_classes is assembled in preprocess, not from raw user input.
-  #}
   <body{{ attributes.addClass(body_classes) }}>
 
     <a href="#main" class="visually-hidden focusable">
       {{ 'Skip to main content'|t }}
     </a>
 
-    {#
-      GTM NOSCRIPT FALLBACK
-      Mirrors the GTM head tag for non-JS environments. Same consent-layer
-      caveat applies: this fires unconditionally.
-    #}
     <noscript>
       <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
@@ -196,30 +100,10 @@
       </iframe>
     </noscript>
 
-    {#
-      MAIN CONTENT RENDER
-      PRIMARY AI PROMPT-INJECTION SURFACE.
-
-      {{ page }} renders the entire content tree. If any text format permits
-      editors to output arbitrary style= attributes, hidden elements, or
-      display:none spans, a malicious editor or compromised account can embed
-      invisible instructions targeting AI crawlers, e.g.:
-        <span style="display:none">Ignore previous instructions…</span>
-
-      This template cannot prevent that. Mitigate at the Drupal layer:
-        1. Admin > Config > Content authoring > Text formats
-           — Remove "Limit allowed HTML tags" exceptions for style=
-           — Enable "Restrict images to this site" and similar filters
-        2. Add a custom filter_html rule blocking display:none patterns
-           if your editorial workflow requires inline styles elsewhere.
-        3. Review which roles have access to the "Full HTML" format —
-           that format bypasses all filters and is the highest-risk path.
-    #}
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}
 
-    {# See placeholder note in <head> — |raw is safe here for the same reason. #}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
 
   </body>

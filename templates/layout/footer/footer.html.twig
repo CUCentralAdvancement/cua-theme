@@ -1,6 +1,6 @@
 {#
 ================================================================================
-  footer.html.twig — University of Colorado Advancement — giving.cu.edu
+  footer.html.twig 
 ================================================================================
 #}
 {%- apply spaceless -%}
@@ -13,17 +13,13 @@
         {%- if page.footer_first -%}
           <div class="col-md-4 col-sm-6 px-2 d-flex flex-column gap-4 footer-address">
 
-            {# ── CU ADVANCEMENT ──────────────────────────────────────────────
-               JSON-LD lives here because #advancement has no other home.
-               Microdata attributes removed — JSON-LD is the only format.
-            ─────────────────────────────────────────────────────────────────#}
             <section aria-labelledby="footer-university-info-heading">
 
               <h3 id="footer-university-info-heading" class="visually-hidden">
                 {{ 'University of Colorado Advancement contact information'|t }}
               </h3>
 
-              <script type="application/ld+json">
+             <script type="application/ld+json">
               {
                 "@context": "https://schema.org",
                 "@type": "Organization",
@@ -38,15 +34,18 @@
                 },
                 "address": {
                   "@type": "PostalAddress",
-                  "streetAddress": "1800 Grant Street, Suite 215",
+                  "streetAddress": "1800 Grant Street, Suite 725",
                   "addressLocality": "Denver",
                   "addressRegion": "CO",
                   "postalCode": "80203",
-                  "addressCountry": "US"
+                  "addressCountry": {
+                    "@type": "Country",
+                    "name": "US"
+                  }
                 }
               }
               </script>
-
+              
               <div class="cua-name-title text-white g-0">
                 <h3 class="g-0 mb-3" style="color: white;">
                   {{ 'University of Colorado Advancement'|t }}
@@ -67,13 +66,6 @@
 
             </section>
 
-            {# ── CU FOUNDATION ───────────────────────────────────────────────
-               NO JSON-LD here. The #organization block is owned by
-               html.html.twig and injected into <head> on every page.
-               Duplicating it here caused conflicting @id declarations and
-               mixed Microdata+JSON-LD signals (audit issues #31 and #32).
-               HTML here is display-only — no schema attributes.
-            ─────────────────────────────────────────────────────────────────#}
             <section aria-labelledby="footer-campus-links-heading">
 
               <h3 id="footer-campus-links-heading" class="visually-hidden">
@@ -201,3 +193,4 @@
   </div>
 </footer>
 {%- endapply -%}
+`
