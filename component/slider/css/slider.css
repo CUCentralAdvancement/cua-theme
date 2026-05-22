@@ -3,38 +3,38 @@
    =================================================== */
 
 /* Spacer admin visibility */
-.user-administrator .spacer {
+.slider  .user-administrator .spacer {
   background: inherit;
 }
 
-.user-administrator .small.text-align-center {
+.slider  .user-administrator .small.text-align-center {
   display: block;
 }
 
-.small.text-align-center {
+.slider .small.text-align-center {
   display: none;
 }
 
 /* Carousel control icons */
-.fa-circle-left::before,
-.fa-circle-right::before {
-  font-size: 2.5rem !important;
+.slider .fa-circle-left::before,
+.slider .fa-circle-right::before {
+  font-size: 3.25rem !important;
 }
 
-span.fa-solid.fa-circle-left,
-span.fa-solid.fa-circle-right {
+.slider span.fa-solid.fa-circle-left,
+.slider span.fa-solid.fa-circle-right {
   color: black !important;
 }
 
-.cu-bg-white .fa-arrow-alt-circle-left:before,
-.cu-bg-white .fa-circle-left:before,
-.cu-bg-white .fa-arrow-alt-circle-right:before,
-.cu-bg-white .fa-circle-right:before {
+.slider .cu-bg-white .fa-arrow-alt-circle-left:before,
+.slider .cu-bg-white .fa-circle-left:before,
+.slider .cu-bg-white .fa-arrow-alt-circle-right:before,
+.slider .cu-bg-white .fa-circle-right:before {
   color: black;
 }
 
-.cu-bg-black .fa-arrow-alt-circle-left:before,
-.cu-bg-black .fa-circle-left:before {
+.slider .cu-bg-black .fa-arrow-alt-circle-left:before,
+.slider .cu-bg-black .fa-circle-left:before {
   color: white;
 }
 
@@ -45,15 +45,15 @@ span.fa-solid.fa-circle-right {
   width: 80%;
 }
 
-blockquote {
+.slider blockquote {
   margin: 0 10%;
 }
 
-.slider .carousel-control-prev .fa-circle-left, .slider .carousel-control-next .fa-circle-right {
-  color: var(--cua-gold) !important;
-  background: beige;
+.slider .carousel-control-prev .fa-circle-left, 
+.slider .carousel-control-next .fa-circle-right {
+	color: #000 !important;
+	background: #fff;
 }
-
 
 .slider .carousel-control-prev,
 .slider .carousel-control-next {
@@ -62,6 +62,15 @@ blockquote {
   z-index: 10;
   width: auto;
   padding: 0 1rem;
+}
+
+.slider .fa {
+  font-weight: inherit;
+}
+
+.slider .fa.fa-circle-left,
+.slider .fa.fa-circle-right {
+  border-radius: 50%;
 }
 
 /* Mobile — full width, no padding, no controls */
@@ -93,9 +102,7 @@ blockquote {
     line-height: 1.4;
   }
 
-  blockquote {
+  .slider blockquote {
     margin: 0;
   }
 }
-
-
