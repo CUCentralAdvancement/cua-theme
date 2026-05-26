@@ -13,11 +13,11 @@
 #}
 {{- attach_library('cua_theme/call-to-action') -}}
 
-{# Unique ID Generation - Safe fallback for uninitialized blocks #}
+{# ── Unique ID Generation ─────────────────────────────────────────────────── #}
 {%- set block_id = elements.content['#block_content'].id()|default(random(1000, 9999)) -%}
 {%- set unique_id = ('cta-' ~ block_id)|replace({'_': '-', ':': '--'})|clean_class -%}
 
-{# Animation Logic #}
+{# ── Animation Logic ──────────────────────────────────────────────────────── #}
 {%- set raw_animation = prefers_reduced_motion ? [] : [
   'animate__animated',
   animation ?: null,
@@ -26,7 +26,7 @@
 ]|filter(v => v) -%}
 {%- set data_animation = raw_animation|join(' ')|trim -%}
 
-{# Class Merging — position-relative ensures flag anchor works correctly #}
+{# ── Class Merging ────────────────────────────────────────────────────────── #}
 {%- set cta_classes = [
   'block',
   'call-to-action',
@@ -46,12 +46,15 @@
   id ? 'block--' ~ id|clean_class : null,
 ]|merge(utility_classes ?: [])|filter(v => v)|join(' ') -%}
 
-{# Link & Wrap Logic #}
+{# ── Link & Wrap Logic ────────────────────────────────────────────────────── #}
 {%- set links_count = links|length -%}
 {%- set single_link = (links_count == 1) ? links|first : null -%}
 {%- set wrap_entire_card = single_link and not content_contains_other_links -%}
 
-{# Attribute Hardening — no Microdata on section; schema handled via JSON-LD below #}
+{# ── Flag State ───────────────────────────────────────────────────────────── #}
+{%- set flag_is_on = flag == 'Flag On' -%}
+
+{# ── Attributes ───────────────────────────────────────────────────────────── #}
 {%- set attributes = attributes
   .setAttribute('id', unique_id)
   .addClass(cta_classes)
@@ -65,33 +68,8 @@
   {%- set attributes = attributes.setAttribute('aria-label', 'Call to Action') -%}
 {%- endif -%}
 
-{# =============================================================================
-   JSON-LD: Configurable Action type
-   Standalone schema per block — Layout Builder blocks render in isolation.
-   AI crawlers (ChatGPT, Gemini, Perplexity) and Google parse <script> JSON-LD
-   reliably; Microdata on arbitrary HTML elements is increasingly deprioritized.
-
-   schema_action_type is set by the site builder in block config.
-   Defaults to ReadAction — accurate for generic "Learn more" / content CTAs.
-   Common values:
-     ReadAction     — article, story, news link (default)
-     DonateAction   — giving / fundraising CTA
-     RegisterAction — event signup
-     ViewAction     — video or media CTA
-     LearnAction    — course or educational content
-
-   schema_description priority:
-     1. label (block title field — clean, always short)
-     2. content rendered and stripped (catches blocks where heading lives in body)
-     Truncated to 300 chars — appropriate for a schema description value.
-   ============================================================================= #}
+{# ── JSON-LD Schema ───────────────────────────────────────────────────────── #}
 {%- set schema_type = schema_action_type ?: 'ReadAction' -%}
-{# Description priority:
-   1. label (block title field — clean, always short)
-   2. block entity body.value — targets the body field directly, avoids rendering
-      the full content render array which includes icon classes, colors, and
-      other field values that contaminate a stripped string.
-#}
 {%- set schema_description = label|striptags|trim -%}
 {%- if not schema_description -%}
   {%- set _block_entity = elements.content['#block_content'] -%}
@@ -99,6 +77,7 @@
     {%- set schema_description = _block_entity.body.value|striptags|trim|slice(0, 300) -%}
   {%- endif -%}
 {%- endif -%}
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -119,50 +98,55 @@
 }
 </script>
 
+{# ═════════════════════════════════════════════════════════════════════════════
+   TEMPLATE
+   ═════════════════════════════════════════════════════════════════════════════ #}
 <section{{ attributes }}>
-  {# Drupal contextual links must sit outside the wrapper link #}
+
   {{- title_prefix -}}
   {{- title_suffix -}}
 
   {%- apply spaceless -%}
 
-  {# Card Wrapper Link — entire card is clickable when single link present #}
+  {# ── Card Wrapper Link (single link = entire card clickable) ────────────── #}
   {%- if wrap_entire_card -%}
     <a href="{{ single_link.url|default('#') }}"
        class="cta-card-link-wrapper text-decoration-none color-inherit"
        aria-label="{{ single_link.title|striptags|trim }}{% if label %} - {{ label|striptags|trim }}{% endif %}">
   {%- endif -%}
 
-    {# Flag / Badge #}
-    {%- if flag_title or icon -%}
-      {%- set flag_classes = [
-        'flag-badge',
-        'd-inline-flex',
-        'align-items-center',
-        'py-1',
-        'px-2',
-      ]|filter(v => v) -%}
-
+    {# ── Flag Badge — only renders when Flag On ─────────────────────────────
+       NOTE: This entire block including both wrapper divs lives inside the
+       flag_is_on check. Never split open/close divs across conditionals.
+    ── #}
+    {%- if flag_is_on -%}
       <div class="position-absolute start-0 top-0 z-1">
+        {%- set flag_classes = [
+          'flag-badge',
+          'd-inline-flex',
+          'align-items-center',
+          'py-1',
+          'px-2',
+        ]|filter(v => v) -%}
         <div class="flag py-2 {{ flag_background }} {{ flag_classes|join(' ')|trim }}"
              style="width:max-content;white-space:nowrap;">
-
           {%- if icon -%}
             <i class="{{ icon }} {{ icon_size }} px-1"
                {% if icon_color %}style="color:{{ icon_color }}"{% endif %}
                aria-hidden="true"></i>
           {%- endif -%}
-
           {%- if flag_title -%}
             <span class="flag-title">{{- flag_title -}}</span>
           {%- endif -%}
-
         </div>
       </div>
     {%- endif -%}
 
-    {# Media: Video / Image / Icon #}
-    {%- if provider or card_image -%}
+    {# ── Media: Video / Image / Icon ────────────────────────────────────────
+       Icon only renders here when flag is Off or N/A.
+       When flag is On, icon is already rendered in the flag badge above.
+    ── #}
+    {%- if provider or card_image or (icon and not flag_is_on) -%}
       <figure class="cta-media mb-0" role="presentation">
         {%- if provider -%}
           {%- include '@cua_theme/component/video/partials/_video--master.html.twig' -%}
@@ -170,29 +154,31 @@
           {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
           {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
         {%- elseif icon -%}
-          {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
+        {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
+        <div class="pb-2">
           {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
-        {%- endif -%}
+        </div>
+      {%- endif -%}
       </figure>
     {%- endif -%}
 
-    {# Caption #}
+    {# ── Caption ─────────────────────────────────────────────────────────── #}
     {%- if caption -%}
       {%- import '@cua_theme/component/macros/card_caption.html.twig' as captionMacros -%}
       {{- captionMacros.render_caption(caption, padding, text_color, text_alignment) -}}
     {%- endif -%}
 
-    {# Title / Label #}
+    {# ── Title / Label ───────────────────────────────────────────────────── #}
     {%- if label -%}
-      <header class="card-header border-0 pt-2 {{ padding }} {{ text_alignment }}">
+      <header class="card-header border-0 pt-2 {{ padding }}">
         <h3 id="{{ unique_id }}-label"
-            class="display-4 card-title title {{ text_color }} mb-0">
+            class="display-4 card-title title {{ text_color }} {{ text_alignment }}">
           {{- label|trim -}}
         </h3>
       </header>
     {%- endif -%}
 
-    {# Body Content #}
+    {# ── Body Content ────────────────────────────────────────────────────── #}
     {%- if content -%}
       {%- import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros -%}
       <div class="cta-text lead {{ padding }} {{ text_color }}">
@@ -200,7 +186,7 @@
       </div>
     {%- endif -%}
 
-    {# Single Link Footer #}
+    {# ── Single Link Footer ──────────────────────────────────────────────── #}
     {%- if single_link -%}
       <footer class="card-footer bg-transparent border-0 {{ padding }} {{ text_alignment }} mt-auto">
         {%- set outline_class = outline ? 'btn-outline-' ~ button_color : 'btn-' ~ button_color -%}
@@ -216,7 +202,7 @@
       </footer>
     {%- endif -%}
 
-    {# Multi-Link Footer #}
+    {# ── Multi-Link Footer ───────────────────────────────────────────────── #}
     {%- if links_count > 1 -%}
       {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
       {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false) -}}
@@ -227,4 +213,5 @@
   {%- endif -%}
 
   {%- endapply -%}
+
 </section>
