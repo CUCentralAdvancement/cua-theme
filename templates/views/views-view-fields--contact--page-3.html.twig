@@ -1,0 +1,65 @@
+{#
+  File: views-view-fields--contact--page-3.html.twig
+  View: contact | Display: page_3 (CU Foundation Staff Directory)
+  Covers: title, field_position, field_office_phone, field_email, body
+#}
+{%- apply spaceless -%}
+
+  <div class="contact contact-card" itemscope itemtype="https://schema.org/Person">
+
+    {# Name #}
+    {%- if fields.title.content -%}
+      <h4 class="cu-line-sm fw-bolder" itemprop="name">
+        {{- fields.title.content|striptags|trim|raw -}}
+      </h4>
+    {%- endif -%}
+
+    {# Professional Position #}
+    {%- if fields.field_position.content -%}
+      <div class="contact-position py-2" itemprop="jobTitle">
+        {{- fields.field_position.content|striptags|trim|raw -}}
+      </div>
+    {%- endif -%}
+
+    {# Office Phone — normalize (303) 813-7964 → 303-813-7964 for tel: href #}
+    {%- set phone_raw = fields.field_office_phone.content|striptags|trim -%}
+    {%- if phone_raw -%}
+      {%- set phone_clean = phone_raw|replace({'(': '', ')': '', ' ': '-'})|replace({'--': '-'}) -%}
+      <div class="contact-phone">
+        <a href="tel:{{ phone_clean }}" itemprop="telephone" class="text-decoration-none">
+          <i class="fa-solid fa-phone"></i>
+          <span class="ms-2">{{- phone_raw -}}</span>
+        </a>
+      </div>
+    {%- endif -%}
+
+    {# Email — strip first to test for real content before rendering #}
+    {%- set email_clean = fields.field_email.content|striptags|trim -%}
+    {%- if email_clean -%}
+      <div class="contact-email mb-2">
+        <a href="mailto:{{ email_clean }}" itemprop="email" class="text-decoration-none">
+          <i class="fa-solid fa-envelope"></i>
+          <span class="ms-2">{{- email_clean -}}</span>
+        </a>
+      </div>
+    {%- endif -%}
+
+    {# Bio — strip to test, render original to preserve markup #}
+    {%- set bio_clean = fields.body.content|striptags|trim -%}
+    {%- if bio_clean -%}
+      <div class="contact-bio" itemprop="description">
+        {{- fields.body.content|raw -}}
+      </div>
+    {%- endif -%}
+
+    {# Edit link — editors only #}
+    {%- set edit_clean = fields.edit_node.content|striptags|trim -%}
+    {%- if edit_clean -%}
+      <div class="pt-3">
+        {{- fields.edit_node.content|raw -}}
+      </div>
+    {%- endif -%}
+
+  </div>
+
+{%- endapply -%}
