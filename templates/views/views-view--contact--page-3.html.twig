@@ -10,11 +10,6 @@
   "@type": "ItemList",
   "name": "CU Foundation Staff Directory",
   "description": "Current staff contacts for the University of Colorado Foundation",
-  "publisher": {
-    "@type": "Organization",
-    "name": "University of Colorado Foundation",
-    "url": "https://cufund.org"
-  },
   "itemListElement": [
     {% for row in view.result %}
       {%- set name  = (row._entity.label ~ '')|replace({'&nbsp;': ' '})|striptags|trim -%}
