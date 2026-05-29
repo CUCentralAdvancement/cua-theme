@@ -1,0 +1,23 @@
+{#
+  File: views-view-fields--financials--block-1.html.twig
+  View: financials | Display: block_1 (Policies and Statements)
+  Fields: field_protected_file, field_file
+  Strips empty rows — not all rows have files populated.
+#}
+{%- apply spaceless -%}
+
+  {%- set protected_content = fields.field_protected_file.content|striptags|trim -%}
+  {%- set file_content      = fields.field_file.content|striptags|trim -%}
+
+  {%- if protected_content or file_content -%}
+    <div class="financial-document py-2" itemscope itemtype="https://schema.org/DigitalDocument">
+      <meta itemprop="encodingFormat" content="application/pdf">
+      {%- if protected_content -%}
+        {{- fields.field_protected_file.content|raw -}}
+      {%- elseif file_content -%}
+        {{- fields.field_file.content|raw -}}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+{%- endapply -%}
