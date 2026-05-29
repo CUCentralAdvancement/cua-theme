@@ -2,7 +2,7 @@
   File: views-view-fields--financials--block-2.html.twig
   View: financials | Display: block_2 (Investment Guides)
   Fields: field_protected_file, field_file
-  Strips empty rows — content type has multiple file fields, not all populated.
+  Strips empty rows — not all rows have files populated.
 #}
 {%- apply spaceless -%}
 
@@ -12,7 +12,6 @@
   {%- if protected_content or file_content -%}
     <div class="financial-document py-2" itemscope itemtype="https://schema.org/DigitalDocument">
       <meta itemprop="encodingFormat" content="application/pdf">
-      <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization" content="University of Colorado Foundation">
       {%- if protected_content -%}
         {{- fields.field_protected_file.content|raw -}}
       {%- elseif file_content -%}

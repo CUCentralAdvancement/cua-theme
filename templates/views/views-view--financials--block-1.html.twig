@@ -14,6 +14,7 @@
   "itemListElement": [
     {% set is_first = true %}
     {% set list_position = 1 %}
+    {% set base_url = 'https://www.giving.cu.edu' %}
     {% for row in view.result %}
       {%- set has_protected = row._entity.field_protected_file[0] is not empty -%}
       {%- set has_file      = row._entity.field_file[0] is not empty -%}
@@ -24,13 +25,13 @@
           {%- if not doc_title -%}
             {%- set doc_title = (row._entity.label ~ '')|striptags|trim -%}
           {%- endif -%}
-          {%- set doc_url = file_url(row._entity.field_protected_file[0].entity.uri.value) -%}
+          {%- set doc_url = base_url ~ (file_url(row._entity.field_protected_file[0].entity.uri.value) ~ '') -%}
         {%- else -%}
           {%- set doc_title = (row._entity.field_file[0].description ~ '')|striptags|trim -%}
           {%- if not doc_title -%}
             {%- set doc_title = (row._entity.label ~ '')|striptags|trim -%}
           {%- endif -%}
-          {%- set doc_url = file_url(row._entity.field_file[0].entity.uri.value) -%}
+          {%- set doc_url = base_url ~ (file_url(row._entity.field_file[0].entity.uri.value) ~ '') -%}
         {%- endif -%}
 
         {%- if not is_first -%},{%- endif -%}

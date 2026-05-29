@@ -1,10 +1,8 @@
 {#
   File: views-view--financials--block-2.html.twig
   View: financials | Display: block_2 (Investment Guides)
-  JSON-LD uses DigitalDocument — appropriate for PDFs and financial reports.
-  Empty rows (no file in either field) are skipped in the schema output.
-  Note: field_protected_file.description is the display title (e.g. "CU Guide to Endowments").
-        Falls back to node label if description is empty.
+  JSON-LD: DigitalDocument list for investment summaries and guides.
+  Self-maintaining — add/remove documents in Drupal, schema updates automatically.
 #}
 
 <script type="application/ld+json">
@@ -14,7 +12,9 @@
   "name": "CU Foundation Investment Guides",
   "description": "Investment summaries and guides produced by CU Advancement and the CU Foundation",
   "itemListElement": [
+    {% set is_first = true %}
     {% set list_position = 1 %}
+    {% set base_url = 'https://www.giving.cu.edu' %}
     {% for row in view.result %}
       {%- set has_protected = row._entity.field_protected_file[0] is not empty -%}
       {%- set has_file      = row._entity.field_file[0] is not empty -%}
@@ -25,15 +25,16 @@
           {%- if not doc_title -%}
             {%- set doc_title = (row._entity.label ~ '')|striptags|trim -%}
           {%- endif -%}
-          {%- set doc_url = file_url(row._entity.field_protected_file[0].entity.uri.value) -%}
+          {%- set doc_url = base_url ~ (file_url(row._entity.field_protected_file[0].entity.uri.value) ~ '') -%}
         {%- else -%}
           {%- set doc_title = (row._entity.field_file[0].description ~ '')|striptags|trim -%}
           {%- if not doc_title -%}
             {%- set doc_title = (row._entity.label ~ '')|striptags|trim -%}
           {%- endif -%}
-          {%- set doc_url = file_url(row._entity.field_file[0].entity.uri.value) -%}
+          {%- set doc_url = base_url ~ (file_url(row._entity.field_file[0].entity.uri.value) ~ '') -%}
         {%- endif -%}
 
+        {%- if not is_first -%},{%- endif -%}
     {
       "@type": "ListItem",
       "position": {{ list_position }},
@@ -49,9 +50,8 @@
         }
       }
     }
-
+        {%- set is_first = false -%}
         {%- set list_position = list_position + 1 -%}
-        {%- if not loop.last %},{% endif %}
       {%- endif -%}
     {% endfor %}
   ]
