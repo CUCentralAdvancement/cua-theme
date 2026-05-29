@@ -1,0 +1,65 @@
+{#
+  File: views-view--contact--block-1.html.twig
+  View: contact | Display: block_1
+  JSON-LD outputs wherever this block is placed.
+  Note: worksFor org name — verify this matches the correct org for this group.
+  Current contacts appear to be University of Colorado Central Advancement staff.
+#}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Central Advancement Staff",
+  "description": "University of Colorado Central Advancement contacts",
+  "itemListElement": [
+    {% for row in view.result %}
+      {%- set name  = (row._entity.label ~ '')|replace({'&nbsp;': ' '})|striptags|trim -%}
+      {%- set pos   = (row._entity.field_position[0].value   ~ '')|striptags|trim -%}
+      {%- set phone = (row._entity.field_office_phone[0].value ~ '')|replace({'(': '', ')': '', ' ': '-'})|replace({'--': '-'})|striptags|trim -%}
+      {%- set email = (row._entity.field_email[0].value ~ '')|striptags|trim -%}
+      {%- set bio   = (row._entity.body[0].value ~ '')|striptags|trim -%}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "item": {
+        "@type": "Person",
+        "name": {{ name|json_encode|raw }},
+        "worksFor": {
+          "@type": "Organization",
+          "name": "University of Colorado"
+        }
+        {%- if pos -%},
+        "jobTitle": {{ pos|json_encode|raw }}
+        {%- endif -%}
+        {%- if phone -%},
+        "telephone": {{ phone|json_encode|raw }}
+        {%- endif -%}
+        {%- if email -%},
+        "email": {{ email|json_encode|raw }}
+        {%- endif -%}
+        {%- if bio -%},
+        "description": {{ bio|json_encode|raw }}
+        {%- endif -%}
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+{%- if header -%}
+  <div class="view-header">{{- header -}}</div>
+{%- endif -%}
+
+{%- if rows -%}
+  <div class="view-content row">
+    {{- rows -}}
+  </div>
+{%- elseif empty -%}
+  <div class="view-empty">{{- empty -}}</div>
+{%- endif -%}
+
+{%- if pager -%}
+  {{- pager -}}
+{%- endif -%}
