@@ -1,0 +1,75 @@
+{#
+  File: views-view--financials--block-2.html.twig
+  View: financials | Display: block_2 (Investment Guides)
+  JSON-LD uses DigitalDocument — appropriate for PDFs and financial reports.
+  Empty rows (no file in either field) are skipped in the schema output.
+  Note: field_protected_file.description is the display title (e.g. "CU Guide to Endowments").
+        Falls back to node label if description is empty.
+#}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "CU Foundation Investment Guides",
+  "description": "Investment summaries and guides produced by CU Advancement and the CU Foundation",
+  "itemListElement": [
+    {% set list_position = 1 %}
+    {% for row in view.result %}
+      {%- set has_protected = row._entity.field_protected_file[0] is not empty -%}
+      {%- set has_file      = row._entity.field_file[0] is not empty -%}
+      {%- if has_protected or has_file -%}
+
+        {%- if has_protected -%}
+          {%- set doc_title = (row._entity.field_protected_file[0].description ~ '')|striptags|trim -%}
+          {%- if not doc_title -%}
+            {%- set doc_title = (row._entity.label ~ '')|striptags|trim -%}
+          {%- endif -%}
+          {%- set doc_url = file_url(row._entity.field_protected_file[0].entity.uri.value) -%}
+        {%- else -%}
+          {%- set doc_title = (row._entity.field_file[0].description ~ '')|striptags|trim -%}
+          {%- if not doc_title -%}
+            {%- set doc_title = (row._entity.label ~ '')|striptags|trim -%}
+          {%- endif -%}
+          {%- set doc_url = file_url(row._entity.field_file[0].entity.uri.value) -%}
+        {%- endif -%}
+
+    {
+      "@type": "ListItem",
+      "position": {{ list_position }},
+      "item": {
+        "@type": "DigitalDocument",
+        "name": {{ doc_title|json_encode|raw }},
+        "url": {{ doc_url|json_encode|raw }},
+        "encodingFormat": "application/pdf",
+        "publisher": {
+          "@type": "Organization",
+          "name": "University of Colorado Foundation",
+          "url": "https://cufund.org"
+        }
+      }
+    }
+
+        {%- set list_position = list_position + 1 -%}
+        {%- if not loop.last %},{% endif %}
+      {%- endif -%}
+    {% endfor %}
+  ]
+}
+</script>
+
+{%- if header -%}
+  <div class="view-header">{{- header -}}</div>
+{%- endif -%}
+
+{%- if rows -%}
+  <div class="view-content row">
+    {{- rows -}}
+  </div>
+{%- elseif empty -%}
+  <div class="view-empty">{{- empty -}}</div>
+{%- endif -%}
+
+{%- if pager -%}
+  {{- pager -}}
+{%- endif -%}
