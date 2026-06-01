@@ -1,0 +1,17 @@
+{#
+  File: views-view-fields--contact--page-1.html.twig
+  View: contact | Display: page_1 (Contacts page)
+  Wraps nothing field in clean contact card div.
+  Microdata must be removed from the Views rewrite directly in Views UI.
+#}
+{%- apply spaceless -%}
+
+  {%- set nothing_content = fields.nothing.content|striptags('<h3><h4><div><p><span><a><i><br><strong>')|trim -%}
+
+  {%- if nothing_content -%}
+    <div class="contact contact-card">
+      {{- nothing_content|raw -}}
+    </div>
+  {%- endif -%}
+
+{%- endapply -%}

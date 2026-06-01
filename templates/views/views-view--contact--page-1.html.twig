@@ -1,0 +1,71 @@
+{#
+  File: views-view--contact--page-1.html.twig
+  View: contact | Display: page_1 (Contacts page)
+  Hardcoded JSON-LD — org contact info is static, not driven by entity fields.
+  No microdata — handled entirely by JSON-LD.
+#}
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "University of Colorado Foundation",
+    "url": "https://www.giving.cu.edu",
+    "telephone": "303-813-7935",
+    "email": "gifts@cufund.org",
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "name": "Main office",
+        "streetAddress": "1800 Grant St., Suite 725",
+        "addressLocality": "Denver",
+        "addressRegion": "CO",
+        "postalCode": "80203",
+        "addressCountry": "US"
+      },
+      {
+        "@type": "PostalAddress",
+        "name": "Mailing address for gifts",
+        "postOfficeBoxNumber": "P.O. Box 17126",
+        "addressLocality": "Denver",
+        "addressRegion": "CO",
+        "postalCode": "80217-9155",
+        "addressCountry": "US"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Office of Advancement",
+    "url": "https://www.giving.cu.edu",
+    "email": "giving@cu.edu",
+    "address": {
+      "@type": "PostalAddress",
+      "name": "Main office",
+      "streetAddress": "1800 Grant St., Suite 215",
+      "addressLocality": "Denver",
+      "addressRegion": "CO",
+      "postalCode": "80203",
+      "addressCountry": "US"
+    }
+  }
+]
+</script>
+
+{%- if header -%}
+  <div class="view-header">{{- header -}}</div>
+{%- endif -%}
+
+{%- if rows -%}
+  <div class="view-content row">
+    {{- rows -}}
+  </div>
+{%- elseif empty -%}
+  <div class="view-empty">{{- empty -}}</div>
+{%- endif -%}
+
+{%- if pager -%}
+  {{- pager -}}
+{%- endif -%}
