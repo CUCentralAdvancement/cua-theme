@@ -1,0 +1,59 @@
+{#
+  File: views-view-fields--contact--page-2.html.twig
+  View: contact | Display: page_2 (CU Foundation Leadership)
+  Replaces the Views nothing field rewrite entirely.
+  Clean HTML only — schema handled by JSON-LD in outer view template.
+  No microdata.
+#}
+
+{%- apply spaceless -%}
+
+  <div class="contact contact-card">
+    <div class="container mb-5">
+      <div class="row">
+     
+     {%- if fields.field_headshot.content -%}
+      <div class="col-md-5 col-sm-12">
+        {{- fields.field_headshot.content|raw -}}
+      </div>
+     {%- endif -%}
+
+        <div class="{{ headshot_clean ? 'col-md-7' : 'col-12' }} col-sm-12">
+
+          {# Name #}
+          {%- if fields.title.content -%}
+            <h3 class="cu-line-sm fw-bolder">
+              {{- fields.title.content|striptags|trim|raw -}}
+            </h3>
+          {%- endif -%}
+
+          {# Position #}
+          {%- set position_clean = fields.field_position.content|striptags|trim -%}
+          {%- if position_clean -%}
+            <p class="fst-italic mt-1 mb-2">{{- position_clean|raw -}}</p>
+          {%- endif -%}
+
+          {# Bio #}
+          {%- set bio_clean = fields.body.content|striptags|trim -%}
+          {%- if bio_clean -%}
+            <div class="contact-bio">{{- fields.body.content|raw -}}</div>
+          {%- endif -%}
+
+          {# Profile link #}
+          {%- set view_node_clean = fields.view_node.content|striptags|trim -%}
+          {%- if view_node_clean -%}
+            <div class="mt-4 w-100">{{- fields.view_node.content|raw -}}</div>
+          {%- endif -%}
+
+          {# Edit link — editors only #}
+          {%- set edit_clean = fields.edit_node.content|striptags|trim -%}
+          {%- if edit_clean -%}
+            <div class="pt-3">{{- fields.edit_node.content|raw -}}</div>
+          {%- endif -%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{%- endapply -%}

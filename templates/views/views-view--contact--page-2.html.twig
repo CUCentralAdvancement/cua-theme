@@ -1,0 +1,68 @@
+{#
+  File: views-view--contact--page-2.html.twig
+  View: contact | Display: page_2 (CU Foundation Leadership)
+  JSON-LD uses Person schema with image, description, and profile URL.
+  Microdata must be removed from the nothing field rewrite in Views UI.
+#}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "CU Foundation Leadership",
+  "description": "University of Colorado Foundation executive leadership team",
+  "itemListElement": [
+    {% set is_first = true %}
+    {% set list_position = 1 %}
+    {% for row in view.result %}
+      {%- set name      = (row._entity.label ~ '')|replace({'&nbsp;': ' '})|striptags|trim -%}
+      {%- set jobtitle  = (row._entity.field_position[0].value ~ '')|striptags|trim -%}
+      {%- set bio       = (row._entity.body[0].summary ~ '')|striptags|trim -%}
+      {%- if not bio -%}
+        {%- set bio = (row._entity.body[0].value ~ '')|striptags|trim|slice(0, 200) -%}
+      {%- endif -%}
+      {%- set profile_url = 'https://www.giving.cu.edu' ~ (row._entity.path.alias ~ '') -%}
+      {%- if name -%}
+        {%- if not is_first -%},{%- endif -%}
+    {
+      "@type": "ListItem",
+      "position": {{ list_position }},
+      "item": {
+        "@type": "Person",
+        "name": {{ name|json_encode|raw }},
+        "worksFor": {
+          "@type": "Organization",
+          "name": "University of Colorado Foundation"
+        },
+        "url": {{ profile_url|json_encode|raw }}
+        {%- if jobtitle -%},
+        "jobTitle": {{ jobtitle|json_encode|raw }}
+        {%- endif -%}
+        {%- if bio -%},
+        "description": {{ bio|json_encode|raw }}
+        {%- endif -%}
+      }
+    }
+        {%- set is_first = false -%}
+        {%- set list_position = list_position + 1 -%}
+      {%- endif -%}
+    {% endfor %}
+  ]
+}
+</script>
+
+{%- if header -%}
+  <div class="view-header">{{- header -}}</div>
+{%- endif -%}
+
+{%- if rows -%}
+  <div class="view-content row">
+    {{- rows -}}
+  </div>
+{%- elseif empty -%}
+  <div class="view-empty">{{- empty -}}</div>
+{%- endif -%}
+
+{%- if pager -%}
+  {{- pager -}}
+{%- endif -%}
