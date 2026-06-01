@@ -1,15 +1,13 @@
 {# 
-  File: views-view-fields--board-of-directors.html.twig 
-  This one file handles ALL displays for this view (Page + Attachments).
-  Optimized for Spaceless HTML, SEO, Entity Decoding, and dynamic headings.
+  File: views-view-fields--board-of-directors.html.twig
+  Clean HTML only — schema handled entirely by JSON-LD in attachment_2.
+  No microdata. Google recommends JSON-LD exclusively.
 #}
 {%- apply spaceless -%}
 
-  {# Check if this is the main page display to determine heading level #}
   {%- set is_page = (view.current_display == 'page_1') -%}
   {%- set h_tag = is_page ? 'h3' : 'h4' -%}
 
-  {# Pre-process company field to determine if it's a real org or a description #}
   {%- set company_raw = fields.field_company.content|striptags|trim -%}
   {%- set retire_keywords = ['retired', 'self-employed', 'self employed', 'freelance', 'consultant', 'independent', 'volunteer', 'former'] -%}
   {%- set is_description = false -%}
@@ -19,62 +17,38 @@
     {%- endif -%}
   {%- endfor -%}
 
-  <div itemscope itemtype="https://schema.org/Person">
+  <div class="contact-card">
 
-    {# Name — dynamically uses h3 or h4 #}
     {%- if fields.title.content -%}
-      <{{ h_tag }} class="cu-line-sm fw-bolder" itemprop="name">
+      <{{ h_tag }} class="cu-line-sm fw-bolder">
         {{- fields.title.content|striptags|trim|raw -}}
       </{{ h_tag }}>
     {%- endif -%}
 
-    {# Board Designation — board role e.g. Chair, Treasurer #}
-    {%- if fields.field_board_of_directors.content -%}
-      <div class="fst-italic bold cu-gold pb-2" itemprop="jobTitle">
-        {{- fields.field_board_of_directors.content|striptags|trim|raw -}}
-      </div>
+    {%- set board_clean = fields.field_board_of_directors.content|striptags|trim -%}
+    {%- if board_clean -%}
+      <div class="fst-italic bold cu-gold pb-2">{{- board_clean|raw -}}</div>
     {%- endif -%}
 
-    {# Professional Position — their actual career title #}
-    {%- if fields.field_position.content -%}
-      <div class="fst-italic pb-2" itemprop="jobTitle">
-        {{- fields.field_position.content|striptags|trim|raw -}}
-      </div>
+    {%- set position_clean = fields.field_position.content|striptags|trim -%}
+    {%- if position_clean -%}
+      <div class="fst-italic pb-2">{{- position_clean|raw -}}</div>
     {%- endif -%}
 
-    {# Company/Organization #}
     {%- if company_raw -%}
-      {%- if is_description -%}
-        <div class="fst-italic pb-2" itemprop="description">
-          {{- company_raw|raw -}}
-        </div>
-      {%- else -%}
-        <div itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
-          <span class="pb-2" itemprop="name">{{- company_raw|raw -}}</span>
-        </div>
-      {%- endif -%}
+      <div class="fst-italic pb-2">{{- company_raw|raw -}}</div>
     {%- endif -%}
 
-    {# Location #}
-    {%- if fields.field_home.content -%}
-      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-        <span itemprop="addressLocality">
-          {{- fields.field_home.content|striptags|trim|raw -}}
-        </span>
-      </div>
+    {%- set home_clean = fields.field_home.content|striptags|trim -%}
+    {%- if home_clean -%}
+      <div class="pb-2">{{- home_clean|raw -}}</div>
     {%- endif -%}
 
-    {# Static Board Membership — hidden from display, visible to parsers #}
-    <div itemprop="memberOf" itemscope itemtype="https://schema.org/Organization" style="display:none;">
-      <span itemprop="name">University of Colorado Foundation Board of Directors</span>
-    </div>
-
-    {# Edit Link #}
-    {%- if fields.edit_node.content -%}
-      <div class="pt-3">
-        {{- fields.edit_node.content|raw -}}
-      </div>
+    {%- set edit_clean = fields.edit_node.content|striptags|trim -%}
+    {%- if edit_clean -%}
+      <div class="pt-3">{{- fields.edit_node.content|raw -}}</div>
     {%- endif -%}
 
   </div>
+
 {%- endapply -%}

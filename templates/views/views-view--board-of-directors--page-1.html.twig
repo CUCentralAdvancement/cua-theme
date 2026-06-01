@@ -1,0 +1,19 @@
+{#
+  File: views-view--board-of-directors--page-1.html.twig
+  View: board_of_directors | Display: page_1 (Board Leadership)
+  Outer wrapper for the page display.
+  JSON-LD lives in attachment_2 template — iterates all board members.
+  This template just renders leadership rows then passes to the attachment.
+#}
+
+{%- if rows -%}
+  <div class="view-content row">
+    {{- rows -}}
+  </div>
+{%- elseif empty -%}
+  <div class="view-empty">{{- empty -}}</div>
+{%- endif -%}
+
+{%- if attachment_after -%}
+  {{- attachment_after -}}
+{%- endif -%}
