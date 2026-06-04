@@ -11,14 +11,14 @@ global-styling:
         weight: -11
       templates/layout/header/css/navigation.css:
         weight: -11
-      css/style.css:
-        weight: -11
       component/macros/css/card.css:
         weight: -11
       templates/layout/footer/css/footer.css:
         weight: -11
       layouts/css/layout-builder.css:
         weight: -11
+      css/overrides.css:
+        weight: -10
 
   # Javascript
   js:
