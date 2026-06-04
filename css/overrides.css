@@ -6,10 +6,7 @@
   background: black !important;
 }
 
-.site-footer .block {
-  background: transparent !important;
-}
-
+/* First declaration (transparent) removed — was immediately overridden */
 .site-footer .block {
   background: #262626 !important;
 }
@@ -129,16 +126,16 @@ div#block--node--basic-block--2025,
 }
 
 #cta-2058 .display-4.cu-text-white {
-    color: var(--cua-black) !important;
-    padding: .3rem 0;
+  color: var(--cua-black) !important;
+  padding: .3rem 0;
 }
 
 #cta-2058 .fw-normal {
-    line-height: 1.45 !important;
+  line-height: 1.45 !important;
 }
 
 #cta-2058 a.cta-card-link-wrapper.text-decoration-none.color-inherit {
-    padding: 0 0 2rem;
+  padding: 0 0 2rem;
 }
 
 /* ----------------------------------------
@@ -228,6 +225,56 @@ a.color-financials:hover {
 }
 
 /* ----------------------------------------
+   GIVE NOW — VIEW ALL PAGE ONLY
+   Scoped to .page-view-give-now body class
+---------------------------------------- */
+
+.page-view-give-now .view-give-now .view-content .views-row:nth-of-type(-n+4) {
+  background-color: rgba(25, 135, 84, 0.10);
+  border-bottom: 50px solid #fff;
+}
+
+.page-view-give-now .view-give-now .view-content .views-row:nth-of-type(n+5) {
+  background-color: rgba(220, 53, 69, 0.10);
+  border-bottom: 50px solid #fff;
+}
+
+.page-view-give-now .view-give-now .view-content .views-row .col-3 {
+  border-right: 5px solid #fff;
+}
+
+.page-view-give-now .give-row {
+  min-height: 260px;
+  position: relative;
+}
+
+.page-view-give-now .give-row .col-3 {
+  position: relative;
+}
+
+.page-view-give-now .give-row .col-3 .btn-dark {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  background: white;
+  color: black;
+}
+
+.page-view-give-now .contextual .trigger {
+  display: none !important;
+}
+
+.page-view-give-now .give-row .btn-dark {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  background-color: #d9534f !important;
+  color: white !important;
+  border-radius: 0;
+  border-color: indianred;
+}
+
+/* ----------------------------------------
    FEATURED TOP
 ---------------------------------------- */
 
@@ -262,14 +309,484 @@ a.color-financials:hover {
 }
 
 /* ----------------------------------------
-   MEDIA QUERIES
+   NODE 1005 — Financials / Charts Page
+   Scoped to .page-node-1005 body class
+   Empty banner rule removed — was a no-op
 ---------------------------------------- */
 
+.page-node-1005 .layout.layout--twocol-section.fp {
+  background-attachment: scroll !important;
+  overflow: visible !important;
+  position: relative !important;
+  transform: none !important;
+  z-index: auto !important;
+}
+
+.page-node-1005 .block.block-charts-blocks.block-charts-block {
+  border: none !important;
+  margin: auto !important;
+  max-width: 60% !important;
+}
+
+.page-node-1005 h4 {
+  font-size: 1.25rem !important;
+}
+
+.page-node-1005 .flag {
+  font-size: 1.1rem;
+}
+
+.page-node-1005 p.small-text {
+  font-size: .8rem;
+  line-height: 1.1;
+}
+
+.page-node-1005 .highcharts-axis .tick text,
+.page-node-1005 .highcharts-axis-labels text,
+.page-node-1005 g.tick text {
+  fill: #000 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+.page-node-1005 .c3 text,
+.page-node-1005 .c3-chart text,
+.page-node-1005 .c3-chart-text text,
+.page-node-1005 .c3-axis text,
+.page-node-1005 .c3-axis-x text,
+.page-node-1005 .c3-axis-y text {
+  font-family: inherit !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+}
+
+.page-node-1005 .c3 text[style],
+.page-node-1005 .c3-chart text[style],
+.page-node-1005 .c3-axis text[style],
+.page-node-1005 .c3-chart-text text[style] {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+.page-node-1005 .charts-chartjs.chart {
+  color: #000 !important;
+  font-family: inherit !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+.page-node-1005 .charts-chartjs.chart + .chart-legend,
+.page-node-1005 .charts-chartjs.chart + .chart-title {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+.page-node-1005 img.endowment-image,
+.page-node-1005 img.asset-image,
+.page-node-1005 img.ltip-image,
+.page-node-1005 img.transfers-image {
+  display: block !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  width: 60% !important;
+}
+
+/* ==========================================================================
+   IMPACT REPORTS — Scoped to page-node-930, page-node-935, page-node-949
+   Uses :is() to avoid repeating three selectors on every rule.
+   ========================================================================== */
+
+:is(.page-node-930, .page-node-935, .page-node-949) h1,
+:is(.page-node-930, .page-node-935, .page-node-949) .h1,
+:is(.page-node-930, .page-node-935, .page-node-949) h2,
+:is(.page-node-930, .page-node-935, .page-node-949) .h2,
+:is(.page-node-930, .page-node-935, .page-node-949) h3,
+:is(.page-node-930, .page-node-935, .page-node-949) .h3,
+:is(.page-node-930, .page-node-935, .page-node-949) h4,
+:is(.page-node-930, .page-node-935, .page-node-949) .h4,
+:is(.page-node-930, .page-node-935, .page-node-949) h5,
+:is(.page-node-930, .page-node-935, .page-node-949) .h5,
+:is(.page-node-930, .page-node-935, .page-node-949) h6,
+:is(.page-node-930, .page-node-935, .page-node-949) .h6,
+:is(.page-node-930, .page-node-935, .page-node-949) h1.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h2.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h3.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h4.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h5.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h6.title {
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h2 {
+  font-size: 2.25rem !important;
+  font-weight: var(--font-weight-xbold);
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h3 {
+  font-size: 2rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h4 {
+  font-size: 1.75rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h5 {
+  font-size: 1.5rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h6 {
+  font-size: 1.25rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h2.title,
+:is(.page-node-930, .page-node-935, .page-node-949) p.h3.title,
+:is(.page-node-930, .page-node-935, .page-node-949) p.h4.title,
+:is(.page-node-930, .page-node-935, .page-node-949) p.h5.title {
+  color: inherit;
+  font-family: var(--font-roboto), sans-serif !important;
+  line-height: 1.3;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h2.title-lg {
+  font-size: 2.75rem !important;
+  font-weight: var(--font-weight-xbold);
+  font-family: var(--font-roboto), sans-serif !important;
+  margin: 1.3rem 0 .3rem 0;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h2.title {
+  font-size: 1.8rem !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-family: var(--font-roboto), sans-serif;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h3.title {
+  font-size: var(--h3-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h4.title {
+  font-size: var(--h4-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h5.title {
+  font-size: var(--h5-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+  line-height: 1.4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h6.title {
+  font-size: var(--h6-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+  line-height: 1.1;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p {
+  font-size: 1.25rem !important;
+  line-height: 1.6;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) blockquote {
+  border-left: none;
+  color: var(--cua-gray-700);
+  font-size: 1.25em;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 10px auto;
+  padding: 1rem 2rem;
+  position: relative;
+  width: 85%;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) blockquote p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-thin {
+  font-family: var(--font-roboto), sans-serif !important;
+  font-size: 1.75rem !important;
+  font-weight: var(--font-weight-xlight) !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-bold {
+  font-weight: var(--font-weight-bold) !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .large-font p {
+  font-size: 1.25rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .card .btn {
+  min-width: 2rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .card-img.large {
+  padding-top: 1rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .top-video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.medium {
+  width: 60% !important;
+  height: auto !important;
+  padding: 0 0 0 2rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .carousel-indicators {
+  display: block !important;
+  margin: 5rem 0 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .call-to-action.card p span {
+  font-family: var(--font-roboto), sans-serif !important;
+  font-size: 1.85rem !important;
+  font-weight: var(--font-weight-xlight) !important;
+  margin: 0 !important;
+}
+
+/* Section border accents */
+:is(.page-node-930, .page-node-935, .page-node-949) div#scholarships {
+  border-bottom: 15px solid #045e62 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#faculty {
+  border-bottom: 15px solid #ac355f !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#health-care {
+  border-bottom: 15px solid #4e93a4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#research {
+  border-bottom: 15px solid #544181 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#projects-programs {
+  border-bottom: 15px solid #d94e2a !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#investment-future {
+  border-bottom: 15px solid #fcb040 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#endowment-update {
+  border-bottom: 15px solid #d98407 !important;
+}
+
+/* Background color utilities */
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-agua-lightest {
+  background: #bceae7 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-purple-lightest {
+  background: #c7bde3 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-yellow-lightest {
+  background: #feeebf !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-orange-lightest {
+  background: #ffb69f !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-blue-lightest {
+  background: #cdf2fb !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-blue-med {
+  background: #4e93a4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-align-center.bg-blue-med {
+  background: #4e93a4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-align-center .bg-yellow-2 {
+  background: #d98407 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-blue-dark {
+  background: #5c7a82 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-align-center.bg-yellow-2.p-2.text-white.h4.title-text {
+  background: #d98407;
+}
+
+/* Half and Half card body top margins */
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1033 .card-body {
+  margin-top: 8.8rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1037 .card-body {
+  margin-top: 9.5rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1036 .card-body {
+  margin-top: 2.5rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1038 .card-body {
+  margin-top: 10rem;
+}
+
+/* Call to action resets */
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--call-to-action--949 .block .call-to-action,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--call-to-action--946 .block .call-to-action,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--call-to-action--994 .block .call-to-action {
+  margin: 0;
+  padding: 1rem 0;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 .card-body.d-flex.flex-column.card-text.lead.g-0.clearfix.remove-padding.cu-text-black {
+  padding-left: .9rem;
+}
+
+/* Half and Half row resets */
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--959 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--960 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--961 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--962 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--968 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--971 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--973 .row.g-0.mx-5.pt-3,
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--990 .row.g-0.mx-5.pt-3 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Half and Half video padding */
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--961 .video-container .px-3 {
+  padding-right: 3rem !important;
+  padding-left: 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--962 .video-container .px-3 {
+  padding-right: 1rem !important;
+  padding-left: 1.5em !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--961 .display-4.card-text.lead.h3.title.cu-text-black,
+:is(.page-node-930, .page-node-935, .page-node-949) .display-4.card-text.lead.h3.title.cu-text-black {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--968 .card-header.cu-text-black.medium.g-0 {
+  padding: 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--call-to-action--886 {
+  margin: 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--908 {
+  padding: 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--971 {
+  padding: 0 35px;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--call-to-action--1044 .block .call-to-action {
+  margin: 0 auto !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--call-to-action--1044 img {
+  margin-bottom: 2rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--half-and-half--960 .card .mx-5 {
+  margin-right: 2rem !important;
+  margin-left: 2rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--971 .card-img {
+  padding-right: 2rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--9964 .card-img {
+  padding-left: 2rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--973 .card-img {
+  padding: 0 0 0 3rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 .half-and-half .card-img.large {
+  width: 80% !important;
+  height: auto !important;
+  padding: 0 0 0 3rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 p {
+  padding-right: 2rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--938,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--939,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--963,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--989,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--970,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--976,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--972,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--975,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--half-and-half--964,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--half-and-half--990 {
+  padding: 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--989 .container.mb-3,
+:is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--976 .container.mb-3 {
+  padding: 0;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--994 .text-align-center.bg-yellow-2.p-2.text-white.h4.title-text {
+  color: black !important;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES
+   All breakpoints consolidated here.
+   ========================================================================== */
+
+/* node-1005 data viz images — mobile */
+@media (max-width: 768px) {
+  .page-node-1005 img.endowment-image,
+  .page-node-1005 img.asset-image,
+  .page-node-1005 img.ltip-image,
+  .page-node-1005 img.transfers-image {
+    display: block !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+}
+
+/* Global + Impact Report responsive — 991px */
 @media (max-width: 991px) {
+
+  /* ── Global slider ─────────────────────────────────────────────── */
   .slider blockquote {
     margin: 0;
     padding: 0;
     width: 100%;
+    border-left: 0 solid var(--cua-gold);
   }
 
   .slider button.carousel-control-prev,
@@ -277,16 +794,153 @@ a.color-financials:hover {
     display: none;
   }
 
-  .slider blockquote {
-    border-left: 0 solid var(--cua-gold);
-  }
-
   .slider .px-5 {
     padding-right: 0 !important;
     padding-left: 2rem !important;
   }
-  
+
   div#front-page-overlay {
     background: #000000;
-}
+  }
+
+  /* ── Impact Report scoped ──────────────────────────────────────── */
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 p {
+    padding-right: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) #block--node--basic-block--938 {
+    padding: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--971 img {
+    padding-right: 0;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 img {
+    padding-left: 0;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--973 .card-img,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 .half-and-half .card-img.large {
+    padding: 0;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--spacer--991,
+  :is(.page-node-930, .page-node-935, .page-node-949) .block--_92 {
+    display: none !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#hero-video-banner {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--969 {
+    padding: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--938 {
+    padding-top: 1rem !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--939 .col.px-4.mt-5.mb-3,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--963 .col.px-4.mt-5.mb-3,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--943 .col.px-4.mt-5.mb-3,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--952 .col.px-4.mt-5.mb-3,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--989 .col.px-4.mt-5.mb-3,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--975 .col.px-4.mt-5.mb-3,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--970 .col.px-4.mt-5.mb-3,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--972 .col.px-4.mt-5.mb-3 {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--964 .card-header.cu-text-black.g-0 {
+    padding-left: 1.5rem;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--943 .col.p-4 {
+    padding: 0 !important;
+    margin-top: 2rem;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--961 .video-container .px-3 {
+    padding-right: 3rem !important;
+    padding-left: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#karla-berrum,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#sarah-coronna {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) blockquote {
+    padding: 0;
+    position: relative;
+    width: 95%;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--basic-block--908 {
+    padding: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--971 {
+    padding: 0;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) p {
+    font-size: 1rem !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .card-body {
+    padding: 1rem 0 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.medium {
+    width: 92% !important;
+    padding: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) #block--node--slider--907,
+  :is(.page-node-930, .page-node-935, .page-node-949) #block--node--half-and-half--990,
+  :is(.page-node-930, .page-node-935, .page-node-949) #block--node--slider--902 {
+    margin: 15px !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.small img {
+    width: 93% !important;
+    height: auto !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .basic-block .card {
+    padding: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .menu-links.vertical {
+    flex-direction: column !important;
+    margin: auto !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .spacer .p-5 {
+    padding: 1rem !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.large {
+    width: 100% !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--961 .video-container .px-3 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding: 0 25px !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1033 .card-body,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1037 .card-body,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1036 .card-body,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#block--node--half-and-half--1038 .card-body {
+    margin-top: 0.01rem;
+  }
+
 }
