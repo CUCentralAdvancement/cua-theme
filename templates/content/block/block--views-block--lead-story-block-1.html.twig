@@ -100,8 +100,8 @@
           'image': {
             '@type':   'ImageObject',
             'url':     _image_url,
-            'width':   353,
-            'height':  236,
+            'width':   360,
+            'height':  240,
             'caption': _image_alt
           }
         }) -%}
@@ -192,10 +192,12 @@
                     <figure class="card-header mb-2">
                       <img
                         src="{{ image_url }}"
-                        alt="{{ alt_text }}"
+                        alt="{{ node.field_image.alt|default(label)|trim }}"
+                        width="360"
+                        height="240"
                         loading="{{ loop.first ? 'eager' : 'lazy' }}"
                         fetchpriority="{{ loop.first ? 'high' : 'auto' }}"
-                        class="img-fluid w-100">
+                        class="card-header mb-2"/>
                     </figure>
                   {% endif %}
 
