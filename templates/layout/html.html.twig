@@ -9,9 +9,12 @@
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-  {# ── Font preloads ───────────────────────────────────────────────── #}
-  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+{# ── Font preloads (Targeted for Global LCP) ──────────────────────── #}
+  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-300.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin>
   
   {# ── Font preloads (The Bridge-Prevention Protection Act) ──────────────── #}
   <link rel="preload" href="/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -126,4 +129,4 @@
   <js-bottom-placeholder token="{{ placeholder_token|raw }}">
 
 </body>
-</html>
+</html>`
