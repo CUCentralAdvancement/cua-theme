@@ -135,4 +135,4 @@ video:
       component/video/css/video.css:
         weight: -10
   js:
-    component/video/js/player.js: { minified: true }``
+    component/video/js/player.js: { minified: true }
