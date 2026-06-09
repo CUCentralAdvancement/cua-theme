@@ -3,7 +3,7 @@
 ---------------------------------------- */
 
 #site-footer-bottom .nav {
-  background: black !important;
+  background: #000 !important;
 }
 
 /* First declaration (transparent) removed — was immediately overridden */
@@ -26,7 +26,7 @@ aside a.bef-link {
 
 aside a.nav-link:hover,
 aside a.bef-link:hover {
-  color: #fff !important;
+  color: #fff;
 }
 
 header .navbar-expand-lg .navbar-nav .nav-link {
