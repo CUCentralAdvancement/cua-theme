@@ -38,12 +38,3 @@ regions:
 libraries:
   - cua_theme/global-styling
   - cua_theme/fontawesome
-  - cua_theme/alert
-  - cua_theme/banner
-  - cua_theme/call-to-action
-  - cua_theme/counter
-  - cua_theme/half-and-half
-  - cua_theme/spacer
-  - cua_theme/tabs
-  - cua_theme/video
-  - cua_theme/image
