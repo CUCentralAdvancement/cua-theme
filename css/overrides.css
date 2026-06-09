@@ -125,11 +125,6 @@ div#block--node--basic-block--2025,
   padding: 0 0 .75rem;
 }
 
-#cta-2058 .display-4.cu-text-white {
-  color: var(--cua-black) !important;
-  padding: .3rem 0;
-}
-
 #cta-2058 .fw-normal {
   line-height: 1.45 !important;
 }
@@ -138,6 +133,10 @@ div#block--node--basic-block--2025,
   padding: 0 0 2rem;
 }
 
+#cta-2058 .display-4.cu-text-white {
+  color: var(--cua-black) !important;
+  padding: 1rem 0 0;
+}
 /* ----------------------------------------
    HERO / PARAGRAPHS
 ---------------------------------------- */
