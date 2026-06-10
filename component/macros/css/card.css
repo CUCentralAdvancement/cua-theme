@@ -731,8 +731,19 @@ a figure {
   display: block !important;
 }
 
-a.card-link.btn.btn-outline-cu-bg-black {
-  border: 2px solid var(--cua-black);
+a.card-link.btn.btn-outline-cu-bg-black,
+span.card-link.btn.btn-outline-cu-bg-black {
+  border: 2px solid var(--cua-black) !important;
+}
+
+a.card-link.btn.btn-outline-cu-bg-gold,
+span.card-link.btn.btn-outline-cu-bg-gold {
+  border: 2px solid var(--cua-gold) !important;
+}
+
+a.card-link.btn.btn-outline-cu-bg-white,
+span.card-link.btn.btn-outline-cu-bg-white {
+  border: 2px solid var(--cua-white) !important;
 }
 
 /* Mobile adjustments */

@@ -156,11 +156,11 @@
           {%- import '@cua_theme/component/macros/card_image.html.twig' as cardImageMacros -%}
           {{- cardImageMacros.render_card_image(card_image, position_container, text_alignment, text_color, image_size, visibility, content, true) -}}
         {%- elseif icon -%}
-        {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
-        <div class="pb-2">
-          {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
-        </div>
-      {%- endif -%}
+          {%- import '@cua_theme/component/macros/card_icon.html.twig' as iconMacros -%}
+          <div class="pb-2">
+            {{- iconMacros.render_icon(icon, icon_size, icon_color, padding, position_container, text_alignment) -}}
+          </div>
+        {%- endif -%}
       </figure>
     {%- endif -%}
 
@@ -188,16 +188,16 @@
       </div>
     {%- endif -%}
 
-    {# ── Single Link Footer ──────────────────────────────────────────────── #}
+   {# ── Single Link Footer ──────────────────────────────────────────────── #}
     {%- if single_link -%}
-      <footer class="card-footer bg-transparent border-0 {{ padding }} {{ text_alignment }} mt-auto">
+      <footer class="card-footer d-flex flex-wrap {{ container_size }} {{ position_container }} {{ text_alignment }} {{ padding }} mb-5 border-0 bg-transparent mt-auto">
         {%- set outline_class = outline ? 'btn-outline-' ~ button_color : 'btn-' ~ button_color -%}
         {%- if wrap_entire_card -%}
-          <span class="btn {{ outline_class }} mt-3 visually-hidden">
+          <span class="card-link btn {{ outline_class }} text-decoration-none p-2 mt-3" aria-hidden="true" style="display:inline-block;">
             {{- single_link.title -}}
           </span>
         {%- else -%}
-          <a href="{{ single_link.url }}" class="btn {{ outline_class }} mt-3">
+          <a href="{{ single_link.url }}" class="card-link btn {{ outline_class }} text-decoration-none p-2 mt-3">
             {{- single_link.title -}}
           </a>
         {%- endif -%}
