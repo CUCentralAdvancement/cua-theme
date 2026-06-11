@@ -503,7 +503,7 @@ aside .nav {
 
 /* Rebuild cache button styling */
 .toolbar-icon.toolbar-icon-rebuild-cache-access.toolbar-item {
-  background: #d9534f !important; /* Red background to indicate action */
+  background: #006623 !important;
   color: white !important; /* White text */
   font-weight: bold !important; /* Bold text */
   display: flex; /* Flexbox layout */
@@ -516,7 +516,7 @@ aside .nav {
 
 /* Hover effect for rebuild cache button */
 .toolbar-icon.toolbar-icon-rebuild-cache-access.toolbar-item:hover {
-  background: #c9302c !important; /* Darker red on hover */
+  background: #000000 !important; /* Darker red on hover */
 }
 
 /* Rebuild cache button icon */
