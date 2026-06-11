@@ -221,6 +221,24 @@ a:focus {
 }
 
 /* =====================================
+   Tweak the front page h1
+   ===================================== */
+.page-node-778 h1 {
+    font-size: 2rem;
+    text-align: center;
+    display: block;
+}
+
+.page-node-778 h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    display: block;
+}
+
+.page-node-778 #main-wrapper-landing-page h1 {
+    margin: 1rem 0 0;
+}
+/* =====================================
    Global Typography Styles
    ===================================== */
 
