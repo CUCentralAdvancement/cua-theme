@@ -3,10 +3,13 @@
   COMPONENT: Accessible Content Slider (Carousel)
   STABILITY: Production-Stable
   COMPLIANCE: Section 508 / WCAG 2.1 Level AA / WAI-ARIA Carousel Design Pattern
-  SCHEMA STRATEGY (2026-05):
+  SCHEMA STRATEGY (2026-06):
     - ItemList of Quotation items — correct for attributed donor/faculty quotes
     - Quote text extracted directly from paragraph field_quote entities
     - author extracted from quote text after the em-dash separator
+    - Each item carries a name (required by validators for generic ItemList
+      items): derived from attribution, else truncated quote text
+    - creator (not spokenByCharacter) — quotes are from real people
     - JSON-LD emitted once before the carousel wrapper
   =============================================================================
 -#}
@@ -45,6 +48,9 @@
    field_slider references paragraph entities, each with field_quote text.
    Author extracted from quote text — convention is "— Name, Title, Campus"
    at the end of the quote body.
+   Each ListItem.item carries a name (required by validators for generic
+   ItemList items) derived from the attribution, falling back to a
+   truncated form of the quote text.
    =========================================================================== #}
 {%- set _block_entity = elements.content['#block_content'] -%}
 {%- set _jsonld_items = [] -%}
@@ -58,18 +64,26 @@
     {%- set _text   = _parts[0]|trim -%}
     {%- set _author = _parts|length > 1 ? _parts[1:]|join('—')|trim : null -%}
 
+    {# Derive a per-item name: attribution if present, else truncated quote #}
+    {%- if _author -%}
+      {%- set _name = 'Quote from ' ~ _author -%}
+    {%- else -%}
+      {%- set _name = _text|length > 60 ? _text|slice(0, 60)|trim ~ '…' : _text -%}
+    {%- endif -%}
+
     {%- set _item = {
       '@type':    'ListItem',
       'position': loop.index,
       'item': {
         '@type': 'Quotation',
+        'name':  _name,
         'text':  _text,
       }
     } -%}
 
     {%- if _author -%}
       {%- set _item = _item|merge({'item': _item.item|merge({
-        'spokenByCharacter': {
+        'creator': {
           '@type': 'Person',
           'name':  _author,
         }
@@ -104,7 +118,7 @@
 
   {{- title_prefix -}}
   {{- title_suffix -}}
-  
+
   {%- if has_title -%}
     {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
   {%- endif -%}

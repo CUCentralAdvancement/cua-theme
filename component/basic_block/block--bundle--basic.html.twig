@@ -2,16 +2,23 @@
   =============================================================================
   COMPONENT: Basic Content Block
   COMPLIANCE: WCAG 2.2 AA / Section 508
-  SCHEMA STRATEGY (2026-05):
+  SCHEMA STRATEGY (2026-06):
     - JSON-LD replaces all Microdata attributes
     - CreativeWork is the base type — accurate for generic text/content blocks
-    - When a link is present, a potentialAction is added as a nested Action
-    - schema_action_type configurable by site builder — defaults to ReadAction
-      Common values:
-        ReadAction     — article, story, content link (default)
-        DonateAction   — giving / fundraising link
-        RegisterAction — event signup
-        ViewAction     — media / video link
+    - name always emitted: label when present, else truncated description —
+      prevents "Unnamed - CreativeWork" entries in validators
+    - Link handling:
+        * default: single link emitted as plain url on the CreativeWork
+        * schema_action_type, if explicitly configured, adds a nested
+          potentialAction of that type (e.g. DonateAction, RegisterAction,
+          ViewAction)
+        * ReadAction is NEVER emitted, even if configured — it is a
+          ConsumeAction subtype and Google requires expectsAcceptanceOf
+          (Offer) on all ConsumeActions; legacy configs are remapped to url
+    - URLs always absolute: relative paths prefixed with site_base
+      (base_url unavailable in this block template context)
+    - description: space inserted before tags prior to striptags so heading
+      and paragraph text don't concatenate without whitespace
     - All itemscope / itemtype / itemprop removed from HTML
   =============================================================================
 -#}
@@ -37,38 +44,68 @@
 {%- set links_count = links|length -%}
 {%- set single_link = (links_count == 1) ? links|first : null -%}
 
-{# Schema #}
-{%- set _schema_type   = schema_action_type ?: 'ReadAction' -%}
+{# ── JSON-LD Schema ─────────────────────────────────────────────────────── #}
+{%- set site_base = 'https://www.giving.cu.edu' -%}
 {%- set _block_entity = elements.content['#block_content'] -%}
+
+{# Description: space-pad tags before stripping so heading text and body
+   text don't glue together (e.g. "Your Giving Changes LivesOur partnerships") #}
 {%- set _description = _block_entity.body.value
-  ? _block_entity.body.value|striptags|trim|slice(0, 300)
+  ? _block_entity.body.value|replace({'<': ' <'})|striptags|trim|slice(0, 300)|trim
   : label|striptags|trim -%}
 
+{# Name: label wins; fall back to truncated description so the node is
+   never unnamed in validators #}
+{%- set _name = label|striptags|trim -%}
+{%- if not _name and _description -%}
+  {%- set _name = _description|length > 60 ? _description|slice(0, 60)|trim ~ '…' : _description -%}
+{%- endif -%}
+
+{# Resolve single link to an absolute URL #}
+{%- set _link_url = null -%}
+{%- if single_link -%}
+  {%- set _u = single_link.url ~ '' -%}
+  {%- if _u starts with 'http' -%}
+    {%- set _link_url = _u -%}
+  {%- elseif _u starts with '/' -%}
+    {%- set _link_url = site_base ~ _u -%}
+  {%- endif -%}
+{%- endif -%}
+
+{# Action type: only emit potentialAction when explicitly configured with a
+   non-ReadAction type; otherwise the link is a plain url property #}
+{%- set _action_type = (schema_action_type and schema_action_type != 'ReadAction') ? schema_action_type : null -%}
+
+{%- if _name or _description -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  {%- if label %}
-  "name": {{ label|striptags|trim|json_encode|raw }},
+  {%- if _name %}
+  "name": {{ _name|json_encode|raw }},
   {%- endif %}
   {%- if _description %}
   "description": {{ _description|json_encode|raw }},
+  {%- endif %}
+  {%- if _link_url and not _action_type %}
+  "url": {{ _link_url|json_encode|raw }},
   {%- endif %}
   "provider": {
     "@type": "CollegeOrUniversity",
     "name": {{ site_name|default('University of Colorado')|json_encode|raw }},
     "url": "https://www.cu.edu"
   }
-  {%- if single_link -%}
+  {%- if _link_url and _action_type -%}
   ,
   "potentialAction": {
-    "@type": {{ _schema_type|json_encode|raw }},
+    "@type": {{ _action_type|json_encode|raw }},
     "actionStatus": "https://schema.org/PotentialActionStatus",
-    "target": {{ single_link.url|json_encode|raw }}
+    "target": {{ _link_url|json_encode|raw }}
   }
   {%- endif %}
 }
 </script>
+{%- endif -%}
 
 <section{{attributes
   |without('id', 'role', 'aria-label')

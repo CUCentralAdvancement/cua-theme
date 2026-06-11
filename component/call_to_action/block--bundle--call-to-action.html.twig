@@ -1,13 +1,25 @@
 {# 
   =============================================================================
   COMPONENT: Call to Action (CTA)
-  COMPLIANCE: WCAG 2.2 AA / Section 508 / Schema.org Action (configurable type)
-  SCHEMA STRATEGY:
+  COMPLIANCE: WCAG 2.2 AA / Section 508 / Schema.org (configurable type)
+  SCHEMA STRATEGY (2026-06):
     - JSON-LD via <script> block — preferred by Google & AI crawlers over Microdata
-    - Each block is a standalone DonateAction (Layout Builder blocks are isolated;
+    - Each block is a standalone schema node (Layout Builder blocks are isolated;
       no parent template has visibility across siblings, so ItemList is not valid here)
     - ItemList is only appropriate in view-based templates (e.g. give-now-grid)
       where all items are known at render time
+    - TYPE SELECTION:
+        1. schema_action_type from block config, if set, always wins
+           (except ReadAction, which is remapped — legacy configs may carry it)
+        2. default: WebPageElement — ReadAction is NEVER emitted; it is a
+           ConsumeAction subtype and Google requires expectsAcceptanceOf
+           (Offer) on all ConsumeActions, treating them as paid-content markup
+    - No URL-based type detection — editors set DonateAction explicitly on
+      giving CTAs via block config; the template never guesses intent
+    - actionStatus / agent only emitted for Action types; DonateAction also
+      gets recipient referencing the sitewide #foundation node by @id
+    - URLs always absolute: relative paths prefixed with site_base
+      (base_url unavailable in this block template context)
     - Microdata attributes removed from HTML — no dual-format conflicts
   =============================================================================
 #}
@@ -71,7 +83,32 @@
 {%- endif -%}
 
 {# ── JSON-LD Schema ───────────────────────────────────────────────────────── #}
-{%- set schema_type = schema_action_type ?: 'ReadAction' -%}
+{%- set site_base = 'https://www.giving.cu.edu' -%}
+
+{# Resolve the schema URL to absolute. single_link.url may be an external
+   https URL or a site-relative path from Layout Builder link fields. #}
+{%- set schema_url = null -%}
+{%- if single_link -%}
+  {%- set _u = single_link.url ~ '' -%}
+  {%- if _u starts with 'http' -%}
+    {%- set schema_url = _u -%}
+  {%- elseif _u starts with '/' -%}
+    {%- set schema_url = site_base ~ _u -%}
+  {%- endif -%}
+{%- endif -%}
+
+{# Type resolution: explicit schema_action_type config wins; default is
+   WebPageElement. ReadAction is remapped — it is a ConsumeAction subtype
+   and Google requires expectsAcceptanceOf (Offer) on all ConsumeActions.
+   Editors set DonateAction on giving CTAs via the block config. #}
+{%- if schema_action_type and schema_action_type != 'ReadAction' -%}
+  {%- set schema_type = schema_action_type -%}
+{%- else -%}
+  {%- set schema_type = 'WebPageElement' -%}
+{%- endif -%}
+{%- set schema_is_action = schema_type ends with 'Action' -%}
+
+{%- set schema_name = (single_link.title ?: label)|striptags|trim -%}
 {%- set schema_description = label|striptags|trim -%}
 {%- if not schema_description -%}
   {%- set _block_entity = elements.content['#block_content'] -%}
@@ -80,25 +117,41 @@
   {%- endif -%}
 {%- endif -%}
 
+{%- if schema_name or schema_description -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": {{ schema_type|json_encode|raw }},
-  "name": {{ (single_link.title ?: label)|striptags|trim|json_encode|raw }},
-  "actionStatus": "https://schema.org/PotentialActionStatus",
-  {%- if single_link %}
-  "url": {{ single_link.url|json_encode|raw }},
+  {%- if schema_name %}
+  "name": {{ schema_name|json_encode|raw }},
+  {%- endif %}
+  {%- if schema_url %}
+  "url": {{ schema_url|json_encode|raw }},
   {%- endif %}
   {%- if schema_description %}
   "description": {{ schema_description|json_encode|raw }},
+  {%- endif %}
+  {%- if schema_is_action %}
+  "actionStatus": "https://schema.org/PotentialActionStatus",
+  {%- if schema_type == 'DonateAction' %}
+  "recipient": {
+    "@id": "https://www.giving.cu.edu/#foundation"
+  },
   {%- endif %}
   "agent": {
     "@type": "CollegeOrUniversity",
     "name": {{ site_name|default('University of Colorado')|json_encode|raw }},
     "url": "https://www.cu.edu"
   }
+  {%- else %}
+  "isPartOf": {
+    "@type": "WebPage",
+    "url": {{ (url('<current>')|render)|json_encode|raw }}
+  }
+  {%- endif %}
 }
 </script>
+{%- endif -%}
 
 {# ═════════════════════════════════════════════════════════════════════════════
    TEMPLATE

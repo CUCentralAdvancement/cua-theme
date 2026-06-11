@@ -2,15 +2,20 @@
   =============================================================================
   COMPONENT: Give Now Grid (Multi-Campus)
   STABILITY: Production-Stable
-  SCHEMA STRATEGY (2026-05):
+  SCHEMA STRATEGY (2026-06):
     - Single JSON-LD <script> block replaces all Microdata attributes
     - ItemList built in a pre-loop — view owns all 4 items simultaneously
       so ItemList is semantically valid (unlike isolated Layout Builder blocks)
     - DonateAction per campus with CollegeOrUniversity recipient
+      (TradeAction subtype — no expectsAcceptanceOf requirement, unlike
+      ReadAction/ConsumeAction)
     - campus_names / campus_urls maps provide KG-aligned entity names and
       canonical URLs for Knowledge Graph linkage
-    - Absolute image URLs via hardcoded domain (image_style returns relative paths;
+    - Absolute image URLs via site_base (image_style returns relative paths;
       base_url and app.request are unavailable in this block template context)
+    - Link URIs resolved to absolute: internal:/ and entity: schemes converted,
+      '#' fallback omitted from schema rather than emitted as invalid URL
+    - numberOfItems counts built items, not raw view rows
     - All itemscope / itemtype / itemprop attributes removed from HTML
     - width/height on <img> set to match give_now image style (360x240)
       to prevent CLS layout shifts per Lighthouse / Core Web Vitals
@@ -27,6 +32,8 @@
 {%- endif -%}
 
 {%- set section_title = 'Ways to Give to the University of Colorado Boulder, University of Colorado Colorado Springs, University of Colorado Denver, and University of Colorado Anschutz Medical Campus'|t -%}
+
+{%- set site_base = 'https://www.giving.cu.edu' -%}
 
 {%- set campus_names = {
   'CU Boulder':  'University of Colorado Boulder',
@@ -55,17 +62,27 @@
     {%- if row._entity is not empty -%}
       {%- set node        = row._entity -%}
       {%- set label       = node.label|trim -%}
-      {%- set _link       = node.field_link.uri ?: '#' -%}
       {%- set _campus     = campus_names[label] ?: 'University of Colorado ' ~ label -%}
       {%- set _campus_url = campus_urls[label] ?: '' -%}
       {%- set _desc       = node.body.value|striptags|trim -%}
+
+      {# Resolve link URI to an absolute URL for schema.
+         field_link.uri may be https://…, internal:/path, or entity:node/NID. #}
+      {%- set _link_raw = node.field_link.uri -%}
+      {%- if _link_raw starts with 'http' -%}
+        {%- set _link = _link_raw -%}
+      {%- elseif _link_raw starts with 'internal:' -%}
+        {%- set _link = site_base ~ _link_raw|replace({'internal:': ''}) -%}
+      {%- elseif _link_raw starts with 'entity:' -%}
+        {%- set _link = site_base ~ '/' ~ _link_raw|replace({'entity:': ''}) -%}
+      {%- else -%}
+        {%- set _link = null -%}
+      {%- endif -%}
 
       {%- set _action = {
         '@type':        'DonateAction',
         'name':         'Give to ' ~ _campus,
         'actionStatus': 'https://schema.org/PotentialActionStatus',
-        'url':          _link,
-        'description':  _desc,
         'recipient': {
           '@type': 'CollegeOrUniversity',
           'name':  _campus,
@@ -73,9 +90,17 @@
         },
       } -%}
 
+      {%- if _link -%}
+        {%- set _action = _action|merge({'url': _link}) -%}
+      {%- endif -%}
+
+      {%- if _desc is not empty -%}
+        {%- set _action = _action|merge({'description': _desc}) -%}
+      {%- endif -%}
+
       {%- if node.field_image.entity -%}
         {%- set _image_url_raw = node.field_image.entity.fileuri|image_style('give_now') -%}
-        {%- set _image_url = (_image_url_raw starts with 'http') ? _image_url_raw : ('https://www.giving.cu.edu/' ~ _image_url_raw|trim('/')) -%}
+        {%- set _image_url = (_image_url_raw starts with 'http') ? _image_url_raw : (site_base ~ '/' ~ _image_url_raw|trim('/')) -%}
         {%- set _action = _action|merge({
           'image': {
             '@type':   'ImageObject',
@@ -89,30 +114,34 @@
 
       {%- set _jsonld_items = _jsonld_items|merge([{
         '@type':    'ListItem',
-        'position': loop.index,
+        'position': _jsonld_items|length + 1,
         'item':     _action,
       }]) -%}
 
     {%- endif -%}
   {%- endfor -%}
 
-  {%- set _jsonld = {
-    '@context':        'https://schema.org',
-    '@type':           'ItemList',
-    'name':            section_title,
-    'itemListOrder':   'https://schema.org/ItemListUnordered',
-    'numberOfItems':   view.result|length,
-    'itemListElement': _jsonld_items,
-  } -%}
+  {%- if _jsonld_items|length > 0 -%}
+    {%- set _jsonld = {
+      '@context':        'https://schema.org',
+      '@type':           'ItemList',
+      'name':            section_title,
+      'itemListOrder':   'https://schema.org/ItemListUnordered',
+      'numberOfItems':   _jsonld_items|length,
+      'itemListElement': _jsonld_items,
+    } -%}
 
-  <script type="application/ld+json">
-  {{ _jsonld|json_encode|raw }}
-  </script>
+    <script type="application/ld+json">
+    {{ _jsonld|json_encode|raw }}
+    </script>
+  {%- endif -%}
 
   {# ===========================================================================
      HTML — layout unchanged, Microdata attributes removed
      width/height added to <img> to eliminate CLS layout shifts
-     image style changed from lead_story to give_now
+     Anchor tag kept on a single line — do not split the <a from its
+     attributes; a prior paste dropped the opening tag and printed raw
+     attributes to screen
      =========================================================================== #}
   <section
       class="container-fluid bg-gray-20 px-2 pt-1 pb-5"
@@ -136,11 +165,7 @@
 
             {%- apply spaceless -%}
 
-            <a
-                href="{{ link }}"
-                id="give-now-item-{{ node.id }}"
-                class="give-now-item d-flex flex-column text-decoration-none h-100 story-link"
-                aria-describedby="{{ body_id }}">
+            <a href="{{ link }}" id="give-now-item-{{ node.id }}" class="give-now-item d-flex flex-column text-decoration-none h-100 story-link" aria-describedby="{{ body_id }}">
 
               <div class="m-2 h-100 shadow {{ node.field_color_background.value ?: 'cu-bg-white' }}" role="presentation">
 

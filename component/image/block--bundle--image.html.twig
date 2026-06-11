@@ -6,6 +6,11 @@
     - text_alignment removed from outer card classes (fixes broken column layout)
     - img-static override added via wrapper to restore img-fluid behaviour
     - h-100 on card for equal-height columns
+  SCHEMA (2026-06):
+    - itemscope/itemtype Microdata removed — an itemscope with no itemprops
+      emits an empty "Unnamed - CreativeWork" node in validators. This
+      component emits no schema; if markup is ever needed for a specific
+      bundle, use a JSON-LD <script> block per the sitewide pattern.
   =============================================================================
 #}
 
@@ -53,8 +58,6 @@
   .addClass(image_bundle_classes_array)
   .addClass('contextual-region')
   .setAttribute('role', 'region')
-  .setAttribute('itemscope', '')
-  .setAttribute('itemtype', 'https://schema.org/CreativeWork')
   .setAttribute('data-component', 'image-bundle-card')
 -%}
 
