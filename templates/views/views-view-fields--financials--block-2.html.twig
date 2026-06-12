@@ -1,23 +1,30 @@
 {#
   File: views-view-fields--financials--block-2.html.twig
   View: financials | Display: block_2 (Investment Guides)
-  Fields: field_protected_file, field_file
-  Strips empty rows — not all rows have files populated.
 #}
 {%- apply spaceless -%}
+  {%- set protected_raw = fields.field_protected_file.content|render|trim -%}
+  {%- set public_raw = fields.field_file.content|render|trim -%}
 
-  {%- set protected_content = fields.field_protected_file.content|striptags|trim -%}
-  {%- set file_content      = fields.field_file.content|striptags|trim -%}
+  {%- if protected_raw or public_raw -%}
+    {# Select the active field for output #}
+    {%- set active_field = protected_raw is not empty ? fields.field_protected_file : fields.field_file -%}
+    {# Use the label or the field description for Schema.org name #}
+    {%- set doc_name = row._entity.label|striptags|trim -%}
 
-  {%- if protected_content or file_content -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "DigitalDocument",
+      "name": "{{ doc_name|escape('js') }}",
+      "url": "https://www.giving.cu.edu{{ file_url(row._entity.field_protected_file.entity.uri.value ?? row._entity.field_file.entity.uri.value) }}",
+      "encodingFormat": "application/pdf"
+    }
+    </script>
+
     <div class="financial-document py-2" itemscope itemtype="https://schema.org/DigitalDocument">
       <meta itemprop="encodingFormat" content="application/pdf">
-      {%- if protected_content -%}
-        {{- fields.field_protected_file.content|raw -}}
-      {%- elseif file_content -%}
-        {{- fields.field_file.content|raw -}}
-      {%- endif -%}
+      {{- active_field.content|raw -}}
     </div>
   {%- endif -%}
-
 {%- endapply -%}

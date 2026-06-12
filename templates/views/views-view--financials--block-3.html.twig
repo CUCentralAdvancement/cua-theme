@@ -1,22 +1,5 @@
-{#
-  File: views-view--financials--block-3.html.twig
-  View: financials | Display: block_3 (Annual Reports)
-  JSON-LD is handled per-row in the fields template.
-  Multiple ld+json blocks are valid schema.org — parsers and Google handle them correctly.
-#}
-
-{%- if header -%}
-  <div class="view-header">{{- header -}}</div>
-{%- endif -%}
-
-{%- if rows -%}
-  <div class="view-content row">
-    {{- rows -}}
-  </div>
-{%- elseif empty -%}
-  <div class="view-empty">{{- empty -}}</div>
-{%- endif -%}
-
-{%- if pager -%}
-  {{- pager -}}
-{%- endif -%}
+{%- apply spaceless -%}
+<div class="view-header">{{ header }}</div>
+<div class="view-content row">{{ rows }}</div>
+{{ pager }}
+{%- endapply -%}

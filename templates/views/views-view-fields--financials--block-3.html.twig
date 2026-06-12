@@ -1,48 +1,27 @@
-{#
-  File: views-view-fields--financials--block-3.html.twig
-  View: financials | Display: block_3 (Annual Reports)
-  URLs extracted from the nothing field's rendered href — the only reliable source.
-  Makes relative URLs absolute using the production base URL.
-  Per-row JSON-LD is valid — multiple ld+json blocks on a page are fully supported.
-#}
 {%- apply spaceless -%}
+  {%- set content_raw = fields.nothing.content|render|trim -%}
+  
+  {%- if content_raw is not empty -%}
+    {%- set url_raw = content_raw|split('href="')[1]|split('"')[0] -%}
+    {%- set report_url = (url_raw starts with 'http') ? url_raw : 'https://www.giving.cu.edu' ~ url_raw -%}
+    {%- set report_name = content_raw|striptags|trim -%}
 
-  {%- set nothing_content = fields.nothing.content ~ '' -%}
-  {%- set nothing_text    = nothing_content|striptags|trim -%}
-
-  {%- if nothing_text -%}
-
-    {# Extract href from rendered anchor tag #}
-    {%- set report_url = '' -%}
-    {%- if 'href="' in nothing_content -%}
-      {%- set url_raw = nothing_content|split('href="')[1]|split('"')[0] -%}
-      {%- if url_raw starts with 'http' -%}
-        {%- set report_url = url_raw -%}
-      {%- else -%}
-        {%- set report_url = 'https://www.giving.cu.edu' ~ url_raw -%}
-      {%- endif -%}
-    {%- endif -%}
-
-    {%- if report_url -%}
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Report",
-        "name": {{ nothing_text|json_encode|raw }},
-        "url": {{ report_url|json_encode|raw }},
-        "publisher": {
-          "@type": "Organization",
-          "name": "University of Colorado Foundation",
-          "url": "https://cufund.org"
-        }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Report",
+      "name": {{ report_name|json_encode|raw }},
+      "url": {{ report_url|json_encode|raw }},
+      "publisher": {
+        "@type": "Organization",
+        "name": "University of Colorado Foundation",
+        "url": "https://cufund.org"
       }
-      </script>
-    {%- endif -%}
+    }
+    </script>
 
     <div class="financial-document annual-report py-2">
-      {{- fields.nothing.content|raw -}}
+      {{- content_raw|raw -}}
     </div>
-
   {%- endif -%}
-
 {%- endapply -%}
