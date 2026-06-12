@@ -1,0 +1,15 @@
+{#
+  Front page title override (2026-06):
+  Node title is "Give to what you love" — institutional prefix
+  "Giving to CU" is rendered visually-hidden so screen readers and
+  crawlers get full context while the visible heading stays clean.
+  All other pages use the standard page-title.html.twig.
+#}
+{{ title_prefix }}
+{% if title %}
+  <h1{{ title_attributes.addClass('page-title', 'pt-2').setAttribute('id', 'page-title') }}>
+    <span class="visually-hidden">{{ 'Giving to CU | '|t }}</span>
+    {{ title }}
+  </h1>
+{% endif %}
+{{ title_suffix }}
