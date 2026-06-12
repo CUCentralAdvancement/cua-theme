@@ -9,10 +9,5 @@
 {% set safe_title = label|striptags|trim ?: title|striptags|trim ?: 'Video' %}
 
 {% if src %}
-  <iframe
-    src="{{ src }}"
-    class="cu-youtube"
-    title="{{ safe_title }}"
-    allow="autoplay; fullscreen; picture-in-picture">
-  </iframe>
+	<iframe src="{{ src }}" class="cu-youtube" title="{{ safe_title }}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture"></iframe>
 {% endif %}
