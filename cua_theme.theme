@@ -5,23 +5,16 @@ use Drupal\Component\Utility\SortArray;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements hook_form_FORM_ID_alter() for the search form.
  */
 function cua_theme_form_search_block_form_alter(array &$form, FormStateInterface $form_state, $form_id): void {
-    // Change the label of the submit button to "Submit".
-    $form['actions']['submit']['#value'] = t('Submit');
+  // Change the label of the submit button to "Submit".
+  $form['actions']['submit']['#value'] = new TranslatableMarkup('Submit');
 }
 
-/**
- * Implements hook_theme_suggestions_page_title_alter().
- */
-function cua_theme_theme_suggestions_page_title_alter(array &$suggestions, array $variables) {
-  if (\Drupal::service('path.matcher')->isFrontPage()) {
-    $suggestions[] = 'page_title__front';
-  }
-}
 /**
  * Implements hook_preprocess_node().
  *
