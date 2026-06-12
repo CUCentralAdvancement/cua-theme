@@ -1,12 +1,22 @@
 {#-
   =============================================================================
   COMPONENT: Video Block
-  SCHEMA STRATEGY:
+  STABILITY: Production-Stable
+  SCHEMA STRATEGY (2026-06):
     - JSON-LD VideoObject emitted only for YouTube (crawlable source)
     - Locals/internal video gets no schema — crawlers can't access the source
     - embed URL extracted from rendered markup (same approach as the old partial)
     - youtube-nocookie.com used for embed (privacy); youtube.com/watch used
       for schema url field (what Google resolves for rich results)
+    - thumbnailUrl + uploadDate added: both REQUIRED by Google for video
+      rich results (SiteBulb 2026-06-12: 42 errors = 21 videos x 2 missing).
+      Thumbnail derived from video ID via i.ytimg.com (hqdefault.jpg exists
+      for every video, unlike maxresdefault). uploadDate = block entity
+      created time, per schema.org: "date when this media object was
+      uploaded to THIS site."
+    - Schema only emitted when video ID extraction succeeds — an empty
+      url/embedUrl is itself a validation error ("URL is not absolute")
+    - publisher url uses https://www.giving.cu.edu (canonical host)
   =============================================================================
 -#}
 {{- attach_library('cua_theme/video') -}}
@@ -27,21 +37,26 @@
 
 {# ===========================================================================
    JSON-LD: VideoObject — YouTube only
-   Extract the embed URL from rendered markup, then derive the watch URL
-   by swapping the nocookie embed path for the standard youtube.com/watch URL.
+   Extract the embed URL from rendered markup, derive the watch URL and
+   thumbnail from the video ID, and emit schema only when extraction
+   succeeded. uploadDate comes from the block entity's created timestamp.
    =========================================================================== #}
 {%- if provider == 'youtube' -%}
   {%- set _video_markup  = content.field_video_youtube|render -%}
   {%- set _parts         = _video_markup|split('src="') -%}
   {%- set _embed_url     = _parts|length > 1 ? _parts[1]|split('"')[0] : '' -%}
 
-  {# Extract video ID from embed URL and build standard watch URL for schema #}
+  {# Extract video ID from embed URL #}
   {%- set _video_id      = _embed_url|split('/embed/')|last|split('?')|first -%}
-  {%- set _watch_url     = _video_id ? 'https://www.youtube.com/watch?v=' ~ _video_id : _embed_url -%}
 
-  {%- set _description   = content.field_description is not empty
-    ? content.field_description|render|striptags|trim
-    : safe_label -%}
+  {%- if _video_id -%}
+    {%- set _watch_url   = 'https://www.youtube.com/watch?v=' ~ _video_id -%}
+    {%- set _thumb_url   = 'https://i.ytimg.com/vi/' ~ _video_id ~ '/hqdefault.jpg' -%}
+    {%- set _upload_date = elements.content['#block_content'].getCreatedTime()|date('c') -%}
+
+    {%- set _description = content.field_description is not empty
+      ? content.field_description|render|striptags|trim
+      : safe_label -%}
 
 <script type="application/ld+json">
 {
@@ -51,17 +66,20 @@
   "description": {{ _description|json_encode|raw }},
   "url": {{ _watch_url|json_encode|raw }},
   "embedUrl": {{ _embed_url|json_encode|raw }},
+  "thumbnailUrl": {{ _thumb_url|json_encode|raw }},
+  "uploadDate": {{ _upload_date|json_encode|raw }},
   "publisher": {
     "@type": "Organization",
     "name": "University of Colorado",
-    "url": "https://giving.cu.edu"
+    "url": "https://www.giving.cu.edu"
   }
 }
 </script>
+  {%- endif -%}
 {%- endif -%}
 
 {# ===========================================================================
-   HTML
+   HTML — unchanged from previous version
    =========================================================================== #}
 {% apply spaceless %}
 <div{{ attributes
