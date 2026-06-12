@@ -52,7 +52,12 @@
             {% block content %}
                 <div id="main" class="{{ container }}">
                     <div class="row d-flex flex-column-reverse flex-md-row clearfix">
-
+                        
+                        {# Title for Taxo #}
+                        {% if term_name %}
+                        <   h1 class="term-heading">{{ term_name }}</h1>
+                        {% endif %}
+                       
                         {# Left Sidebar #}
                         {% if sidebar_first_exists %}
                             <div class="col-md-3 col-sm-12 mb-4 order-1 order-md-2 mobile-padding">

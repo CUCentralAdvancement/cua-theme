@@ -6,6 +6,9 @@ use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Implements hook_form_FORM_ID_alter() for the search form.
@@ -114,6 +117,19 @@ function cua_theme_form_alter(&$form, &$form_state, $form_id): void {
  *   An associative array of variables to pass to the theme template.
  */
 function cua_theme_preprocess_page(array &$variables): void {
+    $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+  // Views-based term pages pass the raw TID instead of the upcast entity.
+  if (is_numeric($term)) {
+    $term = Term::load($term);
+  }
+  if ($term instanceof TermInterface) {
+    $variables['term_name'] = $term->label();
+    // Make the page cache invalidate when the term is renamed.
+    CacheableMetadata::createFromRenderArray($variables)
+      ->addCacheableDependency($term)
+      ->applyTo($variables);
+  }
+  
     $site_config = \Drupal::config('system.site');
     $variables['site_name'] = $site_config->get('name');
     $variables['site_slogan'] = $site_config->get('slogan');
