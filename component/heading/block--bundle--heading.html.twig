@@ -26,35 +26,47 @@
 {%- set unique_id  = 'heading-' ~ elements.content['#block_content'].id()|default(random(1000, 9999)) -%}
 {%- set heading_id = unique_id ~ '-title' -%}
 
-<div{{ attributes
-  .setAttribute('id', unique_id)
-  .addClass(heading_classes)
-  .setAttribute('role', 'region')
-  .setAttribute('aria-labelledby', heading_id)
-}}>
+{# 1. Pre-clean strings to prevent whitespace or empty HTML tags from passing checks #}
+{%- set clean_heading  = heading|striptags|trim -%}
+{%- set clean_label    = label|striptags|trim -%}
+{%- set clean_subtitle = subtitle|striptags|trim -%}
 
-  <div class="row pt-2">
+{%- set has_heading  = clean_heading is not empty or clean_label is not empty -%}
+{%- set has_subtitle = clean_subtitle is not empty -%}
 
-    {{- title_prefix -}}
-    {{- title_suffix -}}
+{# 2. Initialize base block attributes #}
+{%- set attributes = attributes.setAttribute('id', unique_id).addClass(heading_classes) -%}
 
-    {# Primary Heading — striptags guards against editor-pasted markup #}
-    {%- if heading -%}
-      <h2 id="{{ heading_id }}"{{ title_attributes.addClass('title') }}>
-        {{- heading|striptags|trim -}}
-      </h2>
-    {%- else -%}
-      <h2 id="{{ heading_id }}" class="title">
-        {{- label|striptags|trim -}}
-      </h2>
-    {%- endif -%}
+{# 3. Apply ARIA landmark properties ONLY if a primary heading actually exists to label it #}
+{%- if has_heading -%}
+	{%- set attributes = attributes.setAttribute('role', 'region').setAttribute('aria-labelledby', heading_id) -%}
+{%- endif -%}
 
-    {# Subtitle — H3 enforces logical heading order per WCAG 1.3.1 #}
-    {%- if subtitle -%}
-      <h3 class="title px-3 pb-4">
-        {{- subtitle|striptags|trim -}}
-      </h3>
-    {%- endif -%}
+<div{{attributes}}>
+	<div class="row pt-2">
 
-  </div>
+		{{- title_prefix -}}
+		{{- title_suffix -}}
+
+		{# Primary Heading Block #}
+		{%- if has_heading -%}
+			{%- if clean_heading is not empty -%}
+				<h2 id="{{ heading_id }}" {{ title_attributes.addClass('title') }}>
+					{{- clean_heading -}}
+				</h2>
+			{%- else -%}
+				<h2 id="{{ heading_id }}" class="title">
+					{{- clean_label -}}
+				</h2>
+			{%- endif -%}
+		{%- endif -%}
+
+		{# Subtitle Block #}
+		{%- if has_subtitle -%}
+			<h3 class="title px-3 pb-4">
+				{{- clean_subtitle -}}
+			</h3>
+		{%- endif -%}
+
+	</div>
 </div>
