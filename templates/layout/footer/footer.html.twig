@@ -164,25 +164,6 @@
           <a href="https://regents.cu.edu" rel="noopener" target="_blank" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Regents of the University of Colorado (opens in a new tab)'|t }}">
             {{ 'Regents of the University of Colorado'|t }}
           </a>
-
-          {%- if not logged_in -%}
-            <span class="admin-login">
-              <a href="https://www.giving.cu.edu/saml/login" rel="noopener" class="link-light link-underline-opacity-0 px-2">
-                <i class="px-2 fas fa-sign-in-alt" aria-hidden="true"></i>
-                {{ 'Login'|t }}
-              </a>
-            </span>
-          {%- endif -%}
-
-          {%- if user.hasPermission('administer site configuration') -%}
-            <span class="admin-login">
-              <a href="/tutorials" rel="noopener" class="link-light link-underline-opacity-0 px-2">
-                <i class="px-2 fas fa-chalkboard-teacher" aria-hidden="true"></i>
-                {{ 'Tutorial Login'|t }}
-              </a>
-            </span>
-          {%- endif -%}
-
         </p>
       </div>
 
