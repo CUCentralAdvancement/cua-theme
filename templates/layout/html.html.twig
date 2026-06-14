@@ -1,142 +1,133 @@
 {#
-  html.html.twig
+html.html.twig
 #}
 <!DOCTYPE html>
 <html{{ html_attributes }}>
-<head>
 
-  {# ── Performance hints ──────────────────────────────────────────── #}
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <head>
 
-{# ── Font preloads (Targeted for Global LCP) ──────────────────────── #}
-  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-300.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-500.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  
-  {# ── Font preloads (The Bridge-Prevention Protection Act) ──────────────── #}
-  <link rel="preload" href="/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-  
-  {# ── GTM — must be as high in <head> as possible ────────────────── #}
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KBWW4MVB');</script>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 
-  {# ── Drupal head, CSS, JS placeholders — sequential, never nested ── #}
-  <head-placeholder token="{{ placeholder_token|raw }}">
-  <title>{{ head_title|safe_join(' | ') }}</title>
-  <css-placeholder token="{{ placeholder_token|raw }}">
-  <js-placeholder token="{{ placeholder_token|raw }}">
+      <script>(function (w, d, s, l, i) {
+          w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+              new Date().getTime(), event: 'gtm.js'
+          }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+              'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KBWW4MVB');
+      </script>
 
-{# ── Sitewide JSON-LD updated 6-11-2026 ────────────────────────────────────── #}
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.giving.cu.edu/#advancement",
-      "name": "University of Colorado Advancement",
-      "url": "https://www.giving.cu.edu/",
-      "email": "giving@cu.edu",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg",
-        "width": 225,
-        "height": 24
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1800 Grant Street, Suite 215",
-        "addressLocality": "Denver",
-        "addressRegion": "CO",
-        "postalCode": "80203",
-        "addressCountry": "US"
-      },
-      "parentOrganization": {
-        "@type": "CollegeOrUniversity",
-        "name": "University of Colorado",
-        "url": "https://www.cu.edu/"
-      }
-    },
-    {
-      "@type": "NGO",
-      "@id": "https://www.giving.cu.edu/#foundation",
-      "name": "University of Colorado Foundation",
-      "alternateName": "CU Foundation",
-      "url": "https://www.giving.cu.edu/about-us/cu-foundation/university-colorado-foundation",
-      "description": "Founded in 1967, the University of Colorado Foundation supports education, research, and community engagement across CU's four campuses.",
-      "foundingDate": "1967-01-01",
-      "taxID": "84-6049811",
-      "nonprofitStatus": "https://schema.org/Nonprofit501c3",
-      "telephone": "+1-303-813-7935",
-      "email": "gifts@cufund.org",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1800 Grant Street, Suite 725",
-        "addressLocality": "Denver",
-        "addressRegion": "CO",
-        "postalCode": "80203",
-        "addressCountry": "US"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-303-813-7935",
-        "email": "gifts@cufund.org",
-        "contactType": "donor services",
-        "areaServed": "US"
-      },
-      "parentOrganization": {
-        "@type": "CollegeOrUniversity",
-        "name": "University of Colorado",
-        "url": "https://www.cu.edu/"
-      },
-      "memberOf": {
-        "@id": "https://www.giving.cu.edu/#advancement"
-      },
-      "sameAs": [
-        "https://projects.propublica.org/nonprofits/organizations/846049811",
-        "https://www.cufund.org/"
-      ]
-    }
-  ]
-}
-  </script>
+      <head-placeholder token="{{ placeholder_token|raw }}">
+        <title>{{ head_title|safe_join(' | ') }}</title>
+        <css-placeholder token="{{ placeholder_token|raw }}">
+          <js-placeholder token="{{ placeholder_token|raw }}">
 
-</head>
+            <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "Organization",
+                    "@id": "https://www.giving.cu.edu/#advancement",
+                    "name": "University of Colorado Advancement",
+                    "url": "https://www.giving.cu.edu/",
+                    "email": "giving@cu.edu",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg",
+                      "width": 225,
+                      "height": 24
+                    },
+                    "address": {
+                      "@type": "PostalAddress",
+                      "streetAddress": "1800 Grant Street, Suite 215",
+                      "addressLocality": "Denver",
+                      "addressRegion": "CO",
+                      "postalCode": "80203",
+                      "addressCountry": "US"
+                    },
+                    "parentOrganization": {
+                      "@type": "CollegeOrUniversity",
+                      "name": "University of Colorado",
+                      "url": "https://www.cu.edu/"
+                    }
+                  },
+                  {
+                    "@type": "NGO",
+                    "@id": "https://www.giving.cu.edu/#foundation",
+                    "name": "University of Colorado Foundation",
+                    "alternateName": "CU Foundation",
+                    "url": "https://www.giving.cu.edu/about-us/cu-foundation/university-colorado-foundation",
+                    "description": "Founded in 1967, the University of Colorado Foundation supports education, research, and community engagement across CU's four campuses.",
+                    "foundingDate": "1967-01-01",
+                    "taxID": "84-6049811",
+                    "nonprofitStatus": "https://schema.org/Nonprofit501c3",
+                    "telephone": "+1-303-813-7935",
+                    "email": "gifts@cufund.org",
+                    "address": {
+                      "@type": "PostalAddress",
+                      "streetAddress": "1800 Grant Street, Suite 725",
+                      "addressLocality": "Denver",
+                      "addressRegion": "CO",
+                      "postalCode": "80203",
+                      "addressCountry": "US"
+                    },
+                    "contactPoint": {
+                      "@type": "ContactPoint",
+                      "telephone": "+1-303-813-7935",
+                      "email": "gifts@cufund.org",
+                      "contactType": "donor services",
+                      "areaServed": "US"
+                    },
+                    "parentOrganization": {
+                      "@type": "CollegeOrUniversity",
+                      "name": "University of Colorado",
+                      "url": "https://www.cu.edu/"
+                    },
+                    "memberOf": {
+                      "@id": "https://www.giving.cu.edu/#advancement"
+                    },
+                    "sameAs": [
+                      "https://projects.propublica.org/nonprofits/organizations/846049811",
+                      "https://www.cufund.org/"
+                    ]
+                  }
+                ]
+              }
+            </script>
 
-{%
-  set body_classes = [
+    </head>
+
+    {%
+    set body_classes = [
     logged_in ? 'user-logged-in',
     not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
     node_type ? 'page-node-type-' ~ node_type|clean_class,
     db_offline ? 'db-offline',
-  ]
-%}
+    ]
+    %}
 
-<body{{ attributes.addClass(body_classes) }}>
+    <body{{ attributes.addClass(body_classes) }}>
 
-  {# ── GTM noscript fallback — must be first in <body> ────────────── #}
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB"
-            height="0" width="0"
-            style="display:none;visibility:hidden"></iframe>
-  </noscript>
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBWW4MVB" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
 
-  <a href="#main" class="visually-hidden focusable">
-    {{ 'Skip to main content'|t }}
-  </a>
+    <a href="#main" class="visually-hidden focusable">
+      {{ 'Skip to main content'|t }}
+    </a>
 
-  {{ page_top }}
-  {{ page }}
-  {{ page_bottom }}
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
 
-  <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
 
-</body>
-</html>
+  </body>
+
+  </html>
