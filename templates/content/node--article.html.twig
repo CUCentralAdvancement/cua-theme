@@ -1,6 +1,20 @@
 {#
 ================================================================================
   node--article.html.twig
+
+  SCHEMA: JSON-LD only. This template is the single source of truth for this
+  node's structured data.
+
+  IMPORTANT — if a validator reports "Format: Microdata" errors for this page
+  (e.g. contentUrl/image/itemprop issues), those are NOT coming from this file.
+  A field template or the base theme is emitting itemscope/itemtype/itemprop
+  attributes (Microdata) in addition to this JSON-LD. View-source and search
+  for `itemtype` to find it, then strip the microdata attributes from that
+  field template. Two schema formats for one entity is the root cause.
+
+  AUTHOR: Institutional voice — author is the Organization, never a named
+  Person. We do NOT derive author identity from CMS accounts (no usernames,
+  no email-derived names, no individual fallback).
 ================================================================================
 #}
 
@@ -8,66 +22,36 @@
 
 {#-- VARIABLES ----------------------------------------------------------------#}
 
-{%- set _owner        = node.getOwner() -%}
-{%- set _email        = _owner.getEmail() -%}
-{%- set _display_name = _owner.getDisplayName() -%}
-
-{# PRIMARY AUTHOR NAME #}
-{%- if ' ' in _display_name and '@' not in _display_name -%}
-  {%- set _author_name = _display_name -%}
-{%- elseif '@' in _email -%}
-  {%- set _author_name = _email|split('@')[0]|replace({'.': ' ', '_': ' ', '-': ' '})|title -%}
-{%- else -%}
-  {%- set _author_name = '' -%}
-{%- endif -%}
-
-{%- set _author_has_name = ' ' in _author_name -%}
-
-{# FALLBACK AUTHOR #}
-{%- set _fallback_name = 'Christine Deorio' -%}
-{%- set _fallback_slug = 'christine-deorio' -%}
-{%- set _fallback_url  = 'https://www.giving.cu.edu/about-us/staff/christine-deorio' -%}
-
-{# AUTHOR SLUG + URL #}
-{%- if _author_has_name -%}
-  {%- set _author_slug = _author_name
-    |lower
-    |replace({'.':' ','_':' ','-':' '})
-    |split(' ')
-    |filter(v => v)
-    |join('-')
-  -%}
-  {%- set _author_url = 'https://www.giving.cu.edu/about-us/staff/' ~ _author_slug -%}
-{%- else -%}
-  {%- set _author_name = _fallback_name -%}
-  {%- set _author_url  = _fallback_url -%}
-{%- endif -%}
-
-{# LOGO #}
+{%- set _org_name = 'University of Colorado Foundation' -%}
+{%- set _org_url  = 'https://www.giving.cu.edu' -%}
 {%- set _logo_url = 'https://www.giving.cu.edu/themes/contrib/cua_theme/images/logo.svg' -%}
 
-{# IMAGE #}
+{# IMAGE — always resolve to an absolute URL; fall back to the site logo #}
 {%- set _image_url = _logo_url -%}
 {%- if node.field_image is defined and node.field_image.entity is not empty -%}
   {%- set _image_url = file_url(node.field_image.entity.fileuri) -%}
   {%- if _image_url starts with '/' -%}
-    {%- set _image_url = 'https://www.giving.cu.edu' ~ _image_url -%}
+    {%- set _image_url = _org_url ~ _image_url -%}
   {%- endif -%}
 {%- endif -%}
 
-{# DESCRIPTION #}
+{# DESCRIPTION — summary preferred, then trimmed body, then the title #}
 {%- set _description = node.label|render|striptags|trim -%}
 {%- if node.body.summary is defined and node.body.summary|render|striptags|trim -%}
   {%- set _description = node.body.summary|render|striptags|trim -%}
 {%- elseif node.body.value is defined and node.body.value|render|striptags|trim -%}
-  {%- set _description = node.body.value|render|striptags|truncate(300)|trim -%}
+  {# core-safe slice (truncate filter requires Twig Extensions, not always present) #}
+  {%- set _description = node.body.value|render|striptags|trim|slice(0, 300) -%}
 {%- endif -%}
 
-{# SCHEMA TYPE — only article and lead_story are Article; everything else is WebPage #}
+{# SCHEMA TYPE — only article and lead_story are Article; everything else WebPage #}
 {%- set _schema_type = 'WebPage' -%}
 {%- if node.bundle in ['article', 'lead_story'] -%}
   {%- set _schema_type = 'Article' -%}
 {%- endif -%}
+
+{# CANONICAL URL — absolute #}
+{%- set _canonical = url('<current>', {}, {'absolute': true})|render -%}
 
 {# CLASSES #}
 {%- set _classes = [
@@ -85,22 +69,23 @@
   "@type": {{ _schema_type|json_encode|raw }},
   "headline": {{ node.label|render|striptags|trim|json_encode|raw }},
   "description": {{ _description|json_encode|raw }},
-  "url": {{ url('<current>')|render|json_encode|raw }},
+  "url": {{ _canonical|json_encode|raw }},
   "datePublished": {{ node.created.value|date('c')|json_encode|raw }},
   "dateModified": {{ node.changed.value|date('c')|json_encode|raw }},
   "image": {
     "@type": "ImageObject",
-    "url": {{ _image_url|json_encode|raw }}
+    "url": {{ _image_url|json_encode|raw }},
+    "contentUrl": {{ _image_url|json_encode|raw }}
   },
   "author": {
-    "@type": "Person",
-    "name": {{ _author_name|json_encode|raw }},
-    "url": {{ _author_url|json_encode|raw }}
+    "@type": "Organization",
+    "name": {{ _org_name|json_encode|raw }},
+    "url": {{ _org_url|json_encode|raw }}
   },
   "publisher": {
     "@type": "Organization",
-    "name": "University of Colorado Foundation",
-    "url": "https://www.giving.cu.edu",
+    "name": {{ _org_name|json_encode|raw }},
+    "url": {{ _org_url|json_encode|raw }},
     "logo": {
       "@type": "ImageObject",
       "url": {{ _logo_url|json_encode|raw }}
@@ -108,7 +93,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": {{ url('<current>')|render|json_encode|raw }}
+    "@id": {{ _canonical|json_encode|raw }}
   }
 }
 </script>
