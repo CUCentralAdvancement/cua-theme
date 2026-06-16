@@ -21,6 +21,10 @@
     - URLs always absolute: relative paths prefixed with site_base
       (base_url unavailable in this block template context)
     - Microdata attributes removed from HTML — no dual-format conflicts
+  FIELD-VALUE NOTES (list fields store machine KEYS, not display labels):
+    - flag field stores 'flag_on' / 'flag_off' — compare against keys, not labels
+    - button_color may store 'hide_btn' — this is a sentinel meaning "no button";
+      when set, the footer/button is removed from the DOM entirely
   =============================================================================
 #}
 
@@ -66,7 +70,14 @@
 {%- set wrap_entire_card = single_link and not content_contains_other_links -%}
 
 {# ── Flag State ───────────────────────────────────────────────────────────── #}
-{%- set flag_is_on = flag == 'Flag On' -%}
+{# List field stores the machine key 'flag_on' (not the label 'Flag On').
+   Normalized to also tolerate case/whitespace and common truthy values. #}
+{%- set flag_is_on = flag|lower|trim in ['flag_on', 'flag on', 'on', '1', 'true'] -%}
+
+{# ── Button Visibility ────────────────────────────────────────────────────── #}
+{# 'hide_btn' is a sentinel value meaning "no button" — when set, the footer
+   and its button are removed from the DOM entirely (not just visually hidden). #}
+{%- set hide_button = button_color|lower|trim == 'hide_btn' -%}
 
 {# ── Attributes ───────────────────────────────────────────────────────────── #}
 {%- set attributes = attributes
@@ -241,8 +252,11 @@
       </div>
     {%- endif -%}
 
-   {# ── Single Link Footer ──────────────────────────────────────────────── #}
-    {%- if single_link -%}
+    {# ── Single Link Footer ──────────────────────────────────────────────────
+       Suppressed entirely when the editor selects "hide button" (hide_btn).
+       The card remains clickable via the wrapper link in wrap_entire_card mode.
+    ── #}
+    {%- if single_link and not hide_button -%}
       <footer class="card-footer d-flex flex-wrap {{ container_size }} {{ position_container }} {{ text_alignment }} {{ padding }} mb-5 border-0 bg-transparent mt-auto">
         {%- set outline_class = outline ? 'btn-outline-' ~ button_color : 'btn-' ~ button_color -%}
         {%- if wrap_entire_card -%}
@@ -257,8 +271,10 @@
       </footer>
     {%- endif -%}
 
-    {# ── Multi-Link Footer ───────────────────────────────────────────────── #}
-    {%- if links_count > 1 -%}
+    {# ── Multi-Link Footer ───────────────────────────────────────────────────
+       Also respects the hide_button sentinel.
+    ── #}
+    {%- if links_count > 1 and not hide_button -%}
       {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
       {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false) -}}
     {%- endif -%}
