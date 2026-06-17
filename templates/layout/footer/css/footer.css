@@ -295,6 +295,7 @@ h2#block-cua-theme-campusoffices-menu {
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
     max-width: 90% !important;
+    text-align: left !important;
 }
 
 /*** Responsive ***/
