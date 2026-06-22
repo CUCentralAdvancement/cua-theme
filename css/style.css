@@ -2864,7 +2864,6 @@ button.search-icon {
     }
 
     .image-bundle .image-wrap {
-        display: block !important;
         overflow: hidden;
         display: none !important;
     }
