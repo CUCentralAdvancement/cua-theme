@@ -1,37 +1,21 @@
-/* =====================================
-   Main site Styling
-   ===================================== */
-
 :root {
-    /* === Colors === */
-    /* Primary black shades */
     --cua-black-pure: #000;
     --cua-black-opacity-75: rgba(0, 0, 0, 0.75);
     --cua-black: #262626;
-
-    /* Primary blue shades */
     --cua-blue: #0854bb;
     --cua-blue-hover: #03306f;
     --cua-blue-visited: #0854bb;
     --cua-blue-dark: #03306c;
-
-    /* Background and body colors */
     --cua-body-bg: #fff;
     --cua-body-color: #262626;
-
-    /* Gold shades */
     --cua-gold: #cfb87c;
     --cua-gold-opacity-75: rgba(207, 184, 124, 0.75);
     --cua-gold-hover: #5d4916;
     --cua-gold-hover-active: #f3d78f;
-
-    /* Grayscale shades */
     --cua-light-grey: #f3f3f3;
     --cua-light-grey-opacity-75: rgba(243, 243, 243, 0.75);
     --cua-gray: #6c757d;
     --cua-dark-gray: #595955;
-
-    /* Bootstrap gray scale */
     --cua-gray-50: #f5f5f5;
     --cua-gray-100: #f8f9fa;
     --cua-gray-200: #e9ecef;
@@ -42,62 +26,38 @@
     --cua-gray-700: #495057;
     --cua-gray-800: #343a40;
     --cua-gray-900: #212529;
-
-    /* Other colors */
     --cua-green: #198754;
-    /* Success / Accent */
     --cua-warning: #ba0c2f;
-    /* Warning / Alert */
     --cua-white: #fff;
     --cua-white-opacity-75: rgba(255, 255, 255, 0.75);
     --cua-white-darker: #ddd;
     --cua-white-light: #f5f5f5;
-
-    /* Link colors */
     --bs-link-color: #0854bb;
     --cua-link-color: #0854bb;
-
-    /* Background colors */
     --bg-light: #f4f4f5;
     --uci-gray: #595955;
-
-    /* Font Variables */
     --font-awesome: "Font Awesome 6 Free";
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    /* Example Usage */
     --base-font-family: var(--font-roboto);
     --heading-font-family: var(--font-roboto-condensed);
-
     --font-awesome: "Font Awesome 6 Free";
-    /* Icon font */
     --font-roboto: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    /* Body text settings */
     --cua-body-font-size: 1rem;
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
-
-    /* === Typography === */
     --base-font-size: 1rem;
     --scale-factor: 1.25;
-
-    /* Heading sizes based on the scale factor */
     --h1-size: calc(var(--base-font-size) * 2.25);
     --h2-size: calc(var(--base-font-size) * 2);
     --h3-size: calc(var(--base-font-size) * 1.75);
     --h4-size: calc(var(--base-font-size) * 1.5);
     --h5-size: calc(var(--base-font-size) * var(--scale-factor));
     --h6-size: calc(var(--base-font-size) * 1);
-
-    /* Small font sizes */
     --font-small: .95rem;
     --font-xsmall: .85rem;
-
-    /* Font Weights */
     --font-weight-xlight: 100;
     --font-weight-light: 300;
     --font-weight-normal: 400;
@@ -106,11 +66,6 @@
     --font-weight-xbold: 900;
 }
 
-/* Modern browsers: derive the 75%-opacity tokens live from their source colors,
-   so if a brand color ever changes its translucent variant tracks it automatically.
-   Browsers without relative color syntax (roughly pre-2024 — Firefox < 128, etc.)
-   skip this block entirely and keep the literal rgba() values declared above, so
-   these tokens never fall back to a transparent/invalid value. */
 @supports (color: rgb(from white r g b)) {
     :root {
         --cua-black-opacity-75: rgb(from var(--cua-black-pure) r g b / 0.75);
@@ -126,27 +81,25 @@
     font-style: normal;
     font-display: swap;
     src: url('../fonts/roboto-latin-wght-normal.woff2') format('woff2');
-  }
-  @font-face {
+}
+
+@font-face {
     font-family: 'Roboto Condensed';
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
     src: url('../fonts/roboto-condensed-latin-wght-normal.woff2') format('woff2');
-  }
+}
 
-/* Enable smooth scrolling when an element within the page gains focus */
 html:focus-within {
     scroll-behavior: smooth;
 }
 
-/* Set base font size using a CSS variable and enable smooth scrolling */
 html {
     font-size: var(--base-font-size);
     scroll-behavior: smooth;
 }
 
-/* Ensure full height usage for the HTML and body elements */
 html,
 body {
     height: 100%;
@@ -157,9 +110,6 @@ a:focus {
     outline-offset: 4px;
 }
 
-/* =====================================
-   Tweak the front page h1
-   ===================================== */
 .page-node-778 h1 {
     font-size: 2rem;
     text-align: center;
@@ -176,22 +126,13 @@ a:focus {
     margin: 1rem 0 0;
 }
 
-/* =====================================
-   Global Typography Styles
-   ===================================== */
-
-/* Base font styles for body text, links, and list items */
 body p,
 a,
 li {
     font-family: var(--font-roboto), sans-serif;
-    /* Uses Roboto as the default font */
     font-size: var(--base-font-size);
-    /* Applies the base font size variable */
     font-weight: var(--font-weight-normal);
-    /* Keeps normal font weight */
     line-height: 1.5;
-    /* Ensures consistent spacing */
 }
 
 body {
@@ -200,8 +141,6 @@ body {
     font-family: var(--base-font-family);
 }
 
-/* General styles for heading elements (h1-h6) and their corresponding classes */
-/* Sets a consistent font, color, line height, and weight */
 h1,
 .h1,
 h2,
@@ -220,7 +159,6 @@ h6,
     font-weight: var(--font-weight-bold);
 }
 
-/* Define font sizes for each heading level using CSS variables */
 h1,
 .h1 {
     font-size: var(--h1-size);
@@ -251,39 +189,31 @@ h6,
     font-size: var(--h6-size);
 }
 
-/* Special styling for h1.title */
-/* Adjusts background, color, font size, and spacing */
 h1.title {
     background: inherit;
     color: var(--cua-gray-800);
     font-size: var(--h2-size);
-    /* Uses h2 size for consistency */
     font-family: var(--font-roboto-condensed), sans-serif;
     font-weight: var(--font-weight-bold);
     line-height: 1.05;
     margin: 0.7rem 0 2rem !important;
-    /* Override default margins */
     position: relative;
 }
 
-/* Styling for h2.title */
 h2.title {
     color: var(--cua-gray-800);
     font-size: 2rem;
     font-weight: var(--font-weight-bold);
 }
 
-/* Adjust heading styles inside <aside> elements */
 aside .h2,
 aside h2 {
     color: var(--cua-gray-800);
     font-family: var(--font-roboto-condensed), sans-serif;
     font-size: 1.5rem !important;
-    /* Force a larger size */
     font-weight: var(--font-weight-bold);
 }
 
-/* Add a decorative underline effect below h2 in <aside> */
 aside h2::after {
     background-color: var(--cua-gold);
     content: " ";
@@ -293,14 +223,12 @@ aside h2::after {
     height: 0.1em;
 }
 
-/* Larger heading size for h2 inside block-layout-builder */
 .block-layout-builder aside h2,
 .block-layout-builder aside .h2 {
     font-size: 1.75rem;
     font-weight: var(--font-weight-bold);
 }
 
-/* Define styles for different title classes */
 h3.title {
     font-size: var(--h3-size);
     font-weight: var(--font-weight-bold);
@@ -311,17 +239,14 @@ h4.title {
     font-weight: var(--font-weight-bold);
 }
 
-/* Special styling for links inside .h4.title */
 .h4.title a {
     display: block;
     font-size: 1.4rem !important;
-    /* Override any inherited sizes */
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
     margin: 0 0 0.25rem;
 }
 
-/* Hover effect for links inside .h4.title */
 .h4.title a:hover {
     color: var(--cua-blue-hover);
     text-decoration: underline;
@@ -338,30 +263,20 @@ h6.title {
     font-weight: var(--font-weight-bold);
 }
 
-/* =====================================
-   Title Styles
-   ===================================== */
-
-/* General title styling */
 .title {
     font-size: 2rem;
     line-height: 1.5;
 }
 
-/* Centers the text inside a flex container when the title has the "visible" class */
 .title.visible .d-flex.justify-content-center {
     text-align: center !important;
 }
 
-/* Styles for the page title block */
 div#block-cua-theme-page-title {
     color: var(--cua-gray-700);
-    /* Uses a predefined gray color */
     position: relative;
-    /* Allows for absolute-positioned children */
 }
 
-/* Ensures the page title always has a 2rem font size */
 h1.page-title.pt-2 {
     font-size: 2.25rem !important;
     margin: 0 0 2rem;
@@ -371,34 +286,20 @@ div#main-wrapper {
     margin: 3rem 0 0;
 }
 
-/* =====================================
-   Base Heading Accent
-   ===================================== */
-
-/* Creates a small accent square next to headings */
 .base-heading-square__accent {
     border-width: 3px;
     border-style: solid;
     border-color: var(--cua-gold);
-    /* Uses the defined gold color */
     position: absolute;
-    /* Positions the accent relative to the heading */
     pointer-events: none;
-    /* Prevents interaction */
     top: -0.2rem;
     left: 100px;
     display: block;
     width: 60px;
     height: 60px;
     z-index: -100;
-    /* Moves it behind other elements */
 }
 
-/* =====================================
-   Visibility and Layout Adjustments
-   ===================================== */
-
-/* Hides specific elements for administrators and logged-in users */
 .user-administrator .aioa-widget-wrapper,
 .user-logged-in.aioa-widget-wrapper,
 .field.field--name-field-tags .field__label,
@@ -406,225 +307,136 @@ div#main-wrapper {
     display: none !important;
 }
 
-/* Ensures title fields have a white background */
 .field.field--name-title.field--type-string.field--label-hidden {
     background: var(--cua-white);
 }
 
-/* =====================================
-   CK Editor Title Styles
-   ===================================== */
-
-/* General styling for CKEditor headings inside paragraphs */
 p.h2-title,
 p.h3-title,
 p.h4-title,
 p.h5-title {
     color: inherit;
-    /* Inherits the color from the parent */
     font-family: var(--font-roboto-condensed), sans-serif;
-    /* Uses a condensed Roboto font */
     font-weight: var(--font-weight-bold);
-    /* Makes the font bold */
     line-height: 1.1;
-    /* Reduces line height for compact heading spacing */
 }
 
-/* Large H2 title with specific font size and margin */
 p.h2-title-lg {
     font-size: 2.75rem !important;
-    /* Forces a large heading size */
     margin: 1.3rem 0 0.3rem 0;
-    /* Adds spacing above and below */
 }
 
-/* Specific font size for H2 title */
 p.h2-title {
     font-size: var(--h2-size) !important;
-    /* Uses the predefined H2 size variable */
 }
 
-/* Specific font size and spacing for H3 title */
 p.h3-title {
     font-size: var(--h3-size) !important;
-    /* Uses the predefined H3 size variable */
     padding: 0 !important;
-    /* Removes default padding */
     margin: 0 0 0.25rem !important;
-    /* Adjusts bottom margin */
 }
 
-/* Specific font size for H4 title */
 p.h4-title {
     font-size: var(--h4-size) !important;
-    /* Uses the predefined H4 size variable */
 }
 
-/* Specific font size and line height for H5 title */
 p.h5-title {
     font-size: var(--h5-size) !important;
-    /* Uses the predefined H5 size variable */
     line-height: 1.4 !important;
-    /* Increases line spacing */
 }
 
-/* Specific font size and line height for H6 title */
 p.h6-title {
     font-size: var(--h6-size) !important;
-    /* Uses the predefined H6 size variable */
     line-height: 1.1;
-    /* Keeps it compact */
 }
 
-/* =====================================
-   Text Size Adjustments
-   ===================================== */
-
-/* Enlarges text by 20% */
 .text-larger,
 span.text-larger {
     font-size: 120% !important;
 }
 
-/* Reduces text size by 20% */
 .text-smaller,
 span.text-smaller {
     font-size: 80% !important;
 }
 
-/* =====================================
-   Intro Paragraph Styling
-   ===================================== */
-
-/* Styles for introductory paragraphs */
 p.intro {
     color: inherit;
-    /* Uses the parent color */
     font-family: var(--font-roboto-condensed), sans-serif;
-    /* Uses the condensed Roboto font */
     font-size: 1.2rem;
-    /* Slightly larger font for emphasis */
     font-weight: var(--font-weight-normal);
-    /* Uses normal font weight */
     line-height: 1.5 !important;
-    /* Ensures better readability */
 }
 
-/* =====================================
-   Delete Button Styling
-   ===================================== */
-
-/* Styles for the delete button */
 a#edit-delete {
     background: red;
-    /* Sets the button background color to red */
     border-radius: 0;
-    /* Removes any rounded corners */
     color: var(--cua-white);
-    /* Sets text color using the predefined white variable */
     display: inline-block;
-    /* Ensures it behaves like a button */
     font-weight: var(--font-weight-bold);
-    /* Uses the bold font weight variable */
     padding: 0.5rem 1.5rem;
-    /* Adds padding for spacing inside the button */
     transition: background-color 0.7s ease;
-    /* Smooth transition when background color changes */
     width: auto;
-    /* Allows button width to adjust dynamically based on content */
 }
 
-/* Hover effect for the delete button */
 a#edit-delete:hover {
     background: black;
-    /* Changes background color to black on hover */
     color: red;
-    /* Changes text color to red on hover */
     text-decoration: none !important;
-    /* Forces removal of underline */
 }
 
-/* =====================================
-   Text Weight and Size Adjustments
-   ===================================== */
-
-/* Light font weight styling */
 .light-font-weight {
     font-size: 80% !important;
-    /* Reduces font size to 80% */
     font-weight: var(--font-weight-xlight) !important;
-    /* Uses extra-light font weight */
 }
 
-/* Smaller text styling */
 .text-small,
 .small {
     font-size: 0.875rem;
-    /* Sets text size to 0.875rem for smaller elements */
 }
 
-/* Bold text styling */
 .bold,
 strong,
 .strong-text {
     font-weight: var(--font-weight-bold);
-    /* Ensures consistent bold styling */
 }
 
-/* =====================================
-   Text Weight Classes
-   ===================================== */
-
-/* Extra bold text */
 .text-xbold {
     font-weight: var(--font-weight-xbold) !important;
 }
 
-/* Bold text */
 .text-bold {
     font-weight: var(--font-weight-bold) !important;
 }
 
-/* Medium weight text */
 .text-medium {
     font-weight: var(--font-weight-medium) !important;
 }
 
-/* Normal weight text */
 .text-normal {
     font-weight: var(--font-weight-normal) !important;
 }
 
-/* Light weight text */
 .text-light {
     font-weight: var(--font-weight-light) !important;
 }
 
-/* Extra light weight text */
 .text-xlight {
     font-weight: var(--font-weight-xlight) !important;
 }
 
-/* =====================================
-   Text Color Classes
-   ===================================== */
-
-/* Gold text */
 .text-gold {
     color: var(--cua-gold) !important;
 }
 
-/* White text */
 .text-white {
     color: var(--cua-white) !important;
 }
 
-/* Black text */
 .text-black {
     color: var(--cua-black) !important;
 }
 
-/* Various shades of yellow */
 .text-yellow {
     color: #fcb040;
 }
@@ -649,7 +461,6 @@ strong,
     color: #feeebf;
 }
 
-/* Various shades of purple */
 .text-purple {
     color: #544181;
 }
@@ -662,7 +473,6 @@ strong,
     color: #c7bde3;
 }
 
-/* Various shades of pink */
 .text-pink {
     color: #ac355f;
 }
@@ -675,7 +485,6 @@ strong,
     color: #e29eb3;
 }
 
-/* Various shades of orange */
 .text-orange {
     color: #d94f2a;
 }
@@ -688,7 +497,6 @@ strong,
     color: #ffb69f;
 }
 
-/* Various shades of aqua */
 .text-agua {
     color: #065e62;
 }
@@ -701,7 +509,6 @@ strong,
     color: #bceae7;
 }
 
-/* Various shades of lime */
 .text-lime {
     color: #adcc3b;
 }
@@ -714,7 +521,6 @@ strong,
     color: #f6ffbc;
 }
 
-/* Various shades of blue */
 .text-blue {
     color: #5c7a82;
 }
@@ -727,11 +533,6 @@ strong,
     color: #cdf2fb;
 }
 
-/* =====================================
-   Background Color Classes
-   ===================================== */
-
-/* Various shades of yellow background */
 .bg-yellow {
     background-color: #fcb040;
 }
@@ -744,7 +545,6 @@ strong,
     background-color: #feeebf;
 }
 
-/* Various shades of purple background */
 .bg-purple {
     background-color: #544181;
 }
@@ -757,7 +557,6 @@ strong,
     background-color: #c7bde3;
 }
 
-/* Various shades of pink background */
 .bg-pink {
     background-color: #ac355f;
 }
@@ -770,7 +569,6 @@ strong,
     background-color: #e29eb3;
 }
 
-/* Various shades of orange background */
 .bg-orange {
     background-color: #d94f2a;
 }
@@ -783,7 +581,6 @@ strong,
     background-color: #ffb69f;
 }
 
-/* Various shades of aqua background */
 .bg-agua {
     background-color: #065e62;
 }
@@ -796,7 +593,6 @@ strong,
     background-color: #bceae7;
 }
 
-/* Various shades of lime background */
 .bg-lime {
     background-color: #adcc3b;
 }
@@ -809,7 +605,6 @@ strong,
     background-color: #f6ffbc;
 }
 
-/* Various shades of blue background */
 .bg-blue {
     background-color: #5c7a82;
 }
@@ -822,170 +617,86 @@ strong,
     background-color: #cdf2fb;
 }
 
-/* Light background using a predefined variable */
 .bg-light {
     background: var(--bg-light) !important;
 }
 
-/* Pure black background */
 .cu-bg-pure-black {
     background-color: var(--cua-black-pure) !important;
 }
 
-/* =====================================
-   Miscellaneous Styling
-   ===================================== */
-
-/* Ensures white text in a specific paragraph class */
 .cu-text-white p.intro {
     color: var(--cua-white);
 }
 
-/* Green text */
 .green {
     color: green !important;
 }
 
-/* Green text hover effect and PDF icon hover */
 .green:hover,
 .fa-solid.fa-file-pdf.red:hover {
     color: var(--cua-blue) !important;
     text-decoration: none;
 }
 
-/* Red-colored text and PDF icon */
 .fa-solid.fa-file-pdf.red,
 .red {
     color: #b90404 !important;
 }
 
-/* Dark green hover effect for red text and PDF icon */
 .fa-solid.fa-file-pdf.red:hover,
 .red:hover {
     color: darkgreen !important;
 }
 
-/* =====================================
-   Border Styles
-   ===================================== */
-
-/* Transparent border */
 .border-light {
     border-color: transparent !important;
 }
 
-/* White border with opacity control */
 .border-white {
     --bs-border-opacity: 0;
     border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
 }
 
-/* Blockquote styling */
-blockquote {
-    border-left: 8px solid var(--cua-gold);
-    /* Gold-colored left border */
-    color: var(--cua-gray-700);
-    /* Gray text color */
-    font-size: 1.4em;
-    /* Slightly larger font size */
-    font-style: italic;
-    /* Italicize text */
-    line-height: 1.6;
-    /* Improve readability */
-    margin: 50px auto;
-    /* Center the blockquote with margin */
-    padding: 1.2em 30px 1.2em 75px;
-    /* Space around text */
-    position: relative;
-    /* Positioning for pseudo-elements */
-    width: 85%;
-    /* Set width to 85% of the container */
-}
-
-/* Adds a large opening quotation mark before blockquote content */
-blockquote::before {
-    color: var(--cua-gold);
-    /* Gold color for the quotation mark */
-    content: "\201C";
-    /* Unicode for left double quotation mark */
-    font-size: 6em;
-    /* Large size for visual impact */
-    left: -20px;
-    /* Adjust position */
-    position: absolute;
-    top: -30px;
-    /* Move above the text */
-}
-
-/* Blockquote author or citation styling */
-blockquote span {
-    color: var(--cua-gray-800);
-    /* Slightly darker gray for emphasis */
-    display: block;
-    /* Display as block element */
-    font-weight: var(--font-weight-normal);
-    /* Normal font weight */
-    margin-top: 1em;
-    /* Space above citation */
-}
-
-/* Table styling */
 .table>thead {
     background: var(--cua-gold);
-    /* Gold background for table headers */
 }
 
-/* Table header text styling */
 table tr th,
 table tr th a,
 table tr th a:hover,
 table tr th a:focus {
     color: var(--cua-black);
-    /* Ensure table headers and links are black */
 }
 
 thead>tr {
     font-size: 120%;
-    /* Slightly increase table header text size */
 }
 
-/* Heading styles within views */
 .views-element-container h2,
 .views-exposed-form h2 {
     color: var(--cua-gray-700);
-    /* Gray heading color */
     padding: 0;
-    /* Remove default padding */
     font-size: 1.9rem !important;
-    /* Large heading size */
 }
 
-/* Adjusts heading sizes inside sidebars */
 aside .h3,
 aside .views-element-container h2,
 aside .views-exposed-form h2 {
     font-size: 1.5rem !important;
-    /* Smaller heading size for sidebars */
 }
 
-/* Decorative line under headings */
 .views-exposed-form h2::after,
 .js-views-accordion-group-header::after,
 .views-element-container h2::after {
     background-color: var(--cua-gold);
-    /* Gold accent line */
     content: " ";
-    /* Empty content */
     display: block;
     margin: 0.4em 0;
-    /* Space above and below */
     width: 1.5em;
-    /* Small width */
     height: 0.1em;
-    /* Thin line */
 }
 
-/* Centered heading with decorative line */
 h2.text-align-center::after {
     background-color: var(--cua-gold);
     content: " ";
@@ -993,67 +704,47 @@ h2.text-align-center::after {
     width: 1.5em;
     height: 0.1em;
     margin: 0.4em auto;
-    /* Center the line */
 }
 
-/* Responsive grid item styling */
 .views-view-responsive-grid__item {
     background-color: var(--cua-white-light);
-    /* Light background */
     padding: 1rem;
-    /* Spacing inside grid items */
 }
 
-/* Exposed form styling */
 .views-exposed-form {
     border-radius: 0;
-    /* No rounded corners */
     color: var(--cua-black);
-    /* Text color */
     margin: 2rem 0 0;
-    /* Adjust spacing */
     padding: 0.1rem 1rem 0 .3rem;
-    /* Add padding */
 }
 
-/* Responsive grid layout adjustments */
 .views-view-responsive-grid.views-view-responsive-grid--horizontal {
     margin-bottom: 3rem;
-    /* Space below the grid */
     margin-top: 0;
-    /* No top margin */
 }
 
-/* Margin adjustment for views container */
 .views-element-container {
     margin: 0 0.3em;
-    /* Small horizontal margin */
 }
 
-/* Remove extra spacing in the landing page wrapper */
 #main-wrapper-landing-page .row {
     --bs-gutter-x: 0 !important;
-    /* Override Bootstrap gutter spacing */
     --bs-gutter-y: 0 !important;
     margin-top: 0 !important;
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
 
-/* Adjust main heading spacing on landing pages */
 #main-wrapper-landing-page h1 {
     margin: 1rem 7.5rem;
-    /* Center with side margins */
 }
 
-/* Full-width horizontal padding — contained copy, full-bleed background `*/
 .full-padding,
 .fp {
     padding-left: max(1rem, calc((100% - 1320px) / 2 + 1rem)) !important;
     padding-right: max(1rem, calc((100% - 1320px) / 2 + 1rem)) !important;
 }
 
-/* Vertical padding utilities — unchanged */
 .full-padding-top,
 .full-padding-top-bottom,
 .fptb {
@@ -1061,14 +752,11 @@ h2.text-align-center::after {
     padding-bottom: 3rem !important;
 }
 
-
-/* Remove Bootstrap container padding */
 .container-fluid {
     --bs-gutter-x: 0 !important;
     --bs-gutter-y: 0 !important;
 }
 
-/* Styles the main .cu-line element */
 .cu-line {
     color: var(--cua-gray-800) !important;
     font-family: var(--font-roboto-condensed) sans-serif;
@@ -1077,7 +765,6 @@ h2.text-align-center::after {
     line-height: 1.2;
 }
 
-/* Adds a small gold underline below .cu-line */
 .cu-line::after {
     background-color: var(--cua-gold);
     content: " ";
@@ -1087,7 +774,6 @@ h2.text-align-center::after {
     margin: 0.2em 0 1rem 0;
 }
 
-/* Styles for smaller cu-line elements and links */
 .cu-line-sm,
 .cu-line-sm a {
     color: var(--cua-gray-700);
@@ -1098,12 +784,10 @@ h2.text-align-center::after {
     margin: .75rem 0 0;
 }
 
-/* Changes link color on hover within .cu-line-sm */
 .cu-line-sm a:hover {
     color: var(--cua-gold-hover) !important;
 }
 
-/* Adds a small gold underline to .cu-line-sm */
 .cu-line-sm::after {
     background-color: var(--cua-gold);
     content: " ";
@@ -1113,7 +797,6 @@ h2.text-align-center::after {
     margin: 0.4em 0;
 }
 
-/* Styles the AJAX progress indicator with a loading gif */
 .ajax-progress {
     background-color: black;
     background-image: url(../images/loading.gif);
@@ -1121,12 +804,10 @@ h2.text-align-center::after {
     height: 100px;
 }
 
-/* Removes margin from .featured-top elements */
 .featured-top {
     margin: 0;
 }
 
-/* Styles for large display text */
 .display-4 {
     font-size: var(--h2-size);
     font-family: var(--font-roboto-condensed) sans-serif;
@@ -1134,30 +815,25 @@ h2.text-align-center::after {
     margin-bottom: 1rem !important;
 }
 
-/* Adds a delay to animations using Animate.css */
 .animate__animated.animate__delay-1s {
     -webkit-animation-delay: 0.25s !important;
     animation-delay: 0.25s !important;
 }
 
-/* Adds padding to sticky teaser nodes in taxonomy paths */
 .path-taxonomy .node--view-node-teaser.node--sticky {
     padding: 2rem;
 }
 
-/* Styles fieldsets in webforms with background and spacing */
 .webform-type-fieldset {
     background: var(--cua-gray-200);
     padding: 2rem;
     margin: 0 0 3rem !important;
 }
 
-/* Styles selected filter links */
 a.bef-link--selected {
     color: var(--cua-gold) !important;
 }
 
-/* Styles the "Back to Top" button with a circular shape and shadow */
 #backtotop {
     border: 3px solid var(--cua-gold);
     border-radius: 50%;
@@ -1172,634 +848,383 @@ a.bef-link--selected {
     z-index: 100000;
 }
 
-/* Adjusts margin for email field labels */
 .field--name-field-email.field--label-inline .field__label {
     margin-bottom: 1rem;
 }
 
-/* Styles inline field labels with bold text and spacing */
 .field--label-inline .field__label {
     font-weight: var(--font-weight-bold) !important;
     margin: 0;
     padding-right: 5px;
 }
 
-/* ================= FORM STYLES ================= */
-
-/* Styles the main form input fields */
 .form-control {
     border: var(--bs-border-width) solid var(--cua-gray-800);
     border-radius: 0;
     padding: .45rem .75rem;
 }
 
-/* Styles form input fields when focused */
 .form-control:focus {
     border-color: var(--cua-gray-200);
     box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1);
     outline: 0;
 }
 
-/* Adjusts the font size of the label for "items per page" form fields */
 .form-item-items-per-page label {
     font-size: .85rem;
 }
 
-/* Adds horizontal margins to "items per page" form elements */
 .form-item-items-per-page {
     margin-left: 1rem !important;
     margin-right: 1rem !important;
 }
 
-/* ================= USER STYLES ================= */
-
-/* Adds horizontal margins for the main landing page wrapper when viewed by an admin or logged-in user */
 .user-administrator .node--type-landing-page #main-wrapper-landing-page,
 .user-logged-in .node--type-landing-page #main-wrapper-landing-page {
     margin: 0 1rem;
 }
 
-/* Centers text for specific display elements */
 .display-4.card-text.lead.h3.title.d-flex.justify-content-center {
     text-align: center !important;
 }
 
-/* ================= NODE STYLES ================= */
-
-/* Adds a margin to landing page titles */
 .node--type-landing-page h1.title {
     margin: .7rem 0 0 !important;
 }
 
-/* Inherits font size and removes top margin for landing page content */
 .node--type-landing-page .node__content {
     font-size: inherit;
     margin-top: 0;
 }
 
-/* Sets default font size and removes top margin for all node content */
 .node__content {
     font-size: var(--base-font-size);
     margin-top: 0;
 }
 
-/* Styles unpublished nodes with a light red background */
 .node--unpublished {
     background: #fce0e0;
 }
 
-/* Modal styles */
-
-/* Style for the modal body, ensures it stays on top of other content */
 .modal-body {
     z-index: 9999 !important;
-    /* Bring modal content above other page elements */
 }
 
-/* Style for the modal backdrop, ensures it is transparent and does not interfere with other content */
 .modal-backdrop {
     background-color: transparent !important;
-    /* Make backdrop transparent */
     z-index: -9999 !important;
-    /* Place backdrop behind the modal content */
 }
 
-/* Style for the modal content, customizing the background and text color */
 .modal-content {
     background-color: var(--cua-white);
-    /* Set background color to white */
     background-clip: padding-box;
-    /* Ensure background does not extend into borders */
     border: 0 solid var(--cua-white);
-    /* Remove border */
     color: var(--cua-black-pure);
-    /* Set text color to pure black */
     pointer-events: auto;
-    /* Allow interaction with modal content */
 }
 
-/* Colors - Background color utilities */
-
-/* Set background to pure white */
 .bg-white {
     background: var(--cua-white) !important;
-    /* Apply white background */
 }
 
-/* Set background to 50% opaque white */
 .bg-white-50 {
     background: rgba(255, 255, 255, 0.5) !important;
-    /* Apply 50% transparent white background */
 }
 
-/* Set background to 60% opaque white */
 .bg-white-60 {
     background: rgba(255, 255, 255, 0.6) !important;
-    /* Apply 60% transparent white background */
 }
 
-/* Set background to 70% opaque white */
 .bg-white-70 {
     background: rgba(255, 255, 255, 0.7) !important;
-    /* Apply 70% transparent white background */
 }
 
-/* Set background to 80% opaque white */
 .bg-white-80 {
     background: rgba(255, 255, 255, 0.8) !important;
-    /* Apply 80% transparent white background */
 }
 
-/* Set background to 90% opaque white */
 .bg-white-89 {
     background: rgba(255, 255, 255, 0.9) !important;
-    /* Apply 90% transparent white background */
 }
 
-/* Set background to light grey */
 .bg-light-grey {
     background: var(--cua-light-grey) !important;
-    /* Apply light grey background */
 }
 
-/* Set background to medium grey */
 .bg-gray {
     background: var(--cua-gray) !important;
-    /* Apply standard grey background */
 }
 
-/* Set background to dark grey */
 .bg--dark-gray {
     background: var(--cua-dark-gray) !important;
-    /* Apply dark grey background */
 }
 
-/* Set background to a light shade of grey (100 level) */
 .bg-gray-10 {
     background: var(--cua-gray-100) !important;
-    /* Apply very light grey background */
 }
 
-/* Set background to a medium light grey (200 level) */
 .bg-gray-20 {
     background: var(--cua-gray-200) !important;
-    /* Apply light medium grey background */
 }
 
-/* Set background to a medium grey (300 level) */
 .bg-gray-30 {
     background: var(--cua-gray-300) !important;
-    /* Apply medium grey background */
 }
 
-/* Set background to a medium dark grey (400 level) */
 .bg-gray-40 {
     background: var(--cua-gray-400) !important;
-    /* Apply medium dark grey background */
 }
 
-/* Set background to a dark grey (600 level) */
 .bg-gray-50 {
     background: var(--cua-gray-600) !important;
-    /* Apply dark grey background */
 }
 
-/* Set background to a slightly darker grey (600 level) */
 .bg-gray-60 {
     background: var(--cua-gray-600) !important;
-    /* Apply slightly darker grey background */
 }
 
-/* Set background to a very dark grey (700 level) */
 .bg-gray-70 {
     background: var(--cua-gray-700) !important;
-    /* Apply very dark grey background */
 }
 
-/* Set background to an almost black grey (800 level) */
 .bg-gray-80 {
     background: var(--cua-gray-800) !important;
-    /* Apply almost black grey background */
 }
 
-/* Set background to near black grey (900 level) */
 .bg-gray-90 {
     background: var(--cua-gray-900) !important;
-    /* Apply near black grey background */
 }
 
-/* Set background to pure black */
 .bg-black {
     background: var(--cua-black) !important;
-    /* Apply black background */
 }
 
-/* Set background to pure black (stronger black) */
 .bg-pure-black {
     background: var(--cua-black-pure) !important;
-    /* Apply pure black background */
 }
 
-/* Set background to blue */
 .bg-blue {
     background: var(--cua-blue) !important;
-    /* Apply standard blue background */
 }
 
-/* Set background to a light blue */
 .bg-light-blue {
     background: #c3dcff !important;
-    /* Apply light blue background */
 }
 
-/* Set background to dark blue */
 .bg-dark-blue {
     background: var(--cua-blue-dark) !important;
-    /* Apply dark blue background */
 }
 
-/* Set background to gold */
 .bg-gold {
     background: var(--cua-gold) !important;
-    /* Apply gold background */
 }
 
-/* Set background to dark gold (hover effect) */
 .bg-dark-gold {
     background: var(--cua-gold-hover) !important;
-    /* Apply dark gold background */
 }
 
-/* Parallax - Background styling for parallax effects */
-
-/* General parallax container settings for fixed background and scaling */
 .parallax {
     background-attachment: fixed;
-    /* Keep the background fixed during scrolling */
     background-position: center;
-    /* Center the background image */
     background-repeat: no-repeat;
-    /* Prevent the background image from repeating */
     background-size: cover;
-    /* Scale the background image to cover the element */
     min-height: max-content;
-    /* Ensure the element's minimum height is based on its content */
 }
 
-/* Main content container for parallax sections */
 .parallax-main-content {
     position: relative;
-    /* Allow for positioning of elements inside */
     height: 100%;
-    /* Ensure it takes full height of its container */
 }
 
-/* Padding adjustment for parallax sections */
 .parallax .add-padding {
     padding: 10rem 0;
-    /* Add vertical padding of 10rem */
 }
 
-/* Adjust padding for specific elements inside parallax banner */
 .banner .parallax .display-4.add-padding,
 .banner .parallax .card-body.add-padding {
     padding: 0 1.5rem !important;
-    /* Remove top and bottom padding, add horizontal padding */
 }
 
-/* Specific padding adjustment for video elements in parallax */
 .video .parallax-main-content .display-4 {
     padding-top: 1rem !important;
-    /* Add top padding for video text */
 }
 
 .video .parallax-main-content .card-body {
     padding-bottom: 1.5rem !important;
-    /* Add bottom padding for video card */
 }
 
-/* Flag - Styling for flags displayed on top of content */
-
-/* General flag styling with shadow, position, and font size */
 .flag {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    /* Add shadow for visual elevation */
     font-size: 1rem;
-    /* Set font size */
     font-weight: 600;
-    /* Set font weight to semi-bold */
     padding: 1px 20px 1px 7px;
-    /* Set padding around the flag */
     position: absolute;
-    /* Position flag absolutely within parent */
     left: -8px;
-    /* Position flag slightly to the left */
     top: 20px;
-    /* Position flag 20px from the top */
     z-index: 100;
-    /* Ensure flag stays above other elements */
 }
 
-/* Prevent underline on flag links when hovered */
 .flag a:hover {
     text-decoration: none !important;
-    /* Remove text decoration */
 }
 
-/* Triangle arrow on the flag created using pseudo-element */
 .flag::after {
     border-color: transparent #000 transparent transparent;
-    /* Define arrow color */
     border-style: solid;
-    /* Solid border style for the arrow */
     border-width: 0 8px 8px 0;
-    /* Define size of the triangle */
     content: "";
-    /* Empty content to generate the triangle */
     position: absolute;
-    /* Position the arrow at the bottom of the flag */
     width: 0;
-    /* Zero width for the arrow */
     height: 0;
-    /* Zero height for the arrow */
     bottom: -8px;
-    /* Position arrow 8px below the flag */
     left: 0;
-    /* Align the arrow to the left of the flag */
 }
 
-/* Styling for flag links within specific heading elements */
 .flag a.display-4.card-text.lead.title.h3 {
     font-size: .95rem !important;
-    /* Slightly reduce font size */
     font-weight: var(--font-weight-bold) !important;
-    /* Use bold font weight */
     text-decoration: none !important;
-    /* Remove text decoration */
 }
 
-/* Position adjustment for flag in call-to-action blocks */
 .block .call-to-action .add-padding .flag {
     top: 35px !important;
-    /* Move flag further down (35px from top) */
 }
 
-/* Flag background color variations with specific color schemes */
-
-/* White, Gold, Light Grey flags with black text */
 .flag.cu-bg-white,
 .flag.cu-bg-gold,
 .flag.cu-bg-light-gray,
 a.flag-link .flag.cu-bg-light-grey {
     color: var(--cua-black);
-    /* Set text color to black */
 }
 
-/* Black and Pure Black flags with white text */
 .flag.cu-bg-black,
 .flag.cu-bg-pure-black {
     color: var(--cua-white);
-    /* Set text color to white */
 }
 
-/* Hover state for flag links with different background and text colors */
 .flag-link:hover .flag.cu-bg-gold,
 .flag-link:hover .flag.cu-bg-white {
     color: var(--cua-white);
-    /* Set text color to white */
     background-color: var(--cua-black);
-    /* Set background to black on hover */
 }
 
 .flag-link:hover .flag.cu-bg-black,
 .flag-link:hover .flag.cu-bg-light-grey {
     color: var(--cua-black);
-    /* Set text color to black */
     background-color: var(--cua-white);
-    /* Set background to white on hover */
 }
 
-/* Margin Utilities */
-
-/* Adds equal margin of 3rem to the top and bottom of an element */
 .margin-top-and-bottom {
     margin: 3rem 0;
-    /* 3rem margin on top and bottom, 0 on left and right */
 }
 
-/* Adds margin of 3rem to the bottom of an element */
 .margin-bottom {
     margin: 0 0 3rem 0;
-    /* 0 margin on top, right, and left, 3rem on bottom */
 }
 
-/* Adds margin of 3rem to the top of an element */
 .margin-top {
     margin: 3rem 0 0 0;
-    /* 3rem margin on top, 0 on right, bottom, and left */
 }
 
-/* Alert Styling */
-
-/* Set alert vertical padding (top and bottom) to 0 for compact alerts */
 .alert {
     --bs-alert-padding-y: 0;
-    /* Removes default padding on the top and bottom of the alert */
 }
 
-/* Remove margin and padding for card-body within an alert to ensure compact layout */
 .alert .card-body {
     margin-bottom: 0;
-    /* Remove bottom margin */
     padding: 0;
-    /* Remove padding */
 }
 
-/* Remove padding for card-footer within an alert for a cleaner design */
 .alert .card-footer {
     padding: 0;
-    /* Remove padding from the footer */
 }
 
-/* Adjust styling for the close button in dismissible alerts, positioning it at the top-right */
 .alert-dismissible .btn-close {
     top: 10px;
-    /* Position the close button 10px from the top */
     right: 20px;
-    /* Position the close button 20px from the right */
     padding: .5rem;
-    /* Set padding around the close button */
     color: inherit;
-    /* Ensure the close button inherits the text color */
 }
 
-/* Override alert card-footer padding and margin, ensuring space between elements */
 .alert .card-footer {
     padding: 0 !important;
-    /* Remove padding from footer, force this style */
     margin: 0 0 1rem !important;
-    /* Set margin below the footer for spacing, force this style */
 }
 
-/* Style for buttons inside alert card, making them smaller and with more padding */
 .alert .card .btn {
     font-size: .8rem;
-    /* Set font size smaller for button text */
     padding: .3rem 1.25rem !important;
-    /* Add padding inside the button, force this style */
 }
 
-/* Customize Close Button Colors and Background */
-
-/* Remove the default background for the close button */
 .btn-close {
     --bs-btn-close-bg: none !important;
-    /* Ensure no background is applied */
 }
 
-/* Style the close button icon with custom design */
 .btn-close::before {
     border: transparent;
-    /* Remove any borders */
     background: transparent;
-    /* Make the background transparent */
     color: inherit;
-    /* Inherit the text color */
     content: "\58";
-    /* Set the content to a close (×) character */
     font-size: var(--base-font-size);
-    /* Set the font size based on base font size */
     font-weight: var(--font-weight-bold);
-    /* Set the font weight to bold */
     padding: .25rem .75rem;
-    /* Add padding around the icon */
     position: absolute;
-    /* Position the icon absolutely */
     top: -3px;
-    /* Move the icon slightly up */
     left: -15px;
-    /* Move the icon slightly to the left */
 }
 
-/* When the button is inside a black background, style it with white borders and text */
 .cu-bg-black .btn-close::before {
     border: 1px solid var(--cua-white);
-    /* Add white border around the close button */
     color: var(--cua-white);
-    /* Set text color to white */
 }
 
-/* When the button is inside a gold, light grey, or white background, style it with black borders and text */
 .cu-bg-gold .btn-close::before,
 .cu-bg-light-grey .btn-close::before,
 .cu-bg-white .btn-close::before {
     border: 1px solid var(--cua-black);
-    /* Add black border */
     color: var(--cua-black);
-    /* Set text color to black */
 }
 
-/* Add padding to the top of the icon container in smaller columns */
 .col-sm-1.icon-container {
     padding-top: 2rem;
-    /* Adds padding to the top of the container */
 }
 
-/* Remove margin for containers within landing pages to ensure full-width layout */
 .node--type-landing-page .container-fluid {
     margin: 0 !important;
-    /* Remove margin to ensure full-width */
 }
 
-/* Ckeditor Links */
-
-/* Primary button styling within CKEditor for layout builder */
 .js-layout-builder-block .btn.btn-primary,
 .ck.btn.btn-primary {
     color: var(--cua-black) !important;
-    /* Text color */
     border: 2px solid var(--cua-black) !important;
-    /* Border color */
     background-color: var(--cua-white) !important;
-    /* Background color */
     text-decoration: none !important;
-    /* Remove underline */
     margin: 1rem 0 !important;
-    /* Vertical margin */
 }
 
-/* Primary button hover state within CKEditor for layout builder */
 .js-layout-builder-block .ck.btn.btn-primary:hover,
 .ck.btn.btn-primary:hover {
     color: var(--cua-white) !important;
-    /* Text color on hover */
     border: 2px solid var(--cua-black) !important;
-    /* Border color on hover */
     background-color: var(--cua-black) !important;
-    /* Background color on hover */
 }
 
-/* Secondary button styling within CKEditor for layout builder */
 .js-layout-builder-block .ck .btn.btn-secondary,
 .ck.btn.btn-secondary {
     color: var(--cua-black) !important;
-    /* Text color */
     border: 2px solid var(--cua-gold) !important;
-    /* Border color */
     background-color: var(--cua-gold) !important;
-    /* Background color */
     text-decoration: none !important;
-    /* Remove underline */
     margin: 1rem 0 !important;
-    /* Vertical margin */
 }
 
-/* Secondary button hover state within CKEditor for layout builder */
 .js-layout-builder-block .ck.btn.btn-secondary:hover,
 .ck.btn.btn-secondary:hover {
     color: var(--cua-white) !important;
-    /* Text color on hover */
     border: 2px solid var(--cua-white) !important;
-    /* Border color on hover */
     background-color: var(--cua-black) !important;
-    /* Background color on hover */
 }
 
-/* Blockquote Styling */
-
-/* Style blockquotes with a left border and custom padding */
-blockquote {
-    border-left: none;
-    /* Remove default left border */
-    color: var(--cua-gray-700);
-    /* Text color */
-    font-size: 1.25em;
-    /* Font size */
-    font-style: italic;
-    /* Italicize text */
-    line-height: 1.6;
-    /* Line height for readability */
-    margin: 10px auto;
-    /* Center blockquote with vertical margin */
-    padding: 1rem 2rem;
-    /* Padding around text */
-    position: relative;
-    /* Positioning for any additional elements */
-    width: 85%;
-    /* Set width */
-}
-
-/* Style paragraph inside blockquote */
-blockquote p {
-    font-size: 1.25rem;
-    /* Font size */
-    line-height: 1.5;
-    /* Line height */
-}
-
-/* Padding Utilities */
-
-/* Different padding classes with 0.5rem increments */
 .p-half-rem {
     padding: .5rem !important;
 }
@@ -1844,29 +1269,20 @@ blockquote p {
     padding: 10rem !important;
 }
 
-/* Video Container */
-
-/* Ensures videos do not overflow */
 .video-container {
     max-width: 100%;
-    /* Maximum width of video */
     height: auto;
-    /* Maintain aspect ratio */
     overflow: hidden;
-    /* Hide overflow */
 }
 
-/* Responsive YouTube container with 16:9 aspect ratio */
 .youtube-container--responsive {
     position: relative;
     padding-bottom: 56.25%;
-    /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
     max-width: 100%;
 }
 
-/* Style iframe within responsive YouTube container */
 .youtube-container--responsive iframe {
     position: absolute;
     top: 0;
@@ -1875,160 +1291,103 @@ blockquote p {
     height: 100%;
 }
 
-/* Container Fluid Styling */
-
-/* Prevent horizontal overflow for containers */
 .container-fluid {
     overflow-x: hidden;
 }
 
-/* Block styling for specific blocks */
 #block--node--half-and-half--964,
 #block--node--slider--902 {
     max-width: 100%;
-    /* Full-width */
     margin: auto;
-    /* Center block */
     overflow: hidden;
-    /* Prevent content from escaping */
 }
 
-/* Site Footer Navigation */
-
-/* Hover and focus styling for footer navigation links */
 .site-footer .nav-link:focus,
 .site-footer .nav-link:hover {
     color: var(--cua-white) !important;
-    /* Change color on hover/focus */
 }
 
-/* Contextual Menu */
-
-/* Ensure contextual menu is positioned on top */
 .contextual {
     position: relative;
     z-index: 9999 !important;
-    /* Ensure it's above other content */
 }
 
-/* Prevent interference with links inside contextual menu */
 .contextual a {
     pointer-events: none !important;
-    /* Prevent link from interfering */
 }
 
-/* Make contextual links clickable */
 .contextual .contextual-links a {
     pointer-events: auto !important;
-    /* Enable interaction with links */
 }
 
-/* Ensure contextual region trigger button is visible */
 .js-layout-builder-block.layout-builder-block.contextual-region .contextual {
     position: relative !important;
     z-index: 9999 !important;
-    /* Ensure it's above other content */
 }
 
 .js-layout-builder-block.layout-builder-block.contextual-region .contextual .trigger {
     pointer-events: auto !important;
-    /* Enable interaction */
     visibility: visible !important;
-    /* Ensure visibility */
     opacity: 1 !important;
-    /* Ensure opacity */
 }
 
-/* Ensure contextual links are displayed on top */
 .xjs-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links {
     position: absolute !important;
     z-index: 10000 !important;
-    /* Ensure links are on top */
     visibility: visible !important;
-    /* Ensure visibility */
     opacity: 1 !important;
-    /* Ensure opacity */
     display: block !important;
-    /* Display links */
 }
 
-/* Style individual contextual links for better clarity */
 .js-layout-builder-block.layout-builder-block.contextual-region .contextual .contextual-links li a {
     pointer-events: auto !important;
-    /* Allow interaction with links */
 }
 
-/* Contextual Link Background Color */
 .contextual-links {
     background: green !important;
-    /* Set background color */
     padding: .5rem 1em !important;
-    /* Padding around links */
 }
 
-/* Remove underline from active links */
 .nav-link.nav-link--guide-givingone-time-gift.is-active,
 .nav-link.nav-link--guide-giving.is-active,
 .nav-link.nav-link--guide-givingplanned-gift.is-active,
 .nav-link.nav-link--guide-givingsecurities.is-active,
 .nav-link.nav-link--guide-givingcrypto.is-active {
     text-decoration: none !important;
-    /* Remove underline from active links */
 }
 
-/* Special Heading Styling */
-
-/* Hidden heading for accessibility purposes */
 h3.sr-only {
     color: #000;
-    /* Darker text color */
     background-color: #fff;
-    /* Light background color */
 }
 
-/* Main menu block background */
 h2#block-cua-theme-main-menu-menu {
     background: white !important;
-    /* White background */
 }
 
-/* Article content styling */
 .node--type-article .node__content {
     margin-top: 0 !important;
-    /* Remove top margin */
 }
 
-/* Main menu label styling */
 #main-menu-label {
     opacity: 1;
-    /* Full opacity */
     color: #fff;
-    /* White text */
     background-color: #343a40;
-    /* Dark background */
     padding: 5px;
-    /* Padding */
 }
 
-/* Card footer button hover state */
 .card-footer.card-story .btn.outline-btn-cu-bg-light-grey:hover {
     color: var(--cua-black) !important;
-    /* Change text color on hover */
 }
 
-/* Lead story item styling */
 .lead-story-item {
     position: relative;
     transition: background 0.2s ease-in-out;
-    /* Smooth background transition */
     color: var(--cua-white);
-    /* White text color */
 }
 
-/* Lead story item hover state */
 .lead-story-item:hover {
     background: rgba(255, 255, 255, 0.1);
-    /* Slightly lighter black on hover */
 }
 
 .btn.btn-sm.btn-admin-app {
@@ -2038,8 +1397,6 @@ h2#block-cua-theme-main-menu-menu {
     font-weight: bold !important;
 }
 
-/* Give now on front */
-/* Fix the blue text issue inside paragraphs and spans */
 .give-now-item a,
 .stories-item a,
 .give-now-item p,
@@ -2049,10 +1406,8 @@ h2#block-cua-theme-main-menu-menu {
 .give-now-item .position-absolute i,
 .give-now-item .position-absolute {
     color: var(--cua-black) !important;
-    /* Force all text to use the inherited color */
 }
 
-/* Ensure the button keeps its correct colors */
 .give-now-item .card-link.btn {
     background-color: transparent !important;
     border: 2px solid var(--cua-black) !important;
@@ -2071,7 +1426,6 @@ h2#block-cua-theme-main-menu-menu {
     color: black !important;
 }
 
-/* Styles for Stories Items */
 .stories-item a,
 .stories-item p,
 .stories-item span,
@@ -2110,25 +1464,19 @@ h2#block-cua-theme-main-menu-menu {
     background: var(--cua-gray-800) !important;
 }
 
-/* First 4 rows */
 #draggableviews-table-give-now-page-1-0 tbody tr:nth-child(-n+4) .views-field.views-field-title,
 #draggableviews-table-lead-story-page-1-0 tbody tr:nth-child(-n+4) .views-field.views-field-title {
     background-color: #d1f0d1 !important;
-    /* Light green */
 }
 
-/* Rows 5 and beyond */
 #draggableviews-table-give-now-page-1-0 tbody tr:nth-child(n+5) .views-field.views-field-title,
 #draggableviews-table-lead-story-page-1-0 tbody tr:nth-child(n+5) .views-field.views-field-title {
     background-color: #f9bfbf !important
-        /* Light red */
 }
 
 #draggableviews-table-lead-story-page-1-0 .lead-story-sort #block-cua-theme-content a {
     border: none !important;
 }
-
-/* Style links inside .views-field.views-field-title */
 
 #views-form-lead-story-page-1 .views-field.views-field-edit-node {
     background: black !important;
@@ -2136,22 +1484,15 @@ h2#block-cua-theme-main-menu-menu {
 
 #views-form-lead-story-page-1 .views-field.views-field-title a {
     color: black !important;
-    /* Make text black */
     font-weight: bold !important;
-    /* Make text bold */
     text-decoration: none !important;
-    /* Remove underline */
 }
 
-/* Optional: Add hover effect if needed */
 #views-form-lead-story-page-1 .views-field.views-field-title a:hover {
     color: #333 !important;
-    /* Slightly darker on hover */
     text-decoration: underline !important;
-    /* Restore underline on hover */
 }
 
-/* Hide 1st for blocks for sample give now */
 .page-node-975 .row .give-now-item:nth-child(-n+4) {
     display: none !important;
 }
@@ -2214,11 +1555,9 @@ h2#block-cua-theme-main-menu-menu {
 
 .read-more-override:hover {
     color: var(--cua-blue-hover) !important;
-    /* Replace with your theme's highlight color */
     text-decoration: underline !important;
 }
 
-/* Text elements */
 .campus-card p,
 .campus-card ul,
 .campus-card ol,
@@ -2253,931 +1592,528 @@ h2#block-cua-theme-main-menu-menu {
 .campus-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
-    /* optional: adds a more elevated shadow */
 }
 
-
-/* Styling for each staff directory item */
 .staff-directory .views-view-responsive-grid__item {
     background-color: var(--cua-gray-100);
-    /* Light gray background color */
     border: 1px solid var(--cua-dark-gray);
-    /* Dark gray border */
     border-radius: 15px;
-    /* Rounded corners */
     margin: 0.15rem;
-    /* Small margin */
     padding: 1rem
-        /* Padding inside the item */
 }
 
-/* Styling for staff directory links */
 .staff-directory a,
 .staff-directory a:visited {
     color: var(--cua-black);
-    /* Black text color */
     text-decoration: none;
-    /* Remove underline */
 }
 
-/* Styling for hovered staff directory links */
 .staff-directory a:hover {
     color: var(--cua-gold);
-    /* Gold text color on hover */
     text-decoration: underline;
-    /* Underline on hover */
 }
 
-/* Address - Contact */
-
-/* Hide country field */
 .country {
     display: none;
-    /* Country field is hidden */
 }
 
-/* Styling for the contact address */
 .contact .address {
     margin: 1rem 0 0;
-    /* Margin at the top */
     padding-bottom: 0.5rem;
-    /* Padding at the bottom */
 }
 
-/* Styling for the contact organization */
 .contact .organization {
     font-family: var(--font-roboto-condensed), sans-serif;
-    /* Font family */
     font-weight: var(--font-weight-normal);
-    /* Normal font weight */
     font-size: 110%;
-    /* Font size */
     color: var(--cua-gray-700);
-    /* Dark gray text color */
 }
 
-/* Styling for organization title in contact-us node */
 .node--type-contact-us .organization {
     font-style: italic;
-    /* Italic font style */
 }
 
-/* Styling for the title (h5) in the contact section */
 .contact .h5.title {
     font-size: 1.3rem;
-    /* Font size */
     color: var(--cua-gray-700);
-    /* Dark gray text color */
 }
 
-/* Styling for the title with headshot class in the contact section */
 .contact .h5.title.headshot {
     font-size: 1.25rem;
-    /* Font size */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     color: var(--cua-gray-700);
-    /* Dark gray text color */
     margin: 0;
-    /* No margin */
 }
 
-/* Styling for the office phone field in the contact section */
 .contact .views-field.views-field-field-office-phone {
     margin: 1rem 0 0;
-    /* Margin at the top */
     line-height: 1.8;
-    /* Line height */
 }
 
-/* Styling for responsive-enabled columns in the contact section */
 .contact .cols-0.responsive-enabled {
     margin: 1rem 0 0;
-    /* Margin at the top */
 }
 
-/* Table row styles in the contact section */
 .contact tr {
     border-bottom: 4px solid var(--cua-gold);
-    /* Gold border at the bottom */
     background-color: var(--cua-white);
-    /* White background color */
     margin: 1rem 0 3rem 1rem;
-    /* Margin around the row */
     display: block;
-    /* Display as block */
 }
 
-/* Styling for links in the contact section */
 .contact a {
     color: var(--cua-black);
-    /* Black text color */
     font-weight: var(--font-weight-medium);
-    /* Medium font weight */
     text-decoration: none;
-    /* Remove underline */
     transition: color 0.5s ease, text-decoration 0.5s ease;
-    /* Smooth transition */
 }
 
-/* Styling for hovered links in the contact section */
 .contact a:hover {
     color: var(--cua-blue-hover);
-    /* Blue text color on hover */
     text-decoration: underline;
-    /* Underline on hover */
 }
 
-/* Styling for phone and envelope icons in the contact section */
 .contact .fa-phone:before,
 .contact .fa-envelope:before {
     font-size: 90%;
-    /* Font size */
     color: var(--cua-gold);
-    /* Gold text color */
 }
 
-/* Styling for field content and email in the contact section */
 .contact .field-content,
 .contact .email.mb-2 {
     margin: 0 0 0 0.5rem;
-    /* Margin on the left */
 }
 
-/* Styling for headings (h5) in the contact section */
 .contact h5 {
     margin-bottom: 0;
-    /* No margin at the bottom */
 }
 
-/* Styling for the address field in the contact section */
 .contact .views-field.views-field-field-address {
     border-bottom: 2px solid var(--cua-white);
-    /* White border at the bottom */
 }
 
-/* Styling for the inner items in the responsive grid in the contact section */
 .contact .views-view-responsive-grid__item-inner {
     padding: 1rem;
-    /* Padding inside the item */
     background-color: var(--cua-white-light);
-    /* Light white background color */
 }
 
-/* Styling for links in the blue contact section */
 .contact.blue a {
     color: var(--cua-blue);
-    /* Blue text color */
     font-weight: var(--font-weight-medium);
-    /* Medium font weight */
     text-decoration: none;
-    /* Remove underline */
 }
 
-/* Styling for hovered links in the blue contact section */
 .contact.blue a:hover {
     text-decoration: underline;
-    /* Underline on hover */
 }
 
-/* Styling for rows in the blue contact section */
 .contact.blue .views-row {
     margin: 0 0 0.5rem;
-    /* Margin at the bottom */
 }
 
-/* Styling for contact title links */
 .contact-title a {
     color: var(--cua-black);
-    /* Black text color */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     text-decoration: none;
-    /* Remove underline */
     transition: color 0.5s ease, text-decoration 0.5s ease;
-    /* Smooth transition */
     font-size: 1.5rem;
-    /* Font size */
 }
 
-/* Styling for contact form submit button */
 input#edit-submit-contact--2 {
     margin: 0.2rem 0;
-    /* Margin at the top and bottom */
 }
 
-/* Styling for contact and BOD (Board of Directors) divs */
 div#edit-contacts--2,
 div#edit-bod--2 {
     border-radius: 0;
-    /* No border radius */
     border: 1px solid white;
-    /* White border */
 }
 
-/* Styling for contact-us node layout */
 .path-node.node--type-contact-us .layout {
     margin: 0;
-    /* No margin */
 }
 
-/* Styling for content in the contact-us node */
 .path-node.node--type-contact-us .node__content {
     margin-top: 0;
-    /* No margin at the top */
 }
 
-/* Styling for the position field in the contact-us node */
 .path-node.node--type-contact-us .field--name-field-position {
     margin: 0 0 1rem;
-    /* Margin at the bottom */
 }
 
-/* Styling for the address field in the contact-us node */
 .path-node.node--type-contact-us .address {
     margin: 1rem 0 0;
-    /* Margin at the top */
 }
 
-/* Styling for sections in the contact-us node */
 .node--type-contact-us section.section {
     margin-left: 2rem;
-    /* Margin on the left */
 }
 
-/* Styling for contact address paragraphs */
 .contact-address p {
     font-size: var(--base-font-size);
-    /* Font size */
     line-height: 1.5;
-    /* Line height */
     margin-bottom: 0;
-    /* No margin at the bottom */
 }
 
-/* Styling for contact-us title span */
 .block-field-blocknodecontact-ustitle span.field.field--name-title {
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     font-size: 1.1rem;
-    /* Font size */
 }
 
-/* Styling for main contact view header */
 .contact.main-contact .view-grouping-header {
     color: var(--cua-gray-700);
-    /* Dark gray text color */
     font-family: var(--font-roboto);
-    /* Font family */
     font-size: 1.875rem;
-    /* Font size */
     font-weight: var(--font-weight-medium);
-    /* Medium font weight */
     line-height: 1.2;
-    /* Line height */
     margin: 1rem 0 0;
-    /* Margin at the top */
 }
 
-/* Styling for main contact view header after element */
 .contact.main-contact .view-grouping-header::after {
     content: " ";
-    /* Empty content */
     display: block;
-    /* Display as block */
     width: 1.5em;
-    /* Width */
     height: 0.1em;
-    /* Height */
     background-color: var(--cua-gold);
-    /* Gold background color */
     margin: 0.4em 0;
-    /* Margin at the top and bottom */
 }
 
-/* Styling for specific elements in the contact and board views */
 .view-contact.view-id-contact .view-content>.col-md-6:first-child .bg-light .h5.title.headshot,
 .view-id-board_of_directors.view-display-id-attachment_2 .view-content>.col-md-6:first-child .bg-light .cu-line-sm a {
     color: var(--cua-black) !important;
-    /* Important black text color */
 }
 
-/* Styling for specific elements in the main contacts page view */
 .page-view-main-contacts .contact .view-content>.col-md-6:first-child .fa-phone::before,
 .page-view-main-contacts .contact .view-content>.col-md-6:first-child .fa-envelope::before {
     color: var(--cua-gold) !important;
-    /* Important gold text color */
 }
 
-/* Styling for title field in contact-us node */
 .node--type-contact-us .field.field--name-title.field--type-string.field--label-hidden {
     font-size: 2rem;
-    /* Font size */
 }
 
-/* Hide contact menu headings */
 .contact-menu h3 {
     display: none !important;
-    /* Hide element */
 }
 
-/* Styling for contact headings */
 .contact h3::after {
     content: " ";
-    /* Empty content */
     display: block;
-    /* Display as block */
     width: 1.5em;
-    /* Width */
     height: 0.1em;
-    /* Height */
     background-color: var(--cua-gold);
-    /* Gold background color */
     margin: 0.4em 0;
-    /* Margin at the top and bottom */
 }
 
-/* FAQ Styles */
-
-/* Styling for FAQ accordion group header */
 .faq .js-views-accordion-group-header {
     padding: 0;
-    /* No padding */
     font-size: 1.5rem;
-    /* Font size */
 }
 
-/* Styling for FAQ widget content */
 .faq .ui-widget-content {
     border: 2px solid var(--cua-white);
-    /* White border */
     border-left-color: var(--cua-gray-400);
-    /* Gray border on the left */
     margin: 1rem !important;
-    /* Margin with important flag */
 }
 
-/* Styling for FAQ default state */
 .faq .ui-state-default {
     border: 2px solid var(--cua-gray-50);
-    /* Light gray border */
     background-color: var(--cua-gray-50);
-    /* Light gray background color */
     color: var(--cua-gray-800);
-    /* Dark gray text color */
     font-size: 1rem;
-    /* Font size */
     font-weight: var(--font-weight-normal);
-    /* Normal font weight */
     transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
-    /* Smooth transitions */
 }
 
-/* Styling for FAQ active and hovered state */
 .faq .ui-state-active,
 .faq .ui-state-default:hover {
     background-color: var(--uci-gray);
-    /* Gray background color */
     border-color: var(--uci-gray);
-    /* Gray border color */
     color: var(--cua-white);
-    /* White text color */
 }
 
-/* Styling for FAQ headings (h3) and their links */
 .faq h3,
 .faq h3 a {
     font-size: 1.5rem;
-    /* Font size */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     text-transform: none;
-    /* No text transformation */
 }
 
-/* Styling for FAQ accordion header icon */
 .faq .ui-accordion-header-icon.ui-icon {
     float: right;
-    /* Float to the right */
     margin: 0.2rem 0.5rem 0 0;
-    /* Margin around the icon */
 }
 
-/* Styling for FAQ accordion content */
 .faq .ui-accordion .ui-accordion-content {
     padding: 1em 2.2em;
-    /* Padding inside the content */
     border-top: none;
-    /* No top border */
     overflow: auto;
-    /* Enable overflow */
     margin: 1rem 0;
-    /* Margin around the content */
 }
 
-/* Remove border radius for FAQ corner elements */
 .faq .ui-corner-all,
 .faq .ui-corner-top,
 .faq .ui-corner-left,
 .faq .ui-corner-tl {
     border-radius: 0;
-    /* No border radius */
 }
 
-/* Styling for FAQ element container */
 .faq .views-element-container {
     margin: 0 0 3rem;
-    /* Margin at the bottom */
 }
 
-/* Styling for FAQ attachment after elements */
 .faq .attachment.attachment-after {
     margin: 3rem 0 0;
-    /* Margin at the top */
 }
 
-/* Styling for FAQ card footer buttons */
 .path-faq .card-footer .btn.outline-btn-cu-bg-black {
     color: var(--cua-black) !important;
-    /* Important black text color */
 }
 
-/* Styling for hovered FAQ card footer buttons */
 .path-faq .card-footer .btn.outline-btn-cu-bg-black:hover {
     color: var(--cua-white) !important;
-    /* Important white text color on hover */
 }
 
-/* Styling for main content in FAQ node */
 .node--type-faqs main#content {
     padding: 0 3rem;
-    /* Padding on the sides */
 }
 
-/* Stories article */
-
-/* Styling for the stories section */
 .stories {
     border-bottom: 3px solid var(--cua-gray-400);
-    /* Bottom border */
     margin: 0 0 2rem;
-    /* Margin at the bottom */
 }
 
-/* Styling for the taxonomy elements within stories */
 .stories .taxonomy {
     color: var(--cua-gold-hover);
-    /* Gold text color */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     font-size: 0.9rem;
-    /* Font size */
     padding: 0.25rem 0.5rem;
-    /* Padding inside the element */
     border: 1px solid #5d4915;
-    /* Solid border */
     line-height: 2.5;
-    /* Line height */
     white-space: nowrap;
-    /* Prevent text wrap */
     margin: 0 0.25rem;
-    /* Margin on the sides */
 }
 
-/* Styling for links within taxonomy elements in stories */
 .stories .taxonomy a {
     color: var(--cua-gold-hover);
-    /* Gold text color */
     display: block;
-    /* Display as block */
     font-size: 0.9rem;
-    /* Font size */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     text-transform: uppercase;
-    /* Uppercase text */
     margin-top: 0.75rem;
-    /* Margin at the top */
 }
 
-/* Styling for story titles (h4) links */
 .stories .h4.title a {
     color: var(--cua-black) !important;
-    /* Important black text color */
     margin: 0;
-    /* No margin */
 }
 
-/* Styling for lead story titles links */
 .lead-story-title a {
     color: var(--cua-black);
-    /* Black text color */
     display: block;
-    /* Display as block */
     font-size: 1.1rem;
-    /* Font size */
     margin: 0.25rem 0 0;
-    /* Margin at the top */
     line-height: 1.15;
-    /* Line height */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
 }
 
-/* Styling for the card footer buttons in stories */
 .stories .card-footer .btn.outline-btn-cu-bg-black {
     border: 3px solid var(--cua-black);
-    /* Black border */
     color: var(--cua-black);
-    /* Black text color */
     background: inherit;
-    /* Inherit background */
     position: relative;
-    /* Relative positioning */
     overflow: hidden;
-    /* Hide overflow */
     transition: width 0.5s ease;
-    /* Smooth width transition */
     z-index: 1;
-    /* Z-index */
     border-radius: 0;
-    /* No border radius */
     margin: 1.5rem 0 0;
-    /* Margin at the top */
     padding: 0.5rem 2.5rem !important;
-    /* Padding inside the button */
     font-size: 0.95rem;
-    /* Font size */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
 }
 
-/* Styling for hovered card footer buttons in stories */
 .stories .card-footer .btn.outline-btn-cu-bg-black:hover {
     color: var(--cua-white);
-    /* White text color on hover */
 }
 
-/* Styling for responsive grid items in stories */
 .stories .views-view-responsive-grid__item {
     padding: 1rem;
-    /* Padding inside the item */
     background-color: transparent;
-    /* Transparent background */
 }
 
-/* Styling for stories on the front page */
 .path-frontpage .stories {
     border-bottom: none;
-    /* No bottom border */
 }
 
-/* Styling for the exposed form in stories */
 .stories form#views-exposed-form-stories-page-1 {
     background: var(--cua-white);
-    /* White background color */
     margin-bottom: 1.5rem;
-    /* Margin at the bottom */
 }
 
-/* Styling for form controls and selects in stories */
 .stories .form-control,
 .stories .form-select {
     padding: 0.375rem 0.75rem;
-    /* Padding inside the control */
     font-size: var(--base-font-size);
-    /* Font size */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     background-color: var(--cua-gray-100);
-    /* Light gray background color */
     border-radius: 0 !important;
-    /* No border radius */
 }
 
-/* Styling for form items in stories */
 .stories .js-form-item {
     margin: 0 0.5rem;
-    /* Margin on the sides */
 }
 
-/* Styling for form item labels in stories */
 .stories .js-form-item label {
     color: var(--cua-gold-hover);
-    /* Gold text color */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     font-size: 0.8rem;
-    /* Font size */
     padding: 0 0 0.25rem 0.25rem;
-    /* Padding inside the label */
     text-transform: uppercase;
-    /* Uppercase text */
 }
 
-/* Styling for primary buttons in stories actions */
 .stories #edit-actions .btn.btn-primary {
     background: var(--cua-gray-400);
-    /* Gray background color */
     border: 1px solid var(--cua-gray-400);
-    /* Gray border */
     box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, 0.1);
-    /* Box shadow */
     color: var(--cua-black);
-    /* Black text color */
     cursor: pointer;
-    /* Pointer cursor */
     text-decoration: none;
-    /* No text decoration */
 }
 
-/* Styling for hovered taxonomy elements in stories */
 .stories .taxonomy:hover {
     color: var(--cua-white);
-    /* White text color on hover */
     background-color: var(--cua-gold-hover);
-    /* Gold background color on hover */
 }
 
-/* Prevent text decoration on hovered links in stories view */
 .view-stories a:hover {
     text-decoration: none !important;
-    /* Important no text decoration on hover */
 }
 
-/* Styling for story titles (h4) with full width class in stories view */
 .view-stories h4.title.w-100 {
     margin: 0.75rem 0 0;
-    /* Margin at the top */
 }
 
-/* Styling for teaser nodes with sticky class in stories vocabulary page */
 .page-vocabulary-stories .node--view-mode-teaser.node--sticky {
     padding: 2rem;
-    /* Padding inside the element */
 }
 
-/* Styling for lead story titles with no gutter class */
 .lead-story-title.g-0 {
     margin: 1rem 0 0;
-    /* Margin at the top */
 }
 
-/* Spotlight */
-
-/* Styling for content type labels */
 .content-type-label {
     background-color: var(--cua-blue);
-    /* Blue background color */
     color: var(--cua-white);
-    /* White text color */
     font-size: .8rem;
-    /* Font size */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     z-index: 1;
-    /* Z-index */
     left: 16px;
-    /* Position from the left */
     padding: 3px 10px;
-    /* Padding inside the label */
     top: 35px;
-    /* Position from the top */
     pointer-events: none;
-    /* Disable pointer events */
     letter-spacing: .09rem;
-    /* Letter spacing */
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.50);
-    /* Shadow effect */
 }
 
-/* Styling for the after element of content type labels */
 .content-type-label:after {
     border-color: transparent var(--cua-blue-dark) transparent transparent;
-    /* Border color */
     content: "";
-    /* Empty content */
     width: 0;
-    /* Width */
     height: 0;
-    /* Height */
     border-style: solid;
-    /* Solid border */
     border-width: 0 8px 8px 0;
-    /* Border width */
     position: absolute;
-    /* Absolute positioning */
     bottom: -8px;
-    /* Position from the bottom */
     left: 0;
-    /* Position from the left */
 }
 
-/* Glossary for Trustees */
-
-/* Styling for glossary views summary */
 span.views-summary.views-summary-unformatted {
     border: 1px solid var(--cua-gray-300);
-    /* Gray border */
     margin: 0 0 0 0.75rem;
-    /* Margin on the left */
     width: auto;
-    /* Auto width */
 }
 
-/* Styling for the content row in the trustees view */
-.view-id-trustees .views-element-container .view-content.row {
-    white-space: nowrap;
-    /* Prevent text wrap */
-    margin: 0 0 1rem;
-    /* Margin at the bottom */
-}
-
-/* Styling for the views summary in the trustees view */
-.view-id-trustees .views-element-container .view-content.row .views-summary {
-    display: inline-block;
-    /* Display as inline block */
-}
-
-/* Styling for form actions in the exposed form */
 .views-exposed-form .bef-exposed-form #block-cua-theme-content form .form-actions {
     margin-top: 0 !important;
-    /* No margin at the top with important flag */
 }
 
-/* Styling for primary buttons in the trustees view */
-.view-id-trustees .btn.btn-primary {
-    background: var(--cua-gray-700);
-    /* Dark gray background color */
-    color: var(--cua-white);
-    /* White text color */
-    border: 1px solid var(--cua-gray-700);
-    /* Dark gray border */
-    padding: 0.45rem 1rem;
-    /* Padding inside the button */
-}
-
-/* Styling for form controls in the trustees view */
-.view-trustees .form-control {
-    margin-top: 1.4rem;
-    /* Margin at the top */
-}
-
-/* Styling for view filters in the trustees view */
-.view-id-trustees .view-filters {
-    background: #f4f4f5;
-    /* Light gray background color */
-    padding: 0 1rem;
-    /* Padding inside the filter */
-    margin: 0 0 1rem;
-    /* Margin at the bottom */
-}
-
-/* Styling for campus field items */
 .field--name-field-campus .field__item {
     display: inline;
-    /* Display as inline */
     margin-right: 10px;
-    /* Margin on the right */
 }
 
-/* Hide submit button in the trustees view */
-#edit-submit-trustees {
-    display: none !important;
-    /* Hide element with important flag */
-}
-
-/* Styling for the exposed form in the trustees page view */
-.page-view-trustees .content .views-exposed-form {
-    margin: 0 !important;
-    /* No margin with important flag */
-}
-
-/* Vocabulary Accordion Categories */
-
-/* Styling for teaser headings (h2) in vocabulary accordion categories */
 .page-vocabulary-accordion-categories .node--view-mode-teaser h2 {
     margin-top: 0;
-    /* No margin at the top */
     padding-top: 0;
-    /* No padding at the top */
 }
 
-/* Styling for teaser nodes in vocabulary accordion categories */
 .page-vocabulary-accordion-categories .node--view-mode-teaser {
     border-bottom: 1px solid var(--cua-gray-400);
-    /* Gray bottom border */
     margin: 1rem;
-    /* Margin around the node */
 }
 
-/* Taxonomy Term View */
-
-/* Styling for taxonomy term view navigation links */
 .page-view-taxonomy-term .node__content .nav-link a {
     background: var(--cua-gold);
-    /* Gold background color */
     color: var(--cua-black);
-    /* Black text color */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
     padding: 0.75rem 2rem;
-    /* Padding inside the link */
     text-decoration: none;
-    /* No text decoration */
 }
 
-/* Styling for hovered taxonomy term view navigation links */
 .page-view-taxonomy-term .node__content .nav-link a:hover {
     color: var(--cua-white);
-    /* White text color on hover */
     background: var(--cua-gold-hover);
-    /* Gold background color on hover */
     text-decoration: none;
-    /* No text decoration */
 }
 
-/* Styling for the title field in the taxonomy term view */
 .page-view-taxonomy-term .field.field--name-title {
     font-size: 1.2rem;
-    /* Font size */
 }
 
-/* Styling for images in the taxonomy term view */
 .page-view-taxonomy-term .field--type-image img {
     margin: 0 0 1em;
-    /* Margin at the bottom */
     max-width: 400px;
-    /* Maximum width */
     height: auto;
-    /* Auto height */
 }
 
-/* Styling for ed11y element panel */
 ed11y-element-panel {
     left: 25px;
-    /* Position from the left */
     bottom: 25px;
-    /* Position from the bottom */
     right: 100%;
-    /* Position from the right */
 }
 
-/* Style Charts */
-
-/* Styling for highcharts legend */
 .highcharts-legend {
     background: white !important;
-    /* White background with important flag */
 }
 
-/* Styling for highcharts legend items, data labels, and x-axis labels */
 .highcharts-legend-item,
 .highcharts-label.highcharts-data-label,
 .highcharts-axis-labels.highcharts-xaxis-labels {
     font-size: 1.25rem;
-    /* Font size */
     font-weight: var(--font-weight-bold);
-    /* Bold font weight */
 }
 
-/* Display BOD count inline */
-
-/* Styling for Board of Directors view attachments */
 .view-id-board_of_directors .view-display-id-attachment_4,
 .view-id-board_of_directors .view-display-id-attachment_5,
 .view-id-board_of_directors .view-display-id-attachment_6 {
     display: inline-block;
-    /* Display as inline block */
     margin: 0;
-    /* No margin */
     padding: 0;
-    /* No padding */
 }
 
-/* Styling for Board of Directors field content */
 .contact .view-board-of-directors .field-content {
     margin: 0 !important;
-    /* No margin with important flag */
 }
 
-/* Crypto background */
-
-/* Styling for modal content in crypto page */
 .page-node-55 .modal-content {
     width: 400px;
-    /* Width of modal */
     background-color: transparent;
-    /* Transparent background color */
 }
 
-/* Styling for modal header in crypto page */
 .page-node-55 .modal-header {
     border: none !important;
-    /* No border with important flag */
 }
 
-/* Styling for sections in specific pages */
 .page-node-914 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.py-5,
 .page-node-914 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.pb-5,
 .page-node-914 .layout.layout--threecol-section.layout--threecol-section--33-34-33 .pb-5,
@@ -3185,78 +2121,53 @@ ed11y-element-panel {
 .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33.container-fluid.bg-pure-black.fp.pb-5,
 .page-node-913 .layout.layout--threecol-section.layout--threecol-section--33-34-33 .pb-5 {
     padding-bottom: 0 !important;
-    /* No padding at the bottom with important flag */
     padding-top: 0 !important;
-    /* No padding at the top with important flag */
 }
 
-/* Hide specific blocks and elements */
 #block--inline-block--image-832 .container.px-5.py-4,
 #block--node--call-to-action--791 .fa-ext.extlink,
 div#block--inline-block--basic-515,
 .view-display-id-page_3 h3 {
     display: none !important;
-    /* Hide element with important flag */
 }
 
-/* Styling for headings in views and FAQ */
 .views-exposed-form h2 .contact h3,
 .faq .js-views-accordion-group-header h3 {
     padding: 0;
-    /* No padding */
     font-size: 2.25rem !important;
-    /* Font size with important flag */
     color: var(--cua-gray-700);
-    /* Dark gray text color */
 }
 
-/* Styling for headings in aside elements */
 aside .views-exposed-form h2 .contact h3,
 aside .faq .js-views-accordion-group-header h3 {
     font-size: 1.5rem !important;
-    /* Font size with important flag */
 }
 
-/* Styling for paragraphs in a specific block */
 #block--inline-block--basic-765 p {
     margin-top: 0;
-    /* No margin at the top */
     margin-bottom: 0;
-    /* No margin at the bottom */
 }
 
-/* Styling for banner body in a specific page */
 .page-node-892 .banner-body {
     padding: 0 !important;
-    /* No padding with important flag */
 }
 
-/* Remove margin for specific blocks */
 div#block-cua-theme-universityofcoloradofoundation,
 div#block--block-content--9f3104d8-4eb3-45b0-bb46-2462e6defff1-808 {
     margin: 0 !important;
-    /* No margin with important flag */
 }
 
-/* Front page background */
-
-/* Styling for blue background */
 .blue-background {
     background: radial-gradient(black 15%, transparent 16%) 0 0,
         radial-gradient(black 15%, transparent 16%) 8px 8px,
         radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0 1px,
         radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 8px 9px;
-    /* Radial gradient background */
     background-size: 16px 16px;
-    /* Background size */
     background-color: #171e2f;
-    /* Fallback background color */
 }
 
-/* Styling for a specific block */
 div#block--node--basic-block--819 {
     margin: 40px 0 0;
-    /* Margin at the top */
 }
 
 div#block--node--basic-block--808 {
@@ -3267,24 +2178,16 @@ nav#block-cua-theme-campusoffices {
     margin-top: .85rem;
 }
 
-/* Styling for funds */
 .funds {
     font-size: 1.6rem;
-    /* Font size */
     font-weight: 400;
-    /* Normal font weight */
     padding: 0 0 0 .2rem !important;
-    /* Padding with important flag */
     margin: 0 !important;
-    /* No margin with important flag */
     width: 100% !important;
-    /* Full width with important flag */
 }
 
-/* Styling for call-to-action paragraphs in funds */
 #funds .call-to-action p {
     margin-top: 0 !important;
-    /* No margin at the top with important flag */
 }
 
 .give-now-item:focus .shadow,
@@ -3292,11 +2195,9 @@ nav#block-cua-theme-campusoffices {
 .lead-story-item:focus .shadow,
 .lead-story-item:hover .shadow {
     box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
-    /* Custom accessible shadow */
     transition: box-shadow 0.2s ease-in-out;
 }
 
-/* Default state */
 .lead-story-item {
     color: var(--cua-white)
 }
@@ -3305,7 +2206,6 @@ nav#block-cua-theme-campusoffices {
     color: var(--cua-white) !important;
 }
 
-/* Optional: background if needed for visibility */
 .lead-story-item .shadow,
 .lead-story-item .card-header,
 .lead-story-item .card-footer {
@@ -3313,7 +2213,6 @@ nav#block-cua-theme-campusoffices {
     border: 1px solid transparent !important;
 }
 
-/* Hover and focus state */
 .lead-story-item:hover,
 .lead-story-item:focus {
     color: var(--cua-white);
@@ -3325,7 +2224,6 @@ nav#block-cua-theme-campusoffices {
     color: var(--cua-white) !important;
 }
 
-/* Optional: button or card link hover tweak */
 .lead-story-item .card-link.btn:hover,
 .lead-story-item .card-link.btn:focus {
     background-color: rgba(255, 255, 255, 0.1);
@@ -3340,20 +2238,15 @@ nav#block-cua-theme-campusoffices {
 
 .lead-story-item:focus-visible {
     outline: 2px solid #005a9c;
-    /* Example focus color */
     outline-offset: 2px;
 }
 
 .card-link:focus {
     outline: 3px solid #fc0;
-    /* High-contrast gold/yellow outline */
     outline-offset: 2px;
-    /* Slight spacing outside the element */
     border-radius: 4px;
-    /* Match your button’s border radius if needed */
 }
 
-/* Optional: also apply on hover for visual parity */
 .card-link:hover {
     text-decoration: underline;
 }
@@ -3383,7 +2276,6 @@ nav#block-cua-theme-campusoffices {
     color: var(--cua-white);
 }
 
-/* Target ONLY the link inside the YouTube paragraph block */
 .paragraph--type--youtube .field.field--name-field-title.field--type-string.field--label-hidden.field__item {
     font-size: 1.5rem;
     font-weight: bold;
@@ -3438,16 +2330,13 @@ h1.page-title.pb-title {
     font-size: 1.1rem;
 }
 
-/* Wrap each field group (campus, category, tags) in a flex container */
 .field--name-field-campus,
 .field--name-field-category,
 .field--name-field-tags {
     display: inline-block;
-    /* Allow them to flow inline */
     margin-right: 1rem;
 }
 
-/* Inline links inside those groups */
 .field--name-field-campus .field__item,
 .field--name-field-category .field__item {
     display: inline-block;
@@ -3465,7 +2354,6 @@ h1.page-title.pb-title {
     display: inline-block;
 }
 
-/* Optional: style the actual links */
 .field__item a,
 .field--name-field-tags ul.links a {
     text-decoration: none;
@@ -3512,24 +2400,16 @@ h1.page-title.pb-title {
 .lead-story-sort #block-cua-theme-content .views-element-container {
     margin: 0 !important;
     color: white;
-    /* Makes text white */
     border-color: white;
-    /* Ensures borders are white */
     fill: white;
-    /* For SVG elements */
     stroke: white;
-    /* For SVG borders */
 }
 
 .lead-story-sort #block-cua-theme-content .views-view-grid .horizontal .views-element-container * {
     color: white !important;
-    /* Forces all text inside to be white */
     border-color: white !important;
-    /* Forces all borders inside to be white */
     fill: white !important;
-    /* Ensures SVG icons are white */
     stroke: white !important;
-    /* Ensures SVG strokes are white */
 }
 
 .lead-story-sort #draggableviews-table-lead-story-page-1-0,
@@ -3560,16 +2440,11 @@ h1.page-title.pb-title {
 
 .lead-story-sort #block-cua-theme-content a {
     color: white !important;
-    /* White text */
     text-decoration: none;
     border: 1px solid white;
-    /* 1px white border */
     padding: 4px 8px;
-    /* Optional padding */
     display: inline-block;
-    /* Ensure the border wraps around the link content */
     position: relative;
-    /* Needed for the pseudo-element positioning */
 }
 
 .lead-story-sort #block-cua-theme-content a::before {
@@ -3578,19 +2453,14 @@ h1.page-title.pb-title {
     top: 0;
     left: 0;
     width: 0;
-    /* Start with zero width */
     height: 100%;
     background: white;
-    /* Border color */
     transition: width 0.5s ease;
-    /* Transition for expanding */
     z-index: -1;
-    /* Behind the content */
 }
 
 .lead-story-sort #block-cua-theme-content a:hover::before {
     width: 100%;
-    /* Expand on hover */
 }
 
 .lead-story-sort #block-cua-theme-content .btn.btn-primary {
@@ -3651,7 +2521,6 @@ aside a.bef-link {
     margin: 2rem 0 0 !important;
 }
 
-/* Force text white */
 .views-accordion-header:hover a {
     color: white !important;
 }
@@ -3659,9 +2528,7 @@ aside a.bef-link {
 .search-form.search-block-form {
     display: flex;
     gap: 0;
-    /* Adjust spacing between input and button */
     flex-wrap: wrap;
-    /* Optional: allows wrapping on smaller screens */
     align-items: center;
 }
 
@@ -3673,16 +2540,13 @@ aside a.bef-link {
     color: var(--cua-gold) !important;
 }
 
-/* Specifically target the text when the badge is black */
 .flag-badge.cu-bg-black .flag-text,
 .flag-badge.cu-bg-pure-black .flag-text {
     color: var(--cua-gold) !important;
     -webkit-text-fill-color: var(--cua-gold) !important;
-    /* Some themes use fill for text effects */
     text-decoration: none !important;
 }
 
-/* If you ever use a gold background, you probably want black text for contrast */
 .flag-badge.cu-bg-gold .flag-text,
 .flag-badge.cu-bg-white .flag-text,
 .flag-badge.cu-bg-light-grey .flag-text {
@@ -3695,28 +2559,19 @@ aside a.bef-link {
     line-height: 1.1 !important;
 }
 
-/* Admin Application Button */
 .btn-admin-app {
     background-color: #d9534f;
-    /* Bootstrap red */
     color: #fff !important;
-    /* Black text */
     font-weight: 700;
-    /* Bold */
     border: none;
-    /* No border */
     border-radius: 0;
-    /* No radius */
     padding: 0.5rem 2rem;
-    /* App-style compact padding */
     text-transform: none;
-    /* Keep text natural */
 }
 
 .btn-admin-app:hover,
 .btn-admin-app:focus {
     background-color: #bb2d3b;
-    /* Darker red on hover */
     color: #000 !important;
 }
 
@@ -3751,18 +2606,11 @@ button.search-icon {
     border-radius: 0 !important;
 }
 
-/* ----------------------------------------
-   GIVE NOW — VIEW ALL PAGE ONLY
-   Scoped to .page-view-give-now body class
----------------------------------------- */
-
-/* First 4 rows = published (soft green) */
 .page-view-give-now .view-give-now .view-content .views-row:nth-of-type(-n+4) {
     background-color: rgba(25, 135, 84, 0.10);
     border-bottom: 50px solid #fff;
 }
 
-/* Remaining rows = unpublished (soft red) */
 .page-view-give-now .view-give-now .view-content .views-row:nth-of-type(n+5) {
     background-color: rgba(220, 53, 69, 0.10);
     border-bottom: 50px solid #fff;
@@ -3803,63 +2651,45 @@ button.search-icon {
     border-color: indianred;
 }
 
-`
-/* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
     }
 }
 
-/* Media query for screens with a max-width of 991px (tablets and smaller) */
 @media only screen and (max-width: 991px) {
-
-    /* Alert block: Align content to the left */
     .block-content-alert {
         justify-content: flex-start !important;
     }
 
-    /* Icon container: Add padding to the left */
     .icon-container {
         padding: 0 0 0 1rem;
     }
 
-    /* Parallax: Disable background attachment and adjust min-height */
     .parallax {
         background-attachment: scroll;
         min-height: auto;
     }
 
-    /* Menu styling: Add borders to menu */
     aside .node__content .block.block-menu.navigation {
         border-right: 1px solid var(--cua-white);
         border-bottom: 1px solid var(--cua-gray-400);
     }
 
-    /* Content label: Adjust position */
     .content-type-label {
         left: -8px;
         top: 15px;
     }
-
-    /* Blockquote styling: Adjust borders, font-size, and padding */
-    blockquote {
-        border-left: 4px solid var(--cua-gold);
-        font-size: var(--base-font-size);
-        font-style: italic;
-        line-height: 1.6;
-        margin: 10px auto;
-        padding: .5em 10px .5em 25px;
-        position: relative;
-        width: 100%;
-    }
-
+    
     blockquote::before {
-        font-size: 5em;
-        left: -50px;
+        color: var(--cua-gold);
+        content: "\201C";
+        font-size: 6em;
+        left: -20px;
+        position: absolute;
         top: -30px;
     }
-
+    
     blockquote span {
         color: var(--cua-gray-800);
         display: block;
@@ -3867,97 +2697,90 @@ button.search-icon {
         margin-top: 1em;
     }
 
-    /* Padding adjustments for various elements */
+    blockquote {
+        border-left: none;
+        color: var(--cua-gray-700);
+        font-size: 1.25em;
+        font-style: italic;
+        line-height: 1.6;
+        margin: 10px auto;
+        padding: 1rem 2rem;
+        position: relative;
+        width: 85%;
+    }
+    
+    blockquote p {
+        font-size: 1.25rem;
+        line-height: 1.5;
+    }
+
     .px-5 {
         padding-right: 1rem !important;
         padding-left: 1rem !important;
     }
 
-    /* Card header styling: Center the text */
     .card-header.d-flex.justify-content-center {
         text-align: center !important;
     }
 
-    /* Carousel indicators: Move them down */
     .carousel-indicators {
         bottom: -25px;
     }
 
-    /* Image styling: Make small images responsive */
     .card-img.xsmall {
         width: 90% !important;
     }
 
-    /* Navbar toggler: Make the background transparent */
     .navbar-toggler {
         background-color: transparent !important;
     }
 
-    /* Mobile padding adjustments */
     .mobile-padding {
         padding-top: 2rem;
     }
 
-    /* Border styling for the nav */
     aside .nav {
         border-right: 1px solid var(--cua-white) !important;
     }
 
-    /* Hide the square accent on headings */
     .base-heading-square__accent {
         display: none;
     }
 
-    /* Adjust layout of the second column navigation */
     .layout__region--second .block.block-menu.navigation {
         border-left: none;
     }
 
-    /* Video container: Make it full-width */
     .video-container,
     .parallax-video {
         width: 100%;
         height: auto;
     }
 
-    /* Styling for specific div elements */
     div#edit-contacts--2,
     div#edit-bod--2 {
         border-right: 1px solid var(--cua-white) !important;
-        /* Right border with important flag */
     }
 
-    /* Styling for content type labels */
     .content-type-label {
         left: -8px;
-        /* Position from the left */
         top: 15px;
-        /* Position from the top */
     }
 
-    /* Styling for images in stories */
     .stories img {
         padding: 0 0 .75rem !important;
-        /* Padding at the bottom with important flag */
     }
 
-    /* Styling for title headings in contact */
     .contact .h5.title.headshot {
         margin: 1rem 0 0 !important;
-        /* Margin at the top with important flag */
     }
 }
 
-
-/* Media query for screens with a max-width of 576px (phones) */
 @media only screen and (max-width: 576px) {
-
-    /* Accordion content padding */
     .ui-accordion .ui-accordion-content {
         padding: 1rem;
     }
 
-    /* Full padding adjustments for smaller screens */
     .full-padding,
     .fp {
         padding-left: 1rem !important;
@@ -3968,83 +2791,61 @@ button.search-icon {
         padding: 1rem;
     }
 
-    /* Title font size adjustments */
     h1.title {
         font-size: 1.75rem !important;
     }
 
-    /* Mobile padding adjustments */
     .mobile-padding {
         padding-top: 2rem;
     }
 
-    /* Nav border styling */
     aside .nav {
         border-right: 1px solid var(--cua-white) !important;
     }
 
-    /* Landing page title margin adjustments */
     .node--type-landing-page div#block-cua-theme-page-title {
         margin: 1rem 0 0 24px !important;
         max-width: 90% !important;
     }
 
-    /* Video container: Max-width adjustments for responsiveness */
     .video-container {
         max-width: 100%;
         padding: 0;
     }
 
-    /* Remove padding from columns */
     .col-12 {
         padding: 0;
     }
 
-    /* Video container and parallax video: Full-width and auto height */
     .video-container,
     .parallax-video {
         width: 100%;
         height: auto;
     }
 
-    /* Styling for FAQ widget content */
     .faq .ui-widget-content {
         border: none !important;
-        /* No border with important flag */
         border-left: none !important;
-        /* No left border with important flag */
         margin: 0;
-        /* No margin */
     }
 
-    /* Styling for specific block elements */
     div#block--node--call-to-action--775 {
         display: block;
-        /* Display as block */
         margin: 15px 10px !important;
-        /* Margin with important flag */
     }
 
-    /* Styling for trustees view columns */
     .view.view-trustees .views-col.col-1,
     .view.view-trustees .views-col.col-2,
     .view.view-trustees .views-col.col-3 {
         min-width: 400px !important;
-        /* Minimum width with important flag */
     }
 
-    /* Hide a specific block element */
     div#block--inline-block--basic-515 {
         display: none;
-        /* Hide element */
     }
-
 }
 
-
 @media only screen and (max-width: 1024px) {
-
-    /* 1. Stop the flexbox grid from crushing the accordion and fix the negative margins causing horizontal scroll */
     .view-id-faqs .view-content.row {
         display: block !important;
         margin-left: 0 !important;
@@ -4052,14 +2853,12 @@ button.search-icon {
         width: 100% !important;
     }
 
-    /* 2. Force the accordion panels to use natural height instead of calculated inline styles */
     .view-id-faqs .ui-accordion-content {
         height: auto !important;
         overflow: visible !important;
         box-sizing: border-box !important;
     }
 
-    /* 3. Ensure the direct children of the row don't exceed screen width */
     .view-id-faqs .view-content.row>div {
         max-width: 100% !important;
     }
@@ -4069,4 +2868,4 @@ button.search-icon {
         overflow: hidden;
         display: none !important;
     }
-}`
+}
