@@ -76,16 +76,14 @@
     --font-roboto-condensed: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
     /* Body text settings */
-    --cua-body-font-size: 16px;
-    --bs-body-font-size: 16px;
+    --cua-body-font-size: 1rem;
+    --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
 
     /* === Typography === */
-    --base-font-size: 16px;
-    /* Base font size for the body */
+    --base-font-size: 1rem;
     --scale-factor: 1.25;
-    /* Scale factor for headings */
 
     /* Heading sizes based on the scale factor */
     --h1-size: calc(var(--base-font-size) * 2.25);
@@ -108,94 +106,34 @@
     --font-weight-xbold: 900;
 }
 
+/* Modern browsers: derive the 75%-opacity tokens live from their source colors,
+   so if a brand color ever changes its translucent variant tracks it automatically.
+   Browsers without relative color syntax (roughly pre-2024 — Firefox < 128, etc.)
+   skip this block entirely and keep the literal rgba() values declared above, so
+   these tokens never fall back to a transparent/invalid value. */
+@supports (color: rgb(from white r g b)) {
+    :root {
+        --cua-black-opacity-75: rgb(from var(--cua-black-pure) r g b / 0.75);
+        --cua-gold-opacity-75: rgb(from var(--cua-gold) r g b / 0.75);
+        --cua-light-grey-opacity-75: rgb(from var(--cua-light-grey) r g b / 0.75);
+        --cua-white-opacity-75: rgb(from var(--cua-white) r g b / 0.75);
+    }
+}
 
-/* roboto-condensed-regular - latin */
 @font-face {
+    font-family: 'Roboto';
+    font-weight: 100 900;
+    font-style: normal;
     font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    src: url('../fonts/roboto-latin-wght-normal.woff2') format('woff2');
+  }
+  @font-face {
     font-family: 'Roboto Condensed';
+    font-weight: 100 900;
     font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/roboto-condensed-v31-latin-regular.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* roboto-condensed-500 - latin */
-@font-face {
     font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Roboto Condensed';
-    font-style: normal;
-    font-weight: 500;
-    src: url('../fonts/roboto-condensed-v31-latin-500.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* roboto-condensed-700 - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Roboto Condensed';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../fonts/roboto-condensed-v31-latin-700.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* roboto-300 - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 300;
-    src: url('../fonts/roboto-v51-latin-300.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* roboto-regular - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/roboto-v51-latin-regular.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* roboto-500 - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    src: url('../fonts/roboto-v51-latin-500.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* roboto-600 - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
-    src: url('../fonts/roboto-v51-latin-600.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* roboto-700 - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../fonts/roboto-v51-latin-700.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
+    src: url('../fonts/roboto-condensed-latin-wght-normal.woff2') format('woff2');
+  }
 
 /* Enable smooth scrolling when an element within the page gains focus */
 html:focus-within {
@@ -216,7 +154,6 @@ body {
 
 a:focus {
     outline: 2px solid #005fcc;
-    /* or your brand color */
     outline-offset: 4px;
 }
 
@@ -238,13 +175,13 @@ a:focus {
 .page-node-778 #main-wrapper-landing-page h1 {
     margin: 1rem 0 0;
 }
+
 /* =====================================
    Global Typography Styles
    ===================================== */
 
 /* Base font styles for body text, links, and list items */
-body,
-p,
+body p,
 a,
 li {
     font-family: var(--font-roboto), sans-serif;
@@ -3821,51 +3758,52 @@ button.search-icon {
 
 /* First 4 rows = published (soft green) */
 .page-view-give-now .view-give-now .view-content .views-row:nth-of-type(-n+4) {
-  background-color: rgba(25, 135, 84, 0.10);
-  border-bottom: 50px solid #fff;
+    background-color: rgba(25, 135, 84, 0.10);
+    border-bottom: 50px solid #fff;
 }
 
 /* Remaining rows = unpublished (soft red) */
 .page-view-give-now .view-give-now .view-content .views-row:nth-of-type(n+5) {
-  background-color: rgba(220, 53, 69, 0.10);
-  border-bottom: 50px solid #fff;
+    background-color: rgba(220, 53, 69, 0.10);
+    border-bottom: 50px solid #fff;
 }
 
 .page-view-give-now .view-give-now .view-content .views-row .col-3 {
-  border-right: 5px solid #fff;
+    border-right: 5px solid #fff;
 }
 
 .page-view-give-now .give-row {
-  min-height: 260px;
-  position: relative;
+    min-height: 260px;
+    position: relative;
 }
 
 .page-view-give-now .give-row .col-3 {
-  position: relative;
+    position: relative;
 }
 
 .page-view-give-now .give-row .col-3 .btn-dark {
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  background: white;
-  color: black;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    background: white;
+    color: black;
 }
 
 .page-view-give-now .contextual .trigger {
-  display: none !important;
+    display: none !important;
 }
 
 .page-view-give-now .give-row .btn-dark {
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  background-color: #d9534f !important;
-  color: white !important;
-  border-radius: 0;
-  border-color: indianred;
-}`
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    background-color: #d9534f !important;
+    color: white !important;
+    border-radius: 0;
+    border-color: indianred;
+}
 
+`
 /* Reduce animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
@@ -4131,4 +4069,4 @@ button.search-icon {
         overflow: hidden;
         display: none !important;
     }
-}
+}`
