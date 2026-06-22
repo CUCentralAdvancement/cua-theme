@@ -19,6 +19,76 @@
 							{{'FAQs'|t}}
 						</h1>
 					</div>
+
+				{# Initialize array #}
+				{% set _jsonld_items = [] %}
+
+				{# Give Online #}
+				{% set _action = {
+				'@type': 'DonateAction',
+				'name': 'Give Online'|t,
+				'description': 'The easy way to support CU via credit card, payment app, or bank transfer.'|t,
+				'target': 'https://giveto.cu.edu/funds/?a=8403519'
+				} %}
+				{% set _jsonld_items = _jsonld_items|merge([{
+				'@type': 'ListItem',
+				'position': _jsonld_items|length + 1,
+				'item': _action
+				}]) %}
+
+				{# Give by Mail #}
+				{% set _action = {
+				'@type': 'DonateAction',
+				'name': 'Give by Mail'|t,
+				'description': 'Mail a completed donation form with check payable to University of Colorado Foundation.'|t,
+				'recipient': {
+					'@type': 'CollegeOrUniversity',
+					'name': 'University of Colorado Foundation',
+					'address': {
+					'@type': 'PostalAddress',
+					'streetAddress': 'P.O. Box 561690',
+					'addressLocality': 'Denver',
+					'addressRegion': 'CO',
+					'postalCode': '80256-1690'
+					}
+				}
+				} %}
+				{% set _jsonld_items = _jsonld_items|merge([{
+				'@type': 'ListItem',
+				'position': _jsonld_items|length + 1,
+				'item': _action
+				}]) %}
+
+				{# Give by Phone #}
+				{% set _action = {
+				'@type': 'DonateAction',
+				'name': 'Give by Phone'|t,
+				'description': 'All major credit cards accepted.'|t,
+				'target': 'tel:3035411290',
+				'instrument': 'Credit Card'
+				} %}
+				{% set _jsonld_items = _jsonld_items|merge([{
+				'@type': 'ListItem',
+				'position': _jsonld_items|length + 1,
+				'item': _action
+				}]) %}
+
+				{# Output JSON-LD #}
+				{% if _jsonld_items|length > 0 %}
+				{% set _jsonld = {
+					'@context': 'https://schema.org',
+					'@type': 'ItemList',
+					'name': 'Ways to Give'|t,
+					'itemListOrder': 'https://schema.org/ItemListUnordered',
+					'numberOfItems': _jsonld_items|length,
+					'itemListElement': _jsonld_items
+				} %}
+
+				<script type="application/ld+json">
+					{{ _jsonld|json_encode|raw }}
+				</script>
+				{% endif %}
+
 					<div class="row d-flex flex-column-reverse flex-md-row clearfix">
 
 						{# Left Sidebar #}
@@ -33,6 +103,64 @@
 						{# Page Content #}
 						<main{{content_attributes}} class="col-md-9 col-sm-12 mb-4 order-2 order-md-1">
 							<section class="section">
+
+								<div class="row g-4 mb-5">
+									<div class="col-12 col-md-4">
+										<div class="p-4 h-100 border rounded">
+											<h3 class="h5 mb-3">
+												<i class="fa-solid fa-mobile-screen-button me-2" style="color:#cfb87c;"></i>
+												{{ 'Give Online'|t }}
+											</h3>
+											<p>
+												{{ 'The easy way to support CU via credit card, payment app, or bank transfer.'|t }}
+											</p>
+											<a href="https://giveto.cu.edu/funds/?a=8403519" class="btn btn-primary mt-2">
+												{{ 'Explore CU funds'|t }}
+											</a>
+										</div>
+									</div>
+									<div class="col-12 col-md-4">
+										<div class="p-4 h-100 border rounded">
+											<h3 class="h5 mb-3">
+												<i class="fa-solid fa-envelope me-2" style="color:#cfb87c;"></i>
+												{{ 'Give by Mail'|t }}
+											</h3>
+											<p>
+												{{ 'Mail a completed'|t }}
+												<a href="https://www.giving.cu.edu/sites/default/files/2025-10/Full%20Sheet.pdf">
+													{{ 'donation form'|t }}
+												</a>
+												{{ 'with check payable to:'|t }}
+											</p>
+											<address class="mb-0">
+												{{ 'University of Colorado Foundation'|t }}
+												<br>
+												P.O. Box 561690
+												<br>
+												Denver, CO 80256-1690
+											</address>
+										</div>
+									</div>
+									<div class="col-12 col-md-4">
+										<div class="p-4 h-100 border rounded">
+											<h3 class="h5 mb-3">
+												<i class="fa-solid fa-phone me-2" style="color:#cfb87c;"></i>
+												{{ 'Give by Phone'|t }}
+											</h3>
+											<p>
+												{{ 'All major credit cards accepted.'|t }}
+											</p>
+											<p class="fw-bold mb-1">
+												303‑541‑1290
+											</p>
+											<p class="mb-0">
+												{{ 'Monday–Friday, 9a–5p'|t }}
+											</p>
+										</div>
+									</div>
+								</div>
+
+
 								{{ page.content }}
 							</section>
 						</main>
