@@ -36,14 +36,16 @@
       {%- endif -%}
     </div>
 
-    {%- if logged_in and user.hasPermission('edit any faq content') -%}
+      {%- if logged_in and user.hasPermission('edit any faq content') -%}
       <div class="px-4 pb-3 border-top pt-2 mt-2">
-        <a href="{{- path('entity.node.edit_form', {'node': row._entity.id()}) -}}"
-           class="btn btn-sm btn-outline-secondary" target="_blank">
-          <i class="fa-solid fa-pencil me-2"></i>Edit
+        <a href="{{ path('entity.node.edit_form', {'node': row._entity.id()}) }}"
+          class="btn btn-sm btn-outline-secondary">
+          <i class="fa-solid fa-pencil green me-2"></i>{{ 'Edit:'|t }} {{ fields.title.content }}
         </a>
       </div>
     {%- endif -%}
+
+
   </div>
 </div>
 {% endapply %}
