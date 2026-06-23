@@ -77,65 +77,71 @@
 
 /* Roboto regular family */
 @font-face {
-  font-family: 'Roboto';
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-300.woff2') format('woff2');
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-300.woff2') format('woff2');
 }
+
 @font-face {
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2') format('woff2');
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-regular.woff2') format('woff2');
 }
+
 @font-face {
-  font-family: 'Roboto';
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-500.woff2') format('woff2');
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-500.woff2') format('woff2');
 }
+
 @font-face {
-  font-family: 'Roboto';
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-600.woff2') format('woff2');
+    font-family: 'Roboto';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-600.woff2') format('woff2');
 }
+
 @font-face {
-  font-family: 'Roboto';
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-700.woff2') format('woff2');
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-v51-latin-700.woff2') format('woff2');
 }
 
 /* Roboto Condensed */
 @font-face {
-  font-family: 'Roboto Condensed';
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-500.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url('/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-700.woff2') format('woff2');
+    font-family: 'Roboto Condensed';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-regular.woff2') format('woff2');
 }
 
-html:focus-within {
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-700.woff2') format('woff2');
+}
+
+` html:focus-within {
     scroll-behavior: smooth;
 }
 
@@ -2724,7 +2730,7 @@ button.search-icon {
         left: -8px;
         top: 15px;
     }
-    
+
     blockquote::before {
         color: var(--cua-gold);
         content: "\201C";
@@ -2733,7 +2739,7 @@ button.search-icon {
         position: absolute;
         top: -30px;
     }
-    
+
     blockquote span {
         color: var(--cua-gray-800);
         display: block;
@@ -2752,7 +2758,7 @@ button.search-icon {
         position: relative;
         width: 85%;
     }
-    
+
     blockquote p {
         font-size: 1.25rem;
         line-height: 1.5;
