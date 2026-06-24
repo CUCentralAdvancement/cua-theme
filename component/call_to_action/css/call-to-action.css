@@ -195,6 +195,11 @@ a.cta-link {
     padding-bottom: 17px;
 }
 
+img.card-header {
+    width: 100%;
+    height: auto; 
+}
+
 /* =====================================
    Responsive Adjustments
    ===================================== */
