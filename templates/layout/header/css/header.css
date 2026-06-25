@@ -1043,16 +1043,19 @@ span.site-slogan.text-nowrap {
 }
 
 .header button.search-icon,
+.header .accordion-button {
+    padding: .35rem;
+    margin: .2rem .55rem 0;
+}
+
 .header button:focus:not(:focus-visible),
 .header button.accordion-button.collapsed,
-.header button:focus:not(:focus-visible),
-.header .accordion-button {
-    padding: .35rem !important;
-    margin: .2rem .55rem 0 !important;
+.header button:focus:not(:focus-visible) {
+    margin: 0;
 }
 
 .header nav#navbar-main {
-    background: #333332 !important;
+    background:var(--cua-gray-800) !important;
 }
 
 .header .nav-item {

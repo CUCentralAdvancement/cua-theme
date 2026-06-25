@@ -2531,21 +2531,18 @@ p#lead-story-item-1016-title {
 }
 
 button.accordion-button.collapsed,
-button:focus:not(:focus-visible) {
-    padding: .65rem !important;
-    font-weight: bold !important;
+button:focus:not(:focus-visible),
+.accordion-button {
+    padding: .75rem !important;
+    font-weight: normal !important;
 }
+
 
 .alert-dismissible {
     padding-right: 0 !important;
 }
 
-button.accordion-button.collapsed,
-button:focus:not(:focus-visible),
-.accordion-button {
-    padding: .65rem !important;
-    font-weight: bold !important;
-}
+
 
 aside a.nav-link,
 aside a.bef-link {
@@ -2635,14 +2632,6 @@ aside a.bef-link {
 
 .accordion-button:not(.collapsed) {
     background: #cfb87d;
-}
-
-button.accordion-button.collapsed,
-button:focus:not(:focus-visible),
-.accordion-button {
-    padding: .75rem !important;
-    font-weight: normal !important;
-    font-size: 1.1rem;
 }
 
 button.search-icon {
