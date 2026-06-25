@@ -1,6 +1,6 @@
 {#
 ================================================================================
-  footer.html.twig 
+  footer.html.twig
 ================================================================================
 #}
 {%- apply spaceless -%}
@@ -13,15 +13,12 @@
         {%- if page.footer_first -%}
           <div class="col-md-4 col-sm-6 px-2 d-flex flex-column gap-4 footer-address">
 
-            <section aria-labelledby="footer-university-info-heading">
+            <section aria-labelledby="footer-advancement-heading">
 
-              <h3 id="footer-university-info-heading" class="visually-hidden">
-                {{ 'University of Colorado Advancement contact information'|t }}
-              </h3>
-
-              <div class="cua-name-title text-white g-0">
-                <h3 class="g-0 mb-3" style="color: white;">
+              <div class="cua-name-title">
+                <h3 id="footer-advancement-heading" class="mb-3 text-white">
                   {{ 'University of Colorado Advancement'|t }}
+                  <span class="visually-hidden">{{ 'contact information'|t }}</span>
                 </h3>
               </div>
 
@@ -32,22 +29,19 @@
 
               <div class="cua-email mb-2 px-3">
                 <a class="link-cua" href="mailto:giving@cu.edu" aria-label="{{ 'Send email to giving@cu.edu'|t }}">
-                  <i class="fa-solid fa-envelope mr-2" aria-hidden="true"></i>
+                  <i class="fa-solid fa-envelope me-2" aria-hidden="true"></i>
                   giving@cu.edu
                 </a>
               </div>
 
             </section>
 
-            <section aria-labelledby="footer-campus-links-heading">
+            <section aria-labelledby="footer-foundation-heading">
 
-              <h3 id="footer-campus-links-heading" class="visually-hidden">
-                {{ 'University of Colorado Foundation contact information'|t }}
-              </h3>
-
-              <div class="cua-name-title g-0 text-light">
-                <h3 class="g-0 mb-3" style="color: white;">
+              <div class="cua-name-title">
+                <h3 id="footer-foundation-heading" class="mb-3 text-white">
                   {{ 'University of Colorado Foundation'|t }}
+                  <span class="visually-hidden">{{ 'contact information'|t }}</span>
                 </h3>
               </div>
 
@@ -58,14 +52,14 @@
 
               <div class="cua-phone mb-2 px-3 pt-2 text-gold">
                 <a class="link-cua" href="tel:+13038137935" aria-label="{{ 'Call 303-813-7935'|t }}">
-                  <i class="fa-solid fa-phone pr-1" aria-hidden="true"></i>
+                  <i class="fa-solid fa-phone pe-1" aria-hidden="true"></i>
                   303-813-7935
                 </a>
               </div>
 
               <div class="cua-map mb-2 px-3 text-gold">
                 <a class="link-cua px-1" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A" aria-label="{{ 'Open map and directions to University of Colorado Foundation'|t }}">
-                  <i class="fa-solid fa-map pr-1" aria-hidden="true"></i>
+                  <i class="fa-solid fa-map pe-1" aria-hidden="true"></i>
                   {{ 'Directions'|t }}
                 </a>
               </div>
@@ -75,6 +69,9 @@
           </div>
         {%- endif -%}
 
+        {#- footer_second: bare column. If the block placed here has its own
+            heading, this is fine. If not, wrap it in a <section aria-labelledby>
+            with a visually-hidden h3 to match the other regions. -#}
         {%- if page.footer_second -%}
           <div class="col-md-3 col-sm-6 px-2">
             {{ page.footer_second }}
@@ -117,11 +114,7 @@
     <div class="row">
 
       <div class="col-12 mt-4 mb-3 d-flex align-items-center justify-content-center cu-logo-section">
-        <picture>
-          <source media="(max-width: 499px)" srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}" width="250" height="70"/>
-          <source media="(min-width: 500px)" srcset="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}" width="500" height="140"/>
-          <img src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}" alt="{{ 'University of Colorado logo'|t }}" width="500" height="140" loading="lazy"/>
-        </picture>
+        <img class="img-fluid" src="{{ base_path ~ directory ~ '/images/cua-logo-white.svg' }}" alt="{{ 'University of Colorado logo'|t }}" width="500" height="140" loading="lazy"/>
       </div>
 
       {%- if page.footer_sixth -%}
@@ -134,8 +127,8 @@
       {%- endif -%}
 
       <div class="col-12 border-top border-secondary d-flex align-items-center justify-content-center">
-        <p class="mt-2 mb-3 strong text-light">
-          {{ '©'|t }}
+        <p class="mt-2 mb-3 fw-bold text-light">
+          &copy;
           {{ 'now'|date('Y') }}
           <a href="https://regents.cu.edu" rel="noopener" target="_blank" class="link-light link-underline-opacity-0 px-2" aria-label="{{ 'Regents of the University of Colorado (opens in a new tab)'|t }}">
             {{ 'Regents of the University of Colorado'|t }}
