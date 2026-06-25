@@ -1022,10 +1022,6 @@ span.site-slogan.text-nowrap {
     margin: .6rem 0 0;
 }
 
-.header span.site-slogan.text-nowrap {
-    color: var(--cua-white) !important;
-}
-
 .header .cu-background-black {
    color: var(--cua-white)!important;
    background-color: var(--cua-black) !important;
