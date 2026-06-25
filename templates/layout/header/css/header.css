@@ -149,7 +149,7 @@ button.search-icon {
 
 button.search-icon {
     border-radius: 50%;
-    background: var(--cua-gray-800);
+    background: var(--cua-gray-600);
     box-shadow: 0 0 1px 0 rgb(0 0 0 / 50%);
     margin: 0 3px;
     padding: 0.6rem
@@ -1048,7 +1048,7 @@ span.site-slogan.text-nowrap {
 .header button:focus:not(:focus-visible),
 .header .accordion-button {
     padding: .35rem !important;
-    margin: .2rem 0 0 !important;
+    margin: .2rem .55rem 0 !important;
 }
 
 .header nav#navbar-main {
@@ -1057,4 +1057,9 @@ span.site-slogan.text-nowrap {
 
 .header .nav-item {
     border-right: 0 solid var(--cua-gray-500);
+}
+
+.header .secondary-menu-container .row {
+    margin-right: calc(-.1 * var(--bs-gutter-x)) !important;
+    --bs-gutter-x: 0 !important
 }
