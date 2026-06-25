@@ -958,3 +958,108 @@ span.site-slogan.text-nowrap {
         margin: .3rem 0 0
     }
 }
+
+
+
+
+
+/* anchor */
+.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 0; /* hide link text visually */
+}
+
+/* icon on top */
+.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link::before {
+  content: "\f015";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;               /* solid */
+  font-style: normal;
+  display: inline-block;
+  font-size: 1rem;                /* visible icon size */
+  line-height: 1;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* hover background behind icon */
+.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  transform: translate(-50%, -50%);
+  border-radius: 0.35rem;
+  background: transparent;
+  z-index: 1;
+  transition: background-color .16s ease;
+}
+
+/* hover states */
+.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link:hover::after {
+  background: #c9c9c9;
+}
+.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link:hover::before {
+  color: #222;
+}
+
+.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link {
+    margin: .6rem 0 0;
+}
+
+header #search-block-form {
+    border-bottom: 2px solid var(--cua-black);
+}
+
+span.site-slogan.text-nowrap {
+    color: var(--cua-white) !important;
+}
+
+.cu-background-black {
+   color: var(--cua-white)!important;
+   background-color: var(--cua-black) !important;
+}
+
+.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
+    background: var(--cua-gold);
+    color: var(--cua-black) !important;
+    font-weight: 700;
+    font-size: .85rem !important;
+    padding: .5rem 1rem !important;
+    border-radius: 1rem !important;
+    border-right: 1px solid var(--cua-black) !important;
+}
+
+.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link  svg.ext {
+    display: none !important;
+}
+
+header .nav-item:first-child {
+    border-right: none;
+}
+
+button.search-icon {
+    padding: .3rem !important;
+    margin: .2rem 0 0;
+}
+
+nav#navbar-main {
+    background: #333332 !important;
+}
+
+header .nav-item {
+    border-right: 0 solid var(--cua-gray-500);
+}
