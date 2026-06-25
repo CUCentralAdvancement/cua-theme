@@ -961,10 +961,10 @@ span.site-slogan.text-nowrap {
 
 
 
-
+/* Header rewrites , needs intergrating with top upon final approval */
 
 /* anchor */
-.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link {
+.header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -976,7 +976,7 @@ span.site-slogan.text-nowrap {
 }
 
 /* icon on top */
-.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link::before {
+.header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link::before {
   content: "\f015";
   font-family: "Font Awesome 6 Free";
   font-weight: 900;               /* solid */
@@ -994,7 +994,7 @@ span.site-slogan.text-nowrap {
 }
 
 /* hover background behind icon */
-.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link::after {
+.header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -1009,22 +1009,23 @@ span.site-slogan.text-nowrap {
 }
 
 /* hover states */
-.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link:hover::after {
+.header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link:hover::after {
   background: #c9c9c9;
 }
-.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link:hover::before {
+
+.header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link:hover::before {
   color: #222;
 }
 
-.menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link {
+.header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link {
     margin: .6rem 0 0;
 }
 
-span.site-slogan.text-nowrap {
+.header span.site-slogan.text-nowrap {
     color: var(--cua-white) !important;
 }
 
-.cu-background-black {
+.header .cu-background-black {
    color: var(--cua-white)!important;
    background-color: var(--cua-black) !important;
 }
@@ -1043,19 +1044,19 @@ span.site-slogan.text-nowrap {
     display: none !important;
 }
 
-header .nav-item:first-child {
+.header .nav-item:first-child {
     border-right: none;
 }
 
-button.search-icon {
+.header button.search-icon {
     padding: .3rem !important;
     margin: .2rem 0 0;
 }
 
-nav#navbar-main {
+.header nav#navbar-main {
     background: #333332 !important;
 }
 
-header .nav-item {
+.header .nav-item {
     border-right: 0 solid var(--cua-gray-500);
 }
