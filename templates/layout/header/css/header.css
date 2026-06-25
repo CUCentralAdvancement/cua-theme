@@ -716,14 +716,13 @@ span.site-slogan.text-nowrap {
     margin-top: .1rem;
 }
 
-.col-auto.site-slogan {
+.col-auto.site-slogan,
+.site-slogan {
     font-size: 1.3rem;
     font-weight: 600;
 }
 
 .site-slogan {
-    font-size: 1.4rem;
-    font-weight: 600;
     margin: 0 3px;
 }
 
