@@ -965,6 +965,7 @@ span.site-slogan.text-nowrap {
 
 /* anchor */
 .header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link {
+  background:transparent !important;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -984,7 +985,7 @@ span.site-slogan.text-nowrap {
   display: inline-block;
   font-size: 1rem;                /* visible icon size */
   line-height: 1;
-  color: #fff;
+  color: var(--cua-white);
   position: absolute;
   left: 50%;
   top: 50%;
