@@ -1020,10 +1020,6 @@ span.site-slogan.text-nowrap {
     margin: .6rem 0 0;
 }
 
-header #search-block-form {
-    border-bottom: 2px solid var(--cua-black);
-}
-
 span.site-slogan.text-nowrap {
     color: var(--cua-white) !important;
 }
