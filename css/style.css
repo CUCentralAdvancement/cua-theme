@@ -141,7 +141,34 @@
     src: url('/themes/contrib/cua_theme/fonts/roboto-condensed-v31-latin-700.woff2') format('woff2');
 }
 
-` html:focus-within {
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: optional;
+    src: url('/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-solid-900.woff2') format('woff2'),
+        url('/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-solid-900.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: optional;
+    src: url('/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-regular-400.woff2') format('woff2'),
+        url('/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-regular-400.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: optional;
+    src: url('/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-brands-400.woff2') format('woff2'),
+        url('/themes/contrib/cua_theme/dist/fontawesome/webfonts/fa-brands-400.ttf') format('truetype');
+}
+
+html:focus-within {
     scroll-behavior: smooth;
 }
 
