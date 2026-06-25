@@ -2646,7 +2646,7 @@ button:focus:not(:focus-visible),
 }
 
 button.search-icon {
-    padding: 0.6rem !important;
+    padding: 0.4rem !important;
 }
 
 #faq-accordion .accordion-button,
