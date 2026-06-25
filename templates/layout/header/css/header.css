@@ -1054,10 +1054,6 @@ span.site-slogan.text-nowrap {
     margin: 0;
 }
 
-.header nav#navbar-main {
-    background:var(--cua-gray-800) !important;
-}
-
 .header .nav-item {
     border-right: 0 solid var(--cua-gray-500);
 }
