@@ -668,6 +668,113 @@ span.site-slogan.text-nowrap {
     color: var(--cua-gold) !important;
 }
 
+/* Header rewrites , needs intergrating with top upon final approval */
+
+/* anchor */
+.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
+    background: transparent !important;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    font-size: 0;
+    /* hide link text visually */
+}
+
+/* icon on top */
+.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link::before {
+    content: "\f015";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* solid */
+    font-style: normal;
+    display: inline-block;
+    font-size: 1rem;
+    /* visible icon size */
+    line-height: 1;
+    color: var(--cua-white);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* hover background behind icon */
+.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    transform: translate(-50%, -50%);
+    border-radius: 0.35rem;
+    background: transparent;
+    z-index: 1;
+    transition: background-color .16s ease;
+}
+
+/* hover states */
+.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::after {
+    background: #c9c9c9;
+}
+
+.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::before {
+    color: #222;
+}
+
+.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
+    margin: .6rem 0 0;
+}
+
+.header .cu-background-black {
+    color: var(--cua-white) !important;
+    background-color: var(--cua-black) !important;
+}
+
+.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
+    background: var(--cua-gold);
+    border-radius: 1rem !important;
+    border-right: 1px solid var(--cua-black) !important;
+    color: var(--cua-black) !important;
+    font-weight: 700;
+    font-size: .85rem !important;
+    margin: 0 0 .1rem !important;
+    padding: .45rem 1rem !important;
+}
+
+.header .sticky #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
+    margin: 0rem !important;
+}
+
+.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link svg.ext {
+    display: none !important;
+}
+
+.header .nav-item:first-child {
+    border-right: none;
+}
+
+.header button.accordion-button.collapsed,
+.header button:focus:not(:focus-visible) {
+    margin: 0;
+}
+
+.header .nav-item {
+    border-right: 0 solid var(--cua-gray-500);
+}
+
+.header .secondary-menu-container .row {
+    margin-right: calc(-.1 * var(--bs-gutter-x)) !important;
+    --bs-gutter-x: 0 !important
+}
+
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     #navbar-main {
@@ -710,14 +817,12 @@ span.site-slogan.text-nowrap {
         text-decoration: none
     }
 
-  
-
     .header .nav-link {
         font-size: var(--base-font-size) !important
     }
 
     header .navbar-nav>.nav-item:first-child>.nav-link::before {
-        display: none
+        display: none !important
     }
 
     /* Custom Hamburger */
@@ -852,6 +957,9 @@ span.site-slogan.text-nowrap {
         font-weight: 600;
         margin: 0;
     }
+    .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link::before  {
+        display: none
+    }
 
 }
 
@@ -864,6 +972,10 @@ span.site-slogan.text-nowrap {
     .site-name-logo img {
         margin: .25rem 0 0
     }
+    
+    header .navbar-nav>.nav-item:first-child>.nav-link::before {
+        display: none !important
+    }
 }
 
 /* iphone < 12 */
@@ -875,109 +987,8 @@ span.site-slogan.text-nowrap {
     .site-name-logo img {
         margin: .3rem 0 0
     }
-}
-/* Header rewrites , needs intergrating with top upon final approval */
 
-/* anchor */
-.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
-    background: transparent !important;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    padding: 0;
-    font-size: 0;
-    /* hide link text visually */
-}
-
-/* icon on top */
-.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link::before {
-    content: "\f015";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    /* solid */
-    font-style: normal;
-    display: inline-block;
-    font-size: 1rem;
-    /* visible icon size */
-    line-height: 1;
-    color: var(--cua-white);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* hover background behind icon */
-.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 2.2rem;
-    height: 2.2rem;
-    transform: translate(-50%, -50%);
-    border-radius: 0.35rem;
-    background: transparent;
-    z-index: 1;
-    transition: background-color .16s ease;
-}
-
-/* hover states */
-.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::after {
-    background: #c9c9c9;
-}
-
-.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::before {
-    color: #222;
-}
-
-.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
-    margin: .6rem 0 0;
-}
-
-.header .cu-background-black {
-    color: var(--cua-white) !important;
-    background-color: var(--cua-black) !important;
-}
-
-.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
-    background: var(--cua-gold);
-    border-radius: 1rem !important;
-    border-right: 1px solid var(--cua-black) !important;
-    color: var(--cua-black) !important;
-    font-weight: 700;
-    font-size: .85rem !important;
-    margin: 0 0 .1rem !important;
-    padding: .45rem 1rem !important;
-}
-
-.header .sticky #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
-    margin: 0rem !important;
-}
-
-.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link svg.ext {
-    display: none !important;
-}
-
-.header .nav-item:first-child {
-    border-right: none;
-}
-
-.header button.accordion-button.collapsed,
-.header button:focus:not(:focus-visible) {
-    margin: 0;
-}
-
-.header .nav-item {
-    border-right: 0 solid var(--cua-gray-500);
-}
-
-.header .secondary-menu-container .row {
-    margin-right: calc(-.1 * var(--bs-gutter-x)) !important;
-    --bs-gutter-x: 0 !important
+     header .navbar-nav>.nav-item:first-child>.nav-link::before {
+        display: none !important
+    }
 }
