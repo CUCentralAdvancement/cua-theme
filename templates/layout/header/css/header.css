@@ -435,9 +435,8 @@ header .navbar {
 }
 
 header .navbar-expand-lg .navbar-nav .nav-link {
-    padding: 0.938rem !important;
+    padding: 0.75rem .9rem !important;
     text-decoration: none !important;
-
 }
 
 header li.nav-item:hover {
@@ -729,7 +728,7 @@ span.site-slogan.text-nowrap {
 }
 
 .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
-    margin: .6rem 0 0;
+    margin: .4rem 0 0;
 }
 
 .header .cu-background-black {
@@ -740,10 +739,10 @@ span.site-slogan.text-nowrap {
 .header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
     background: var(--cua-gold);
     border-radius: 1rem !important;
-    border-right: 1px solid var(--cua-black) !important;
+    border-right: 1px solid var(--cua-gold) !important;
     color: var(--cua-black) !important;
     font-weight: 700;
-    font-size: .85rem !important;
+    font-size: .8rem !important;
     margin: 0 0 .1rem !important;
     padding: .45rem 1rem !important;
 }
