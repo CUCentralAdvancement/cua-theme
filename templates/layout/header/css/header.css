@@ -134,61 +134,17 @@ nav#navbar-main>li.first a:before {
     width: 20px;
 }
 
-/* Search */
-.search-icon {
-    display: block;
-    float: inline-end
+.header .accordion-button {
+    padding: .35rem;
+    margin: .2rem .55rem 0;
 }
 
-button.search-icon {
-    background: var(--cua-gray-200);
-    box-shadow: none;
-    line-height: 0;
-    margin: 0;
-    padding: 0.7em
-}
-
-button.search-icon {
-    border-radius: 50%;
-    background: var(--cua-gray-600);
-    box-shadow: 0 0 1px 0 rgb(0 0 0 / 50%);
-    margin: 0 3px;
-    padding: 0.6rem
-}
-
-button.search-icon:hover {
-    background: var(--cua-gray-600)
-}
-
-header .search-block-form {
+.header .search-block-form {
     margin: 0.5rem 0 0
 }
 
 .search-block-form .form-control {
     padding: 0
-}
-
-.search-block-form .btn-primary {
-    color: var(--cua-white) !important;
-    background: var(--cua-black) !important;
-    border: 1px solid var(--cua-black) !important;
-    border-left-color: var(--cua-black) !important;
-    border-radius: 0 !important;
-    font-weight: var(--font-weight-bold) !important;
-    font-size: .95rem !important;
-    letter-spacing: normal !important;
-    margin: 0 !important;
-    padding: .47rem 1.25rem !important
-}
-
-.search-block-form .btn-primary:hover {
-    background: var(--cua-black);
-    border: 1px solid var(--cua-black);
-    border-left-color: var(--cua-black) !important;
-    box-shadow: 0 0 0 0.25rem rgba(223, 200, 140, 0);
-    color: var(--cua-white);
-    cursor: pointer !important;
-    text-decoration: none
 }
 
 .search-block-form .js-form-type-search input.form-search,
@@ -754,12 +710,7 @@ span.site-slogan.text-nowrap {
         text-decoration: none
     }
 
-    button.search-icon {
-        border-radius: 50%;
-        box-shadow: none;
-        margin: 0 3px;
-        padding: 0.6rem
-    }
+  
 
     .header .nav-link {
         font-size: var(--base-font-size) !important
@@ -1015,12 +966,6 @@ span.site-slogan.text-nowrap {
 
 .header .nav-item:first-child {
     border-right: none;
-}
-
-.header button.search-icon,
-.header .accordion-button {
-    padding: .35rem;
-    margin: .2rem .55rem 0;
 }
 
 .header button.accordion-button.collapsed,
