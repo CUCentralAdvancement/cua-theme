@@ -128,6 +128,7 @@ div#block--node--basic-block--2025,
   color: var(--cua-black) !important;
   padding: 1rem 0 0;
 }
+
 /* ----------------------------------------
    HERO / PARAGRAPHS
 ---------------------------------------- */
@@ -366,8 +367,8 @@ a.color-financials:hover {
   font-weight: 700 !important;
 }
 
-.page-node-1005 .charts-chartjs.chart + .chart-legend,
-.page-node-1005 .charts-chartjs.chart + .chart-title {
+.page-node-1005 .charts-chartjs.chart+.chart-legend,
+.page-node-1005 .charts-chartjs.chart+.chart-title {
   font-size: 12px !important;
   font-weight: 700 !important;
 }
@@ -750,6 +751,30 @@ a.color-financials:hover {
   color: black !important;
 }
 
+.fa-1xl {
+  font-size: 1em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+}
+
+.fa-3xl {
+  font-size: 3em;
+}
+
+.fa-4xl {
+  font-size: 4em;
+}
+
+.fa-5xl {
+  font-size: 35em;
+}
+
+.fa-6xl {
+  font-size: 6em;
+}
+
 /* ==========================================================================
    MEDIA QUERIES
    All breakpoints consolidated here.
@@ -757,6 +782,7 @@ a.color-financials:hover {
 
 /* node-1005 data viz images — mobile */
 @media (max-width: 768px) {
+
   .page-node-1005 img.endowment-image,
   .page-node-1005 img.asset-image,
   .page-node-1005 img.ltip-image,
