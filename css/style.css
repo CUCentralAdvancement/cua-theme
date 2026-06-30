@@ -2719,6 +2719,11 @@ aside a.bef-link {
     border-color: indianred;
 }
 
+
+#block-cua-theme-mainnavigation-2 {
+  margin: 6rem 0 0 1rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
