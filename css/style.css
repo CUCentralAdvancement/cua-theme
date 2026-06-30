@@ -354,9 +354,24 @@ div#block-cua-theme-page-title {
     position: relative;
 }
 
-h1.page-title.pt-2 {
+h1.page-title {
     font-size: 2.25rem !important;
     margin: 0 0 2rem;
+}
+
+h1.page-title::after {
+  background-color: var(--cua-gold);
+  content: " ";
+  display: block;
+  width: 1.5em;
+  height: 0.1em;
+  margin: 0.2em 0 1rem 0;
+}
+
+.page-node-778 h1.page-title::after {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 div#main-wrapper {
@@ -772,15 +787,6 @@ aside .views-exposed-form h2 {
     margin: 0.4em 0;
     width: 1.5em;
     height: 0.1em;
-}
-
-h2.text-align-center::after {
-    background-color: var(--cua-gold);
-    content: " ";
-    display: block;
-    width: 1.5em;
-    height: 0.1em;
-    margin: 0.4em auto;
 }
 
 .views-view-responsive-grid__item {
