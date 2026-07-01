@@ -94,8 +94,8 @@ nav#navbar-main.sticky {
 /* Navbar Padding and Links */
 .nav-link.active.dropdown-toggle,
 .navbar-expand-lg a.nav-link.is-active {
-    background-color: var(--cua-black);
-    color: var(--cua-white) !important
+    background-color: var(--cua-gold);
+    color: var(--cua-black) !important
 }
 
 .navbar-expand-lg a.nav-link:first-child.is-active {
