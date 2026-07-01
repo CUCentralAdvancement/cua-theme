@@ -55,8 +55,8 @@ h1.site-link {
 
 /* Navigation */
 nav#navbar-main {
-    background: var(--uci-gray);
-    color: var(--bg-light)
+    background: var(--cu-white);
+    color: var(--bg-black)
 }
 
 nav#navbar-main.sticky {
@@ -437,16 +437,26 @@ header .navbar {
 header .navbar-expand-lg .navbar-nav .nav-link {
     padding: 0.75rem .9rem !important;
     text-decoration: none !important;
+    font-weight: 500;
+    font-size: .9rem;
+    letter-spacing: 0.03em;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+    margin: .35rem 0;
+}
+
+header .navbar-expand-lg .navbar-nav .nav-link:hover {
+    background: rgba(0, 0, 0, 0.06) !important;
 }
 
 header li.nav-item:hover {
-    background: var(--cua-white) !important;
-    color: var(--cua-black) !important
+    background: transparent !important;
+    color: var(--cua-black) !important;
 }
 
 header li.nav-item:first-child:hover {
     background: transparent !important;
-    color: var(--cua-gold) !important
+    color: var(--cua-gold) !important;
 }
 
 
@@ -694,7 +704,7 @@ span.site-slogan.text-nowrap {
     font-size: 1rem;
     /* visible icon size */
     line-height: 1;
-    color: var(--cua-white);
+    color: var(--cua-black-pure);
     position: absolute;
     left: 50%;
     top: 50%;
