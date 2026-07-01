@@ -445,8 +445,12 @@ header .navbar-expand-lg .navbar-nav .nav-link {
     margin: .35rem 0;
 }
 
-header .navbar-expand-lg .navbar-nav .nav-link:hover {
+header .navbar-expand-lg .navbar-nav .nav-link:hover,
+header .navbar-expand-lg .navbar-nav .nav-link:focus,
+header .navbar-expand-lg .navbar-nav .nav-link:focus-visible {
     background: rgba(0, 0, 0, 0.06) !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 header li.nav-item:hover {
@@ -738,7 +742,7 @@ span.site-slogan.text-nowrap {
 }
 
 .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
-    margin: .4rem 0 0;
+    margin: .7rem 0 0;
 }
 
 .header .cu-background-black {
@@ -767,11 +771,6 @@ span.site-slogan.text-nowrap {
 
 .header .nav-item:first-child {
     border-right: none;
-}
-
-.header button.accordion-button.collapsed,
-.header button:focus:not(:focus-visible) {
-    margin: 0;
 }
 
 .header .nav-item {
