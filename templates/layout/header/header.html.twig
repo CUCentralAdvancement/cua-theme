@@ -22,9 +22,9 @@
 							<div class="flex-shrink-1 d-flex align-items-center">
 								<a href="{{ url('<front>') }}" rel="home noopener" class="site-branding__logo d-flex align-items-center text-decoration-none">
 									<img class="d-none d-lg-block me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="300" height="61" fetchpriority="high" loading="eager"/>
-									<img class="d-lg-none me-2" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="29" height="28"/>
+									<img class="d-lg-none me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="300" height="61"/>
 									{#
-/**
+									/**
 									<span class="site-slogan text-nowrap">
 										{{ site_slogan|e }}
 									</span>
@@ -35,10 +35,16 @@
 							<div class="ms-auto d-flex align-items-center gap-2">
 
 								{% if user.hasPermission('administer site configuration') %}
-									<div class="d-none d-lg-flex align-items-center">
+									<div class="d-none d-lg-flex align-items-center mx-4">
 										<a href="/tutorials" class="btn btn-sm btn-admin-app">
 											{{ 'Tutorials'|t }}
 										</a>
+									</div>
+								{% endif %}
+
+								{% if page.secondary_menu %}
+									<div class="secondary-menu-container d-none d-lg-flex ms-lg-auto">
+										{{ page.secondary_menu }}
 									</div>
 								{% endif %}
 
@@ -52,6 +58,10 @@
 										</button>
 									</div>
 								{% endif %}
+
+								
+
+								
 
 								<div class="d-lg-none">
 									<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbarSupportedContent" aria-controls="mainNavbarSupportedContent navbar-main" aria-expanded="false" aria-label="{{ 'Toggle navigation'|t }}">
@@ -103,7 +113,7 @@
  */
 #}
 
-	{% if page.primary_menu or page.secondary_menu %}
+	{% if page.primary_menu %}
 		<nav class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 m-0" id="navbar-main" aria-label="{{ 'Main menu'|t }}">
 			<div class="container px-3 g-0">
 				<div class="collapse navbar-collapse" id="mainNavbarSupportedContent">
@@ -116,7 +126,7 @@
 					{% endif %}
 
 					{% if page.secondary_menu %}
-						<div class="secondary-menu-container ms-lg-auto">
+						<div class="secondary-menu-container d-lg-none my-3">
 							{{ page.secondary_menu }}
 						</div>
 					{% endif %}
