@@ -21,11 +21,14 @@
 
 							<div class="flex-shrink-1 d-flex align-items-center">
 								<a href="{{ url('<front>') }}" rel="home noopener" class="site-branding__logo d-flex align-items-center text-decoration-none">
-									<img class="d-none d-lg-block me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="225" height="24" fetchpriority="high" loading="eager"/>
+									<img class="d-none d-lg-block me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="300" height="61" fetchpriority="high" loading="eager"/>
 									<img class="d-lg-none me-2" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="29" height="28"/>
+									{#
+/**
 									<span class="site-slogan text-nowrap">
 										{{ site_slogan|e }}
 									</span>
+									#}
 								</a>
 							</div>
 
@@ -84,7 +87,8 @@
 
 	</div>
 
-
+{#
+/**
 	<div class="container-fluid bg-light border-bottom border-grey px-3">
 		<div class="container d-flex justify-content-between align-items-center">
 			{% if site_name %}
@@ -95,6 +99,8 @@
 
 		</div>
 	</div>
+ */
+#}
 
 	{% if page.primary_menu or page.secondary_menu %}
 		<nav class="navbar l-header-bottom navbar-expand-lg shadow-sm g-0 m-0" id="navbar-main" aria-label="{{ 'Main menu'|t }}">
