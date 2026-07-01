@@ -102,6 +102,7 @@ nav#navbar-main.sticky {
 .navbar-expand-lg a.nav-link:first-child.is-active {
     background-color: transparent !important;
     color: var(--cua-white) !important;
+    border: none !important;
 }
 
 /* Add hover effect */
