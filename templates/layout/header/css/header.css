@@ -1027,33 +1027,25 @@ span.site-slogan.text-nowrap {
 }
 
 /* --- FIX DROPDOWN FLOATING ABOVE EVERYTHING --- */
-
-/* Ensure header + navbar create a high stacking context */
+/* z-index only applies to positioned elements, so the header must be
+   position: relative for its stacking context to sit above page content. */
 header,
 #navbar-main,
 .navbar {
-  position: relative !important;
-  z-index: 9999 !important;
-  overflow: visible !important;
+  position: relative;
+  z-index: 1000 !important;
 }
 
-/* Ensure dropdown menu floats above all page content */
 .navbar-nav .dropdown-menu {
-  position: absolute !important;
-  top: 100%;
-  left: 0;
-  z-index: 99999 !important;
-  background: var(--cua-white); /* prevents transparency issues */
+  z-index: 2000 !important;
 }
 
-/* Ensure parent anchors the dropdown */
-.nav-item.dropdown {
-  position: relative !important;
-  z-index: 9999 !important;
-}
-
-/* Make sure nothing in the header clips the dropdown */
-.header,
-.header * {
+/* The global rule `.container-fluid { overflow-x: hidden }` clips the dropdown
+   (overflow-x: hidden forces overflow-y to compute to auto). The header uses
+   container-fluid for full-bleed layout, so override it here to let dropdowns
+   escape the navbar. Safe because header content never overflows horizontally. */
+header .container-fluid,
+#navbar-main .container-fluid {
   overflow: visible !important;
 }
+
