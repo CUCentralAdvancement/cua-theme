@@ -987,3 +987,12 @@ a.color-financials:hover {
   }
 
 }
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: initial !important
+  }
+}
+.navbar-nav .dropdown-menu {
+  position: static !important
+}
