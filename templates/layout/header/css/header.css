@@ -447,7 +447,7 @@ header .nav-item.active {
 }
 
 header .nav-item:first-child {
-    border-right: 1px solid var(--cua-gray-500)
+    border-right: 1px solid var(--cua-white)
 }
 
 header .sticky .nav-item:first-child {
@@ -793,7 +793,7 @@ span.site-slogan.text-nowrap {
     display: none !important;
 }
 
-.header .nav-item:first-child {
+.header .nav-item:fixrst-child {
     border-right: none;
 }
 
@@ -1024,4 +1024,36 @@ span.site-slogan.text-nowrap {
      header .navbar-nav>.nav-item:first-child>.nav-link::before {
         display: none !important
     }
+}
+
+/* --- FIX DROPDOWN FLOATING ABOVE EVERYTHING --- */
+
+/* Ensure header + navbar create a high stacking context */
+header,
+#navbar-main,
+.navbar {
+  position: relative !important;
+  z-index: 9999 !important;
+  overflow: visible !important;
+}
+
+/* Ensure dropdown menu floats above all page content */
+.navbar-nav .dropdown-menu {
+  position: absolute !important;
+  top: 100%;
+  left: 0;
+  z-index: 99999 !important;
+  background: var(--cua-white); /* prevents transparency issues */
+}
+
+/* Ensure parent anchors the dropdown */
+.nav-item.dropdown {
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+/* Make sure nothing in the header clips the dropdown */
+.header,
+.header * {
+  overflow: visible !important;
 }
