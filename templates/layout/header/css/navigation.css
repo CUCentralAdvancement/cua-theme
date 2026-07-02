@@ -29,39 +29,19 @@ a.title-link:hover {
   margin: 0 .2rem;
 }
 
-.btn-primary {
+.cua-search .btn-primary {
   background: var(--cua-gold);
   border-color: transparent;
   color: var(--cua-black);
-}
-
-.btn-primary:hover {
-  background: var(--cua-black);
-  text-decoration: none;
-}
-
-.path-search .btn.btn-primary {
+  font-weight: var(--font-weight-bold);
+  transition: background-color 0.7s ease;
   padding: 0.5rem;
   width: 100px;
 }
 
-.btn.btn-primary {
-  background: var(--cua-white);
-  border: 1px solid var(--cua-black);
-  border-radius: 0;
-  color: var(--cua-black);
-  display: inline-block;
-  font-weight: var(--font-weight-bold);
-  padding: .42rem 1.5rem;
-  transition: background-color 0.7s ease;
-  width: auto;
-}
-
-.btn.btn-primary:hover {
+.cua-search .btn-primary:hover {
+  color: var(--cua-gold);
   background: var(--cua-black);
-  border: 1px solid var(--cua-black);
-  color: var(--cua-white);
-  cursor: pointer;
   text-decoration: none;
 }
 
@@ -450,3 +430,4 @@ aside .nav {
 .toolbar.toolbar-secondary .toolbar-bar .toolbar-icon-rebuild-cache-access::before {
   background-color: transparent !important;
 }
+`
