@@ -2,6 +2,29 @@
    GLOBAL / SITE-WIDE Overrides
 ---------------------------------------- */
 
+/* ----------------------------------------
+   layout_bg background image centering
+   The image-bundle card wrapper (.card-header) is a shrink-to-fit flex item, so
+   it collapses to the image's natural width and justify-content-start pins it
+   left, defeating layout_bg's object-fit cover/centering. Force the wrapper
+   chain to full width so the <img> gets a full-width box and object-fit:cover
+   centers + covers the background. Lives here (loads globally) because the
+   component's own image-card.css is not attached in the layout_bg render path.
+---------------------------------------- */
+.layout-bg-bg-wrapper .image-wrap,
+.layout-bg-bg-wrapper .card-header,
+.layout-bg-bg-wrapper .card-img-wrapper,
+.layout-bg-bg-wrapper .img-static {
+  width: 100% !important;
+}
+
+.layout-bg-bg-wrapper .img-static img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+}
+
 #site-footer-bottom .nav {
   background: #000 !important;
 }
