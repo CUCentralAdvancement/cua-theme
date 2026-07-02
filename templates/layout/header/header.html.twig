@@ -1,92 +1,93 @@
 {#
 /**
- * @file: header.html.twig
- * Standards: WCAG 2.1 AA / Section 508 Compliant.
- * Key Constraints:
- * - Branding: site_name/slogan use |e (Drupal translates upstream).
- * - Accessibility: Search h2 (#search-heading) must remain outside the collapse div.
- * - Navigation: Mobile toggle sits in top bar but controls #navbar-main via ID.
- * - Performance: Secondary menu rendered once; repositioned via CSS/Bootstrap.
+ * @file
+ * Theme override for the site header.
+ *
+ * Standards: WCAG 2.1 AA / Section 508, Bootstrap 5.3.
+ *
+ * Structure & constraints — check these before "simplifying":
+ * - Landmarks: <header role="banner"> is the single banner. The only navigation
+ *   landmarks are #navbar-main and the secondary-menu block (Drupal emits its
+ *   own <nav>). The utility bar is deliberately a <div>, not a <nav>, so the
+ *   logo/search controls don't sit inside a mislabelled nav landmark.
+ * - Layout: the banner background is full-bleed (header#header sets the white
+ *   background), while content is capped and centred with `.container`. The top
+ *   bar and the main nav share `.container` so their edges align on wide screens.
+ * - Load-bearing IDs: js/global.js reads #navbar-main (sticky) and
+ *   #CollapseSearch (autofocus); CSS uses the element selector `nav#navbar-main`,
+ *   so #navbar-main MUST stay a <nav>. #mainNavbarSupportedContent is the toggle
+ *   target. The search <h2> (#search-heading) MUST stay OUTSIDE the collapse so
+ *   the region keeps an accessible name while collapsed.
+ * - Secondary menu is rendered twice (desktop utility bar + mobile collapse);
+ *   Drupal suffixes the second instance, which CSS targets as `…secondarymenu--2`.
+ * - Branding: site_name passes through |e (Drupal translates upstream).
+ * - Performance: the LCP logo uses fetchpriority="high" + eager loading.
  */
 #}
 
-<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}" data-site-name="{{ site_name|e }}" data-site-section="header">
+<header id="header" class="header" role="banner" data-site-name="{{ site_name|e }}" data-site-section="header">
 
-	<div class="container top-bar pt-2 mb-3">
+	{# ── Utility / branding bar (full-width, matches body #main) ── #}
+	<div class="container-fluid top-bar pt-2 mb-3 px-3">
 		<div class="row align-items-center g-0">
 			<div class="col mt-1 g-0">
-				<nav class="navbar l-header-top navbar-light bg-white p-0 m-0" id="navbar-top" aria-label="{{ 'Site utility bar'|t }}">
-					<div class="container-fluid site-name-logo g-0">
-						<div class="container d-flex g-0">
+				<div class="navbar l-header-top bg-white g-0" id="navbar-top" data-bs-theme="light">
+					<div class="site-name-logo d-flex align-items-center w-100">
 
-							<div class="flex-shrink-1 d-flex align-items-center">
-								<a href="{{ url('<front>') }}" rel="home noopener" class="site-branding__logo d-flex align-items-center text-decoration-none">
-									<img class="d-none d-lg-block me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="375" height="76" fetchpriority="high" loading="eager"/>
-									<img class="d-lg-none me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="260" height="53"/>
-									{#
-									/**
-									<span class="site-slogan text-nowrap">
-										{{ site_slogan|e }}
-									</span>
-									#}
-								</a>
-							</div>
+						{# Logo → home #}
+						<a href="{{ url('<front>') }}" rel="home" class="site-branding__logo d-flex align-items-center text-decoration-none">
+							<img class="d-none d-lg-block me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="375" height="76" fetchpriority="high" loading="eager"/>
+							<img class="d-lg-none me-2" src="{{ base_path ~ directory ~ '/images/logo.svg' }}" alt="{{ 'University of Colorado'|t }}" width="260" height="53"/>
+						</a>
 
-							<div class="ms-auto d-flex align-items-center gap-2">
+						{# Utility cluster #}
+						<div class="ms-auto d-flex align-items-center gap-2">
 
-								{% if user.hasPermission('administer site configuration') %}
-									<div class="d-none d-lg-flex align-items-center">
-										<a href="/tutorials" class="btn btn-sm btn-admin-app">
-											{{ 'Tutorials'|t }}
-										</a>
-									</div>
-								{% endif %}
+							{% if user.hasPermission('administer site configuration') %}
+								<div class="d-none d-lg-flex align-items-center">
+									<a href="/tutorials" class="btn btn-sm btn-admin-app">{{ 'Tutorials'|t }}</a>
+								</div>
+							{% endif %}
 
-								{% if page.secondary_menu %}
-									<div class="secondary-menu-container d-none d-lg-flex ms-lg-auto">
-										{{ page.secondary_menu }}
-									</div>
-								{% endif %}
+							{% if page.secondary_menu %}
+								<div class="secondary-menu-container d-none d-lg-flex ms-lg-auto">
+									{{ page.secondary_menu }}
+								</div>
+							{% endif %}
 
-								{% if page.search %}
-									<div class="search-button">
-										<button class="search-icon btn btn-link p-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="{{ 'Open search'|t }}">
-											<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" style="width: 36px; height: 36px;" viewBox="0 0 36 36" aria-hidden="true" focusable="false">
-												<circle cx="18" cy="18" r="17" fill="none" stroke="#c0c0c0" stroke-width="1"/>
-												<path fill="#555555" transform="translate(11,11) scale(0.85)" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-											</svg>
-										</button>
-									</div>
-								{% endif %}
+							{% if page.search %}
+								<div class="search-button">
+									<button class="search-icon btn btn-link p-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="{{ 'Toggle search'|t }}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false">
+											<circle cx="18" cy="18" r="17" fill="none" stroke="#c0c0c0" stroke-width="1"/>
+											<path fill="#555555" transform="translate(11,11) scale(0.85)" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+										</svg>
+									</button>
+								</div>
+							{% endif %}
 
-								
-
-								
-
+							{# Mobile menu toggle — only meaningful when a primary menu exists #}
+							{% if page.primary_menu %}
 								<div class="d-lg-none">
-									<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbarSupportedContent" aria-controls="mainNavbarSupportedContent navbar-main" aria-expanded="false" aria-label="{{ 'Toggle navigation'|t }}">
+									<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbarSupportedContent" aria-controls="mainNavbarSupportedContent" aria-expanded="false" aria-label="{{ 'Toggle navigation'|t }}">
 										<span class="navbar-toggler-icon"></span>
 									</button>
 								</div>
-
-							</div>
+							{% endif %}
 
 						</div>
 					</div>
-				</nav>
-
-
+				</div>
 			</div>
-
-
 		</div>
 
+		{# Search panel — toggled from the utility bar above.
+		   The labelling <h2> stays OUTSIDE the collapse so the region keeps an
+		   accessible name even while collapsed. #}
 		{% if page.search %}
 			<div class="container-fluid main-search" role="search">
 				<div class="container">
-					<h2 id="search-heading" class="visually-hidden">
-						{{ 'Search site'|t }}
-					</h2>
+					<h2 id="search-heading" class="visually-hidden">{{ 'Search site'|t }}</h2>
 					<div class="collapse" id="CollapseSearch" role="region" aria-labelledby="search-heading">
 						<div class="cua-search">
 							{{ page.search }}
@@ -98,39 +99,23 @@
 
 	</div>
 
-{#
-/**
-	<div class="container-fluid bg-light border-bottom border-grey px-3">
-		<div class="container d-flex justify-content-between align-items-center">
-			{% if site_name %}
-				<div class="site-slogan mx-2 my-2">
-					{{ site_name|e }}
-				</div>
-			{% endif %}
-
-		</div>
-	</div>
- */
-#}
-
+	{# ── Primary navigation ─────────────────────────────────────────────
+	   #navbar-main is load-bearing for JS (sticky) and CSS (nav#navbar-main). #}
 	{% if page.primary_menu %}
 		<nav class="navbar l-header-bottom navbar-expand-lg g-0 m-0 border-top border-bottom" id="navbar-main" aria-label="{{ 'Main menu'|t }}">
-			<div class="container px-3 g-0">
+			<div class="container-fluid px-3 g-0">
 				<div class="collapse navbar-collapse" id="mainNavbarSupportedContent">
-					<img class="sticky-show" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}" alt="" width="25" height="24" aria-hidden="true" role="presentation"/>
+					<img class="sticky-show" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}" alt="" width="25" height="24"/>
 
-					{% if page.primary_menu %}
-						<div class="primary-menu-wrapper">
-							{{ page.primary_menu }}
-						</div>
-					{% endif %}
+					<div class="primary-menu-wrapper">
+						{{ page.primary_menu }}
+					</div>
 
 					{% if page.secondary_menu %}
 						<div class="secondary-menu-container d-lg-none my-3">
 							{{ page.secondary_menu }}
 						</div>
 					{% endif %}
-
 				</div>
 			</div>
 		</nav>

@@ -189,6 +189,28 @@ p.search-button {
     padding: 0 1rem 0
 }
 
+/* Prevent top-bar row from reflowing when search collapse opens below it */
+.top-bar .row {
+    min-height: 90px;
+    align-items: center
+}
+
+/* Lock search icon and Give Now button so focus/active states don't resize them */
+div.search-button,
+div.search-button button.search-icon {
+    display: flex;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    box-sizing: content-box
+}
+
+div.search-button button.search-icon:focus,
+div.search-button button.search-icon:active {
+    outline: none !important;
+    box-shadow: none !important
+}
+
 header #search-block-form {
     border-bottom: 2px solid var(--cua-white);
     flex-flow: row wrap;
@@ -959,7 +981,7 @@ span.site-slogan.text-nowrap {
         margin: .7rem 0 0 .5rem
     }
 
-    .container.top-bar {
+    .top-bar {
         padding-bottom: 1rem;
     }
 
