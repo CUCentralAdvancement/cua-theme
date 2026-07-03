@@ -31,18 +31,13 @@ a.title-link:hover {
 
 .cua-search .btn-primary {
   background: var(--cua-gold);
-  border-color: transparent;
-  color: var(--cua-black);
-  font-weight: var(--font-weight-bold);
-  transition: background-color 0.7s ease;
-  padding: 0.5rem;
+  padding: 0.4rem !important;
   width: 100px;
 }
 
 .cua-search .btn-primary:hover {
   color: var(--cua-gold);
   background: var(--cua-black);
-  text-decoration: none;
 }
 
 .block-link {
