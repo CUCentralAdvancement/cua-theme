@@ -1277,16 +1277,22 @@ a.flag-link .flag.cu-bg-light-grey {
 }
 
 .js-layout-builder-block .btn.btn-primary,
-.ck.btn.btn-primary {
+.ck.btn.btn-primary,
+.btn.btn-primary {
     color: var(--cua-black) !important;
     border: 2px solid var(--cua-black) !important;
+    border-radius: unset;
     background-color: var(--cua-white) !important;
     text-decoration: none !important;
     margin: 1rem 0 !important;
+    padding: .25rem 1rem;
+    font-weight: 500;
+    font-size: .95rem;
 }
 
 .js-layout-builder-block .ck.btn.btn-primary:hover,
-.ck.btn.btn-primary:hover {
+.ck.btn.btn-primary:hover,
+.btn.btn-primary:hover {
     color: var(--cua-white) !important;
     border: 2px solid var(--cua-black) !important;
     background-color: var(--cua-black) !important;
