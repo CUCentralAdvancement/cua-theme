@@ -159,6 +159,15 @@ div.search-button button.search-icon:active {
     box-shadow: none !important
 }
 
+/* Double the search glyph's visual weight: the filled magnifier path gains
+   an equal-color stroke. The glass ring is exactly 1 unit thick in the
+   glyph's 16-unit space, so stroke-width 1 doubles it. */
+div.search-button .search-icon svg path {
+    stroke: #555555;
+    stroke-width: 1;
+    stroke-linejoin: round;
+}
+
 header #search-block-form {
     border-bottom: 2px solid var(--cua-white);
     flex-flow: row wrap;
