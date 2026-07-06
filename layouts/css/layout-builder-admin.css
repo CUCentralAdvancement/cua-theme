@@ -11,8 +11,17 @@ form#node-page-layout-builder-form input#edit-actions {
 
 form#node-landing-page-layout-builder-form .btn-primary,
 form#node-page-layout-builder-form .btn-primary {
-    background-color: #0854bb;
-    border-color: #0854bb;
+    background-color: #0854bb !important;
+    border-color: #0854bb !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+
+form#node-landing-page-layout-builder-form .btn-primary:hover,
+form#node-page-layout-builder-form .btn-primary:hover {
+    background-color: green !important;
+    border-color: green !important;
     color: white !important;
     cursor: pointer;
 }
