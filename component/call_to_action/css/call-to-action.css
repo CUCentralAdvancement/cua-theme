@@ -33,7 +33,7 @@
 
 /* Styling for the main title inside the call-to-action */
 .call-to-action .display-4.card-text.lead.title {
-    font-family: var(--font-roboto-condensed) sans-serif; /* Font style for the title */
+    font-family: var(--font-roboto-condensed); /* Font style for the title */
     font-size: 2rem !important; /* Large font size */
     font-weight: var(--font-weight-bold) !important; /* Bold text */
     line-height: 1.1 !important; /* Tight line height for readability */
@@ -47,7 +47,7 @@ h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
 
 /* Span inside paragraphs with special font styles */
 .call-to-action.card p span {
-    font-family: var(--font-roboto) sans-serif; /* Uses a different font family for the span */
+    font-family: var(--font-roboto); /* Uses a different font family for the span */
     font-size: 1.8rem !important; /* Slightly smaller font size for the span */
     font-weight: var(--font-weight-xlight) !important; /* Lighter font weight */
     margin: 0 !important; /* Removes any margin */

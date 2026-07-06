@@ -107,8 +107,8 @@ heading:
       component/heading/css/heading.css:
         weight: -10
 
-# Image
-image:
+# Image (attached as cua_theme/image-bundle by block--bundle--image.html.twig)
+image-bundle:
   version: VERSION
   css:
     component:
@@ -148,3 +148,28 @@ video:
         weight: -10
   js:
     component/video/js/player.js: { minified: true }
+
+# ── Multi-column layout sections (referenced from cua_theme.layouts.yml) ─
+fivecol_section:
+  version: VERSION
+  css:
+    theme:
+      layouts/fivecol_section/fivecol_section.css: {}
+
+sixcol_section:
+  version: VERSION
+  css:
+    theme:
+      layouts/sixcol_section/sixcol_section.css: {}
+
+sevencol_section:
+  version: VERSION
+  css:
+    theme:
+      layouts/sevencol_section/sevencol_section.css: {}
+
+eightcol_section:
+  version: VERSION
+  css:
+    theme:
+      layouts/eightcol_section/eightcol_section.css: {}

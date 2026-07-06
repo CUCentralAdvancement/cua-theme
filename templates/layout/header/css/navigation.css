@@ -69,7 +69,7 @@ aside a.bef-link {
   box-sizing: border-box;
   color: var(--cua-gray-700);
   display: block;
-  font-family: var(--font-roboto-condensed) sans-serif;
+  font-family: var(--font-roboto-condensed);
   font-size: 1.2rem;
   font-weight: var(--font-weight-bold);
   text-decoration: none;

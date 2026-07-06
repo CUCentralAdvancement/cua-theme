@@ -744,7 +744,7 @@ aside .views-exposed-form h2 {
 
 .cu-line {
     color: var(--cua-gray-800) !important;
-    font-family: var(--font-roboto-condensed) sans-serif;
+    font-family: var(--font-roboto-condensed);
     font-size: 2rem;
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
@@ -762,7 +762,7 @@ aside .views-exposed-form h2 {
 .cu-line-sm,
 .cu-line-sm a {
     color: var(--cua-gray-700);
-    font-family: var(--font-roboto-condensed) sans-serif;
+    font-family: var(--font-roboto-condensed);
     font-size: 1.35rem;
     font-weight: var(--font-weight-bold) !important;
     line-height: 1.2;
@@ -795,7 +795,7 @@ aside .views-exposed-form h2 {
 
 .display-4 {
     font-size: var(--h2-size);
-    font-family: var(--font-roboto-condensed) sans-serif;
+    font-family: var(--font-roboto-condensed);
     line-height: 1 !important;
     margin-bottom: 1rem !important;
 }
