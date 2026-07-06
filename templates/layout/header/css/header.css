@@ -178,7 +178,7 @@ header #search-block-form {
 }
 
 .dropdown-menu.show {
-    border-bottom: 3px solid var(--cua-gold);
+    border-top: 3px solid var(--cua-gold);
     border-radius: 0;
     box-shadow: -3px 4px 13px -3px rgba(0, 0, 0, 0.44);
     -webkit-box-shadow: -3px 4px 13px -3px rgba(0, 0, 0, 0.44);
@@ -197,8 +197,13 @@ header #search-block-form {
 .dropdown-item:hover,
 .dropdown-item.active,
 .dropdown-item:active {
-    background-color: var(--uci-gray);
-    color: var(--cua-white)
+    background-color: var(--cua-gold-tint);
+    color: var(--cua-black)
+}
+
+.dropdown-item a:focus-visible {
+    outline: 2px solid var(--cua-gold-hover);
+    outline-offset: -2px;
 }
 
 .dropdown-toggle::after {
@@ -387,11 +392,27 @@ header .navbar-expand-lg .navbar-nav .nav-link {
 }
 
 header .navbar-expand-lg .navbar-nav .nav-link:hover,
-header .navbar-expand-lg .navbar-nav .nav-link:focus,
-header .navbar-expand-lg .navbar-nav .nav-link:focus-visible {
-    background: rgba(0, 0, 0, 0.06) !important;
+header .navbar-expand-lg .navbar-nav .nav-link:focus {
+    background: var(--cua-gold-tint) !important;
     outline: none !important;
     box-shadow: none !important;
+}
+
+/* Keyboard users get a visible ring; mouse hover stays soft */
+header .navbar-expand-lg .navbar-nav .nav-link:focus-visible {
+    background: var(--cua-gold-tint) !important;
+    outline: 2px solid var(--cua-gold-hover) !important;
+    outline-offset: -2px;
+    box-shadow: none !important;
+}
+
+/* Open dropdown: gold connector under the trigger, bridging into the
+   panel's gold top edge (homage to cu.edu's menu treatment) */
+header .navbar-expand-lg .navbar-nav .nav-link[aria-expanded="true"],
+header .navbar-expand-lg .navbar-nav .nav-item.show > .nav-link {
+    background: var(--cua-gold-tint) !important;
+    box-shadow: inset 0 -4px 0 var(--cua-gold) !important;
+    border-radius: 6px 6px 0 0;
 }
 
 header li.nav-item:hover {
@@ -425,6 +446,22 @@ header .secondary-menu .nav-item {
     color: var(--cua-gold) !important
 }
 
+/* Sticky header is dark — the gold-tint wash is for the white header only.
+   Keep hover/open states as a subtle light wash with gold text there. */
+.header .sticky .navbar-nav .nav-link:hover,
+.header .sticky .navbar-nav .nav-link:focus,
+.header .sticky .navbar-nav .nav-link:focus-visible,
+.header .sticky .navbar-nav .nav-link[aria-expanded="true"],
+.header .sticky .navbar-nav .nav-item.show > .nav-link {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: var(--cua-gold) !important;
+}
+
+.header .sticky .navbar-nav .nav-link:focus-visible {
+    outline: 2px solid var(--cua-gold) !important;
+    outline-offset: -2px;
+}
+
 header .sticky li.nav-item:hover {
     background: transparent !important
 }
@@ -451,7 +488,7 @@ span.nav-link.dropdown-toggle.nav-link- {
 }
 
 .dropdown-menu a.active.is-active {
-    color: var(--cua-white) !important
+    color: var(--cua-black) !important
 }
 
 .btn.btn-logout {
@@ -637,7 +674,7 @@ div#block-cua-theme-breadcrumbs {
 
 /* hover states */
 .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::after {
-    background: #c9c9c9;
+    background: var(--cua-gold-tint);
 }
 
 .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::before {
@@ -724,6 +761,7 @@ div#block-cua-theme-breadcrumbs {
     }
 
     .dropdown-menu.show {
+        border-top: none;
         border-bottom: none;
         box-shadow: none !important;
         font-size: .9rem

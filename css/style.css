@@ -12,6 +12,7 @@
     --cua-gold-opacity-75: rgba(207, 184, 124, 0.75);
     --cua-gold-hover: #5d4916;
     --cua-gold-link: #81620f;
+    --cua-gold-tint: #efe9dc; /* soft menu hover wash, homage to cu.edu */
     --cua-gold-hover-active: #f3d78f;
     --cua-light-grey: #f3f3f3;
     --cua-light-grey-opacity-75: rgba(243, 243, 243, 0.75);
