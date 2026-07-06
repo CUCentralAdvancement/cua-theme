@@ -1,9 +1,13 @@
 # ── Global (loads on every page) ────────────────────────────────────────
+# overrides.css sits in the theme bucket with a positive weight so it loads
+# after style.css (and everything else) — it genuinely gets the last word.
 global-styling:
   version: VERSION
   css:
     theme:
       css/style.css: {}
+      css/overrides.css:
+        weight: 10
     component:
       css/bootstrap.min.css:
         weight: -11
@@ -17,13 +21,21 @@ global-styling:
         weight: -11
       layouts/css/layout-builder.css:
         weight: -11
-      css/overrides.css:
-        weight: -10
   js:
     js/bootstrap.bundle.min.js: {}
     js/global.js: {}
   dependencies:
     - core/popperjs
+
+# ── Layout Builder editing UI (authenticated users only) ────────────────
+# Attached in cua_theme_page_attachments_alter(); anonymous visitors never
+# download it. Front-end LB rules stay in layouts/css/layout-builder.css.
+layout-builder-admin:
+  version: VERSION
+  css:
+    component:
+      layouts/css/layout-builder-admin.css:
+        weight: -10
 
 # ── FontAwesome (loads on every page) ───────────────────────────────────
 fontawesome:

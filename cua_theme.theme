@@ -344,9 +344,15 @@ function cua_theme_preprocess_page_title(array &$variables): void {
 
 /**
  * Implements hook_page_attachments_alter().
- * Remove Generator meta tag.
+ * Remove Generator meta tag; attach Layout Builder editing styles for
+ * authenticated users only (anonymous visitors never download them).
  */
 function cua_theme_page_attachments_alter(array &$attachments): void {
+  $attachments['#cache']['contexts'][] = 'user.roles:authenticated';
+  if (\Drupal::currentUser()->isAuthenticated()) {
+    $attachments['#attached']['library'][] = 'cua_theme/layout-builder-admin';
+  }
+
   foreach ($attachments['#attached']['html_head'] as $key => $attachment) {
     if (isset($attachment[1]) && $attachment[1] === 'system_meta_generator') {
       unset($attachments['#attached']['html_head'][$key]);
