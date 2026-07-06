@@ -42,10 +42,9 @@
   width: 80%;
 }
 
-.slider .carousel-control-prev .fa-circle-left, 
-.slider .carousel-control-next .fa-circle-right {
-	color: #000 !important;
-	background: #fff;
+.slider .carousel-control-prev .fa-circle-left, .slider .carousel-control-next .fa-circle-right {
+  color: #000000;
+  background: #4b4a4a;
 }
 
 .slider .carousel-control-prev,
