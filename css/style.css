@@ -453,6 +453,48 @@ p.intro {
     line-height: 1.5 !important;
 }
 
+/* Blockquotes — gold FA quote mark + italic testimonial voice, all widths.
+   (Promoted from the max-width:991px block, where this lived mobile-only;
+   the icon sits inside the left padding so .container-fluid's
+   overflow-x:hidden can't clip it like the old -20px offset could.) */
+blockquote {
+    border-left: none;
+    color: var(--cua-gray-700);
+    font-size: 1.25em;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 10px auto;
+    padding: 1rem 2rem 1rem 3.25rem;
+    position: relative;
+    width: 85%;
+}
+
+blockquote::before {
+    color: var(--cua-gold);
+    content: "\f10d";
+    font-family: var(--font-awesome);
+    font-style: normal;
+    font-weight: 900; /* FA Free solid */
+    font-size: 2em; /* 200% of the quote text */
+    line-height: 1;
+    position: absolute;
+    left: 0;
+    top: 0.9rem;
+}
+
+/* Attribution line */
+blockquote span {
+    color: var(--cua-gray-800);
+    display: block;
+    font-weight: var(--font-weight-normal);
+    margin-top: 1em;
+}
+
+blockquote p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
 a#edit-delete {
     background: red;
     border-radius: 0;
@@ -2246,42 +2288,11 @@ aside a.bef-link {
         border-bottom: 1px solid var(--cua-gray-400);
     }
 
-    .content-type-label {
-        left: -8px;
-        top: 15px;
-    }
-
-    blockquote::before {
-        color: var(--cua-gold);
-        content: "\201C";
-        font-size: 6em;
-        left: -20px;
-        position: absolute;
-        top: -30px;
-    }
-
-    blockquote span {
-        color: var(--cua-gray-800);
-        display: block;
-        font-weight: var(--font-weight-normal);
-        margin-top: 1em;
-    }
-
-    blockquote {
-        border-left: none;
-        color: var(--cua-gray-700);
-        font-size: 1.25em;
-        font-style: italic;
-        line-height: 1.6;
-        margin: 10px auto;
-        padding: 1rem 2rem;
-        position: relative;
-        width: 85%;
-    }
-
-    blockquote p {
-        font-size: 1.25rem;
-        line-height: 1.5;
+    /* Sliders and the older impact-report pages zero out blockquote padding
+       at this width — no room for the quote mark, so hide it there. */
+    .slider blockquote::before,
+    :is(.page-node-930, .page-node-935, .page-node-949) blockquote::before {
+        content: none;
     }
 
     .px-5 {
