@@ -56,9 +56,8 @@ nav#navbar-main.sticky {
 /* Navbar Padding and Links */
 .nav-link.active.dropdown-toggle,
 .navbar-expand-lg a.nav-link.is-active {
-    background-color: var(--cua-gray-200);
+    background-color: var(--cua-gold-tint);
     color: var(--cua-black) !important;
-    border-bottom: 2px solid var(--cua-gold);
 }
 
 .navbar-expand-lg a.nav-link:first-child.is-active {
@@ -178,7 +177,7 @@ header #search-block-form {
 }
 
 .dropdown-menu.show {
-    border-top: 3px solid var(--cua-gold);
+    border-bottom: 5px solid var(--cua-gold);
     border-radius: 0;
     box-shadow: -3px 4px 13px -3px rgba(0, 0, 0, 0.44);
     -webkit-box-shadow: -3px 4px 13px -3px rgba(0, 0, 0, 0.44);
@@ -381,14 +380,13 @@ header .navbar {
 }
 
 header .navbar-expand-lg .navbar-nav .nav-link {
-    padding: 0.75rem .9rem !important;
+    padding: .9rem !important;
     text-decoration: none !important;
     font-weight: 500;
     font-size: .9rem;
     letter-spacing: 0.03em;
     border-radius: 6px;
     transition: background 0.15s ease;
-    margin: .35rem 0;
 }
 
 header .navbar-expand-lg .navbar-nav .nav-link:hover,
@@ -411,7 +409,6 @@ header .navbar-expand-lg .navbar-nav .nav-link:focus-visible {
 header .navbar-expand-lg .navbar-nav .nav-link[aria-expanded="true"],
 header .navbar-expand-lg .navbar-nav .nav-item.show > .nav-link {
     background: var(--cua-gold-tint) !important;
-    box-shadow: inset 0 -4px 0 var(--cua-gold) !important;
     border-radius: 6px 6px 0 0;
 }
 
@@ -891,3 +888,4 @@ header .container-fluid,
   overflow: visible !important;
 }
 
+`
