@@ -85,19 +85,6 @@ nav#navbar-main.sticky {
     text-decoration: none
 }
 
-/* Font Awesome */
-nav#navbar-main>li.first a:before {
-    content: "\f015";
-    display: block;
-    font-family: var(--font-awesome);
-    font-size: 20px;
-    height: 20px;
-    line-height: 1;
-    margin-top: 6px;
-    text-indent: 0;
-    width: 20px;
-}
-
 .header .accordion-button {
     padding: .35rem;
     margin: .2rem .55rem 0;
@@ -366,11 +353,8 @@ img.sticky-show {
     margin: 0 1rem 0 0
 }
 
-/* Change header nav dark */
-header .nav-item {
-    border-right: 1px solid var(--cua-gray-500)
-}
-
+/* Nav item separators — base border lives in the `.header .nav-item` rule
+   below (0 width); sticky/first-child states keep their 1px variants. */
 header .sticky .nav-item {
     border-right: 1px solid transparent
 }
@@ -577,6 +561,8 @@ div#block-cua-theme-breadcrumbs {
     margin: 0 3px;
 }
 
+/* Give Now pill — gold treatment for the secondary menu's last item, and
+   for all secondary-menu links when the header is sticky. */
 .header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link,
 .header .sticky #block-cua-theme-secondarymenu .nav-link {
     background: var(--cua-gold);
@@ -590,9 +576,16 @@ div#block-cua-theme-breadcrumbs {
     color: var(--cua-gold) !important;
 }
 
-/* Header rewrites , needs intergrating with top upon final approval */
+/* Pill shape and sizing (last item only) */
+.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
+    border-radius: 1rem !important;
+    border-right: 1px solid var(--cua-gold) !important;
+    font-size: .8rem !important;
+    margin: 0 0 .1rem !important;
+    padding: .45rem 1rem !important;
+}
 
-/* anchor */
+/* Home anchor — first main-menu item renders as an icon-only link */
 .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
     background: transparent !important;
     position: relative;
@@ -601,6 +594,7 @@ div#block-cua-theme-breadcrumbs {
     justify-content: center;
     width: 2rem;
     height: 2rem;
+    margin: .7rem 0 0;
     padding: 0;
     font-size: 0;
     /* hide link text visually */
@@ -648,21 +642,6 @@ div#block-cua-theme-breadcrumbs {
 
 .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::before {
     color: #222;
-}
-
-.header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link {
-    margin: .7rem 0 0;
-}
-
-.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
-    background: var(--cua-gold);
-    border-radius: 1rem !important;
-    border-right: 1px solid var(--cua-gold) !important;
-    color: var(--cua-black) !important;
-    font-weight: 700;
-    font-size: .8rem !important;
-    margin: 0 0 .1rem !important;
-    padding: .45rem 1rem !important;
 }
 
 .header .sticky #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
