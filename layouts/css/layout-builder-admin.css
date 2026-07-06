@@ -9,6 +9,9 @@ form#node-page-layout-builder-form input#edit-actions {
     max-width: 10rem;
 }
 
+/* LB form buttons: !important is required — style.css's generic
+   .btn.btn-primary (white bg/white-ish text) otherwise wins and makes
+   these buttons invisible. Uniform blue, green on hover, white text. */
 form#node-landing-page-layout-builder-form .btn-primary,
 form#node-page-layout-builder-form .btn-primary {
     background-color: #0854bb !important;
@@ -16,7 +19,6 @@ form#node-page-layout-builder-form .btn-primary {
     color: white !important;
     cursor: pointer;
 }
-
 
 form#node-landing-page-layout-builder-form .btn-primary:hover,
 form#node-page-layout-builder-form .btn-primary:hover {
@@ -28,37 +30,6 @@ form#node-page-layout-builder-form .btn-primary:hover {
 
 .user-logged-in .layout-builder {
     padding: 0 !important;
-}
-
-/* Styling for the first button in the layout builder form */
-form#node-landing-page-layout-builder-form .btn-primary:first-child,
-form#node-page-layout-builder-form .btn-primary:first-child {
-    background-color: green;
-    border-color: transparent;
-}
-
-/* Styling for the second button in the layout builder form */
-form#node-landing-page-layout-builder-form .btn-primary:nth-child(2),
-form#node-page-layout-builder-form .btn-primary:nth-child(2) {
-    background-color: var(--cua-warning);
-    border-color: transparent;
-    color: white !important;
-}
-
-/* Styling for the third button in the layout builder form */
-form#node-landing-page-layout-builder-form .btn-primary:nth-child(3),
-form#node-page-layout-builder-form .btn-primary:nth-child(3) {
-    background-color: yellow;
-    border-color: transparent;
-    color: black !important;
-}
-
-/* Hover styling for the first button */
-form#node-landing-page-layout-builder-form .btn-primary:hover,
-form#node-page-layout-builder-form .btn-primary:hover {
-    background-color: #00800078;
-    color: var(--cua-black) !important;
-    cursor: pointer;
 }
 
 #node-page-layout-builder-form .vertical-tabs__menu-item.is-selected,
