@@ -14,7 +14,6 @@ form#node-page-layout-builder-form .btn-primary {
     cursor: pointer;
 }
 
-.user-logged-in .layout-builder,
 .user-logged-in .layout-builder {
     padding: 0 !important;
 }
@@ -90,18 +89,13 @@ form#node-page-layout-builder-form #edit-actions {
     border: none;
 }
 
-/* Styling for layout-builder__region */
-.layout-builder__region {
-    outline: 5px solid var(--cua-green);
-}
-
 /* Styling for layout-builder--content-preview-disabled class */
 .layout-builder--content-preview-disabled .layout-builder-block {
     margin: 0;
     border-bottom: 2px dashed var(--cua-black);
 }
 
-/* Styling for layout-builder__region with outline, padding, and margin */
+/* Styling for layout-builder__region */
 .layout-builder__region {
     outline: 0;
 }
@@ -253,6 +247,7 @@ form#node-page-layout-builder-form #edit-actions {
 /* Styling for ui-dialog elements */
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front {
     padding: 1.5rem 0 0;
+    z-index: 99999 !important;
 }
 
 /* Styling for ui-dialog-titlebar-close */
@@ -278,19 +273,14 @@ form#node-page-layout-builder-form #edit-actions {
     height: auto;
 }
 
-/* Styling for contextual elements */
-.contextual {
-    right: inherit;
-}
-
 /* Styling for contextual trigger */
 .contextual .trigger {
     background-color: var(--cua-green);
-}
-
-/* Styling for contextual trigger with background image */
-.contextual .trigger {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3e%3cg%3e%3cpath fill='%23ffffff' d='M14.545 3.042l-1.586-1.585c-.389-.389-1.025-.389-1.414 0l-1.293 1.293 3 3 1.293-1.293c.389-.389.389-1.026 0-1.415z'/%3e%3crect fill='%23ffffff' x='5.129' y='3.8' transform='matrix(-.707 -.707 .707 -.707 6.189 20.064)' width='4.243' height='9.899'/%3e%3cpath fill='%23ffffff' d='M.908 14.775c-.087.262.055.397.316.312l2.001-.667-1.65-1.646-.667 2.001z'/%3e%3c/g%3e%3c/svg%3e");
+    background-size: 25px 25px;
+    width: 50px !important;
+    height: 50px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* Hover and focus styling for contextual trigger */
@@ -299,24 +289,10 @@ form#node-page-layout-builder-form #edit-actions {
     background-color: var(--cua-white);
 }
 
-.contextual .trigger {
-    width: 50px !important;
-    height: 50px !important;
-    background-size: 25px 25px;
-    /* Add shadow properties */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Change the values as needed */
-}
-
 #layout-builder-modal form {
     color: #000 !important;
     font-family: inherit;
 }
-
-/*
-#drupal-off-canvas-wrapper {
-  width: 90% !important;
-}
-*/
 
 .layout--threecol-section--33-34-33 > .layout__region--first,
 .layout--threecol-section--33-34-33 > .layout__region--second,
@@ -346,14 +322,13 @@ form#node-page-layout-builder-form #edit-actions {
 .layout-builder-form .form-actions {
     display: flex; /* Use flexbox to arrange items */
     flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    justify-content: center; /* Horizontally center the contents */
+    align-items: center; /* Vertically center the contents */
 }
 
 /* Adjust spacing between input elements */
 .layout-builder-form .form-actions input[type="submit"] {
     margin-right: 10px; /* Adjust as needed */
-}
-
-.layout-builder-form .form-actions input[type="submit"] {
     height: 3rem; /* Adjust height as needed */
     width: auto; /* Set width to auto to adjust based on content */
 }
@@ -371,12 +346,6 @@ form#node-page-layout-builder-form {
 form#node-page-layout-builder-form .nav.nav-pills {
     justify-content: space-between; /* Push items to the sides */
     width: 100%; /* Ensure the navigation spans the entire width */
-}
-
-/* Optionally, style the individual buttons */
-.node-landing-page-layout-builder-form .nav.nav-pills .nav-item,
-form#node-page-layout-builder-form .nav.nav-pills .nav-item {
-    /* Add styling for the nav items */
 }
 
 #cu-layout-builder form .form-actions {
@@ -443,10 +412,6 @@ form#node-page-layout-builder-form .nav.nav-pills .nav-item {
     margin-top: 1.55rem !important;
 }
 
-.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front {
-    z-index: 99999 !important;
-}
-
 #edit-moderation-state-0-current {
     font-weight: var(--font-weight-bold);
 }
@@ -457,12 +422,6 @@ form#node-page-layout-builder-form .nav.nav-pills .nav-item {
 
 .contextual {
     right: 0 !important;
-}
-
-.layout-builder-form .form-actions {
-    display: flex;
-    justify-content: center; /* Horizontally center the contents */
-    align-items: center; /* Vertically center the contents */
 }
 
 #node-article-layout-builder-form {

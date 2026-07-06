@@ -40,18 +40,6 @@ a.title-link:hover {
   background: var(--cua-black);
 }
 
-.block-link {
-  color: inherit;
-  font-size: .9rem;
-  font-weight: var(--font-weight-bold);
-  text-decoration: none;
-}
-
-a.block-link figcaption {
-  text-align: center;
-  text-decoration: none;
-}
-
 .node__content .block.block-menu.navigation .form-select ul,
 .node__content .block.block-menu.navigation ul,
 aside .form-select ul,
@@ -143,9 +131,9 @@ aside a.bef-link::before {
 aside .form-select a:hover::before,
 aside a.nav-link:hover::before,
 aside a.bef-link:hover::before {
-  background-color: #81620f;
+  background-color: var(--cua-gold-link);
   width: 100%;
-  color: #81620f !important;
+  color: var(--cua-gold-link) !important;
 }
 
 .node__content .block.block-menu.navigation .form-select .node__content .block.block-menu.navigation,
@@ -168,11 +156,6 @@ aside .form-select ul li ul {
 
 .bef-link .bef-link--selected {
   color: var(--cua-gold-hover);
-}
-
-a#edit-contacts-all:first-child,
-a#edit-bod-all:first-child {
-  display: none !important;
 }
 
 .pagination.js-pager__items {
@@ -382,15 +365,11 @@ a.nav-link.active.is-active {
 }
 
 #main-wrapper a.nav-link.active.is-active {
-  color: #81620f !important;
+  color: var(--cua-gold-link) !important;
 }
 
 #main-wrapper .block-menu {
   margin-bottom: 2rem !important;
-}
-
-aside .nav {
-  border-right: 1px solid var(--cua-gray-500) !important;
 }
 
 .toolbar-icon.toolbar-icon-rebuild-cache-access.toolbar-item {

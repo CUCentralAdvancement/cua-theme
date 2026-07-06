@@ -104,25 +104,6 @@
 }
 
 /* ===================================================
-   Link Wrapper Styles
-   =================================================== */
-
-/* Style for links inside the Half and Half component */
-.hh-link-wrapper {
-  text-decoration: none !important; /* Remove underline from link */
-  display: block !important; /* Treat the link as a block element */
-  position: relative !important; /* Position children within the link */
-  overflow: hidden !important; /* Prevent content from overflowing */
-  transition: transform 0.3s ease !important; /* Smooth transition for hover effect */
-}
-
-/* Hover effect for link wrapper */
-.hh-link-wrapper:hover {
-  transform: translateY(-1rem) !important; /* Move container up by 1rem on hover */
-  text-decoration: none !important; /* Prevent underline on hover */
-}
-
-/* ===================================================
    Responsive Design for Small Screens
    =================================================== */
 

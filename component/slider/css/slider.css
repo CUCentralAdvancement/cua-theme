@@ -26,27 +26,20 @@
   color: black !important;
 }
 
-.slider .cu-bg-white .fa-arrow-alt-circle-left:before,
 .slider .cu-bg-white .fa-circle-left:before,
-.slider .cu-bg-white .fa-arrow-alt-circle-right:before,
 .slider .cu-bg-white .fa-circle-right:before {
   color: black;
 }
 
-.slider .cu-bg-black .fa-arrow-alt-circle-left:before,
 .slider .cu-bg-black .fa-circle-left:before {
   color: white;
 }
 
-/* Desktop blockquote — centered via auto margins */
-.slider blockquote {
-  margin: 10px auto;
-  padding: 1rem 5rem;
-  width: 80%;
-}
-
+/* Desktop blockquote — centered via equal side margins */
 .slider blockquote {
   margin: 0 10%;
+  padding: 1rem 5rem;
+  width: 80%;
 }
 
 .slider .carousel-control-prev .fa-circle-left, 

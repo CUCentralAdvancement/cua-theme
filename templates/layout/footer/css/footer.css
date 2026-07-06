@@ -31,18 +31,13 @@ footer h3{
     margin: 26px 0;
 }
 
-.first-col-footer .site-footer .block {
-    padding: 0;
-}
-
 section.row.region.region-footer-first,
 .site-footer .region.region-footer-first .block {
     margin: 0;
 }
 
 .row.region.region-footer-second,
-.row.region.region-footer-third,
-.row.region.region-footer-forth {
+.row.region.region-footer-third {
     margin-top: 0.5rem;
 }
 
@@ -125,22 +120,8 @@ footer #site-footer-bottom .nav-link:hover {
     color: var(--cua-gold) !important;
 }
 
-/* Social Media */
-footer .social-media ul {
-    padding-left: 0;
-}
-
-footer .social-media li.list-inline-item {
-    padding: 0 0.3rem 0 0;
-}
-
-.social-media .list-inline-item:not(:last-child) {
-    margin-right: 0;
-}
-
 /* Copyright and Secondary Links */
-.site-footer .copyright,
-.site-footer .link-secondary {
+.site-footer .copyright {
     color: var(--cua-white);
 }
 
@@ -269,10 +250,6 @@ a:focus {
     line-height: 1.1;
 }
 
-h3#block-cua-theme-mainnavigation-4-menu,
-h3#block-cua-theme-giving-menu,
-h3#block-cua-theme-campusoffices-menu,
-h3#block-cua-theme-aboutus-menu,
 .site-footer h3 {
     color: var(--cua-gold) !important;
 }

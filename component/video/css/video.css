@@ -16,11 +16,6 @@ video {
   overflow: hidden;
 }
 
-/* Mobile copy spacing adjustment */
-.video-mobile-copy {
-  margin-bottom: 4rem !important;
-}
-
 
 /* =============================================================================
    Video Card Background Overrides
@@ -57,12 +52,6 @@ video {
   color: var(--cua-white);
 }
 
-/* Mobile video wrapper overrides gold/white text to black for legibility */
-.mobile-video-wrapper .cu-text-gold,
-.mobile-video-wrapper .cu-text-white {
-  color: var(--cua-black);
-}
-
 
 /* =============================================================================
    Responsive Embed (16:9 Aspect Ratio)
@@ -90,26 +79,6 @@ video {
 }
 
 
-/* =============================================================================
-   Parallax Video
-   Fixed-position full-viewport background video
-   ============================================================================= */
-
-.parallax-video {
-  min-height: 15rem;
-  overflow: hidden;
-}
-
-.parallax-video video {
-  object-fit: cover;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
 
 /* =============================================================================
    Video Container Size Variants
@@ -128,19 +97,6 @@ video {
    ============================================================================= */
 
 @media only screen and (max-width: 991px) {
-
-  /* Reset parallax to normal scroll behavior on mobile */
-  .parallax-video {
-    min-height: auto;
-  }
-
-  .parallax-video video {
-    width: 100%;
-    height: auto;
-    position: relative;
-    top: unset;
-    left: unset;
-  }
 
   /* All container size variants go full-width on mobile */
   .video .container-sm,

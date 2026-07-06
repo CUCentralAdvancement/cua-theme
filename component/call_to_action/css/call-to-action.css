@@ -16,11 +16,6 @@
     border-bottom-left-radius: 0; /* Ensures no rounding on bottom corners */
 }
 
-/* Removes borders for light borders on call-to-action cards */
-.call-to-action .border-light {
-    border-color: transparent !important; /* Hide border */
-}
-
 /* Center card links inside flex container */
 .call-to-action .card-link.d-flex.justify-content-center {
     text-align: center !important; /* Centers content inside the card link */
@@ -53,9 +48,10 @@ h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
 /* Span inside paragraphs with special font styles */
 .call-to-action.card p span {
     font-family: var(--font-roboto) sans-serif; /* Uses a different font family for the span */
-    font-size: 1.85rem !important; /* Slightly smaller font size for the span */
+    font-size: 1.8rem !important; /* Slightly smaller font size for the span */
     font-weight: var(--font-weight-xlight) !important; /* Lighter font weight */
     margin: 0 !important; /* Removes any margin */
+    margin-left: 1px !important; /* Adjusts left margin */
 }
 
 /* Margin adjustment for FontAwesome icons */
@@ -81,12 +77,6 @@ h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
 /* Add both top and bottom padding to call-to-action block */
 .call-to-action .margin_bottom {
     padding-bottom: 3rem !important; /* Adds padding to the bottom */
-}
-
-/* Specific margin styling for call-to-action block text */
-.call-to-action.card p span {
-    font-size: 1.8rem !important; /* Sets font size */
-    margin-left: 1px !important; /* Adjusts left margin */
 }
 
 /* Title span adjustments */

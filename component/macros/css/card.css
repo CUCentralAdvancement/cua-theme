@@ -671,8 +671,6 @@ a figure {
   color: var(--cua-white) !important;
 }
 
-.display-4.cu-black-black,
-.card-text.cu-black-black,
 .cu-text-black {
   color: var(--cua-black) !important;
 }
