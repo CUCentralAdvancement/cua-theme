@@ -47,6 +47,11 @@
   background: #4b4a4a;
 }
 
+.slider .carousel-control-prev .fa-circle-left:hover, .slider .carousel-control-next .fa-circle-right:hover {
+  color: #670202;
+  background: #ffffff;
+}
+
 .slider .carousel-control-prev,
 .slider .carousel-control-next {
   display: flex !important;
