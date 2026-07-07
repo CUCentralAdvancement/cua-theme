@@ -1122,6 +1122,15 @@ a.bef-link--selected {
     background-color: var(--cua-gray-400) !important;
 }
 
+.path-search .btn.btn-primary {
+    color: var(--cua-black) !important;
+    border: 2px solid var(--cua-gray-400) !important;
+    background-color: var(--cua-gray-400) !important;
+    padding: .49rem 1rem !important;
+    margin: 0 !important;
+    max-width: 150px !important;
+  }
+
 .js-layout-builder-block .ck.btn.btn-primary:hover,
 .ck.btn.btn-primary:hover,
 .btn.btn-primary:hover {
