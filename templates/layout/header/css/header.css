@@ -27,7 +27,7 @@ nav#navbar-main {
 }
 
 nav#navbar-main.sticky {
-    background: rgba(0, 0, 0, 0.85)
+    background: var(--cu-white);
 }
 
 .navbar-toggler {
@@ -353,8 +353,8 @@ header #search-block-form {
 }
 
 .header .sticky button.search-icon {
-    background: var(--cua-black);
-    color: var(--cua-white) !important
+    background: var(--cua-white);
+    color: var(--cua-black) !important
 }
 
 img.sticky-show {
@@ -443,9 +443,9 @@ header .secondary-menu .nav-item {
 }
 
 .header .sticky .nav-link {
-    color: var(--cua-white) !important;
+    color: var(--cua-black) !important;
     background: transparent;
-    font-size: .85rem;
+    font-size: .85rem !important;
     transition: font-size .3s ease-in-out, color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out
 }
 
@@ -460,7 +460,7 @@ header .secondary-menu .nav-item {
 .header .sticky .navbar-nav .nav-link:focus-visible,
 .header .sticky .navbar-nav .nav-link[aria-expanded="true"],
 .header .sticky .navbar-nav .nav-item.show > .nav-link {
-    background: rgba(255, 255, 255, 0.12) !important;
+    background:  var(--cua-white) !important;
     color: var(--cua-gold) !important;
 }
 
@@ -692,6 +692,7 @@ div#block-cua-theme-breadcrumbs {
 .header .sticky #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
     margin: 0rem !important;
 }
+
 
 .header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link svg.ext {
     display: none !important;
