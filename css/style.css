@@ -2173,12 +2173,24 @@ button.accordion-button.collapsed,
 button:focus:not(:focus-visible),
 .accordion-button {
     padding: .75rem !important;
-    font-weight: normal !important;
+    font-weight: 600 !important;
+    color: #454545;
 }
 
-button.accordion-button.collapsed,
-button:focus:not(:focus-visible) {
-    padding: .0 !important;
+/* FAQ accordion questions: larger for readability (accessibility). */
+[id^="faq-accordion-"] .accordion-button {
+    font-size: 1.17rem;
+}
+
+/* FAQ accordion answers: bump body text so paragraphs, list items and
+   links inside inherit a more legible size. */
+[id^="faq-accordion-"] .accordion-body,
+[id^="faq-accordion-"] .accordion-body :is(p, li, a) {
+    font-size: 1.09rem !important;
+}
+
+button.search-icon:focus:not(:focus-visible) {
+    padding: 0 !important;
 }
 
 .alert-dismissible {
@@ -2436,4 +2448,3 @@ aside a.bef-link {
         display: none !important;
     }
 }
-`
