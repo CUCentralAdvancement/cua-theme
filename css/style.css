@@ -1116,6 +1116,12 @@ a.bef-link--selected {
     font-size: .95rem;
 }
 
+.block-search .btn.btn-primary {
+    color: var(--cua-black) !important;
+    border: 2px solid var(--cua-gray-400) !important;
+    background-color: var(--cua-gray-400) !important;
+}
+
 .js-layout-builder-block .ck.btn.btn-primary:hover,
 .ck.btn.btn-primary:hover,
 .btn.btn-primary:hover {
@@ -2417,3 +2423,4 @@ aside a.bef-link {
         display: none !important;
     }
 }
+`
