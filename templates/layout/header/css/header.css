@@ -389,12 +389,13 @@ header .navbar {
 }
 
 header .navbar-expand-lg .navbar-nav .nav-link {
-    padding: .9rem !important;
+    padding: .7rem !important;
     text-decoration: none !important;
     font-weight: 600;
     font-size: .925rem;
     letter-spacing: 0.03em;
     border-radius: 6px;
+    border: solid var(--cua-white);
     transition: background 0.15s ease;
 }
 
