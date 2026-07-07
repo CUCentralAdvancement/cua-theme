@@ -1,0 +1,20 @@
+{% extends "@bootstrap_barrio/block/block.html.twig" %}
+{#
+/**
+ * @file
+ * cua_theme override of the search form block.
+ *
+ * Barrio's own block--search-form-block.html.twig wraps {{ parent() }} in an
+ * extra `content container-inline` div, and because content_attributes is a
+ * shared, mutable object the parent's block.html.twig then renders the SAME
+ * classes again — producing two nested identical
+ * `<div class="content container-inline">` wrappers around the form.
+ *
+ * We only need the classes once: add `container-inline` to content_attributes
+ * and let the parent render its single content wrapper. One div, not two.
+ */
+#}
+{% block content %}
+  {% set content_attributes = content_attributes.addClass('container-inline') %}
+  {{ parent() }}
+{% endblock %}
