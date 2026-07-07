@@ -615,6 +615,29 @@ span.card-link.btn.btn-outline-cu-bg-white,
   color: var(--cua-white);
 }
 
+/* Outline card-link buttons fill on hover (restored 2026-07; the variant
+   consolidation dropped these — matches the image-card.css hover pattern). */
+a.card-link.btn.btn-outline-cu-bg-black:hover,
+span.card-link.btn.btn-outline-cu-bg-black:hover,
+.card-link.btn.btn-outline-cu-bg-black:hover {
+  background: var(--cua-black);
+  color: var(--cua-white);
+}
+
+a.card-link.btn.btn-outline-cu-bg-gold:hover,
+span.card-link.btn.btn-outline-cu-bg-gold:hover,
+.card-link.btn.btn-outline-cu-bg-gold:hover {
+  background: var(--cua-black);
+  color: var(--cua-gold);
+}
+
+a.card-link.btn.btn-outline-cu-bg-white:hover,
+span.card-link.btn.btn-outline-cu-bg-white:hover,
+.card-link.btn.btn-outline-cu-bg-white:hover {
+  background: var(--cua-white);
+  color: var(--cua-black);
+}
+
 /* Mobile adjustments */
 @media only screen and (max-width: 991px) {
   .add-padding {
