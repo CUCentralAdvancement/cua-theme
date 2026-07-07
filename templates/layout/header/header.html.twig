@@ -13,8 +13,8 @@
  * - Layout: the banner background is full-bleed (header#header sets the white
  *   background), while content is capped and centred with `.container`. The top
  *   bar and the main nav share `.container` so their edges align on wide screens.
- * - Load-bearing IDs: js/global.js reads #navbar-main (sticky) and
- *   #CollapseSearch (autofocus); CSS uses the element selector `nav#navbar-main`,
+ * - Load-bearing IDs: js/global.js reads #CollapseSearch (autofocus); CSS uses
+ *   the element selector `nav#navbar-main`,
  *   so #navbar-main MUST stay a <nav>. #mainNavbarSupportedContent is the toggle
  *   target. The search <h2> (#search-heading) MUST stay OUTSIDE the collapse so
  *   the region keeps an accessible name while collapsed.
@@ -100,13 +100,11 @@
 	</div>
 
 	{# ── Primary navigation ─────────────────────────────────────────────
-	   #navbar-main is load-bearing for JS (sticky) and CSS (nav#navbar-main). #}
+	   #navbar-main is styled via CSS (nav#navbar-main). #}
 	{% if page.primary_menu %}
 		<nav class="navbar l-header-bottom navbar-expand-lg g-0 m-0 border-top border-bottom" id="navbar-main" aria-label="{{ 'Main menu'|t }}">
 			<div class="container-fluid px-3 g-0">
 				<div class="collapse navbar-collapse" id="mainNavbarSupportedContent">
-					<img class="sticky-show" src="{{ base_path ~ directory ~ '/images/cu-mobile-logo.svg' }}" alt="" width="25" height="24"/>
-
 					<div class="primary-menu-wrapper">
 						{{ page.primary_menu }}
 					</div>

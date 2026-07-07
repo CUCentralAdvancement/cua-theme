@@ -2,21 +2,7 @@
   'use strict';
 
   // Cache frequently accessed elements
-  const navbar = document.getElementById('navbar-main');
   const collapseSearch = document.getElementById('CollapseSearch');
-
-  // Sticky navigation
-  const sticky = navbar.offsetTop;
-
-  function stickyNav() {
-    if (window.innerWidth >= 991) {
-      navbar.classList.toggle('sticky', window.scrollY >= sticky);
-    } else {
-      navbar.classList.remove('sticky');
-    }
-  }
-
-  window.addEventListener('scroll', stickyNav);
 
   // Show search field
   if (collapseSearch) {
