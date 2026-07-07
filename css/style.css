@@ -2167,6 +2167,10 @@ button:focus:not(:focus-visible),
     font-weight: normal !important;
 }
 
+button.accordion-button.collapsed,
+button:focus:not(:focus-visible) {
+    padding: .0 !important;
+}
 
 .alert-dismissible {
     padding-right: 0 !important;
