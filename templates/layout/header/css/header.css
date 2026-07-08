@@ -481,19 +481,14 @@ div#block-cua-theme-breadcrumbs {
     background: var(--cua-gold);
     color: var(--cua-black) !important;
     font-weight: 700;
+    border-radius: 1rem !important;
+    font-size: .8rem !important;
+    padding: .45rem 1.5rem !important;
 }
+
 .header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link:hover {
     background: var(--cua-black);
     color: var(--cua-gold) !important;
-}
-
-/* Pill shape and sizing (last item only) */
-.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
-    border-radius: 1rem !important;
-    border-right: 1px solid var(--cua-gold) !important;
-    font-size: .8rem !important;
-    margin: 0 0 .1rem !important;
-    padding: .45rem 1rem !important;
 }
 
 /* Home anchor — first main-menu item renders as an icon-only link */
@@ -552,7 +547,7 @@ div#block-cua-theme-breadcrumbs {
 }
 
 .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link:hover::before {
-    color: #222;
+    color: var(--cua-gray-800);
 }
 
 .header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link svg.ext {
@@ -759,3 +754,4 @@ header .container-fluid,
 #navbar-main .container-fluid {
   overflow: visible !important;
 }
+

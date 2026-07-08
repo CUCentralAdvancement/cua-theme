@@ -12,7 +12,8 @@
     --cua-gold-opacity-75: rgba(207, 184, 124, 0.75);
     --cua-gold-hover: #5d4916;
     --cua-gold-link: #81620f;
-    --cua-gold-tint: #efe9dc; /* soft menu hover wash, homage to cu.edu */
+    --cua-gold-tint: #efe9dc;
+    /* soft menu hover wash, homage to cu.edu */
     --cua-gold-hover-active: #f3d78f;
     --cua-light-grey: #f3f3f3;
     --cua-light-grey-opacity-75: rgba(243, 243, 243, 0.75);
@@ -347,12 +348,12 @@ h1.page-title {
 }
 
 h1.page-title::after {
-  background-color: var(--cua-gold);
-  content: " ";
-  display: block;
-  width: 1.5em;
-  height: 0.1em;
-  margin: 0.2em 0 1rem 0;
+    background-color: var(--cua-gold);
+    content: " ";
+    display: block;
+    width: 1.5em;
+    height: 0.1em;
+    margin: 0.2em 0 1rem 0;
 }
 
 .page-node-778 h1.page-title {
@@ -475,8 +476,10 @@ blockquote::before {
     content: "\f10d";
     font-family: var(--font-awesome);
     font-style: normal;
-    font-weight: 900; /* FA Free solid */
-    font-size: 2em; /* 200% of the quote text */
+    font-weight: 900;
+    /* FA Free solid */
+    font-size: 2em;
+    /* 200% of the quote text */
     line-height: 1;
     position: absolute;
     left: 0;
@@ -1116,21 +1119,6 @@ a.bef-link--selected {
     font-size: .95rem;
 }
 
-.block-search .btn.btn-primary {
-    color: var(--cua-black) !important;
-    border: 2px solid var(--cua-gray-400) !important;
-    background-color: var(--cua-gray-400) !important;
-}
-
-.path-search .btn.btn-primary {
-    color: var(--cua-black) !important;
-    border: 2px solid var(--cua-gray-400) !important;
-    background-color: var(--cua-gray-400) !important;
-    padding: .49rem 1rem !important;
-    margin: 0 !important;
-    max-width: 150px !important;
-  }
-
 .js-layout-builder-block .ck.btn.btn-primary:hover,
 .ck.btn.btn-primary:hover,
 .btn.btn-primary:hover {
@@ -1153,6 +1141,31 @@ a.bef-link--selected {
     color: var(--cua-white) !important;
     border: 2px solid var(--cua-white) !important;
     background-color: var(--cua-black) !important;
+}
+
+.block-search .btn.btn-primary {
+    color: var(--cua-black) !important;
+    border: 1px solid #262626 !important;
+    border-left-color: #262626 !important;
+    background-color: var(--cua-gray-300) !important;
+    padding: .478rem !important;
+}
+
+.path-search .btn.btn-primary {
+    color: var(--cua-black) !important;
+    border: 1px solid var(--cua-gray-400) !important;
+    background-color: var(--cua-gray-400) !important;
+    padding: .49rem 1rem !important;
+    margin: 0 !important;
+    max-width: 150px !important;
+}
+
+.block-search .btn.btn-primary:hover,
+.path-search .btn.btn-primary:hover {
+    border: 1px solid var(--cua-black) !important;
+    color: var(--cua-white) !important;
+    background-color: var(--cua-gray-800) !important;
+    padding: .49rem 1rem !important;
 }
 
 .p-7 {
@@ -2292,7 +2305,7 @@ aside a.bef-link {
 }
 
 #block-cua-theme-mainnavigation-2 {
-  margin: 6rem 0 0 1rem;
+    margin: 6rem 0 0 1rem;
 }
 
 h3.contact-name {
