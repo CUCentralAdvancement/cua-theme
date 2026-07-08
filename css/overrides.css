@@ -532,8 +532,23 @@ a.color-financials:hover {
   font-size: 35em;
 }
 
-.page-node-55 .cu-bg-black {
-  border-bottom: 10px solid var(--cua-gold) !important;
+.page-node-55 .card h3 {
+  position: relative;
+  padding-bottom: .5rem !important;
+}
+
+.page-node-55 .card h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40%; /* this is your “border width” */
+  height: 2px;
+  background-color: var(--cua-gold);
+}
+
+.page-node-55 .call-to-action p {
+  margin-top: 0;
 }
 
 /* ==========================================================================
