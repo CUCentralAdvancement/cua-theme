@@ -2299,6 +2299,14 @@ h3.contact-name {
     padding: 1rem 0 0;
 }
 
+.contact.contact-card {
+    padding: 1.3rem 0 0;
+}
+
+.node .field--type-image {
+    margin: 0 2em 0 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
