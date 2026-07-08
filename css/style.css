@@ -802,7 +802,7 @@ aside .views-exposed-form h2 {
     display: block;
     width: 1.5em;
     height: 0.1em;
-    margin: 0.2em 0 1rem 0;
+    margin: 0.2em 0 .75rem 0;
 }
 
 .cu-line-sm,
@@ -2313,16 +2313,16 @@ aside a.bef-link {
     margin: 6rem 0 0 1rem;
 }
 
-h3.contact-name {
-    padding: 1rem 0 0;
-}
-
 .contact.contact-card {
-    padding: 1.3rem 0 0;
+    padding: 1rem;
 }
 
 .node .field--type-image {
     margin: 0 2em 0 0;
+}
+
+.page-node-914 .card-link.btn.btn-outline-cu-bg-white {
+    text-align: center !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
