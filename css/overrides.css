@@ -551,6 +551,12 @@ a.color-financials:hover {
   margin-top: 0;
 }
 
+.page-view-board-of-directors .contact-card {
+  background: var(--cua-gray-100);
+  padding: .5rem 1.5rem 2rem 1.5rem;
+  margin: 0 1rem 2rem 1rem;
+}
+
 /* ==========================================================================
    MEDIA QUERIES CLASSES
    All breakpoints consolidated here.
