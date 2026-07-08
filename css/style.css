@@ -2295,6 +2295,10 @@ aside a.bef-link {
   margin: 6rem 0 0 1rem;
 }
 
+h3.contact-name {
+    padding: 1rem 0 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
         animation: none !important;
