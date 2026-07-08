@@ -100,9 +100,9 @@ nav#navbar-main {
 .search-block-form .js-form-type-search input.form-search {
     background-clip: padding-box;
     background-color: var(--cua-white);
-    border: 1px solid var(--cua-black);
+    border: 1px solid var(--cua-black) !important;
+    border-right-color: var(--cua-white) !important;
     border-radius: 0;
-    border-right: 0;
     color: var(--cua-gray-800);
     display: block;
     font-size: var(--base-font-size);
