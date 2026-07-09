@@ -22,7 +22,13 @@
 {%- set block_id    = 'block--node--slider--' ~ block_content_id -%}
 {%- set carousel_id = 'carousel-' ~ block_content_id -%}
 {%- set title_id    = block_id ~ '-title' -%}
-{%- set has_title   = label is not empty and label is not null -%}
+{# Title handling: keep the block label in the DOM for screen readers and the
+   carousel's aria-labelledby. The native "Display title" checkbox on the block
+   placement (configuration.label_display) controls only whether it's VISUALLY
+   shown — when off, the heading is rendered visually-hidden, not removed. #}
+{%- set raw_label     = configuration.label|default(label) -%}
+{%- set title_visible = configuration.label_display and configuration.label_display != '0' -%}
+{%- set has_title     = raw_label is not empty -%}
 
 {# Class Orchestration #}
 {%- set slider_classes = [
@@ -120,7 +126,14 @@
   {{- title_suffix -}}
 
   {%- if has_title -%}
-    {{ titleMacros.render_title(label, title_prefix, title_suffix, title_id=title_id) }}
+    {%- if title_visible -%}
+      {{ titleMacros.render_title(raw_label, title_prefix, title_suffix, title_id=title_id) }}
+    {%- else -%}
+      {# "Display title" off: keep the heading for screen readers / aria-labelledby, hide it visually. #}
+      <div class="visually-hidden">
+        {{ titleMacros.render_title(raw_label, title_prefix, title_suffix, title_id=title_id) }}
+      </div>
+    {%- endif -%}
   {%- endif -%}
 
   <div
@@ -139,7 +152,7 @@
           type="button"
           data-bs-target="#{{ carousel_id }}"
           data-bs-slide="prev">
-        <span class="fa fa-circle-left p-1" aria-hidden="true"></span>
+        <svg class="slider-chevron" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="15 18 9 12 15 6"></polyline></svg>
         <span class="visually-hidden">{{ 'Previous slide'|t }}</span>
       </button>
 
@@ -148,7 +161,7 @@
           type="button"
           data-bs-target="#{{ carousel_id }}"
           data-bs-slide="next">
-        <span class="fa fa-circle-right p-1" aria-hidden="true"></span>
+        <svg class="slider-chevron" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="9 18 15 12 9 6"></polyline></svg>
         <span class="visually-hidden">{{ 'Next slide'|t }}</span>
       </button>
     {%- endif -%}

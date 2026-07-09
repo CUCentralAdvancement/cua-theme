@@ -15,24 +15,12 @@
   display: none;
 }
 
-/* Carousel control icons */
-.slider .fa-circle-left::before,
-.slider .fa-circle-right::before {
-  font-size: 3.25rem !important;
-}
-
-.slider span.fa-solid.fa-circle-left,
-.slider span.fa-solid.fa-circle-right {
-  color: black !important;
-}
-
-.slider .cu-bg-white .fa-circle-left:before,
-.slider .cu-bg-white .fa-circle-right:before {
-  color: black;
-}
-
-.slider .cu-bg-black .fa-circle-left:before {
-  color: white;
+/* Carousel controls — minimal chevron (inline SVG in the prev/next buttons) */
+.slider .slider-chevron {
+  color: #fff;
+  opacity: .9;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .6));
+  transition: opacity .15s ease, transform .15s ease;
 }
 
 /* Desktop blockquote — centered via equal side margins */
@@ -42,32 +30,20 @@
   width: 80%;
 }
 
-.slider .carousel-control-prev .fa-circle-left, .slider .carousel-control-next .fa-circle-right {
-  color: #000000;
-  background: #4b4a4a;
-}
-
-.slider .carousel-control-prev .fa-circle-left:hover, .slider .carousel-control-next .fa-circle-right:hover {
-  color: #670202;
-  background: #ffffff;
-}
-
 .slider .carousel-control-prev,
 .slider .carousel-control-next {
   display: flex !important;
+  align-items: center;
   opacity: 1 !important;
   z-index: 10;
   width: auto;
-  padding: 0 1rem;
+  padding: 0 1.25rem;
 }
 
-.slider .fa {
-  font-weight: inherit;
-}
-
-.slider .fa.fa-circle-left,
-.slider .fa.fa-circle-right {
-  border-radius: 50%;
+.slider .carousel-control-prev:hover .slider-chevron,
+.slider .carousel-control-next:hover .slider-chevron {
+  opacity: 1;
+  transform: scale(1.12);
 }
 
 /* ===================================================
