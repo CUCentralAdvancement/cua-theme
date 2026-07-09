@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * FAQ node template.
+ *
+ * In a listing/teaser context — e.g. the /faq/[category] taxonomy term page —
+ * render the question as a heading with the answer beneath it. The base node
+ * template's `label` variable comes through empty in that render path, so the
+ * question is read from `node.label` directly (same fix used for articles).
+ *
+ * On the full FAQ page (page = true) the page title handles the heading and
+ * Layout Builder renders the body, so the question heading is skipped here.
+ */
+#}
+{%- set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] -%}
+<article{{ attributes.addClass(classes) }}>
+  <header>
+    {{ title_prefix }}
+    {% if not page %}
+      <h3 class="faq-question mt-4 mb-2">{{ node.label }}</h3>
+    {% endif %}
+    {{ title_suffix }}
+  </header>
+
+  <div class="node__content">
+    {{ content }}
+  </div>
+</article>
