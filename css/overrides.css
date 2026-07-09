@@ -542,7 +542,8 @@ a.color-financials:hover {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40%; /* this is your “border width” */
+  width: 40%;
+  /* this is your “border width” */
   height: 2px;
   background-color: var(--cua-gold);
 }
@@ -581,8 +582,12 @@ a.color-financials:hover {
 
   /* ── Global slider ─────────────────────────────────────────────── */
   .slider .px-5 {
-    padding-right: 0 !important;
-    padding-left: 2rem !important;
+    padding: 0 5rem !important;
+  }
+
+  blockquote p {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   div#front-page-overlay {
@@ -649,12 +654,15 @@ a.color-financials:hover {
 }
 
 @media (min-width: 992px) {
+
   /* Desktop: float the dropdown over page content instead of pushing it down */
   .navbar-expand-lg .navbar-nav .dropdown-menu {
     position: absolute !important
   }
 }
+
 @media (max-width: 991.98px) {
+
   /* Mobile: keep the dropdown in flow so the hamburger menu expands like an accordion */
   .navbar-nav .dropdown-menu {
     position: static !important
