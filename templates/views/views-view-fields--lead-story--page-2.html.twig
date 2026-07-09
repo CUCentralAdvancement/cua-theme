@@ -28,68 +28,43 @@
   {# Final link: external overrides internal #}
   {% set link = external ?: internal %}
 
-  {# Build absolute URL for itemid and href #}
+  {# Build absolute URL for href #}
   {% if link starts with 'http' %}
     {% set absolute_link = link %}
   {% else %}
     {% set absolute_link = 'https://www.giving.cu.edu' ~ link %}
   {% endif %}
 
-  {# Normalize author name from UID email #}
-  {% set author_local = fields.uid.content|striptags|trim|split('@')|first %}
-  {% set author_parts = author_local|split('.') %}
-  {% set author_name = '' %}
-  {% for p in author_parts %}
-    {% set author_name = author_name ~ (loop.index > 1 ? ' ' : '') ~ p|lower|slice(0,1)|upper ~ p|lower|slice(1) %}
-  {% endfor %}
-
-  <article class="campus-card card h-100 mb-4 position-relative p-2 pb-5"
-           itemscope itemtype="https://schema.org/Article"
-           itemprop="mainEntityOfPage"
-           itemid="{{ absolute_link }}">
+  {# Structured data is NOT emitted per-card: these are references to stories
+     that mostly live on other domains, so an Article scope here would falsely
+     name CU as publisher/author. The page-level CollectionPage + ItemList in
+     views-view--lead-story--page-2.html.twig carries the schema instead. #}
+  <article class="campus-card card h-100 mb-4 position-relative p-2 pb-5">
 
     <a href="{{ absolute_link|e('html_attr') }}"
        class="campus-card__link text-decoration-none d-block h-100"
        aria-labelledby="node-title-{{ fields.title.content|striptags|clean_id }}">
 
-      <div class="campus-card__image card-img-top"
-           itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+      <div class="campus-card__image card-img-top">
         {% if fields.field_image is defined and fields.field_image.content is not empty %}
-          {{ fields.field_image.content|replace({'<img ':'<img itemprop="contentUrl" '})|raw }}
+          {{ fields.field_image.content }}
         {% else %}
-          <img src="/sites/default/files/2025-04/white-logo.jpg" alt="Default campus image" class="img-fluid" itemprop="contentUrl">
+          <img src="/sites/default/files/2025-04/white-logo.jpg" alt="Default campus image" class="img-fluid">
         {% endif %}
       </div>
 
       <div class="card-body px-2">
 
         <h2 id="node-title-{{ fields.title.content|striptags|clean_id }}"
-            class="campus-card__title mt-2"
-            itemprop="headline name">
+            class="campus-card__title mt-2">
           {{ fields.title.content }}
         </h2>
 
        <div class="pt-1 pb-3">
-          <div itemprop="description">
+          <div>
             {{ fields.body.content }}
           </div>
         </div>
-
-        <span itemprop="author" itemscope itemtype="https://schema.org/Person" hidden>
-          <span itemprop="name">{{ author_name }}</span>
-        </span>
-
-        {% if fields.created is defined %}
-          <time itemprop="datePublished" datetime="{{ fields.created.content|striptags|trim }}" hidden></time>
-        {% endif %}
-
-        {% if fields.changed is defined %}
-          <time itemprop="dateModified" datetime="{{ fields.changed.content|striptags|trim }}" hidden></time>
-        {% endif %}
-
-        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization" hidden>
-          <span itemprop="name">University of Colorado</span>
-        </span>
 
       </div>
     </a>
