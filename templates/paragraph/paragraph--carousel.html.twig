@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * One slide of the content slider (carousel paragraph).
+ *
+ * Per-slide options (fields on the `carousel` paragraph):
+ *   - field_slide_layout: stacked | image_left | image_right
+ *   - field_color_background: cu-bg-* class behind the copy
+ *   - field_text_color: cu-text-* / text-* class for the copy
+ *
+ * Layout behavior:
+ *   - image_left / image_right → image + copy side by side on desktop
+ *     (70/30, see slider.css); `order-*` puts the image left or right.
+ *   - stacked → image on top, copy beneath (single column).
+ *   - No image → copy renders full width regardless of layout.
+ *   - Mobile (< md) ALWAYS stacks: image on top, copy on the bottom
+ *     (base `order-first`/`order-last`, overridden only at md+).
+ */
+#}
+{%- set p = paragraph ?? content['#paragraph'] -%}
+{%- set layout    = p.field_slide_layout.value|default('stacked') -%}
+{%- set bg_class  = p.field_color_background.value -%}
+{%- set text_class = p.field_text_color.value -%}
+{%- set has_image = p.field_image is not empty and p.field_image.0 is not empty -%}
+
+
+{%- set copy_classes = ['slider-copy-col', bg_class, text_class]|filter(v => v)|join(' ') -%}
+
+{% if has_image and layout in ['image_left', 'image_right'] %}
+
+  {# Side by side on desktop (≥lg); image ordered left or right. Stacks < lg. #}
+  {%- set image_order = layout == 'image_right' ? 'order-lg-last' : 'order-lg-first' -%}
+  {%- set copy_order  = layout == 'image_right' ? 'order-lg-first' : 'order-lg-last' -%}
+
+  <div{{ attributes.addClass('slider-split', 'row', 'g-0', 'align-items-stretch') }}>
+    <div class="slider-image-col col-12 order-first {{ image_order }}">
+      {{ content.field_image }}
+    </div>
+    <div class="{{ copy_classes }} col-12 order-last {{ copy_order }}">
+      {{ content.field_quote }}
+    </div>
+  </div>
+
+{% else %}
+
+  {# Stacked, or no image → single column, image (if any) on top. #}
+  <div{{ attributes.addClass('slider-stacked') }}>
+    {% if has_image %}
+      <div class="slider-image-col">
+        {{ content.field_image }}
+      </div>
+    {% endif %}
+    <div class="{{ copy_classes }}{{ has_image ? '' : ' slider-copy-noimage' }}">
+      {{ content.field_quote }}
+    </div>
+  </div>
+
+{% endif %}

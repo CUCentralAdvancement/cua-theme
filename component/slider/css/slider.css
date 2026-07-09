@@ -70,6 +70,48 @@
   border-radius: 50%;
 }
 
+/* ===================================================
+   Per-slide layout: image left/right (70/30) vs stacked
+   Template: paragraph--carousel.html.twig
+   =================================================== */
+
+/* Image fills its column edge-to-edge in split layouts */
+.slider .slider-split .slider-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Copy column: vertically center the quote, keep the color classes readable */
+.slider .slider-copy-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Desktop (≥ lg): enforce the 70 / 30 split. Bootstrap col-12 keeps both
+   full width below this, so the slide stacks (image top) on mobile/tablet. */
+@media (min-width: 992px) {
+  .slider .slider-split .slider-image-col {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+
+  .slider .slider-split .slider-copy-col {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+}
+
+/* In a split layout the blockquote shouldn't keep its centered 80% width —
+   it should fill the copy column. */
+.slider .slider-split .slider-copy-col blockquote {
+  margin: 0;
+  padding: 1.5rem;
+  width: 100%;
+}
+
 /* Mobile — full width, no padding, no controls */
 @media (max-width: 991px) {
   .slider blockquote {
