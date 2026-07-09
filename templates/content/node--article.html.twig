@@ -105,7 +105,13 @@
   <header>
     {{ title_prefix }}
     {% if not page %}
-      <h2>{{ label }}</h2>
+      {# In listing/teaser context the core `label` variable comes through
+         empty in this render path, so build a linked title from the node
+         itself — a listing title should link to the article anyway. #}
+      {%- set _node_url = url('entity.node.canonical', {'node': node.id})|render -%}
+      <h2 class="mt-0">
+        <a href="{{ _node_url }}" class="text-decoration-none">{{ node.label }}</a>
+      </h2>
     {% endif %}
     {{ title_suffix }}
   </header>

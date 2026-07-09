@@ -1834,6 +1834,14 @@ span.views-summary.views-summary-unformatted {
     text-decoration: none;
 }
 
+/* Teaser (listing) title: render the linked node title as a heading,
+   not a default link, on taxonomy term pages. */
+.page-view-taxonomy-term .node--view-mode-teaser h2 a {
+    color: #181818;
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-medium);
+}
+
 .page-view-taxonomy-term .field.field--name-title {
     font-size: 1.2rem;
 }
