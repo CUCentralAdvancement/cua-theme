@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Responsive grid override for the Impact Stories view (lead_story: page_2).
+ *
+ * Views' Grid format has "Automatic width" enabled, which makes core stamp an
+ * inline `style="width: 33.333%"` onto every column at ALL breakpoints — that
+ * inline style beats any responsive CSS class, so the grid stayed 3-wide on
+ * mobile. This override deliberately ignores the column/row attributes (and
+ * therefore the inline width) and lays the cards out with real Bootstrap
+ * responsive columns instead:
+ *   - < 576px  → 1 per row  (col-12)
+ *   - ≥ 576px  → 2 per row  (col-sm-6)
+ *   - ≥ 992px  → 3 per row  (col-lg-4)
+ *
+ * @see \Drupal\views\Hook\ViewsThemeHooks::preprocessViewsViewGrid()
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<div{{ attributes.addClass('views-view-grid', 'col') }}>
+  <div class="row">
+    {% if options.alignment == 'horizontal' %}
+      {% for row in items %}
+        {% for column in row.content %}
+          <div class="views-col col-12 col-sm-6 col-lg-4 p-2">
+            {{ column.content }}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    {% else %}
+      {% for column in items %}
+        {% for row in column.content %}
+          <div class="views-col col-12 col-sm-6 col-lg-4 p-2">
+            {{ row.content }}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
