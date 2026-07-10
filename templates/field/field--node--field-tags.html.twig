@@ -16,7 +16,9 @@
 #}
 <div class="field field--name-field-tags field--type-entity-reference field--label-visually_hidden clearfix" itemprop="keywords">
   {% if not label_hidden %}
-    <h3 class="field__label">{{ label }}</h3>
+    {# h2 (not h3) so it follows the page h1 without skipping a level —
+       the label is visually hidden, so this is a11y-only, no visual change. #}
+    <h2 class="field__label">{{ label }}</h2>
   {% endif %}
   
   <ul class="links field__items">

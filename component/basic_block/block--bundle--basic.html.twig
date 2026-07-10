@@ -107,12 +107,19 @@
 </script>
 {%- endif -%}
 
-<section{{attributes
-  |without('id', 'role', 'aria-label')
+{# Only reference the title via aria-labelledby when the title actually
+   renders (label present / "Display title" on). Otherwise the reference
+   points to a non-existent id — a broken-ARIA WCAG failure. No label = a
+   plain (non-landmark) section, which is correct. #}
+{%- set block_attributes = attributes
+  |without('id', 'role', 'aria-label', 'aria-labelledby')
   .setAttribute('id', unique_id)
   .addClass(basic_classes)
-  .setAttribute('aria-labelledby', title_id)
-  .setAttribute('data-component', 'basic-block')}}>
+  .setAttribute('data-component', 'basic-block') -%}
+{%- if label -%}
+  {%- set block_attributes = block_attributes.setAttribute('aria-labelledby', title_id) -%}
+{%- endif -%}
+<section{{ block_attributes }}>
 
   {%- apply spaceless -%}
 

@@ -111,7 +111,15 @@
 
 					{% if page.secondary_menu %}
 						<div class="secondary-menu-container d-lg-none my-3">
-							{{ page.secondary_menu }}
+							{# Mobile copy of the secondary menu. Render the menu directly (not the
+							   block) so it doesn't duplicate the desktop block's id/aria-labelledby
+							   — fixes the WCAG 4.1.1 duplicate-id violation, while keeping the same
+							   wrapper classes the CSS targets. #}
+							<section class="row region region-secondary-menu">
+								<nav class="block block-menu navigation menu--secondary-menu" aria-label="{{ 'Secondary menu'|t }}">
+									{{ drupal_menu('secondary-menu') }}
+								</nav>
+							</section>
 						</div>
 					{% endif %}
 				</div>
