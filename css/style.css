@@ -1287,6 +1287,30 @@ h2#block-cua-theme-main-menu-menu {
     font-weight: bold !important;
 }
 
+.btn-admin-app:hover, 
+.btn-admin-app:focus,
+.btn.btn-sm.btn-admin-app:hover, 
+.btn.btn-sm.btn-admin-app:focus  {
+    background: #003312 !important;
+    color: white !important;
+}
+
+.user-logged-in .nav-pills .nav-link.active, 
+.user-logged-in .nav-pills .show > .nav-link, 
+.user-logged-in .nav-pills .nav-link {
+  background-color: #125edb !important;
+  color: #ffffff !important;
+  margin: 0 .2rem !important;
+  font-size: 1rem !important;
+  padding: .5rem 1.5rem !important;
+}
+
+.user-logged-in .nav-pills .nav-link:hover {
+  background-color: green !important;
+  color: wgite !important;
+  margin: 0 .2rem !important;
+}
+
 .give-now-item a,
 .give-now-item p,
 .give-now-item span,
@@ -2491,3 +2515,4 @@ aside a.bef-link {
         display: none !important;
     }
 }
+`
