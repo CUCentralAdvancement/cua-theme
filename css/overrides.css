@@ -668,3 +668,24 @@ a.color-financials:hover {
     position: static !important
   }
 }
+
+/* ===================================================
+   Contrast safety net (WCAG AA)
+   The card / slider / half-and-half components expose background and
+   text colors as independent selects, so a builder can accidentally
+   pair light text on a light background (or dark text on a dark one) —
+   an invisible / failing combo (e.g. white on gold = 1.94:1). These
+   rules force a readable color for ONLY the genuinely-failing pairings;
+   all valid combinations are left untouched.
+   =================================================== */
+.cu-bg-gold.cu-text-white,        .cu-bg-gold .cu-text-white,
+.cu-bg-white.cu-text-white,       .cu-bg-white .cu-text-white,
+.cu-bg-light-grey.cu-text-white,  .cu-bg-light-grey .cu-text-white {
+  color: var(--cua-black) !important;
+}
+
+.cu-bg-black.cu-text-black,        .cu-bg-black .cu-text-black,
+.cu-bg-pure-black.cu-text-black,   .cu-bg-pure-black .cu-text-black,
+.cu-bg-black-trans.cu-text-black,  .cu-bg-black-trans .cu-text-black {
+  color: var(--cua-white) !important;
+}
