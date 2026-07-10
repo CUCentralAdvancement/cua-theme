@@ -1,0 +1,54 @@
+{#
+  Main menu override.
+
+  Identical to bootstrap_barrio's menu_main component, with one accessibility
+  fix: dropdown-parent toggles carry `data-bs-toggle` + aria-expanded +
+  aria-haspopup, but the parent items have no destination URL, so link() renders
+  them as a bare <span>. A <span>'s generic role does NOT support those ARIA
+  attributes — Lighthouse/axe flag "aria attributes do not match their roles".
+  Adding role="button" (+ tabindex="0") makes the element a proper button, so
+  the ARIA attributes are valid and it's keyboard-focusable.
+#}
+{% import _self as menus %}
+
+{{ menus.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass('nav navbar-nav')|without('id') }}>
+    {% else %}
+      <ul class="dropdown-menu">
+    {% endif %}
+    {% for item in items %}
+      {%
+        set classes = [
+          menu_level ? 'dropdown-item' : 'nav-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'active',
+          item.below ? 'dropdown',
+        ]
+      %}
+      <li{{ item.attributes.addClass(classes) }}>
+        {%
+          set link_classes = [
+            not menu_level ? 'nav-link',
+            item.in_active_trail ? 'active',
+            item.below ? 'dropdown-toggle',
+            item.url.getOption('attributes').class ? item.url.getOption('attributes').class | join(' '),
+            'nav-link-' ~ item.url.toString() | clean_class,
+          ]
+        %}
+        {% if item.below %}
+          {{ link(item.title, item.url, {'class': link_classes, 'role': 'button', 'tabindex': '0', 'data-bs-toggle': 'dropdown', 'aria-expanded': 'false', 'aria-haspopup': 'true' }) }}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+        {% else %}
+          {{ link(item.title, item.url, {'class': link_classes}) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
