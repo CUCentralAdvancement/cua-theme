@@ -1,0 +1,9 @@
+/* ===================================================
+   Button component — link cluster layout
+   Horizontal is the default (flex-row gap-2 utility classes).
+   vertical_layout stacks the links with matching spacing.
+   =================================================== */
+.button.card .card-footer.vertical_layout {
+  flex-direction: column;
+  gap: 0.5rem;
+}

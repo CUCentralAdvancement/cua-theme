@@ -1,126 +1,99 @@
-{# 
+{#
   =============================================================================
-  COMPONENT: Action Button / Global CTA
-  STABILITY: Production-Stable / Architecture: Sinn 556 iRS Equivalent (No-Lag)
-  COMPLIANCE: Section 508 / WCAG 2.2 Level AA / ARIA 1.2 "Region" Landmark
-  =============================================================================
-  TECHNICAL ARCHITECTURE:
-  - Logic: Handles binary UX patterns (Single "Card-Style" vs. Multiple Action cluster).
-  - Accessibility: Implements 'aria-labelledby' mapping to ensure the region's 
-    context is preserved during keyboard navigation.
-  - Performance: Leverages the 'call-to-action' library only when invoked.
+  COMPONENT: Action Button / Global CTA (rebuilt 2026-07-10)
+  COMPLIANCE: Section 508 / WCAG 2.2 Level AA
 
-  MAINTENANCE WARNING:
-  The 'is_single_link' variable renders a <span>. This is intended for 
-  implementations where the entire card is wrapped in a JS-controlled 
-  click listener or a parent <a>. Do not use <span> for standalone 
-  buttons without a parent interaction handler.
+  - Title renders as a PLAIN heading (never wrapped in a link).
+  - field_text_alignment justifies the link cluster left/center/right.
+  - field_button_layout renders links horizontal (default) or stacked
+    vertically ('vertical_layout' class, see css/button.css).
+  - Button look (no radius, padding, min-width) comes from the global
+    `.card .btn` rules in component/macros/css/card.css — same as every
+    other component's buttons.
   =============================================================================
 #}
-
-{# Import macros: Externalized logic for Title and Body consistency #}
 {% import '@cua_theme/component/macros/card_title.html.twig' as titleMacros %}
 
-{# Asset Load: Selective library injection for minimal DOM footprint #}
 {{ attach_library('cua_theme/call-to-action') }}
+{{ attach_library('cua_theme/button') }}
 
-{# 
-  UTILITY CLASS MERGING:
-  Standardized block classes merged with site-builder utility injections. 
-  The 'me-3' on the footer provides the necessary visual 'breathing room' 
-  for the action cluster.
-#}
 {% set button_classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'button card',
     color_border ?: null,
-    text_alignment ?: null,
     text_color ?: null,
     id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null,
 ] | merge(utility_classes ?: []) | filter(v => v) | join(' ') %}
 
-{# Unique ID generation for landmark and heading associations #}
 {% set unique_id = 'button-' ~ elements.content['#block_content'].id()|default(random(1000)) %}
 {% set heading_id = unique_id ~ '-title' %}
 
-{# 
-  OUTER WRAPPER: 
-  role="region" identifies this as a distinct navigational landmark.
-#}
-<div{{ attributes
-    .without('id')
-    .setAttribute('id', unique_id)
-    .addClass(button_classes)
-    .setAttribute('role', 'region')
-    .setAttribute('aria-labelledby', heading_id) 
-}}>
+{# Options with backward-compatible defaults for blocks saved before the
+   fields existed: left-aligned, horizontal. #}
+{% set alignment = text_alignment ?: 'd-flex justify-content-start' %}
+{% set layout = button_layout ?: 'flex-row gap-2' %}
+{% set is_vertical = layout == 'vertical_layout' %}
 
-    {# TITLE LAYER: Passes the heading_id to the macro to finalize the A11Y bridge #}
-    {{ title_prefix }}
+{# In a column flexbox the cross axis is horizontal, so map the chosen
+   justification to align-items for the vertical layout. #}
+{% set vertical_align = '' %}
+{% if is_vertical %}
+  {% set vertical_align = 'center' in alignment ? 'align-items-center'
+    : ('end' in alignment ? 'align-items-end' : 'align-items-start') %}
+{% endif %}
+
+{# Write attributes explicitly — `attributes` arrives NULL/empty in some
+   Layout Builder render paths, and chaining methods on it in a set-tag
+   silently yields an empty print (bare <div>). #}
+<div id="{{ unique_id }}"
+     class="{{ button_classes }}{{ attributes.hasClass is defined ? ' ' ~ attributes.class : '' }}"
+     role="region"
+     {% if label %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="{{ 'Action links'|t }}"{% endif %}
+     {{ attributes ? attributes|without('id', 'class', 'role', 'aria-labelledby', 'aria-label') : '' }}>
+
+  {{- title_prefix -}}
+  {{- title_suffix -}}
+
+  {% if label %}
+    {# Empty links array = plain heading, never linked. #}
     {{ titleMacros.render_title(
         label,
-        title_prefix,
-        title_suffix,
+        '',
+        '',
         center_content,
         text_alignment,
         text_color,
         padding,
-        hide_from_screen_readers,
-        links,
+        false,
+        [],
         heading_id
     ) }}
-    {{ title_suffix }}
+  {% endif %}
 
-    {# BODY LAYER: Handled via macro for filtered HTML processing #}
-    {% if content %}
-        {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
-        {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
-    {% endif %}
+  {% if content %}
+    {% import '@cua_theme/component/macros/card_body.html.twig' as bodyMacros %}
+    {{ bodyMacros.render_body(content, padding, text_color, text_alignment) }}
+  {% endif %}
 
-    {# 
-       FOOTER / ACTION LAYER: 
-       Dynamic rendering of the link cluster. 
-    #}
-    {% set card_footer_classes = [
-        'card-footer d-flex mb-5 me-3',
-        multiple_links ? 'multiple-links' : '',
-        container_size,
-        position_container,
-        text_alignment,
-        padding,
-    ] | filter(v => v) | join(' ') %}
+  {% set footer_classes = [
+      'card-footer d-flex mt-3 mb-5',
+      alignment,
+      layout,
+      vertical_align,
+      container_size,
+      position_container,
+      padding,
+  ] | filter(v => v) | join(' ') %}
 
-    <div class="{{ card_footer_classes }}"
-         {% if multiple_links %} role="group" aria-label="{{ custom_label ?: 'Related links'|t }}" {% endif %}>
-
-        {% for link in links %}
-            {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
-            {% set card_footer_link_classes = [
-                'card-link btn text-decoration-none p-2 mt-3 me-2',
-                outline_class,
-                position_container,
-                text_alignment,
-            ] | filter(v => v) | join(' ') %}
-
-            {% if is_single_link %}
-                {# 
-                   SCENARIO 1: Visual placeholder for card-wrapped interaction. 
-                   aria-label ensures the context is readable even without a href.
-                #}
-                <span class="{{ card_footer_link_classes }}" aria-label="{{ link.title }}">
-                    {{ link.title }}
-                </span>
-            {% else %}
-                {# SCENARIO 2: Standard standalone interactive links #}
-                <a href="{{ link.url }}"
-                   class="{{ card_footer_link_classes }}"
-                   role="link"
-                   {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}
-                   aria-label="{{ link.title }}">
-                    {{ link.title }}
-                </a>
-            {% endif %}
-        {% endfor %}
-    </div>
+  <div class="{{ footer_classes }}"
+       {% if links|length > 1 %} role="group" aria-label="{{ label ?: 'Related links'|t }}" {% endif %}>
+    {% for link in links %}
+      {% set outline_class = outline ? outline ~ 'btn-' ~ button_color : 'btn-' ~ button_color %}
+      <a href="{{ link.url }}"
+         class="{{ ['card-link btn text-decoration-none', outline_class] | filter(v => v) | join(' ') }}">
+        {{ link.title }}
+      </a>
+    {% endfor %}
+  </div>
 </div>

@@ -67,6 +67,14 @@ banner:
       css/animate.min.css:
         weight: -10
 
+# Button (link cluster layout)
+button:
+  version: VERSION
+  css:
+    component:
+      component/button/css/button.css:
+        weight: -10
+
 # Call to Action
 call-to-action:
   version: VERSION
