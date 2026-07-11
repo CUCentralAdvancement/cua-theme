@@ -564,6 +564,9 @@ h3.text-align-center.impact-26-title {
   margin: 0 0 1rem;
 }
 
+.contact-card {
+  height: 100% !important;
+}
 /* ==========================================================================
    MEDIA QUERIES CLASSES
    All breakpoints consolidated here.
