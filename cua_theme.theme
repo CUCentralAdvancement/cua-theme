@@ -441,3 +441,14 @@ function cua_theme_preprocess_views_view(array &$variables): void {
     '<script type="application/ld+json">' . $json . '</script>'
   );
 }
+/**
+ * Implements hook_preprocess_pager().
+ *
+ * Core renders the visually-hidden pager heading as <h4>, which lands after
+ * an h1/h2 sequence in views listings and trips heading-order checks
+ * (axe/vendor crawlers flag it on /impact-stories etc.). h2 keeps the
+ * document outline sequential.
+ */
+function cua_theme_preprocess_pager(array &$variables): void {
+    $variables['pagination_heading_level'] = 'h2';
+}

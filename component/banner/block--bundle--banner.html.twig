@@ -33,7 +33,14 @@
 <section{{attributes.setAttribute('id',unique_id).addClass(container_classes).setAttribute('role','region').setAttribute('aria-labelledby',heading_id)}}>
 	{{- title_prefix -}}
 	{{- title_suffix -}}
-	<div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;" role="img" aria-label="{{ bg_image_alt }}">
+	{# No role="img" on this container: it holds real content (heading, body,
+	   links), and role="img" flattens its subtree for assistive tech — axe
+	   flags the links inside as nested-interactive. The image description
+	   is kept as visually-hidden text instead. #}
+	<div class="{{ image_container_classes }}" style="background-image: url('{{ bg_image_url }}'); background-position: center; background-size: cover;">
+		{%- if bg_image_alt -%}
+			<span class="visually-hidden">{{ bg_image_alt }}</span>
+		{%- endif -%}
 		{%- apply spaceless -%}
 		<div class="{{ banner_body_classes }}" {% if animation_classes %} data-animation-classes="{{ animation_classes }}" {% endif %}>
 			{%- if label -%}

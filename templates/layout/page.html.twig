@@ -29,7 +29,7 @@
         {% if page.highlighted %}
             <div class="highlighted">
                 <aside class="{{ container }} section clearfix"
-                       role="complementary">
+                       role="complementary" aria-label="{{ 'Highlighted'|t }}">
                     {{ page.highlighted }}
                 </aside>
             </div>
@@ -40,7 +40,7 @@
             {% block featured %}
                 <div class="featured-top">
                     <aside class="featured-top__inner section {{ container }} clearfix"
-                           role="complementary">
+                           role="complementary" aria-label="{{ 'Featured top'|t }}">
                         {{ page.featured_top }}
                     </aside>
                 </div>
@@ -61,7 +61,7 @@
                         {# Left Sidebar #}
                         {% if sidebar_first_exists %}
                             <div class="col-md-3 col-sm-12 mb-4 order-1 order-md-2 mobile-padding">
-                                <aside class="section" role="complementary">
+                                <aside class="section" role="complementary" aria-label="{{ 'Primary sidebar'|t }}">
                                     {{ page.sidebar_first }}
                                 </aside>
                             </div>
@@ -77,7 +77,7 @@
                         {# Right Sidebar #}
                         {% if sidebar_second_exists %}
                             <div class="col-md-3 col-sm-12 mb-4 order-3 order-md-last">
-                                <aside class="section" role="complementary">
+                                <aside class="section" role="complementary" aria-label="{{ 'Secondary sidebar'|t }}">
                                     {{ page.sidebar_second }}
                                 </aside>
                             </div>
@@ -91,7 +91,7 @@
         {# Featured Bottom One #}
         {% if page.featured_bottom_first %}
             <div class="featured-bottom-first container-fluid g-0">
-                <aside class="clearfix" role="complementary">
+                <aside class="clearfix" role="complementary" aria-label="{{ 'Featured bottom first'|t }}">
                     {{ page.featured_bottom_first }}
                 </aside>
             </div>
@@ -100,7 +100,7 @@
         {# Featured Bottom Second #}
         {% if page.featured_bottom_second %}
             <div class="featured-bottom-second container g-0">
-                <aside class="clearfix" role="complementary">
+                <aside class="clearfix" role="complementary" aria-label="{{ 'Featured bottom second'|t }}">
                     {{ page.featured_bottom_second }}
                 </aside>
             </div>
@@ -109,7 +109,7 @@
         {# Featured Bottom Third #}
         {% if page.featured_bottom_third %}
             <div class="featured-bottom-third container-fluid g-0">
-                <aside class="clearfix" role="complementary">
+                <aside class="clearfix" role="complementary" aria-label="{{ 'Featured bottom third'|t }}">
                     {{ page.featured_bottom_third }}
                 </aside>
             </div>

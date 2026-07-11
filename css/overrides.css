@@ -722,3 +722,20 @@ h3.text-align-center.impact-26-title {
   color: var(--cua-black) !important;
   background-color: #ececec !important; /* keep hover feedback visible */
 }
+
+/* ===================================================
+   Contrast fix: #86c0ce (.text-blue-light) is 2.0:1 on
+   white — fails WCAG AA for counter suffixes (axe flags
+   /mental-health/together). Darken to #337f93 (4.6:1) in
+   counters on light backgrounds; dark sections keep the
+   original light value, same pattern as the safety net.
+   =================================================== */
+.counter .text-blue-light {
+  color: #337f93;
+}
+
+.cu-bg-black .counter .text-blue-light,
+.cu-bg-pure-black .counter .text-blue-light,
+.cu-bg-black-trans .counter .text-blue-light {
+  color: #86c0ce;
+}
