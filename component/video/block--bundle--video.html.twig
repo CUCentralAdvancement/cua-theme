@@ -89,6 +89,11 @@
   .setAttribute('aria-labelledby', title_id)
 }}>
 
+  {# Layout Builder injects the contextual-links pencil via title_suffix —
+     without these the video block has no edit menu in the LB UI. #}
+  {{- title_prefix -}}
+  {{- title_suffix -}}
+
   <h2 id="{{ title_id }}" class="visually-hidden">
     {{- safe_label -}}
   </h2>
