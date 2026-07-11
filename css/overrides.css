@@ -558,6 +558,12 @@ a.color-financials:hover {
   margin: 0 1rem 2rem 1rem;
 }
 
+h3.text-align-center.impact-26-title {
+  font-size: 3.5rem;
+  font-weight: 100 !important;
+  margin: 0 0 1rem;
+}
+
 /* ==========================================================================
    MEDIA QUERIES CLASSES
    All breakpoints consolidated here.
