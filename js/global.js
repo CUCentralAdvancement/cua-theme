@@ -110,4 +110,21 @@
   });
 */
 
+  // Keyboard support for span-based dropdown toggles (role="button").
+  // Native Enter/Space activation only exists on real <button>/<a> elements,
+  // and Bootstrap's dropdown handler only binds ArrowUp/Down/Escape - so
+  // keyboard users otherwise cannot open the nav dropdowns with Enter/Space
+  // (WCAG 2.1.1). Delegated so it covers menus rendered after load.
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') {
+      return;
+    }
+    const toggle = e.target.closest('span[data-bs-toggle="dropdown"][role="button"]');
+    if (!toggle) {
+      return;
+    }
+    e.preventDefault();
+    toggle.click();
+  });
+
 })(Drupal, IntersectionObserver);
