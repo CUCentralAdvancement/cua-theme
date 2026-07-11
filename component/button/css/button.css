@@ -30,3 +30,7 @@
 .button.card .card-footer.justify-content-center .btn {
   text-align: center;
 }
+
+.button .card-body {
+  padding: 1rem 0 1.3rem 0;
+}
