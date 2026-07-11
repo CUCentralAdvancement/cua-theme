@@ -689,3 +689,30 @@ a.color-financials:hover {
 .cu-bg-black-trans.cu-text-black,  .cu-bg-black-trans .cu-text-black {
   color: var(--cua-white) !important;
 }
+/* ===================================================
+   Contextual-link dropdowns (logged-in editors only —
+   core renders them solely for users with the
+   'access contextual links' permission).
+   Theme link/text colors on dark sections kept bleeding
+   into the dropdown (white-on-white), and page-scoped
+   patches kept getting overridden — so enforce the admin
+   UI look globally: black links on a white panel. Classes
+   are doubled to out-rank themed !important link rules
+   (e.g. the footer menus) regardless of where they live.
+   =================================================== */
+.contextual.contextual .contextual-links.contextual-links {
+  background-color: var(--cua-white) !important;
+}
+
+.contextual.contextual .contextual-links.contextual-links a,
+.contextual.contextual .contextual-links.contextual-links a:visited {
+  color: var(--cua-black) !important;
+  background-color: var(--cua-white) !important;
+  text-decoration: none !important;
+}
+
+.contextual.contextual .contextual-links.contextual-links a:hover,
+.contextual.contextual .contextual-links.contextual-links a:focus {
+  color: var(--cua-black) !important;
+  background-color: #ececec !important; /* keep hover feedback visible */
+}

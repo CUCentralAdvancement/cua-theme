@@ -7,3 +7,26 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+/* Body text colors — headings set their own color (style.css h1–h6),
+   so the wrapper class must reach descendants explicitly. */
+.button.card .card-body.cu-text-white,
+.button.card .card-body.cu-text-white :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p) {
+  color: var(--cua-white);
+}
+
+.button.card .card-body.cu-text-gold,
+.button.card .card-body.cu-text-gold :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p) {
+  color: var(--cua-gold);
+}
+
+.button.card .card-body.cu-text-black,
+.button.card .card-body.cu-text-black :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p) {
+  color: var(--cua-black);
+}
+
+/* Center the label inside each button when the link cluster is centered
+   (buttons keep a 16rem min-width, so short labels otherwise sit left). */
+.button.card .card-footer.justify-content-center .btn {
+  text-align: center;
+}
