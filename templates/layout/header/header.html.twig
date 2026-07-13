@@ -109,12 +109,13 @@
 		<nav class="navbar l-header-bottom navbar-expand-lg g-0 m-0 border-top border-bottom" id="navbar-main" aria-label="{{ 'Main menu'|t }}">
 			<div class="container-fluid px-3 g-0">
 
-				{# Site slogan — anchored left of the primary menu (Oomph design), so the
-				   home icon and links shift right. Desktop-only; on mobile the nav is a
-				   toggled collapse where a left slogan doesn't apply. Toggled by the
+				{# Site slogan. Desktop: anchored left of the primary menu (Oomph
+				   design), pushing the home icon + links right. Mobile: this row
+				   sits outside the nav collapse, so it stays visible below the
+				   branding bar — CSS centers it full-width. Toggled by the
 				   "Display site slogan" theme setting (show_slogan). #}
 				{% if site_slogan and show_slogan %}
-					<div class="site-slogan d-none d-lg-flex align-items-center">{{ site_slogan }}</div>
+					<div class="site-slogan d-flex align-items-center">{{ site_slogan }}</div>
 				{% endif %}
 
 				<div class="collapse navbar-collapse" id="mainNavbarSupportedContent">

@@ -750,9 +750,16 @@ header .container-fluid,
 }
 
 @media only screen and (max-width: 991px) {
+    /* Mobile: full-width row centered under the branding bar. The left
+       divider and nowrap don't apply when centered. */
     .site-slogan {
+        width: 100%;
+        justify-content: center;
         margin: 0;
-        font-size: 1.4rem;
+        padding: 0.5rem 1rem;
+        border-right: none;
+        text-align: center;
+        white-space: normal;
     }
 }
 
