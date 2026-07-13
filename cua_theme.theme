@@ -133,6 +133,11 @@ function cua_theme_preprocess_page(array &$variables): void {
     $site_config = \Drupal::config('system.site');
     $variables['site_name'] = $site_config->get('name');
     $variables['site_slogan'] = $site_config->get('slogan');
+
+    // "Display site slogan" theme setting (Appearance → Settings). Defaults
+    // ON: only an explicit un-check (0) hides the header slogan. The header
+    // template is included into page, so this reaches header.html.twig.
+    $variables['show_slogan'] = (bool) (theme_get_setting('display_slogan') ?? TRUE);
 }
 
 /**
