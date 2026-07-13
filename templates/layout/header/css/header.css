@@ -737,15 +737,16 @@ header .container-fluid,
    SITE SLOGAN  
    =================================================== */
 .site-slogan {
-    margin: 0 3px;
+    margin: 0 1rem 0 3px;
     padding-left: 5px;
-    padding-right: 20px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    padding-right: 1rem;
+    border-right: 1px solid var(--cua-gray-300);
+    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.2;
     text-align: left;
     white-space: nowrap;
-    color: #8a702c;
+    color: var(--cua-gray-700);
 }
 
 @media only screen and (max-width: 991px) {
