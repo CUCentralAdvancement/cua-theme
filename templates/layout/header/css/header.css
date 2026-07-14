@@ -549,193 +549,29 @@ div#block-cua-theme-breadcrumbs {
     --bs-gutter-x: 0 !important
 }
 
-/* Responsive */
-@media only screen and (max-width: 991px) {
-    #navbar-main {
-        background-color: transparent;
-        border-top: 1px solid var(--cua-gray-200);
-        padding: 0 !important
-    }
+/* ===================================================
+   BASE / GLOBAL STYLES (Desktop First)
+   =================================================== */
 
-    .navbar-nav>li:not(:last-child) {
-        border-right-color: transparent !important
-    }
-
-    nav#block-cua-theme-secondarymenu {
-        margin: 0 0 2rem 0
-    }
-
-    .navbar-expand-lg .navbar-nav .nav-link,
-    .nav-link.dropdown-toggle,
-    .nav-link.is-active,
-    .nav-link.active.is-active {
-        border-bottom: 1px solid var(--cua-gray-200);
-        margin: 0;
-        padding: .5rem 0;
-        text-decoration: none
-    }
-
-    .header .nav-link {
-        font-size: var(--base-font-size) !important
-    }
-
-    header .navbar-nav>.nav-item:first-child>.nav-link::before {
-        display: none !important
-    }
-
-    /* Custom Hamburger */
-    .navbar-toggler {
-        background-color: transparent !important;
-        border: var(--bs-border-width) solid var(--cua-black-pure);
-        height: 44px;
-        padding: 0.375rem 0.75rem;
-        box-sizing: border-box
-    }
-
-    .navbar-toggler-icon {
-        --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23231f20' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
-    }
-
-    .navbar-toggler:focus,
-    .navbar-toggler:active {
-        background: var(--cua-gold) !important;
-        border: var(--bs-border-width) solid var(--cua-gold) !important;
-        box-shadow: none !important;
-        outline: 0 !important;
-        height: 44px;
-        padding: 0.375rem 0.75rem
-    }
-
-    .dropdown-menu.show {
-        border-top: none;
-        border-bottom: none;
-        box-shadow: none !important;
-        font-size: .9rem
-    }
-
-    header #search-block-form {
-        padding: 0
-    }
-
-    .dropdown-toggle::after {
-        border-top: 0.4em solid;
-        border-right: 0.4em solid transparent;
-        border-bottom: 0;
-        border-left: 0.4em solid transparent;
-        position: absolute;
-        right: -15px;
-        top: 25px
-    }
-
-    /* Secondary Mobile Menu */
-    .block-menu.menu--secondary-menu ul.nav {
-        flex-direction: column
-    }
-
-    .block-menu.menu--secondary-menu ul.nav li.nav-item {
-        display: block
-    }
-
-    .block-menu.menu--secondary-menu a.nav-link {
-        color: var(--cua-gray-700);
-        border-bottom: 1px solid var(--cua-gray-200);
-        padding: .75rem 0 .75rem 1rem
-    }
-
-    header .nav-item {
-        border-right: none !important
-    }
-
-    p.search-button {
-        padding: 0 !important;
-        margin: 0 !important
-    }
-
-    header .border-bottom {
-        border-bottom: 1px solid var(--cua-white) !important
-    }
-
-    nav#block-cua-theme-secondarymenu a.nav-link {
-        background: var(--cua-white);
-        border-bottom: 1px solid var(--cua-gray-200);
-        color: var(--cua-black);
-        padding: 1rem
-    }
-
-    header .navbar-expand-lg .navbar-nav .nav-link {
-        color: var(--cua-black);
-        background: var(--cua-white)
-    }
-
-    header li.nav-item,
-    header li.nav-item:hover,
-    .dropdown-menu.show {
-        background: var(--cua-white) !important;
-        color: var(--cua-black) !important
-    }
-
-    .dropdown-item a,
-    .dropdown-item a:visited {
-        color: var(--cua-black);
-        background-color: transparent;
-        padding-left: 15px
-    }
-
-    .navbar-expand-lg .navbar-nav .nav-link::before {
-        background-color: var(--cua-white) !important
-    }
-
-    .top-bar {
-        padding-bottom: 1rem;
-    }
-
-    .header .menu-content-wrapper .nav.navbar-nav>li.nav-item:first-child>a.nav-link::before  {
-        display: none
-    }
-
-}
-
-/* iphone > 12 */
-@media only screen and (max-width: 430px) {
-    .site-name-logo img {
-        margin: .25rem 0 0
-    }
-}
-
-/* iphone < 12 */
-@media only screen and (max-width: 390px) {
-    .site-name-logo img {
-        margin: .3rem 0 0
-    }
-}
-
-/* --- FIX DROPDOWN FLOATING ABOVE EVERYTHING --- */
-/* z-index only applies to positioned elements, so the header must be
-   position: relative for its stacking context to sit above page content. */
+/* --- Stacking Context & Dropdown Overrides --- */
 header,
 #navbar-main,
 .navbar {
-  position: relative;
-  z-index: 1000 !important;
+    position: relative;
+    z-index: 1000 !important;
 }
 
 .navbar-nav .dropdown-menu {
-  z-index: 2000 !important;
+    z-index: 2000 !important;
 }
 
-/* The global rule `.container-fluid { overflow-x: hidden }` clips the dropdown
-   (overflow-x: hidden forces overflow-y to compute to auto). The header uses
-   container-fluid for full-bleed layout, so override it here to let dropdowns
-   escape the navbar. Safe because header content never overflows horizontally. */
+/* Let dropdowns escape full-bleed containers safely */
 header .container-fluid,
 #navbar-main .container-fluid {
-  overflow: visible !important;
+    overflow: visible !important;
 }
 
-
-/* ===================================================
-   SITE SLOGAN  
-   =================================================== */
+/* --- Site Slogan Base --- */
 .site-slogan {
     margin: 0 1rem 0 3px;
     padding-left: 5px;
@@ -749,9 +585,169 @@ header .container-fluid,
     color: var(--cua-gray-700);
 }
 
+
+/* ===================================================
+   RESPONSIVE BREAKPOINTS (Descending Order)
+   =================================================== */
+
+/* --- Tablets & Mobile Landscape --- */
 @media only screen and (max-width: 991px) {
-    /* Mobile: full-width row centered under the branding bar. The left
-       divider and nowrap don't apply when centered. */
+    #navbar-main {
+        background-color: transparent;
+        border-top: 1px solid var(--cua-gray-200);
+        padding: 0 !important;
+    }
+
+    .navbar-nav > li:not(:last-child) {
+        border-right-color: transparent !important;
+    }
+
+    nav#block-cua-theme-secondarymenu {
+        margin: 0 0 2rem 0;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link,
+    .nav-link.dropdown-toggle,
+    .nav-link.is-active,
+    .nav-link.active.is-active {
+        border-bottom: 1px solid var(--cua-gray-200);
+        margin: 0;
+        padding: .5rem 0;
+        text-decoration: none;
+    }
+
+    .header .nav-link {
+        font-size: var(--base-font-size) !important;
+    }
+
+    header .navbar-nav > .nav-item:first-child > .nav-link::before {
+        display: none !important;
+    }
+
+    /* Custom Hamburger */
+    .navbar-toggler {
+        background-color: transparent !important;
+        border: var(--bs-border-width) solid var(--cua-black-pure);
+        height: 44px;
+        padding: 0.375rem 0.75rem;
+        box-sizing: border-box;
+    }
+
+    .navbar-toggler-icon {
+        --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23231f20' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-toggler:focus,
+    .navbar-toggler:active {
+        background: var(--cua-gold) !important;
+        border: var(--bs-border-width) solid var(--cua-gold) !important;
+        box-shadow: none !important;
+        outline: 0 !important;
+        height: 44px;
+        padding: 0.375rem 0.75rem;
+    }
+
+    .dropdown-menu.show {
+        border-top: none;
+        border-bottom: none;
+        box-shadow: none !important;
+        font-size: .9rem;
+    }
+
+    header #search-block-form {
+        padding: 0;
+    }
+
+    .dropdown-toggle::after {
+        border-top: 0.4em solid;
+        border-right: 0.4em solid transparent;
+        border-bottom: 0;
+        border-left: 0.4em solid transparent;
+        position: absolute;
+        right: -15px;
+        top: 25px;
+    }
+
+    /* Secondary Mobile Menu */
+    .block-menu.menu--secondary-menu ul.nav {
+        flex-direction: column;
+    }
+
+    .block-menu.menu--secondary-menu ul.nav li.nav-item {
+        display: block;
+    }
+
+    .block-menu.menu--secondary-menu a.nav-link {
+        color: var(--cua-gray-700);
+        border-bottom: 1px solid var(--cua-gray-200);
+        padding: .75rem 0 .75rem 1rem;
+    }
+
+    header .nav-item {
+        border-right: none !important;
+    }
+
+    p.search-button {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    header .border-bottom {
+        border-bottom: 1px solid var(--cua-white) !important;
+    }
+
+    nav#block-cua-theme-secondarymenu a.nav-link {
+        background: var(--cua-white);
+        border-bottom: 1px solid var(--cua-gray-200);
+        color: var(--cua-black);
+        padding: 1rem;
+    }
+
+    header .navbar-expand-lg .navbar-nav .nav-link {
+        color: var(--cua-black);
+        background: var(--cua-white);
+    }
+
+    header li.nav-item,
+    header li.nav-item:hover,
+    .dropdown-menu.show {
+        background: var(--cua-white) !important;
+        color: var(--cua-black) !important;
+    }
+
+    .dropdown-item a,
+    .dropdown-item a:visited {
+        color: var(--cua-black);
+        background-color: transparent;
+        padding-left: 15px;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link::before {
+        background-color: var(--cua-white) !important;
+    }
+
+    .top-bar {
+        padding-bottom: 0;
+        margin-bottom: 0 !important;
+    }
+
+    .header .menu-content-wrapper .nav.navbar-nav > li.nav-item:first-child > a.nav-link::before {
+        display: none;
+    }
+
+    header#header {
+        border-bottom: 1px solid var(--cua-gray-400);
+    }
+
+    header li.nav-item:first-child {
+        display: none !important;
+    }
+
+    header .container-fluid.top-bar.pt-2.mb-3.px-3 {
+        padding: 0 15px !important;
+    }
+
+    /* Combined Mobile Slogan Overrides */
     .site-slogan {
         width: 100%;
         justify-content: center;
@@ -760,6 +756,36 @@ header .container-fluid,
         border-right: none;
         text-align: center;
         white-space: normal;
+        font-size: 1rem;
     }
 }
 
+/* --- Mobile Portrait --- */
+@media (max-width: 767.98px) {
+    .top-bar,
+    .container-fluid.top-bar {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .top-bar.pt-2,
+    .top-bar.mb-3,
+    .top-bar.px-3 {
+        padding: 0 15px !important;
+        margin: 0 !important;
+    }
+}
+
+/* --- iPhone >= 12 --- */
+@media only screen and (max-width: 430px) {
+    .site-name-logo img {
+        margin: .25rem 0 0;
+    }
+}
+
+/* --- iPhone < 12 --- */
+@media only screen and (max-width: 390px) {
+    .site-name-logo img {
+        margin: .3rem 0 0;
+    }
+}
