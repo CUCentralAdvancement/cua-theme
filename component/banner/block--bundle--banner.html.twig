@@ -22,7 +22,7 @@
 {%- set container_classes = ['block','block-' ~ configuration.provider|clean_class,'block-' ~ plugin_id|clean_class,'jumbotron jumbotron-fluid banner g-0','container-fluid position-relative',id ? 'block--' ~ id|replace({"_": "-"})|clean_class : null] | merge(utility_classes ?: []) | filter(v => v) | join(' ') -%}
 {%- set bg_image_url = content.field_image is not empty ? file_url(content.field_image['#items'].entity.uri.value) : '' -%}
 {%- set bg_image_alt = content.field_image['#items'][0].alt|default(label|default('Banner background')) -%}
-{%- set image_container_classes = ['banner-image-container',parallax ?: null,position_container ? 'd-flex ' ~ position_container|clean_class : null,container_size ?: null,margins ?: null,'background-size-cover'] | filter(v => v) | join(' ') -%}
+{%- set image_container_classes = ['banner-image-container',parallax ?: null,position_container ? 'd-flex ' ~ position_container|clean_class : null,container_size ?: null,margins ?: null,banner_fit ?: null,'background-size-cover'] | filter(v => v) | join(' ') -%}
 {%- set banner_body_classes = ['col-md-5','col-sm-12','banner-body mx-5 z-1',color_background ?: null,text_color ?: null,effect_copy_class ?: null,padding ?: null,'my-5 my-sm-3',(animation or animation_speed or animation_delay) ? 'animate-trigger' : null] | filter(v => v) | join(' ') -%}
 {%- set animation_classes = (animation or animation_speed or animation_delay) ? 'animate__animated ' ~ animation ~ ' ' ~ animation_speed ~ ' ' ~ animation_delay : null -%}
 {%- if label -%}

@@ -276,6 +276,21 @@
   padding-top: 25%; /* Creates aspect ratio fallback */
 }
 
+/* Full-bleed art banners: match the box to the artwork so `cover` has
+   nothing to crop. Opt-in via the "Banner Image Fit" field — default
+   banners keep min-height/padding for their text overlays.
+   16/5 = 3.2:1, the ratio our banner art is cut to. */
+.banner-image-container.banner--fit {
+  aspect-ratio: 16 / 5;
+  min-height: 0;
+  padding: 0 !important; /* beats the 5rem !important in the media query above */
+}
+
+/* The 25% pseudo-element aspect hack would fight aspect-ratio; drop it here. */
+.banner-image-container.banner--fit::before {
+  content: none;
+}
+
 .banner-image-container.margin_bottom {
   margin: 0 0 2rem !important;
 }
