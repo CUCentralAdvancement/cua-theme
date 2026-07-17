@@ -463,18 +463,29 @@ div#block-cua-theme-breadcrumbs {
     margin-bottom: 0 !important;
 }
 
+/* Give Now CTA. Black fill by default: gold on the white header is only
+   1.94:1 against it, under the 3:1 WCAG 1.4.11 needs to read as a
+   control. Black is 15.1:1, and matches the site's dominant button
+   colour. Text contrast is 7.8:1 either way, so this costs nothing. */
 .header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link {
-    background: var(--cua-gold);
-    color: var(--cua-black) !important;
+    background: var(--cua-black);
+    color: var(--cua-gold) !important;
     font-weight: 700;
     border-radius: 1rem !important;
     font-size: .8rem !important;
     padding: .45rem 1.5rem !important;
+    transition: background .15s ease, color .15s ease, box-shadow .15s ease;
 }
 
-.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link:hover {
-    background: var(--cua-black);
-    color: var(--cua-gold) !important;
+/* Hover inverts to gold. The ring keeps the edge at 15.1:1 against the
+   header — without it the gold fill drops to 1.94:1 and the button
+   reads as receding rather than activating. box-shadow, not border, so
+   the button doesn't change size. */
+.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link:hover,
+.header #block-cua-theme-secondarymenu .nav-item:last-child .nav-link:focus-visible {
+    background: var(--cua-gold);
+    color: var(--cua-black) !important;
+    box-shadow: 0 0 0 .09rem var(--cua-black);
 }
 
 /* Home anchor — first main-menu item renders as an icon-only link */
