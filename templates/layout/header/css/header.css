@@ -197,7 +197,7 @@ div.phone-button a.phone-icon:hover svg path {
    an equal-color stroke. The glass ring is exactly 1 unit thick in the
    glyph's 16-unit space, so stroke-width 1 doubles it. */
 div.search-button .search-icon svg path {
-    stroke: #555555;
+    stroke: #c0c0c0;
     stroke-width: 1;
     stroke-linejoin: round;
 }
