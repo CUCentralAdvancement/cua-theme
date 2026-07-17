@@ -133,9 +133,11 @@ p.search-button {
     align-items: center
 }
 
-/* Lock search icon and Give Now button so focus/active states don't resize them */
+/* Lock the utility icons (search, phone) so focus/active states don't resize them */
 div.search-button,
-div.search-button button.search-icon {
+div.phone-button,
+div.search-button button.search-icon,
+div.phone-button a.phone-icon {
     display: flex;
     align-items: center;
     width: 36px;
@@ -143,10 +145,52 @@ div.search-button button.search-icon {
     box-sizing: content-box
 }
 
-div.search-button button.search-icon:focus,
-div.search-button button.search-icon:active {
+/* Mouse focus/active stays soft; keyboard focus keeps a visible ring below
+   (WCAG 2.4.7 — a blanket :focus suppression here left keyboard users with
+   no indicator at all) */
+div.search-button button.search-icon:focus:not(:focus-visible),
+div.phone-button a.phone-icon:focus:not(:focus-visible),
+div.search-button button.search-icon:active,
+div.phone-button a.phone-icon:active {
     outline: none !important;
     box-shadow: none !important
+}
+
+/* Same ring language as the nav links (gold, 2px); offset outside and
+   rounded so it follows the icons' circular shape */
+div.search-button button.search-icon:focus-visible,
+div.phone-button a.phone-icon:focus-visible {
+    outline: 2px solid var(--cua-gold-hover) !important;
+    outline-offset: 2px;
+    border-radius: 50%;
+    box-shadow: none !important;
+}
+
+/* Hover inverts to gold — same language as the nav links and Give Now.
+   CSS fill/stroke here overrides the SVGs' presentation attributes, so the
+   markup keeps its standalone colors. */
+div.search-button button.search-icon svg circle,
+div.phone-button a.phone-icon svg circle,
+div.search-button button.search-icon svg path,
+div.phone-button a.phone-icon svg path {
+    transition: fill 0.15s ease, stroke 0.15s ease;
+}
+
+div.search-button button.search-icon:hover svg circle,
+div.phone-button a.phone-icon:hover svg circle {
+    fill: var(--cua-gold);
+    stroke: var(--cua-gold);
+}
+
+/* The search rule also darkens its weight-doubling stroke; the phone glyph
+   carries no stroke, so it only gets the fill. */
+div.search-button button.search-icon:hover svg path {
+    fill: var(--cua-black);
+    stroke: var(--cua-black);
+}
+
+div.phone-button a.phone-icon:hover svg path {
+    fill: var(--cua-black);
 }
 
 /* Double the search glyph's visual weight: the filled magnifier path gains

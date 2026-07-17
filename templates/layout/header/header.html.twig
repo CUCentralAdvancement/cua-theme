@@ -11,17 +11,24 @@
  *   own <nav>). The utility bar is deliberately a <div>, not a <nav>, so the
  *   logo/search controls don't sit inside a mislabelled nav landmark.
  * - Layout: the banner background is full-bleed (header#header sets the white
- *   background), while content is capped and centred with `.container`. The top
- *   bar and the main nav share `.container` so their edges align on wide screens.
+ *   background). The top bar and the main nav both use `.container-fluid px-3`
+ *   so their edges align; only the search panel caps its content with
+ *   `.container`.
  * - Load-bearing IDs: js/global.js reads #CollapseSearch (autofocus); CSS uses
  *   the element selector `nav#navbar-main`,
  *   so #navbar-main MUST stay a <nav>. #mainNavbarSupportedContent is the toggle
  *   target. The search <h2> (#search-heading) MUST stay OUTSIDE the collapse so
  *   the region keeps an accessible name while collapsed.
- * - Secondary menu is rendered twice (desktop utility bar + mobile collapse);
- *   Drupal suffixes the second instance, which CSS targets as `…secondarymenu--2`.
+ * - Secondary menu is rendered twice. Desktop: the block placement
+ *   (#block-cua-theme-secondarymenu — CSS targets that id). Mobile: the menu is
+ *   rendered directly via drupal_menu() (Twig Tweak — a site-level composer
+ *   dependency, not the theme's) inside hand-built wrappers carrying the same
+ *   classes CSS targets.
  * - Branding: site_name passes through |e (Drupal translates upstream).
- * - Performance: the LCP logo uses fetchpriority="high" + eager loading.
+ * - Performance: the LCP logo uses fetchpriority="high" + eager loading. Both
+ *   logo <img>s point at the same file, so the browser makes one high-priority
+ *   request regardless of breakpoint — the mobile <img> needs no hints of its
+ *   own.
  */
 #}
 
@@ -52,13 +59,7 @@
 									<a href="/tutorials" class="btn btn-sm btn-admin-app">{{ 'Tutorials'|t }}</a>
 								</div>
 							{% endif %}
-
-							{% if page.secondary_menu %}
-								<div class="secondary-menu-container d-none d-lg-flex ms-lg-auto">
-									{{ page.secondary_menu }}
-								</div>
-							{% endif %}
-
+					
 							{% if page.search %}
 								<div class="search-button">
 									<button class="search-icon btn btn-link p-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseSearch" aria-expanded="false" aria-controls="CollapseSearch" aria-label="{{ 'Toggle search'|t }}">
@@ -67,6 +68,29 @@
 											<path fill="#555555" transform="translate(11,11) scale(0.85)" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
 										</svg>
 									</button>
+								</div>
+							{% endif %}
+
+							{# Phone → contact page (the 'contact' view's page display).
+							   path() follows the view's URL setting, so the link survives a
+							   path change that would 404 a hardcoded alias. Desktop-only
+							   (d-lg): it crowds the mobile header, and mobile users still
+							   reach Contacts via the menu. #}
+							<div class="phone-button d-none d-lg-flex">
+								<a class="phone-icon btn btn-link p-0 text-dark" href="{{ path('view.contact.page_1') }}" aria-label="{{ 'Contact us'|t }}">
+									<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false">
+										<circle cx="18" cy="18" r="17" fill="none" stroke="#c0c0c0" stroke-width="2"/>
+										<path fill="#555555" transform="translate(11,11) scale(0.85)" fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+									</svg>
+								</a>
+							</div>
+
+							{% if page.secondary_menu %}
+								{# ms-lg-2 adds to the cluster's gap-2: 16px before the CTA vs
+								   8px between the utility icons — spacing groups the icons and
+								   sets Give Now apart. #}
+								<div class="secondary-menu-container d-none d-lg-flex ms-lg-2">
+									{{ page.secondary_menu }}
 								</div>
 							{% endif %}
 
