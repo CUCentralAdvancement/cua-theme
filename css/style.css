@@ -2217,14 +2217,6 @@ h1.page-title.pb-title {
     margin: 100px 0 0 !important;
 }
 
-button.accordion-button.collapsed,
-button:focus:not(:focus-visible),
-.accordion-button {
-    padding: .75rem !important;
-    font-weight: 600 !important;
-    color: #454545;
-}
-
 /* FAQ accordion questions: larger for readability (accessibility). */
 [id^="faq-accordion-"] .accordion-button {
     font-size: 1.17rem;
