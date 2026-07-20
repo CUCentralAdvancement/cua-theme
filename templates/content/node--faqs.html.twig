@@ -18,30 +18,46 @@
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ] -%}
 
-{#-- JSON-LD: single-question page = QAPage (same idiom as node.html.twig).
+{#-- JSON-LD: single-question page = FAQPage (switched from QAPage 2026-07:
+     Google reads QAPage as forum-style community Q&A; FAQPage is the type
+     for site-authored FAQs, and is what AI answer engines extract from).
      Question text is the node title; acceptedAnswer is the body, stripped
-     to plain text. Only on the node's own page — never in listings, where
-     the /faq page-level graph covers the collection. --#}
+     to plain text — it must stay in parity with the visible answer. Only on
+     the node's own page — never in listings, where the /faq page-level
+     graph covers the collection. publisher references the NGO entity
+     declared in html.html.twig's @graph. A BreadcrumbList rides along for
+     navigational context. --#}
 {% if view_mode == 'full' and page %}
 {%- set _answer = node.field_answer.value is defined ? node.field_answer.value|render|striptags|trim : '' -%}
+{%- set _question = node.label|render|striptags|trim -%}
+{%- set _url = url('<current>')|render -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "QAPage",
-  "mainEntity": {
+  "@type": "FAQPage",
+  "@id": {{ (_url ~ '#faqpage')|json_encode|raw }},
+  "url": {{ _url|json_encode|raw }},
+  "mainEntity": [{
     "@type": "Question",
-    "name": {{ node.label|render|striptags|trim|json_encode|raw }},
-    "answerCount": 1,
+    "name": {{ _question|json_encode|raw }},
     "acceptedAnswer": {
       "@type": "Answer",
       "text": {{ _answer|json_encode|raw }},
-      "url": {{ url('<current>')|render|json_encode|raw }}
+      "url": {{ _url|json_encode|raw }}
     }
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "University of Colorado Foundation"
-  }
+  }],
+  "publisher": { "@id": "https://www.giving.cu.edu/#foundation" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ url('<front>')|render|json_encode|raw }} },
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": {{ (url('<front>')|render ~ 'faq')|json_encode|raw }} },
+    { "@type": "ListItem", "position": 3, "name": {{ _question|json_encode|raw }}, "item": {{ _url|json_encode|raw }} }
+  ]
 }
 </script>
 {% endif %}
