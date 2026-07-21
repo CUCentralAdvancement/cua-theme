@@ -10,10 +10,6 @@
     {%- if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth -%}
       <div class="row g-0">
 
-        {#- Foundation + Advancement contact — hardcoded. Was previously
-            block-driven; the two footer_first content blocks were removed
-            2026-07. Renders unconditionally — do NOT re-gate on
-            page.footer_first, which is now intentionally empty. -#}
           <div class="col-md-4 col-sm-6 px-2 d-flex flex-column gap-4 footer-address">
 
             <section aria-labelledby="footer-foundation-heading">
@@ -44,14 +40,16 @@
                 </a>
               </div>
 
-              <div class="cua-charity-navigator">
+            {#- Chairty -- 
+            <div class="cua-charity-navigator">
                 <a href="https://www.charitynavigator.org/ein/846049811"
                    target="_blank" rel="noopener"
                    aria-label="{{ 'University of Colorado Foundation — Four-Star rated by Charity Navigator (opens in a new tab)'|t }}">
                   <img src="{{ base_path ~ directory ~ '/images/4star-ratingbadge-hor.png' }}"
                        width="300" height="65" alt="Charity Navigator badge" loading="lazy">
                 </a>
-              </div>
+              </div> -#}
+             
 
             </section>
 
