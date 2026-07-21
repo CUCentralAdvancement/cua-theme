@@ -281,6 +281,23 @@ h2#block-cua-theme-campusoffices-menu {
     margin: 1rem 0 0;
 }
 
+.site-footer .cua-charity-navigator a:hover, 
+.site-footer .cua-charity-navigator a:focus {
+    text-decoration: none;
+    outline: 0 solid var(--cua-gold);
+    outline-offset: 0;
+}
+
+.cua-charity-navigator img {
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+  
+  .cua-charity-navigator a:hover img,
+  .cua-charity-navigator a:focus-visible img {
+    transform: scale(0.9);
+}
+
 /*** Responsive ***/
 /* Screens below 991px */
 @media (max-width: 991px) {
