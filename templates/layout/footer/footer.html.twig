@@ -13,29 +13,6 @@
         {%- if page.footer_first -%}
           <div class="col-md-4 col-sm-6 px-2 d-flex flex-column gap-4 footer-address">
 
-            <section aria-labelledby="footer-advancement-heading">
-
-              <div class="cua-name-title">
-                <h3 id="footer-advancement-heading" class="mb-3 text-white">
-                  {{ 'University of Colorado Advancement'|t }}
-                  <span class="visually-hidden">{{ 'contact information'|t }}</span>
-                </h3>
-              </div>
-
-              <div class="cua-address mb-3 px-2 text-white">
-                1800 Grant Street, Suite 215<br>
-                Denver, CO 80203
-              </div>
-
-              <div class="cua-email mb-2 px-3">
-                <a class="link-cua" href="mailto:giving@cu.edu" aria-label="{{ 'Send email to giving@cu.edu'|t }}">
-                  <i class="fa-solid fa-envelope me-2" aria-hidden="true"></i>
-                  giving@cu.edu
-                </a>
-              </div>
-
-            </section>
-
             <section aria-labelledby="footer-foundation-heading">
 
               <div class="cua-name-title">
@@ -61,6 +38,38 @@
                 <a class="link-cua px-1" href="https://maps.app.goo.gl/G3RfovjWdKMCJZw6A" aria-label="{{ 'Open map and directions to University of Colorado Foundation'|t }}">
                   <i class="fa-solid fa-map pe-1" aria-hidden="true"></i>
                   {{ 'Directions'|t }}
+                </a>
+              </div>
+
+              <div class="cua-charity-navigator mt-3 px-2">
+                <a href="https://www.charitynavigator.org/ein/846049811"
+                   target="_blank" rel="noopener"
+                   aria-label="{{ 'University of Colorado Foundation — Four-Star rated by Charity Navigator (opens in a new tab)'|t }}">
+                  <img src="{{ base_path ~ directory ~ '/images/charitynavigator-4star-2026.png' }}"
+                       width="150" height="150" alt="" loading="lazy">
+                </a>
+              </div>
+
+            </section>
+
+            <section aria-labelledby="footer-advancement-heading">
+
+              <div class="cua-name-title">
+                <h3 id="footer-advancement-heading" class="mb-3 text-white">
+                  {{ 'University of Colorado Advancement'|t }}
+                  <span class="visually-hidden">{{ 'contact information'|t }}</span>
+                </h3>
+              </div>
+
+              <div class="cua-address mb-3 px-2 text-white">
+                1800 Grant Street, Suite 215<br>
+                Denver, CO 80203
+              </div>
+
+              <div class="cua-email mb-2 px-3">
+                <a class="link-cua" href="mailto:giving@cu.edu" aria-label="{{ 'Send email to giving@cu.edu'|t }}">
+                  <i class="fa-solid fa-envelope me-2" aria-hidden="true"></i>
+                  giving@cu.edu
                 </a>
               </div>
 
