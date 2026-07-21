@@ -275,6 +275,12 @@ h2#block-cua-theme-campusoffices-menu {
     max-width: 90% !important;
 }
 
+.cua-charity-navigator {
+    border: 1px solid var(--cua-gold);
+    width: fit-content;
+    margin: 1rem 0 0;
+}
+
 /*** Responsive ***/
 /* Screens below 991px */
 @media (max-width: 991px) {
@@ -312,4 +318,3 @@ h2#block-cua-theme-campusoffices-menu {
         font-size: var(--font-xsmall) !important;
     }
 }
-
