@@ -2353,6 +2353,26 @@ aside a.bef-link {
     color: var(--cua-black);
 }
 
+/* Base typography for the heading, mimicking .cu-line and views h2 */
+.row.flex-column-reverse .term-heading {
+    color: var(--cua-gray-800); /* Use var(--cua-gray-700) if you prefer the slightly lighter h2 color */
+    font-family: var(--font-roboto-condensed);
+    font-size: 2rem; 
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    padding: 0;
+    margin-top: 0;
+}
+
+/* The gold underline effect, mimicking .views-element-container h2::after */
+.row.flex-column-reverse .term-heading::after {
+    background-color: var(--cua-gold);
+    content: " ";
+    display: block;
+    margin: 0.4em 0;
+    width: 1.5em;
+    height: 0.1em;
+}
 
 @media (prefers-reduced-motion: reduce) {
     .animate__animated {
@@ -2507,4 +2527,3 @@ aside a.bef-link {
         display: none !important;
     }
 }
-`
