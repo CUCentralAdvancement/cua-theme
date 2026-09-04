@@ -328,3 +328,29 @@ img.card-header {
 .call-to-action .flag.cu-bg-light-grey .flag-title {
     color: var(--cua-black);
 }
+
+/* =====================================
+   .color-inherit  (the class the card wrapper has always carried)
+   =====================================
+   block--bundle--call-to-action.html.twig puts `color-inherit` on the
+   whole-card link, but the class was never defined anywhere in the theme —
+   so the wrapper kept Bootstrap's base `a` colour and every descendant
+   without a colour of its own inherited link blue. That is what made the
+   light-grey flag render blue above.
+
+   Cascade checked rather than assumed: the only rule that colours this
+   anchor is bootstrap.min.css `a { color: rgba(var(--bs-link-color-rgb)…) }`
+   at specificity (0,0,1), with no !important anywhere. A plain class at
+   (0,1,0) wins, so this needs no !important of its own.
+
+   In practice every text element inside the wrapper already receives
+   {{ text_color }} (title, body, caption, image macro) and the button
+   carries .btn classes, so this only changes CTAs whose text colour field
+   is empty — which is exactly the case that was rendering blue.
+
+   Scoped to .call-to-action because that is the only consumer in the whole
+   codebase. If another component ever needs it, promote it to style.css as
+   a real utility rather than copying it. */
+.call-to-action .color-inherit {
+    color: inherit;
+}
