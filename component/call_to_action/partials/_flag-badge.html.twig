@@ -1,0 +1,45 @@
+{#
+  =============================================================================
+  PARTIAL: CTA Flag Badge
+  =============================================================================
+  Included from block--bundle--call-to-action.html.twig at one of two anchors:
+
+    1. Inside figure.cta-media when the card has media — the normal case.
+       Measured 2026-09-04: all 49 flag-on CTA blocks have an image. Anchoring
+       here is what makes 'middle' and 'bottom' mean middle/bottom OF THE IMAGE
+       rather than of the whole card. The card also holds the title, body and
+       button footer, so a card-anchored 'bottom' would land the flag under the
+       button, nowhere near the image.
+
+    2. Directly in the card when there is no media, because there is no image
+       to anchor to. Position still applies, measured against the card.
+
+  This lives in its own file rather than being pasted at both call sites. The
+  template carries a standing warning never to split the wrapper divs across
+  conditionals; two hand-maintained copies would be that same hazard in slower
+  motion.
+
+  Expects from context: flag_pos, flag_background, icon, icon_size, icon_color,
+  flag_title.
+  =============================================================================
+#}
+<div class="cta-flag-anchor cta-flag--{{ flag_pos }} position-absolute start-0 z-1">
+  {%- set flag_classes = [
+    'flag-badge',
+    'd-inline-flex',
+    'align-items-center',
+    'py-1',
+    'px-2',
+  ]|filter(v => v) -%}
+  <div class="flag py-2 {{ flag_background }} {{ flag_classes|join(' ')|trim }}"
+       style="width:max-content;white-space:nowrap;">
+    {%- if icon -%}
+      <i class="{{ icon }} {{ icon_size }} px-1"
+         {% if icon_color %}style="color:{{ icon_color }}"{% endif %}
+         aria-hidden="true"></i>
+    {%- endif -%}
+    {%- if flag_title -%}
+      <span class="flag-title">{{- flag_title -}}</span>
+    {%- endif -%}
+  </div>
+</div>

@@ -202,3 +202,40 @@ img.card-header {
 }
 
 
+
+/* =====================================
+   Flag Position  (field_flag_position)
+   =====================================
+   The flag anchors to figure.cta-media when the card has an image, so
+   "middle" and "bottom" track the image rather than the whole card — the
+   card also holds the title, body and button footer, so a card-anchored
+   "bottom" would sit below the button.
+
+   The anchor spans the media box; .flag positions itself inside it. The
+   flag's own left:-8px overhang and the ::after fold tail come from the
+   global .flag rule in style.css and are deliberately left alone — that
+   rule is shared with give-now-block and lead-story-block. */
+.call-to-action .cta-flag-anchor {
+    top: 0;
+    bottom: 0;
+    width: 0; /* zero-width: the absolutely-positioned flag overflows it */
+}
+
+/* Top — the original behaviour, 20px below the anchor's top edge. */
+.call-to-action .cta-flag--top .flag {
+    top: 20px;
+    bottom: auto;
+}
+
+.call-to-action .cta-flag--middle .flag {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+
+/* Bottom — mirrors the 20px top inset, so the gap to the image's bottom
+   edge matches the gap at the top. */
+.call-to-action .cta-flag--bottom .flag {
+    top: auto;
+    bottom: 20px;
+}

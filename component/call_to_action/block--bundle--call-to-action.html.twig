@@ -74,6 +74,21 @@
    Normalized to also tolerate case/whitespace and common truthy values. #}
 {%- set flag_is_on = flag|lower|trim in ['flag_on', 'flag on', 'on', '1', 'true'] -%}
 
+{# ── Flag Position ────────────────────────────────────────────────────────── #}
+{# field_flag_position stores 'flag_top' / 'flag_middle' / 'flag_bottom'.
+   Blocks authored before the field existed carry no value at all, and the
+   theme's preprocess loop hands those through as '' — so anything the
+   whitelist doesn't recognise falls back to 'top', which is the only
+   behaviour that existed before this field. #}
+{%- set _flag_pos = flag_position|default('')|lower|trim|replace({'flag_': ''}) -%}
+{%- set flag_pos = _flag_pos in ['top', 'middle', 'bottom'] ? _flag_pos : 'top' -%}
+
+{# The flag anchors to the media box when there is one, so middle/bottom track
+   the image instead of the whole card. This mirrors the figure's own render
+   test below: once the flag is on, the icon-only branch never emits a figure,
+   so media means video or image. #}
+{%- set flag_has_media = provider or card_image -%}
+
 {# ── Button Visibility ────────────────────────────────────────────────────── #}
 {# 'hide_btn' is a sentinel value meaning "no button" — when set, the footer
    and its button are removed from the DOM entirely (not just visually hidden). #}
@@ -181,31 +196,14 @@
        aria-label="{{ single_link.title|striptags|trim }}{% if label %} - {{ label|striptags|trim }}{% endif %}">
   {%- endif -%}
 
-    {# ── Flag Badge — only renders when Flag On ─────────────────────────────
-       NOTE: This entire block including both wrapper divs lives inside the
-       flag_is_on check. Never split open/close divs across conditionals.
+    {# ── Flag Badge — no-media fallback ─────────────────────────────────────
+       When the card has media the flag renders inside figure.cta-media below,
+       so it can anchor to the image. This branch is the no-media case only.
+       The markup itself lives in the partial precisely so the wrapper divs are
+       never split across these two conditionals.
     ── #}
-    {%- if flag_is_on -%}
-      <div class="position-absolute start-0 top-0 z-1">
-        {%- set flag_classes = [
-          'flag-badge',
-          'd-inline-flex',
-          'align-items-center',
-          'py-1',
-          'px-2',
-        ]|filter(v => v) -%}
-        <div class="flag py-2 {{ flag_background }} {{ flag_classes|join(' ')|trim }}"
-             style="width:max-content;white-space:nowrap;">
-          {%- if icon -%}
-            <i class="{{ icon }} {{ icon_size }} px-1"
-               {% if icon_color %}style="color:{{ icon_color }}"{% endif %}
-               aria-hidden="true"></i>
-          {%- endif -%}
-          {%- if flag_title -%}
-            <span class="flag-title">{{- flag_title -}}</span>
-          {%- endif -%}
-        </div>
-      </div>
+    {%- if flag_is_on and not flag_has_media -%}
+      {%- include '@cua_theme/component/call_to_action/partials/_flag-badge.html.twig' -%}
     {%- endif -%}
 
     {# ── Media: Video / Image / Icon ────────────────────────────────────────
@@ -213,7 +211,12 @@
        When flag is On, icon is already rendered in the flag badge above.
     ── #}
     {%- if provider or card_image or (icon and not flag_is_on) -%}
-      <figure class="cta-media mb-0" role="presentation">
+      <figure class="cta-media mb-0 position-relative" role="presentation">
+        {# Flag lives inside the media box so 'middle' and 'bottom' measure
+           against the image, not the full card. #}
+        {%- if flag_is_on and flag_has_media -%}
+          {%- include '@cua_theme/component/call_to_action/partials/_flag-badge.html.twig' -%}
+        {%- endif -%}
         {%- if provider -%}
           {%- include '@cua_theme/component/video/partials/_video--master.html.twig' -%}
         {%- elseif card_image -%}
