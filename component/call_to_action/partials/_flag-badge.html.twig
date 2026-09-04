@@ -19,8 +19,8 @@
   conditionals; two hand-maintained copies would be that same hazard in slower
   motion.
 
-  Expects from context: flag_pos, flag_background, icon, icon_size, icon_color,
-  flag_title.
+  Expects from context: flag_pos, flag_trans, flag_background, icon, icon_size,
+  icon_color, flag_title.
   =============================================================================
 #}
 <div class="cta-flag-anchor cta-flag--{{ flag_pos }} position-absolute start-0 z-1">
@@ -30,6 +30,8 @@
     'align-items-center',
     'py-1',
     'px-2',
+    flag_trans ? 'flag--trans' : null,
+    flag_trans ? 'flag--trans-' ~ flag_trans : null,
   ]|filter(v => v) -%}
   <div class="flag py-2 {{ flag_background }} {{ flag_classes|join(' ')|trim }}"
        style="width:max-content;white-space:nowrap;">

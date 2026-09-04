@@ -89,6 +89,16 @@
    so media means video or image. #}
 {%- set flag_has_media = provider or card_image -%}
 
+{# ── Flag Transparency ────────────────────────────────────────────────────── #}
+{# field_flag_opacity stores 'flag_solid' / 'flag_low' / 'flag_medium' /
+   'flag_high'. Empty (every block authored before the field existed) and
+   'flag_solid' both mean the original opaque flag, so the default is no
+   transparency at all — nothing that already exists changes appearance.
+   The steps are 90% / 80% / 70% fill; the CSS floors gold's 70% step at 76%
+   because that is where it stops clearing WCAG AA. #}
+{%- set _flag_trans = flag_opacity|default('')|lower|trim|replace({'flag_': ''}) -%}
+{%- set flag_trans = _flag_trans in ['low', 'medium', 'high'] ? _flag_trans : null -%}
+
 {# ── Button Visibility ────────────────────────────────────────────────────── #}
 {# 'hide_btn' is a sentinel value meaning "no button" — when set, the footer
    and its button are removed from the DOM entirely (not just visually hidden). #}

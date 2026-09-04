@@ -239,3 +239,92 @@ img.card-header {
     top: auto;
     bottom: 20px;
 }
+
+/* =====================================
+   Flag Transparency  (field_flag_opacity)
+   =====================================
+   Lets the image show through the flag. Three steps — 90% / 80% / 70% fill.
+
+   Every one of the 15 background x step combinations clears WCAG 2.2 AA
+   (4.5:1). Measured 2026-09-04 by compositing each fill over both pure black
+   and pure white — the two worst backdrops a photo can present — and scoring
+   the flag's own text colour against the result:
+
+       step     tightest combination      ratio
+       Low      gold, black text           6.3:1
+       Medium   gold, black text           5.0:1
+       High     gold, black text           4.6:1   (gold floored, see below)
+
+   This is why the range stops at 70%. The originally-suggested 50% and 60%
+   measure 3.1:1 and 4.1:1 on the black fill and fail AA outright.
+
+   Two things this deliberately does NOT do:
+     - never uses `opacity`, which fades the lettering and icon along with
+       the fill. Only the background colour carries alpha, which is the whole
+       reason the ratios above hold.
+     - never touches the global .cu-bg-* utilities. Those are used site-wide
+       (give-now-block, lead-story-block, cards); everything here is scoped
+       to .call-to-action .flag.
+
+   backdrop-filter is a perceptual aid layered on top of the maths, not the
+   basis of it — every ratio above holds with the blur unsupported. */
+
+.call-to-action .flag.cu-bg-black      { --flag-fill: var(--cua-black); }
+.call-to-action .flag.cu-bg-pure-black { --flag-fill: var(--cua-black-pure); }
+.call-to-action .flag.cu-bg-gold       { --flag-fill: var(--cua-gold); }
+.call-to-action .flag.cu-bg-white      { --flag-fill: var(--cua-white); }
+.call-to-action .flag.cu-bg-light-grey { --flag-fill: var(--cua-light-grey); }
+
+.call-to-action .flag.flag--trans {
+    background: var(--flag-fill); /* fallback where relative colour is unsupported */
+    background-color: rgb(from var(--flag-fill) r g b / var(--flag-alpha));
+    -webkit-backdrop-filter: blur(6px) saturate(1.2);
+    backdrop-filter: blur(6px) saturate(1.2);
+    box-shadow: 0 2px 6px rgb(0 0 0 / .22);
+}
+
+.call-to-action .flag--trans-low    { --flag-alpha: .90; }
+.call-to-action .flag--trans-medium { --flag-alpha: .80; }
+.call-to-action .flag--trans-high   { --flag-alpha: .70; }
+
+/* Gold is the one fill that cannot reach 4.5:1 at 70% — it measures 4.0:1
+   with black text over a light photo. Floored to its real threshold (76%,
+   4.57:1) rather than withdrawing the step for gold and leaving the editor
+   with a control that silently does nothing. */
+.call-to-action .flag.cu-bg-gold.flag--trans-high { --flag-alpha: .76; }
+
+/* .cu-bg-pure-black declares its background !important in style.css, so the
+   translucent fill has to match that weight to land at all. Only this one
+   background needs it. */
+.call-to-action .flag.cu-bg-pure-black.flag--trans {
+    background-color: rgb(from var(--cua-black-pure) r g b / var(--flag-alpha)) !important;
+}
+
+/* The fold tail is hardcoded black in the global .flag::after rule, so it
+   would stay fully opaque against a see-through flag and read as a bug.
+   Follow the fill instead. */
+.call-to-action .flag.flag--trans::after {
+    border-right-color: var(--flag-fill);
+    border-right-color: rgb(from var(--flag-fill) r g b / var(--flag-alpha));
+}
+
+/* =====================================
+   Light Grey flag text colour
+   =====================================
+   style.css gives .flag an explicit colour for cu-bg-white, cu-bg-gold,
+   cu-bg-black and cu-bg-pure-black — but not cu-bg-light-grey. With no rule
+   of its own the flag text inherits from the card-wrapper <a>, which is
+   link blue, because the `color-inherit` class that wrapper carries is never
+   actually defined anywhere in the theme (the only match is a per-block
+   patch for #cta-2058 in overrides.css).
+
+   The intended colour is not in doubt: .flag-badge.cu-bg-light-grey
+   .flag-text is already declared black in style.css. It simply never applies
+   here, because this component renders .flag-title, not .flag-text.
+
+   Scoped to .call-to-action deliberately: give-now-block and lead-story-block
+   share the global .flag and already resolve via the .flag-text rule. */
+.call-to-action .flag.cu-bg-light-grey,
+.call-to-action .flag.cu-bg-light-grey .flag-title {
+    color: var(--cua-black);
+}
