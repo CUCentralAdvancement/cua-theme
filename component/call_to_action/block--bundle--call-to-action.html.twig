@@ -75,13 +75,23 @@
 {%- set flag_is_on = flag|lower|trim in ['flag_on', 'flag on', 'on', '1', 'true'] -%}
 
 {# ── Flag Position ────────────────────────────────────────────────────────── #}
-{# field_flag_position stores 'flag_top' / 'flag_middle' / 'flag_bottom'.
+{# field_flag_position stores six values: 'flag_top' / 'flag_middle' /
+   'flag_bottom' (left column, the originals) and their '_right' twins.
    Blocks authored before the field existed carry no value at all, and the
    theme's preprocess loop hands those through as '' — so anything the
-   whitelist doesn't recognise falls back to 'top', which is the only
-   behaviour that existed before this field. #}
-{%- set _flag_pos = flag_position|default('')|lower|trim|replace({'flag_': ''}) -%}
-{%- set flag_pos = _flag_pos in ['top', 'middle', 'bottom'] ? _flag_pos : 'top' -%}
+   whitelist doesn't recognise falls back to top-LEFT, which is the only
+   behaviour that existed before this field.
+
+   The value is deliberately validated whole, before being split, so a
+   malformed value like 'xyz_right' cannot leak a side without a valid
+   vertical position. Splitting emits two independent classes: the three
+   vertical rules stay side-agnostic and the mirror is one CSS block,
+   rather than six combinations. #}
+{%- set _flag_raw = flag_position|default('')|lower|trim|replace({'flag_': ''}) -%}
+{%- set _flag_valid = ['top', 'middle', 'bottom', 'top_right', 'middle_right', 'bottom_right'] -%}
+{%- set _flag_pos = _flag_raw in _flag_valid ? _flag_raw : 'top' -%}
+{%- set flag_side = _flag_pos ends with '_right' ? 'right' : 'left' -%}
+{%- set flag_pos = _flag_pos|replace({'_right': ''}) -%}
 
 {# The flag anchors to the media box when there is one, so middle/bottom track
    the image instead of the whole card. This mirrors the figure's own render

@@ -19,11 +19,12 @@
   conditionals; two hand-maintained copies would be that same hazard in slower
   motion.
 
-  Expects from context: flag_pos, flag_trans, flag_background, icon, icon_size,
-  icon_color, flag_title.
+  Expects from context: flag_pos, flag_side, flag_trans, flag_background, icon,
+  icon_size, icon_color, flag_title.
   =============================================================================
 #}
-<div class="cta-flag-anchor cta-flag--{{ flag_pos }} position-absolute start-0 z-1">
+<div class="cta-flag-anchor cta-flag--{{ flag_pos }} cta-flag--{{ flag_side }}
+            position-absolute {{ flag_side == 'right' ? 'end-0' : 'start-0' }} z-1">
   {%- set flag_classes = [
     'flag-badge',
     'd-inline-flex',

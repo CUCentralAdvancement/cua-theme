@@ -354,3 +354,42 @@ img.card-header {
 .call-to-action .color-inherit {
     color: inherit;
 }
+
+/* =====================================
+   Right-side flag  (field_flag_position '_right' values)
+   =====================================
+   The three vertical rules above are side-agnostic and are reused as-is;
+   this block only mirrors the horizontal geometry. Left stays the default,
+   so nothing authored before these values existed changes.
+
+   .flag is a LEFT-anchored ribbon in three separate ways, and all three have
+   to flip together or the shape reads as broken:
+     1. left: -8px            the overhang past the media edge
+     2. padding: 1px 20px 1px 7px   asymmetric — the wide side is the point
+     3. ::after at left:0 with only the RIGHT border coloured — the fold tail
+   Those live in the global .flag rule in style.css, which give-now-block and
+   lead-story-block also use, so they are mirrored here rather than edited. */
+.call-to-action .cta-flag--right .flag {
+    left: auto;
+    right: -8px;
+    padding: 1px 7px 1px 20px;
+}
+
+/* Fold tail rebuilt on the opposite corner: bottom-right, pointing the other
+   way. Setting the border-color shorthand also zeroes the old right-side
+   colour, so the original triangle cannot ghost through. */
+.call-to-action .cta-flag--right .flag::after {
+    left: auto;
+    right: 0;
+    border-width: 0 0 8px 8px;
+    border-color: transparent transparent transparent #000;
+}
+
+/* Transparency parity. The left-side rule above drives border-RIGHT-color;
+   a mirrored tail is drawn with the LEFT border, so without this a right-side
+   flag on any transparency step would hang a solid black tail off a
+   see-through flag — the exact defect that was fixed for the left side. */
+.call-to-action .cta-flag--right .flag.flag--trans::after {
+    border-left-color: var(--flag-fill);
+    border-left-color: rgb(from var(--flag-fill) r g b / var(--flag-alpha));
+}
