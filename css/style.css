@@ -573,6 +573,29 @@ strong {
     color: var(--cua-gold-dark) !important;
 }
 
+/*
+ * Gold border colours. These set ONLY border-color, following Bootstrap's own
+ * .border-primary pattern, so they combine with Bootstrap's width and style
+ * utilities: <hr class="border border-5 border-gold-dark opacity-100">.
+ *
+ * !important is required, not habit: Bootstrap's .border sets its colour with
+ * !important, and this sheet loads after Bootstrap so the later rule wins.
+ * The older .cu-bd-gold cannot do this job — it is a 2px shorthand without
+ * !important, so .border overrides it and it would also fight border-5.
+ *
+ * Contrast (2026-09-15): gold is 1.94:1 on white and gold-dark 4.53:1. Fine
+ * for decorative rules and dividers, which carry no meaning. If a border ever
+ * has to convey something (a boundary users must see, a selected state), it
+ * needs 3:1 against its background, so do not rely on plain gold on white.
+ */
+.border-gold {
+    border-color: var(--cua-gold) !important;
+}
+
+.border-gold-dark {
+    border-color: var(--cua-gold-dark) !important;
+}
+
 .text-white {
     color: var(--cua-white) !important;
 }
