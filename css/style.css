@@ -563,6 +563,16 @@ strong {
     color: var(--cua-gold) !important;
 }
 
+/*
+ * Dark gold text. #8d7334 is a mid-tone, so legibility depends on the
+ * background (measured 2026-09-15): 4.53:1 on white passes AA at any size;
+ * on light grey (4.08:1) or black (3.34:1) it only passes as large text
+ * (24px+, e.g. fs-150 and up); on CU gold (2.33:1) it fails at every size.
+ */
+.text-gold-dark {
+    color: var(--cua-gold-dark) !important;
+}
+
 .text-white {
     color: var(--cua-white) !important;
 }
