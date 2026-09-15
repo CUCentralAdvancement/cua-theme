@@ -248,7 +248,7 @@ function cua_theme_preprocess_block(array &$variables): void {
                 $image_field_value = reset($image_field_items);
                 if (is_array($image_field_value)) {
                     // Pass the render array so Twig renders the actual <img> tag (no escaping)
-                    $variables['card_image'] = $block_content->get('field_image')->view(['type' => 'default']);
+                    $variables['card_image'] = $block_content->get('field_image')->view(cua_theme_card_image_display($block_content));
                     
                     $variables['image'] = $image_field_value['image'] ?? NULL;
                     $variables['image_url'] = $image_field_value['uri'] ?? NULL;
@@ -456,4 +456,56 @@ function cua_theme_preprocess_views_view(array &$variables): void {
  */
 function cua_theme_preprocess_pager(array &$variables): void {
     $variables['pagination_heading_level'] = 'h2';
+}
+
+/**
+ * Chooses how a block's field_image is rendered.
+ *
+ * The call_to_action bundle has field_image_ratio. When a ratio is chosen,
+ * the image goes through the matching cta_* image style, which crops around
+ * the image's focal point and converts to WebP at 800px wide.
+ *
+ * WHY THIS IS NOT JUST THE VIEW DISPLAY: the view display is bypassed on
+ * purpose, because card_image is built here with explicit display options.
+ * Before this existed that meant ['type' => 'default'] with no image style,
+ * so every CTA image was served as the original upload and the focal point
+ * widget stored a point that nothing ever used. Focal point only affects
+ * output through an image style carrying a focal_point effect.
+ *
+ * Everything else keeps the old behaviour exactly: other bundles with
+ * field_image (banner, basic, counter, half_and_half, image) have no ratio
+ * field, and a CTA left on "Original" or with no value is unchanged. The map
+ * is an explicit whitelist, and a style that fails to load also falls back,
+ * so a missing config import degrades to the original image, never a broken
+ * one.
+ */
+function cua_theme_card_image_display($block_content): array {
+  $original = ['type' => 'default'];
+
+  if (!$block_content->hasField('field_image_ratio')) {
+    return $original;
+  }
+
+  $styles = [
+    '16_9' => 'cta_16_9',
+    '3_2' => 'cta_3_2',
+    '4_3' => 'cta_4_3',
+    '1_1' => 'cta_1_1',
+    '4_5' => 'cta_4_5',
+  ];
+  $ratio = (string) $block_content->get('field_image_ratio')->value;
+
+  if (!isset($styles[$ratio]) || !\Drupal\image\Entity\ImageStyle::load($styles[$ratio])) {
+    return $original;
+  }
+
+  return [
+    'type' => 'image',
+    'label' => 'hidden',
+    'settings' => [
+      'image_style' => $styles[$ratio],
+      'image_link' => '',
+      'image_loading' => ['attribute' => 'lazy'],
+    ],
+  ];
 }
