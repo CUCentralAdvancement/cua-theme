@@ -456,6 +456,31 @@ p.intro {
     line-height: 1.5 !important;
 }
 
+/*
+ * Paragraph size steps: fs-110 through fs-200, in 10% increments.
+ *
+ * Scaled from --base-font-size rather than a bare percentage. A plain
+ * `font-size: 110%` is relative to the PARENT, and CTA body copy sits inside
+ * `.cta-text.lead` (1.25rem), so the same class would give 110% of normal
+ * paragraph text in one place and about 137% inside a CTA. Anchoring to the
+ * variable makes each step mean the same thing everywhere: N% of normal text.
+ *
+ * !important matches the other editor paragraph styles (p.h2-title and
+ * friends), and these rules sit after them on purpose so a size step wins when
+ * an editor combines the two. Combining resets to N% of NORMAL text, not N% of
+ * the title size.
+ */
+p.fs-110 { font-size: calc(var(--base-font-size) * 1.1) !important; }
+p.fs-120 { font-size: calc(var(--base-font-size) * 1.2) !important; }
+p.fs-130 { font-size: calc(var(--base-font-size) * 1.3) !important; }
+p.fs-140 { font-size: calc(var(--base-font-size) * 1.4) !important; }
+p.fs-150 { font-size: calc(var(--base-font-size) * 1.5) !important; }
+p.fs-160 { font-size: calc(var(--base-font-size) * 1.6) !important; }
+p.fs-170 { font-size: calc(var(--base-font-size) * 1.7) !important; }
+p.fs-180 { font-size: calc(var(--base-font-size) * 1.8) !important; }
+p.fs-190 { font-size: calc(var(--base-font-size) * 1.9) !important; }
+p.fs-200 { font-size: calc(var(--base-font-size) * 2) !important; }
+
 /* Blockquotes — gold FA quote mark + italic testimonial voice, all widths.
    (Promoted from the max-width:991px block, where this lived mobile-only;
    the icon sits inside the left padding so .container-fluid's
