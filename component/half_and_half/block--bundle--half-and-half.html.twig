@@ -172,18 +172,33 @@
 
                 {%- if links -%}
                   {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
+                  {#
+                     is_single_link is deliberately NOT passed here.
+
+                     It makes the macro render the CTA as a decorative
+                     <span aria-hidden="true"> instead of an <a>, which is
+                     only correct when the whole card is already wrapped in
+                     an anchor (the pattern the CTA component uses). This
+                     template has no wrapping anchor and no clickable-card
+                     JS, so passing it would leave every one-link
+                     half-and-half block with a dead, unreachable button —
+                     17 blocks currently have exactly one link.
+
+                     The old positional call passed `single_link ? true :
+                     false` into what the macro read as another parameter,
+                     so this never actually fired. Naming the arguments made
+                     the intent visible; the intent was wrong.
+                  #}
                   {{- cardFooterMacros.render_card_footer(
                     links,
-                    container_size,
-                    color_background,
-                    position_container,
-                    text_alignment,
-                    padding,
-                    outline,
-                    button_color,
-                    button_layout,
-                    false,
-                    single_link ? true : false
+                    container_size     = container_size,
+                    color_background   = color_background,
+                    position_container = position_container,
+                    text_alignment     = text_alignment,
+                    padding            = padding,
+                    outline            = outline,
+                    button_color       = button_color,
+                    button_layout      = button_layout
                   ) -}}
                 {%- endif -%}
 

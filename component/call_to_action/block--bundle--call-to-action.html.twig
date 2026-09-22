@@ -299,7 +299,17 @@
     ── #}
     {%- if links_count > 1 and not hide_button -%}
       {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
-      {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false) -}}
+      {{- cardFooterMacros.render_card_footer(
+        links,
+        container_size     = container_size,
+        color_background   = color_background,
+        position_container = position_container,
+        text_alignment     = text_alignment,
+        padding            = padding,
+        outline            = outline,
+        button_color       = button_color,
+        button_layout      = button_layout
+      ) -}}
     {%- endif -%}
 
   {%- if wrap_entire_card -%}

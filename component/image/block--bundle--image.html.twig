@@ -133,7 +133,17 @@
         </div>
       {%- else -%}
         {%- import '@cua_theme/component/macros/card_footer.html.twig' as cardFooterMacros -%}
-        {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, safe_text_alignment, padding, outline, button_color, button_layout) -}}
+        {{- cardFooterMacros.render_card_footer(
+          links,
+          container_size     = container_size,
+          color_background   = color_background,
+          position_container = position_container,
+          text_alignment     = safe_text_alignment,
+          padding            = padding,
+          outline            = outline,
+          button_color       = button_color,
+          button_layout      = button_layout
+        ) -}}
       {%- endif -%}
     {%- endif -%}
 

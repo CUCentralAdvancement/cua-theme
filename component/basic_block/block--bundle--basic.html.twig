@@ -182,7 +182,18 @@
         'data-ga-category':     'basic_block',
         'data-ga-component-id': unique_id,
       } -%}
-      {{- cardFooterMacros.render_card_footer(links, container_size, color_background, position_container, text_alignment, padding, outline, button_color, button_layout, false, false, ga_attributes) -}}
+      {{- cardFooterMacros.render_card_footer(
+        links,
+        container_size     = container_size,
+        color_background   = color_background,
+        position_container = position_container,
+        text_alignment     = text_alignment,
+        padding            = padding,
+        outline            = outline,
+        button_color       = button_color,
+        button_layout      = button_layout,
+        ga_attributes      = ga_attributes
+      ) -}}
     {%- endif -%}
   {%- endif -%}
 

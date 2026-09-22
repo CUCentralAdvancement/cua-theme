@@ -18,6 +18,19 @@
   =============================================================================
 #}
 
+{#
+  ---------------------------------------------------------------------------
+  PARAMETER ORDER IS A CONTRACT. Do not insert or remove a parameter in the
+  middle of this list.
+
+  button_layout (9) and ga_attributes (12) were missing from this signature
+  while all six call sites passed them, so every argument from position 9
+  onward landed in the wrong slot. The visible result was CTA links rendering
+  aria-hidden="true" (button_layout arriving as hide_from_screen_readers) and
+  analytics attributes being dropped. Call sites now pass by NAME, which is
+  what keeps this from drifting again — keep it that way.
+  ---------------------------------------------------------------------------
+#}
 {% macro render_card_footer(
     links,
     container_size = null,
@@ -27,8 +40,10 @@
     padding = null,
     outline = null,
     button_color = 'primary',
+    button_layout = null,
     hide_from_screen_readers = false,
     is_single_link = false,
+    ga_attributes = null,
     custom_label = null
 ) %}
 
@@ -45,11 +60,36 @@
         #}
         {% set btn_variant = outline ? 'btn-outline-' ~ button_color : 'btn-' ~ button_color %}
 
+        {#
+           LAYOUT:
+           The editor's Button Layout choice. Only the `basic` and `button`
+           bundles carry field_button_layout; everywhere else this arrives
+           null and the horizontal default stands, so nothing changes for
+           those components.
+
+           `flex-column` is Bootstrap's own utility, so it is declared
+           !important and wins on its own — no theme CSS needed here.
+
+           Once stacked, justify-content runs down the main axis and no
+           longer centres anything, so the chosen alignment has to move to
+           the cross axis. Same mapping block--bundle--button.html.twig
+           performs for its vertical_layout.
+        #}
+        {% set alignment_string = text_alignment|default('') %}
+        {% set is_vertical = button_layout == 'vertical_layout' %}
+        {% set vertical_align = '' %}
+        {% if is_vertical %}
+            {% set vertical_align = 'center' in alignment_string ? 'align-items-center'
+                : ('end' in alignment_string ? 'align-items-end' : 'align-items-start') %}
+        {% endif %}
+
         {# FOOTER WRAPPER CLASSES #}
         {% set card_footer_classes = [
             'card-footer',
             'd-flex',
             'flex-wrap',
+            is_vertical ? 'flex-column' : '',
+            vertical_align,
             multiple_links ? 'multiple-links gap-2' : '',
             container_size,
             position_container,
@@ -89,6 +129,15 @@
                     {# STANDARD CTA #}
                     <a href="{{ link.url }}"
                        class="{{ card_footer_link_classes }}"
+                       {#- The caller supplies event/category/component-id once for
+                           the whole block; the action names the individual link,
+                           matching what the single-link paths emit inline. Each
+                           attribute carries its own leading space — a trimmed
+                           comment here once glued two of them together. -#}
+                       {%- if ga_attributes %}
+                         {%- for ga_name, ga_value in ga_attributes %} {{ ga_name }}="{{ ga_value|e('html_attr') }}"{% endfor %}
+                         {{- ' ' }}data-ga-action="{{ link.title|striptags|trim|e('html_attr') }}"
+                       {%- endif %}
                        {% if hide_from_screen_readers %} aria-hidden="true" {% endif %}>
                         {{ link.title|e }}
                     </a>
