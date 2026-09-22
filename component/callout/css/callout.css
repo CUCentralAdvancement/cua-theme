@@ -1,0 +1,105 @@
+/* =============================================================================
+   CALLOUT — a statement aside that draws attention without becoming a card.
+   COMPLIANCE: Section 508 / WCAG 2.2 AA (contrast measured 2026-09-22)
+
+   DESIGN RULES, so nobody "improves" this into a card later:
+   - ONE heavy rule on the leading edge. Four borders is a card with a new coat.
+   - NO box-shadow. On this site a shadow is the card signal, and the card
+     family is flat and square (card.css forces border-radius: 0).
+   - Attention comes from the rule and the type, not from chrome.
+
+   COLOUR PAIRINGS ARE NOT FREE CHOICES. Measured against the brand tokens:
+     black  on white 15.13 | on gold 7.78 | on tint 12.51   -> safe everywhere
+     white  on black 15.13 | on gold 1.94 FAILS
+     gold   on black  7.78 | on white 1.94 FAILS
+     gold-dark on white 4.53 | on tint 3.75 (24px+ only) | on gold 2.33 FAILS
+   That is why the eyebrow colour is driven by the background below rather
+   than being set once. Gold is a RULE colour, not a text colour.
+   ========================================================================== */
+
+/* No background is declared here ON PURPOSE. card.css sets .cu-bg-gold and
+   friends with plain `background:` at the same specificity as .cu-callout,
+   and this file loads after it — a `background-color: transparent` here would
+   silently cancel every fill below. Absence is the fix; do not "tidy" it in. */
+.cu-callout {
+  border-left: 4px solid var(--cua-gold);
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--cua-black);
+  padding: 1rem 0 1rem 1.25rem;
+}
+
+/* Filled variants need breathing room on all sides; the unfilled one only
+   needs the indent from its rule. */
+.cu-callout.cu-bg-gold,
+.cu-callout.cu-bg-black,
+.cu-callout.cu-bg-white,
+.cu-callout.cu-bg-light-grey,
+.cu-callout.cu-bg-gold-tint {
+  padding: 1.5rem;
+}
+
+/* ── Rule colours ────────────────────────────────────────────────────────── */
+.cu-callout--rule-gold  { border-left-color: var(--cua-gold); }
+.cu-callout--rule-black { border-left-color: var(--cua-black); }
+.cu-callout--rule-white { border-left-color: var(--cua-white); }
+
+/* Guards, matching the auto-correction card.css already does for text: a rule
+   the same colour as its background is not a design choice, it is an invisible
+   border. Fall back to gold rather than render nothing. */
+.cu-callout--rule-white.cu-bg-white,
+.cu-callout--rule-white.cu-bg-light-grey,
+.cu-callout--rule-white:not([class*="cu-bg-"]) { border-left-color: var(--cua-gold); }
+.cu-callout--rule-black.cu-bg-black { border-left-color: var(--cua-gold); }
+/* Gold rule on a gold or tinted fill is 2.33:1 and 1.61:1 against its own
+   background — present in the markup, invisible on the page. Darken it. */
+.cu-callout--rule-gold.cu-bg-gold,
+.cu-callout--rule-gold.cu-bg-gold-tint { border-left-color: var(--cua-gold-dark); }
+
+/* ── Backgrounds ─────────────────────────────────────────────────────────── */
+/* cu-bg-gold / -black / -white / -light-grey already ship globally in
+   card.css. Only the warm tint lacks a class, so it is added here. */
+.cu-bg-gold-tint { background-color: var(--cua-gold-tint) !important; }
+
+/* ── Text, driven by the background ──────────────────────────────────────── */
+.cu-callout.cu-bg-black { color: var(--cua-white); }
+
+.cu-callout__eyebrow {
+  color: var(--cua-gold-dark);      /* 4.53:1 on white */
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+}
+
+.cu-callout.cu-bg-gold  .cu-callout__eyebrow,
+.cu-callout.cu-bg-gold-tint .cu-callout__eyebrow { color: var(--cua-black); }
+.cu-callout.cu-bg-black .cu-callout__eyebrow     { color: var(--cua-gold); }
+
+.cu-callout__text {
+  font-size: calc(var(--base-font-size) * 1.4);
+  line-height: 1.35;
+  margin-bottom: 0;
+}
+
+/* The figure is the point of most of these; let it lead. */
+.cu-callout__figure {
+  font-size: calc(var(--base-font-size) * 2);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: .5rem;
+}
+
+.cu-callout__text strong,
+.cu-callout__figure { color: inherit; }
+
+@media (max-width: 576px) {
+  .cu-callout { padding: .75rem 0 .75rem 1rem; }
+  .cu-callout.cu-bg-gold,
+  .cu-callout.cu-bg-black,
+  .cu-callout.cu-bg-white,
+  .cu-callout.cu-bg-light-grey,
+  .cu-callout.cu-bg-gold-tint { padding: 1.25rem; }
+  .cu-callout__text { font-size: calc(var(--base-font-size) * 1.2); }
+}

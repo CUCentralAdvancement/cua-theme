@@ -21,6 +21,11 @@ global-styling:
         weight: -11
       layouts/css/layout-builder.css:
         weight: -11
+      # Callout: pasted into body fields by editors, so there is no template to
+      # attach_library() from — it has to be global. Left at the default weight
+      # so it lands AFTER card.css (-11), which is what lets .cu-callout.cu-bg-*
+      # override the plain .cu-bg-* backgrounds.
+      component/callout/css/callout.css: {}
   js:
     js/bootstrap.bundle.min.js: {}
     js/global.js: {}
