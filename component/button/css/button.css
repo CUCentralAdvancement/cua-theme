@@ -8,6 +8,17 @@
   gap: 0.5rem;
 }
 
+/* Horizontal layout bleeds off narrow screens: each .btn has a 16rem
+   min-width (card.css), so 2-3 buttons in a flex-row need 32-48rem+ and
+   overflow a phone viewport instead of wrapping. Force it to stack below
+   the point they stop fitting, regardless of the editor's chosen layout. */
+@media (max-width: 576px) {
+  .button.card .card-footer.flex-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 /* Body text colors — headings set their own color (style.css h1–h6),
    so the wrapper class must reach descendants explicitly. */
 .button.card .card-body.cu-text-white,
