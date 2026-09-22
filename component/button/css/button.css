@@ -10,12 +10,38 @@
 
 /* Horizontal layout bleeds off narrow screens: each .btn has a 16rem
    min-width (card.css), so 2-3 buttons in a flex-row need 32-48rem+ and
-   overflow a phone viewport instead of wrapping. Force it to stack below
-   the point they stop fitting, regardless of the editor's chosen layout. */
+   overflow a phone viewport instead of wrapping.
+
+   Above the stacking breakpoint, let the row wrap: three buttons still need
+   ~776px and would otherwise bleed out of a 720px container.
+
+   The !important on flex-direction is required, not lazy: `flex-row` is a
+   Bootstrap utility, declared `flex-direction: row !important` in
+   bootstrap.min.css, so this rule loses no matter how specific the selector
+   is. That is exactly why vertical_layout (a theme class, nothing competing
+   with it) stacked while horizontal never did. Measured at 375px: the media
+   query matched and flex-direction stayed `row` until !important was added.
+   flex-wrap carries no such utility on this element, so it needs none. */
+.button.card .card-footer.flex-row {
+  flex-wrap: wrap;
+}
+
 @media (max-width: 576px) {
   .button.card .card-footer.flex-row {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 0.5rem;
+  }
+
+  /* Once stacked, justify-content runs down the column and no longer
+     centres anything, so the editor's chosen alignment has to move to the
+     cross axis — the same mapping block--bundle--button.html.twig does in
+     Twig for vertical_layout. */
+  .button.card .card-footer.flex-row.justify-content-center {
+    align-items: center;
+  }
+
+  .button.card .card-footer.flex-row.justify-content-end {
+    align-items: flex-end;
   }
 }
 
