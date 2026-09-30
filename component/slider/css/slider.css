@@ -66,6 +66,10 @@
   justify-content: center;
 }
 
+.carousel-indicators {
+  bottom: -25px;
+}
+
 /* Desktop (≥ lg): enforce the 70 / 30 split. Bootstrap col-12 keeps both
    full width below this, so the slide stacks (image top) on mobile/tablet. */
 @media (min-width: 992px) {
