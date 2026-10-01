@@ -588,12 +588,6 @@ h3.text-align-center.impact-26-title {
 
 /* Global + Impact Report responsive — 991px */
 @media (max-width: 991px) {
-
-  /* ── Global slider ─────────────────────────────────────────────── */
-  .slider .px-5 {
-    padding: 0 5rem !important;
-  }
-
   blockquote p {
     font-size: 1rem;
     line-height: 1.5;

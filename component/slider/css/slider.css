@@ -107,10 +107,9 @@
   }
 
   .slider.px-5 {
-    padding-right: 0 !important;
-    padding-left: 2rem !important;
+    padding: 2rem 2.75rem !important;
   }
-
+  
   .slider.mx-5 {
     margin-left: 0 !important;
     margin-right: 0 !important;
