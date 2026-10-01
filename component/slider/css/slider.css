@@ -110,6 +110,10 @@
     padding: 2rem 2.75rem !important;
   }
   
+  .slider-copy.py-3.px-5 {
+    padding: 2rem 2.75rem !important;
+}
+
   .slider.mx-5 {
     margin-left: 0 !important;
     margin-right: 0 !important;
