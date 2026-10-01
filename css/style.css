@@ -400,6 +400,10 @@ div#main-wrapper {
     display: none !important;
 }
 
+body:not(.user-administrator) .admin-only {
+    display: none !important;
+}
+
 .field.field--name-title.field--type-string.field--label-hidden {
     background: var(--cua-white);
 }
