@@ -40,7 +40,7 @@
 {% set labelledby_id = unique_id ~ '--label' %}
 
 <div {{ attributes
-    .without('id')
+    .removeAttribute('id')
     .setAttribute('id', unique_id)
     .addClass(alert_classes)
     .setAttribute('role', 'region')

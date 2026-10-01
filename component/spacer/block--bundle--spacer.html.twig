@@ -38,18 +38,20 @@
    aria-hidden="true" is applied at the root to ensure this block 
    is a total "ghost" to screen readers.
 #}
+
 <div{{ attributes
-    .without('id')
+    .removeAttribute('id')
     .setAttribute('id', unique_id)
     .addClass(spacer_classes)
     .setAttribute('aria-hidden', 'true')
 }}>
 
-    {{ title_prefix }}
-    {{ title_suffix }}
 
     {# INTERNAL SPACING ELEMENT #}
     <div class="spacer {{ size }} g-0">
+        
+        {{- title_prefix -}}
+        {{- title_suffix -}}
 
         {# 
            ADMIN "GHOST" LABEL: 
