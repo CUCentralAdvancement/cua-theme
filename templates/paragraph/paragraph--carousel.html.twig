@@ -4,7 +4,8 @@
  * One slide of the content slider (carousel paragraph).
  *
  * Per-slide options (fields on the `carousel` paragraph):
- *   - field_slide_layout: stacked | image_left | image_right
+ *   - field_slide_layout: stacked | image_left | image_right (70/30)
+ *     | image_left_60 | image_right_60 | image_left_50 | image_right_50
  *   - field_color_background: cu-bg-* class behind the copy
  *   - field_text_color: cu-text-* / text-* class for the copy
  *
@@ -26,13 +27,21 @@
 
 {%- set copy_classes = ['slider-copy-col', bg_class, text_class]|filter(v => v)|join(' ') -%}
 
-{% if has_image and layout in ['image_left', 'image_right'] %}
+{#
+  Split values: image_left / image_right (70/30, the original values),
+  plus image_left_60 / image_right_60 and image_left_50 / image_right_50.
+  Side comes from the prefix, ratio from the suffix (none = 70).
+#}
+{%- set is_right = layout starts with 'image_right' -%}
+{%- set ratio = layout ends with '_60' ? '60' : (layout ends with '_50' ? '50' : '70') -%}
+
+{% if has_image and layout starts with 'image_' %}
 
   {# Side by side on desktop (≥lg); image ordered left or right. Stacks < lg. #}
-  {%- set image_order = layout == 'image_right' ? 'order-lg-last' : 'order-lg-first' -%}
-  {%- set copy_order  = layout == 'image_right' ? 'order-lg-first' : 'order-lg-last' -%}
+  {%- set image_order = is_right ? 'order-lg-last' : 'order-lg-first' -%}
+  {%- set copy_order  = is_right ? 'order-lg-first' : 'order-lg-last' -%}
 
-  <div{{ attributes.addClass('slider-split', 'row', 'g-0', 'align-items-stretch') }}>
+  <div{{ attributes.addClass('slider-split', 'slider-split--' ~ ratio, 'row', 'g-0', 'align-items-stretch') }}>
     <div class="slider-image-col col-12 order-first {{ image_order }}">
       {{ content.field_image }}
     </div>

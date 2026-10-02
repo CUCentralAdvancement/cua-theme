@@ -101,6 +101,12 @@
     max-width: 30%;
   }
 
+  /* 60/40 and 50/50 splits (70/30 above is the default). */
+  .slider .slider-split--60 .slider-image-col { flex: 0 0 60%; max-width: 60%; }
+  .slider .slider-split--60 .slider-copy-col  { flex: 0 0 40%; max-width: 40%; }
+  .slider .slider-split--50 .slider-image-col { flex: 0 0 50%; max-width: 50%; }
+  .slider .slider-split--50 .slider-copy-col  { flex: 0 0 50%; max-width: 50%; }
+
   /*
    * Size text relative to the copy column rather than
    * the browser viewport.
