@@ -2,12 +2,12 @@
    Slider Component Styles
    =================================================== */
 
-/* Spacer admin visibility */
-.slider  .user-administrator .spacer {
+/* Admin-only visibility */
+.user-administrator .slider .spacer {
   background: inherit;
 }
 
-.slider  .user-administrator .small.text-align-center {
+.user-administrator .slider .small.text-align-center {
   display: block;
 }
 
@@ -15,7 +15,11 @@
   display: none;
 }
 
-/* Carousel controls — minimal chevron (inline SVG in the prev/next buttons) */
+
+/* ===================================================
+   Carousel controls
+   =================================================== */
+
 .slider .slider-chevron {
   color: #fff;
   opacity: .9;
@@ -23,21 +27,14 @@
   transition: opacity .15s ease, transform .15s ease;
 }
 
-/* Desktop blockquote — centered via equal side margins */
-.slider blockquote {
-  margin: 0 10%;
-  padding: 1rem 5rem;
-  width: 80%;
-}
-
 .slider .carousel-control-prev,
 .slider .carousel-control-next {
   display: flex !important;
   align-items: center;
-  opacity: 1 !important;
-  z-index: 10;
   width: auto;
   padding: 0 1.25rem;
+  opacity: 1 !important;
+  z-index: 10;
 }
 
 .slider .carousel-control-prev:hover .slider-chevron,
@@ -46,33 +43,54 @@
   transform: scale(1.12);
 }
 
+.slider .carousel-indicators {
+  bottom: -25px;
+}
+
+
 /* ===================================================
-   Per-slide layout: image left/right (70/30) vs stacked
-   Template: paragraph--carousel.html.twig
+   Blockquotes
    =================================================== */
 
-/* Image fills its column edge-to-edge in split layouts */
+.slider blockquote {
+  margin: 0 10%;
+  padding: 1rem 5rem;
+  width: 80%;
+}
+
+/* Split-layout blockquotes fill the copy column */
+.slider .slider-split .slider-copy-col blockquote {
+  margin: 0;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+
+/* ===================================================
+   Split-slide layout
+   =================================================== */
+
 .slider .slider-split .slider-image-col img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-/* Copy column: vertically center the quote, keep the color classes readable */
 .slider .slider-copy-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.carousel-indicators {
-  bottom: -25px;
-}
 
-/* Desktop (≥ lg): enforce the 70 / 30 split. Bootstrap col-12 keeps both
-   full width below this, so the slide stacks (image top) on mobile/tablet. */
+/* ===================================================
+   Desktop: 70 / 30 split + fluid typography
+   Bootstrap lg breakpoint: 992px
+   =================================================== */
+
 @media (min-width: 992px) {
+
   .slider .slider-split .slider-image-col {
     flex: 0 0 70%;
     max-width: 70%;
@@ -82,23 +100,121 @@
     flex: 0 0 30%;
     max-width: 30%;
   }
+
+  /*
+   * Size text relative to the copy column rather than
+   * the browser viewport.
+   */
+  .slider .slider-copy-col {
+    container-type: inline-size;
+  }
+
+  /* Normal paragraph copy */
+  .slider .slider-copy-col p {
+    font-size: clamp(.95rem, 4cqi, 1rem);
+  }
+
+  /*
+   * Fluid versions of the existing fs-110 through fs-200
+   * utilities. Each class only supplies its range.
+   */
+  .slider .slider-copy-col p.fs-110 {
+    --slider-fs-min: .95rem;
+    --slider-fs-fluid: 4.4cqi;
+    --slider-fs-max: 1.1rem;
+  }
+
+  .slider .slider-copy-col p.fs-120 {
+    --slider-fs-min: 1rem;
+    --slider-fs-fluid: 4.8cqi;
+    --slider-fs-max: 1.2rem;
+  }
+
+  .slider .slider-copy-col p.fs-130 {
+    --slider-fs-min: 1.05rem;
+    --slider-fs-fluid: 5.2cqi;
+    --slider-fs-max: 1.3rem;
+  }
+
+  .slider .slider-copy-col p.fs-140 {
+    --slider-fs-min: 1.1rem;
+    --slider-fs-fluid: 5.6cqi;
+    --slider-fs-max: 1.4rem;
+  }
+
+  .slider .slider-copy-col p.fs-150 {
+    --slider-fs-min: 1.2rem;
+    --slider-fs-fluid: 6cqi;
+    --slider-fs-max: 1.5rem;
+  }
+
+  .slider .slider-copy-col p.fs-160 {
+    --slider-fs-min: 1.3rem;
+    --slider-fs-fluid: 6.4cqi;
+    --slider-fs-max: 1.6rem;
+  }
+
+  .slider .slider-copy-col p.fs-170 {
+    --slider-fs-min: 1.4rem;
+    --slider-fs-fluid: 6.8cqi;
+    --slider-fs-max: 1.7rem;
+  }
+
+  .slider .slider-copy-col p.fs-180 {
+    --slider-fs-min: 1.5rem;
+    --slider-fs-fluid: 7.2cqi;
+    --slider-fs-max: 1.8rem;
+  }
+
+  .slider .slider-copy-col p.fs-190 {
+    --slider-fs-min: 1.6rem;
+    --slider-fs-fluid: 7.6cqi;
+    --slider-fs-max: 1.9rem;
+  }
+
+  .slider .slider-copy-col p.fs-200 {
+    --slider-fs-min: 1.7rem;
+    --slider-fs-fluid: 8cqi;
+    --slider-fs-max: 2rem;
+  }
+
+  .slider .slider-copy-col p:is(
+    .fs-110,
+    .fs-120,
+    .fs-130,
+    .fs-140,
+    .fs-150,
+    .fs-160,
+    .fs-170,
+    .fs-180,
+    .fs-190,
+    .fs-200
+  ) {
+    font-size: clamp(
+      var(--slider-fs-min),
+      var(--slider-fs-fluid),
+      var(--slider-fs-max)
+    ) !important;
+  }
 }
 
-/* In a split layout the blockquote shouldn't keep its centered 80% width —
-   it should fill the copy column. */
-.slider .slider-split .slider-copy-col blockquote {
-  margin: 0;
-  padding: 1.5rem;
-  width: 100%;
-}
 
-/* Mobile — full width, no padding, no controls */
-@media (max-width: 991px) {
+/* ===================================================
+   Mobile / tablet: stacked layout
+   =================================================== */
+
+@media (max-width: 991.98px) {
+
   .slider blockquote {
-    border-left: 0 solid var(--cua-gold);
+    border-left: 0;
     margin: 0;
     padding: 0;
     width: 100%;
+  }
+
+  .slider blockquote p {
+    font-size: 1em;
+    line-height: 1.4;
   }
 
   .slider button.carousel-control-prev,
@@ -106,25 +222,13 @@
     display: none;
   }
 
-  .slider.px-5 {
-    padding: 2rem 2.75rem !important;
-  }
-  
+  .slider.px-5,
   .slider-copy.py-3.px-5 {
     padding: 2rem 2.75rem !important;
-}
+  }
 
   .slider.mx-5 {
     margin-left: 0 !important;
     margin-right: 0 !important;
-  }
-
-  .slider.blockquote p {
-    font-size: 1em;
-    line-height: 1.4;
-  }
-
-  .slider blockquote {
-    margin: 0;
   }
 }
