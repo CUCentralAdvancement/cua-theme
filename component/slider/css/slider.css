@@ -47,6 +47,82 @@
   bottom: -25px;
 }
 
+/*
+ * Arrows "Visible, large, outside the slides" (field_visibility_arrows =
+ * outside). Desktop only: each arrow sits beside the slides as a solid
+ * circle that reads on any background or photo. The slider's side margin
+ * widens from mx-5 (3rem) to 5rem so the 3.5rem circle, its gap and its
+ * focus ring always fit inside the slider's own margin. The section's
+ * padding (often 0, and .container-fluid clips overflow-x) never has to
+ * supply the room. Below 992px the slider loses its side margin, so these
+ * arrows fall back to the default over-the-slide placement above.
+ */
+@media (min-width: 992px) {
+
+  .slider.slider--arrows-outside {
+    margin-left: 5rem !important;
+    margin-right: 5rem !important;
+  }
+
+  .slider--arrows-outside .carousel-control-prev,
+  .slider--arrows-outside .carousel-control-next {
+    top: 50%;
+    bottom: auto;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    justify-content: center;
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    /* Bootstrap's .carousel-dark inverts the whole control via
+       --bs-carousel-control-icon-filter; these are drawn in final colours. */
+    filter: none;
+    transform: translateY(-50%);
+    transition: background-color .15s ease, border-color .15s ease;
+  }
+
+  /* Centred in the 5rem margin: (5rem - 3.5rem) / 2 = .75rem each side,
+     which leaves room for the 6px focus ring. */
+  .slider--arrows-outside .carousel-control-prev {
+    left: auto;
+    right: calc(100% + .75rem);
+  }
+
+  .slider--arrows-outside .carousel-control-next {
+    right: auto;
+    left: calc(100% + .75rem);
+  }
+
+  .slider--arrows-outside .slider-chevron {
+    width: 4rem;
+    height: 4rem;
+    flex: none;
+    opacity: 1;
+    filter: none;
+  }
+
+  /* Gold-inversion hover, matching the header controls. */
+  .slider--arrows-outside .carousel-control-prev:hover,
+  .slider--arrows-outside .carousel-control-next:hover {
+    background: var(--cua-gold);
+    border-color: #000;
+  }
+
+  .slider--arrows-outside .carousel-control-prev:hover .slider-chevron,
+  .slider--arrows-outside .carousel-control-next:hover .slider-chevron {
+    color: #000;
+  }
+
+  .slider--arrows-outside .carousel-control-prev:focus-visible,
+  .slider--arrows-outside .carousel-control-next:focus-visible {
+    /* White ring + black outline: visible on gold, white and dark sections. */
+    box-shadow: 0 0 0 3px #fff;
+    outline: 3px solid #000;
+    outline-offset: 3px;
+  }
+}
+
 
 /* ===================================================
    Blockquotes

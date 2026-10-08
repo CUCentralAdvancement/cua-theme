@@ -30,12 +30,17 @@
 {%- set title_visible = configuration.label_display and configuration.label_display != '0' -%}
 {%- set has_title     = raw_label is not empty -%}
 
+{# Arrows: visible (over the slides) | outside (large, in the side gutters on
+   desktop; over the slides below 992px) | invisible. #}
+{%- set arrows = content.field_visibility_arrows['#items'].0.value -%}
+
 {# Class Orchestration #}
 {%- set slider_classes = [
   'block',
   'block-' ~ configuration.provider|clean_class,
   'block-' ~ plugin_id|clean_class,
   'slider mx-5 my-1',
+  arrows == 'outside' ? 'slider--arrows-outside' : null,
   color_background ?: null,
   text_color ?: null,
 ]|filter(v => v) -%}
@@ -146,7 +151,7 @@
 
     {{ content }}
 
-    {%- if content.field_visibility_arrows['#items'].0.value == 'visible' -%}
+    {%- if arrows in ['visible', 'outside'] -%}
       <button
           class="carousel-control-prev"
           type="button"
