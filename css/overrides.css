@@ -567,6 +567,11 @@ h3.text-align-center.impact-26-title {
 .contact-card {
   height: 100% !important;
 }
+
+a.fs-140.ext {
+  font-size: 1.25rem;
+}
+
 /* ==========================================================================
    MEDIA QUERIES CLASSES
    All breakpoints consolidated here.
