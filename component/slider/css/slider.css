@@ -184,6 +184,19 @@
   .slider .slider-split--50 .slider-copy-col  { flex: 0 0 50%; max-width: 50%; }
 
   /*
+   * Photo fills the full height of the slide, whatever the text length.
+   * The image column already stretches to the row height (align-items-
+   * stretch), and the img rule above asks for height: 100% + object-fit:
+   * cover, but the field's wrapper div between them has no height, so the
+   * photo stayed at its natural height and gold showed under it whenever
+   * the text ran taller. Giving the wrapper the column's height lets the
+   * photo fill it; when the text is taller, cover trims the photo's sides.
+   */
+  .slider .slider-split .slider-image-col > div {
+    height: 100%;
+  }
+
+  /*
    * Size text relative to the copy column rather than
    * the browser viewport.
    */
