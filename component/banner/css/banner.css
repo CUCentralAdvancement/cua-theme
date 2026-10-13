@@ -291,6 +291,26 @@
   content: none;
 }
 
+/* Optional mobile image (field_image_mobile). The template sets
+   --banner-image-mobile and --banner-mobile-ratio inline, and adds
+   .banner--has-mobile, only when an editor has uploaded one.
+   Phones in portrait only (<576px): tablets and phones held sideways keep
+   the desktop image, because a near-square image would be taller than a
+   landscape screen. */
+@media (max-width: 575.98px) and (orientation: portrait) {
+  /* !important is required: the desktop image is an inline style. */
+  .banner-image-container.banner--has-mobile {
+    background-image: var(--banner-image-mobile) !important;
+  }
+
+  /* "Fit to artwork" banners take the mobile image's own shape, so cover
+     has nothing to crop at any phone width. Falls back to 16/5 (the
+     desktop fit ratio) if the upload has no stored dimensions. */
+  .banner-image-container.banner--has-mobile.banner--fit {
+    aspect-ratio: var(--banner-mobile-ratio, 16 / 5);
+  }
+}
+
 .banner-image-container.margin_bottom {
   margin: 0 0 2rem !important;
 }
