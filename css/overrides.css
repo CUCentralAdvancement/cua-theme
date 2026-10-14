@@ -741,3 +741,756 @@ a.fs-140.ext {
 .cu-bg-black-trans .counter .text-blue-light {
   color: #86c0ce;
 }
+
+/* ----------------------------------------
+   GLOBAL / SITE-WIDE Overrides
+---------------------------------------- */
+
+/* ----------------------------------------
+   layout_bg background image centering
+   The image-bundle card wrapper (.card-header) is a shrink-to-fit flex item, so
+   it collapses to the image's natural width and justify-content-start pins it
+   left, defeating layout_bg's object-fit cover/centering. Force the wrapper
+   chain to full width so the <img> gets a full-width box and object-fit:cover
+   centers + covers the background. Lives here (loads globally) because the
+   component's own image-card.css is not attached in the layout_bg render path.
+---------------------------------------- */
+.layout-bg-bg-wrapper .image-wrap,
+.layout-bg-bg-wrapper .card-header,
+.layout-bg-bg-wrapper .card-img-wrapper,
+.layout-bg-bg-wrapper .img-static {
+  width: 100% !important;
+}
+
+.layout-bg-bg-wrapper .img-static img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+}
+
+#site-footer-bottom .nav {
+  background: #000 !important;
+}
+
+/* First declaration (transparent) removed — was immediately overridden */
+.site-footer .block {
+  background: #262626 !important;
+}
+
+aside .nav {
+  border-right: 1px solid #fff !important;
+}
+
+aside a.nav-link:hover,
+aside a.bef-link:hover {
+  color: #fff;
+}
+
+.spacer .small.text-align-center {
+  display: none !important;
+}
+
+/* ----------------------------------------
+   FRONT PAGE
+---------------------------------------- */
+
+.path-frontpage .bg-black .contextual {
+  display: none !important;
+}
+
+.path-frontpage p.h3-title {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.path-frontpage h3.display-4.card-text.lead.title.cu-text-black.remove-padding {
+  font-size: 1.65rem !important;
+}
+
+/* ----------------------------------------
+   FAQ PAGE
+---------------------------------------- */
+
+.path-faq main#content {
+  margin: 0 3rem 0 0 !important;
+}
+
+/* ----------------------------------------
+   BLOCKS / CTA / BASIC BLOCKS
+---------------------------------------- */
+
+.basic-block .card {
+  border: none !important;
+}
+
+/* CTA block */
+#cta-2058.block.call-to-action {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: var(--cua-black) !important;
+}
+
+#cta-2058 header.card-header {
+  background: var(--cua-gold) !important;
+  color: var(--cua-black) !important;
+  width: 100%;
+  padding: 0 0 .75rem;
+}
+
+#cta-2058 .fw-normal {
+  line-height: 1.45 !important;
+}
+
+#cta-2058 a.cta-card-link-wrapper.text-decoration-none.color-inherit {
+  padding: 0 0 2rem;
+}
+
+#cta-2058 .display-4.cu-text-white {
+  color: var(--cua-black) !important;
+  padding: 1rem 0 0;
+}
+
+/* ----------------------------------------
+   HERO / PARAGRAPHS
+---------------------------------------- */
+
+.pb-hero-wrapper.w-100 .paragraph {
+  margin-bottom: -2.2rem !important;
+}
+
+div#pb__hero-75 {
+  margin: -2.2rem !important;
+}
+
+/* ----------------------------------------
+   TYPOGRAPHY
+---------------------------------------- */
+
+h3.text-align-center.title {
+  line-height: 1.2;
+}
+
+/* ----------------------------------------
+   LINKS / TAGS / ANSWERS
+---------------------------------------- */
+
+.field--name-field-answer .field__item a,
+.field--name-field-answer .field--name-field-tags ul.links a {
+  text-decoration: underline !important;
+  color: var(--cua-blue) !important;
+}
+
+.field--name-field-answer .field__item a:hover,
+.field--name-field-answer .field--name-field-tags ul.links a:hover {
+  text-decoration: none !important;
+  color: var(--cua-black) !important;
+}
+
+a.color-scholarships,
+a.color-faculty,
+a.color-health-care,
+a.color-research,
+a.color-projects-programs,
+a.color-financials {
+  font-size: 1.5rem !important;
+  color: var(--cua-gold) !important;
+  text-decoration: underline !important;
+}
+
+a.color-scholarships:hover,
+a.color-faculty:hover,
+a.color-health-care:hover,
+a.color-research:hover,
+a.color-projects-programs:hover,
+a.color-financials:hover {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+/* ----------------------------------------
+   LEAD STORY
+---------------------------------------- */
+
+.lead-story-item,
+.lead-story-item a,
+.lead-story-item a:hover,
+.lead-story-item a:visited {
+  color: var(--cua-white) !important;
+}
+
+/* ----------------------------------------
+   GIVE NOW GRID
+---------------------------------------- */
+
+.page-node-975 .give-now-item.col-12.col-md-6.col-lg-3 {
+  margin-bottom: 25px !important;
+}
+
+/* ----------------------------------------
+   GIVE NOW — VIEW ALL PAGE ONLY
+   Scoped to .page-view-give-now body class
+---------------------------------------- */
+
+.page-view-give-now .view-give-now .view-content .views-row:nth-of-type(-n+4) {
+  background-color: rgba(25, 135, 84, 0.10);
+  border-bottom: 50px solid #fff;
+}
+
+.page-view-give-now .view-give-now .view-content .views-row:nth-of-type(n+5) {
+  background-color: rgba(220, 53, 69, 0.10);
+  border-bottom: 50px solid #fff;
+}
+
+.page-view-give-now .view-give-now .view-content .views-row .col-3 {
+  border-right: 5px solid #fff;
+}
+
+.page-view-give-now .give-row {
+  min-height: 260px;
+  position: relative;
+}
+
+.page-view-give-now .give-row .col-3 {
+  position: relative;
+}
+
+.page-view-give-now .give-row .col-3 .btn-dark {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  background: white;
+  color: black;
+}
+
+.page-view-give-now .contextual .trigger {
+  display: none !important;
+}
+
+.page-view-give-now .give-row .btn-dark {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  background-color: #d9534f !important;
+  color: white !important;
+  border-radius: 0;
+  border-color: indianred;
+}
+
+/* ----------------------------------------
+   FEATURED TOP
+---------------------------------------- */
+
+.featured-top {
+  background: #eaecef;
+}
+
+/* ----------------------------------------
+   ACCORDION
+---------------------------------------- */
+
+#accordionCU {
+  max-width: 95% !important;
+  margin: 0 auto !important;
+}
+
+/* ----------------------------------------
+   CK BUTTONS
+---------------------------------------- */
+
+.ck.btn.btn-secondary,
+.js-layout-builder-block .ck .btn.btn-secondary {
+  color: var(--cua-black) !important;
+  border: 2px solid var(--cua-gold) !important;
+  background-color: var(--cua-gold) !important;
+  text-decoration: none !important;
+  margin: 1rem 0 !important;
+  display: block !important;
+  padding: 0 .5rem !important;
+  max-width: 45% !important;
+  text-align: center !important;
+}
+
+/* ----------------------------------------
+   NODE 1005 — Financials / Charts Page
+   Scoped to .page-node-1005 body class
+   Empty banner rule removed — was a no-op
+---------------------------------------- */
+
+.page-node-1005 .layout.layout--twocol-section.fp {
+  background-attachment: scroll !important;
+  overflow: visible !important;
+  position: relative !important;
+  transform: none !important;
+  z-index: auto !important;
+}
+
+.page-node-1005 h4 {
+  font-size: 1.25rem !important;
+}
+
+.page-node-1005 .flag {
+  font-size: 1.1rem;
+}
+
+.page-node-1005 p.small-text {
+  font-size: .8rem;
+  line-height: 1.1;
+}
+
+.page-node-1005 img.endowment-image,
+.page-node-1005 img.asset-image,
+.page-node-1005 img.ltip-image,
+.page-node-1005 img.transfers-image {
+  display: block !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  width: 60% !important;
+}
+
+/* ==========================================================================
+   IMPACT REPORTS — Scoped to page-node-930, page-node-935, page-node-949
+   Uses :is() to avoid repeating three selectors on every rule.
+   ========================================================================== */
+
+:is(.page-node-930, .page-node-935, .page-node-949) h1,
+:is(.page-node-930, .page-node-935, .page-node-949) .h1,
+:is(.page-node-930, .page-node-935, .page-node-949) h2,
+:is(.page-node-930, .page-node-935, .page-node-949) .h2,
+:is(.page-node-930, .page-node-935, .page-node-949) h3,
+:is(.page-node-930, .page-node-935, .page-node-949) .h3,
+:is(.page-node-930, .page-node-935, .page-node-949) h4,
+:is(.page-node-930, .page-node-935, .page-node-949) .h4,
+:is(.page-node-930, .page-node-935, .page-node-949) h5,
+:is(.page-node-930, .page-node-935, .page-node-949) .h5,
+:is(.page-node-930, .page-node-935, .page-node-949) h6,
+:is(.page-node-930, .page-node-935, .page-node-949) .h6,
+:is(.page-node-930, .page-node-935, .page-node-949) h1.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h2.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h3.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h4.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h5.title,
+:is(.page-node-930, .page-node-935, .page-node-949) h6.title {
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h2 {
+  font-size: 2.25rem !important;
+  font-weight: var(--font-weight-xbold);
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h3 {
+  font-size: 2rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h4 {
+  font-size: 1.75rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h5 {
+  font-size: 1.5rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .h6 {
+  font-size: 1.25rem !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h2.title,
+:is(.page-node-930, .page-node-935, .page-node-949) p.h3.title,
+:is(.page-node-930, .page-node-935, .page-node-949) p.h4.title,
+:is(.page-node-930, .page-node-935, .page-node-949) p.h5.title {
+  color: inherit;
+  font-family: var(--font-roboto), sans-serif !important;
+  line-height: 1.3;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h2.title-lg {
+  font-size: 2.75rem !important;
+  font-weight: var(--font-weight-xbold);
+  font-family: var(--font-roboto), sans-serif !important;
+  margin: 1.3rem 0 .3rem 0;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h2.title {
+  font-size: 1.8rem !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-family: var(--font-roboto), sans-serif;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h3.title {
+  font-size: var(--h3-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h4.title {
+  font-size: var(--h4-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h5.title {
+  font-size: var(--h5-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+  line-height: 1.4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p.h6.title {
+  font-size: var(--h6-size) !important;
+  font-family: var(--font-roboto), sans-serif !important;
+  line-height: 1.1;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) p {
+  font-size: 1.25rem !important;
+  line-height: 1.6;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) blockquote {
+  border-left: none;
+  color: var(--cua-gray-700);
+  font-size: 1.25em;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 10px auto;
+  padding: 1rem 2rem;
+  position: relative;
+  width: 85%;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) blockquote p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-thin {
+  font-family: var(--font-roboto), sans-serif !important;
+  font-size: 1.75rem !important;
+  font-weight: var(--font-weight-xlight) !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-bold {
+  font-weight: var(--font-weight-bold) !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .large-font p {
+  font-size: 1.25rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .card .btn {
+  min-width: 2rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .card-img.large {
+  padding-top: 1rem;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .top-video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.medium {
+  width: 60% !important;
+  height: auto !important;
+  padding: 0 0 0 2rem !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .carousel-indicators {
+  display: block !important;
+  margin: 5rem 0 0 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .call-to-action.card p span {
+  font-family: var(--font-roboto), sans-serif !important;
+  font-size: 1.85rem !important;
+  font-weight: var(--font-weight-xlight) !important;
+  margin: 0 !important;
+}
+
+/* Section border accents */
+:is(.page-node-930, .page-node-935, .page-node-949) div#scholarships {
+  border-bottom: 15px solid #045e62 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#faculty {
+  border-bottom: 15px solid #ac355f !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#health-care {
+  border-bottom: 15px solid #4e93a4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#research {
+  border-bottom: 15px solid #544181 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#projects-programs {
+  border-bottom: 15px solid #d94e2a !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) div#endowment-update {
+  border-bottom: 15px solid #d98407 !important;
+}
+
+/* Background color utilities */
+:is(.page-node-930, .page-node-935, .page-node-949) .container-fluid.bg-blue-med {
+  background: #4e93a4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-align-center.bg-blue-med {
+  background: #4e93a4 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-align-center .bg-yellow-2 {
+  background: #d98407 !important;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .text-align-center.bg-yellow-2.p-2.text-white.h4.title-text {
+  background: #d98407;
+}
+
+:is(.page-node-930, .page-node-935, .page-node-949) .display-4.card-text.lead.h3.title.cu-text-black {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.fa-2xl {
+  font-size: 2em;
+}
+
+.fa-3xl {
+  font-size: 3em;
+}
+
+.fa-4xl {
+  font-size: 4em;
+}
+
+.fa-5xl {
+  font-size: 35em;
+}
+
+.page-node-55 .card h3 {
+  position: relative;
+  padding-bottom: .5rem !important;
+}
+
+.page-node-55 .card h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  /* this is your “border width” */
+  height: 2px;
+  background-color: var(--cua-gold);
+}
+
+.page-node-55 .call-to-action p {
+  margin-top: 0;
+}
+
+.page-view-board-of-directors .contact-card {
+  background: var(--cua-gray-100);
+  padding: .5rem 1.5rem 2rem 1.5rem;
+  margin: 0 1rem 2rem 1rem;
+}
+
+h3.text-align-center.impact-26-title {
+  font-size: 3.5rem;
+  font-weight: 100 !important;
+  margin: 0 0 1rem;
+}
+
+.contact-card {
+  height: 100% !important;
+}
+
+a.fs-140.ext {
+  font-size: 1.25rem;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES CLASSES
+   All breakpoints consolidated here.
+   ========================================================================== */
+
+/* node-1005 data viz images — mobile */
+@media (max-width: 768px) {
+
+  .page-node-1005 img.endowment-image,
+  .page-node-1005 img.asset-image,
+  .page-node-1005 img.ltip-image,
+  .page-node-1005 img.transfers-image {
+    display: block !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+}
+
+/* Global + Impact Report responsive — 991px */
+@media (max-width: 991px) {
+  blockquote p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  div#front-page-overlay {
+    background: #000000;
+  }
+
+  /* ── Impact Report scoped ──────────────────────────────────────── */
+  :is(.page-node-930, .page-node-935, .page-node-949) .block--_92 {
+    display: none !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) div#karla-berrum,
+  :is(.page-node-930, .page-node-935, .page-node-949) div#sarah-coronna {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) blockquote {
+    padding: 0;
+    position: relative;
+    width: 95%;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) p {
+    font-size: 1rem !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .card-body {
+    padding: 1rem 0 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.medium {
+    width: 92% !important;
+    padding: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) #block--node--slider--907,
+  :is(.page-node-930, .page-node-935, .page-node-949) #block--node--slider--902 {
+    margin: 15px !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.small img {
+    width: 93% !important;
+    height: auto !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .basic-block .card {
+    padding: 0 !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .menu-links.vertical {
+    flex-direction: column !important;
+    margin: auto !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .spacer .p-5 {
+    padding: 1rem !important;
+  }
+
+  :is(.page-node-930, .page-node-935, .page-node-949) .half-and-half .card-img.large {
+    width: 100% !important;
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  /* Desktop: float the dropdown over page content instead of pushing it down */
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute !important
+  }
+}
+
+@media (max-width: 991.98px) {
+
+  /* Mobile: keep the dropdown in flow so the hamburger menu expands like an accordion */
+  .navbar-nav .dropdown-menu {
+    position: static !important
+  }
+}
+
+/* ===================================================
+   Contrast safety net (WCAG AA)
+   The card / slider / half-and-half components expose background and
+   text colors as independent selects, so a builder can accidentally
+   pair light text on a light background (or dark text on a dark one) —
+   an invisible / failing combo (e.g. white on gold = 1.94:1). These
+   rules force a readable color for ONLY the genuinely-failing pairings;
+   all valid combinations are left untouched.
+   =================================================== */
+.cu-bg-gold.cu-text-white,        .cu-bg-gold .cu-text-white,
+.cu-bg-white.cu-text-white,       .cu-bg-white .cu-text-white,
+.cu-bg-light-grey.cu-text-white,  .cu-bg-light-grey .cu-text-white {
+  color: var(--cua-black) !important;
+}
+
+.cu-bg-black.cu-text-black,        .cu-bg-black .cu-text-black,
+.cu-bg-pure-black.cu-text-black,   .cu-bg-pure-black .cu-text-black,
+.cu-bg-black-trans.cu-text-black,  .cu-bg-black-trans .cu-text-black {
+  color: var(--cua-white) !important;
+}
+/* ===================================================
+   Contextual-link dropdowns (logged-in editors only —
+   core renders them solely for users with the
+   'access contextual links' permission).
+   Theme link/text colors on dark sections kept bleeding
+   into the dropdown (white-on-white), and page-scoped
+   patches kept getting overridden — so enforce the admin
+   UI look globally: black links on a white panel. Classes
+   are doubled to out-rank themed !important link rules
+   (e.g. the footer menus) regardless of where they live.
+   =================================================== */
+.contextual.contextual .contextual-links.contextual-links {
+  background-color: var(--cua-white) !important;
+}
+
+.contextual.contextual .contextual-links.contextual-links a,
+.contextual.contextual .contextual-links.contextual-links a:visited {
+  color: var(--cua-black) !important;
+  background-color: var(--cua-white) !important;
+  text-decoration: none !important;
+}
+
+.contextual.contextual .contextual-links.contextual-links a:hover,
+.contextual.contextual .contextual-links.contextual-links a:focus {
+  color: var(--cua-black) !important;
+  background-color: #ececec !important; /* keep hover feedback visible */
+}
+
+/* ===================================================
+   Contrast fix: #86c0ce (.text-blue-light) is 2.0:1 on
+   white — fails WCAG AA for counter suffixes (axe flags
+   /mental-health/together). Darken to #337f93 (4.6:1) in
+   counters on light backgrounds; dark sections keep the
+   original light value, same pattern as the safety net.
+   =================================================== */
+.counter .text-blue-light {
+  color: #337f93;
+}
+
+.cu-bg-black .counter .text-blue-light,
+.cu-bg-pure-black .counter .text-blue-light,
+.cu-bg-black-trans .counter .text-blue-light {
+  color: #86c0ce;
+}
+
+.page-node-1119 .layout__region:has(> .block.block-layout-builder) {
+  padding: 0 !important;
+}
+
+.page-node-1119  .paragraphs-bundles p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
