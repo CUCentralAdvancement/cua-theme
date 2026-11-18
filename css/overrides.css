@@ -1494,3 +1494,7 @@ a.fs-140.ext {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+
+.bk-ip-26 {
+  background: linear-gradient(to bottom, #262626 50%, #fff 50%) !important;
+}
