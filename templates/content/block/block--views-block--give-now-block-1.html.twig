@@ -217,7 +217,7 @@
                   </h3>
 
                   <div id="{{ body_id }}" class="give-now-body mb-2 mx-1 pt-2">
-                    {{- node.body.value|raw -}}
+                    {{- node.body.processed -}}
                   </div>
 
                   {%- if node.field_link.title is not empty -%}

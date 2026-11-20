@@ -13,7 +13,7 @@
 <div class="video-embed">
   <div class="video-responsive">
     {{- video_markup
-      |replace({'title="Video"': 'title="' ~ schema_name ~ '"'})
+      |replace({'title="Video"': 'title="' ~ schema_name|e('html') ~ '"'})
       |raw -}}
   </div>
 </div>
